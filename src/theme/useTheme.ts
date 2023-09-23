@@ -1,10 +1,18 @@
 import { useContext } from "react";
-import { LOCAL_STORAGE_THEME_KEY, Theme, ThemeContext } from "./ThemeContext";
+import {
+  LOCAL_STORAGE_THEME_NAMESPACE,
+  LOCAL_STORAGE_THEME_KEY,
+  Theme,
+  ThemeContext,
+} from "./ThemeContext";
+import { KVFactory } from "../helpers/kv-storage/kvStorage";
 
 interface UseThemeResult {
   toggleTheme: () => void;
   theme: Theme;
 }
+
+const localStorage = KVFactory(LOCAL_STORAGE_THEME_NAMESPACE);
 
 export const useTheme = (): UseThemeResult => {
   const { theme, setTheme } = useContext(ThemeContext);
@@ -12,7 +20,7 @@ export const useTheme = (): UseThemeResult => {
   const toggleTheme = () => {
     const newTheme = theme === Theme.DARK ? Theme.LIGHT : Theme.DARK;
     setTheme(newTheme);
-    localStorage.setItem(LOCAL_STORAGE_THEME_KEY, newTheme);
+    localStorage.set(LOCAL_STORAGE_THEME_KEY, newTheme);
   };
 
   return {
