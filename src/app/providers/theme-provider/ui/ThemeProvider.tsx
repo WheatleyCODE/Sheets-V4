@@ -5,7 +5,7 @@ import {
   LOCAL_STORAGE_THEME_NAMESPACE,
   Theme,
   ThemeContext,
-} from "../lib/ThemeContext";
+} from "app/providers/lib/ThemeContext";
 
 const localStorage = KVFactory(LOCAL_STORAGE_THEME_NAMESPACE);
 

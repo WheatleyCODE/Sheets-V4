@@ -1,10 +1,10 @@
 import { lazy } from "react";
 
-export const ExcelPage = lazy(
+export const SheetsPage = lazy(
   () =>
     new Promise((res) => {
       // @ts-ignore
       // ! DEV DELAY
-      setTimeout(() => res(import("./ExcelPage")), 500);
+      setTimeout(() => res(import("./SheetsPage.async")), 500);
     })
 );
