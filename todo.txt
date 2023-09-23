@@ -1,0 +1,5 @@
+[] Исправить задержку при загрузки страниц (export const LandingPage = lazy(() => import("./LandingPage"));)
+[] Сделать выпадающий список с выбором темы
+[] Поправить снипеты (На пропсы и RFC)
+[] Добавить SyncPromise
+[] Добавить SyncPromise в KVStorage, вместо Promise<T> -> Promise<T> | SyncPromise<T>
