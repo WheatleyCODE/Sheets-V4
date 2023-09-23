@@ -5,7 +5,7 @@ import {
   Theme,
   ThemeContext,
 } from "./ThemeContext";
-import { KVFactory } from "../helpers/kv-storage/kvStorage";
+import { KVFactory } from "shared/lib/kv-storage/kvStorage";
 
 interface UseThemeResult {
   toggleTheme: () => void;

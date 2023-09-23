@@ -1,13 +1,12 @@
-import { FC, Suspense, useContext, useState } from "react";
+import { FC, Suspense } from "react";
 import { Route, Routes } from "react-router-dom";
 import { Link } from "react-router-dom";
-import { ExcelPage } from "./pages/excel-page/ExcelPage.async";
-import { HomePage } from "./pages/home-page/HomePage.async";
-import { LandingPage } from "./pages/landing-page/LandingPage.async";
-import { useTheme } from "./theme/useTheme";
+import { ExcelPage } from "pages/excel-page/ui/ExcelPage.async";
+import { HomePage } from "pages/home-page/ui/HomePage.async";
+import { LandingPage } from "pages/landing-page/ui/LandingPage.async";
+import { classNames } from "shared/lib/class-names";
+import { useTheme } from "./providers";
 import "./styles/index.scss";
-import { classNames } from "./helpers/class-names/classNames";
-import { Theme } from "./theme/ThemeContext";
 
 export const App: FC = () => {
   // todo: Сделать выпадающий список с выбором темы

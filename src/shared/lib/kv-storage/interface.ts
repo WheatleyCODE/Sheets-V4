@@ -1,4 +1,4 @@
-import { CanPromise, Nullable } from "../ts-utils/tsUtils";
+import { CanPromise, Nullable } from "shared/lib/ts-utils/tsUtils";
 
 export interface KVStorageEngine {
   get(key: string): CanPromise<Nullable<string>>;

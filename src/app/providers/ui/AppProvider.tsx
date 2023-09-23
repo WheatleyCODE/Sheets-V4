@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { BrowserRouter } from "react-router-dom";
-import { ThemeProvider } from "../theme/ThemeProvider";
+import { ThemeProvider } from "./ThemeProvider";
 
 export const AppProvider: FC<FCProps> = ({ children }) => {
   return (
