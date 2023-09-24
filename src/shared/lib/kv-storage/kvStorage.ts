@@ -15,7 +15,6 @@ export class KVStorage {
     this.engine = engine;
   }
 
-  // todo: Либо Promise либо SyncPromise, тогда будет один интерфейс
   async get<T extends SerializableValue>(key: string): Promise<T | null> {
     const rawData = await this.engine.get(this.#getKey(key));
     return JSON.parse(rawData ?? "null");
