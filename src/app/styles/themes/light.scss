@@ -1,5 +1,7 @@
 .app.light {
   --color-background: #fff;
+  --color-background-invert: rgb(35, 35, 35);
+  --color--item-background: #fff;
 
   --color-primary: #3067dd;
   --color-light-primary: #6189dd;
@@ -11,11 +13,15 @@
   --color-light-secondary3: rgb(228, 255, 232);
   --color-light-secondary4: rgb(217, 253, 223);
   
+  --color-text-invert: #fff;
   --color-text: #242424;
   --color-text2: #444444;
   --color-text3: #a7a7a7;
   --color-text4: #d1d1d1;
   
-  --color-shadow: rgba(70, 67, 73, 0.4);
+  --color-shadow04: rgba(56, 53, 58, 0.4);
+  --color-shadow03: rgba(56, 53, 58, 0.3);
+  --color-shadow02: rgba(56, 53, 58, 0.1);
+  --color-shadow10: #d8d8e2;
 }
 

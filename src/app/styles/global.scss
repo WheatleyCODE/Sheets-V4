@@ -1,4 +1,17 @@
 .app {
   background-color: var(--color-background);
   color: var(--color-text);
+  overflow: hidden;
 }
+
+body {
+  background-color: var(--color-background);
+}
+
+.page {
+  border-top: 1px solid var(--color-shadow03);
+  width: 100%;
+  padding: 0 calc(var(--gap) * 4);
+  height: calc(100vh - var(--sheets-header-height));
+}
+

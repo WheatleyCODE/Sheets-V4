@@ -1,5 +1,7 @@
 .app.dark {
-  --color-background: rgb(39, 39, 39);
+  --color-background: #282c34;
+  --color-background-invert: #fff;
+  --color-item-background: #24262c;
 
   --color-primary: #5584eb;
   --color-light-primary: #86a8f1;
@@ -11,10 +13,13 @@
   --color-light-secondary3: rgb(228, 255, 232);
   --color-light-secondary4: rgb(217, 253, 223);
   
+  --color-text-invert: #1e1f22;
   --color-text: #d3d3d3;
   --color-text2: #b9b8b8;
   --color-text3: #a3a3a3;
   --color-text4: #727272;
   
-  --color-shadow: rgba(218, 218, 218, 0.4);
+  --color-shadow04: rgba(97, 92, 102, 0.4);
+  --color-shadow03: rgba(97, 92, 102, 0.3);
+  --color-shadow10: #161616;
 }
