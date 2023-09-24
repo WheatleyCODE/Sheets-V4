@@ -1,0 +1,19 @@
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: var(--sheets-header-height);
+  background-color: var(--color-background);
+  padding: 0 calc(var(--gap) * 4);
+}
+
+.left_side, .right_side {
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.space {
+  width: 10px;
+}
