@@ -1,8 +1,13 @@
 import { FC } from "react";
-import styles from "./ExcelPage.module.scss";
+import { classNames } from "shared/lib/class-names";
+import styles from "./SheetsPage.module.scss";
 
-const ExcelPage: FC = () => {
-  return <div className={styles.excel}>ExcelPage</div>;
+const SheetsPage: FC = () => {
+  return (
+    <div className={classNames(styles.sheets_page, {}, ["page"])}>
+      SheetsPage
+    </div>
+  );
 };
 
-export default ExcelPage;
+export default SheetsPage;

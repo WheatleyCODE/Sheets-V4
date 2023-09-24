@@ -4,7 +4,7 @@ export const SheetsPage = lazy(
   () =>
     new Promise((res) => {
       // @ts-ignore
-      // ! DEV DELAY
-      setTimeout(() => res(import("./SheetsPage.async")), 500);
+
+      setTimeout(() => res(import("./SheetsPage")), 500);
     })
 );
