@@ -1,4 +1,4 @@
-import { RoutesPath } from "shared/config/route-config/routeConfig";
+import { RoutesPath } from 'shared/config/route-config/routeConfig';
 
 export interface INavbarMenu {
   text: string;
@@ -6,7 +6,7 @@ export interface INavbarMenu {
 }
 
 export const navbarMenu: INavbarMenu[] = [
-  { text: "Домашняя страница", path: RoutesPath.home },
-  { text: "Таблицы", path: RoutesPath.sheets },
-  { text: "Лендинг", path: RoutesPath.landing },
+  { text: 'Домашняя страница', path: RoutesPath.home },
+  { text: 'Таблицы', path: RoutesPath.sheets },
+  { text: 'Лендинг', path: RoutesPath.landing },
 ];

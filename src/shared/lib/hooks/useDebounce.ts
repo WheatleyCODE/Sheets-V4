@@ -1,9 +1,6 @@
-import { useCallback, useRef } from "react";
+import { useCallback, useRef } from 'react';
 
-export const useDebounce = (
-  callback: (...args: any[]) => void,
-  delay: number
-) => {
+export const useDebounce = (callback: (...args: any[]) => void, delay: number) => {
   const timer = useRef<NodeJS.Timeout | null>(null);
 
   const debouncedCallback = useCallback(
@@ -16,7 +13,7 @@ export const useDebounce = (
         callback(...args);
       }, delay);
     },
-    [callback, delay]
+    [callback, delay],
   );
 
   return debouncedCallback;

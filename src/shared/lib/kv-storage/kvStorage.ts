@@ -1,5 +1,5 @@
-import { SerializableValue, KVStorageEngine } from "./interface";
-import { LocalStorageEngine } from "./local-storage-engine/localStorageEngine";
+import { SerializableValue, KVStorageEngine } from './interface';
+import { LocalStorageEngine } from './local-storage-engine/localStorageEngine';
 
 export function KVFactory(namespace: string, engine?: KVStorageEngine) {
   const eng = engine || new LocalStorageEngine();
@@ -17,7 +17,7 @@ export class KVStorage {
 
   async get<T extends SerializableValue>(key: string): Promise<T | null> {
     const rawData = await this.engine.get(this.#getKey(key));
-    return JSON.parse(rawData ?? "null");
+    return JSON.parse(rawData ?? 'null');
   }
 
   async set(key: string, value: SerializableValue): Promise<void> {

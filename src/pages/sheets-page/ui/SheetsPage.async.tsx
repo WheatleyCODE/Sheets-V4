@@ -1,10 +1,10 @@
-import { lazy } from "react";
+import { lazy } from 'react';
 
 export const SheetsPage = lazy(
   () =>
     new Promise((res) => {
       // @ts-ignore
 
-      setTimeout(() => res(import("./SheetsPage")), 500);
-    })
+      setTimeout(() => res(import('./SheetsPage')), 500);
+    }),
 );

@@ -1,25 +1,17 @@
-import { FC, useEffect, useRef, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { useDelayHover } from "shared/lib/hooks/useDelayHover";
-import { ANIMATION_DURATION } from "shared/consts/animations/animation";
-import styles from "./Title.module.scss";
-import { ObjStyles } from "./interface";
+import { FC, useEffect, useRef, useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { useDelayHover } from 'shared/lib/hooks/useDelayHover';
+import { ANIMATION_DURATION } from 'shared/consts/animations/animation';
+import styles from './Title.module.scss';
+import { ObjStyles } from './interface';
 
 export interface TitleProps extends React.HTMLAttributes<HTMLDivElement> {
   text: string;
   isStopShow?: boolean;
 }
 
-export const Title: FC<TitleProps> = ({
-  children,
-  text,
-  isStopShow = false,
-  ...anotherProps
-}) => {
-  const { isShow, onMouseEnter, onMouseLeave, onMouseMove } = useDelayHover(
-    false,
-    200
-  );
+export const Title: FC<TitleProps> = ({ children, text, isStopShow = false, ...anotherProps }) => {
+  const { isShow, onMouseEnter, onMouseLeave, onMouseMove } = useDelayHover(false, 200);
   const [objStyles, setObjStyles] = useState<ObjStyles>({});
   const titleRef = useRef<HTMLDivElement | null>(null);
   const titleTextRef = useRef<HTMLDivElement | null>(null);
@@ -37,20 +29,18 @@ export const Title: FC<TitleProps> = ({
 
     objStyles.top = objStyles.top = titleRect.height + TEXT_MARGIN;
 
-    const isRight = () =>
-      $title.offsetLeft + textRect.width / 2 > bodyRect.width;
+    const isRight = () => $title.offsetLeft + textRect.width / 2 > bodyRect.width;
     const isLeft = () => textRect.width / 2 > $title.offsetLeft;
-    const isTop = () =>
-      $title.offsetTop + titleRect.height + textRect.height > bodyRect.height;
+    const isTop = () => $title.offsetTop + titleRect.height + textRect.height > bodyRect.height;
 
     if (isRight()) {
       objStyles.right = 0;
-      objStyles.left = "initial";
+      objStyles.left = 'initial';
     }
 
     if (isLeft()) {
       objStyles.left = 0;
-      objStyles.right = "initial";
+      objStyles.right = 'initial';
     }
 
     if (isTop()) {

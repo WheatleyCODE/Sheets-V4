@@ -1,4 +1,4 @@
 export enum ButtonStyles {
-  DEFAULT = "default",
-  CLEAR = "clear",
+  DEFAULT = 'default',
+  CLEAR = 'clear',
 }

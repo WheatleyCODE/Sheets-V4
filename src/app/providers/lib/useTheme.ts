@@ -1,11 +1,6 @@
-import { useContext } from "react";
-import {
-  LOCAL_STORAGE_THEME_NAMESPACE,
-  LOCAL_STORAGE_THEME_KEY,
-  Theme,
-  ThemeContext,
-} from "./ThemeContext";
-import { KVFactory } from "shared/lib/kv-storage/kvStorage";
+import { useContext } from 'react';
+import { LOCAL_STORAGE_THEME_NAMESPACE, LOCAL_STORAGE_THEME_KEY, Theme, ThemeContext } from './ThemeContext';
+import { KVFactory } from 'shared/lib/kv-storage/kvStorage';
 
 interface UseThemeResult {
   toggleTheme: () => void;

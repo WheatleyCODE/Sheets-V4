@@ -1,18 +1,18 @@
-import { RouteProps } from "react-router-dom";
-import { HomePage } from "pages/home-page";
-import { SheetsPage } from "pages/sheets-page";
-import { LandingPage } from "pages/landing-page";
+import { RouteProps } from 'react-router-dom';
+import { HomePage } from 'pages/home-page';
+import { SheetsPage } from 'pages/sheets-page';
+import { LandingPage } from 'pages/landing-page';
 
 export enum AppRoutes {
-  HOME = "home",
-  SHEETS = "sheets",
-  LANDING = "landing",
+  HOME = 'home',
+  SHEETS = 'sheets',
+  LANDING = 'landing',
 }
 
 export const RoutesPath: Record<AppRoutes, string> = {
-  [AppRoutes.HOME]: "/home",
-  [AppRoutes.SHEETS]: "/sheets",
-  [AppRoutes.LANDING]: "/",
+  [AppRoutes.HOME]: '/home',
+  [AppRoutes.SHEETS]: '/sheets',
+  [AppRoutes.LANDING]: '/',
 };
 
 export const routeConfig: Record<AppRoutes, RouteProps> = {

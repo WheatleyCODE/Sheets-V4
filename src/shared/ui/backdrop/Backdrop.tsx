@@ -1,8 +1,8 @@
-import React, { FC, useCallback, useEffect } from "react";
-import { motion } from "framer-motion";
-import { ANIMATION_DURATION } from "shared/consts/animations/animation";
-import { classNames } from "shared/lib/class-names";
-import styles from "./Backdrop.module.scss";
+import React, { FC, useCallback, useEffect } from 'react';
+import { motion } from 'framer-motion';
+import { ANIMATION_DURATION } from 'shared/consts/animations/animation';
+import { classNames } from 'shared/lib/class-names';
+import styles from './Backdrop.module.scss';
 
 export interface IBackdropProps extends React.HTMLAttributes<HTMLDivElement> {
   onClose: () => void;
@@ -20,7 +20,7 @@ export const Backdrop: FC<IBackdropProps> = (props) => {
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       switch (e.key) {
-        case "Escape":
+        case 'Escape':
           onClose();
           break;
 
@@ -29,10 +29,10 @@ export const Backdrop: FC<IBackdropProps> = (props) => {
       }
     };
 
-    document.addEventListener("keydown", handleKeyDown);
+    document.addEventListener('keydown', handleKeyDown);
 
     return () => {
-      document.removeEventListener("keydown", handleKeyDown);
+      document.removeEventListener('keydown', handleKeyDown);
     };
   }, [onClose]);
 

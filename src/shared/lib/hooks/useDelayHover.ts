@@ -1,12 +1,7 @@
-import { useState, useCallback, useRef } from "react";
-import { useDebounce } from "./useDebounce";
+import { useState, useCallback, useRef } from 'react';
+import { useDebounce } from './useDebounce';
 
-export const useDelayHover = (
-  isInitial = false,
-  time = 700,
-  delay = 500,
-  refresh = 200
-) => {
+export const useDelayHover = (isInitial = false, time = 700, delay = 500, refresh = 200) => {
   const [isMove, setIsMove] = useState(isInitial);
   const [isEnter, setIsEnter] = useState(isInitial);
   const first = useRef(false);
