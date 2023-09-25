@@ -31,7 +31,7 @@
   }
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (width <= 500px) {
   .drawer {
     &.full.right, &.full.left {
       width: 100%;

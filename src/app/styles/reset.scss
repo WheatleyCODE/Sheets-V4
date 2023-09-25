@@ -4,7 +4,7 @@
   box-sizing: border-box;
   outline: none;
   border: none;
-  font-family: 'Roboto', sans-serif;
+  font-family: Roboto, sans-serif;
   font-weight: 300;
   font-size: var(--font-size);
 }
@@ -83,7 +83,6 @@ input[type="submit"] {
   display: inline-block;
   box-shadow: none;
   background-color: transparent;
-  background: none;
   cursor: pointer;
 }
 
