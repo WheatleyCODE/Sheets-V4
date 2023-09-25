@@ -3,8 +3,10 @@
 - Свои хелперы
 - Универсальный класс для работы с хранилищем типа ключ:значение
 - Архитектура FSD
+- Анимации используя framer motion
 - i18n
 - Babel
 - Eslint
 - Prettier
-- Анимации используя framer motion
+- Stylelint
+- Jest
