@@ -9,12 +9,16 @@ import { Backdrop } from "shared/ui/backdrop/Backdrop";
 import { AnimatePresence } from "framer-motion";
 import { navbarMenu } from "shared/consts/menus/navbarMenu";
 import { Link } from "shared/ui/link";
+import { TFunction } from "i18next";
+import { Title } from "shared/ui/title";
 
-interface INavigationMenuProps extends React.HTMLAttributes<HTMLDivElement> {}
+interface INavigationMenuProps extends React.HTMLAttributes<HTMLDivElement> {
+  t: TFunction<"home">;
+}
 
 export const NavigationMenu: FC<INavigationMenuProps> = (props) => {
   const [isOpen, setIsOpen] = useState(false);
-  const { className, ...anotherProps } = props;
+  const { className, t, ...anotherProps } = props;
 
   const onClick = () => {
     setIsOpen((p) => !p);
@@ -22,12 +26,14 @@ export const NavigationMenu: FC<INavigationMenuProps> = (props) => {
 
   return (
     <div {...anotherProps} className={classNames(styles.menu, {}, [className])}>
-      <Button
-        className={styles.button}
-        buttonStyle={ButtonStyles.CLEAR}
-        Icon={MdOutlineMenu}
-        onClick={onClick}
-      />
+      <Title isStopShow={isOpen} text={t("Меню")}>
+        <Button
+          className={styles.button}
+          buttonStyle={ButtonStyles.CLEAR}
+          Icon={MdOutlineMenu}
+          onClick={onClick}
+        />
+      </Title>
 
       <AnimatePresence>
         {isOpen && (
@@ -36,7 +42,7 @@ export const NavigationMenu: FC<INavigationMenuProps> = (props) => {
               <Drawer openStyles={DrawerOpenStyles.LEFT} width={300}>
                 {navbarMenu.map(({ text, path }) => (
                   <Link id={path} to={path}>
-                    {text}
+                    {t(text)}
                   </Link>
                 ))}
               </Drawer>

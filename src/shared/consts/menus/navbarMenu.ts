@@ -6,7 +6,7 @@ export interface INavbarMenu {
 }
 
 export const navbarMenu: INavbarMenu[] = [
-  { text: "Домашняя", path: RoutesPath.home },
+  { text: "Домашняя страница", path: RoutesPath.home },
   { text: "Таблицы", path: RoutesPath.sheets },
   { text: "Лендинг", path: RoutesPath.landing },
 ];
