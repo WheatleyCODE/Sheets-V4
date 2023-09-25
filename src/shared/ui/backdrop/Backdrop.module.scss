@@ -1,0 +1,11 @@
+.backdrop {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  background-color: var(--color-backdrop);
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 50;
+}

@@ -4,6 +4,8 @@ import SheetsDarkIcon from "shared/assets/icons/sheets-dark.svg";
 import { Theme } from "app/providers";
 import { classNames } from "shared/lib/class-names";
 import styles from "./Logo.module.scss";
+import { Link } from "shared/ui/link/Link";
+import { RoutesPath } from "shared/config/route-config/routeConfig";
 
 interface ILogoProps extends React.HTMLAttributes<HTMLDivElement> {
   theme: Theme;
@@ -16,7 +18,10 @@ export const Logo: FC<ILogoProps> = (props) => {
 
   return (
     <div {...anotherProps} className={classNames(styles.logo, {}, [className])}>
-      <Icon height={60} width={50} />
+      <Link className={styles.link} to={RoutesPath.home}>
+        <Icon height={50} width={45} />
+        <h1 className={styles.logo_name}>SHEETS</h1>
+      </Link>
     </div>
   );
 };

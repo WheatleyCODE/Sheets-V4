@@ -1,6 +1,6 @@
 import { FC } from "react";
-import { Title } from "shared/ui/title/Title";
-import { Button } from "shared/ui/button/Button";
+import { Title } from "shared/ui/title";
+import { Button } from "shared/ui/button";
 import { classNames } from "shared/lib/class-names";
 import styles from "./ThemeSwitcher.module.scss";
 

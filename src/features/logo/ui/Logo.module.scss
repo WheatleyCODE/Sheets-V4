@@ -1,3 +1,17 @@
 .logo {
   
 }
+
+.logo_name {
+  font-size: calc(var(--font-size) * 1.6);
+  color: var(--color-text);
+}
+
+.link {
+  display: flex;
+  align-items: center;
+
+  &:hover {
+    color: var(--color-text);
+  }
+}

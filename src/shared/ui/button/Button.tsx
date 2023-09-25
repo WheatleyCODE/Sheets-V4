@@ -2,15 +2,24 @@ import React, { FC, memo } from "react";
 import { IconType } from "react-icons";
 import styles from "./Button.module.scss";
 import { classNames } from "shared/lib/class-names";
+import { ButtonStyles } from "./interface";
 
 interface IButtonProps extends React.HTMLAttributes<HTMLButtonElement> {
   text?: string;
   Icon?: IconType;
   disable?: boolean;
+  buttonStyle?: ButtonStyles;
 }
 
 export const Button: FC<IButtonProps> = memo((props) => {
-  const { text, className, Icon, disable = false, ...anotherProps } = props;
+  const {
+    text,
+    className,
+    Icon,
+    buttonStyle = ButtonStyles.DEFAULT,
+    disable = false,
+    ...anotherProps
+  } = props;
 
   const MemoIcon = Icon && memo(Icon);
 
@@ -18,6 +27,7 @@ export const Button: FC<IButtonProps> = memo((props) => {
     <button
       className={classNames(styles.button, { disable, icon: !!MemoIcon }, [
         className,
+        styles[buttonStyle],
       ])}
       type="button"
       disabled={disable}
