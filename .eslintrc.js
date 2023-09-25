@@ -5,6 +5,7 @@ module.exports = {
     'plugin:@typescript-eslint/recommended',
     'plugin:react-hooks/recommended',
     'plugin:prettier/recommended',
+    'plugin:i18next/recommended'
   ],
   parser: '@typescript-eslint/parser',
   parserOptions: {
@@ -12,7 +13,7 @@ module.exports = {
     tsconfigRootDir: __dirname,
     sourceType: 'module',
   },
-  plugins: ['react-refresh', 'prettier'],
+  plugins: ['react-refresh', 'prettier', 'i18next'],
   rules: {
     'react-refresh/only-export-components': 'warn',
     quotes: [2, 'single'],
@@ -25,6 +26,7 @@ module.exports = {
       },
     ],
     '@typescript-eslint/no-explicit-any': 'warn',
-    '@typescript-eslint/ban-ts-comment': 'warn'
+    '@typescript-eslint/ban-ts-comment': 'warn',
+    'i18next/no-literal-string': 2
   },
 };
