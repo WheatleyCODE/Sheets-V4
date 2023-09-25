@@ -1,7 +1,7 @@
 import { FC, useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useDelayHover } from "shared/lib/hooks/useDelayHover";
-import { ANIMATION_DURATION } from "shared/consts/animation";
+import { ANIMATION_DURATION } from "shared/consts/animations/animation";
 import styles from "./Title.module.scss";
 import { ObjStyles } from "./interface";
 

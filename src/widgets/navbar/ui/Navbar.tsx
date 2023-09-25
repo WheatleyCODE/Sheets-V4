@@ -1,18 +1,20 @@
 import { FC } from "react";
-import { Link } from "react-router-dom";
-import { routeConfig } from "shared/config/route-config/routeConfig";
-import { classNames } from "shared/lib/class-names";
-import styles from "./Navbar.module.scss";
-import { Button } from "shared/ui/button/Button";
-import { Title } from "shared/ui/title/Title";
 import { MdPerson } from "react-icons/md";
+import { Button } from "shared/ui/button/Button";
+import { Link } from "shared/ui/link/Link";
+import { Title } from "shared/ui/title/Title";
+import { classNames } from "shared/lib/class-names";
+import { navbarMenu } from "shared/consts/menus/navbarMenu";
+import { ThemeSwitcher } from "features/theme-switcher/ui/ThemeSwitcher";
+import styles from "./Navbar.module.scss";
+import { Logo } from "features/logo/ui/Logo";
+import { useTheme } from "app/providers";
 
-export interface NavbarProps extends React.HTMLAttributes<HTMLDivElement> {
-  toggleTheme: () => void;
-}
+export interface NavbarProps extends React.HTMLAttributes<HTMLDivElement> {}
 
 export const Navbar: FC<NavbarProps> = (props) => {
-  const { className, toggleTheme, ...anotherProps } = props;
+  const { className, ...anotherProps } = props;
+  const { theme, toggleTheme } = useTheme();
 
   return (
     <div
@@ -20,17 +22,19 @@ export const Navbar: FC<NavbarProps> = (props) => {
       className={classNames(styles.navbar, {}, [className])}
     >
       <div className={styles.left_side}>
-        {Object.values(routeConfig).map(({ path }) => (
-          <Link to={path}>{path}</Link>
+        <Logo theme={theme} />
+        {navbarMenu.map(({ text, path }) => (
+          <Link id={path} to={path}>
+            {text}
+          </Link>
         ))}
       </div>
 
       <div className={styles.right_side}>
-        <Title text="Сменить тему">
-          <Button onClick={toggleTheme} text="Сменить тему" />
-        </Title>
-
-        <div className={styles.space} />
+        <ThemeSwitcher
+          className={styles.margin_right}
+          toggleTheme={toggleTheme}
+        />
 
         <Title text="Пользователь">
           <Button onClick={toggleTheme} Icon={MdPerson} />

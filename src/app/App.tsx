@@ -1,16 +1,15 @@
-import { FC, Suspense } from "react";
-import { Link } from "react-router-dom";
+import { FC } from "react";
 import { classNames } from "shared/lib/class-names";
 import { useTheme, AppRouter } from "./providers";
-import "./styles/index.scss";
 import { Navbar } from "widgets/navbar";
+import "./styles/index.scss";
 
 export const App: FC = () => {
-  const { theme, toggleTheme } = useTheme();
+  const { theme } = useTheme();
 
   return (
     <div className={classNames("app", {}, [theme])}>
-      <Navbar toggleTheme={toggleTheme} />
+      <Navbar />
       <AppRouter />
     </div>
   );
