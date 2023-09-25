@@ -6,7 +6,7 @@ import { useTranslation } from 'react-i18next';
 interface INotFoundPageProps extends React.HTMLAttributes<HTMLDivElement> {}
 
 const NotFoundPage: FC<INotFoundPageProps> = (props) => {
-  const { t } = useTranslation('notfound');
+  const { t } = useTranslation();
   const { className, ...anotherProps } = props;
 
   return (
