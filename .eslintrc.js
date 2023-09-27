@@ -30,4 +30,13 @@ module.exports = {
     'i18next/no-literal-string': 2,
     'no-prototype-builtins': 0,
   },
+
+  overrides: [
+    {
+      files: ['**/src/**/*.test.{ts,.tsx}'],
+      rules: {
+        'i18next/no-literal-string': '0',
+      }
+    }
+  ],
 };
