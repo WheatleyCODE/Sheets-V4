@@ -1,11 +1,12 @@
 module.exports = {
   env: { browser: true, es2020: true, jest: true },
   extends: [
-    'eslint:recommended',
-    'plugin:@typescript-eslint/recommended',
-    'plugin:react-hooks/recommended',
-    'plugin:prettier/recommended',
-    'plugin:i18next/recommended'
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:react-hooks/recommended",
+    "plugin:prettier/recommended",
+    "plugin:i18next/recommended",
+    "plugin:storybook/recommended"
   ],
   parser: '@typescript-eslint/parser',
   parserOptions: {
@@ -35,7 +36,7 @@ module.exports = {
     {
       files: ['**/src/**/*.test.{ts,.tsx}'],
       rules: {
-        'i18next/no-literal-string': '0',
+        'i18next/no-literal-string': 'off',
       }
     }
   ],
