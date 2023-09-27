@@ -10,6 +10,7 @@ export function intoAsyncIter<T>(obj: any): AsyncIter<T> {
 }
 
 export class AsyncIter<T> {
+  #subscribers: ((a: T) => void)[] = [];
   iterable: AsyncIterable<T>;
 
   constructor(iterable: AsyncIterable<T>) {
@@ -17,7 +18,22 @@ export class AsyncIter<T> {
   }
 
   async *[Symbol.asyncIterator]() {
-    yield* this.iterable;
+    for await (const el of this.iterable) {
+      this.#emit(el);
+      yield el;
+    }
+  }
+
+  subscribe(callback: (a: T) => void): () => void {
+    this.#subscribers.push(callback);
+
+    return () => {
+      this.#subscribers = this.#subscribers.filter((fn) => fn !== callback);
+    };
+  }
+
+  #emit(el: T) {
+    this.#subscribers.forEach((cb) => cb(el));
   }
 
   filter(pred: Predicate<T>) {

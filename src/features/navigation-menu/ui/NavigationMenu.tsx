@@ -1,16 +1,17 @@
 import { FC, useState } from 'react';
-import { classNames } from 'shared/lib/class-names';
+import { AnimatePresence } from 'framer-motion';
 import { Button, ButtonStyles } from 'shared/ui/button';
 import { MdOutlineMenu } from 'react-icons/md';
-import styles from './NavigationMenu.module.scss';
 import { Drawer, DrawerOpenStyles } from 'shared/ui/drawer';
 import { Portal } from 'shared/ui/portal/Portal';
 import { Backdrop } from 'shared/ui/backdrop/Backdrop';
-import { AnimatePresence } from 'framer-motion';
-import { navbarMenu } from 'shared/consts/menus/navbarMenu';
+import { navbarMenu, INavbarMenuItem } from 'shared/consts/menus/navbarMenu';
 import { Link } from 'shared/ui/link';
 import { TFunction } from 'i18next';
 import { Title } from 'shared/ui/title';
+import { intoIter } from 'shared/lib/iterators';
+import { classNames } from 'shared/lib/class-names';
+import styles from './NavigationMenu.module.scss';
 
 interface INavigationMenuProps extends React.HTMLAttributes<HTMLDivElement> {
   t: TFunction<'home'>;
@@ -24,6 +25,14 @@ export const NavigationMenu: FC<INavigationMenuProps> = (props) => {
     setIsOpen((p) => !p);
   };
 
+  const navbarLinks = intoIter<INavbarMenuItem>(navbarMenu)
+    .map(({ text, path }) => (
+      <Link id={path} to={path}>
+        {t(text)}
+      </Link>
+    ))
+    .toArray();
+
   return (
     <div {...anotherProps} className={classNames(styles.menu, {}, [className])}>
       <Title isStopShow={isOpen} text={t('Меню')}>
@@ -35,11 +44,7 @@ export const NavigationMenu: FC<INavigationMenuProps> = (props) => {
           <Portal>
             <Backdrop className="storage-aside" onClose={onClick}>
               <Drawer openStyles={DrawerOpenStyles.LEFT} width={300}>
-                {navbarMenu.map(({ text, path }) => (
-                  <Link id={path} to={path}>
-                    {t(text)}
-                  </Link>
-                ))}
+                {navbarLinks}
               </Drawer>
             </Backdrop>
           </Portal>

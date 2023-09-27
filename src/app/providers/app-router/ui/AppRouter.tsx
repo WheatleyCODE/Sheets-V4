@@ -1,13 +1,12 @@
 import { FC } from 'react';
-import { Route, Routes } from 'react-router-dom';
+import { Route, RouteProps, Routes } from 'react-router-dom';
 import { routeConfig } from 'shared/config/route-config/routeConfig';
+import { intoIter } from 'shared/lib/iterators';
 
 export const AppRouter: FC = () => {
-  return (
-    <Routes>
-      {Object.values(routeConfig).map(({ element, path }) => (
-        <Route key={path} path={path} element={element} />
-      ))}
-    </Routes>
-  );
+  const routesArr = intoIter<RouteProps>(routeConfig)
+    .map(({ element, path }) => <Route key={path} path={path} element={element} />)
+    .toArray();
+
+  return <Routes>{routesArr}</Routes>;
 };
