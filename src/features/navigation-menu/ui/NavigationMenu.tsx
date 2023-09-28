@@ -9,7 +9,7 @@ import { navbarMenu, INavbarMenuItem } from 'shared/consts/menus/navbarMenu';
 import { Link } from 'shared/ui/link';
 import { TFunction } from 'i18next';
 import { Title } from 'shared/ui/title';
-import { intoIter } from 'shared/lib/iterators';
+import { intoIter } from 'shared/lib/iterators/iter/Iter';
 import { classNames } from 'shared/lib/class-names';
 import styles from './NavigationMenu.module.scss';
 
