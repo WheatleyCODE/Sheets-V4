@@ -1,4 +1,4 @@
-name: linting, testing, building
+name: SheetsV4 Linting, Testing, Building
 on:
   push:
     branches: [master]
@@ -17,13 +17,13 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
-      - name: install modules
+      - name: Install modules
         run: npm install
+      - name: Linting typescript
+        run: npm run lint:ts
+      - name: Linting css
+        run: npm run lint:scss
+      - name: Unit testing
+        run: npm run test:unit
       - name: build production project
         run: npm run build:prod
-      - name: linting typescript
-        run: npm run lint:ts
-      - name: linting css
-        run: npm run lint:scss
-      - name: unit testing
-        run: npm run test:unit
