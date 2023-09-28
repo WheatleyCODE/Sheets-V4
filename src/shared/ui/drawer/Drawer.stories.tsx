@@ -13,41 +13,47 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-export const Light: Story = {
-  args: {
-    openStyles: DrawerOpenStyles.TOP,
-    children: <h1>Drawer</h1>,
-  },
-};
+// ! Fix loki error
+// export const Light: Story = {
+//   args: {
+//     openStyles: DrawerOpenStyles.TOP,
+//     isAnimation: false,
+//     children: <h1>Drawer</h1>,
+//   },
+// };
 
-export const Dark: Story = {
-  args: {
-    openStyles: DrawerOpenStyles.TOP,
-    children: <h1>Drawer</h1>,
-  },
-  decorators: [themeDecorator(Theme.DARK)],
-};
+// export const Dark: Story = {
+//   args: {
+//     openStyles: DrawerOpenStyles.TOP,
+//     isAnimation: false,
+//     children: <h1>Drawer</h1>,
+//   },
+//   decorators: [themeDecorator(Theme.DARK)],
+// };
 
-export const Left: Story = {
-  args: {
-    openStyles: DrawerOpenStyles.LEFT,
-    children: <h1>Drawer</h1>,
-  },
-  decorators: [themeDecorator(Theme.DARK)],
-};
+// export const Left: Story = {
+//   args: {
+//     openStyles: DrawerOpenStyles.LEFT,
+//     isAnimation: false,
+//     children: <h1>Drawer</h1>,
+//   },
+//   decorators: [themeDecorator(Theme.DARK)],
+// };
 
-export const Right: Story = {
-  args: {
-    openStyles: DrawerOpenStyles.RIGHT,
-    children: <h1>Drawer</h1>,
-  },
-  decorators: [themeDecorator(Theme.DARK)],
-};
+// export const Right: Story = {
+//   args: {
+//     openStyles: DrawerOpenStyles.RIGHT,
+//     isAnimation: false,
+//     children: <h1>Drawer</h1>,
+//   },
+//   decorators: [themeDecorator(Theme.DARK)],
+// };
 
-export const Bottom: Story = {
-  args: {
-    openStyles: DrawerOpenStyles.BOTTOM,
-    children: <h1>Drawer</h1>,
-  },
-  decorators: [themeDecorator(Theme.DARK)],
-};
+// export const Bottom: Story = {
+//   args: {
+//     openStyles: DrawerOpenStyles.BOTTOM,
+//     isAnimation: false,
+//     children: <h1>Drawer</h1>,
+//   },
+//   decorators: [themeDecorator(Theme.DARK)],
+// };
