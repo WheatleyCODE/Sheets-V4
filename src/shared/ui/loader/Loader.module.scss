@@ -8,17 +8,17 @@
   animation: layers1 0.5s linear infinite alternate;
 }
 
-.loader:after {
+.loader::after {
   content: '';
   position: absolute;
   inset: 0;
   background: var(--color-loader2);
-  animation: layerTr 0.5s linear infinite alternate;
+  animation: layer-tr 0.5s linear infinite alternate;
 }
 
 @keyframes layers1 {
   0% {
-    box-shadow: 0px 0px 0 0px
+    box-shadow: 0 0 0 0
   }
 
   90%,
@@ -27,7 +27,7 @@
   }
 }
 
-@keyframes layerTr {
+@keyframes layer-tr {
   0% {
     transform: translate(0, 0) scale(1)
   }
