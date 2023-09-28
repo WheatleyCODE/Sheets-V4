@@ -1,16 +1,15 @@
-name: Sheets V4, Linting, Testing, Building
-run-name: ${{ github.actor }} Sheets V4 🚀
+name: linting, testing, building
 on:
   push:
-    branches: [ master ]
+    branches: [master]
   pull_request:
-    branches: [ master ]
+    branches: [master]
 jobs:
   pipeline:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [ 17.x ]
+        node-version: [17.x]
 
     steps:
       - uses: actions/checkout@v2
@@ -18,15 +17,13 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
-      - name: Install modules
-      run: npm install
-      - name: Build production project
-      run: npm run build:prod
-      - name: Linting typescript
-      run: npm run lint:ts
-      - name: Linting scss
-      run: npm run lint:scss
-      - name: Unit testing
-      run: npm run test:unit
-
-
+      - name: install modules
+        run: npm install
+      - name: build production project
+        run: npm run build:prod
+      - name: linting typescript
+        run: npm run lint:ts
+      - name: linting css
+        run: npm run lint:scss
+      - name: unit testing
+        run: npm run test:unit
