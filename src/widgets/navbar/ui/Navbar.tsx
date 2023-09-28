@@ -1,10 +1,10 @@
 import { FC } from 'react';
 import { classNames } from 'shared/lib/class-names';
-import { ThemeSwitcher } from 'features/theme-switcher/ui/ThemeSwitcher';
+import { ThemeSwitcher } from 'features/theme-switcher/';
 import { Logo } from 'features/logo/ui/Logo';
 import { useTheme } from 'app/providers';
-import { NavigationMenu } from 'features/navigation-menu/ui/NavigationMenu';
-import { LanguageSwitcher } from 'features/language-switcher/ui/LanguageSwitcher';
+import { NavigationMenu } from 'features/navigation-menu/';
+import { LanguageSwitcher } from 'features/language-switcher/';
 import { useTranslation } from 'react-i18next';
 import { User } from 'features/user/ui/User';
 import styles from './Navbar.module.scss';
