@@ -16,3 +16,4 @@
 - Jest
 - React testing library
 - Storybook
+- Loki, Скриншотные тесты
