@@ -1,18 +1,14 @@
 import { screen } from '@testing-library/react';
 import { Navbar } from './Navbar';
-import { BrowserRouter } from 'react-router-dom';
 import { withTranslation } from 'react-i18next';
-import { renderWithTranslation } from 'shared/lib/tests/render-with-translation/renderWithTranslation';
+import { renderComponent } from 'shared/lib/tests/render-component/renderComponent';
 
 describe('Navbar', () => {
   test('1 Props', () => {
     const NavbarWithTranslation = withTranslation()(Navbar);
 
-    renderWithTranslation(
-      <BrowserRouter>
-        <NavbarWithTranslation />
-      </BrowserRouter>,
-    );
+    renderComponent(<NavbarWithTranslation />);
+
     expect(screen.getByTestId('navbar')).toBeInTheDocument();
   });
 });
