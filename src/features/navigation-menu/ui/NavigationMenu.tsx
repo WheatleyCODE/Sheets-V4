@@ -35,9 +35,13 @@ export const NavigationMenu: FC<INavigationMenuProps> = (props) => {
 
   return (
     <div {...anotherProps} className={classNames(styles.menu, {}, [className])}>
-      <Title isStopShow={isOpen} text={t('Меню')}>
+      {isOpen ? (
         <Button className={styles.button} buttonStyle={ButtonStyles.CLEAR} Icon={MdOutlineMenu} onClick={onClick} />
-      </Title>
+      ) : (
+        <Title text={t('Меню')}>
+          <Button className={styles.button} buttonStyle={ButtonStyles.CLEAR} Icon={MdOutlineMenu} onClick={onClick} />
+        </Title>
+      )}
 
       <AnimatePresence>
         {isOpen && (

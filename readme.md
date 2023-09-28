@@ -17,3 +17,4 @@
 - React testing library
 - Storybook
 - Loki, Скриншотные тесты
+- CI pipeline (Github actions)

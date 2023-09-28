@@ -21,13 +21,19 @@ jobs:
         run: npm install
       - name: Build production project
         run: npm run build:prod
+        if: always()
       - name: Linting typescript
         run: npm run lint:ts
+        if: always()
       - name: Linting css
         run: npm run lint:scss
+        if: always()
       - name: Unit testing
         run: npm run test:unit
+        if: always()
       - name: Build Storybook
         run: npm run storybook:build
-      - name: Screenshot testing
-        run: npm run test:ui:ci
+      # Download docker add screenshots
+      # Change "chrome.app" on "chrome.docker"
+      # - name: Screenshot testing
+      #   run: npm run test:ui:ci

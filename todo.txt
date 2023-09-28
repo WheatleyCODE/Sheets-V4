@@ -4,3 +4,4 @@
 [] Добавить SyncPromise
 [] Добавить SyncPromise в KVStorage, вместо Promise<T> -> Promise<T> | SyncPromise<T>
 [] Подобрать цвет иконки https://icons8.com/icons/set/sheets
+[] Пофиксить Title

@@ -67,3 +67,46 @@
     background-color: var(--color-shadow03);
   }
 }
+
+.button.square {
+  width: 40px;
+  height: 40px;
+}
+
+.button.square.big, .button.big {
+  height: 50px;
+}
+
+.button.square.normal,.button.normal {
+  height: 40px;
+}
+
+.button.square.small, .button.small {
+  height: 30px;
+}
+
+.button.square.big {
+  width: 50px;
+}
+
+.button.square.normal {
+  width: 40px;
+}
+
+.button.square.small {
+  width: 30px;
+}
+
+.button.circle {
+  border-radius: 50%;
+}
+
+.button.disable {
+  background-color: var(--color-shadow02);
+
+  &:hover {
+      box-shadow: var(--color-shadow04) 0 1px 1px, var(--color-shadow03) 0 5px 13px -3px, var(--color-shadow10) 0 -3px 0 inset;
+      transform: translateY(0);
+      z-index: 20;
+  }
+}

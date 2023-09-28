@@ -16,7 +16,7 @@ export const User: FC<IUserProps> = (props) => {
   return (
     <div {...anotherProps} className={classNames(styles.user, {}, [className])}>
       <Title text={t('Пользователь')}>
-        <Button Icon={MdPerson} />
+        <Button square Icon={MdPerson} />
       </Title>
     </div>
   );
