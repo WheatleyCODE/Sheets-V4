@@ -2,15 +2,15 @@ name: Sheets V4, Linting, Testing, Building
 run-name: ${{ github.actor }} Sheets V4 🚀
 on:
   push:
-    branches: [master]
+    branches: [ master ]
   pull_request:
-    branches: [master]
+    branches: [ master ]
 jobs:
-  SheetsV4:
+  pipeline:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [17.x]
+        node-version: [ 17.x ]
 
     steps:
       - uses: actions/checkout@v2
