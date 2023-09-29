@@ -15,6 +15,8 @@
 - Stylelint
 - Jest
 - React testing library
+- Юнит, интеграционные, скриншотные тесты
 - Storybook
 - Loki, Скриншотные тесты
+- Скрипт для удобного просмотра результатов скрин теста
 - CI pipeline (Github actions)

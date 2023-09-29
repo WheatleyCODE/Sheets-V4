@@ -1,24 +1,20 @@
 .app.dark {
   --color-background: #282c34;
   --color-background-invert: #fff;
-  --color-item-background: #24262c;
+  --color-item-background: #202127;
   --color-primary: #3067dd;
-  --color-light-primary: #86a8f1;
-  --color-dark-secondary: green;
-  --color-secondary: #4ca31a;
-  --color-light-secondary: #50c010;
-  --color-light-secondary2: rgb(170 255 170);
-  --color-light-secondary3: rgb(228 255 232);
-  --color-light-secondary4: rgb(217 253 223);
+  --color-secondary: #3067dd;
   --color-text-invert: #1e1f22;
   --color-text: #d3d3d3;
   --color-text2: #b9b8b8;
   --color-text3: #a3a3a3;
   --color-text4: #727272;
-  --color-backdrop: rgb(140 137 143 / 50%);
+  --color-backdrop: rgba(83 79 85 / 50%);
   --color-shadow04: rgb(97 92 102 / 40%);
   --color-shadow03: rgb(97 92 102 / 30%);
   --color-shadow10: #161616;
   --color-loader1: #fff;
-  --color-loader2: rgba(255 255 255 0.6);
+  --color-loader2: rgba(255 255 255 / 60%);
+  --color-white: #fff;
+  --color-item-border: rgba(127 120 133);
 }

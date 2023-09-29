@@ -14,7 +14,7 @@ module.exports = {
     tsconfigRootDir: __dirname,
     sourceType: 'module',
   },
-  plugins: ['react-refresh', 'prettier', 'i18next'],
+  plugins: ['react-refresh', 'prettier', 'i18next', 'react-hooks'],
   rules: {
     'react-refresh/only-export-components': 'warn',
     quotes: [2, 'single'],
@@ -30,11 +30,13 @@ module.exports = {
     '@typescript-eslint/ban-ts-comment': 'warn',
     'i18next/no-literal-string': 2,
     'no-prototype-builtins': 0,
+    'react-hooks/rules-of-hooks': 'error',
+    'react-hooks/exhaustive-deps': 'warn'
   },
 
   overrides: [
     {
-      files: ['**/src/**/*.test.{ts,.tsx}' , '**/src/**/*.stories.{ts,.tsx}'],
+      files: ['**/src/**/*.{test,stories}.{ts,.tsx}'],
       rules: {
         'i18next/no-literal-string': 'off',
       }

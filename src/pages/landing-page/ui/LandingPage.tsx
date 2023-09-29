@@ -1,9 +1,14 @@
 import { FC } from 'react';
+import { Layout } from 'app/layout/ui/Layout';
 import { classNames } from 'shared/lib/class-names';
 import styles from './LandingPage.module.scss';
 
 const LandingPage: FC = () => {
-  return <div className={classNames(styles.landing_page, {}, ['page'])}>LandingPage</div>;
+  return (
+    <Layout>
+      <div className={classNames(styles.landing_page, {}, ['page'])}>LandingPage</div>
+    </Layout>
+  );
 };
 
 export default LandingPage;
