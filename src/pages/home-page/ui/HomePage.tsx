@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { Layout } from 'app/layout/ui/Layout';
+import { Layout } from 'app/layout';
 import { classNames } from 'shared/lib/class-names';
 import styles from './HomePage.module.scss';
 

@@ -23,7 +23,6 @@ export const useValidInput = <T>(init: T, validators?: IValidator[]): IValidInpu
   const [isActive, setIsActive] = useState(false);
   const [validError, setValidError] = useState<null | string>(null);
   const [isTouched, setIsTouched] = useState(false);
-  let counter = 0;
 
   const onBlur = useCallback(() => {
     setIsTouched(true);
@@ -40,15 +39,9 @@ export const useValidInput = <T>(init: T, validators?: IValidator[]): IValidInpu
   const onChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     setValue(e.target.value as T);
 
-    if (counter === 0 && e.target.value) {
-      setIsTouched(true);
-    }
-
     validators?.forEach((fn) => {
       setValidError(fn(e.target.value));
     });
-
-    counter += 1;
   }, []);
 
   const changeFocus = useCallback((boolean: boolean) => {

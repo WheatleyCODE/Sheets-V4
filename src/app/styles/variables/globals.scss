@@ -1,4 +1,4 @@
-.app.light {
+:root {
   --color-background: #fff;
   --color-background-invert: rgb(35 35 35);
   --color-item-background: #fff;
@@ -16,5 +16,19 @@
   --color-shadow10: #d8d8e2;
   --color-loader1: rgb(49 49 49);
   --color-loader2: rgba(35 35 35 / 30%);
+  --color-white: #fff;
+  --color-red: #da1515;
   --color-item-border: rgb(202 202 202);
+  --sheets-header-height: 60px;
+  --sheets-toolbar-height: 65px;
+  --sheets-formula-height: 35px;
+  --sheets-footer-height: 45px;
+  --cell-height: 25px;
+  --cell-width: 140px;
+  --cell-row-width: 40px;
+  --cell-col-height: 30px;
+  --gap: 5px;
+  --radius: 5px;
+  --font-size: 1rem;
+  --animation-duration: 0.1s;
 }

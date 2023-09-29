@@ -1,3 +1,4 @@
 export { ModalController } from './ui/ModalController';
 export { IModalsSchema, ModalsKeys } from './types/counterSchema';
-export { modalActions, modalsReducer, modalsSlice } from './slice/modalsSlice';
+export { ModalsHash } from './consts/hashToStateKeys';
+export { modalsActions, modalsReducer, modalsSlice } from './slice/modalsSlice';

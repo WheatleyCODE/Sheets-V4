@@ -5,6 +5,7 @@ import { Backdrop } from 'shared/ui/backdrop/Backdrop';
 import { Modal } from 'shared/ui/modal';
 import { Input, useValidInput } from 'shared/ui/input';
 import { Button } from 'shared/ui/button';
+import { emailValidator, passwordValidator } from 'shared/lib/validators';
 
 interface IAuthModalProps extends React.HTMLAttributes<HTMLDivElement> {
   onClose: () => void;
@@ -13,25 +14,8 @@ interface IAuthModalProps extends React.HTMLAttributes<HTMLDivElement> {
 export const AuthModal: FC<IAuthModalProps> = (props) => {
   const { className, onClose, ...anotherProps } = props;
 
-  const emailInput = useValidInput('', [
-    (a) => {
-      if (a.length > 5) {
-        return 'Ошибка';
-      }
-
-      return null;
-    },
-  ]);
-
-  const passwordInput = useValidInput('', [
-    (a) => {
-      if (a.length > 5) {
-        return 'Ошибка';
-      }
-
-      return null;
-    },
-  ]);
+  const emailInput = useValidInput('', [emailValidator]);
+  const passwordInput = useValidInput('', [passwordValidator]);
 
   return (
     <Backdrop onClose={onClose}>
@@ -64,7 +48,7 @@ export const AuthModal: FC<IAuthModalProps> = (props) => {
             isActive={passwordInput.isActive}
           />
 
-          <Button className={styles.button} text="Войти" />
+          <Button disable={passwordInput.isError || emailInput.isError} className={styles.button} text="Войти" />
         </div>
       </Modal>
     </Backdrop>

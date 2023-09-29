@@ -5,19 +5,19 @@ import { Button } from 'shared/ui/button';
 import { MdPerson } from 'react-icons/md';
 import styles from './User.module.scss';
 import { TFunction } from 'i18next';
-import { modalActions } from 'app/modal-controller';
-import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { ModalsHash } from 'app/modal-controller';
 
 interface IUserProps extends React.HTMLAttributes<HTMLDivElement> {
   t: TFunction<'home'>;
 }
 
 export const User: FC<IUserProps> = (props) => {
-  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { className, t, ...anotherProps } = props;
 
   const openAuth = () => {
-    dispatch(modalActions.openModalByKey('isAuth'));
+    navigate(ModalsHash.AUTH);
   };
 
   return (

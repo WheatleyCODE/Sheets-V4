@@ -3,7 +3,7 @@ import type { PayloadAction } from '@reduxjs/toolkit';
 import { IModalsSchema, ModalsKeys } from '../types/counterSchema';
 
 const initialState: IModalsSchema = {
-  isAuth: true,
+  isAuth: false,
 };
 
 export const modalsSlice = createSlice({
@@ -24,4 +24,4 @@ export const modalsSlice = createSlice({
   },
 });
 
-export const { actions: modalActions, reducer: modalsReducer } = modalsSlice;
+export const { actions: modalsActions, reducer: modalsReducer } = modalsSlice;

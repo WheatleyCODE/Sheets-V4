@@ -3,6 +3,7 @@
 node_modules
 /storybook-static
 .idea
+examples.txt
 
 .loki/report.html
 .loki/report.json
