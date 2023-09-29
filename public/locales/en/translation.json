@@ -2,5 +2,15 @@
   "Загрузка...": "Download...",
   "Страница не найдена": "Page not found",
   "Что-то сломалось!": "Something broke!",
-  "Перезагрузить страницу": "Reload page"
+  "Перезагрузить страницу": "Reload page",
+  "Вход в систему": "Login",
+  "Войти": "Login",
+  "Почта": "Email",
+  "Пароль": "Password",
+  "Некорректная почта": "Incorrect mail",
+  "Поле не может быть пустым": "Field cannot be empty",
+  "Имя должно быть больше 3 символов": "Name must be more than 3 characters",
+  "Имя должно быть меньше 14 символов": "Name must be less than 14 characters",
+  "Пароль должен быть больше 8 символов": "Password must be more than 8 characters",
+  "Пароль должен быть меньше 12 символов": "Password must be less than 12 characters"
 }
