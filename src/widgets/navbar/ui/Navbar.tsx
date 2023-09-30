@@ -6,13 +6,15 @@ import { useTheme } from 'app/providers';
 import { NavigationMenu } from 'features/navigation-menu/';
 import { LanguageSwitcher } from 'features/language-switcher/';
 import { useTranslation } from 'react-i18next';
-import { User } from 'entities/user';
+import { User, getUser } from 'entities/user';
 import styles from './Navbar.module.scss';
+import { useSelector } from 'react-redux';
 
 export interface NavbarProps extends React.HTMLAttributes<HTMLDivElement> {}
 
 export const Navbar: FC<NavbarProps> = (props) => {
   const { className, ...anotherProps } = props;
+  const user = useSelector(getUser);
   const { theme } = useTheme();
   const { t } = useTranslation('home');
 
@@ -29,7 +31,7 @@ export const Navbar: FC<NavbarProps> = (props) => {
 
         <ThemeSwitcher className={styles.margin_right} t={t} />
 
-        <User t={t} />
+        <User user={user} t={t} />
       </div>
     </div>
   );

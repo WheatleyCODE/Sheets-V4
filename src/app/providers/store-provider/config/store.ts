@@ -2,11 +2,13 @@ import { configureStore, ReducersMapObject } from '@reduxjs/toolkit';
 import { IStateSchema } from './stateSchema';
 import { modalsReducer } from 'app/modal-controller';
 import { userReducer } from 'entities/user';
+import { loginReducer } from 'features/auth-by-email';
 
 export const createReduxStore = (initialState?: IStateSchema) => {
   const rootReducer: ReducersMapObject<IStateSchema> = {
     modals: modalsReducer,
     user: userReducer,
+    login: loginReducer,
   };
 
   return configureStore<IStateSchema>({
@@ -15,3 +17,7 @@ export const createReduxStore = (initialState?: IStateSchema) => {
     preloadedState: initialState,
   });
 };
+
+const store = createReduxStore();
+
+export type TypedDispatch = typeof store.dispatch;

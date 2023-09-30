@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { Navbar } from './Navbar';
 import { themeDecorator } from '../../../../config/storybook/theme-decorator/themeDecorator';
 import { Theme } from 'app/providers';
+import { storeDecorator } from '../../../../config/storybook/store-decorator/storeDecorator';
 
 const meta = {
   title: 'widget/Navbar',
@@ -19,4 +20,9 @@ export const Light: Story = {
 export const Dark: Story = {
   args: {},
   decorators: [themeDecorator(Theme.DARK)],
+};
+
+export const Auth: Story = {
+  args: {},
+  decorators: [storeDecorator({ user: { user: { email: 'ya@mail.ru', id: '1' } } })],
 };

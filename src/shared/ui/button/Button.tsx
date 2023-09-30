@@ -34,6 +34,7 @@ export const Button: FC<IButtonProps> = memo((props) => {
     [styles.square]: square,
     [styles.circle]: circle,
     [styles.icon]: !!MemoIcon,
+    [styles.text]: !!text,
     [styles[buttonSize]]: true,
   };
 

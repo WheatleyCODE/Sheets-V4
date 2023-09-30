@@ -1,19 +1,15 @@
 import { FC, useLayoutEffect, useMemo, useState } from 'react';
 import { KVFactory } from 'shared/lib/kv-storage/kvStorage';
-import {
-  LOCAL_STORAGE_THEME_KEY,
-  LOCAL_STORAGE_THEME_NAMESPACE,
-  Theme,
-  ThemeContext,
-} from 'app/providers/lib/ThemeContext';
+import { Theme, ThemeContext } from 'app/providers/lib/ThemeContext';
+import { LS_DEFAULT_NAMESPACE, LS_THEME_KEY } from 'shared/consts/local-storage/localStorage';
 
-const localStorage = KVFactory(LOCAL_STORAGE_THEME_NAMESPACE);
+const localStorage = KVFactory(LS_DEFAULT_NAMESPACE);
 
 export const ThemeProvider: FC<FCProps> = ({ children }) => {
   const [theme, setTheme] = useState<Theme>(Theme.LIGHT);
 
   useLayoutEffect(() => {
-    localStorage.get<Theme>(LOCAL_STORAGE_THEME_KEY).then((value) => setTheme(value));
+    localStorage.get<Theme>(LS_THEME_KEY).then((value) => setTheme(value));
   }, []);
 
   const defaultProps = useMemo(() => ({ theme, setTheme }), [theme]);

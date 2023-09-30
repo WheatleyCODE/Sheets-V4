@@ -1,0 +1,45 @@
+.text {
+  color: var(--color-text);
+  font-size: var(--font-size);
+}
+
+.title {
+  color: var(--color-text);
+  font-size: calc(var(--font-size) * 1.2);
+}
+
+.error {
+  .text, .title {
+    color: var(--color-red);
+  }
+}
+
+.big {
+  .text {
+    font-size: calc(var(--font-size) * 1.2);
+  }
+
+  .title {
+    font-size: calc(var(--font-size) * 1.4);
+  }
+}
+
+.normal {
+  .text {
+    font-size: var(--font-size);
+  }
+
+  .title {
+    font-size: calc(var(--font-size) * 1.2);
+  }
+}
+
+.small {
+  .text {
+    font-size: calc(var(--font-size) * 0.8);
+  }
+
+  .title {
+    font-size: var(--font-size);
+  }
+}

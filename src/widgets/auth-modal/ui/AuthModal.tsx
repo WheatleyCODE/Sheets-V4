@@ -56,7 +56,7 @@ export const AuthModal: FC<IAuthModalProps> = (props) => {
     <Backdrop onClose={onClose}>
       <Modal onClose={onClose}>
         <div data-testid="auth-modal" {...anotherProps} className={classNames(styles.auth_modal, {}, [className])}>
-          {isRegister ? <RegisterForm /> : <LoginForm />}
+          {isRegister ? <RegisterForm /> : <LoginForm onLoginSuccess={onClose} />}
           <div className={styles.links}>{link}</div>
         </div>
       </Modal>

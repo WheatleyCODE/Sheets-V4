@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Title } from 'shared/ui/title';
 import { Button } from 'shared/ui/button';
@@ -12,9 +12,9 @@ export const LanguageSwitcher: FC<ILanguageSwitcherProps> = (props) => {
 
   const { t, i18n } = useTranslation('home');
 
-  const toggleLanguage = () => {
+  const toggleLanguage = useCallback(() => {
     i18n.changeLanguage(i18n.language === 'ru' ? 'en' : 'ru');
-  };
+  }, [i18n]);
 
   return (
     <div {...anotherProps} className={classNames(styles.switcher, {}, [className])}>

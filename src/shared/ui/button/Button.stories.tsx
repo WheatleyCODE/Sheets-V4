@@ -3,6 +3,7 @@ import { Button } from './Button';
 import { themeDecorator } from '../../../../config/storybook/theme-decorator/themeDecorator';
 import { Theme } from 'app/providers';
 import { ButtonSize } from './interface';
+import { MdVerifiedUser } from 'react-icons/md';
 
 const meta = {
   title: 'shared/Button',
@@ -44,6 +45,21 @@ export const Small: Story = {
   args: {
     text: 'Кнопка',
     buttonSize: ButtonSize.SMALL,
+  },
+};
+
+export const IconText: Story = {
+  args: {
+    text: 'Пользователь',
+    Icon: MdVerifiedUser,
+    buttonSize: ButtonSize.NORMAL,
+  },
+};
+
+export const Icon: Story = {
+  args: {
+    Icon: MdVerifiedUser,
+    buttonSize: ButtonSize.NORMAL,
   },
 };
 
