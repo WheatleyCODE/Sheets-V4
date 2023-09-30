@@ -1,12 +1,15 @@
-import { FC, useEffect, useState } from 'react';
-import { classNames } from 'shared/lib/class-names';
+import { FC, useCallback, useEffect, useState } from 'react';
 import { Backdrop } from 'shared/ui/backdrop/Backdrop';
 import { Modal } from 'shared/ui/modal';
 import { LoginForm, RegisterForm } from 'features/auth-by-email';
 import { useLocation, useNavigate } from 'react-router-dom';
-import styles from './AuthModal.module.scss';
 import { Link } from 'shared/ui/link';
+import { ModalsHash } from 'widgets/layout';
 import { useTranslation } from 'react-i18next';
+import { findParam, addParam } from 'shared/lib/paths';
+import { classNames } from 'shared/lib/class-names';
+import styles from './AuthModal.module.scss';
+
 interface IAuthModalProps extends React.HTMLAttributes<HTMLDivElement> {
   onClose: () => void;
 }
@@ -18,36 +21,34 @@ export const AuthModal: FC<IAuthModalProps> = (props) => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  // ! FIX
   useEffect(() => {
-    const strArr = location.hash.split('?');
+    const isLogin = findParam(location.hash, 'login');
+    const isRegister = findParam(location.hash, 'register');
 
-    if (strArr.length === 1) {
-      navigate('/#auth?login=true');
+    if (!isLogin && !isRegister) {
+      navigate(addParam(ModalsHash.AUTH, 'login', true));
       return;
     }
 
-    const register = strArr.pop().split('=')[0];
-
-    if (register === 'register') {
+    if (isRegister) {
       setIsRegister(true);
     }
   }, []);
 
-  const toLogin = () => {
+  const toLogin = useCallback(() => {
     setIsRegister(false);
-  };
+  }, []);
 
-  const toRegister = () => {
+  const toRegister = useCallback(() => {
     setIsRegister(true);
-  };
+  }, []);
 
   const link = isRegister ? (
-    <Link className={styles.link} to="/#auth?login=true" onClick={toLogin}>
+    <Link className={styles.link} to={addParam(ModalsHash.AUTH, 'login', true)} onClick={toLogin}>
       {t('Войти')}
     </Link>
   ) : (
-    <Link className={styles.link} to="/#auth?register=true" onClick={toRegister}>
+    <Link className={styles.link} to={addParam(ModalsHash.AUTH, 'register', true)} onClick={toRegister}>
       {t('Регистрация')}
     </Link>
   );

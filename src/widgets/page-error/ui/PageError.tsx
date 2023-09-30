@@ -7,8 +7,8 @@ import styles from './PageError.module.scss';
 interface IPageErrorProps extends React.HTMLAttributes<HTMLDivElement> {}
 
 export const PageError: FC<IPageErrorProps> = (props) => {
-  const { t } = useTranslation();
   const { className, ...anotherProps } = props;
+  const { t } = useTranslation();
 
   const reloadPage = () => {
     location.reload();

@@ -6,3 +6,4 @@
 [] Подобрать цвет иконки https://icons8.com/icons/set/sheets
 [] Пофиксить Title
 [] Пофиксить AuthModal
+[] Допилить paths
