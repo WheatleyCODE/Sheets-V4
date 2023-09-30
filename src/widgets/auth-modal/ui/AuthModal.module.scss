@@ -8,4 +8,13 @@
     align-items: center;
     justify-content: center;
   }
+
+  .link {
+    border-bottom: 1px solid var(--color-text2);
+    padding: 1px 2px;
+
+    &:hover {
+      border-color: var(--color-primary);
+    }
+  }
 }

@@ -5,12 +5,18 @@
 }
 
 .input_icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   cursor: text;
   position: absolute;
-  height: 45px;
+  height: 40px;
   padding-left: 15px;
-  font-size: calc(var(--font-size) * 1.5);
   color: var(--color-text);
+
+  svg {
+    font-size: calc(var(--font-size) * 1.2);
+  }
 }
 
 .input_textfild {
@@ -25,6 +31,15 @@
       outline: 1px solid var(--color-primary);
       border: 1px solid var(--color-primary);
   }
+}
+
+.input_textfild.icon {
+  padding-left: 45px;
+}
+
+.input_placeholder.icon {
+  top: 11px;
+  left: 40px;
 }
 
 .input_placeholder, .input_valid_error {

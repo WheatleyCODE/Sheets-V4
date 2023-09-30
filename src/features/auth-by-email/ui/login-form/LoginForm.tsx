@@ -1,4 +1,5 @@
 import { FC } from 'react';
+import { MdOutlineEmail, MdOutlinePassword } from 'react-icons/md';
 import { classNames } from 'shared/lib/class-names';
 import { useTranslation } from 'react-i18next';
 import { Input, useValidInput } from 'shared/ui/input';
@@ -20,6 +21,7 @@ export const LoginForm: FC<ILoginFormProps> = () => {
       <h1 className={styles.h1}>{t('Вход в систему')}</h1>
 
       <Input
+        Icon={MdOutlineEmail}
         value={emailInput.value}
         type="text"
         placeholder={t('Почта')}
@@ -33,6 +35,7 @@ export const LoginForm: FC<ILoginFormProps> = () => {
       />
 
       <Input
+        Icon={MdOutlinePassword}
         value={passwordInput.value}
         type="password"
         placeholder={t('Пароль')}

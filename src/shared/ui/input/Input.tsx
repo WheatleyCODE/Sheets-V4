@@ -37,14 +37,20 @@ export const Input: FC<IInputProps> = memo((props) => {
   }, [isActive, isErrorActive, placeholderControls, value]);
 
   return (
-    <div className={classNames(styles.input, { [styles.icon]: isIcon, [styles.error]: isErrorActive }, [className])}>
+    <div className={classNames(styles.input, { [styles.error]: isErrorActive }, [className])}>
       {isIcon && (
         <div aria-hidden onClick={focusOnInput} className={styles.input_icon}>
           <MemoIcon />
         </div>
       )}
 
-      <input className={styles.input_textfild} ref={ref} value={value} type={type} {...anotherProps} />
+      <input
+        className={classNames(styles.input_textfild, { [styles.icon]: isIcon })}
+        ref={ref}
+        value={value}
+        type={type}
+        {...anotherProps}
+      />
 
       {isErrorActive && (
         <motion.div
@@ -62,12 +68,12 @@ export const Input: FC<IInputProps> = memo((props) => {
         <motion.div
           onClick={focusOnInput}
           animate={placeholderControls}
-          className={styles.input_placeholder}
+          className={classNames(styles.input_placeholder, { [styles.icon]: isIcon })}
           initial="default"
           transition={{ duration: ANIMATION_DURATION }}
           variants={{
             active: isIcon
-              ? { translateY: -20, translateX: -27, scale: 0.85 }
+              ? { translateY: -20, translateX: -20, scale: 0.85 }
               : { translateY: -20, translateX: -10, scale: 0.85 },
             default: { translateY: 0, translateX: 0, scale: 1 },
           }}

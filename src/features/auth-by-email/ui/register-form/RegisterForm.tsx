@@ -1,4 +1,5 @@
 import { FC } from 'react';
+import { MdOutlineEmail, MdOutlinePassword } from 'react-icons/md';
 import { classNames } from 'shared/lib/class-names';
 import { IValidInputOpts, Input, useValidInput } from 'shared/ui/input';
 import { Button } from 'shared/ui/button';
@@ -28,6 +29,7 @@ export const RegisterForm: FC<IRegisterFormProps> = () => {
       <h1 className={styles.h1}>{t('Регистрация')}</h1>
 
       <Input
+        Icon={MdOutlineEmail}
         value={emailInput.value}
         type="text"
         placeholder={t('Почта')}
@@ -41,6 +43,7 @@ export const RegisterForm: FC<IRegisterFormProps> = () => {
       />
 
       <Input
+        Icon={MdOutlinePassword}
         value={passwordInput.value}
         type="password"
         placeholder={t('Пароль')}
@@ -54,6 +57,7 @@ export const RegisterForm: FC<IRegisterFormProps> = () => {
       />
 
       <Input
+        Icon={MdOutlinePassword}
         value={repeatPasswordInput.value}
         type="password"
         placeholder={t('Повторите пароль')}

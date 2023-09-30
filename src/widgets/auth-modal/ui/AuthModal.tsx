@@ -43,11 +43,11 @@ export const AuthModal: FC<IAuthModalProps> = (props) => {
   };
 
   const link = isRegister ? (
-    <Link to="/#auth?login=true" onClick={toLogin}>
+    <Link className={styles.link} to="/#auth?login=true" onClick={toLogin}>
       {t('Войти')}
     </Link>
   ) : (
-    <Link to="/#auth?register=true" onClick={toRegister}>
+    <Link className={styles.link} to="/#auth?register=true" onClick={toRegister}>
       {t('Регистрация')}
     </Link>
   );
