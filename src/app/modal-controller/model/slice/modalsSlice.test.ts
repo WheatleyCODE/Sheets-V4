@@ -1,4 +1,4 @@
-import { modalsReducer, modalActions } from './modalsSlice';
+import { modalsReducer, modalsActions } from './modalsSlice';
 import { IModalsSchema } from '../types/counterSchema';
 
 describe('modalsSlice', () => {
@@ -7,7 +7,7 @@ describe('modalsSlice', () => {
       isAuth: false,
     };
 
-    expect(modalsReducer(state, modalActions.openModalByKey('isAuth'))).toEqual({
+    expect(modalsReducer(state, modalsActions.openModalByKey('isAuth'))).toEqual({
       isAuth: true,
     });
   });
@@ -17,7 +17,7 @@ describe('modalsSlice', () => {
       isAuth: true,
     };
 
-    expect(modalsReducer(state, modalActions.closeModalByKey('isAuth'))).toEqual({
+    expect(modalsReducer(state, modalsActions.closeModalByKey('isAuth'))).toEqual({
       isAuth: false,
     });
   });
@@ -27,7 +27,7 @@ describe('modalsSlice', () => {
       isAuth: true,
     };
 
-    expect(modalsReducer(state, modalActions.toggleModalByKey('isAuth'))).toEqual({
+    expect(modalsReducer(state, modalsActions.toggleModalByKey('isAuth'))).toEqual({
       isAuth: false,
     });
   });
@@ -37,7 +37,7 @@ describe('modalsSlice', () => {
       isAuth: false,
     };
 
-    expect(modalsReducer(state, modalActions.toggleModalByKey('isAuth'))).toEqual({
+    expect(modalsReducer(state, modalsActions.toggleModalByKey('isAuth'))).toEqual({
       isAuth: true,
     });
   });

@@ -1,55 +1,63 @@
-import { FC } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { classNames } from 'shared/lib/class-names';
 import { Backdrop } from 'shared/ui/backdrop/Backdrop';
 import { Modal } from 'shared/ui/modal';
-import { Input, useValidInput } from 'shared/ui/input';
-import { Button } from 'shared/ui/button';
-import { emailValidator, passwordValidator } from 'shared/lib/validators';
-import { useTranslation } from 'react-i18next';
+import { LoginForm, RegisterForm } from 'features/auth-by-email';
+import { useLocation, useNavigate } from 'react-router-dom';
 import styles from './AuthModal.module.scss';
-
+import { Link } from 'shared/ui/link';
+import { useTranslation } from 'react-i18next';
 interface IAuthModalProps extends React.HTMLAttributes<HTMLDivElement> {
   onClose: () => void;
 }
 
 export const AuthModal: FC<IAuthModalProps> = (props) => {
   const { className, onClose, ...anotherProps } = props;
+  const [isRegister, setIsRegister] = useState(false);
   const { t } = useTranslation();
-  const emailInput = useValidInput('', [emailValidator]);
-  const passwordInput = useValidInput('', [passwordValidator]);
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  // ! FIX
+  useEffect(() => {
+    const strArr = location.hash.split('?');
+
+    if (strArr.length === 1) {
+      navigate('/#auth?login=true');
+      return;
+    }
+
+    const register = strArr.pop().split('=')[0];
+
+    if (register === 'register') {
+      setIsRegister(true);
+    }
+  }, []);
+
+  const toLogin = () => {
+    setIsRegister(false);
+  };
+
+  const toRegister = () => {
+    setIsRegister(true);
+  };
+
+  const link = isRegister ? (
+    <Link to="/#auth?login=true" onClick={toLogin}>
+      {t('Войти')}
+    </Link>
+  ) : (
+    <Link to="/#auth?register=true" onClick={toRegister}>
+      {t('Регистрация')}
+    </Link>
+  );
 
   return (
     <Backdrop onClose={onClose}>
       <Modal onClose={onClose}>
         <div data-testid="auth-modal" {...anotherProps} className={classNames(styles.auth_modal, {}, [className])}>
-          <h1 className={styles.h1}>{t('Вход в систему')}</h1>
-
-          <Input
-            value={emailInput.value}
-            type="text"
-            placeholder={t('Почта')}
-            onChange={emailInput.onChange}
-            onBlur={emailInput.onBlur}
-            onFocus={emailInput.onFocus}
-            isError={emailInput.isError}
-            validError={t(emailInput.validError)}
-            isActive={emailInput.isActive}
-            className={styles.margin_bottom}
-          />
-
-          <Input
-            value={passwordInput.value}
-            type="password"
-            placeholder={t('Пароль')}
-            onChange={passwordInput.onChange}
-            onBlur={passwordInput.onBlur}
-            onFocus={passwordInput.onFocus}
-            isError={passwordInput.isError}
-            validError={t(passwordInput.validError)}
-            isActive={passwordInput.isActive}
-          />
-
-          <Button disable={passwordInput.isError || emailInput.isError} className={styles.button} text={t('Войти')} />
+          {isRegister ? <RegisterForm /> : <LoginForm />}
+          <div className={styles.links}>{link}</div>
         </div>
       </Modal>
     </Backdrop>

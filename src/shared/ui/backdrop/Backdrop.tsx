@@ -1,4 +1,4 @@
-import React, { FC, useCallback, useEffect } from 'react';
+import React, { FC, useCallback } from 'react';
 import { motion } from 'framer-motion';
 import { ANIMATION_DURATION } from 'shared/consts/animations/animation';
 import { classNames } from 'shared/lib/class-names';
@@ -11,30 +11,14 @@ export interface IBackdropProps extends React.HTMLAttributes<HTMLDivElement> {
 export const Backdrop: FC<IBackdropProps> = (props) => {
   const { onClose, children, className } = props;
 
-  const onClick = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
-    e.preventDefault();
-    e.stopPropagation();
-    onClose();
-  }, []);
-
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      switch (e.key) {
-        case 'Escape':
-          onClose();
-          break;
-
-        default:
-          break;
-      }
-    };
-
-    document.addEventListener('keydown', handleKeyDown);
-
-    return () => {
-      document.removeEventListener('keydown', handleKeyDown);
-    };
-  }, [onClose]);
+  const onClick = useCallback(
+    (e: React.MouseEvent<HTMLDivElement>) => {
+      e.preventDefault();
+      e.stopPropagation();
+      onClose();
+    },
+    [onClose],
+  );
 
   return (
     <motion.div

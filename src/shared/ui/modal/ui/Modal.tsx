@@ -1,4 +1,4 @@
-import { FC, memo, useCallback } from 'react';
+import { FC, memo, useCallback, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { CgClose } from 'react-icons/cg';
 import { ANIMATION_DURATION } from 'shared/consts/animations/animation';
@@ -11,13 +11,34 @@ interface IModalProps extends React.HTMLAttributes<HTMLDivElement> {
 }
 
 export const Modal: FC<IModalProps> = (props) => {
-  const { className, children, isHideCloseButton, onClose, ...anotherProps } = props;
+  const { className, children, isHideCloseButton, onClose } = props;
 
   const MemoIcon = memo(CgClose);
 
   const stopPropagation = useCallback((e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     e.stopPropagation();
   }, []);
+
+  useEffect(() => {}, []);
+
+  useEffect(() => {
+    const keyDownHandler = (e: KeyboardEvent) => {
+      switch (e.key) {
+        case 'Escape':
+          onClose();
+          break;
+
+        default:
+          break;
+      }
+    };
+
+    document.addEventListener('keydown', keyDownHandler);
+
+    return () => {
+      document.removeEventListener('keydown', keyDownHandler);
+    };
+  }, [onClose]);
 
   return (
     <motion.div

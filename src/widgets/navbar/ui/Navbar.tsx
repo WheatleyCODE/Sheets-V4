@@ -6,7 +6,7 @@ import { useTheme } from 'app/providers';
 import { NavigationMenu } from 'features/navigation-menu/';
 import { LanguageSwitcher } from 'features/language-switcher/';
 import { useTranslation } from 'react-i18next';
-import { User } from 'features/user/ui/User';
+import { User } from 'entities/user';
 import styles from './Navbar.module.scss';
 
 export interface NavbarProps extends React.HTMLAttributes<HTMLDivElement> {}

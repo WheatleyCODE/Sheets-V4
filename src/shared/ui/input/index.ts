@@ -1,2 +1,2 @@
 export { Input } from './Input';
-export { useValidInput } from './useValidInput';
+export { useValidInput, IValidInputOpts } from './useValidInput';

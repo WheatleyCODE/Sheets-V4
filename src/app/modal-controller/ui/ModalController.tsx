@@ -2,11 +2,11 @@ import { FC, useEffect } from 'react';
 import { AnimatePresence } from 'framer-motion';
 import { AuthModal } from 'widgets/auth-modal';
 import { useDispatch, useSelector } from 'react-redux';
-import { getModalsIsAuth } from '../selectors/get-modals-is-auth/getModalsIsAuth';
-import { modalsActions } from '../slice/modalsSlice';
+import { modalsActions } from '../model/slice/modalsSlice';
 import { hashToStateKeys } from '../consts/hashToStateKeys';
-import { ModalsKeys } from '../types/counterSchema';
+import { ModalsKeys } from '../model/types/counterSchema';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { getModalsIsAuth } from '../model/selectors/get-modals-is-auth/getModalsIsAuth';
 
 export const ModalController: FC = () => {
   const dispatch = useDispatch();
@@ -23,7 +23,9 @@ export const ModalController: FC = () => {
 
   useEffect(() => {
     if (location.hash) {
-      const key = hashToStateKeys[location.hash];
+      const hash = location.hash.split('?')[0];
+
+      const key = hashToStateKeys[hash];
       if (!key) return;
 
       dispatch(modalsActions.openModalByKey(key));

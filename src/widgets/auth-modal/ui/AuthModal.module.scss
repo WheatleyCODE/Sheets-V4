@@ -1,18 +1,11 @@
 .auth_modal {
   width: 340px;
 
-  .h1 {
-    font-size: calc(var(--font-size) * 1.8);
-    padding-bottom: calc(var(--gap) * 6);
-  }
-  
-  .margin_bottom {
-    margin-bottom: calc(var(--gap) * 6);
-  }
-
-  .button {
+  .links {
     width: 100%;
-    margin-top: calc(var(--gap) * 6);
-    margin-bottom: calc(var(--gap) * 2);
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 }
