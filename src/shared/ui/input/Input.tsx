@@ -1,9 +1,9 @@
 import React, { FC, memo, useCallback, useEffect, useRef } from 'react';
 import { motion, useAnimation } from 'framer-motion';
 import { IconType } from 'react-icons';
-import styles from './Input.module.scss';
 import { ANIMATION_DURATION } from 'shared/consts/animations/animation';
 import { classNames } from 'shared/lib/class-names';
+import styles from './Input.module.scss';
 
 export interface IInputProps extends React.HTMLAttributes<HTMLInputElement> {
   value: string;
