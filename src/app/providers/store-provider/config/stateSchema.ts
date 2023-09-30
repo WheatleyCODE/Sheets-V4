@@ -1,4 +1,4 @@
-import { IModalsSchema } from 'app/modal-controller';
+import { IModalsSchema } from 'widgets/layout';
 import { IUserSchema } from 'entities/user';
 import { ILoginSchema } from 'features/auth-by-email';
 

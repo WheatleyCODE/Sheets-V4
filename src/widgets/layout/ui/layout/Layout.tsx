@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import { classNames } from 'shared/lib/class-names';
-import { ModalController } from 'app/modal-controller';
+import { ModalController } from '../modal-controller/ModalController';
 import styles from './Layout.module.scss';
 
 interface ILayoutProps extends React.HTMLAttributes<HTMLDivElement> {}

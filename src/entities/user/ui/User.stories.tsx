@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { t } from 'i18next';
 import { User } from './User';
 import { themeDecorator } from '../../../../config/storybook/theme-decorator/themeDecorator';
 import { Theme } from 'app/providers';
@@ -15,13 +14,17 @@ type Story = StoryObj<typeof meta>;
 
 export const Light: Story = {
   args: {
-    t,
+    openAuth: () => {},
+    logout: () => {},
+    user: { email: 'ya@mail.ru', id: '1' },
   },
 };
 
 export const Dark: Story = {
   args: {
-    t,
+    openAuth: () => {},
+    logout: () => {},
+    user: { email: 'ya@mail.ru', id: '1' },
   },
   decorators: [themeDecorator(Theme.DARK)],
 };

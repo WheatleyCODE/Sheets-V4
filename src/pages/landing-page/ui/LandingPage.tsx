@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { Layout } from 'app/layout';
+import { Layout } from 'widgets/layout';
 import { classNames } from 'shared/lib/class-names';
 import styles from './LandingPage.module.scss';
 

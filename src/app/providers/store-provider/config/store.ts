@@ -1,6 +1,6 @@
 import { configureStore, ReducersMapObject } from '@reduxjs/toolkit';
 import { IStateSchema } from './stateSchema';
-import { modalsReducer } from 'app/modal-controller';
+import { modalsReducer } from 'widgets/layout';
 import { userReducer } from 'entities/user';
 import { loginReducer } from 'features/auth-by-email';
 

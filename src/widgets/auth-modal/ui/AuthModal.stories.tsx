@@ -1,24 +1,28 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { LoginForm } from './LoginForm';
+import { AuthModal } from './AuthModal';
+import { themeDecorator } from '../../../../config/storybook/theme-decorator/themeDecorator';
 import { Theme } from 'app/providers';
-import { themeDecorator } from '../../../../../config/storybook/theme-decorator/themeDecorator';
-import { storeDecorator } from '../../../../../config/storybook/store-decorator/storeDecorator';
+import { storeDecorator } from '../../../../config/storybook/store-decorator/storeDecorator';
 
 const meta = {
-  title: 'features/LoginForm',
-  component: LoginForm,
-} satisfies Meta<typeof LoginForm>;
+  title: 'widget/AuthModal',
+  component: AuthModal,
+} satisfies Meta<typeof AuthModal>;
 
 export default meta;
 
 type Story = StoryObj<typeof meta>;
 
 export const Light: Story = {
-  args: {},
+  args: {
+    onClose: () => {},
+  },
 };
 
 export const Dark: Story = {
-  args: {},
+  args: {
+    onClose: () => {},
+  },
   decorators: [themeDecorator(Theme.DARK)],
 };
 

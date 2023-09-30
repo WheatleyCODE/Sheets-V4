@@ -1,12 +1,12 @@
 import { FC, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
 import { AuthModal } from 'widgets/auth-modal';
-import { useDispatch, useSelector } from 'react-redux';
-import { modalsActions } from '../model/slice/modalsSlice';
-import { hashToStateKeys } from '../consts/hashToStateKeys';
-import { ModalsKeys } from '../model/types/counterSchema';
-import { useLocation, useNavigate } from 'react-router-dom';
-import { getModalsIsAuth } from '../model/selectors/get-modals-is-auth/getModalsIsAuth';
+import { modalsActions } from '../../model/slice/modalsSlice';
+import { hashToStateKeys } from '../../consts/hashToStateKeys';
+import { ModalsKeys } from '../../model/types/counterSchema';
+import { getModalsIsAuth } from '../../model/selectors/get-modals-is-auth/getModalsIsAuth';
 
 export const ModalController: FC = () => {
   const dispatch = useDispatch();

@@ -5,7 +5,7 @@ import { themeDecorator } from '../../../../config/storybook/theme-decorator/the
 import { Theme } from 'app/providers';
 
 const meta = {
-  title: 'features/Logo',
+  title: 'entities/Logo',
   component: Logo,
 } satisfies Meta<typeof Logo>;
 

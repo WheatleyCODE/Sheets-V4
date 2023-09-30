@@ -1,37 +1,21 @@
-import { FC, useCallback } from 'react';
+import { FC } from 'react';
 import { classNames } from 'shared/lib/class-names';
 import { Title } from 'shared/ui/title';
 import { Button } from 'shared/ui/button';
 import { MdPerson } from 'react-icons/md';
-import styles from './User.module.scss';
-import { TFunction } from 'i18next';
-import { useNavigate } from 'react-router-dom';
-import { ModalsHash } from 'app/modal-controller';
 import { IUser } from '../model/types/user';
-import { KVFactory } from 'shared/lib/kv-storage';
-import { LS_AUTH_KEY, LS_DEFAULT_NAMESPACE } from 'shared/consts/local-storage/localStorage';
-import { userActions } from '../model/slice/userSlice';
-import { useTypedDispatch } from 'shared/lib/hooks/useTypedDispatch';
+import { useTranslation } from 'react-i18next';
+import styles from './User.module.scss';
 
 interface IUserProps extends React.HTMLAttributes<HTMLDivElement> {
-  t: TFunction<'home'>;
   user?: IUser;
+  openAuth: () => void;
+  logout: () => void;
 }
 
 export const User: FC<IUserProps> = (props) => {
-  const dispatch = useTypedDispatch();
-  const navigate = useNavigate();
-  const { className, t, user, ...anotherProps } = props;
-
-  const openAuth = useCallback(() => {
-    navigate(ModalsHash.AUTH);
-  }, [navigate]);
-
-  const logout = useCallback(async () => {
-    const ls = KVFactory(LS_DEFAULT_NAMESPACE);
-    await ls.remove(LS_AUTH_KEY);
-    dispatch(userActions.logout());
-  }, [dispatch]);
+  const { className, user, logout, openAuth, ...anotherProps } = props;
+  const { t } = useTranslation();
 
   const isUser = !!user?.email;
   const buttonText = isUser ? t('Выйти') : t('Войти');
