@@ -3,6 +3,7 @@ import { styleDecorator } from './style-decorator/styleDecorator';
 import { themeDecorator } from './theme-decorator/themeDecorator';
 import { Theme } from 'app/providers';
 import { routerDecorator } from './router-decorator/routerDecorator';
+import { storeDecorator } from './store-decorator/storeDecorator';
 
 const preview: Preview = {
   parameters: {
@@ -16,6 +17,6 @@ const preview: Preview = {
   },
 };
 
-export const decorators = [routerDecorator, styleDecorator, themeDecorator(Theme.LIGHT)];
+export const decorators = [routerDecorator, storeDecorator, styleDecorator, themeDecorator(Theme.LIGHT)];
 
 export default preview;
