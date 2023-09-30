@@ -1,27 +1,22 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { t } from 'i18next';
-import { User } from './User';
-import { themeDecorator } from '../../../../config/storybook/theme-decorator/themeDecorator';
+import { RegisterForm } from './RegisterForm';
 import { Theme } from 'app/providers';
+import { themeDecorator } from '../../../../../config/storybook/theme-decorator/themeDecorator';
 
 const meta = {
-  title: 'entities/User',
-  component: User,
-} satisfies Meta<typeof User>;
+  title: 'features/RegisterForm',
+  component: RegisterForm,
+} satisfies Meta<typeof RegisterForm>;
 
 export default meta;
 
 type Story = StoryObj<typeof meta>;
 
 export const Light: Story = {
-  args: {
-    t,
-  },
+  args: {},
 };
 
 export const Dark: Story = {
-  args: {
-    t,
-  },
+  args: {},
   decorators: [themeDecorator(Theme.DARK)],
 };
