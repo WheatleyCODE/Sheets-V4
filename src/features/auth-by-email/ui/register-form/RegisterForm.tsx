@@ -9,7 +9,7 @@ import styles from './RegisterForm.module.scss';
 
 interface IRegisterFormProps {}
 
-export const RegisterForm: FC<IRegisterFormProps> = () => {
+const RegisterForm: FC<IRegisterFormProps> = () => {
   const { t } = useTranslation();
   const emailInput = useValidInput('', [emailValidator]);
   const passwordInput = useValidInput('', [passwordValidator]);
@@ -73,3 +73,5 @@ export const RegisterForm: FC<IRegisterFormProps> = () => {
     </div>
   );
 };
+
+export default RegisterForm;

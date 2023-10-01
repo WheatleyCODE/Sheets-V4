@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { RegisterForm } from './RegisterForm';
+import RegisterForm from './RegisterForm';
 import { Theme } from 'app/providers';
 import { themeDecorator } from '../../../../../config/storybook/theme-decorator/themeDecorator';
 

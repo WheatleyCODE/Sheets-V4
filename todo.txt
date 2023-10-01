@@ -5,5 +5,5 @@
 [] Добавить SyncPromise в KVStorage, вместо Promise<T> -> Promise<T> | SyncPromise<T>
 [] Подобрать цвет иконки https://icons8.com/icons/set/sheets
 [] Пофиксить Title
-[] Пофиксить AuthModal
 [] Допилить paths
+[]? Сделать анимацию перехода между login и register

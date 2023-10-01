@@ -1,4 +1,4 @@
-export { LoginForm } from './ui/login-form/LoginForm';
-export { RegisterForm } from './ui/register-form/RegisterForm';
-export { loginActions, loginReducer } from './model/slice/loginSlice';
+export { LoginFormAsync } from './ui/login-form/LoginForm.async';
+export { RegisterFormAsync } from './ui/register-form/RegisterForm.async';
+export { loginActions } from './model/slice/loginSlice';
 export { ILoginSchema } from './model/types/login';

@@ -1,7 +1,7 @@
-import { FC, useCallback, useEffect, useState } from 'react';
+import { FC, Suspense, useCallback, useEffect, useState } from 'react';
 import { Backdrop } from 'shared/ui/backdrop/Backdrop';
 import { Modal } from 'shared/ui/modal';
-import { LoginForm, RegisterForm } from 'features/auth-by-email';
+import { LoginFormAsync, RegisterFormAsync } from 'features/auth-by-email';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { Link } from 'shared/ui/link';
 import { ModalsHash } from 'widgets/layout';
@@ -57,7 +57,9 @@ export const AuthModal: FC<IAuthModalProps> = (props) => {
     <Backdrop onClose={onClose}>
       <Modal onClose={onClose}>
         <div data-testid="auth-modal" {...anotherProps} className={classNames(styles.auth_modal, {}, [className])}>
-          {isRegister ? <RegisterForm /> : <LoginForm onLoginSuccess={onClose} />}
+          <Suspense fallback="">
+            {isRegister ? <RegisterFormAsync /> : <LoginFormAsync onLoginSuccess={onClose} />}
+          </Suspense>
           <div className={styles.links}>{link}</div>
         </div>
       </Modal>

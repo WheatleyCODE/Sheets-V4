@@ -1,32 +1,51 @@
-import { ChangeEvent, FC, memo, useCallback } from 'react';
+import { ChangeEvent, FC, memo, useCallback, useEffect } from 'react';
 import { MdOutlineEmail, MdOutlinePassword } from 'react-icons/md';
-import { useSelector } from 'react-redux';
+import { useSelector, useStore } from 'react-redux';
 import { classNames } from 'shared/lib/class-names';
 import { useTranslation } from 'react-i18next';
 import { Input, useValidInput } from 'shared/ui/input';
 import { emailValidator, passwordValidator } from 'shared/lib/validators';
 import { Button } from 'shared/ui/button';
-import { loginActions } from '../../model/slice/loginSlice';
-import { getLoginState } from '../../model/selectors/get-login-state/getLoginState';
+import { loginActions, loginReducer } from '../../model/slice/loginSlice';
 import { loginByEmail } from '../../model/services/login-by-email/loginByEmail';
 import { useTypedDispatch } from 'shared/lib/hooks/useTypedDispatch';
 import { Text } from 'shared/ui/text/Text';
 import { TextStyle } from 'shared/ui/text';
 import { TextSize } from 'shared/ui/text/interface';
 import { callOnFulfilled } from 'shared/lib/utils';
+import { IReduxStoreWithManager } from 'app/providers/store-provider';
+import { getLoginEmail } from '../../model/selectors/get-login-email/getLoginEmail';
+import { getLoginPassword } from '../../model/selectors/get-login-password/getLoginPassword';
+import { getLoginIsLoading } from '../../model/selectors/get-login-is-loading/getLoginIsLoading';
+import { getLoginError } from '../../model/selectors/get-login-error/getLoginError';
 import styles from './LoginForm.module.scss';
 
 interface ILoginFormProps extends React.HTMLAttributes<HTMLDivElement> {
   onLoginSuccess?: () => void;
 }
 
-export const LoginForm: FC<ILoginFormProps> = memo((props) => {
+const LoginForm: FC<ILoginFormProps> = memo((props) => {
   const { onLoginSuccess, ...anotherProps } = props;
-  const { email, password, isLoading, error } = useSelector(getLoginState);
+  const email = useSelector(getLoginEmail);
+  const password = useSelector(getLoginPassword);
+  const isLoading = useSelector(getLoginIsLoading);
+  const error = useSelector(getLoginError);
   const emailInput = useValidInput(email, [emailValidator]);
   const passwordInput = useValidInput(password, [passwordValidator]);
   const { t } = useTranslation();
   const dispatch = useTypedDispatch();
+
+  const store = useStore() as IReduxStoreWithManager;
+
+  useEffect(() => {
+    store.reducerManager.add('login', loginReducer);
+    dispatch({ type: '@INIT login reducer' });
+
+    return () => {
+      store.reducerManager.remove('login');
+      dispatch({ type: '@DESTROY login reducer' });
+    };
+  }, []);
 
   const isDisable = passwordInput.isError || emailInput.isError;
 
@@ -40,7 +59,7 @@ export const LoginForm: FC<ILoginFormProps> = memo((props) => {
 
   const onChangePassword = useCallback(
     (e: ChangeEvent<HTMLInputElement>) => {
-      dispatch(loginActions.setEmail(e.target.value));
+      dispatch(loginActions.setPassword(e.target.value));
       passwordInput.onChange(e);
     },
     [dispatch],
@@ -95,3 +114,5 @@ export const LoginForm: FC<ILoginFormProps> = memo((props) => {
     </div>
   );
 });
+
+export default LoginForm;
