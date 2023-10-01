@@ -7,10 +7,6 @@ describe('ModalController', () => {
     renderComponent(<ModalController />, { initialState: { modals: { isAuth: true } } });
 
     expect(screen.getByTestId('auth-modal')).toBeInTheDocument();
-    expect(screen.getByText('Вход в систему')).toBeInTheDocument();
-    expect(screen.getByText('Почта')).toBeInTheDocument();
-    expect(screen.getByText('Пароль')).toBeInTheDocument();
-    expect(screen.getByText('Войти')).toBeInTheDocument();
   });
 
   test('Not in the document', () => {

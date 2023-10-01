@@ -37,7 +37,7 @@ export const Navbar: FC<NavbarProps> = (props) => {
   }, [dispatch]);
 
   return (
-    <div {...anotherProps} data-testid="navbar" className={classNames(styles.navbar, {}, [className])}>
+    <div data-testid="navbar" className={classNames(styles.navbar, {}, [className])}>
       <div className={styles.left_side}>
         <NavigationMenu t={t} />
 
