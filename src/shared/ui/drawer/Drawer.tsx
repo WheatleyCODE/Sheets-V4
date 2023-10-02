@@ -1,4 +1,4 @@
-import { FC, useCallback } from 'react';
+import { FC, memo, useCallback, useMemo } from 'react';
 import { motion, MotionProps } from 'framer-motion';
 import { getDrawerConfig } from './drawer.config';
 import { classNames } from 'shared/lib/class-names';
@@ -12,14 +12,14 @@ export interface IDrawerProps extends MotionProps {
   isFull?: boolean;
 }
 
-export const Drawer: FC<IDrawerProps> = (props) => {
+export const Drawer: FC<IDrawerProps> = memo((props) => {
   const { children, openStyles, isFull = true, width = 400, ...anotherProps } = props;
 
   const stopPropagation = useCallback((e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     e.stopPropagation();
   }, []);
 
-  const { initial, exit, animate } = getDrawerConfig(openStyles, width);
+  const { initial, exit, animate } = useMemo(() => getDrawerConfig(openStyles, width), [openStyles, width]);
 
   return (
     <motion.div
@@ -34,4 +34,4 @@ export const Drawer: FC<IDrawerProps> = (props) => {
       {children}
     </motion.div>
   );
-};
+});

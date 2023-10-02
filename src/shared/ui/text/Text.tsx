@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, memo } from 'react';
 import { classNames } from 'shared/lib/class-names';
 import { TextSize, TextStyle } from './interface';
 import styles from './Text.module.scss';
@@ -10,7 +10,7 @@ interface ITextProps extends React.HTMLAttributes<HTMLDivElement> {
   textSize?: TextSize;
 }
 
-export const Text: FC<ITextProps> = (props) => {
+export const Text: FC<ITextProps> = memo((props) => {
   const { className, title, text, textStyle = TextStyle.DEFAULT, textSize = TextSize.NORMAL, ...anotherProps } = props;
 
   return (
@@ -24,4 +24,4 @@ export const Text: FC<ITextProps> = (props) => {
       {!!text && <p className={classNames(styles.text)}>{text}</p>}
     </div>
   );
-};
+});

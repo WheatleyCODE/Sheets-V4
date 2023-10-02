@@ -1,0 +1,26 @@
+.menu {
+  display: flex;
+  align-items: center;
+}
+
+.links {
+  padding: calc(var(--gap) * 4);
+}
+
+.button {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+
+  svg {
+    font-size: calc(var(--font-size) * 1.5);
+  }
+}
+
+.logo {
+  padding-left: calc(var(--gap) * 12);
+  height: var(--sheets-header-height);
+  display: flex;
+  align-items: center;
+ border-bottom: 1px solid var(--color-shadow03);
+}

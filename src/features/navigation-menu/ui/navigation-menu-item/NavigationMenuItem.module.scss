@@ -1,0 +1,28 @@
+.icon {
+  margin-right: calc(var(--gap) * 3);
+  font-size: calc(var(--font-size) * 1.5);
+  color: var(--color-text2);
+}
+
+.item {
+  cursor: pointer;
+  padding-left: calc(var(--gap) * 3);
+  border-radius: var(--radius);
+  transition: background-color var(--animation-duration);
+  display: flex;
+  align-items: center;
+  height: 40px;
+  width: 100%;
+
+  &:hover {
+    background-color: var(--color-shadow02);
+  }
+
+  &:hover .text {
+    color: var(--color-primary);
+  }
+
+  &:hover .icon {
+    color: var(--color-primary);
+  }
+}

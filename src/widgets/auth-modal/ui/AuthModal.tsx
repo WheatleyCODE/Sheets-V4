@@ -1,4 +1,4 @@
-import { FC, Suspense, useCallback, useEffect, useState } from 'react';
+import { FC, Suspense, memo, useCallback, useEffect, useState } from 'react';
 import { Backdrop } from 'shared/ui/backdrop/Backdrop';
 import { Modal } from 'shared/ui/modal';
 import { LoginFormAsync, RegisterFormAsync } from 'features/auth-by-email';
@@ -9,12 +9,13 @@ import { useTranslation } from 'react-i18next';
 import { findParam, addParam } from 'shared/lib/paths';
 import { classNames } from 'shared/lib/class-names';
 import styles from './AuthModal.module.scss';
+import { Loader } from 'shared/ui/loader';
 
 interface IAuthModalProps extends React.HTMLAttributes<HTMLDivElement> {
   onClose: () => void;
 }
 
-export const AuthModal: FC<IAuthModalProps> = (props) => {
+export const AuthModal: FC<IAuthModalProps> = memo((props) => {
   const { className, onClose, ...anotherProps } = props;
   const [isRegister, setIsRegister] = useState(false);
   const { t } = useTranslation();
@@ -57,7 +58,7 @@ export const AuthModal: FC<IAuthModalProps> = (props) => {
     <Backdrop onClose={onClose}>
       <Modal onClose={onClose}>
         <div data-testid="auth-modal" {...anotherProps} className={classNames(styles.auth_modal, {}, [className])}>
-          <Suspense fallback="">
+          <Suspense fallback={<Loader isCenter />}>
             {isRegister ? <RegisterFormAsync /> : <LoginFormAsync onLoginSuccess={onClose} />}
           </Suspense>
           <div className={styles.links}>{link}</div>
@@ -65,4 +66,4 @@ export const AuthModal: FC<IAuthModalProps> = (props) => {
       </Modal>
     </Backdrop>
   );
-};
+});

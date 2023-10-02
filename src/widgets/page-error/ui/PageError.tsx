@@ -1,12 +1,12 @@
-import { FC } from 'react';
+import { FC, memo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { classNames } from 'shared/lib/class-names';
 import { Button } from 'shared/ui/button';
+import { classNames } from 'shared/lib/class-names';
 import styles from './PageError.module.scss';
 
 interface IPageErrorProps extends React.HTMLAttributes<HTMLDivElement> {}
 
-export const PageError: FC<IPageErrorProps> = (props) => {
+export const PageError: FC<IPageErrorProps> = memo((props) => {
   const { className, ...anotherProps } = props;
   const { t } = useTranslation();
 
@@ -20,4 +20,4 @@ export const PageError: FC<IPageErrorProps> = (props) => {
       <Button className={styles.button} onClick={reloadPage} text={t('Перезагрузить страницу')} />
     </div>
   );
-};
+});

@@ -9,6 +9,7 @@ export interface IStateSchema {
 
   // * Async
   login?: ILoginSchema;
+  profile?: ILoginSchema;
 }
 
 export type StateSchemaKey = keyof IStateSchema;

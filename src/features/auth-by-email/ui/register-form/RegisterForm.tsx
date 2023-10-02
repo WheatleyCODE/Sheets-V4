@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, memo } from 'react';
 import { MdOutlineEmail, MdOutlinePassword } from 'react-icons/md';
 import { classNames } from 'shared/lib/class-names';
 import { IValidInputOpts, Input, useValidInput } from 'shared/ui/input';
@@ -7,9 +7,10 @@ import { emailValidator, passwordValidator } from 'shared/lib/validators';
 import { useTranslation } from 'react-i18next';
 import styles from './RegisterForm.module.scss';
 
-interface IRegisterFormProps {}
+interface IRegisterFormProps extends React.HTMLAttributes<HTMLDivElement> {}
 
-const RegisterForm: FC<IRegisterFormProps> = () => {
+const RegisterForm: FC<IRegisterFormProps> = memo((props) => {
+  const { ...anotherProps } = props;
   const { t } = useTranslation();
   const emailInput = useValidInput('', [emailValidator]);
   const passwordInput = useValidInput('', [passwordValidator]);
@@ -25,7 +26,7 @@ const RegisterForm: FC<IRegisterFormProps> = () => {
   };
 
   return (
-    <div className={classNames(styles.register_form)}>
+    <div {...anotherProps} className={classNames(styles.register_form)}>
       <h1 className={styles.h1}>{t('Регистрация')}</h1>
 
       <Input
@@ -72,6 +73,6 @@ const RegisterForm: FC<IRegisterFormProps> = () => {
       <Button disable={isDisable || isMismatch} className={styles.button} text={t('Регистрация')} />
     </div>
   );
-};
+});
 
 export default RegisterForm;

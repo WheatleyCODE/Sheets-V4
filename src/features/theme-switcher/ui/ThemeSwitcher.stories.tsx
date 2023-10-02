@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { t } from 'i18next';
 import { ThemeSwitcher } from './ThemeSwitcher';
 import { themeDecorator } from '../../../../config/storybook/theme-decorator/themeDecorator';
 import { Theme } from 'app/providers';
@@ -14,14 +13,10 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Light: Story = {
-  args: {
-    t,
-  },
+  args: {},
 };
 
 export const Dark: Story = {
-  args: {
-    t,
-  },
+  args: {},
   decorators: [themeDecorator(Theme.DARK)],
 };

@@ -1,4 +1,4 @@
-import { FC, useEffect, useRef, useState } from 'react';
+import { FC, memo, useEffect, useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useDelayHover } from 'shared/lib/hooks/useDelayHover';
 import { ANIMATION_DURATION } from 'shared/consts/animations/animation';
@@ -10,12 +10,13 @@ export interface TitleProps extends React.HTMLAttributes<HTMLDivElement> {
   isStopShow?: boolean;
 }
 
-export const Title: FC<TitleProps> = ({ children, text, isStopShow = false, ...anotherProps }) => {
+export const Title: FC<TitleProps> = memo(({ children, text, isStopShow = false, ...anotherProps }) => {
   const { isShow, onMouseEnter, onMouseLeave, onMouseMove } = useDelayHover(false, 200);
   const [objStyles, setObjStyles] = useState<ObjStyles>({});
   const titleRef = useRef<HTMLDivElement | null>(null);
   const titleTextRef = useRef<HTMLDivElement | null>(null);
 
+  // ! FIX
   useEffect(() => {
     const $title = titleRef.current;
     const $text = titleTextRef.current;
@@ -82,4 +83,4 @@ export const Title: FC<TitleProps> = ({ children, text, isStopShow = false, ...a
       </AnimatePresence>
     </div>
   );
-};
+});

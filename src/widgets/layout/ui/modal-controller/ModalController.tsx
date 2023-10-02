@@ -1,25 +1,20 @@
-import { FC, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { FC, memo, useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import { useLocation } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
 import { AuthModal } from 'widgets/auth-modal';
 import { modalsActions } from '../../model/slice/modalsSlice';
 import { hashToStateKeys } from '../../consts/hashToStateKeys';
-import { ModalsKeys } from '../../model/types/counterSchema';
 import { getModalsIsAuth } from '../../model/selectors/get-modals-is-auth/getModalsIsAuth';
+import { useTypedDispatch } from 'shared/lib/hooks/useTypedDispatch';
+import { useCloseModal } from './useCloseModal';
 
-export const ModalController: FC = () => {
-  const dispatch = useDispatch();
+export const ModalController: FC = memo(() => {
+  const dispatch = useTypedDispatch();
   const isAuth = useSelector(getModalsIsAuth);
-  const navigate = useNavigate();
   const location = useLocation();
 
-  const getCloseModal = (key: ModalsKeys) => {
-    return () => {
-      dispatch(modalsActions.closeModalByKey(key));
-      navigate(location.pathname);
-    };
-  };
+  const closeAuth = useCloseModal('isAuth');
 
   useEffect(() => {
     if (location.hash) {
@@ -32,5 +27,5 @@ export const ModalController: FC = () => {
     }
   }, [location.hash, dispatch]);
 
-  return <AnimatePresence>{isAuth && <AuthModal onClose={getCloseModal('isAuth')} />}</AnimatePresence>;
-};
+  return <AnimatePresence>{isAuth && <AuthModal onClose={closeAuth} />}</AnimatePresence>;
+});

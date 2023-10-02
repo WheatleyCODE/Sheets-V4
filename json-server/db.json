@@ -20,5 +20,14 @@
       "password": "12345678"
     }
   ],
-  "profile": { "name": "typicode" }
+  "profile": {
+    "first": "Дмитрий",
+    "lastname": "Бажаев",
+    "age": 22,
+    "currency": "RUB",
+    "country": "Russia",
+    "city": "Moscow",
+    "username": "admin",
+    "avatar": "https://sun1-19.userapi.com/s/v1/ig2/n_27Xqc6sKiVyUajtE6M6bzhFcAYhDyFCMs-ctp1Etd0FBCfEil7mx_amdWzMO9RGItTXynnwpoeyWayiSDeb9TM.jpg?size=400x400&quality=96&crop=0,0,900,900&ava=1"
+  }
 }

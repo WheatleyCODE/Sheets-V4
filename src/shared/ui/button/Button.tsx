@@ -1,9 +1,8 @@
 import React, { FC, memo } from 'react';
 import { IconType } from 'react-icons';
-import styles from './Button.module.scss';
-import { classNames } from 'shared/lib/class-names';
 import { ButtonSize, ButtonStyles } from './interface';
-
+import { classNames } from 'shared/lib/class-names';
+import styles from './Button.module.scss';
 interface IButtonProps extends React.HTMLAttributes<HTMLButtonElement> {
   text?: string;
   Icon?: IconType;

@@ -2,12 +2,15 @@ import { Reducer } from '@reduxjs/toolkit';
 import { IReduxStoreWithManager } from 'app/providers/store-provider';
 import { StateSchemaKey } from 'app/providers/store-provider/config/stateSchema';
 import { useEffect } from 'react';
-import { useDispatch, useStore } from 'react-redux';
+import { useStore } from 'react-redux';
+import { useTypedDispatch } from './useTypedDispatch';
 
-export interface IReducerList extends Record<StateSchemaKey | undefined, Reducer> {}
+export type ReducersList = {
+  [name in StateSchemaKey]?: Reducer;
+};
 
-export const useDynamicModule = (list: IReducerList, isDestroy = true) => {
-  const dispatch = useDispatch();
+export const useDynamicModule = (list: ReducersList, isDestroy = true) => {
+  const dispatch = useTypedDispatch();
   const store = useStore() as IReduxStoreWithManager;
 
   useEffect(() => {

@@ -1,10 +1,12 @@
-.text {
+.text_container {
   color: var(--color-text);
+} 
+
+.text {
   font-size: var(--font-size);
 }
 
 .title {
-  color: var(--color-text);
   font-size: calc(var(--font-size) * 1.2);
 }
 

@@ -25,6 +25,4 @@ export const createReduxStore = (initialState?: IStateSchema, asyncReducers?: Re
   return store;
 };
 
-const store = createReduxStore();
-
-export type TypedDispatch = typeof store.dispatch;
+export type TypedDispatch = ReturnType<typeof createReduxStore>['dispatch'];

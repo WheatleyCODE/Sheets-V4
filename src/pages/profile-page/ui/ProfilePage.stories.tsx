@@ -1,27 +1,22 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { t } from 'i18next';
-import { NavigationMenu } from './NavigationMenu';
+import ProfilePage from './ProfilePage';
 import { themeDecorator } from '../../../../config/storybook/theme-decorator/themeDecorator';
 import { Theme } from 'app/providers';
 
 const meta = {
-  title: 'features/NavigationMenu',
-  component: NavigationMenu,
-} satisfies Meta<typeof NavigationMenu>;
+  title: 'pages/ProfilePage',
+  component: ProfilePage,
+} satisfies Meta<typeof ProfilePage>;
 
 export default meta;
 
 type Story = StoryObj<typeof meta>;
 
 export const Light: Story = {
-  args: {
-    t,
-  },
+  args: {},
 };
 
 export const Dark: Story = {
-  args: {
-    t,
-  },
+  args: {},
   decorators: [themeDecorator(Theme.DARK)],
 };

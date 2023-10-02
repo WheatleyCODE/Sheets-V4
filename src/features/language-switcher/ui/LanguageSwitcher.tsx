@@ -1,4 +1,4 @@
-import { FC, useCallback } from 'react';
+import { FC, memo, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Title } from 'shared/ui/title';
 import { Button } from 'shared/ui/button';
@@ -7,9 +7,8 @@ import styles from './LanguageSwitcher.module.scss';
 
 interface ILanguageSwitcherProps extends React.HTMLAttributes<HTMLDivElement> {}
 
-export const LanguageSwitcher: FC<ILanguageSwitcherProps> = (props) => {
+export const LanguageSwitcher: FC<ILanguageSwitcherProps> = memo((props) => {
   const { className, ...anotherProps } = props;
-
   const { t, i18n } = useTranslation('home');
 
   const toggleLanguage = useCallback(() => {
@@ -23,4 +22,4 @@ export const LanguageSwitcher: FC<ILanguageSwitcherProps> = (props) => {
       </Title>
     </div>
   );
-};
+});

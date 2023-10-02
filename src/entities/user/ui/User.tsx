@@ -1,10 +1,10 @@
-import { FC } from 'react';
-import { classNames } from 'shared/lib/class-names';
+import { FC, memo } from 'react';
 import { Title } from 'shared/ui/title';
 import { Button } from 'shared/ui/button';
 import { MdPerson } from 'react-icons/md';
 import { IUser } from '../model/types/user';
 import { useTranslation } from 'react-i18next';
+import { classNames } from 'shared/lib/class-names';
 import styles from './User.module.scss';
 
 interface IUserProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -13,7 +13,7 @@ interface IUserProps extends React.HTMLAttributes<HTMLDivElement> {
   logout: () => void;
 }
 
-export const User: FC<IUserProps> = (props) => {
+export const User: FC<IUserProps> = memo((props) => {
   const { className, user, logout, openAuth, ...anotherProps } = props;
   const { t } = useTranslation();
 
@@ -28,4 +28,4 @@ export const User: FC<IUserProps> = (props) => {
       </Title>
     </div>
   );
-};
+});
