@@ -4,13 +4,8 @@ import { modalsReducer } from 'widgets/layout';
 import { userReducer } from 'entities/user';
 import { createReducerManager } from './reducerManager';
 import { api } from 'shared/api/api';
-import { NavigateOptions, To } from 'react-router-dom';
 
-export const createReduxStore = (
-  initialState?: IStateSchema,
-  asyncReducers?: ReducersMapObject<IStateSchema>,
-  navigate?: (to: To, options?: NavigateOptions) => void,
-) => {
+export const createReduxStore = (initialState?: IStateSchema, asyncReducers?: ReducersMapObject<IStateSchema>) => {
   const rootReducer: ReducersMapObject<IStateSchema> = {
     ...asyncReducers,
     modals: modalsReducer,
@@ -29,7 +24,6 @@ export const createReduxStore = (
         thunk: {
           extraArgument: {
             api,
-            navigate,
           },
         },
       }),

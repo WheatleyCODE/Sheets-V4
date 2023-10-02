@@ -11,7 +11,7 @@ const ProfilePage: FC = memo(() => {
   const dispatch = useTypedDispatch();
 
   useEffect(() => {
-    dispatch(fetchProfile());
+    // dispatch(fetchProfile());
   }, []);
 
   return (
