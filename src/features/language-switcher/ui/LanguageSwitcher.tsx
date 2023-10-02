@@ -31,13 +31,14 @@ export const LanguageSwitcher: FC<ILanguageSwitcherProps> = memo((props) => {
   const items = intoIter<ILanguagesItems>(languageItems)
     .map((item) => {
       return (
-        <DropdownMenuItem text={t(item.text)} Icon={item.Icon}>
+        <DropdownMenuItem key={item.text} text={t(item.text)} Icon={item.Icon}>
           {!!item.subItems && (
             <DropdownMenu>
               {intoIter<ILanguagesSubItems>(item.subItems)
                 .map((subItem) => {
                   return (
                     <DropdownMenuItem
+                      key={subItem.text}
                       onClick={getSetLanguage(subItem.uiLang)}
                       text={t(subItem.text)}
                       Icon={subItem.Icon}

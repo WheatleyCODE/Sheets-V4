@@ -7,11 +7,11 @@ import { StoreProvider } from 'app/providers/store-provider';
 export const AppProvider: FC<FCProps> = ({ children }) => {
   return (
     <BrowserRouter>
-      <ErrorBoundary>
-        <StoreProvider>
+      <StoreProvider>
+        <ErrorBoundary>
           <ThemeProvider>{children}</ThemeProvider>
-        </StoreProvider>
-      </ErrorBoundary>
+        </ErrorBoundary>
+      </StoreProvider>
     </BrowserRouter>
   );
 };

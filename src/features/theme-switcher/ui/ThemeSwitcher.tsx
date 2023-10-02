@@ -33,13 +33,18 @@ export const ThemeSwitcher: FC<IThemeSwitcherProps> = (props) => {
   const items = intoIter<IThemeItems>(themeItems)
     .map((item) => {
       return (
-        <DropdownMenuItem text={t(item.text)} Icon={item.Icon}>
+        <DropdownMenuItem key={item.text} text={t(item.text)} Icon={item.Icon}>
           {!!item.subItems && (
             <DropdownMenu>
               {intoIter<IThemeSubItems>(item.subItems)
                 .map((subItem) => {
                   return (
-                    <DropdownMenuItem onClick={getSetTheme(subItem.theme)} text={t(subItem.text)} Icon={subItem.Icon} />
+                    <DropdownMenuItem
+                      key={subItem.text}
+                      onClick={getSetTheme(subItem.theme)}
+                      text={t(subItem.text)}
+                      Icon={subItem.Icon}
+                    />
                   );
                 })
                 .toArray()}

@@ -3,5 +3,9 @@
     "public/locales",
     "src/shared/config/i18n"
   ],
-  "i18n-ally.sourceLanguage": "en"
+  "i18n-ally.sourceLanguage": "en",
+  "cSpell.words": [
+    "Firstname",
+    "Lastname"
+  ]
 }
