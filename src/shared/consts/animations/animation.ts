@@ -1,1 +1,2 @@
 export const ANIMATION_DURATION = 0.1;
+export const ANIMATION_DURATION_MS = 100;

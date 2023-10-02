@@ -1,26 +1,28 @@
-import { useContext } from 'react';
+import { useCallback, useContext } from 'react';
 import { Theme, ThemeContext } from './ThemeContext';
 import { KVFactory } from 'shared/lib/kv-storage/kvStorage';
 import { LS_DEFAULT_NAMESPACE, LS_THEME_KEY } from 'shared/consts/local-storage/localStorage';
 
-interface UseThemeResult {
-  toggleTheme: () => void;
+interface IUseThemeResult {
+  setTheme: (newTheme: Theme) => void;
   theme: Theme;
 }
 
 const localStorage = KVFactory(LS_DEFAULT_NAMESPACE);
 
-export const useTheme = (): UseThemeResult => {
-  const { theme, setTheme } = useContext(ThemeContext);
+export const useTheme = (): IUseThemeResult => {
+  const { theme, setTheme: setThemeState } = useContext(ThemeContext);
 
-  const toggleTheme = () => {
-    const newTheme = theme === Theme.DARK ? Theme.LIGHT : Theme.DARK;
-    setTheme(newTheme);
-    localStorage.set(LS_THEME_KEY, newTheme);
-  };
+  const setTheme = useCallback(
+    (newTheme: Theme) => {
+      setThemeState(newTheme);
+      localStorage.set(LS_THEME_KEY, newTheme);
+    },
+    [setThemeState],
+  );
 
   return {
     theme,
-    toggleTheme,
+    setTheme,
   };
 };
