@@ -1,4 +1,4 @@
-import { DeepPartial } from '@reduxjs/toolkit';
+import { DeepPartial } from 'shared/lib/ts-utils';
 import { getModalsIsAuth } from './getModalsIsAuth';
 import { IStateSchema } from 'app/providers/store-provider';
 

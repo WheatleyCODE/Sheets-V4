@@ -1,5 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { IThunkConfig } from 'app/providers/store-provider';
+import { IThunkConfig, IThunkExtra } from 'app/providers/store-provider';
 import { IUser, userActions } from 'entities/user';
 import i18n from 'shared/config/i18n/i18n';
 import { LS_AUTH_KEY, LS_DEFAULT_NAMESPACE } from 'shared/consts/local-storage/localStorage';
@@ -10,10 +10,11 @@ export interface ILoginByEmailProps {
   password: string;
 }
 
-export const loginByEmail = createAsyncThunk<IUser, ILoginByEmailProps, IThunkConfig<string>>(
+export const loginByEmail = createAsyncThunk<IUser, ILoginByEmailProps, IThunkConfig>(
   'login/loginByEmail',
-  async (loginData, { dispatch, extra, rejectWithValue }) => {
+  async (loginData, thunkAPI) => {
     try {
+      const extra = thunkAPI.extra as IThunkExtra;
       const { data } = await extra.api.post<IUser>('/login', loginData);
 
       if (!data) throw new Error();
@@ -21,11 +22,11 @@ export const loginByEmail = createAsyncThunk<IUser, ILoginByEmailProps, IThunkCo
       const localStorage = KVFactory(LS_DEFAULT_NAMESPACE);
       await localStorage.set(LS_AUTH_KEY, data);
 
-      dispatch(userActions.setUser(data));
+      thunkAPI.dispatch(userActions.setUser(data));
 
       return data;
     } catch (e) {
-      return rejectWithValue(i18n.t('Неверная почта или пароль'));
+      return thunkAPI.rejectWithValue(i18n.t('Неверная почта или пароль'));
     }
   },
 );

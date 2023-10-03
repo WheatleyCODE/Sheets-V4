@@ -1,6 +1,4 @@
-export async function* intoAsyncIterator<T = unknown, TReturn = any, TNext = unknown>(
-  obj: any,
-): AsyncGenerator<T, TReturn, TNext> {
+export async function* intoAsyncIterator(obj: any) {
   if (obj == null) return;
 
   if (obj[Symbol.iterator] != null) {

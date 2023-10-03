@@ -1,4 +1,4 @@
-import { DeepPartial } from '@reduxjs/toolkit';
+import { DeepPartial } from 'shared/lib/ts-utils';
 import { getLoginError } from './getLoginError';
 import { IStateSchema } from 'app/providers/store-provider';
 

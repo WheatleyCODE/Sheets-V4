@@ -1,10 +1,10 @@
 import { IModalsSchema } from 'widgets/layout';
 import { IUserSchema } from 'entities/user';
 import { ILoginSchema } from 'features/auth-by-email';
-import { AnyAction, EnhancedStore, ReducersMapObject, Reducer, CombinedState } from '@reduxjs/toolkit';
+import { AnyAction, EnhancedStore, ReducersMapObject, Reducer, CombinedState, ThunkMiddleware } from '@reduxjs/toolkit';
 import { AxiosInstance } from 'axios';
-import { NavigateOptions, To } from 'react-router-dom';
 import { IProfileSchema } from 'entities/profile';
+import { ToolkitStore } from '@reduxjs/toolkit/dist/configureStore';
 
 export interface IStateSchema {
   modals: IModalsSchema;
@@ -30,10 +30,12 @@ export interface IReduxStoreWithManager extends EnhancedStore<IStateSchema> {
 
 export interface IThunkExtra {
   api: AxiosInstance;
-  navigate: (to: To, options?: NavigateOptions) => void;
 }
 
-export interface IThunkConfig<T> {
+export interface IThunkConfig<T = string> {
   rejectValue: T;
-  extra: IThunkExtra;
+}
+
+export interface IStore extends ToolkitStore<IStateSchema, AnyAction, [ThunkMiddleware<unknown, AnyAction>]> {
+  reducerManager?: IReducerManager;
 }

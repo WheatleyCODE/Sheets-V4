@@ -1,5 +1,5 @@
-import { configureStore, ReducersMapObject } from '@reduxjs/toolkit';
-import { IStateSchema } from './stateSchema';
+import { CombinedState, configureStore, Reducer, ReducersMapObject } from '@reduxjs/toolkit';
+import { IStateSchema, IStore, IThunkExtra } from './stateSchema';
 import { modalsReducer } from 'widgets/layout';
 import { userReducer } from 'entities/user';
 import { createReducerManager } from './reducerManager';
@@ -14,22 +14,23 @@ export const createReduxStore = (initialState?: IStateSchema, asyncReducers?: Re
 
   const reducerManager = createReducerManager(rootReducer);
 
-  const store = configureStore<IStateSchema>({
-    reducer: reducerManager.reduce,
+  const extraArgument: IThunkExtra = {
+    api,
+  };
+
+  const store: IStore = configureStore<IStateSchema>({
+    reducer: reducerManager.reduce as Reducer<CombinedState<IStateSchema>>,
     devTools: __IS_DEV__,
     preloadedState: initialState,
     // @ts-ignore
     middleware: (getDefaultMiddleware) =>
       getDefaultMiddleware({
         thunk: {
-          extraArgument: {
-            api,
-          },
+          extraArgument,
         },
       }),
   });
 
-  // @ts-ignore
   store.reducerManager = reducerManager;
 
   return store;

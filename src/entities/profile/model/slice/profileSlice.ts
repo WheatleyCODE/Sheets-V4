@@ -18,7 +18,7 @@ export const profileSlice = createSlice({
   },
   extraReducers(builder) {
     builder.addCase(fetchProfile.pending, (state) => {
-      state.error = undefined;
+      state.error = null;
       state.isLoading = true;
     });
     builder.addCase(fetchProfile.fulfilled, (state, { payload }) => {
@@ -27,7 +27,7 @@ export const profileSlice = createSlice({
     });
     builder.addCase(fetchProfile.rejected, (state, { payload }) => {
       state.isLoading = false;
-      state.error = payload;
+      state.error = payload || null;
     });
   },
 });

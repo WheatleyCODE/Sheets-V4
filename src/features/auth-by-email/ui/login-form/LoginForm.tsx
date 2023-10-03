@@ -20,7 +20,7 @@ import { getLoginError } from '../../model/selectors/get-login-error/getLoginErr
 import { useDynamicModule } from 'shared/lib/hooks/useDynamicModule';
 import styles from './LoginForm.module.scss';
 interface ILoginFormProps extends React.HTMLAttributes<HTMLDivElement> {
-  onLoginSuccess?: () => void;
+  onLoginSuccess: () => void;
 }
 
 const LoginForm: FC<ILoginFormProps> = memo((props) => {
@@ -73,7 +73,7 @@ const LoginForm: FC<ILoginFormProps> = memo((props) => {
         onBlur={emailInput.onBlur}
         onFocus={emailInput.onFocus}
         isError={emailInput.isError}
-        validError={t(emailInput.validError)}
+        validError={t(emailInput.validError || '')}
         isActive={emailInput.isActive}
         className={styles.margin_bottom}
       />
@@ -87,7 +87,7 @@ const LoginForm: FC<ILoginFormProps> = memo((props) => {
         onBlur={passwordInput.onBlur}
         onFocus={passwordInput.onFocus}
         isError={passwordInput.isError}
-        validError={t(passwordInput.validError)}
+        validError={t(passwordInput.validError || '')}
         isActive={passwordInput.isActive}
       />
 

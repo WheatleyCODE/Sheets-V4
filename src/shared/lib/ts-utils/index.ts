@@ -1,1 +1,1 @@
-export { CanPromise, Nullable } from './tsUtils';
+export { CanPromise, Nullable, DeepPartial } from './tsUtils';

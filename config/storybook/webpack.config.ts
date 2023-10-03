@@ -1,3 +1,4 @@
+// @ts-nocheck
 import webpack, { DefinePlugin, RuleSetRule } from 'webpack';
 import { BuildPath } from '../build/types/config';
 import path from 'path';

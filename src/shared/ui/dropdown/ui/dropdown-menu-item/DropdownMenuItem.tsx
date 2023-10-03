@@ -42,7 +42,7 @@ export const DropdownMenuItem: FC<DropdownMenuItemProps> = (props) => {
     >
       {isNone && <div className={styles.icon} />}
 
-      {isIcon && (
+      {isIcon && !!MemoIcon && (
         <div className={styles.icon}>
           <MemoIcon />
         </div>

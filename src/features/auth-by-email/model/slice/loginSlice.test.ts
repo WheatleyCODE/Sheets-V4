@@ -1,6 +1,6 @@
-import { DeepPartial } from '@reduxjs/toolkit';
 import { loginActions, loginReducer } from './loginSlice';
 import { ILoginSchema } from '../types/login';
+import { DeepPartial } from 'shared/lib/ts-utils';
 
 describe('loginSlice', () => {
   test('Test login setEmail', () => {

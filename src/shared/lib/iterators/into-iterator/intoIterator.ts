@@ -1,4 +1,4 @@
-export function* intoIterator<T = unknown, TReturn = any, TNext = unknown>(obj: any): Generator<T, TReturn, TNext> {
+export function* intoIterator(obj: any) {
   if (obj == null) return;
 
   if (obj[Symbol.iterator] != null) {

@@ -3,7 +3,7 @@ import { Layout } from 'widgets/layout';
 import { classNames } from 'shared/lib/class-names';
 import styles from './ProfilePage.module.scss';
 import { useDynamicModule } from 'shared/lib/hooks/useDynamicModule';
-import { ProfileCard, fetchProfile, profileReducer } from 'entities/profile';
+import { ProfileCard, profileReducer } from 'entities/profile';
 import { useTypedDispatch } from 'shared/lib/hooks/useTypedDispatch';
 
 const ProfilePage: FC = memo(() => {

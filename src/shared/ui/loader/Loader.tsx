@@ -7,7 +7,7 @@ interface ILoaderProps extends React.HTMLAttributes<HTMLDivElement> {
 }
 
 export const Loader: FC<ILoaderProps> = memo((props) => {
-  const { className, isCenter, ...anotherProps } = props;
+  const { className, isCenter = false, ...anotherProps } = props;
 
   return (
     <div className={classNames(styles.loader_container, { [styles.center]: isCenter })}>

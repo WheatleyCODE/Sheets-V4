@@ -16,7 +16,7 @@ export const App: FC = () => {
   const initAuth = useCallback(async () => {
     const ls = KVFactory(LS_DEFAULT_NAMESPACE);
     const user = await ls.get<IUser>(LS_AUTH_KEY);
-    dispatch(userActions.setUser(user));
+    if (user) dispatch(userActions.setUser(user));
   }, [dispatch]);
 
   useEffect(() => {

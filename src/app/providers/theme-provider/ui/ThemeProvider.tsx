@@ -9,7 +9,7 @@ export const ThemeProvider: FC<FCProps> = ({ children }) => {
   const [theme, setTheme] = useState<Theme>(Theme.LIGHT);
 
   useLayoutEffect(() => {
-    localStorage.get<Theme>(LS_THEME_KEY).then((value) => setTheme(value));
+    localStorage.get<Theme>(LS_THEME_KEY).then((value) => value && setTheme(value));
   }, []);
 
   const defaultProps = useMemo(() => ({ theme, setTheme }), [theme]);

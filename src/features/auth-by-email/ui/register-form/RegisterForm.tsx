@@ -21,8 +21,9 @@ const RegisterForm: FC<IRegisterFormProps> = memo((props) => {
     passwordInput.value !== repeatPasswordInput.value && passwordInput.isTouched && repeatPasswordInput.isTouched;
 
   const getPasswordError = (input: IValidInputOpts<string>) => {
-    if (input.isError) return t(input.validError);
+    if (input.isError) return t(input.validError || '');
     if (isMismatch) return t('Пароли не совпадают');
+    return null;
   };
 
   return (
@@ -38,7 +39,7 @@ const RegisterForm: FC<IRegisterFormProps> = memo((props) => {
         onBlur={emailInput.onBlur}
         onFocus={emailInput.onFocus}
         isError={emailInput.isError}
-        validError={t(emailInput.validError)}
+        validError={t(emailInput.validError || '')}
         isActive={emailInput.isActive}
         className={styles.margin_bottom}
       />
