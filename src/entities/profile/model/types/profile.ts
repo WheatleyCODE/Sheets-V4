@@ -28,4 +28,6 @@ export enum Country {
   RUSSIA = 'Россия',
   UKRAINE = 'Украина',
   BELARUS = 'Беларусь',
+  GERMANY = 'Германия',
+  FRANCE = 'Франция',
 }

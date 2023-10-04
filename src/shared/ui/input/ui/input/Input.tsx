@@ -80,7 +80,7 @@ export const Input: FC<IInputProps> = memo((props) => {
     isOptions &&
     intoIter<IInputOptionsMenuItem>(isDefaultOptions ? defaultItems[options.items as DefaultItems] : options.items)
       .filter((item) => !options.isSearch || item.text.includes(value))
-      .map((item) => <InputOptionsMenuItem onClick={getChangeValue(item.text)} item={item} />)
+      .map((item) => <InputOptionsMenuItem key={item.text} onClick={getChangeValue(item.text)} item={item} />)
       .toArray();
 
   const placeholderAnimation = { translateY: -20, translateX: isIcon ? -20 : -10, scale: 0.85 };

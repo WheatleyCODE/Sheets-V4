@@ -23,5 +23,20 @@
   "Фамилия должна быть больше 3 символов": "Lastname must be more than 3 characters",
   "Фамилия должна быть меньше 18 символов": "Lastname must be less than 18 characters",
   "Никнейм должен быть больше 3 символов": "Username must be more than 3 characters",
-  "Никнейм должен быть меньше 14 символов": "Username must be less than 14 characters"
+  "Никнейм должен быть меньше 14 символов": "Username must be less than 14 characters",
+  "Россия": "Russia",
+  "Украина": "Ukraine",
+  "Беларусь": "Belarus",
+  "Германия": "Germany",
+  "Франция": "France",
+  "Москва": "Moscow",
+  "Нижний Новгород": "Nizhny Novgorod",
+  "Минск": "Minsk",
+  "Киев": "Kyiv",
+  "Берлин": "Berlin",
+  "Париж": "Paris",
+  "Тель Авив": "Tel Aviv",
+  "Анкара": "Ankara",
+  "Лондон": "London",
+  "Вашингтон": "Washington"
 }

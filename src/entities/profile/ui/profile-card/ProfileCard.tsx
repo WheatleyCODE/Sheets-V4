@@ -100,7 +100,7 @@ export const ProfileCard: FC<IProfileCardProps> = memo((props) => {
 
   const infoItems = intoIter<InfoItem>(infoArr)
     .map(({ title, input, Icon, options }) => (
-      <div className={styles.row}>
+      <div key={title} className={styles.row}>
         <Text className={styles.title} textSize={TextSize.SMALL} title={`${t(title)}:`} />
         <Title isStopShow={input.isFocus} text={t(title)}>
           <Input
