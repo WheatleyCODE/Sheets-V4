@@ -27,6 +27,7 @@ const ProfilePage: FC = memo(() => {
   const isReadonly = useSelector(getProfileIsReadonly);
 
   useEffect(() => {
+    if (__PROJECT__ === 'storybook') return;
     dispatch(fetchProfile());
   }, []);
 

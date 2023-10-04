@@ -2,7 +2,7 @@ import { IStateSchema } from 'app/providers/store-provider';
 import { IProfile } from '../../types/profile';
 import { Country, Currency } from '../../types/profile';
 
-const initProfile: IProfile = {
+export const initProfile: IProfile = {
   firstname: '',
   lastname: '',
   age: '0',
