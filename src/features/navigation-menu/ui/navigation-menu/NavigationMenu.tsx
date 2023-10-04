@@ -13,11 +13,14 @@ import { NavigationMenuItem } from '../navigation-menu-item/NavigationMenuItem';
 import { Logo } from 'entities/logo';
 import { classNames } from 'shared/lib/class-names';
 import styles from './NavigationMenu.module.scss';
+import { useSelector } from 'react-redux';
+import { getUser } from 'entities/user';
 
 interface INavigationMenuProps extends React.HTMLAttributes<HTMLDivElement> {}
 
 export const NavigationMenu: FC<INavigationMenuProps> = memo((props) => {
   const { className, ...anotherProps } = props;
+  const isAuth = !!useSelector(getUser);
   const [isOpen, setIsOpen] = useState(false);
   const { t } = useTranslation();
 
@@ -30,6 +33,7 @@ export const NavigationMenu: FC<INavigationMenuProps> = memo((props) => {
   }, []);
 
   const navigationLinks = intoIter<INavigationMenuItem>(navigationMenu)
+    .filter(({ authOnly }) => (isAuth ? true : !authOnly))
     .map((item) => <NavigationMenuItem onClick={closeMenu} item={item} />)
     .toArray();
 

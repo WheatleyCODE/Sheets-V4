@@ -1,0 +1,24 @@
+.item {
+  transition: all var(--animation-duration) ;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding-left: calc(var(--gap) * 4);
+
+  &:hover {
+    background-color: var(--color-shadow02);
+    color: var(--color-primary);
+  }
+}
+
+.icon_container {
+  display: flex;
+    align-items: center;
+  height: 100%;
+  margin-right: calc(var(--gap) * 2);
+}
+
+.icon {
+  color: var(--color-text2);
+  font-size: calc(var(--font-size) * 1.3);
+}

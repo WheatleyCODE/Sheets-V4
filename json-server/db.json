@@ -21,13 +21,13 @@
     }
   ],
   "profile": {
+    "age": "22",
+    "city": "Нижний Новгород",
+    "country": "Россия",
+    "currency": "RUB",
     "firstname": "Дмитрий",
     "lastname": "Бажаев",
-    "age": 22,
-    "currency": "RUB",
-    "country": "Russia",
-    "city": "Moscow",
-    "username": "admin",
-    "avatar": "https://sun1-19.userapi.com/s/v1/ig2/n_27Xqc6sKiVyUajtE6M6bzhFcAYhDyFCMs-ctp1Etd0FBCfEil7mx_amdWzMO9RGItTXynnwpoeyWayiSDeb9TM.jpg?size=400x400&quality=96&crop=0,0,900,900&ava=1"
+    "username": "Admin",
+    "avatar": "https://cdn1.tenchat.ru/static/vbc-gostinder/user-picture/cdc8face-2608-4f07-90c3-68776d03c246.jpeg"
   }
 }

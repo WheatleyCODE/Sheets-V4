@@ -1,12 +1,17 @@
-import { FC } from 'react';
-import { Route, RouteProps, Routes } from 'react-router-dom';
-import { routeConfig } from 'shared/config/route-config/routeConfig';
+import { getUser } from 'entities/user';
+import { FC, memo } from 'react';
+import { useSelector } from 'react-redux';
+import { Route, Routes } from 'react-router-dom';
+import { routeConfig, AppRoutesProps } from 'shared/config/route-config';
 import { intoIter } from 'shared/lib/iterators';
 
-export const AppRouter: FC = () => {
-  const routesArr = intoIter<RouteProps>(routeConfig)
+export const AppRouter: FC = memo(() => {
+  const isAuth = !!useSelector(getUser);
+
+  const routesArr = intoIter<AppRoutesProps>(routeConfig)
+    .filter(({ authOnly }) => (isAuth ? true : !authOnly))
     .map(({ element, path }) => <Route key={path} path={path} element={element} />)
     .toArray();
 
   return <Routes>{routesArr}</Routes>;
-};
+});

@@ -1,9 +1,9 @@
 import { getValidator } from '../get-validator/getValidator';
 
-export const nameValidator = getValidator({
+export const usernameValidator = getValidator({
   minLength: {
     value: 3,
-    textError: 'Имя должно быть больше 3 символов',
+    textError: 'Никнейм должен быть больше 3 символов',
   },
 
   noEmpty: {
@@ -13,6 +13,6 @@ export const nameValidator = getValidator({
 
   maxLength: {
     value: 14,
-    textError: 'Имя должно быть меньше 14 символов',
+    textError: 'Никнейм должен быть меньше 14 символов',
   },
 });

@@ -1,4 +1,4 @@
-import { forwardRef, ReactNode, useRef } from 'react';
+import { forwardRef, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { useClickOutside } from 'shared/lib/hooks/useClickOutsize';
 import { classNames } from 'shared/lib/class-names';

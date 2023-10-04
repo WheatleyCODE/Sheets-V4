@@ -20,4 +20,16 @@ export interface IValidatorOptions {
     value: boolean;
     textError: string;
   };
+
+  maxNumber?: {
+    value: number;
+    textError: string;
+    notNumberError: string;
+  };
+
+  minNumber?: {
+    value: number;
+    textError: string;
+    notNumberError: string;
+  };
 }

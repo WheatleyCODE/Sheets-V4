@@ -1,11 +1,11 @@
 import { IStateSchema } from 'app/providers/store-provider';
 import { IProfile } from '../../types/profile';
-import { Country, Currency } from 'shared/consts/common/common';
+import { Country, Currency } from '../../types/profile';
 
 const initProfile: IProfile = {
   firstname: '',
   lastname: '',
-  age: 0,
+  age: '0',
   currency: Currency.RUB,
   country: Country.RUSSIA,
   city: '',

@@ -1,19 +1,31 @@
-import { Country, Currency } from 'shared/consts/common/common';
-
 export interface IProfile {
-  firstname: string;
-  lastname: string;
-  age: number;
-  currency: Currency;
-  country: Country;
-  city: string;
-  username: string;
-  avatar: string;
+  firstname?: string;
+  lastname?: string;
+  age?: string;
+  currency?: Currency;
+  country?: Country;
+  city?: string;
+  username?: string;
+  avatar?: string;
 }
 
 export interface IProfileSchema {
   profile?: IProfile;
   isLoading: boolean;
   error: string | null;
-  readonly: boolean;
+  isReadonly: boolean;
+}
+
+export enum Currency {
+  NONE = '',
+  RUB = 'RUB',
+  EUR = 'EUR',
+  USD = 'USD',
+}
+
+export enum Country {
+  NONE = '',
+  RUSSIA = 'Россия',
+  UKRAINE = 'Украина',
+  BELARUS = 'Беларусь',
 }

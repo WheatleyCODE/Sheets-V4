@@ -1,19 +1,29 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { IProfile, IProfileSchema } from '../types/profile';
 import { fetchProfile } from '../services/fetchProfile';
+import { updateProfile } from '../services/updateProfile';
 
 const initialState: IProfileSchema = {
   error: null,
   isLoading: false,
-  readonly: true,
+  isReadonly: true,
 };
 
 export const profileSlice = createSlice({
   name: 'profile',
   initialState,
   reducers: {
+    setProfile2(state) {
+      state.profile = { ...state.profile };
+    },
     setProfile(state, { payload }: PayloadAction<IProfile>) {
       state.profile = payload;
+    },
+    updateProfile(state, { payload }: PayloadAction<IProfile>) {
+      state.profile = payload;
+    },
+    setIsReadonly(state, { payload }: PayloadAction<boolean>) {
+      state.isReadonly = payload;
     },
   },
   extraReducers(builder) {
@@ -26,6 +36,19 @@ export const profileSlice = createSlice({
       state.profile = payload;
     });
     builder.addCase(fetchProfile.rejected, (state, { payload }) => {
+      state.isLoading = false;
+      state.error = payload || null;
+    });
+
+    builder.addCase(updateProfile.pending, (state) => {
+      state.error = null;
+      state.isLoading = true;
+    });
+    builder.addCase(updateProfile.fulfilled, (state, { payload }) => {
+      state.isLoading = false;
+      state.profile = payload;
+    });
+    builder.addCase(updateProfile.rejected, (state, { payload }) => {
       state.isLoading = false;
       state.error = payload || null;
     });

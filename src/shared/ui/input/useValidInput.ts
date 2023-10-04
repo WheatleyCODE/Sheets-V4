@@ -17,7 +17,7 @@ export interface IValidInputOpts<T> {
 
 export type IValidator = (str: string) => string | null;
 
-export const useValidInput = <T>(init: T, validators?: IValidator[]): IValidInputOpts<T> => {
+export const useValidInput = <T = string>(init: T, validators?: IValidator[]): IValidInputOpts<T> => {
   const [value, setValue] = useState(init);
   const [isFocus, setIsFocus] = useState(false);
   const [isActive, setIsActive] = useState(false);
@@ -52,9 +52,18 @@ export const useValidInput = <T>(init: T, validators?: IValidator[]): IValidInpu
     setIsActive(boolean);
   }, []);
 
-  const changeValue = useCallback((string: T) => {
-    setValue(string);
-  }, []);
+  const changeValue = useCallback(
+    (string: T) => {
+      setValue(string);
+
+      if (typeof string === 'string') {
+        validators?.forEach((fn) => {
+          setValidError(fn(string));
+        });
+      }
+    },
+    [validators],
+  );
 
   return {
     value,

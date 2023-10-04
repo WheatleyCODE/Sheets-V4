@@ -14,7 +14,7 @@ export const fetchProfile = createAsyncThunk<IProfile, void, IThunkConfig>(
 
       return data;
     } catch (e) {
-      return thunkAPI.rejectWithValue(i18n.t('Неверная почта или пароль'));
+      return thunkAPI.rejectWithValue(i18n.t('Ошибка при загрузке профиля'));
     }
   },
 );

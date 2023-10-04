@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { Input } from './Input';
-import { themeDecorator } from '../../../../config/storybook/theme-decorator/themeDecorator';
 import { Theme } from 'app/providers';
 import { MdOutlineEmail } from 'react-icons/md';
+import { themeDecorator } from '../../../../../../config/storybook/theme-decorator/themeDecorator';
 
 const meta = {
   title: 'shared/Input',

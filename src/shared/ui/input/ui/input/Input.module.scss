@@ -1,0 +1,66 @@
+.input {
+  position: relative;
+  height: 40px;
+  min-width: 260px;
+}
+
+.input_icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: text;
+  position: absolute;
+  height: 40px;
+  padding-left: 15px;
+  color: var(--color-text2);
+
+  svg {
+    font-size: calc(var(--font-size) * 1.2);
+  }
+}
+
+.input_textfild {
+  transition: all var(--animation-duration);
+  padding-left: 15px;
+  height: 100%;
+  width: 100%;
+  border-radius: var(--radius);
+  border: 1px solid var(--color-item-border);
+
+  &:focus {
+      outline: 1px solid var(--color-primary);
+      border: 1px solid var(--color-primary);
+  }
+}
+
+.input:hover .input_textfild {
+  outline: 1px solid var(--color-primary);
+  border: 1px solid var(--color-primary);
+}
+
+.input.error .input_textfild {
+  outline: 1px solid var(--color-red);
+  border: 1px solid var(--color-red);
+}
+
+.input.readonly {
+  .input_textfild {
+    color: var(--color-text2);
+    border: 1px solid var(--color-shadow03);
+  }
+
+  &:hover .input_textfild,
+  .input_textfild:hover {
+    outline: none;
+    border: 1px solid var(--color-shadow03);
+  }
+
+  .input_textfild:focus {
+    outline: none;
+    border: 1px solid var(--color-shadow03);
+  }
+}
+
+.input_textfild.icon {
+  padding-left: 45px;
+}
