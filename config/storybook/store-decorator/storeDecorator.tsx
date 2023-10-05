@@ -1,10 +1,10 @@
 import { DeepPartial, ReducersMapObject } from '@reduxjs/toolkit';
-import { DeepPartial as DP } from 'shared/lib/ts-utils';
 import { Story } from '@storybook/react';
 import { IStateSchema, StoreProvider } from 'app/providers/store-provider';
-import { loginReducer } from 'features/auth-by-email/model/slice/loginSlice';
-import { ReducersList } from 'shared/lib/hooks/useDynamicModule';
+import { loginReducer } from 'features/auth-by-email';
 import { profileReducer } from 'entities/profile';
+import { DeepPartial as DP } from 'shared/lib/ts-utils';
+import { ReducersList } from 'shared/lib/hooks';
 
 const defaultAsyncReducers: ReducersList = {
   login: loginReducer,

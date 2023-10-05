@@ -1,5 +1,5 @@
 import { FC, memo, useCallback } from 'react';
-import { INavigationMenuItem } from '../../../navigation-menu/consts/navigationMenu';
+import { INavigationMenuItem } from '../../model/consts/navigationMenu';
 import { Text } from 'shared/ui/text';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';

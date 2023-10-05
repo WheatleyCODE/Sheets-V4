@@ -1,4 +1,4 @@
-import { CanPromise, Nullable } from 'shared/lib/ts-utils/tsUtils';
+import { CanPromise, Nullable } from 'shared/lib/ts-utils/utils/tsUtils';
 import { KVStorageEngine } from '../interface';
 
 export class LocalStorageEngine implements KVStorageEngine {

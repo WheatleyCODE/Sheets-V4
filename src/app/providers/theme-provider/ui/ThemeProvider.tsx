@@ -1,6 +1,6 @@
 import { FC, useLayoutEffect, useMemo, useState } from 'react';
-import { KVFactory } from 'shared/lib/kv-storage/kvStorage';
-import { Theme, ThemeContext } from 'app/providers/lib/ThemeContext';
+import { KVFactory } from 'shared/lib/kv-storage/kv-storage/kvStorage';
+import { Theme, ThemeContext } from 'app/providers/lib/theme-context';
 import { LS_DEFAULT_NAMESPACE, LS_THEME_KEY } from 'shared/consts/local-storage/localStorage';
 
 const localStorage = KVFactory(LS_DEFAULT_NAMESPACE);

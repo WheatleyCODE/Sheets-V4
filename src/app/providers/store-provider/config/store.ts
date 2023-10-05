@@ -1,9 +1,9 @@
 import { CombinedState, configureStore, Reducer, ReducersMapObject } from '@reduxjs/toolkit';
-import { IStateSchema, IStore, IThunkExtra } from './stateSchema';
 import { modalsReducer } from 'widgets/layout';
 import { userReducer } from 'entities/user';
 import { createReducerManager } from './reducerManager';
-import { api } from 'shared/api/api';
+import { IStateSchema, IStore, IThunkExtra } from './stateSchema';
+import { api } from 'shared/api';
 
 export const createReduxStore = (initialState?: IStateSchema, asyncReducers?: ReducersMapObject<IStateSchema>) => {
   const rootReducer: ReducersMapObject<IStateSchema> = {

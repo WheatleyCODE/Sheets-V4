@@ -1,20 +1,20 @@
 import { FC, memo, useCallback, useState } from 'react';
+import { useSelector } from 'react-redux';
 import { AnimatePresence } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
-import { Button, ButtonStyles } from 'shared/ui/button';
 import { MdOutlineMenu } from 'react-icons/md';
+import { navigationMenu, INavigationMenuItem } from '../../model/consts/navigationMenu';
+import { Logo } from 'entities/logo';
+import { getUser } from 'entities/user';
+import { Button, ButtonStyles } from 'shared/ui/button';
 import { Drawer, DrawerOpenStyles } from 'shared/ui/drawer';
-import { Portal } from 'shared/ui/portal/Portal';
-import { Backdrop } from 'shared/ui/backdrop/Backdrop';
-import { navigationMenu, INavigationMenuItem } from '../../consts/navigationMenu';
+import { Portal } from 'shared/ui/portal';
+import { Backdrop } from 'shared/ui/backdrop';
 import { Title } from 'shared/ui/title';
 import { intoIter } from 'shared/lib/iterators';
 import { NavigationMenuItem } from '../navigation-menu-item/NavigationMenuItem';
-import { Logo } from 'entities/logo';
 import { classNames } from 'shared/lib/class-names';
 import styles from './NavigationMenu.module.scss';
-import { useSelector } from 'react-redux';
-import { getUser } from 'entities/user';
 
 interface INavigationMenuProps extends React.HTMLAttributes<HTMLDivElement> {}
 

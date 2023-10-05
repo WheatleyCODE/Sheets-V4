@@ -1,2 +1,2 @@
-export { Button } from './Button';
-export { ButtonStyles } from './interface';
+export { Button } from './ui/button/Button';
+export { ButtonStyles } from './ui/button/interface';

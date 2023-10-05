@@ -1,11 +1,12 @@
 import { FC, Suspense, useCallback, useEffect } from 'react';
-import { useTheme, AppRouter } from './providers';
 import { Navbar } from 'widgets/navbar';
 import { PageLoader } from 'widgets/page-loader/ui/PageLoader';
-import { KVFactory } from 'shared/lib/kv-storage';
-import { LS_AUTH_KEY, LS_DEFAULT_NAMESPACE } from 'shared/consts/local-storage/localStorage';
+import { useTheme } from './providers/lib/theme-context';
+import { AppRouter } from './providers/app-router';
 import { IUser, userActions } from 'entities/user';
-import { useTypedDispatch } from 'shared/lib/hooks/useTypedDispatch';
+import { useTypedDispatch } from 'shared/lib/hooks';
+import { KVFactory } from 'shared/lib/kv-storage';
+import { LS_AUTH_KEY, LS_DEFAULT_NAMESPACE } from 'shared/consts';
 import { classNames } from 'shared/lib/class-names';
 import './styles/index.scss';
 

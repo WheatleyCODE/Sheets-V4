@@ -1,1 +1,1 @@
-export { LandingPage } from './ui/LandingPage.async';
+export { LandingPage } from './ui/landing-page/LandingPage.async';

@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { NavigationMenuItem } from './NavigationMenuItem';
-import { Theme } from 'app/providers';
-import { themeDecorator } from '../../../../../config/storybook/theme-decorator/themeDecorator';
 import { MdHome } from 'react-icons/md';
+import { NavigationMenuItem } from './NavigationMenuItem';
+import { Theme } from 'app/providers/lib/theme-context';
+import { themeDecorator } from '../../../../../config/storybook/theme-decorator/themeDecorator';
 
 const meta = {
   title: 'features/NavigationMenuItem',

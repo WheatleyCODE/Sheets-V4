@@ -1,3 +1,3 @@
 export { Input, IInputOptions } from './ui/input/Input';
-export { DefaultItems } from './consts/numbers';
-export { useValidInput, IValidInputOpts } from './useValidInput';
+export { DefaultItems } from './model/consts/numbers';
+export { useValidInput, IValidInputOpts } from './model/hooks/useValidInput';

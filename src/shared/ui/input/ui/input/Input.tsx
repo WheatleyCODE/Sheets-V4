@@ -7,7 +7,7 @@ import { IInputOptionsMenuItem, InputOptionsMenuItem } from '../input-options-me
 import { MInputOptionsMenu } from '../input-options-menu/InputOptionsMenu';
 import { MInputPlaceholder } from '../input-placeholder/InputPlaceholder';
 import { MInputValidError } from '../input-valid-error/InputValidError';
-import { DefaultItems, defaultItems } from '../../consts/numbers';
+import { DefaultItems, defaultItems } from '../../model/consts/numbers';
 import { classNames } from 'shared/lib/class-names';
 import styles from './Input.module.scss';
 

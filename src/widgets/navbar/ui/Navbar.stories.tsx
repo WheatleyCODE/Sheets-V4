@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { Navbar } from './Navbar';
 import { themeDecorator } from '../../../../config/storybook/theme-decorator/themeDecorator';
-import { Theme } from 'app/providers';
+import { Theme } from 'app/providers/lib/theme-context';
 import { storeDecorator } from '../../../../config/storybook/store-decorator/storeDecorator';
 
 const meta = {

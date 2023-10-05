@@ -1,2 +1,2 @@
-export { Drawer } from './Drawer';
-export { DrawerOpenStyles } from './interface';
+export { Drawer } from './ui/drawer/Drawer';
+export { DrawerOpenStyles } from './ui/drawer/interface';

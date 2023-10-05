@@ -6,7 +6,7 @@ import { AuthModal } from 'widgets/auth-modal';
 import { modalsActions } from '../../model/slice/modalsSlice';
 import { hashToStateKeys } from '../../consts/hashToStateKeys';
 import { getModalsIsAuth } from '../../model/selectors/get-modals-is-auth/getModalsIsAuth';
-import { useTypedDispatch } from 'shared/lib/hooks/useTypedDispatch';
+import { useTypedDispatch } from 'shared/lib/hooks';
 import { useCloseModal } from './useCloseModal';
 
 export const ModalController: FC = memo(() => {

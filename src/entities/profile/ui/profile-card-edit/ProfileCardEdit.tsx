@@ -4,11 +4,11 @@ import styles from './ProfileCardEdit.module.scss';
 import { IProfile } from 'entities/profile/model/types/profile';
 import { Button } from 'shared/ui/button';
 import { useTranslation } from 'react-i18next';
-import { IInputValidHooks } from '../../getInfoItemArr';
+import { IInputValidHooks } from '../profile-card/getInfoItemArr';
 import { Title } from 'shared/ui/title';
 import { intoIter } from 'shared/lib/iterators';
 import { IValidInputOpts } from 'shared/ui/input';
-import { ButtonColor } from 'shared/ui/button/interface';
+import { ButtonColor } from 'shared/ui/button/ui/button/interface';
 
 interface IProfileCardEditProps extends React.HTMLAttributes<HTMLDivElement> {
   enableProfileChange: () => void;

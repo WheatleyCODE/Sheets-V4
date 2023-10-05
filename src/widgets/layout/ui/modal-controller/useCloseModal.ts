@@ -1,8 +1,8 @@
 import { useCallback } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { useTypedDispatch } from 'shared/lib/hooks/useTypedDispatch';
 import { modalsActions } from 'widgets/layout/model/slice/modalsSlice';
 import { ModalsKeys } from 'widgets/layout/model/types/counterSchema';
+import { useTypedDispatch } from 'shared/lib/hooks';
 
 export const useCloseModal = (key: ModalsKeys) => {
   const dispatch = useTypedDispatch();

@@ -1,9 +1,9 @@
-import { getUser } from 'entities/user';
 import { FC, memo } from 'react';
 import { useSelector } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
-import { routeConfig, AppRoutesProps } from 'shared/config/route-config';
+import { routeConfig, AppRoutesProps } from 'shared/config';
 import { intoIter } from 'shared/lib/iterators';
+import { getUser } from 'entities/user';
 
 export const AppRouter: FC = memo(() => {
   const isAuth = !!useSelector(getUser);

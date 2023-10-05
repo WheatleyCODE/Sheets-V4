@@ -1,13 +1,13 @@
 import { FC, memo, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { IProfile } from 'entities/profile/model/types/profile';
+import { IconType } from 'react-icons';
+import { IProfile } from 'entities/profile';
 import { Text } from 'shared/ui/text';
-import { TextSize, TextStyle } from 'shared/ui/text/interface';
+import { TextSize, TextStyle } from 'shared/ui/text';
 import { Loader } from 'shared/ui/loader';
 import { IInputOptions, IValidInputOpts, Input, useValidInput } from 'shared/ui/input';
 import { intoIter } from 'shared/lib/iterators';
-import { IconType } from 'react-icons';
-import { IInputValidHooks, getInfoItemArr } from 'entities/profile/getInfoItemArr';
+import { IInputValidHooks, getInfoItemArr } from './getInfoItemArr';
 import {
   ageValidator,
   avatarValidator,
@@ -20,7 +20,7 @@ import {
 import { ProfileCardEdit } from '../profile-card-edit/ProfileCardEdit';
 import { Country, Currency } from '../../model/types/profile';
 import { Title } from 'shared/ui/title';
-import { Avatar } from 'shared/ui/avatar/Avatar';
+import { Avatar } from 'shared/ui/avatar';
 import { classNames } from 'shared/lib/class-names';
 import styles from './ProfileCard.module.scss';
 

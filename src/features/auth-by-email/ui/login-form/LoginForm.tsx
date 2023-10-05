@@ -1,23 +1,22 @@
 import { ChangeEvent, FC, memo, useCallback } from 'react';
 import { MdOutlineEmail, MdOutlinePassword } from 'react-icons/md';
 import { useSelector } from 'react-redux';
-import { classNames } from 'shared/lib/class-names';
 import { useTranslation } from 'react-i18next';
 import { Input, useValidInput } from 'shared/ui/input';
 import { emailValidator, passwordValidator } from 'shared/lib/validators';
 import { Button } from 'shared/ui/button';
 import { loginActions, loginReducer } from '../../model/slice/loginSlice';
 import { loginByEmail } from '../../model/services/login-by-email/loginByEmail';
-import { useTypedDispatch } from 'shared/lib/hooks/useTypedDispatch';
-import { Text } from 'shared/ui/text/Text';
+import { Text } from 'shared/ui/text';
 import { TextStyle } from 'shared/ui/text';
-import { TextSize } from 'shared/ui/text/interface';
+import { TextSize } from 'shared/ui/text/ui/interface';
 import { callOnFulfilled } from 'shared/lib/utils';
 import { getLoginEmail } from '../../model/selectors/get-login-email/getLoginEmail';
 import { getLoginPassword } from '../../model/selectors/get-login-password/getLoginPassword';
 import { getLoginIsLoading } from '../../model/selectors/get-login-is-loading/getLoginIsLoading';
 import { getLoginError } from '../../model/selectors/get-login-error/getLoginError';
-import { useDynamicModule } from 'shared/lib/hooks/useDynamicModule';
+import { useDynamicModule, useTypedDispatch } from 'shared/lib/hooks';
+import { classNames } from 'shared/lib/class-names';
 import styles from './LoginForm.module.scss';
 interface ILoginFormProps extends React.HTMLAttributes<HTMLDivElement> {
   onLoginSuccess: () => void;
