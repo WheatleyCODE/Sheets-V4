@@ -1,6 +1,8 @@
 export enum ButtonColor {
   DEFAULT = 'default_color',
   PRIMARY = 'primary',
+  SECONDARY = 'secondary',
+  DANGER = 'danger',
 }
 
 export enum ButtonStyles {

@@ -23,6 +23,7 @@ interface ILanguageSwitcherProps extends React.HTMLAttributes<HTMLDivElement> {}
 export const LanguageSwitcher: FC<ILanguageSwitcherProps> = memo((props) => {
   const { className, ...anotherProps } = props;
   const { t, i18n } = useTranslation('home');
+
   const { isShow, closeDropdown, toggleDropdown } = useDropdown();
   const { overflowStyles, close: closeDropdownHandler, onMouseEnter } = useDropdownSubMenuAnimationFixer(closeDropdown);
 

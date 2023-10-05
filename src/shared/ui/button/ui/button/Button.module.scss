@@ -7,10 +7,9 @@
   padding: var(--gap) calc(var(--gap) * 2);
   border-radius: var(--radius);
   appearance: none;
-  background-color: var(--color-item-background);
+  background-color: var(--color-accent);
   color: var(--color-text);
-  border-width: 0;
-  border-top: 1px solid var(--color-shadow02);
+  border-top: 1px solid var(--color-border5);
   box-shadow: var(--color-shadow04) 0 1px 1px, var(--color-shadow03) 0 5px 13px -3px, var(--color-shadow10) 0 -3px 0 inset;
   line-height: 1;
   position: relative;
@@ -65,12 +64,12 @@
   transition: background-color var(--animation-duration);
 
   &:hover {
-    background-color: var(--color-shadow03);
+    background-color: var(--color-item-hover1);
   }
 
   &:active {
     border: 2px solid var(--color-primary);
-    background-color: var(--color-shadow03);
+    background-color: var(--color-item-hover1);
   }
 }
 
@@ -108,7 +107,7 @@
 }
 
 .button.disable {
-  background-color: var(--color-text4);
+  background-color: var(--color-disable);
   box-shadow: none;
 
   &:hover {
@@ -119,5 +118,13 @@
 }
 
 .button.primary {
-  color: var(--color-primary);
+  box-shadow: var(--color-shadow04) 0 1px 1px, var(--color-shadow03) 0 5px 13px -3px, var(--color-shadow10) 0 -3px 0 inset, var(--color-primary) 0 1px 0 0;
+}
+
+.button.secondary {
+  box-shadow: var(--color-shadow04) 0 1px 1px, var(--color-shadow03) 0 5px 13px -3px, var(--color-shadow10) 0 -3px 0 inset, var(--color-secondary) 0 1px 0 0;
+}
+
+.button.danger {
+  box-shadow: var(--color-shadow04) 0 1px 1px, var(--color-shadow03) 0 5px 13px -3px, var(--color-shadow10) 0 -3px 0 inset, var(--color-danger) 0 1px 0 0;
 }

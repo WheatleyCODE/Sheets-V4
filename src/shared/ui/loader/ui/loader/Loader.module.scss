@@ -4,7 +4,7 @@
   height: 60px;
   background: var(--color-primary);
   transform: rotateX(65deg) rotate(45deg);
-  color: var(--color-loader1);
+  color: var(--color-loader);
   animation: layers1 0.5s linear infinite alternate;
 }
 
@@ -20,7 +20,7 @@
   content: '';
   position: absolute;
   inset: 0;
-  background: var(--color-loader2);
+  background: var(--color-loader1);
   animation: layer-tr 0.5s linear infinite alternate;
 }
 

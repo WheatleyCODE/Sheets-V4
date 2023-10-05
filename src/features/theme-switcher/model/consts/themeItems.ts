@@ -22,7 +22,7 @@ export const themeItems: IThemeItems[] = [
     subItems: [
       { Icon: MdOutlineLanguage, text: 'Темная', theme: Theme.DARK },
       { Icon: MdOutlineLanguage, text: 'Светлая', theme: Theme.LIGHT },
-      { Icon: MdOutlineLanguage, text: 'Токсичная', theme: Theme.LIGHT },
+      { Icon: MdOutlineLanguage, text: 'Токсичная', theme: Theme.TOXIC },
     ],
   },
 ];

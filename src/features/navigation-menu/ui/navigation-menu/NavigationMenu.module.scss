@@ -4,7 +4,9 @@
 }
 
 .links {
-  padding: calc(var(--gap) * 4);
+  border-top: 1px solid var(--color-border3);
+  border-bottom: 1px solid var(--color-border3);
+  padding: calc(var(--gap) * 3);
 }
 
 .button {
@@ -22,5 +24,4 @@
   height: var(--sheets-header-height);
   display: flex;
   align-items: center;
- border-bottom: 1px solid var(--color-shadow03);
 }

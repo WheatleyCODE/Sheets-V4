@@ -1,25 +1,54 @@
 :root {
-  --color-background: #fff;
-  --color-background-invert: rgb(35 35 35);
-  --color-item-background: #fff;
+  // Main
+  --color-main: #F4F6FB;
+  --color-main-invert: #282c34;
+  --color-accent: #F4F6FB;
   --color-primary: #4ca31a;
-  --color-secondary: #4ca31a;
-  --color-text-invert: #fff;
-  --color-text: #242424;
-  --color-text2: #444;
-  --color-text3: #a7a7a7;
+  --color-secondary: #3067dd;
+  --color-danger: #cc5a2d;
+  
+  // Texts
+  --color-text-invert: #F4F6FB;
+  --color-text: #202127;
+  --color-text1: #444;
+  --color-text2: #3b3b3b;
+  --color-text3: #d1d1d1;
   --color-text4: #d1d1d1;
-  --color-backdrop: rgba(44 44 46 / 50%);
+  
+  // Shadows
   --color-shadow04: rgb(56 53 58 / 40%);
   --color-shadow03: rgb(56 53 58 / 30%);
-  --color-shadow02: rgb(56 53 58 / 10%);
   --color-shadow10: #d8d8e2;
-  --color-loader1: rgb(49 49 49);
-  --color-loader2: rgba(35 35 35 / 30%);
-  --color-white: #fff;
-  --color-red: #da1515;
-  --color-red01: rgba(255 65 65 / 10%);
-  --color-item-border: rgb(202 202 202);
+  --color-backdrop: rgba(0 0 0 / 20%);
+  --color-shadow-modal: #1f2124;
+  
+  // Loader
+  --color-loader0: rgb(49 49 49);
+  --color-loader1: rgba(35 35 35 / 30%);
+  
+  // Disable
+  --color-disable: #383a3f;
+  
+  // Items hover
+  --color-item-hover: #e0e0e08c;
+  --color-item-hover1: #cacaca8c;
+  
+  // Borders
+  --color-border: #b3b3b3;
+  --color-border3: #bdbcbc;
+  --color-border4: #cacaca;
+  --color-border5: #e5e5e6;
+  
+  // Scroll
+  --color-scroll-track: #eee;
+  --color-scroll-thumb: #e7e7e7;
+  --color-scroll-thumb-border: #d4d4d4;
+
+  // Globals
+  --color-red: rgb(202 42 42);
+  --color-red1:rgba(255 130 130 / 10%);
+
+  // Sizes
   --sheets-header-height: 60px;
   --sheets-toolbar-height: 65px;
   --sheets-formula-height: 35px;

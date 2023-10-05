@@ -20,16 +20,17 @@
 }
 
 .input_textfild {
-  transition: all var(--animation-duration);
+  transition: outline var(--animation-duration);
+  transition: border var(--animation-duration);
   padding-left: 15px;
   height: 100%;
   width: 100%;
   border-radius: var(--radius);
-  border: 1px solid var(--color-item-border);
+  border: 1px solid var(--color-border);
 
   &:focus {
-      outline: 1px solid var(--color-primary);
-      border: 1px solid var(--color-primary);
+    outline: 1px solid var(--color-primary);
+    border: 1px solid var(--color-primary);
   }
 }
 
@@ -46,18 +47,18 @@
 .input.readonly {
   .input_textfild {
     color: var(--color-text2);
-    border: 1px solid var(--color-shadow03);
+    border: 1px solid var(--color-border3);
   }
 
   &:hover .input_textfild,
   .input_textfild:hover {
     outline: none;
-    border: 1px solid var(--color-shadow03);
+    border: 1px solid var(--color-border3);
   }
 
   .input_textfild:focus {
     outline: none;
-    border: 1px solid var(--color-shadow03);
+    border: 1px solid var(--color-border3);
   }
 }
 

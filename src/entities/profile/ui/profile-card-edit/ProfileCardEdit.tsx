@@ -68,13 +68,19 @@ export const ProfileCardEdit: FC<IProfileCardEditProps> = (props) => {
           <Title text={t('Отменить изменения')}>
             <Button
               onClick={disableProfileChange}
-              buttonColor={ButtonColor.PRIMARY}
+              buttonColor={ButtonColor.DANGER}
               className={styles.button}
               text={t('Отменить')}
             />
           </Title>
           <Title text={t('Сохранить изменения')}>
-            <Button disable={isDisable} onClick={onSave} className={styles.button} text={t('Сохранить')} />
+            <Button
+              buttonColor={ButtonColor.PRIMARY}
+              disable={isDisable}
+              onClick={onSave}
+              className={styles.button}
+              text={t('Сохранить')}
+            />
           </Title>
         </>
       )}

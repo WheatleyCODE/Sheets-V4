@@ -15,14 +15,14 @@
   width: 100%;
 
   &:hover {
-    background-color: var(--color-shadow02);
+    background-color: var(--color-item-hover);
   }
 
   &:hover .text {
     color: var(--color-primary);
   }
 
-  &:hover .icon {
-    color: var(--color-primary);
+  &:active {
+    background-color: var(--color-item-hover1);
   }
 }

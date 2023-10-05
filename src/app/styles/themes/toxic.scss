@@ -1,0 +1,46 @@
+.app.toxic {
+  // Main
+  --color-main: #1aa253;
+  --color-main-invert: #F4F6FB;
+  --color-accent: #13763B;
+  --color-primary: #00fd6a;
+  --color-secondary: #4ca31a;
+  --color-danger: #cc5a2d;
+  
+  // Texts
+  --color-text-invert: #202127;
+  --color-text: #F4F6FB;
+  --color-text1: #F4F6FB;
+  --color-text2: #F4F6FB;
+  --color-text3: #a3a3a3;
+  --color-text4: #3a3a3a;
+
+  // Shadows
+  --color-shadow04: rgba(92 102 95 / 40%);
+  --color-shadow03: rgba(92 102 95 / 30%);
+  --color-shadow10: #156336;
+  --color-backdrop: rgba(0 0 0 / 20%);
+  --color-shadow-modal: #0f4625;
+
+  // Loader
+  --color-loader: #1d4cc2;
+  --color-loader1: rgba(206 37 37 / 60%);
+
+  // Disable
+  --color-disable: #225f3a;
+
+  // Items hover
+  --color-item-hover: rgba(0 0 0 / 15%);
+  --color-item-hover1: rgba(0 0 0 / 20%);
+
+  // Borders
+  --color-border: #55df8e;
+  --color-border3: #47cf80;
+  --color-border4: #34b96b;
+  --color-border5: rgb(31 161 85);
+
+  // Scroll
+  --color-scroll-track: #197c43;
+  --color-scroll-thumb: #22a759;
+  --color-scroll-thumb-border: #35c772;
+}

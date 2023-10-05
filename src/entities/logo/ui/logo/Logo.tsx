@@ -2,7 +2,7 @@ import { FC, memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Theme, useTheme } from 'app/providers/lib/theme-context';
 import { Link } from 'shared/ui/link';
-import { RoutesPath } from 'shared/config';
+import { RoutesPath } from 'shared/config/route-config/routeConfig';
 import { Title } from 'shared/ui/title';
 import { Text } from 'shared/ui/text';
 import { TextSize } from 'shared/ui/text';

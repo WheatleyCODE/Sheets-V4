@@ -6,7 +6,7 @@
   padding-left: calc(var(--gap) * 4);
 
   &:hover {
-    background-color: var(--color-shadow02);
+    background-color: var(--color-item-hover);
     color: var(--color-primary);
   }
 }

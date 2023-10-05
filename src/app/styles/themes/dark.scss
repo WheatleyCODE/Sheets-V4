@@ -1,19 +1,46 @@
 .app.dark {
-  --color-background: #282c34;
-  --color-background-invert: #fff;
-  --color-item-background: #202127;
+  // Main
+  --color-main: #282c34;
+  --color-main-invert: #F4F6FB;
+  --color-accent: #202127;
   --color-primary: #3067dd;
-  --color-secondary: #3067dd;
-  --color-text-invert: #1e1f22;
-  --color-text: #d3d3d3;
+  --color-secondary: #4ca31a;
+  --color-danger: #cc5a2d;
+
+  // Texts
+  --color-text-invert: #202127;
+  --color-text: #F4F6FB;
+  --color-text1: #d3d3d3;
   --color-text2: #b9b8b8;
   --color-text3: #a3a3a3;
   --color-text4: #3a3a3a;
-  --color-backdrop: rgba(83 79 85 / 50%);
-  --color-shadow04: rgb(97 92 102 / 40%);
-  --color-shadow03: rgb(97 92 102 / 30%);
-  --color-shadow10: #161616;
-  --color-loader1: #fff;
-  --color-loader2: rgba(255 255 255 / 60%);
-  --color-item-border: rgba(127 120 133);
+
+  // Shadows
+  --color-shadow04: rgb(97 92 102 / 30%);
+  --color-shadow03: rgb(97 92 102 / 20%);
+  --color-shadow10: #1a1919;
+  --color-backdrop: rgba(0 0 0 / 20%);
+  --color-shadow-modal: #1f2124;
+
+  // Loader
+  --color-loader0: #F4F6FB;
+  --color-loader1: rgba(255 255 255 / 60%);
+
+  // Disable
+  --color-disable: #383a3f;
+
+  // Items hover
+  --color-item-hover: #3234388c;
+  --color-item-hover1: #3e41468c;
+
+  // Borders
+  --color-border: #5f5f5f;
+  --color-border3: #4d4d4d;
+  --color-border4: #2c2e33;
+  --color-border5: #252a30;
+
+  // Scroll
+  --color-scroll-track: #3f3c3c;
+  --color-scroll-thumb: #202127;
+  --color-scroll-thumb-border: #4d4d4d;
 }
