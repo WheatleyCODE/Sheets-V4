@@ -36,7 +36,7 @@ module.exports = {
 
   overrides: [
     {
-      files: ['**/src/**/*.{test,stories}.{ts,.tsx}'],
+      files: ['src/**/*.stories.tsx', 'src/**/*.stories.tsx', 'src/**/*.test.tsx', 'src/**/*.test.ts', '.vscode/*'],
       rules: {
         'i18next/no-literal-string': 'off',
       }

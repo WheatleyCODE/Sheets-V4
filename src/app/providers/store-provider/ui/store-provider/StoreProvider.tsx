@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { Provider } from 'react-redux';
-import { createReduxStore } from '../config/store';
-import { IStateSchema } from '../config/stateSchema';
+import { createReduxStore } from '../../config/store';
+import { IStateSchema } from '../../config/stateSchema';
 import { DeepPartial, ReducersMapObject } from '@reduxjs/toolkit';
 
 export interface IStoreProviderProps extends FCProps {

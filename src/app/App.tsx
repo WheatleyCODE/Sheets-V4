@@ -1,6 +1,6 @@
 import { FC, Suspense, useCallback, useEffect } from 'react';
 import { Navbar } from 'widgets/navbar';
-import { PageLoader } from 'widgets/page-loader/ui/PageLoader';
+import { PageLoader } from 'widgets/page-loader';
 import { useTheme } from './providers/lib/theme-context';
 import { AppRouter } from './providers/app-router';
 import { IUser, userActions } from 'entities/user';
@@ -26,8 +26,8 @@ export const App: FC = () => {
 
   return (
     <div className={classNames('app', {}, [theme])}>
+      <Navbar />
       <Suspense fallback={<PageLoader />}>
-        <Navbar />
         <AppRouter />
       </Suspense>
     </div>
