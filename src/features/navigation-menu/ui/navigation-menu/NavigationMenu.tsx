@@ -34,7 +34,7 @@ export const NavigationMenu: FC<INavigationMenuProps> = memo((props) => {
 
   const navigationLinks = intoIter<INavigationMenuItem>(navigationMenu)
     .filter(({ authOnly }) => (isAuth ? true : !authOnly))
-    .map((item) => <NavigationMenuItem onClick={closeMenu} item={item} />)
+    .map((item) => <NavigationMenuItem key={item.text} onClick={closeMenu} item={item} />)
     .toArray();
 
   return (
