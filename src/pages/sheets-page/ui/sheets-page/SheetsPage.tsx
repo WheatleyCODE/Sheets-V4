@@ -6,7 +6,9 @@ import styles from './SheetsPage.module.scss';
 const SheetsPage: FC = memo(() => {
   return (
     <Layout>
-      <div className={classNames(styles.sheets_page, {}, ['page'])}>SheetsPage</div>
+      <div data-testid="sheetsPage" className={classNames(styles.sheets_page, {}, ['page'])}>
+        SheetsPage
+      </div>
     </Layout>
   );
 });

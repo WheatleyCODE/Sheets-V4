@@ -20,7 +20,7 @@ export const Logo: FC<ILogoProps> = memo((props) => {
   const Icon = theme === Theme.LIGHT ? SheetsLight : SheetsDark;
 
   return (
-    <div {...anotherProps} className={classNames(styles.logo, {}, [className])}>
+    <div {...anotherProps} data-testid="logo" className={classNames(styles.logo, {}, [className])}>
       <Title text={t('На главную')}>
         <Link className={styles.link} to={RoutesPath.home}>
           <Icon height={60} width={42} />

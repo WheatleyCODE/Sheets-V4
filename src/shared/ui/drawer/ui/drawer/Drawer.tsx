@@ -6,7 +6,7 @@ import { DrawerOpenStyles } from './interface';
 import styles from './Drawer.module.scss';
 
 export interface IDrawerProps extends MotionProps {
-  children: React.ReactNode;
+  children?: React.ReactNode;
   openStyles: DrawerOpenStyles;
   width?: number;
   isFull?: boolean;
@@ -23,6 +23,7 @@ export const Drawer: FC<IDrawerProps> = memo((props) => {
 
   return (
     <motion.div
+      data-testid="drawer"
       {...anotherProps}
       onClick={stopPropagation}
       initial={initial}

@@ -27,7 +27,7 @@ const RegisterForm: FC<IRegisterFormProps> = memo((props) => {
   };
 
   return (
-    <div {...anotherProps} className={classNames(styles.register_form)}>
+    <div {...anotherProps} data-testid="registerForm" className={classNames(styles.register_form)}>
       <h1 className={styles.h1}>{t('Регистрация')}</h1>
 
       <Input

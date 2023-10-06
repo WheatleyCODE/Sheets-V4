@@ -10,7 +10,7 @@ export const Loader: FC<ILoaderProps> = memo((props) => {
   const { className, isCenter = false, ...anotherProps } = props;
 
   return (
-    <div className={classNames(styles.loader_container, { [styles.center]: isCenter })}>
+    <div data-testid="loader" className={classNames(styles.loader_container, { [styles.center]: isCenter })}>
       <div {...anotherProps} className={classNames(styles.loader, {}, [className])}></div>
     </div>
   );

@@ -1,10 +1,6 @@
 [] Исправить задержку при загрузки страниц (export const LandingPage = lazy(() => import("./LandingPage"));)
-[] Сделать выпадающий список с выбором темы
-[] Поправить снипеты (На пропсы и RFC)
-[] Добавить SyncPromise
-[] Добавить SyncPromise в KVStorage, вместо Promise<T> -> Promise<T> | SyncPromise<T>
-[] Подобрать цвет иконки https://icons8.com/icons/set/sheets
+
 [] Пофиксить Title
-[] Допилить paths
-[]? Сделать анимацию перехода между login и register
-[] Тесты асинхронных компонентов (AuthModal)
+[] Допилить paths + тесты
+[] Тесты на LanguageSwitcher, ThemeSwitcher, NavigationMenu, NavigationMenuItem, LoginForm, RegisterForm
+[] Добавить SyncPromise в KVStorage, вместо Promise<T> -> Promise<T> | SyncPromise<T> + тесты

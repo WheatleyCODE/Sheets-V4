@@ -41,9 +41,15 @@ export const Button: FC<IButtonProps> = memo((props) => {
   const classesArr = [className, styles[buttonStyle], styles[buttonSize], styles[buttonColor]];
 
   return (
-    <button className={classNames(styles.button, mods, classesArr)} type="button" disabled={disable} {...anotherProps}>
+    <button
+      data-testid="button"
+      className={classNames(styles.button, mods, classesArr)}
+      type="button"
+      disabled={disable}
+      {...anotherProps}
+    >
       {MemoIcon && (
-        <div className={styles.button_icon_container}>
+        <div data-testid="button-icon" className={styles.button_icon_container}>
           <MemoIcon className={styles.button_icon} />
         </div>
       )}

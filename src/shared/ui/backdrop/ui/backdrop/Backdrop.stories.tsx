@@ -1,5 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { Backdrop } from './Backdrop';
+import { themeDecorator } from '../../../../../../config/storybook/theme-decorator/themeDecorator';
+import { Theme } from 'app/providers/lib/theme-context';
 
 const meta = {
   title: 'shared/Backdrop',
@@ -10,8 +12,15 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {
+export const Light: Story = {
   args: {
     children: <h1>Backdrop</h1>,
   },
+};
+
+export const Dark: Story = {
+  args: {
+    children: <h1>Backdrop</h1>,
+  },
+  decorators: [themeDecorator(Theme.DARK)],
 };

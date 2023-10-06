@@ -34,6 +34,7 @@ export const DropdownMenuItem: FC<DropdownMenuItemProps> = (props) => {
   return (
     <div
       {...anotherProps}
+      data-testid="dropdownMenuItem"
       onClick={onClickHandler}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
@@ -43,7 +44,7 @@ export const DropdownMenuItem: FC<DropdownMenuItemProps> = (props) => {
       {isNone && <div className={styles.icon} />}
 
       {isIcon && !!MemoIcon && (
-        <div className={styles.icon}>
+        <div data-testid="dropdownMenuItem-icon" className={styles.icon}>
           <MemoIcon />
         </div>
       )}

@@ -29,7 +29,12 @@ export const NavigationMenuItem: FC<INavigationMenuItemProps> = memo((props) => 
   }, [onClick, navigate, path]);
 
   return (
-    <div {...anotherProps} onClick={onDelayClose} className={classNames(styles.item, {}, [className])}>
+    <div
+      {...anotherProps}
+      data-testid="navigationMenuItem"
+      onClick={onDelayClose}
+      className={classNames(styles.item, {}, [className])}
+    >
       <MemoIcon className={styles.icon} />
       <Text className={styles.text} text={t(text)} />
     </div>

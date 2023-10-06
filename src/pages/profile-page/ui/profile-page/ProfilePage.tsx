@@ -50,7 +50,7 @@ const ProfilePage: FC = memo(() => {
 
   return (
     <Layout>
-      <div className={classNames(styles.profile_page, {}, ['page'])}>
+      <div data-testid="profilePage" className={classNames(styles.profile_page, {}, ['page'])}>
         <ProfileCard
           className={styles.card}
           edit={{ disableProfileChange, enableProfileChange, saveProfileChange }}

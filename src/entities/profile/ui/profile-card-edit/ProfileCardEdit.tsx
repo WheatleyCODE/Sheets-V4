@@ -58,7 +58,7 @@ export const ProfileCardEdit: FC<IProfileCardEditProps> = (props) => {
   }, [saveProfileChange, validHooks]);
 
   return (
-    <div {...anotherProps} className={classNames(styles.edit, {}, [className])}>
+    <div {...anotherProps} data-testid="profileCardEdit" className={classNames(styles.edit, {}, [className])}>
       {isReadonly ? (
         <Title text={t('Редактировать профиль')}>
           <Button onClick={enableProfileChange} className={styles.button} text={t('Редактировать')} />

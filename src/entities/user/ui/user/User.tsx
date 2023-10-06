@@ -22,7 +22,7 @@ export const User: FC<IUserProps> = memo((props) => {
   const buttonCallback = isUser ? logout : openAuth;
 
   return (
-    <div {...anotherProps} className={classNames(styles.user, {}, [className])}>
+    <div {...anotherProps} data-testid="logo" className={classNames(styles.user, {}, [className])}>
       <Title text={t('Пользователь')}>
         <Button text={buttonText} onClick={buttonCallback} Icon={MdPerson} />
       </Title>

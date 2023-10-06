@@ -14,6 +14,7 @@ export const InputPlaceholder = forwardRef<HTMLDivElement, IInputPlaceholderProp
   return (
     <div
       {...anotherProps}
+      data-testid="inputOptionsMenu"
       ref={ref}
       className={classNames(styles.placeholder, { [styles.icon]: !!isIcon }, [className])}
     >

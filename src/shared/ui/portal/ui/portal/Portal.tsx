@@ -7,6 +7,7 @@ export const Portal: FC<FCProps> = ({ children }) => {
   const el = document.createElement('div');
 
   el.classList.add('app');
+  el.dataset.testid = 'portal';
   el.classList.add(theme);
 
   useEffect(() => {

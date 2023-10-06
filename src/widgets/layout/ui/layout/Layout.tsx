@@ -9,7 +9,7 @@ export const Layout: FC<ILayoutProps> = (props) => {
   const { className, children, ...anotherProps } = props;
 
   return (
-    <div {...anotherProps} className={classNames(styles.layout, {}, [className])}>
+    <div {...anotherProps} data-testid="layout" className={classNames(styles.layout, {}, [className])}>
       {children}
       <ModalController />
     </div>

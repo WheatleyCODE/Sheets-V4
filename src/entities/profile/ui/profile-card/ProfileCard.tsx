@@ -124,21 +124,33 @@ export const ProfileCard: FC<IProfileCardProps> = memo((props) => {
 
   if (isLoading)
     return (
-      <div {...anotherProps} className={classNames(styles.profile_card, {}, [className, styles.loading])}>
+      <div
+        {...anotherProps}
+        data-testid="profileCard"
+        className={classNames(styles.profile_card, {}, [className, styles.loading])}
+      >
         <Loader isCenter />
       </div>
     );
 
   if (error)
     return (
-      <div {...anotherProps} className={classNames(styles.profile_card, {}, [className, styles.error])}>
+      <div
+        {...anotherProps}
+        data-testid="profileCard"
+        className={classNames(styles.profile_card, {}, [className, styles.error])}
+      >
         <Text textStyle={TextStyle.ERROR} title={t('Произошла ошибка при загрузке профиля')} />
         <Text textStyle={TextStyle.ERROR} text={error} />
       </div>
     );
 
   return (
-    <div {...anotherProps} className={classNames(styles.profile_card, { [styles[textAlign]]: true }, [className])}>
+    <div
+      {...anotherProps}
+      data-testid="profileCard"
+      className={classNames(styles.profile_card, { [styles[textAlign]]: true }, [className])}
+    >
       <Text className={styles.card_title} textSize={TextSize.BIG} title={`${t('Профиль')}, ${username}`} />
       <div className={styles.avatar_container}>
         <Title text={t('Аватар')}>

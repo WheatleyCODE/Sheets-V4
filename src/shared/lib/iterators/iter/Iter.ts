@@ -51,7 +51,8 @@ export class Iter<T> {
 
     const newIterable = (function* () {
       for (const el of iterable) {
-        yield fn(el);
+        fn(el);
+        yield el;
       }
     })();
 
@@ -75,10 +76,10 @@ export class Iter<T> {
     return new Iter(newIterable);
   }
 
-  enumerate() {
+  enumerate(): Iter<[T, number]> {
     const { iterable } = this;
 
-    const newIterable = (function* () {
+    const newIterable: Generator<[T, number]> = (function* () {
       let i = 0;
 
       for (const el of iterable) {

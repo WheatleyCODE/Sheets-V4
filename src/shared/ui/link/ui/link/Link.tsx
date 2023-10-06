@@ -9,7 +9,7 @@ export const Link: FC<ILinkProps> = memo((props) => {
   const { to, className, children, ...anotherProps } = props;
 
   return (
-    <RouterLink to={to} {...anotherProps} className={classNames(styles.link, {}, [className])}>
+    <RouterLink to={to} {...anotherProps} data-testid="link" className={classNames(styles.link, {}, [className])}>
       {children}
     </RouterLink>
   );

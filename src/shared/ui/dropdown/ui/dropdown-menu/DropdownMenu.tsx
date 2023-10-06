@@ -7,7 +7,7 @@ export const DropdownMenu: FC<IDropdownMenuProps> = (props) => {
   const { children, ...anotherProps } = props;
 
   return (
-    <div {...anotherProps} className={styles.menu}>
+    <div {...anotherProps} data-testid="dropdownMenu" className={styles.menu}>
       {children}
     </div>
   );

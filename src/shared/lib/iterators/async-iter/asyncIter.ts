@@ -67,7 +67,8 @@ export class AsyncIter<T> {
 
     const newIterable = (async function* () {
       for await (const el of iterable) {
-        yield fn(el);
+        fn(el);
+        yield el;
       }
     })();
 
@@ -91,10 +92,10 @@ export class AsyncIter<T> {
     return new AsyncIter(newIterable);
   }
 
-  enumerate() {
+  enumerate(): AsyncIter<[Awaited<T>, number]> {
     const { iterable } = this;
 
-    const newIterable = (async function* () {
+    const newIterable: AsyncGenerator<[Awaited<T>, number]> = (async function* () {
       let i = 0;
 
       for await (const el of iterable) {

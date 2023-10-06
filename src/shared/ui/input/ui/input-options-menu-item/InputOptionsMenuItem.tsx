@@ -29,12 +29,13 @@ export const InputOptionsMenuItem: FC<IInputOptionsMenuItemProps> = memo((props)
   return (
     <div
       {...anotherProps}
+      data-testid="inputOptionsMenuItem"
       style={{ ...style, height: INPUT_OPTIONS_MENU_ITEM_HEIGHT }}
       onMouseDown={onClickHandler}
       className={classNames(styles.item, { [styles.icon]: !!MemoIcon }, [className])}
     >
       {!!MemoIcon && (
-        <div className={styles.icon_container}>
+        <div data-testid="inputOptionsMenuItem-icon" className={styles.icon_container}>
           <MemoIcon className={styles.icon} />
         </div>
       )}

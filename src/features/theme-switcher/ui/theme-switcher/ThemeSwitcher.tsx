@@ -56,7 +56,7 @@ export const ThemeSwitcher: FC<IThemeSwitcherProps> = (props) => {
     .toArray();
 
   return (
-    <div {...anotherProps} className={classNames(styles.switcher, {}, [className])}>
+    <div {...anotherProps} data-testid="themeSwitcher" className={classNames(styles.switcher, {}, [className])}>
       <Title isStopShow={isShow} text={t('Тема')}>
         <Button Icon={MdColorLens} onClick={toggleDropdown} text={t('Тема')} />
       </Title>

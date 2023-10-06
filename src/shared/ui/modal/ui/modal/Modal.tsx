@@ -42,6 +42,7 @@ export const Modal: FC<IModalProps> = (props) => {
 
   return (
     <motion.div
+      data-testid="modal"
       initial={{ translateY: -30, opacity: 0, scale: 0.5 }}
       animate={{ translateY: 0, opacity: 1, scale: 1 }}
       transition={{ duration: ANIMATION_DURATION }}
@@ -50,7 +51,7 @@ export const Modal: FC<IModalProps> = (props) => {
       className={classNames(styles.modal, {}, [className])}
     >
       {!isHideCloseButton && (
-        <div aria-hidden onClick={onClose} className={styles.close_button}>
+        <div data-testid="modal-close-button" aria-hidden onClick={onClose} className={styles.close_button}>
           <MemoIcon />
         </div>
       )}

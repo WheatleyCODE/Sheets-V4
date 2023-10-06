@@ -92,13 +92,14 @@ export const Input: FC<IInputProps> = memo((props) => {
       ])}
     >
       {isIcon && (
-        <div aria-hidden onClick={focusOnInput} className={styles.input_icon}>
+        <div aria-hidden data-testid="input-icon" onClick={focusOnInput} className={styles.input_icon}>
           <MemoIcon />
         </div>
       )}
 
       <input
         className={classNames(styles.input_textfild, { [styles.icon]: isIcon })}
+        data-testid="input"
         ref={ref}
         value={value}
         type={type}

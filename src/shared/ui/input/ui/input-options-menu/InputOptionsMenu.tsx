@@ -26,7 +26,10 @@ export const InputOptionsMenu = forwardRef<HTMLDivElement, IInputOptionsMenuProp
       }}
       className={classNames(styles.menu, {}, [className])}
     >
-      <div style={{ paddingTop: INPUT_OPTIONS_MENU_PADDING, paddingBottom: INPUT_OPTIONS_MENU_PADDING }}>
+      <div
+        data-testid="inputOptionsMenu"
+        style={{ paddingTop: INPUT_OPTIONS_MENU_PADDING, paddingBottom: INPUT_OPTIONS_MENU_PADDING }}
+      >
         {children}
       </div>
     </div>

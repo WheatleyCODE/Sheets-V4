@@ -59,7 +59,7 @@ export const LanguageSwitcher: FC<ILanguageSwitcherProps> = memo((props) => {
     .toArray();
 
   return (
-    <div {...anotherProps} className={classNames(styles.switcher, {}, [className])}>
+    <div {...anotherProps} data-testid="languageSwitcher" className={classNames(styles.switcher, {}, [className])}>
       <Title isStopShow={isShow} text={t('Язык')}>
         <Button Icon={MdOutlineLanguage} onClick={toggleDropdown} text={t('Язык')} />
       </Title>

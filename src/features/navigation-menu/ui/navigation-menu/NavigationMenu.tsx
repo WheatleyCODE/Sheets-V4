@@ -38,7 +38,7 @@ export const NavigationMenu: FC<INavigationMenuProps> = memo((props) => {
     .toArray();
 
   return (
-    <div {...anotherProps} className={classNames(styles.menu, {}, [className])}>
+    <div {...anotherProps} data-testid="navigationMenu" className={classNames(styles.menu, {}, [className])}>
       {isOpen ? (
         <Button className={styles.button} buttonStyle={ButtonStyles.CLEAR} Icon={MdOutlineMenu} onClick={openMenu} />
       ) : (

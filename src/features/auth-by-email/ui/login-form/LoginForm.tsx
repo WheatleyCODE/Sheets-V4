@@ -60,7 +60,7 @@ const LoginForm: FC<ILoginFormProps> = memo((props) => {
   }, [emailInput.value, passwordInput.value, dispatch, onLoginSuccess]);
 
   return (
-    <div {...anotherProps} className={classNames(styles.login_form)}>
+    <div {...anotherProps} data-testid="loginForm" className={classNames(styles.login_form)}>
       <Text textSize={TextSize.BIG} className={styles.title} title={t('Вход в систему')} />
 
       <Input

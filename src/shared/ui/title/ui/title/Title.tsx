@@ -59,6 +59,7 @@ export const Title: FC<TitleProps> = memo(({ children, text, isStopShow = false,
   return (
     <div
       ref={titleRef}
+      data-testid="title"
       onMouseEnter={onMouseEnter}
       onMouseMove={onMouseMove}
       onMouseLeave={onMouseLeave}

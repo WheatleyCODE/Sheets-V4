@@ -16,7 +16,7 @@ export const Dropdown = forwardRef<HTMLDivElement, IDropdownProps>((props, ref) 
   useClickOutside(main, closeDropdown, ['click', 'contextmenu']);
 
   return (
-    <div {...anotherProps} ref={ref} className={classNames(styles.dropdown, {}, [className])}>
+    <div {...anotherProps} ref={ref} data-testid="dropdown" className={classNames(styles.dropdown, {}, [className])}>
       <div ref={main}>{children}</div>
     </div>
   );

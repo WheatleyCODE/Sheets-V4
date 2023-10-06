@@ -5,8 +5,12 @@ import { LS_DEFAULT_NAMESPACE, LS_THEME_KEY } from 'shared/consts/local-storage/
 
 const localStorage = KVFactory(LS_DEFAULT_NAMESPACE);
 
-export const ThemeProvider: FC<FCProps> = ({ children }) => {
-  const [theme, setTheme] = useState<Theme>(Theme.LIGHT);
+export interface IThemeProviderProps extends FCProps {
+  initTheme?: Theme;
+}
+
+export const ThemeProvider: FC<IThemeProviderProps> = ({ children, initTheme = Theme.LIGHT }) => {
+  const [theme, setTheme] = useState<Theme>(initTheme);
 
   useLayoutEffect(() => {
     localStorage.get<Theme>(LS_THEME_KEY).then((value) => value && setTheme(value));

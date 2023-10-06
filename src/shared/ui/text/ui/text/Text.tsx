@@ -16,6 +16,7 @@ export const Text: FC<ITextProps> = memo((props) => {
   return (
     <div
       {...anotherProps}
+      data-testid="text"
       className={classNames(styles.text_container, { [styles[textStyle]]: true, [styles[textSize]]: true }, [
         className,
       ])}

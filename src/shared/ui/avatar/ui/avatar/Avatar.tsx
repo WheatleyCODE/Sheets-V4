@@ -12,6 +12,7 @@ export const Avatar: FC<IAvatarProps> = (props) => {
   return (
     <img
       {...anotherProps}
+      data-testid="avatar"
       alt={alt}
       style={memoStyle}
       src={src}

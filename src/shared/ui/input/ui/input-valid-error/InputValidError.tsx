@@ -11,7 +11,12 @@ export const InputValidError = forwardRef<HTMLDivElement, IInputValidErrorProps>
   const { className, validError, ...anotherProps } = props;
 
   return (
-    <div {...anotherProps} ref={ref} className={classNames(styles.error, {}, [className])}>
+    <div
+      {...anotherProps}
+      data-testid="inputValidError"
+      ref={ref}
+      className={classNames(styles.error, {}, [className])}
+    >
       {validError}
     </div>
   );
