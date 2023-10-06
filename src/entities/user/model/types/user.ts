@@ -5,4 +5,5 @@ export interface IUser {
 
 export interface IUserSchema {
   user?: IUser;
+  _inited: boolean;
 }

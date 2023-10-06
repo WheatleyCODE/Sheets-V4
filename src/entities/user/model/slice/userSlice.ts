@@ -1,7 +1,9 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { IUser, IUserSchema } from '../types/user';
 
-const initialState: IUserSchema = {};
+const initialState: IUserSchema = {
+  _inited: false,
+};
 
 export const userSlice = createSlice({
   name: 'user',
@@ -9,6 +11,7 @@ export const userSlice = createSlice({
   reducers: {
     setUser(state, { payload }: PayloadAction<IUser>) {
       state.user = payload;
+      state._inited = true;
     },
 
     logout(state) {
