@@ -14,5 +14,6 @@ body {
   width: 100%;
   padding: 0 calc(var(--gap) * 4);
   height: calc(100vh - var(--sheets-header-height));
+  overflow: auto;
 }
 

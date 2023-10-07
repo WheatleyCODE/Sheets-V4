@@ -5,6 +5,7 @@ import { AnyAction, EnhancedStore, ReducersMapObject, Reducer, CombinedState, Th
 import { AxiosInstance } from 'axios';
 import { IProfileSchema } from 'entities/profile';
 import { ToolkitStore } from '@reduxjs/toolkit/dist/configureStore';
+import { ITemplateDetailsSchema } from 'entities/template';
 
 export interface IStateSchema {
   modals: IModalsSchema;
@@ -13,6 +14,7 @@ export interface IStateSchema {
   // * Async
   login?: ILoginSchema;
   profile?: IProfileSchema;
+  templateDetails?: ITemplateDetailsSchema;
 }
 
 export type StateSchemaKey = keyof IStateSchema;

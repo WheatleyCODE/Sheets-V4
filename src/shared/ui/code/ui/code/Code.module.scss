@@ -1,0 +1,10 @@
+.code {
+  position: relative;
+  overflow: auto;
+}
+
+.copy_button {
+  position: absolute;
+  right: calc(var(--gap) * 4);
+  top: calc(var(--gap) * 4);
+}

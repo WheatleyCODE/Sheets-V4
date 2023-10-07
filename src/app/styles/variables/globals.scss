@@ -44,6 +44,11 @@
   --color-scroll-thumb: #e7e7e7;
   --color-scroll-thumb-border: #d4d4d4;
 
+  // Skeleton
+  --color-skeleton: rgba(95 104 112 / 10%);
+  --color-skeleton-background: rgba(0 0 0 / 10%);
+  --color-skeleton-shadow: rgba(0 0 0 / 30%);
+
   // Globals
   --color-red: rgb(202 42 42);
   --color-red1:rgba(255 130 130 / 10%);
@@ -61,4 +66,5 @@
   --radius: 5px;
   --font-size: 1rem;
   --animation-duration: 0.1s;
+  --template-max-width: 1200px;
 }
