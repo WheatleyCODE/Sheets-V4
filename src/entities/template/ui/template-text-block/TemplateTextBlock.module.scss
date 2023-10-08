@@ -1,1 +1,8 @@
-.template_text_block {}
+.template_text_block {
+  max-width: var(--template-max-width);
+  width: 100%;
+}
+
+.title_row {
+  margin-bottom: calc((var(--gap) * 2));
+}

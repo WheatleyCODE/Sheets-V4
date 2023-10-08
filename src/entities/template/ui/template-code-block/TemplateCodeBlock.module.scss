@@ -1,1 +1,4 @@
-.template_code_block {}
+.template_code_block {
+  max-width: var(--template-max-width);
+  width: 100%;
+}

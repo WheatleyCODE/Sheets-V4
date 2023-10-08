@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { TemplateCodeBlock } from './TemplateCodeBlock';
 import { Theme } from 'app/providers/lib/theme-context';
 import { themeDecorator } from '../../../../../config/storybook/theme-decorator/themeDecorator';
+import { TemplateBlockTypes } from 'entities/template/model/types/template';
 
 const meta = {
   title: 'entities/TemplateCodeBlock',
@@ -13,10 +14,56 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Light: Story = {
-  args: {},
+  args: {
+    block: {
+      code: `
+      interface ITemplateImageBlockProps extends React.HTMLAttributes<HTMLDivElement> {}
+
+      export const TemplateImageBlock: FC<ITemplateImageBlockProps> = memo((props) => {
+        const { className, ...anotherProps } = props;
+        const { t } = useTranslation();
+
+        return (
+          <div
+            {...anotherProps}
+            data-testid="templateImageBlock"
+            className={classNames(styles.template_image_block, {}, [className])}
+          >
+            TemplateImageBlock
+          </div>
+        );
+      });
+    `,
+      id: '1',
+      type: TemplateBlockTypes.CODE,
+    },
+  },
 };
 
 export const Dark: Story = {
-  args: {},
+  args: {
+    block: {
+      code: `
+      interface ITemplateImageBlockProps extends React.HTMLAttributes<HTMLDivElement> {}
+
+      export const TemplateImageBlock: FC<ITemplateImageBlockProps> = memo((props) => {
+        const { className, ...anotherProps } = props;
+        const { t } = useTranslation();
+
+        return (
+          <div
+            {...anotherProps}
+            data-testid="templateImageBlock"
+            className={classNames(styles.template_image_block, {}, [className])}
+          >
+            TemplateImageBlock
+          </div>
+        );
+      });
+    `,
+      id: '1',
+      type: TemplateBlockTypes.CODE,
+    },
+  },
   decorators: [themeDecorator(Theme.DARK)],
 };

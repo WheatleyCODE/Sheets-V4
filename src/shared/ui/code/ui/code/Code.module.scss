@@ -1,10 +1,19 @@
 .code {
+  padding: calc(var(--gap) * 4);
   position: relative;
   overflow: auto;
+  border-radius: var(--radius);
+  border: 1px solid var(--color-border);
+  background-color: var(--color-code-background);
+}
+
+.copy_button_container {
+  position: absolute;
+  top: var(--gap);
+  right: var(--gap);
 }
 
 .copy_button {
-  position: absolute;
-  right: calc(var(--gap) * 4);
-  top: calc(var(--gap) * 4);
+  width: 40px;
+  height: 40px;
 }

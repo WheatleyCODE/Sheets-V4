@@ -23,7 +23,7 @@ export interface ITemplateTextBlock extends ITemplateBaseBlock {
 export interface ITemplateImageBlock extends ITemplateBaseBlock {
   type: TemplateBlockTypes.IMAGE;
   src: string;
-  tittle: string;
+  title: string;
 }
 
 export enum TemplateTags {

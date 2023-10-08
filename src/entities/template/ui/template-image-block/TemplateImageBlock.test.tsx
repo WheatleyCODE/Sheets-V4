@@ -4,7 +4,7 @@ import { renderComponent } from 'shared/lib/tests/render-component/renderCompone
 
 describe('TemplateImageBlock', () => {
   test('In the document', () => {
-    renderComponent(<TemplateImageBlock />);
+    renderComponent(<TemplateImageBlock block={{} as any} />);
 
     expect(screen.getByTestId('templateImageBlock')).toBeInTheDocument();
   });

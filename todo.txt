@@ -4,3 +4,7 @@
 [] Допилить paths + тесты
 [] Тесты на LanguageSwitcher, ThemeSwitcher, NavigationMenu, NavigationMenuItem, LoginForm, RegisterForm
 [] Добавить SyncPromise в KVStorage, вместо Promise<T> -> Promise<T> | SyncPromise<T> + тесты
+[] Сделать снипеты для slice
+[] Заменить все использования MemoIcon на <Icon />
+[] Написать парсер для формул -> применить его в <Code />
+[]? Всплывающие сообщения?

@@ -1,1 +1,8 @@
-.template_image_block {}
+.template_image_block {
+  max-width: var(--template-max-width);
+  width: 100%;
+}
+
+.image {
+  max-width: 100%;
+}
