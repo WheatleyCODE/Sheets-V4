@@ -16,6 +16,7 @@ type Story = StoryObj<typeof meta>;
 export const Light: Story = {
   args: {
     profile: {
+      userId: '1',
       firstname: 'Дмитрий',
       lastname: 'Бажаев',
       age: '22',
@@ -35,6 +36,7 @@ export const Light: Story = {
 export const Dark: Story = {
   args: {
     profile: {
+      userId: '1',
       firstname: 'Дмитрий',
       lastname: 'Бажаев',
       age: '22',

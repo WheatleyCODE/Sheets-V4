@@ -7,6 +7,7 @@ import { IProfileSchema } from 'entities/profile';
 import { ToolkitStore } from '@reduxjs/toolkit/dist/configureStore';
 import { ITemplateDetailsSchema } from 'entities/template';
 import { ITemplateDetailsCommentsSchema } from 'pages/template-details-page/model/types/templateDetailsComments';
+import { IAddCommentFormSchema } from 'features/add-comment-form';
 
 export interface IStateSchema {
   modals: IModalsSchema;
@@ -17,6 +18,7 @@ export interface IStateSchema {
   profile?: IProfileSchema;
   templateDetails?: ITemplateDetailsSchema;
   templateDetailsComments?: ITemplateDetailsCommentsSchema;
+  addCommentForm?: IAddCommentFormSchema;
 }
 
 export type StateSchemaKey = keyof IStateSchema;
@@ -38,6 +40,7 @@ export interface IThunkExtra {
 
 export interface IThunkConfig<T = string> {
   rejectValue: T;
+  state: any;
 }
 
 export interface IStore extends ToolkitStore<IStateSchema, AnyAction, [ThunkMiddleware<unknown, AnyAction>]> {

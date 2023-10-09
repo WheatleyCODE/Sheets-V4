@@ -5,6 +5,7 @@ import { Country, Currency, IProfile } from '../../types/profile';
 describe('updateProfile', () => {
   test('Fulfilled', async () => {
     const profile: IProfile = {
+      userId: '1',
       firstname: 'Вася',
       lastname: 'Пупкин',
       age: '65',
@@ -28,6 +29,7 @@ describe('updateProfile', () => {
 
   test('Rejected', async () => {
     const profile: IProfile = {
+      userId: '1',
       firstname: 'Вася',
       lastname: 'Пупкин',
       age: '65',

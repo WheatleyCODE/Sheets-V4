@@ -1,12 +1,13 @@
-import { FC, memo } from 'react';
+import { FC, memo, useCallback } from 'react';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { templateDetailsCommentsReducer } from '../../model/slice/templateDetailsCommentsSlice';
 import { getTemplateDetailsComments } from '../../model/selectors/get-template-details-comments/getTemplateDetailsComments';
-import { fetchTemplateDetailsComments } from '../../model/services/fetchTemplateDetailsComments';
+import { fetchTemplateDetailsComments } from '../../model/services/fetch-template-details-comments/fetchTemplateDetailsComments';
 import { getTemplateDetailsCommentsError } from '../../model/selectors/get-template-details-comments-error/getTemplateDetailsCommentsError';
 import { getTemplateDetailsCommentsIsLoading } from '../../model/selectors/get-template-details-comments-is-loading/getTemplateDetailsCommentsIsLoading';
+import { fetchTemplateDetailsAddComment } from '../../model/services/fetch-template-details-add-comment/fetchTemplateDetailsAddComment';
 import {
   TemplateDetails,
   fetchTemplateById,
@@ -16,11 +17,13 @@ import {
   templateDetailsActions,
   templateDetailsReducer,
 } from 'entities/template';
+import { getUser } from 'entities/user';
 import { CommentList } from 'entities/comment';
 import { Text, TextSize } from 'shared/ui/text';
 import { useDynamicModule, useTypedDispatch, useInitialEffect } from 'shared/lib/hooks';
 import { classNames } from 'shared/lib/class-names';
 import styles from './TemplateDetailsPage.module.scss';
+import { AddCommentForm } from 'features/add-comment-form';
 
 interface ITemplateDetailsPageProps extends React.HTMLAttributes<HTMLDivElement> {}
 
@@ -36,6 +39,7 @@ const TemplateDetailsPage: FC<ITemplateDetailsPageProps> = memo((props) => {
   const template = useSelector(getTemplateDetails);
   const isLoading = useSelector(getTemplateDetailsIsLoading);
   const error = useSelector(getTemplateDetailsError);
+  const user = useSelector(getUser);
   const comments = useSelector(getTemplateDetailsComments.selectAll);
   const commentsError = useSelector(getTemplateDetailsCommentsError);
   const commentsIsLoading = useSelector(getTemplateDetailsCommentsIsLoading);
@@ -50,6 +54,14 @@ const TemplateDetailsPage: FC<ITemplateDetailsPageProps> = memo((props) => {
     dispatch(fetchTemplateDetailsComments({ id }));
   });
 
+  const addComment = useCallback(
+    (text: string) => {
+      if (!user || !template) return;
+      dispatch(fetchTemplateDetailsAddComment({ text, templateId: template.id, userId: user.id }));
+    },
+    [dispatch, template, user],
+  );
+
   return (
     <div
       {...anotherProps}
@@ -57,6 +69,13 @@ const TemplateDetailsPage: FC<ITemplateDetailsPageProps> = memo((props) => {
       className={classNames(styles.template_details_page, {}, [className, 'page'])}
     >
       <TemplateDetails template={template} isLoading={isLoading} error={error} />
+
+      <div className={styles.add_comment_form}>
+        <div className={styles.add_comment_form_width}>
+          <Text className={styles.comments_title} title={`${t('Добавить комментарий')}:`} />
+          <AddCommentForm addComment={addComment} />
+        </div>
+      </div>
 
       <div className={styles.comments}>
         <div className={styles.comments_width}>

@@ -4,6 +4,7 @@ import { profileActions, profileReducer } from './profileSlice';
 import { DeepPartial } from 'shared/lib/ts-utils';
 
 const profile: IProfile = {
+  userId: '1',
   firstname: 'Вася',
   lastname: 'Пупкин',
   age: '65',
@@ -19,6 +20,7 @@ describe('profileSlice', () => {
     const state: DeepPartial<IProfileSchema> = {};
 
     const profile: IProfile = {
+      userId: '1',
       firstname: 'Вася',
       lastname: 'Пупкин',
       age: '65',

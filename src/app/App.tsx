@@ -29,6 +29,7 @@ export const App: FC = () => {
   return (
     <div className={classNames('app', {}, [theme])}>
       <Navbar />
+      {/* ! FIX */}
       <Suspense fallback={<PageLoader />}>{isInited && <AppRouter />}</Suspense>
     </div>
   );

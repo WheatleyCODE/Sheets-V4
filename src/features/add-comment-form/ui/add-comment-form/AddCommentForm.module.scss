@@ -1,0 +1,13 @@
+.add_comment_form {
+  display: flex;
+  align-items: center;
+}
+
+.input {
+  width: 100%;
+}
+
+.button {
+  flex-shrink: 0;
+  margin-left: calc(var(--gap) * 2);
+}

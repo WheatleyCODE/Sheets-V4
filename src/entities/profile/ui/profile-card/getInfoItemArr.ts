@@ -12,7 +12,7 @@ import {
 import { Country, Currency } from '../../model/types/profile';
 import { BiDollar } from 'react-icons/bi';
 
-export interface IInputValidHooks extends Record<keyof IProfile, IValidInputOpts<any>> {}
+export interface IInputValidHooks extends Record<keyof Omit<IProfile, 'userId' | 'id'>, IValidInputOpts<any>> {}
 
 export interface IGetInfoItemArrProps {
   profile: IProfile;

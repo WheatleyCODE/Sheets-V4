@@ -3,13 +3,13 @@ import { IThunkConfig, IThunkExtra } from 'app/providers/store-provider';
 import i18n from 'shared/config/i18n/i18n';
 import { IProfile } from '../../types/profile';
 
-export const fetchProfile = createAsyncThunk<IProfile, void, IThunkConfig>(
+export const fetchProfile = createAsyncThunk<IProfile, { userId: string }, IThunkConfig>(
   'profile/fetchProfile',
-  async (_, thunkAPI) => {
+  async ({ userId }, thunkAPI) => {
     try {
       const extra = thunkAPI.extra as IThunkExtra;
 
-      const { data } = await extra.api.get<IProfile>('/profile');
+      const { data } = await extra.api.get<IProfile>(`/profile/${userId}`);
       if (!data) throw new Error();
 
       return data;

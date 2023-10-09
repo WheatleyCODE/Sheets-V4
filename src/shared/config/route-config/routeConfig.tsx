@@ -25,7 +25,7 @@ export const RoutesPath: Record<AppRoutes, string> = {
   [AppRoutes.HOME]: '/home',
   [AppRoutes.SHEETS]: '/sheets',
   [AppRoutes.LANDING]: '/',
-  [AppRoutes.PROFILE]: '/profile',
+  [AppRoutes.PROFILE]: '/profile/', // + id
   [AppRoutes.TEMPLATES]: '/templates',
   [AppRoutes.TEMPLATE_DETAILS]: '/templates/', // + id
   [AppRoutes.NOT_FOUND]: '*',
@@ -44,8 +44,9 @@ export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
     path: RoutesPath.landing,
     element: <LandingPage />,
   },
+  // ! Fix path
   [AppRoutes.PROFILE]: {
-    path: RoutesPath.profile,
+    path: `${RoutesPath.profile}:id`,
     element: <ProfilePage />,
     authOnly: true,
   },

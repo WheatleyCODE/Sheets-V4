@@ -6,6 +6,7 @@ import { Country, Currency, IProfile } from 'entities/profile/model/types/profil
 describe('ProfileCard', () => {
   test('In the document', () => {
     const profile: IProfile = {
+      userId: '1',
       firstname: 'Вася',
       lastname: 'Пупкин',
       age: '65',
@@ -29,6 +30,7 @@ describe('ProfileCard', () => {
 
   test('In the document + edit', () => {
     const profile: IProfile = {
+      userId: '1',
       firstname: 'Вася',
       lastname: 'Пупкин',
       age: '65',

@@ -5,8 +5,13 @@
 }
 
 .header {
+  transition: color var(--animation-duration);
   display: flex;
   align-items: center;
+
+  &:hover div {
+    color: var(--color-primary);
+  }
 }
 
 .main {

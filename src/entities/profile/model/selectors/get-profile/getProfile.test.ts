@@ -6,6 +6,7 @@ import { Country, Currency, IProfile } from '../../types/profile';
 describe('getProfile', () => {
   test('Return profile state', () => {
     const profile: IProfile = {
+      userId: '1',
       firstname: 'Вася',
       lastname: 'Пупкин',
       age: '65',

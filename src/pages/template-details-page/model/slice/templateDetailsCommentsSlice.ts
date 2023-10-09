@@ -1,7 +1,7 @@
-import { createEntityAdapter, createSlice } from '@reduxjs/toolkit';
+import { createEntityAdapter, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { IComment } from 'entities/comment';
 import { ITemplateDetailsCommentsSchema } from '../types/templateDetailsComments';
-import { fetchTemplateDetailsComments } from '../services/fetchTemplateDetailsComments';
+import { fetchTemplateDetailsComments } from '../services/fetch-template-details-comments/fetchTemplateDetailsComments';
 
 export const commentsAdapter = createEntityAdapter<IComment>({
   selectId: (book) => book.id,
@@ -17,7 +17,11 @@ const initialState = commentsAdapter.getInitialState<ITemplateDetailsCommentsSch
 export const templateDetailsCommentsSlice = createSlice({
   name: 'templateDetailsComments',
   initialState,
-  reducers: {},
+  reducers: {
+    addComment(state, { payload }: PayloadAction<IComment>) {
+      commentsAdapter.addOne(state, payload);
+    },
+  },
   extraReducers(builder) {
     builder.addCase(fetchTemplateDetailsComments.pending, (state) => {
       state.error = null;

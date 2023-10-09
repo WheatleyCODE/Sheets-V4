@@ -2,18 +2,22 @@
   padding-bottom: calc((var(--gap) * 10));
 }
 
-.comments {
+.comments, .add_comment_form {
   display: flex;
   flex-direction: column;
   align-items: center;
   padding-top: calc(var(--gap) * 2);
 }
 
-.comments_width {
+.add_comment_form {
+  margin-bottom: calc(var(--gap) * 2);
+}
+
+.comments_width, .add_comment_form_width {
   max-width: var(--template-max-width);
   width: 100%;
 }
 
-.comments_title {
+.comments_title, .dd_comment_form_title {
   margin-bottom: calc(var(--gap) * 4);
 }

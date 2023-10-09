@@ -26,7 +26,7 @@ export const CommentList: FC<ICommentListProps> = (props) => {
     .map(() => (
       <Skeleton className={styles.comment_item_skeleton}>
         <div className={styles.comment_item_skeleton_header}>
-          <Skeleton width={70} height={70} borderRadius="50%" />
+          <Skeleton width={40} height={40} borderRadius="50%" />
           <Skeleton className={styles.comment_item_skeleton_username} />
         </div>
         <Skeleton className={styles.comment_item_skeleton_main} />

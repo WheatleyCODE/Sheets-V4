@@ -1,4 +1,4 @@
-import { FC, memo, useCallback, useEffect } from 'react';
+import { FC, memo, useCallback } from 'react';
 import { Layout } from 'widgets/layout';
 import { useDynamicModule, useTypedDispatch } from 'shared/lib/hooks';
 import {
@@ -17,18 +17,23 @@ import { getProfile } from 'entities/profile';
 import { useInitialEffect } from 'shared/lib/hooks';
 import { classNames } from 'shared/lib/class-names';
 import styles from './ProfilePage.module.scss';
+import { useParams } from 'react-router-dom';
+import { getUser } from 'entities/user';
 
 const ProfilePage: FC = memo(() => {
   useDynamicModule({ profile: profileReducer });
+  const { id } = useParams<{ id: string }>();
   const dispatch = useTypedDispatch();
   const profile = useSelector(getProfile);
+  const user = useSelector(getUser);
   const isLoading = useSelector(getProfileIsLoading);
   const error = useSelector(getProfileError);
   const isReadonly = useSelector(getProfileIsReadonly);
 
   useInitialEffect(() => {
-    if (__PROJECT__ === 'storybook') return;
-    dispatch(fetchProfile());
+    if (!id) return;
+
+    dispatch(fetchProfile({ userId: id }));
   });
 
   const enableProfileChange = useCallback(() => {
@@ -42,19 +47,27 @@ const ProfilePage: FC = memo(() => {
   }, [dispatch, profile]);
 
   const saveProfileChange = useCallback(
-    (profile: IProfile) => {
+    (newProfile: IProfile) => {
       dispatch(profileActions.setIsReadonly(true));
-      dispatch(updateProfile(profile));
+      console.log({ ...profile, ...newProfile });
+
+      dispatch(updateProfile({ ...profile, ...newProfile }));
     },
-    [dispatch],
+    [dispatch, profile],
   );
+
+  const getEdit = () => {
+    const isEdit = user && user.id !== profile.userId;
+    if (!isEdit) return;
+    return { disableProfileChange, enableProfileChange, saveProfileChange };
+  };
 
   return (
     <Layout>
       <div data-testid="profilePage" className={classNames(styles.profile_page, {}, ['page'])}>
         <ProfileCard
           className={styles.card}
-          edit={{ disableProfileChange, enableProfileChange, saveProfileChange }}
+          edit={getEdit()}
           isReadonly={isReadonly}
           isLoading={isLoading}
           error={error}

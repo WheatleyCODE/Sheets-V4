@@ -5,6 +5,7 @@ import { Country, Currency, IProfile } from '../../types/profile';
 describe('fetchProfile', () => {
   test('Fulfilled', async () => {
     const profile: IProfile = {
+      userId: '1',
       firstname: 'Вася',
       lastname: 'Пупкин',
       age: '65',
@@ -18,7 +19,7 @@ describe('fetchProfile', () => {
     const thunk = new TestAsyncThunk(fetchProfile);
     thunk.api.get.mockReturnValue(Promise.resolve({ data: profile }));
 
-    const res = await thunk.callThunk();
+    const res = await thunk.callThunk({ userId: '1' });
 
     expect(thunk.api.get).toHaveBeenCalled();
     expect(thunk.dispatch).toHaveBeenCalledTimes(2);
@@ -30,7 +31,7 @@ describe('fetchProfile', () => {
     const thunk = new TestAsyncThunk(fetchProfile);
     thunk.api.get.mockReturnValue(Promise.resolve({ status: 403 }));
 
-    const res = await thunk.callThunk();
+    const res = await thunk.callThunk({ userId: '1' });
 
     expect(thunk.api.get).toHaveBeenCalled();
     expect(thunk.dispatch).toHaveBeenCalledTimes(2);
