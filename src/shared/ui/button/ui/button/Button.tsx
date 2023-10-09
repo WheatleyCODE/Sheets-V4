@@ -1,6 +1,7 @@
 import React, { FC, memo } from 'react';
 import { IconType } from 'react-icons';
 import { ButtonColor, ButtonSize, ButtonStyles } from './interface';
+import { Icon as IconComponent } from 'shared/ui/icon';
 import { classNames } from 'shared/lib/class-names';
 import styles from './Button.module.scss';
 interface IButtonProps extends React.HTMLAttributes<HTMLButtonElement> {
@@ -28,13 +29,11 @@ export const Button: FC<IButtonProps> = memo((props) => {
     ...anotherProps
   } = props;
 
-  const MemoIcon = Icon && memo(Icon);
-
   const mods: Record<string, boolean> = {
     [styles.disable]: disable,
     [styles.square]: square,
     [styles.circle]: circle,
-    [styles.icon]: !!MemoIcon,
+    [styles.icon]: !!Icon,
     [styles.text]: !!text,
   };
 
@@ -48,9 +47,9 @@ export const Button: FC<IButtonProps> = memo((props) => {
       disabled={disable}
       {...anotherProps}
     >
-      {MemoIcon && (
+      {Icon && (
         <div data-testid="button-icon" className={styles.button_icon_container}>
-          <MemoIcon className={styles.button_icon} />
+          <IconComponent Icon={Icon} className={styles.button_icon} />
         </div>
       )}
       {text}

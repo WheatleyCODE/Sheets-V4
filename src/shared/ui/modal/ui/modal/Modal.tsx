@@ -1,6 +1,7 @@
-import { FC, memo, useCallback, useEffect } from 'react';
+import { FC, useCallback, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { CgClose } from 'react-icons/cg';
+import { Icon } from 'shared/ui/icon';
 import { ANIMATION_DURATION } from 'shared/consts/animations/animation';
 import { classNames } from 'shared/lib/class-names';
 import styles from './Modal.module.scss';
@@ -12,8 +13,6 @@ interface IModalProps extends React.HTMLAttributes<HTMLDivElement> {
 
 export const Modal: FC<IModalProps> = (props) => {
   const { className, children, isHideCloseButton, onClose } = props;
-
-  const MemoIcon = memo(CgClose);
 
   const stopPropagation = useCallback((e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     e.stopPropagation();
@@ -52,7 +51,7 @@ export const Modal: FC<IModalProps> = (props) => {
     >
       {!isHideCloseButton && (
         <div data-testid="modal-close-button" aria-hidden onClick={onClose} className={styles.close_button}>
-          <MemoIcon />
+          <Icon Icon={CgClose} />
         </div>
       )}
 

@@ -119,12 +119,36 @@
 
 .button.primary {
   box-shadow: var(--color-shadow04) 0 1px 1px, var(--color-shadow03) 0 5px 13px -3px, var(--color-shadow10) 0 -3px 0 inset, var(--color-primary) 0 1px 0 0;
+
+  &:hover {
+    box-shadow: var(--color-shadow04) 0 3px 6px, var(--color-shadow03) 0 5px 13px -3px, var(--color-shadow10) 0 -3px 0 inset, var(--color-primary) 0 1px 0 0;
+  }
+
+  &:active {
+    box-shadow: var(--color-shadow03) 0 2px 8px inset;
+  }
 }
 
 .button.secondary {
   box-shadow: var(--color-shadow04) 0 1px 1px, var(--color-shadow03) 0 5px 13px -3px, var(--color-shadow10) 0 -3px 0 inset, var(--color-secondary) 0 1px 0 0;
+  
+  &:hover {
+    box-shadow: var(--color-shadow04) 0 3px 6px, var(--color-shadow03) 0 5px 13px -3px, var(--color-shadow10) 0 -3px 0 inset, var(--color-secondary) 0 1px 0 0;
+  }
+  
+  &:active {
+    box-shadow: var(--color-shadow03) 0 2px 8px inset;
+  }
 }
 
 .button.danger {
   box-shadow: var(--color-shadow04) 0 1px 1px, var(--color-shadow03) 0 5px 13px -3px, var(--color-shadow10) 0 -3px 0 inset, var(--color-danger) 0 1px 0 0;
+
+  &:hover {
+    box-shadow: var(--color-shadow04) 0 3px 6px, var(--color-shadow03) 0 5px 13px -3px, var(--color-shadow10) 0 -3px 0 inset, var(--color-danger) 0 1px 0 0;
+  }
+  
+  &:active {
+    box-shadow: var(--color-shadow03) 0 2px 8px inset;
+  }
 }

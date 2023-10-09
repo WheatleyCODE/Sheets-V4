@@ -32,5 +32,5 @@ export const Image: FC<IImageProps> = (props) => {
     return errorFallback;
   }
 
-  return <img className={className} src={src} alt={alt} {...otherProps} />;
+  return <img data-testid="image" className={className} src={src} alt={alt} {...otherProps} />;
 };

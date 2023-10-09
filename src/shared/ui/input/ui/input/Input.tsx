@@ -3,6 +3,7 @@ import { AnimatePresence, useAnimation } from 'framer-motion';
 import { IconType } from 'react-icons';
 import { ANIMATION_DURATION } from 'shared/consts/animations/animation';
 import { intoIter } from 'shared/lib/iterators';
+import { Icon as IconComponent } from 'shared/ui/icon';
 import { IInputOptionsMenuItem, InputOptionsMenuItem } from '../input-options-menu-item/InputOptionsMenuItem';
 import { MInputOptionsMenu } from '../input-options-menu/InputOptionsMenu';
 import { MInputPlaceholder } from '../input-placeholder/InputPlaceholder';
@@ -52,8 +53,7 @@ export const Input: FC<IInputProps> = memo((props) => {
   const ref = useRef<null | HTMLInputElement>(null);
   const placeholderControls = useAnimation();
   const isErrorActive = !!(isError && validError);
-  const MemoIcon = Icon && memo(Icon);
-  const isIcon = !!MemoIcon;
+  const isIcon = !!Icon;
 
   const isOptions = options != null;
   const isDefaultOptions = isOptions && typeof options.items === 'string';
@@ -93,7 +93,7 @@ export const Input: FC<IInputProps> = memo((props) => {
     >
       {isIcon && (
         <div aria-hidden data-testid="input-icon" onClick={focusOnInput} className={styles.input_icon}>
-          <MemoIcon />
+          <IconComponent Icon={Icon} />
         </div>
       )}
 

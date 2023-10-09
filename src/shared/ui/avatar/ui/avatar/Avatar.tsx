@@ -1,4 +1,5 @@
 import { FC, useMemo } from 'react';
+import { Image } from 'shared/ui/image';
 import { classNames } from 'shared/lib/class-names';
 import styles from './Avatar.module.scss';
 
@@ -10,7 +11,7 @@ export const Avatar: FC<IAvatarProps> = (props) => {
   const memoStyle = useMemo(() => ({ ...style, width, height }), [height, style, width]);
 
   return (
-    <img
+    <Image
       {...anotherProps}
       data-testid="avatar"
       alt={alt}

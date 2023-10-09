@@ -4,6 +4,7 @@ import { Text } from 'shared/ui/text';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { sleep } from 'shared/lib/promises';
+import { Icon as IconComponent } from 'shared/ui/icon';
 import { ANIMATION_DURATION } from 'shared/consts/animations/animation';
 import { classNames } from 'shared/lib/class-names';
 import styles from './NavigationMenuItem.module.scss';
@@ -19,8 +20,6 @@ export const NavigationMenuItem: FC<INavigationMenuItemProps> = memo((props) => 
   const navigate = useNavigate();
   const { t } = useTranslation('home');
 
-  const MemoIcon = memo(Icon);
-
   // ! FIX layout
   const onDelayClose = useCallback(async () => {
     onClick();
@@ -35,7 +34,7 @@ export const NavigationMenuItem: FC<INavigationMenuItemProps> = memo((props) => 
       onClick={onDelayClose}
       className={classNames(styles.item, {}, [className])}
     >
-      <MemoIcon className={styles.icon} />
+      <IconComponent Icon={Icon} className={styles.icon} />
       <Text className={styles.text} text={t(text)} />
     </div>
   );

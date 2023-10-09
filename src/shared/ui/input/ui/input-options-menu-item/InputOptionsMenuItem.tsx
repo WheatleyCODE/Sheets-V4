@@ -1,5 +1,6 @@
 import { CSSProperties, FC, memo } from 'react';
 import { IconType } from 'react-icons';
+import { Icon as IconComponent } from 'shared/ui/icon';
 import { classNames } from 'shared/lib/class-names';
 import styles from './InputOptionsMenuItem.module.scss';
 
@@ -20,8 +21,6 @@ export const InputOptionsMenuItem: FC<IInputOptionsMenuItemProps> = memo((props)
   const { className, item, onClick, style, ...anotherProps } = props;
   const { text, Icon } = item;
 
-  const MemoIcon = Icon && memo(Icon);
-
   const onClickHandler = () => {
     onClick(text);
   };
@@ -32,11 +31,11 @@ export const InputOptionsMenuItem: FC<IInputOptionsMenuItemProps> = memo((props)
       data-testid="inputOptionsMenuItem"
       style={{ ...style, height: INPUT_OPTIONS_MENU_ITEM_HEIGHT }}
       onMouseDown={onClickHandler}
-      className={classNames(styles.item, { [styles.icon]: !!MemoIcon }, [className])}
+      className={classNames(styles.item, { [styles.icon]: !!Icon }, [className])}
     >
-      {!!MemoIcon && (
+      {!!Icon && (
         <div data-testid="inputOptionsMenuItem-icon" className={styles.icon_container}>
-          <MemoIcon className={styles.icon} />
+          <IconComponent Icon={Icon} className={styles.icon} />
         </div>
       )}
       {text}

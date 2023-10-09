@@ -22,7 +22,7 @@ export const TemplateImageBlock: FC<ITemplateImageBlockProps> = memo((props) => 
       <Image alt={title} className={styles.image} src={src} />
 
       {!!title && (
-        <div>
+        <div className={styles.title_row}>
           <Text textSize={TextSize.SMALL} title={title} />
         </div>
       )}

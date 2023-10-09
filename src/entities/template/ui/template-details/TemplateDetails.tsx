@@ -7,11 +7,15 @@ import { Text, TextSize, TextStyle } from 'shared/ui/text';
 import { Skeleton } from 'shared/ui/skeleton';
 import { Avatar } from 'shared/ui/avatar';
 import { Icon } from 'shared/ui/icon';
-import { MdOutlineCalendarMonth, MdOutlineDataArray, MdOutlineVisibility } from 'react-icons/md';
+import { MdOutlineCalendarMonth, MdOutlineDataArray, MdOutlineOpenInNew, MdOutlineVisibility } from 'react-icons/md';
 import { intoIter } from 'shared/lib/iterators';
 import { TemplateTextBlock } from '../template-text-block/TemplateTextBlock';
 import { TemplateCodeBlock } from '../template-code-block/TemplateCodeBlock';
 import { TemplateImageBlock } from '../template-image-block/TemplateImageBlock';
+import { Image } from 'shared/ui/image';
+import { Button } from 'shared/ui/button';
+import { ButtonColor } from 'shared/ui/button/ui/button/interface';
+import { Title } from 'shared/ui/title';
 
 interface ITemplateDetailsProps extends React.HTMLAttributes<HTMLDivElement> {
   template: ITemplate;
@@ -44,7 +48,7 @@ export const TemplateDetails: FC<ITemplateDetailsProps> = (props) => {
         data-testid="templateDetails"
         className={classNames(styles.template_details, {}, [className])}
       >
-        <Skeleton width="200px" height="200px" borderRadius="50%" />
+        <Skeleton className={styles.head_image_skeleton} />
 
         <Skeleton className={styles.title_skeleton} />
         <Skeleton className={styles.subtitle_skeleton} />
@@ -80,10 +84,18 @@ export const TemplateDetails: FC<ITemplateDetailsProps> = (props) => {
       data-testid="templateDetails"
       className={classNames(styles.template_details, {}, [className])}
     >
-      <Avatar width={200} height={200} src={image} />
+      <div className={classNames(styles.head_image, {}, [styles.head_image_skeleton])}>
+        <Image className={styles.image} src={image} />
+      </div>
 
       <div className={classNames(styles.title, {}, [styles.title_skeleton])}>
         <Text textSize={TextSize.BIG} title={title} />
+        <Button
+          className={styles.open_button}
+          Icon={MdOutlineOpenInNew}
+          buttonColor={ButtonColor.PRIMARY}
+          text={t('Открыть шаблон')}
+        />
       </div>
 
       <div className={classNames(styles.subtitle, {}, [styles.subtitle_skeleton])}>
@@ -91,20 +103,26 @@ export const TemplateDetails: FC<ITemplateDetailsProps> = (props) => {
       </div>
 
       <div className={classNames(styles.info, {}, [styles.info_skeleton])}>
-        <div className={styles.views}>
-          <Icon className={styles.info_icon} Icon={MdOutlineVisibility} />
-          <Text className={styles.info_text} text={String(views)} />
-        </div>
+        <Title text={t('Просмотры')}>
+          <div className={styles.views}>
+            <Icon className={styles.info_icon} Icon={MdOutlineVisibility} />
+            <Text className={styles.info_text} text={String(views)} />
+          </div>
+        </Title>
 
-        <div className={styles.date}>
-          <Icon className={styles.info_icon} Icon={MdOutlineCalendarMonth} />
-          <Text className={styles.info_text} text={createdAt} />
-        </div>
+        <Title text={t('Дата создания')}>
+          <div className={styles.date}>
+            <Icon className={styles.info_icon} Icon={MdOutlineCalendarMonth} />
+            <Text className={styles.info_text} text={createdAt} />
+          </div>
+        </Title>
 
-        <div className={styles.tags}>
-          <Icon className={styles.info_icon} Icon={MdOutlineDataArray} />
-          {tagsArr}
-        </div>
+        <Title text={t('Теги')}>
+          <div className={styles.tags}>
+            <Icon className={styles.info_icon} Icon={MdOutlineDataArray} />
+            {tagsArr}
+          </div>
+        </Title>
       </div>
 
       {blocksArr}

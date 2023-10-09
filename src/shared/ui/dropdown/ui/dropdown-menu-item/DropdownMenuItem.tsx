@@ -1,8 +1,9 @@
-import { FC, ReactNode, memo, useCallback } from 'react';
+import { FC, ReactNode, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { IconType } from 'react-icons';
 import { useDelayHover } from 'shared/lib/hooks';
 import { ANIMATION_DURATION } from 'shared/consts/animations/animation';
+import { Icon as IconComponent } from 'shared/ui/icon';
 import { classNames } from 'shared/lib/class-names';
 import styles from './DropdownMenuItem.module.scss';
 
@@ -29,7 +30,6 @@ export const DropdownMenuItem: FC<DropdownMenuItemProps> = (props) => {
 
   const isNone = Icon === 'NONE';
   const isIcon = typeof Icon === 'function';
-  const MemoIcon = isIcon && memo(Icon);
 
   return (
     <div
@@ -43,9 +43,9 @@ export const DropdownMenuItem: FC<DropdownMenuItemProps> = (props) => {
     >
       {isNone && <div className={styles.icon} />}
 
-      {isIcon && !!MemoIcon && (
+      {isIcon && !!Icon && (
         <div data-testid="dropdownMenuItem-icon" className={styles.icon}>
-          <MemoIcon />
+          <IconComponent Icon={Icon} />
         </div>
       )}
 
