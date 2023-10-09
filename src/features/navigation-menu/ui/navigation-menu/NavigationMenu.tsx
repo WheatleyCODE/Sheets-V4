@@ -3,7 +3,8 @@ import { useSelector } from 'react-redux';
 import { AnimatePresence } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import { MdOutlineMenu } from 'react-icons/md';
-import { navigationMenu, INavigationMenuItem } from '../../model/consts/navigationMenu';
+import { INavigationMenuItem } from '../../model/types/navigation';
+import { getNavigationItems } from '../../model/selectors/get-navigation-items/getNavigationItems';
 import { Logo } from 'entities/logo';
 import { getUser } from 'entities/user';
 import { Button, ButtonStyles } from 'shared/ui/button';
@@ -21,6 +22,7 @@ interface INavigationMenuProps extends React.HTMLAttributes<HTMLDivElement> {}
 export const NavigationMenu: FC<INavigationMenuProps> = memo((props) => {
   const { className, ...anotherProps } = props;
   const isAuth = !!useSelector(getUser);
+  const navigationMenu = useSelector(getNavigationItems);
   const [isOpen, setIsOpen] = useState(false);
   const { t } = useTranslation();
 
@@ -32,7 +34,7 @@ export const NavigationMenu: FC<INavigationMenuProps> = memo((props) => {
     setIsOpen(false);
   }, []);
 
-  const navigationLinks = intoIter<INavigationMenuItem>(navigationMenu)
+  const navigationLinks = intoIter<INavigationMenuItem>(navigationMenu ? navigationMenu : [])
     .filter(({ authOnly }) => (isAuth ? true : !authOnly))
     .map((item) => <NavigationMenuItem key={item.text} onClick={closeMenu} item={item} />)
     .toArray();
