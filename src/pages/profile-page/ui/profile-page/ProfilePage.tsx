@@ -14,6 +14,7 @@ import {
 } from 'entities/profile';
 import { useSelector } from 'react-redux';
 import { getProfile } from 'entities/profile';
+import { useInitialEffect } from 'shared/lib/hooks';
 import { classNames } from 'shared/lib/class-names';
 import styles from './ProfilePage.module.scss';
 
@@ -25,10 +26,10 @@ const ProfilePage: FC = memo(() => {
   const error = useSelector(getProfileError);
   const isReadonly = useSelector(getProfileIsReadonly);
 
-  useEffect(() => {
+  useInitialEffect(() => {
     if (__PROJECT__ === 'storybook') return;
     dispatch(fetchProfile());
-  }, []);
+  });
 
   const enableProfileChange = useCallback(() => {
     dispatch(profileActions.setIsReadonly(false));

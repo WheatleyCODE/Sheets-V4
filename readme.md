@@ -23,3 +23,4 @@
 - CI pipeline (Github actions)
 - pre commit хуки
 - Оптимизация асинхронные подгрузки компонентов и редьюсеров
+- Json server

@@ -6,6 +6,7 @@ import { AxiosInstance } from 'axios';
 import { IProfileSchema } from 'entities/profile';
 import { ToolkitStore } from '@reduxjs/toolkit/dist/configureStore';
 import { ITemplateDetailsSchema } from 'entities/template';
+import { ITemplateDetailsCommentsSchema } from 'pages/template-details-page/model/types/templateDetailsComments';
 
 export interface IStateSchema {
   modals: IModalsSchema;
@@ -15,6 +16,7 @@ export interface IStateSchema {
   login?: ILoginSchema;
   profile?: IProfileSchema;
   templateDetails?: ITemplateDetailsSchema;
+  templateDetailsComments?: ITemplateDetailsCommentsSchema;
 }
 
 export type StateSchemaKey = keyof IStateSchema;

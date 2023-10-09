@@ -1,0 +1,34 @@
+.comment_list {}
+
+.no_comments {
+  margin-top: calc(var(--gap) * 2);
+  height: 40px;
+}
+
+.comment_item_skeleton {
+  margin-bottom: calc(var(--gap) * 2);
+  padding: calc(var(--gap) * 4);
+  width: 100%;
+  min-height: 130px;
+}
+
+.comment_item_skeleton_header {
+  display: flex;
+  align-items: center;
+}
+
+.comment_item_skeleton_main {
+  margin-top: calc(var(--gap) * 2);
+}
+
+.comment_item_skeleton_username {
+  margin-left: calc(var(--gap) * 2);
+}
+
+.comment_item_skeleton_username, .comment_item_skeleton_main {
+  min-height: 20px;
+}
+
+.comment_item_skeleton_main, .comment_item_skeleton_username, .comment_item_skeleton, .comment_item_skeleton_header {
+  border-radius: var(--radius);
+}
