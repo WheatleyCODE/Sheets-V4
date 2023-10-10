@@ -1,0 +1,6 @@
+.card {
+  padding: calc(var(--gap) * 3);
+  background-color: rgba(0, 0, 0, 0.1);
+  min-width: 120px;
+  border-radius: var(--radius);
+}

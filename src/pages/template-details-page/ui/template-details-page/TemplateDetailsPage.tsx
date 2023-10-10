@@ -1,6 +1,6 @@
 import { FC, memo, useCallback } from 'react';
 import { useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { templateDetailsCommentsReducer } from '../../model/slice/templateDetailsCommentsSlice';
 import { getTemplateDetailsComments } from '../../model/selectors/get-template-details-comments/getTemplateDetailsComments';
@@ -24,6 +24,10 @@ import { useDynamicModule, useTypedDispatch, useInitialEffect } from 'shared/lib
 import { classNames } from 'shared/lib/class-names';
 import styles from './TemplateDetailsPage.module.scss';
 import { AddCommentForm } from 'features/add-comment-form';
+import { Button } from 'shared/ui/button';
+import { MdChevronLeft } from 'react-icons/md';
+import { Title } from 'shared/ui/title';
+import { RoutesPath } from 'shared/config/route-config/routeConfig';
 
 interface ITemplateDetailsPageProps extends React.HTMLAttributes<HTMLDivElement> {}
 
@@ -34,6 +38,7 @@ const TemplateDetailsPage: FC<ITemplateDetailsPageProps> = memo((props) => {
     true,
   );
   const { t } = useTranslation();
+  const navigate = useNavigate();
   const dispatch = useTypedDispatch();
   const { id } = useParams<{ id: string }>();
   const template = useSelector(getTemplateDetails);
@@ -62,12 +67,22 @@ const TemplateDetailsPage: FC<ITemplateDetailsPageProps> = memo((props) => {
     [dispatch, template, user],
   );
 
+  const navigateToTemplates = useCallback(() => {
+    navigate(RoutesPath.templates);
+  }, []);
+
   return (
     <div
       {...anotherProps}
       data-testid="templateDetailsPage"
       className={classNames(styles.template_details_page, {}, [className, 'page'])}
     >
+      <div className={styles.back}>
+        <Title text={t('Вернуться к шаблонам')}>
+          <Button onClick={navigateToTemplates} Icon={MdChevronLeft} text={t('Вернуться к шаблонам')} />
+        </Title>
+      </div>
+
       <TemplateDetails template={template} isLoading={isLoading} error={error} />
 
       <div className={styles.add_comment_form}>

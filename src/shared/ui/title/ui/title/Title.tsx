@@ -11,7 +11,7 @@ export interface TitleProps extends React.HTMLAttributes<HTMLDivElement> {
   isStopShow?: boolean;
 }
 
-export const Title: FC<TitleProps> = memo(({ children, text, isStopShow = false, ...anotherProps }) => {
+export const Title: FC<TitleProps> = memo(({ children, text, isStopShow = false, className, ...anotherProps }) => {
   const { isShow, onMouseEnter, onMouseLeave, onMouseMove } = useDelayHover(false, 200);
   const [objStyles, setObjStyles] = useState<ObjStyles>({});
   const titleRef = useRef<HTMLDivElement | null>(null);
@@ -63,7 +63,7 @@ export const Title: FC<TitleProps> = memo(({ children, text, isStopShow = false,
       onMouseEnter={onMouseEnter}
       onMouseMove={onMouseMove}
       onMouseLeave={onMouseLeave}
-      className={classNames(styles.title)}
+      className={styles.title}
       {...anotherProps}
     >
       {children}
@@ -77,7 +77,7 @@ export const Title: FC<TitleProps> = memo(({ children, text, isStopShow = false,
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: ANIMATION_DURATION }}
-            className={classNames(styles.title_text)}
+            className={classNames(styles.title_text, {}, [className])}
           >
             {text}
           </motion.div>

@@ -52,3 +52,8 @@ export interface ITemplateDetailsSchema {
   error: string | null;
   template?: ITemplate;
 }
+
+export enum TemplateView {
+  SQUARES = 'squares',
+  LINES = 'lines',
+}

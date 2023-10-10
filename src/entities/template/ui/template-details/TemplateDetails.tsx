@@ -5,7 +5,6 @@ import { classNames } from 'shared/lib/class-names';
 import styles from './TemplateDetails.module.scss';
 import { Text, TextSize, TextStyle } from 'shared/ui/text';
 import { Skeleton } from 'shared/ui/skeleton';
-import { Avatar } from 'shared/ui/avatar';
 import { Icon } from 'shared/ui/icon';
 import { MdOutlineCalendarMonth, MdOutlineDataArray, MdOutlineOpenInNew, MdOutlineVisibility } from 'react-icons/md';
 import { intoIter } from 'shared/lib/iterators';

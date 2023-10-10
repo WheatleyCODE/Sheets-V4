@@ -21,3 +21,8 @@
 .comments_title, .dd_comment_form_title {
   margin-bottom: calc(var(--gap) * 4);
 }
+
+.back {
+  padding-top: calc(var(--gap) * 4);
+  padding-bottom: calc(var(--gap) * 2);
+}

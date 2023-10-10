@@ -1,0 +1,90 @@
+.template_list {
+  display: flex;
+  justify-content: center;
+}
+
+.card, .skeleton {
+  margin: calc(var(--gap) * 2);
+}
+
+.skeleton,
+.skeleton_buttons,
+.skeleton_title,
+.skeleton_image,
+.skeleton_subtitle,
+.skeleton_button,
+.skeleton_info {
+  border-radius: var(--radius);
+}
+
+.skeleton_info,
+.skeleton_buttons {
+  margin-top: calc(var(--gap) * 2);
+}
+
+.skeleton {
+  padding: calc(var(--gap) * 3);
+}
+
+.skeleton_buttons {
+  height: 40px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.skeleton_button {
+  height: 40px;
+  width: 165px;
+}
+
+.skeleton_title {
+  height: 24px;
+  margin-top: var(--gap);
+  margin-bottom: calc(var(--gap) * 2);
+}
+
+.skeleton_subtitle,
+.skeleton_info {
+  height: 20px;
+}
+
+.template_list.squares {
+  .skeleton {
+    width: 380px;
+    height: 315px;
+  }
+
+  .skeleton_image {
+    height: 140px;
+  }
+
+  .width {
+    width: 100%;
+    max-width: var(--template-max-width);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}
+
+.template_list.lines {
+  .skeleton {
+    width: 100%;
+  }
+
+  .skeleton_subtitle {
+    height: 100px;
+  }
+
+  .skeleton_image {
+    height: 250px;
+  }
+
+  .width {
+    width: 100%;
+    max-width: var(--template-max-width);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}
