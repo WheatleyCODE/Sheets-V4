@@ -47,9 +47,7 @@ export interface ITemplate {
   template: ISheetsTemplate;
 }
 
-export interface ITemplateDetailsSchema {
-  isLoading: boolean;
-  error: string | null;
+export interface ITemplateDetailsSchema extends IReduxSchema {
   template?: ITemplate;
 }
 

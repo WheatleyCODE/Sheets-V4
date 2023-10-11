@@ -21,13 +21,15 @@ import { getUser } from 'entities/user';
 import { CommentList } from 'entities/comment';
 import { Text, TextSize } from 'shared/ui/text';
 import { useDynamicModule, useTypedDispatch, useInitialEffect } from 'shared/lib/hooks';
-import { classNames } from 'shared/lib/class-names';
-import styles from './TemplateDetailsPage.module.scss';
+
 import { AddCommentForm } from 'features/add-comment-form';
 import { Button } from 'shared/ui/button';
 import { MdChevronLeft } from 'react-icons/md';
 import { Title } from 'shared/ui/title';
 import { RoutesPath } from 'shared/config/route-config/routeConfig';
+import { Layout } from 'widgets/layout';
+import { classNames } from 'shared/lib/class-names';
+import styles from './TemplateDetailsPage.module.scss';
 
 interface ITemplateDetailsPageProps extends React.HTMLAttributes<HTMLDivElement> {}
 
@@ -72,33 +74,35 @@ const TemplateDetailsPage: FC<ITemplateDetailsPageProps> = memo((props) => {
   }, []);
 
   return (
-    <div
-      {...anotherProps}
-      data-testid="templateDetailsPage"
-      className={classNames(styles.template_details_page, {}, [className, 'page'])}
-    >
-      <div className={styles.back}>
-        <Title text={t('Вернуться к шаблонам')}>
-          <Button onClick={navigateToTemplates} Icon={MdChevronLeft} text={t('Вернуться к шаблонам')} />
-        </Title>
-      </div>
+    <Layout>
+      <div
+        {...anotherProps}
+        data-testid="templateDetailsPage"
+        className={classNames(styles.template_details_page, {}, [className, 'page'])}
+      >
+        <div className={styles.back}>
+          <Title text={t('Вернуться к шаблонам')}>
+            <Button onClick={navigateToTemplates} Icon={MdChevronLeft} text={t('Вернуться к шаблонам')} />
+          </Title>
+        </div>
 
-      <TemplateDetails template={template} isLoading={isLoading} error={error} />
+        <TemplateDetails template={template} isLoading={isLoading} error={error} />
 
-      <div className={styles.add_comment_form}>
-        <div className={styles.add_comment_form_width}>
-          <Text className={styles.comments_title} title={`${t('Добавить комментарий')}:`} />
-          <AddCommentForm addComment={addComment} />
+        <div className={styles.add_comment_form}>
+          <div className={styles.add_comment_form_width}>
+            <Text className={styles.comments_title} title={`${t('Добавить комментарий')}:`} />
+            <AddCommentForm addComment={addComment} />
+          </div>
+        </div>
+
+        <div className={styles.comments}>
+          <div className={styles.comments_width}>
+            <Text className={styles.comments_title} textSize={TextSize.BIG} title={`${t('Комментарии')}:`} />
+            <CommentList isLoading={commentsIsLoading} error={commentsError} comments={comments} />
+          </div>
         </div>
       </div>
-
-      <div className={styles.comments}>
-        <div className={styles.comments_width}>
-          <Text className={styles.comments_title} textSize={TextSize.BIG} title={`${t('Комментарии')}:`} />
-          <CommentList isLoading={commentsIsLoading} error={commentsError} comments={comments} />
-        </div>
-      </div>
-    </div>
+    </Layout>
   );
 });
 

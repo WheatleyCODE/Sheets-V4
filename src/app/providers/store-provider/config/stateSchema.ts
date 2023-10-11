@@ -8,6 +8,7 @@ import { ToolkitStore } from '@reduxjs/toolkit/dist/configureStore';
 import { ITemplateDetailsSchema } from 'entities/template';
 import { ITemplateDetailsCommentsSchema } from 'pages/template-details-page/model/types/templateDetailsComments';
 import { IAddCommentFormSchema } from 'features/add-comment-form';
+import { ITemplatesPageSchema } from 'pages/templates-page';
 
 export interface IStateSchema {
   modals: IModalsSchema;
@@ -19,6 +20,7 @@ export interface IStateSchema {
   templateDetails?: ITemplateDetailsSchema;
   templateDetailsComments?: ITemplateDetailsCommentsSchema;
   addCommentForm?: IAddCommentFormSchema;
+  templatesPage?: ITemplatesPageSchema;
 }
 
 export type StateSchemaKey = keyof IStateSchema;

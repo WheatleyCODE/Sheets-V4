@@ -18,5 +18,10 @@ declare module '*.svg' {
   export default content;
 }
 
+declare interface IReduxSchema {
+  isLoading: boolean;
+  error: string | null;
+}
+
 declare const __IS_DEV__: boolean;
 declare const __PROJECT__: 'storybook' | 'app' | 'jest';

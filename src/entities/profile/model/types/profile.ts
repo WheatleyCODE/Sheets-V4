@@ -11,10 +11,8 @@ export interface IProfile {
   avatar?: string;
 }
 
-export interface IProfileSchema {
+export interface IProfileSchema extends IReduxSchema {
   profile?: IProfile;
-  isLoading: boolean;
-  error: string | null;
   isReadonly: boolean;
 }
 

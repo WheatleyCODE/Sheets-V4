@@ -1,19 +1,14 @@
 .app {
   background-color: var(--color-main);
   color: var(--color-text);
-  // overflow: hidden;
+  overflow: hidden;
 }
 
 body {
   background-color: var(--color-main);
-  // overflow: hidden;
+  overflow: hidden;
 }
 
-.page {
-  border-top: 1px solid var(--color-border3);
-  width: 100%;
-  padding: 0 calc(var(--gap) * 4);
-  min-height: calc(100vh - var(--sheets-header-height));
-  // overflow: auto;
+#root {
+  overflow: hidden;
 }
-

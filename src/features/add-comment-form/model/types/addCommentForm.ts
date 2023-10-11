@@ -1,5 +1,3 @@
-export interface IAddCommentFormSchema {
-  isLoading: boolean;
-  error: string | null;
+export interface IAddCommentFormSchema extends IReduxSchema {
   text: string;
 }
