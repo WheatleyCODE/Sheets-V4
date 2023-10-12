@@ -6,4 +6,5 @@ export interface ITemplatesPageSchema extends EntityState<ITemplate>, IReduxSche
   page: number;
   limit?: number;
   hasMore: boolean;
+  _inited: boolean;
 }

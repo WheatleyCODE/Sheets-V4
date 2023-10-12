@@ -5,7 +5,6 @@ import { useSelector } from 'react-redux';
 import { useDynamicModule, useInitialEffect, useTypedDispatch } from 'shared/lib/hooks';
 import { templatesPageActions, templatesPageReducer } from '../../model/slice/templatesPageSlice';
 import { TemplatesViewSwitcher } from 'features/templates-view-switcher';
-import { fetchTemplatesPageTemplates } from '../../model/services/fetch-templates-page-templates/fetchTemplatesPageTemplates';
 import { fetchTemplatesPageNextTemplates } from '../../model/services/fetch-templates-page-next-templates/fetchTemplatesPageNextTemplates';
 import { getTemplatesPageTemplates } from '../../model/selectors/get-templates-page-templates/getTemplatesPageTemplates';
 import { getTemplatesPageIsLoading } from '../../model/selectors/get-templates-page-is-loading/getTemplatesPageIsLoading';
@@ -14,24 +13,22 @@ import { getTemplatesPageView } from '../../model/selectors/get-templates-page-t
 import { Layout } from 'widgets/layout';
 import { classNames } from 'shared/lib/class-names';
 import styles from './TemplatesPage.module.scss';
+import { initTemplatesPage } from '../../model/services/init-templates-page/initTemplatesPage';
 
 interface ITemplatesPageProps extends React.HTMLAttributes<HTMLDivElement> {}
 
 const TemplatesPage: FC<ITemplatesPageProps> = memo((props) => {
   const { className, ...anotherProps } = props;
-  useDynamicModule({ templatesPage: templatesPageReducer });
+  useDynamicModule({ templatesPage: templatesPageReducer }, false);
   const templates = useSelector(getTemplatesPageTemplates.selectAll);
   const isLoading = useSelector(getTemplatesPageIsLoading);
   const error = useSelector(getTemplatesPageError);
   const view = useSelector(getTemplatesPageView);
-
   const dispatch = useTypedDispatch();
   const { t } = useTranslation('templates');
 
   useInitialEffect(() => {
-    dispatch(templatesPageActions.initState());
-
-    dispatch(fetchTemplatesPageTemplates());
+    dispatch(initTemplatesPage());
   });
 
   const changeView = useCallback(

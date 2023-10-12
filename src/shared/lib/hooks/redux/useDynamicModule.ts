@@ -14,9 +14,13 @@ export const useDynamicModule = (list: ReducersList, isDestroy = true) => {
   const store = useStore() as IReduxStoreWithManager;
 
   useEffect(() => {
+    const mountedReducers = store.reducerManager.getMountedReducers();
+
     const entries = Object.entries(list) as [StateSchemaKey, Reducer][];
 
     for (const [key, reducer] of entries) {
+      if (mountedReducers[key]) continue;
+
       store.reducerManager.add(key, reducer);
       dispatch({ type: `@INIT ${key} reducer` });
     }

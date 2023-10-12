@@ -9,6 +9,7 @@ import { ITemplateDetailsSchema } from 'entities/template';
 import { ITemplateDetailsCommentsSchema } from 'pages/template-details-page/model/types/templateDetailsComments';
 import { IAddCommentFormSchema } from 'features/add-comment-form';
 import { ITemplatesPageSchema } from 'pages/templates-page';
+import { OptionalRecord } from 'shared/lib/ts-utils';
 
 export interface IStateSchema {
   modals: IModalsSchema;
@@ -24,12 +25,13 @@ export interface IStateSchema {
 }
 
 export type StateSchemaKey = keyof IStateSchema;
-
+export type MountedReducers = OptionalRecord<StateSchemaKey, boolean>;
 export interface IReducerManager {
   getReducerMap: () => ReducersMapObject<IStateSchema>;
   reduce: (state: IStateSchema, action: AnyAction) => CombinedState<IStateSchema>;
   add: (key: StateSchemaKey, reducer: Reducer) => void;
   remove: (key: StateSchemaKey) => void;
+  getMountedReducers: () => MountedReducers;
 }
 
 export interface IReduxStoreWithManager extends EnhancedStore<IStateSchema> {

@@ -16,6 +16,7 @@ const initialState = templatesPageAdapter.getInitialState<ITemplatesPageSchema>(
   view: TemplateView.SQUARES,
   hasMore: true,
   page: 1,
+  _inited: false,
 });
 
 export const templatesPageSlice = createSlice({
@@ -43,6 +44,7 @@ export const templatesPageSlice = createSlice({
       }
 
       state.limit = state.view === TemplateView.LINES ? 4 : 9;
+      state._inited = true;
     },
   },
   extraReducers(builder) {
