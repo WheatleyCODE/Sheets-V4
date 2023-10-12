@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
-import { IModalsSchema, ModalsKeys } from '../types/counterSchema';
+import { IModalsSchema, ModalsKeys } from '../types/modalsSchema';
 
 const initialState: IModalsSchema = {
   isAuth: false,

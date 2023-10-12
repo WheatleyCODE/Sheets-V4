@@ -1,5 +1,5 @@
 import { CombinedState, configureStore, Reducer, ReducersMapObject } from '@reduxjs/toolkit';
-import { modalsReducer } from 'widgets/layout';
+import { modalsReducer, scrollReducer } from 'widgets/layout';
 import { userReducer } from 'entities/user';
 import { createReducerManager } from './reducerManager';
 import { IStateSchema, IStore, IThunkExtra } from './stateSchema';
@@ -10,6 +10,7 @@ export const createReduxStore = (initialState?: IStateSchema, asyncReducers?: Re
     ...asyncReducers,
     modals: modalsReducer,
     user: userReducer,
+    scroll: scrollReducer,
   };
 
   const reducerManager = createReducerManager(rootReducer);

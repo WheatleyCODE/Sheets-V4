@@ -1,5 +1,5 @@
 import { modalsReducer, modalsActions } from './modalsSlice';
-import { IModalsSchema } from '../types/counterSchema';
+import { IModalsSchema } from '../types/modalsSchema';
 
 describe('modalsSlice', () => {
   test('Open auth modal', () => {

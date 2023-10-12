@@ -1,4 +1,4 @@
-import { ModalsKeys } from '../model/types/counterSchema';
+import { ModalsKeys } from '../model/types/modalsSchema';
 
 export const hashToStateKeys: Record<string, ModalsKeys> = {
   '#auth': 'isAuth',

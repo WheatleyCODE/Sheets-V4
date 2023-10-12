@@ -1,4 +1,4 @@
-import { IModalsSchema } from 'widgets/layout';
+import { IModalsSchema, IScrollSchema } from 'widgets/layout';
 import { IUserSchema } from 'entities/user';
 import { ILoginSchema } from 'features/auth-by-email';
 import { AnyAction, EnhancedStore, ReducersMapObject, Reducer, CombinedState, ThunkMiddleware } from '@reduxjs/toolkit';
@@ -14,6 +14,7 @@ import { OptionalRecord } from 'shared/lib/ts-utils';
 export interface IStateSchema {
   modals: IModalsSchema;
   user: IUserSchema;
+  scroll: IScrollSchema;
 
   // * Async
   login?: ILoginSchema;
