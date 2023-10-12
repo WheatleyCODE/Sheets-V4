@@ -1,14 +1,13 @@
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
-import { classNames } from 'shared/lib/class-names';
-import styles from './CommentListItem.module.scss';
 import { IComment } from '../../model/types/comment';
 import { Avatar } from 'shared/ui/avatar';
 import { Text } from 'shared/ui/text';
 import { Link } from 'shared/ui/link';
 import { Title } from 'shared/ui/title';
 import { RoutesPath } from 'shared/config/route-config/routeConfig';
-
+import { classNames } from 'shared/lib/class-names';
+import styles from './CommentListItem.module.scss';
 interface ICommentListItemProps extends React.HTMLAttributes<HTMLDivElement> {
   comment: IComment;
 }

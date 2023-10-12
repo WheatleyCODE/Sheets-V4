@@ -12,13 +12,13 @@ const NotFoundPage: FC<INotFoundPageProps> = memo((props) => {
 
   return (
     <Layout>
-      <div
+      <section
         data-testid="notFoundPage"
         {...anotherProps}
         className={classNames(styles.not_fount_page, {}, [className, 'page'])}
       >
         <h1 className={styles.h1}>{t('Страница не найдена')}</h1>
-      </div>
+      </section>
     </Layout>
   );
 });

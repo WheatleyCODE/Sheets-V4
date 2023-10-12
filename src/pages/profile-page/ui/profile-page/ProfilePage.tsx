@@ -64,7 +64,7 @@ const ProfilePage: FC = memo(() => {
 
   return (
     <Layout>
-      <div data-testid="profilePage" className={classNames(styles.profile_page, {}, ['page'])}>
+      <section data-testid="profilePage" className={classNames(styles.profile_page, {}, ['page'])}>
         <ProfileCard
           className={styles.card}
           edit={getEdit()}
@@ -73,7 +73,7 @@ const ProfilePage: FC = memo(() => {
           error={error}
           profile={profile}
         />
-      </div>
+      </section>
     </Layout>
   );
 });

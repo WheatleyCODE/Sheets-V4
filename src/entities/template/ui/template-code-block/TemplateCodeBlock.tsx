@@ -1,9 +1,8 @@
 import { FC, memo } from 'react';
-import { classNames } from 'shared/lib/class-names';
-import styles from './TemplateCodeBlock.module.scss';
 import { ITemplateCodeBlock } from '../../model/types/template';
 import { Code } from 'shared/ui/code';
-
+import { classNames } from 'shared/lib/class-names';
+import styles from './TemplateCodeBlock.module.scss';
 interface ITemplateCodeBlockProps extends React.HTMLAttributes<HTMLDivElement> {
   block: ITemplateCodeBlock;
 }

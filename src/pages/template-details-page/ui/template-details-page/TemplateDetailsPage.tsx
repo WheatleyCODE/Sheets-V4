@@ -21,7 +21,6 @@ import { getUser } from 'entities/user';
 import { CommentList } from 'entities/comment';
 import { Text, TextSize } from 'shared/ui/text';
 import { useDynamicModule, useTypedDispatch, useInitialEffect } from 'shared/lib/hooks';
-
 import { AddCommentForm } from 'features/add-comment-form';
 import { Button } from 'shared/ui/button';
 import { MdChevronLeft } from 'react-icons/md';
@@ -75,7 +74,7 @@ const TemplateDetailsPage: FC<ITemplateDetailsPageProps> = memo((props) => {
 
   return (
     <Layout>
-      <div
+      <section
         {...anotherProps}
         data-testid="templateDetailsPage"
         className={classNames(styles.template_details_page, {}, [className, 'page'])}
@@ -101,7 +100,7 @@ const TemplateDetailsPage: FC<ITemplateDetailsPageProps> = memo((props) => {
             <CommentList isLoading={commentsIsLoading} error={commentsError} comments={comments} />
           </div>
         </div>
-      </div>
+      </section>
     </Layout>
   );
 });

@@ -40,7 +40,7 @@ export const NavigationMenu: FC<INavigationMenuProps> = memo((props) => {
     .toArray();
 
   return (
-    <div {...anotherProps} data-testid="navigationMenu" className={classNames(styles.menu, {}, [className])}>
+    <menu {...anotherProps} data-testid="navigationMenu" className={classNames(styles.menu, {}, [className])}>
       {isOpen ? (
         <Button className={styles.button} buttonStyle={ButtonStyles.CLEAR} Icon={MdOutlineMenu} onClick={openMenu} />
       ) : (
@@ -63,6 +63,6 @@ export const NavigationMenu: FC<INavigationMenuProps> = memo((props) => {
           </Portal>
         )}
       </AnimatePresence>
-    </div>
+    </menu>
   );
 });

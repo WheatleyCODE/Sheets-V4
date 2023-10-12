@@ -1,8 +1,6 @@
 import { FC, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ITemplate, TemplateBlock, TemplateBlockTypes } from '../../model/types/template';
-import { classNames } from 'shared/lib/class-names';
-import styles from './TemplateDetails.module.scss';
 import { Text, TextSize, TextStyle } from 'shared/ui/text';
 import { Skeleton } from 'shared/ui/skeleton';
 import { Icon } from 'shared/ui/icon';
@@ -15,7 +13,8 @@ import { Image } from 'shared/ui/image';
 import { Button } from 'shared/ui/button';
 import { ButtonColor } from 'shared/ui/button/ui/button/interface';
 import { Title } from 'shared/ui/title';
-
+import { classNames } from 'shared/lib/class-names';
+import styles from './TemplateDetails.module.scss';
 interface ITemplateDetailsProps extends React.HTMLAttributes<HTMLDivElement> {
   template: ITemplate;
   isLoading: boolean;

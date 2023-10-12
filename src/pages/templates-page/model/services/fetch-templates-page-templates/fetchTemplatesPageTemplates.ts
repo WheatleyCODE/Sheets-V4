@@ -5,14 +5,9 @@ import i18n from 'shared/config/i18n/i18n';
 import { getTemplatesPageLimit } from '../../selectors/get-templates-page-limit/getTemplatesPageLimit';
 import { getTemplatesPagePage } from '../../selectors/get-templates-page-page/getTemplatesPagePage';
 
-// export interface IFetchTemplatesParams {
-//   page?: number;
-//   limit?: number;
-// }
-
 export const fetchTemplatesPageTemplates = createAsyncThunk<ITemplate[], void, IThunkConfig>(
   'templatesPage/fetchTemplatesPageTemplates',
-  async (params, thunkAPI) => {
+  async (_, thunkAPI) => {
     try {
       const extra = thunkAPI.extra as IThunkExtra;
 

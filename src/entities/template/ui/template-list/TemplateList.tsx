@@ -1,11 +1,10 @@
 import { FC } from 'react';
 import { ITemplate, TemplateView } from '../../model/types/template';
-import { classNames } from 'shared/lib/class-names';
-import styles from './TemplateList.module.scss';
 import { intoIter } from 'shared/lib/iterators';
 import { TemplateListItem } from '../template-list-item/TemplateListItem';
 import { Skeleton } from 'shared/ui/skeleton';
-
+import { classNames } from 'shared/lib/class-names';
+import styles from './TemplateList.module.scss';
 interface ITemplateListProps extends React.HTMLAttributes<HTMLDivElement> {
   templates: ITemplate[];
   isLoading?: boolean;
@@ -16,7 +15,7 @@ interface ITemplateListProps extends React.HTMLAttributes<HTMLDivElement> {
 export const TemplateList: FC<ITemplateListProps> = (props) => {
   const { className, view = TemplateView.SQUARES, isLoading, templates, ...anotherProps } = props;
 
-  const skeletons = intoIter(Array(15).fill(0))
+  const skeletons = intoIter(Array(9).fill(0))
     .enumerate()
     .map(([_, i]) => (
       <Skeleton key={i} className={classNames(styles.skeleton, {}, [styles[view]])}>

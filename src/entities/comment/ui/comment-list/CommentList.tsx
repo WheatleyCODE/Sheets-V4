@@ -3,11 +3,10 @@ import { useTranslation } from 'react-i18next';
 import { IComment } from '../../model/types/comment';
 import { CommentListItem } from '../comment-list-item/CommentListItem';
 import { intoIter } from 'shared/lib/iterators';
-import { classNames } from 'shared/lib/class-names';
-import styles from './CommentList.module.scss';
 import { Text, TextStyle } from 'shared/ui/text';
 import { Skeleton } from 'shared/ui/skeleton';
-
+import { classNames } from 'shared/lib/class-names';
+import styles from './CommentList.module.scss';
 interface ICommentListProps extends React.HTMLAttributes<HTMLDivElement> {
   comments?: IComment[];
   isLoading?: boolean;

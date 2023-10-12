@@ -33,7 +33,7 @@ export const Navbar: FC<NavbarProps> = memo((props) => {
   }, [dispatch]);
 
   return (
-    <div data-testid="navbar" className={classNames(styles.navbar, {}, [className])}>
+    <header data-testid="navbar" className={classNames(styles.navbar, {}, [className])}>
       <div className={styles.left_side}>
         <NavigationMenu />
 
@@ -45,6 +45,6 @@ export const Navbar: FC<NavbarProps> = memo((props) => {
         <ThemeSwitcher className={styles.margin_right} />
         <User openAuth={openAuth} logout={logout} user={user} />
       </div>
-    </div>
+    </header>
   );
 });

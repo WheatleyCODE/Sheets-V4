@@ -1,4 +1,5 @@
 import { FC, useCallback, MouseEvent } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import {
   MdOpenInBrowser,
@@ -8,8 +9,6 @@ import {
   MdOutlineVisibility,
 } from 'react-icons/md';
 import { ITemplate, TemplateView } from '../../model/types/template';
-import { classNames } from 'shared/lib/class-names';
-import styles from './TemplateListItem.module.scss';
 import { Image } from 'shared/ui/image';
 import { Text } from 'shared/ui/text';
 import { Icon } from 'shared/ui/icon';
@@ -17,9 +16,9 @@ import { Title } from 'shared/ui/title';
 import { Button } from 'shared/ui/button';
 import { ButtonColor } from 'shared/ui/button/ui/button/interface';
 import { Card } from 'shared/ui/card';
-import { useNavigate } from 'react-router-dom';
 import { RoutesPath } from 'shared/config/route-config/routeConfig';
-
+import { classNames } from 'shared/lib/class-names';
+import styles from './TemplateListItem.module.scss';
 interface ITemplateListItemProps extends React.HTMLAttributes<HTMLDivElement> {
   template: ITemplate;
   view: TemplateView;

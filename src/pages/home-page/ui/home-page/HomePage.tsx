@@ -6,9 +6,9 @@ import styles from './HomePage.module.scss';
 const HomePage: FC = memo(() => {
   return (
     <Layout>
-      <div data-testid="homePage" className={classNames(styles.home_page, {}, ['page'])}>
+      <section data-testid="homePage" className={classNames(styles.home_page, {}, ['page'])}>
         HomePage
-      </div>
+      </section>
     </Layout>
   );
 });

@@ -6,15 +6,15 @@ import { useDynamicModule, useInitialEffect, useTypedDispatch } from 'shared/lib
 import { templatesPageActions, templatesPageReducer } from '../../model/slice/templatesPageSlice';
 import { TemplatesViewSwitcher } from 'features/templates-view-switcher';
 import { fetchTemplatesPageTemplates } from '../../model/services/fetch-templates-page-templates/fetchTemplatesPageTemplates';
+import { fetchTemplatesPageNextTemplates } from '../../model/services/fetch-templates-page-next-templates/fetchTemplatesPageNextTemplates';
 import { getTemplatesPageTemplates } from '../../model/selectors/get-templates-page-templates/getTemplatesPageTemplates';
 import { getTemplatesPageIsLoading } from '../../model/selectors/get-templates-page-is-loading/getTemplatesPageIsLoading';
 import { getTemplatesPageError } from '../../model/selectors/get-templates-page-error/getTemplatesPageError';
 import { getTemplatesPageView } from '../../model/selectors/get-templates-page-templates-view/getTemplatesPageView';
 import { Layout } from 'widgets/layout';
-import { getTemplatesPagePage } from '../../model/selectors/get-templates-page-page/getTemplatesPagePage';
-import { getTemplatesPageHasMore } from '../../model/selectors/get-templates-page-has-more/getTemplatesPageHasMore';
 import { classNames } from 'shared/lib/class-names';
 import styles from './TemplatesPage.module.scss';
+
 interface ITemplatesPageProps extends React.HTMLAttributes<HTMLDivElement> {}
 
 const TemplatesPage: FC<ITemplatesPageProps> = memo((props) => {
@@ -24,8 +24,6 @@ const TemplatesPage: FC<ITemplatesPageProps> = memo((props) => {
   const isLoading = useSelector(getTemplatesPageIsLoading);
   const error = useSelector(getTemplatesPageError);
   const view = useSelector(getTemplatesPageView);
-  const page = useSelector(getTemplatesPagePage);
-  const hasMore = useSelector(getTemplatesPageHasMore);
 
   const dispatch = useTypedDispatch();
   const { t } = useTranslation('templates');
@@ -44,15 +42,12 @@ const TemplatesPage: FC<ITemplatesPageProps> = memo((props) => {
   );
 
   const loadNextPart = useCallback(() => {
-    if (hasMore && !isLoading) {
-      dispatch(templatesPageActions.setPage(page + 1));
-      dispatch(fetchTemplatesPageTemplates());
-    }
-  }, [dispatch, page, hasMore, isLoading]);
+    dispatch(fetchTemplatesPageNextTemplates());
+  }, [dispatch]);
 
   return (
     <Layout onScrollEnd={loadNextPart}>
-      <div
+      <section
         {...anotherProps}
         data-testid="templatesPage"
         className={classNames(styles.templates_page, {}, [className, 'page'])}
@@ -61,7 +56,7 @@ const TemplatesPage: FC<ITemplatesPageProps> = memo((props) => {
           <TemplatesViewSwitcher changeView={changeView} view={view} />
         </div>
         <TemplateList isLoading={isLoading} view={view} error={error} templates={templates} />
-      </div>
+      </section>
     </Layout>
   );
 });

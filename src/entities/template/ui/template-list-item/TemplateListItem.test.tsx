@@ -4,7 +4,7 @@ import { renderComponent } from 'shared/lib/tests/render-component/renderCompone
 
 describe('TemplateListItem', () => {
   test('In the document', () => {
-    renderComponent(<TemplateListItem template={{} as any} view={'' as any} />);
+    renderComponent(<TemplateListItem template={{ tags: [] } as any} view={'' as any} />);
 
     expect(screen.getByTestId('templateListItem')).toBeInTheDocument();
   });

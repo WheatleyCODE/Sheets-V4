@@ -1,8 +1,8 @@
 import { FC, MutableRefObject, useRef } from 'react';
-import { classNames } from 'shared/lib/class-names';
 import { ModalController } from '../modal-controller/ModalController';
-import styles from './Layout.module.scss';
 import { useInfiniteScroll } from 'shared/lib/hooks';
+import { classNames } from 'shared/lib/class-names';
+import styles from './Layout.module.scss';
 
 interface ILayoutProps extends React.HTMLAttributes<HTMLDivElement> {
   onScrollEnd?: () => void;
@@ -20,7 +20,7 @@ export const Layout: FC<ILayoutProps> = (props) => {
   });
 
   return (
-    <section
+    <main
       {...anotherProps}
       ref={wrapperRef}
       data-testid="layout"
@@ -29,8 +29,6 @@ export const Layout: FC<ILayoutProps> = (props) => {
       {children}
       <ModalController />
       <div ref={triggerRef} />
-    </section>
+    </main>
   );
 };
-
-Promise.allSettled;

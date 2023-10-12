@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+
 export type CurryFirst<T> = T extends (x: infer U, ...rest: any) => any ? U : never;
 
 export type CurryRest<T> = T extends (x: infer U) => infer V
