@@ -9,9 +9,11 @@ import styles from './Title.module.scss';
 export interface TitleProps extends React.HTMLAttributes<HTMLDivElement> {
   text: string;
   isStopShow?: boolean;
+  classNameContainer?: string;
 }
 
-export const Title: FC<TitleProps> = memo(({ children, text, isStopShow = false, className, ...anotherProps }) => {
+export const Title: FC<TitleProps> = memo((props) => {
+  const { children, text, isStopShow = false, className, classNameContainer, ...anotherProps } = props;
   const { isShow, onMouseEnter, onMouseLeave, onMouseMove } = useDelayHover(false, 200);
   const [objStyles, setObjStyles] = useState<ObjStyles>({});
   const titleRef = useRef<HTMLDivElement | null>(null);
@@ -63,7 +65,7 @@ export const Title: FC<TitleProps> = memo(({ children, text, isStopShow = false,
       onMouseEnter={onMouseEnter}
       onMouseMove={onMouseMove}
       onMouseLeave={onMouseLeave}
-      className={styles.title}
+      className={classNames(styles.title, {}, [classNameContainer])}
       {...anotherProps}
     >
       {children}

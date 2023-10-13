@@ -1,6 +1,6 @@
 import { createEntityAdapter, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { ITemplate, TemplateView } from 'entities/template';
-import { ITemplatesPageSchema } from '../types/templatesPage';
+import { ITemplatesPageSchema, TemplateSortOrders, TemplateSortFields } from '../types/templatesPage';
 import { fetchTemplatesPageTemplates } from '../services/fetch-templates-page-templates/fetchTemplatesPageTemplates';
 import { LS_VIEW_KEY } from 'shared/consts';
 
@@ -17,6 +17,12 @@ const initialState = templatesPageAdapter.getInitialState<ITemplatesPageSchema>(
   hasMore: true,
   page: 1,
   _inited: false,
+  limit: 9,
+
+  // * Sort
+  search: '',
+  sort: TemplateSortFields.VIEWS,
+  sortOrder: TemplateSortOrders.ASC,
 });
 
 export const templatesPageSlice = createSlice({
@@ -46,16 +52,37 @@ export const templatesPageSlice = createSlice({
       state.limit = state.view === TemplateView.LINES ? 4 : 9;
       state._inited = true;
     },
+
+    // * Sort
+    setSortOrder(state, { payload }: PayloadAction<TemplateSortOrders>) {
+      state.sortOrder = payload;
+    },
+    setSearch(state, { payload }: PayloadAction<string>) {
+      state.search = payload;
+    },
+    setSort(state, { payload }: PayloadAction<TemplateSortFields>) {
+      state.sort = payload;
+    },
   },
   extraReducers(builder) {
-    builder.addCase(fetchTemplatesPageTemplates.pending, (state) => {
+    builder.addCase(fetchTemplatesPageTemplates.pending, (state, { meta }) => {
       state.error = null;
       state.isLoading = true;
+
+      if (meta.arg?.isReplace) {
+        templatesPageAdapter.removeAll(state);
+      }
     });
-    builder.addCase(fetchTemplatesPageTemplates.fulfilled, (state, { payload }) => {
+    builder.addCase(fetchTemplatesPageTemplates.fulfilled, (state, { payload, meta }) => {
       state.isLoading = false;
+      state.hasMore = payload.length >= state.limit;
+
+      if (meta.arg?.isReplace) {
+        templatesPageAdapter.setAll(state, payload);
+        return;
+      }
+
       templatesPageAdapter.addMany(state, payload);
-      state.hasMore = payload.length > 1;
     });
     builder.addCase(fetchTemplatesPageTemplates.rejected, (state, { payload }) => {
       state.isLoading = false;

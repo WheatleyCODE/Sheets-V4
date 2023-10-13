@@ -4,6 +4,7 @@
   align-items: center;
   width: 100%;
   padding-left: calc(var(--gap) * 4);
+  font-size: var(--font-size);
 
   &:hover {
     background-color: var(--color-item-hover);
@@ -11,9 +12,13 @@
   }
 }
 
+.item.icon {
+  font-size: var(--font-size);
+}
+
 .icon_container {
   display: flex;
-    align-items: center;
+  align-items: center;
   height: 100%;
   margin-right: calc(var(--gap) * 2);
 }
