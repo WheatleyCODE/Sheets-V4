@@ -1,12 +1,12 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { AddCommentForm } from './AddCommentForm';
+import { DragLine } from './DragLine';
 import { Theme } from 'app/providers/lib/theme-context';
-import { themeDecorator } from '../../../../../config/storybook/theme-decorator/themeDecorator';
+import { themeDecorator } from '../../../../../../config/storybook/theme-decorator/themeDecorator';
 
 const meta = {
-  title: 'entities/AddCommentForm',
-  component: AddCommentForm,
-} satisfies Meta<typeof AddCommentForm>;
+  title: 'shared/DragLine',
+  component: DragLine,
+} satisfies Meta<typeof DragLine>;
 
 export default meta;
 

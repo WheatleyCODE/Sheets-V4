@@ -1,12 +1,12 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { AddCommentForm } from './AddCommentForm';
+import { Tabs } from './Tabs';
 import { Theme } from 'app/providers/lib/theme-context';
-import { themeDecorator } from '../../../../../config/storybook/theme-decorator/themeDecorator';
+import { themeDecorator } from '../../../../../../config/storybook/theme-decorator/themeDecorator';
 
 const meta = {
-  title: 'entities/AddCommentForm',
-  component: AddCommentForm,
-} satisfies Meta<typeof AddCommentForm>;
+  title: 'shared/Tabs',
+  component: Tabs,
+} satisfies Meta<typeof Tabs>;
 
 export default meta;
 

@@ -32,6 +32,12 @@ export class AsyncIter<T> {
     };
   }
 
+  async run(iter: AsyncIter<T>, callback?: (a: T) => void) {
+    for await (const data of iter) {
+      callback?.(data);
+    }
+  }
+
   #emit(el: T) {
     this.#subscribers.forEach((cb) => cb(el));
   }

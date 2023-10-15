@@ -29,6 +29,15 @@ export interface ITemplateImageBlock extends ITemplateBaseBlock {
 export enum TemplateTags {
   IT = 'IT',
   INVEST = 'Invest',
+  SINCE = 'Since',
+  NATURE = 'Nature',
+  BUSINESS = 'Business',
+  ACCOUNTING = 'Accounting',
+  EXPENSES = 'Expenses',
+  CALCULATIONS = 'Calculations',
+  AI = 'AI',
+  JS = 'JavaScript',
+  TS = 'TypeScript',
 }
 
 export type TemplateBlock = ITemplateCodeBlock | ITemplateImageBlock | ITemplateTextBlock;

@@ -2,7 +2,7 @@ import { ChangeEvent, FC, useCallback, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { classNames } from 'shared/lib/class-names';
 import styles from './TemplatesPageFilters.module.scss';
-import { TemplateView } from 'entities/template';
+import { TemplateTags, TemplateView } from 'entities/template';
 import { TemplatesViewSwitcher } from 'features/templates-view-switcher';
 import { Input, useValidInput } from 'shared/ui/input';
 import {
@@ -17,6 +17,10 @@ import { BsSortDown, BsSortUp } from 'react-icons/bs';
 import { TemplateSortOrders, TemplateSortFields } from 'pages/templates-page/model/types/templatesPage';
 import { Title } from 'shared/ui/title';
 import { IInputOptionsMenuItem } from 'shared/ui/input';
+import { DragLine, DragLineItem } from 'shared/ui/drag-line';
+import { TabItem, Tabs } from 'shared/ui/tabs';
+import { templateTags } from 'entities/template/model/consts/tags';
+import { intoIter } from 'shared/lib/iterators';
 
 interface ITemplatesPageFiltersProps extends React.HTMLAttributes<HTMLDivElement> {
   sort: TemplateSortFields;
@@ -88,6 +92,18 @@ export const TemplatesPageFilters: FC<ITemplatesPageFiltersProps> = (props) => {
     },
     [changeSearch, searchInput],
   );
+
+  const tabDragItems = intoIter<TemplateTags>(templateTags)
+    .map((tag) => (
+      <DragLineItem itemId={tag} width={150}>
+        <TabItem itemId={tag} value={tag}>
+          <div className={styles.teg_name}>{tag}</div>
+        </TabItem>
+      </DragLineItem>
+    ))
+    .toArray();
+
+  console.log(tabDragItems);
 
   return (
     <div
@@ -163,6 +179,12 @@ export const TemplatesPageFilters: FC<ITemplatesPageFiltersProps> = (props) => {
         </Title>
 
         <TemplatesViewSwitcher changeView={changeView} view={view} />
+      </div>
+
+      <div className={styles.width}>
+        <Tabs>
+          <DragLine className={styles.drag_line}>{tabDragItems}</DragLine>
+        </Tabs>
       </div>
     </div>
   );

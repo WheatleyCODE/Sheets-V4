@@ -4,7 +4,7 @@ import { Theme } from 'app/providers/lib/theme-context';
 import { themeDecorator } from '../../../../../config/storybook/theme-decorator/themeDecorator';
 
 const meta = {
-  title: 'changeTitle/TemplateListItem',
+  title: 'entities/TemplateListItem',
   component: TemplateListItem,
 } satisfies Meta<typeof TemplateListItem>;
 

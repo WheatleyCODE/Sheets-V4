@@ -1,0 +1,12 @@
+.tab_item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 40px;
+  width: 100%;
+  cursor: pointer;
+}
+
+.tab_item.active {
+  color: var(--color-primary);
+}

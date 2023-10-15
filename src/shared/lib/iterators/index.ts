@@ -3,3 +3,4 @@ export { intoAsyncIter, AsyncIter } from './async-iter/asyncIter';
 export { intoIterator } from './into-iterator/intoIterator';
 export { intoIter, Iter } from './iter/Iter';
 export { on, onStream } from './on/on';
+export * from './on/callbacks/callbacks';
