@@ -1,5 +1,6 @@
 import { SerializableValue, KVStorageEngine } from '../interface';
 import { LocalStorageEngine } from '../local-storage-engine/localStorageEngine';
+import { Nullable, SyncOrAsyncPromise } from 'shared/lib/ts-utils';
 
 export function KVFactory(namespace: string, engine?: KVStorageEngine) {
   const eng = engine || new LocalStorageEngine();
@@ -15,17 +16,16 @@ export class KVStorage {
     this.engine = engine;
   }
 
-  async get<T extends SerializableValue>(key: string): Promise<T | null> {
-    const rawData = await this.engine.get(this.#getKey(key));
-    return JSON.parse(rawData ?? 'null');
+  get<T extends SerializableValue>(key: string): SyncOrAsyncPromise<Nullable<T>> {
+    return this.engine.get(this.#getKey(key)).then((string) => JSON.parse(string ?? 'null'));
   }
 
-  async set(key: string, value: SerializableValue): Promise<void> {
-    return await this.engine.set(this.#getKey(key), JSON.stringify(value));
+  set(key: string, value: SerializableValue): SyncOrAsyncPromise<Nullable<void>> {
+    return this.engine.set(this.#getKey(key), JSON.stringify(value));
   }
 
-  async remove(key: string): Promise<void> {
-    return await this.engine.remove(this.#getKey(key));
+  remove(key: string): SyncOrAsyncPromise<Nullable<void>> {
+    return this.engine.remove(this.#getKey(key));
   }
 
   #getKey(key: string) {

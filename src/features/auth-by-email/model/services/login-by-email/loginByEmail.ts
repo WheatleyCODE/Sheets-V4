@@ -10,6 +10,8 @@ export interface ILoginByEmailProps {
   password: string;
 }
 
+const ls = KVFactory(LS_DEFAULT_NAMESPACE);
+
 export const loginByEmail = createAsyncThunk<IUser, ILoginByEmailProps, IThunkConfig>(
   'login/loginByEmail',
   async (loginData, thunkAPI) => {
@@ -19,8 +21,7 @@ export const loginByEmail = createAsyncThunk<IUser, ILoginByEmailProps, IThunkCo
 
       if (!data) throw new Error();
 
-      const localStorage = KVFactory(LS_DEFAULT_NAMESPACE);
-      await localStorage.set(LS_AUTH_KEY, data);
+      ls.set(LS_AUTH_KEY, data);
 
       thunkAPI.dispatch(userActions.setUser(data));
 

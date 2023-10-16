@@ -57,8 +57,7 @@ const ProfilePage: FC = memo(() => {
   );
 
   const getEdit = () => {
-    const isEdit = user && user.id !== profile.userId;
-    if (!isEdit) return;
+    if (user && user.id !== profile.userId) return;
     return { disableProfileChange, enableProfileChange, saveProfileChange };
   };
 

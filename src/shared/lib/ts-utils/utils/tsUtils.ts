@@ -1,5 +1,8 @@
+import { SyncPromise } from 'shared/lib/promise';
+
 export type Nullable<T> = T | null | undefined;
 export type CanPromise<T> = T | Promise<T>;
+export type SyncOrAsyncPromise<T> = Promise<T> | SyncPromise<T>;
 
 export type DeepPartial<T> = T extends object
   ? {

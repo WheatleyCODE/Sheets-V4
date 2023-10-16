@@ -1,7 +1,10 @@
+import { Nullable } from 'shared/lib/ts-utils';
+
+export type PromiseState = 'pending' | 'fulfilled' | 'rejected';
 export class SyncPromise<T> implements Promise<T> {
   #value?: T;
   #reason?: any;
-  #state: 'pending' | 'fulfilled' | 'rejected' = 'pending';
+  #state: PromiseState = 'pending';
   [Symbol.toStringTag] = 'SyncPromise';
 
   constructor(executor: (resolve: (value?: T) => void, reject: (reason?: any) => void) => void) {
@@ -27,8 +30,8 @@ export class SyncPromise<T> implements Promise<T> {
   }
 
   then<TResult1 = T, TResult2 = never>(
-    onFulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | null | undefined,
-    onRejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | null | undefined,
+    onFulfilled?: Nullable<(value: T) => TResult1 | PromiseLike<TResult1>>,
+    onRejected?: Nullable<(reason: any) => TResult2 | PromiseLike<TResult2>>,
   ): Promise<TResult1 | TResult2> {
     return new SyncPromise<TResult1 | TResult2>((resolve, reject) => {
       if (this.#state === 'fulfilled' && onFulfilled) {

@@ -1,12 +1,12 @@
-import { CanPromise, Nullable } from 'shared/lib/ts-utils/utils/tsUtils';
+import { Nullable, SyncOrAsyncPromise } from 'shared/lib/ts-utils/utils/tsUtils';
 
 export interface KVStorageEngine {
-  get(key: string): CanPromise<Nullable<string>>;
-  set(key: string, value: string): CanPromise<void>;
-  remove(key: string): CanPromise<void>;
+  get(key: string): SyncOrAsyncPromise<Nullable<string>>;
+  set(key: string, value: string): SyncOrAsyncPromise<Nullable<void>>;
+  remove(key: string): SyncOrAsyncPromise<Nullable<void>>;
 }
 
-export type SerializablePrimitiveValue = string | number | boolean | null;
+export type SerializablePrimitiveValue = Nullable<string | number | boolean>;
 
 export type SerializableValue =
   | SerializablePrimitiveValue

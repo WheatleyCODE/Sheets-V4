@@ -2,7 +2,8 @@ import { createEntityAdapter, createSlice, PayloadAction } from '@reduxjs/toolki
 import { ITemplate, TemplateView } from 'entities/template';
 import { ITemplatesPageSchema, TemplateSortOrders, TemplateSortFields } from '../types/templatesPage';
 import { fetchTemplatesPageTemplates } from '../services/fetch-templates-page-templates/fetchTemplatesPageTemplates';
-import { LS_VIEW_KEY } from 'shared/consts';
+import { LS_DEFAULT_NAMESPACE, LS_VIEW_KEY } from 'shared/consts';
+import { KVFactory } from 'shared/lib/kv-storage';
 
 export const templatesPageAdapter = createEntityAdapter<ITemplate>({
   selectId: (template) => template.id,
@@ -25,12 +26,14 @@ const initialState = templatesPageAdapter.getInitialState<ITemplatesPageSchema>(
   sortOrder: TemplateSortOrders.ASC,
 });
 
+const ls = KVFactory(LS_DEFAULT_NAMESPACE);
+
 export const templatesPageSlice = createSlice({
   name: 'templatesPage',
   initialState,
   reducers: {
     setView(state, { payload }: PayloadAction<TemplateView>) {
-      localStorage.setItem(LS_VIEW_KEY, payload);
+      ls.set(LS_VIEW_KEY, payload);
       state.view = payload;
     },
     setPage(state, { payload }: PayloadAction<number>) {
@@ -43,11 +46,12 @@ export const templatesPageSlice = createSlice({
       state.hasMore = payload;
     },
     initState(state) {
-      const view = localStorage.getItem(LS_VIEW_KEY) as TemplateView;
-
-      if (view) {
-        state.view = view;
-      }
+      // * Sync
+      ls.get<TemplateView>(LS_VIEW_KEY).then((view) => {
+        if (view) {
+          state.view = view;
+        }
+      });
 
       state.limit = state.view === TemplateView.LINES ? 4 : 9;
       state._inited = true;

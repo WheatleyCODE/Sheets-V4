@@ -8,7 +8,7 @@ interface IUseThemeResult {
   theme: Theme;
 }
 
-const localStorage = KVFactory(LS_DEFAULT_NAMESPACE);
+const ls = KVFactory(LS_DEFAULT_NAMESPACE);
 
 export const useTheme = (): IUseThemeResult => {
   const { theme, setTheme: setThemeState } = useContext(ThemeContext);
@@ -16,7 +16,7 @@ export const useTheme = (): IUseThemeResult => {
   const setTheme = useCallback(
     (newTheme: Theme) => {
       setThemeState(newTheme);
-      localStorage.set(LS_THEME_KEY, newTheme);
+      ls.set(LS_THEME_KEY, newTheme);
     },
     [setThemeState],
   );
