@@ -1,5 +1,3 @@
-[] Исправить задержку при загрузки страниц (export const LandingPage = lazy(() => import("./LandingPage"));)
-
 [] Пофиксить Title
 [] Допилить paths + тесты
 [] Тесты на LanguageSwitcher, ThemeSwitcher, NavigationMenu, NavigationMenuItem, LoginForm, RegisterForm

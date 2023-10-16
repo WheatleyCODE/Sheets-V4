@@ -4,14 +4,15 @@ import { KVFactory } from 'shared/lib/kv-storage';
 
 const ls = KVFactory(LS_DEFAULT_NAMESPACE);
 
-const headers = {
-  authorization: '',
-};
-
-// * Sync
-ls.get(LS_AUTH_KEY).then((value) => (headers.authorization = JSON.stringify(value)));
-
 export const api = axios.create({
   baseURL: 'http://localhost:8000',
-  headers,
+});
+
+api.interceptors.request.use((config) => {
+  if (config.headers) {
+    // * Sync
+    ls.get(LS_AUTH_KEY).then((value) => (config.headers.Authorization = JSON.stringify(value)));
+  }
+
+  return config;
 });
