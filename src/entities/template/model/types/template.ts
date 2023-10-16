@@ -27,6 +27,7 @@ export interface ITemplateImageBlock extends ITemplateBaseBlock {
 }
 
 export enum TemplateTags {
+  ALL = 'All_templates',
   IT = 'IT',
   INVEST = 'Invest',
   SINCE = 'Since',

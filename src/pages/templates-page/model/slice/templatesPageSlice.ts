@@ -1,5 +1,5 @@
 import { createEntityAdapter, createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { ITemplate, TemplateView } from 'entities/template';
+import { ITemplate, TemplateTags, TemplateView } from 'entities/template';
 import { ITemplatesPageSchema, TemplateSortOrders, TemplateSortFields } from '../types/templatesPage';
 import { fetchTemplatesPageTemplates } from '../services/fetch-templates-page-templates/fetchTemplatesPageTemplates';
 import { LS_DEFAULT_NAMESPACE, LS_VIEW_KEY } from 'shared/consts';
@@ -24,6 +24,7 @@ const initialState = templatesPageAdapter.getInitialState<ITemplatesPageSchema>(
   search: '',
   sort: TemplateSortFields.VIEWS,
   sortOrder: TemplateSortOrders.ASC,
+  tag: TemplateTags.ALL,
 });
 
 const ls = KVFactory(LS_DEFAULT_NAMESPACE);
@@ -66,6 +67,9 @@ export const templatesPageSlice = createSlice({
     },
     setSort(state, { payload }: PayloadAction<TemplateSortFields>) {
       state.sort = payload;
+    },
+    setTags(state, { payload }: PayloadAction<TemplateTags>) {
+      state.tag = payload;
     },
   },
   extraReducers(builder) {

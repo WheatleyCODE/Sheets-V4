@@ -22,17 +22,23 @@ import styles from './TemplateListItem.module.scss';
 interface ITemplateListItemProps extends React.HTMLAttributes<HTMLDivElement> {
   template: ITemplate;
   view: TemplateView;
+  isOpenInNewWindow?: boolean;
 }
 
 export const TemplateListItem: FC<ITemplateListItemProps> = (props) => {
-  const { className, template, view, ...anotherProps } = props;
+  const { className, isOpenInNewWindow = false, template, view, ...anotherProps } = props;
   const { title, createdAt, tags, views, image, subtitle, id } = template;
   const { t } = useTranslation();
   const navigate = useNavigate();
 
   const navigateToTemplate = useCallback(() => {
+    if (isOpenInNewWindow) {
+      window.open(RoutesPath.template_details + id);
+      return;
+    }
+
     navigate(RoutesPath.template_details + id);
-  }, [id, navigate]);
+  }, [id, navigate, isOpenInNewWindow]);
 
   const openInSheets = useCallback((e: MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
@@ -41,7 +47,6 @@ export const TemplateListItem: FC<ITemplateListItemProps> = (props) => {
   return (
     <div
       {...anotherProps}
-      onClick={navigateToTemplate}
       data-testid="templateListItem"
       className={classNames(styles.template_list_item, {}, [className, styles[view]])}
     >
@@ -92,7 +97,12 @@ export const TemplateListItem: FC<ITemplateListItemProps> = (props) => {
             />
           </Title>
           <Title text={t('Открыть страницу подробного просмотра')}>
-            <Button Icon={MdOpenInBrowser} buttonColor={ButtonColor.SECONDARY} text={t('Подробнее')} />
+            <Button
+              onClick={navigateToTemplate}
+              Icon={MdOpenInBrowser}
+              buttonColor={ButtonColor.SECONDARY}
+              text={t('Подробнее')}
+            />
           </Title>
         </div>
       </Card>

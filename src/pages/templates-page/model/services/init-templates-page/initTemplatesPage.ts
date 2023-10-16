@@ -5,6 +5,7 @@ import { getTemplatesPageInited } from '../../selectors/get-templates-page-inite
 import { templatesPageActions } from '../../slice/templatesPageSlice';
 import { fetchTemplatesPageTemplates } from '../fetch-templates-page-templates/fetchTemplatesPageTemplates';
 import { TemplateSortFields, TemplateSortOrders } from '../../types/templatesPage';
+import { TemplateTags } from 'entities/template';
 
 export const initTemplatesPage = createAsyncThunk<void, URLSearchParams, IThunkConfig>(
   'templatesPage/initTemplatesPage',
@@ -16,10 +17,12 @@ export const initTemplatesPage = createAsyncThunk<void, URLSearchParams, IThunkC
       const order = searchParams.get('order');
       const sort = searchParams.get('sort');
       const search = searchParams.get('search');
+      const tag = searchParams.get('tag');
 
       if (order) thunkAPI.dispatch(templatesPageActions.setSortOrder(order as TemplateSortOrders));
       if (sort) thunkAPI.dispatch(templatesPageActions.setSort(sort as TemplateSortFields));
       if (search) thunkAPI.dispatch(templatesPageActions.setSearch(search));
+      if (tag) thunkAPI.dispatch(templatesPageActions.setTags(tag as TemplateTags));
 
       thunkAPI.dispatch(templatesPageActions.initState());
       thunkAPI.dispatch(fetchTemplatesPageTemplates());

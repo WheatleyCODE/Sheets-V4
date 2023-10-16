@@ -3,7 +3,6 @@
 [] Пофиксить Title
 [] Допилить paths + тесты
 [] Тесты на LanguageSwitcher, ThemeSwitcher, NavigationMenu, NavigationMenuItem, LoginForm, RegisterForm
-[] Добавить SyncPromise в KVStorage, вместо Promise<T> -> Promise<T> | SyncPromise<T> + тесты
 [] Сделать снипеты для slice
 [] Использовать в Sheets entity adapter data и нормализацию
 [] Написать парсер для формул -> применить его в <Code />
@@ -14,3 +13,4 @@
 [] Использовать Scroll в SheetsPage
 [] Использовать async iter чтобы смещаться на нужное количество ячеек и записывать в scroll 
 [] Пофиксить тесты и сторибуки
+[] Перенести все reducers для useDynamicModule из компонента

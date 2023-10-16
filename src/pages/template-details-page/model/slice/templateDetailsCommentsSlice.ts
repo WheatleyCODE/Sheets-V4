@@ -4,7 +4,7 @@ import { ITemplateDetailsCommentsSchema } from '../types/templateDetailsComments
 import { fetchTemplateDetailsComments } from '../services/fetch-template-details-comments/fetchTemplateDetailsComments';
 
 export const commentsAdapter = createEntityAdapter<IComment>({
-  selectId: (book) => book.id,
+  selectId: (comment) => comment.id,
 });
 
 const initialState = commentsAdapter.getInitialState<ITemplateDetailsCommentsSchema>({

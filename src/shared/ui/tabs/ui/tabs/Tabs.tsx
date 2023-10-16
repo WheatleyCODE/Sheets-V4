@@ -1,4 +1,4 @@
-import { FC, memo, useCallback, useEffect, useState } from 'react';
+import { FC, memo, useEffect } from 'react';
 import { classNames } from 'shared/lib/class-names';
 import styles from './Tabs.module.scss';
 import { ITabItem, TabItem } from '../tab-item/TabItem';
@@ -6,20 +6,19 @@ import { intoIter } from 'shared/lib/iterators';
 import { withProvider } from 'shared/lib/with-provider';
 import { TabsProvider } from '../tabs-provider/TabsProvider';
 import { useTabs } from '../../lib/useTabs';
-import { useInitialEffect } from 'shared/lib/hooks';
 
 interface ITabsProps extends React.HTMLAttributes<HTMLDivElement> {
   tabItems?: ITabItem[];
-  initValue?: string;
+  initValue: string | null;
 }
 
 const TabsWithoutContext: FC<ITabsProps> = memo((props) => {
   const { className, tabItems = [], initValue, children, ...anotherProps } = props;
   const { changeCurrentValue } = useTabs();
 
-  useInitialEffect(() => {
-    changeCurrentValue(initValue || null);
-  });
+  useEffect(() => {
+    changeCurrentValue(initValue);
+  }, [changeCurrentValue, initValue]);
 
   const tabItemsArr = intoIter<ITabItem>(tabItems)
     .enumerate()

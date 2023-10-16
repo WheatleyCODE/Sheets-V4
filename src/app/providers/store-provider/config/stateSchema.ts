@@ -6,7 +6,7 @@ import { AxiosInstance } from 'axios';
 import { IProfileSchema } from 'entities/profile';
 import { ToolkitStore } from '@reduxjs/toolkit/dist/configureStore';
 import { ITemplateDetailsSchema } from 'entities/template';
-import { ITemplateDetailsCommentsSchema } from 'pages/template-details-page/model/types/templateDetailsComments';
+import { ITemplateDetailsCommentsSchema, ITemplateDetailsRecommendsSchema } from 'pages/template-details-page';
 import { IAddCommentFormSchema } from 'features/add-comment-form';
 import { ITemplatesPageSchema } from 'pages/templates-page';
 import { OptionalRecord } from 'shared/lib/ts-utils';
@@ -21,6 +21,7 @@ export interface IStateSchema {
   profile?: IProfileSchema;
   templateDetails?: ITemplateDetailsSchema;
   templateDetailsComments?: ITemplateDetailsCommentsSchema;
+  templateDetailsRecommends?: ITemplateDetailsRecommendsSchema;
   addCommentForm?: IAddCommentFormSchema;
   templatesPage?: ITemplatesPageSchema;
 }

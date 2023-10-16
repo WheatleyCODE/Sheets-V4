@@ -1,6 +1,6 @@
 import { FC, memo, useCallback } from 'react';
-import { TemplateList, TemplateView } from 'entities/template';
-import { useTranslation } from 'react-i18next';
+import { TemplateList, TemplateTags, TemplateView } from 'entities/template';
+// import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { useDebounce, useDynamicModule, useInitialEffect, useTypedDispatch } from 'shared/lib/hooks';
 import { templatesPageActions, templatesPageReducer } from '../../model/slice/templatesPageSlice';
@@ -20,6 +20,7 @@ import { getTemplatesPageSearch } from '../../model/selectors/get-templates-page
 import { TemplateSortOrders, TemplateSortFields } from '../../model/types/templatesPage';
 import { fetchTemplatesPageTemplates } from '../../model/services/fetch-templates-page-templates/fetchTemplatesPageTemplates';
 import { useSearchParams } from 'react-router-dom';
+import { getTemplatesPageTag } from 'pages/templates-page/model/selectors/get-templates-page-tag/getTemplatesPageTag';
 
 interface ITemplatesPageProps extends React.HTMLAttributes<HTMLDivElement> {}
 
@@ -33,9 +34,10 @@ const TemplatesPage: FC<ITemplatesPageProps> = memo((props) => {
   const sort = useSelector(getTemplatesPageSort);
   const sortOrder = useSelector(getTemplatesPageSortOrder);
   const search = useSelector(getTemplatesPageSearch);
+  const tag = useSelector(getTemplatesPageTag);
   const [searchParams] = useSearchParams();
   const dispatch = useTypedDispatch();
-  const { t } = useTranslation('templates');
+  // const { t } = useTranslation('templates');
 
   useInitialEffect(() => {
     dispatch(initTemplatesPage(searchParams));
@@ -73,6 +75,14 @@ const TemplatesPage: FC<ITemplatesPageProps> = memo((props) => {
     [dispatch, fetchTemplatesOnChange],
   );
 
+  const changeTag = useCallback(
+    (tag: TemplateTags) => {
+      dispatch(templatesPageActions.setTags(tag));
+      fetchTemplatesOnChange();
+    },
+    [dispatch, fetchTemplatesOnChange],
+  );
+
   const changeSearch = useDebounce((search: string) => {
     dispatch(templatesPageActions.setSearch(search));
     fetchTemplatesOnChange();
@@ -94,6 +104,8 @@ const TemplatesPage: FC<ITemplatesPageProps> = memo((props) => {
           changeSortOrder={changeSortOrder}
           search={search}
           changeSearch={changeSearch}
+          tag={tag}
+          changeTag={changeTag}
         />
 
         <TemplateList isLoading={isLoading} view={view} error={error} templates={templates} />

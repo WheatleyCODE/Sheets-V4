@@ -44,18 +44,6 @@
     width: 380px;
   }
 
-  &:hover {
-    transform: scale(1.02);
-
-    .card {
-      outline: 1px solid var(--color-primary);
-    }
-  }
-
-  &:active {
-    transform: scale(.98);
-  }
-
   .tags p {
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -93,20 +81,8 @@
     overflow: hidden;
   }
 
-  &:hover {
-    transform: scale(1.01);
-
-    .card {
-      outline: 1px solid var(--color-primary);
-    }
-  }
-
   .card {
     width: 100%;
-  }
-
-  &:active {
-    transform: scale(.99);
   }
 
   .hover_title {

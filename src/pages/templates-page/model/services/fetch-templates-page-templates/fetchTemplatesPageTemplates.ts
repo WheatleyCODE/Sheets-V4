@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { IThunkConfig, IThunkExtra } from 'app/providers/store-provider';
-import { ITemplate } from 'entities/template';
+import { ITemplate, TemplateTags } from 'entities/template';
 import i18n from 'shared/config/i18n/i18n';
 import { getTemplatesPageLimit } from '../../selectors/get-templates-page-limit/getTemplatesPageLimit';
 import { getTemplatesPagePage } from '../../selectors/get-templates-page-page/getTemplatesPagePage';
@@ -8,6 +8,7 @@ import { getTemplatesPageSort } from '../../selectors/get-templates-page-sort/ge
 import { getTemplatesPageSortOrder } from '../../selectors/get-templates-page-sort-order/getTemplatesPageSortOrder';
 import { getTemplatesPageSearch } from '../../selectors/get-templates-page-search/getTemplatesPageSearch';
 import { addQueryParams } from 'shared/lib/paths';
+import { getTemplatesPageTag } from '../../selectors/get-templates-page-tag/getTemplatesPageTag';
 
 export interface IFetchTemplatesPageTemplatesProps {
   isReplace?: boolean;
@@ -26,8 +27,9 @@ export const fetchTemplatesPageTemplates = createAsyncThunk<
     const sort = getTemplatesPageSort(thunkAPI.getState());
     const order = getTemplatesPageSortOrder(thunkAPI.getState());
     const search = getTemplatesPageSearch(thunkAPI.getState());
+    const tag = getTemplatesPageTag(thunkAPI.getState());
 
-    addQueryParams({ sort, order, search });
+    addQueryParams({ sort, order, search, tag });
 
     const { data } = await extra.api.get<ITemplate[]>('/templates', {
       params: {
@@ -35,6 +37,7 @@ export const fetchTemplatesPageTemplates = createAsyncThunk<
         _page: page,
         _sort: sort,
         _order: order,
+        tags: tag === TemplateTags.ALL ? undefined : tag,
         q: search,
       },
     });

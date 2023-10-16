@@ -1,5 +1,5 @@
 import { EntityState } from '@reduxjs/toolkit';
-import { ITemplate, TemplateView } from 'entities/template';
+import { ITemplate, TemplateTags, TemplateView } from 'entities/template';
 
 export enum TemplateSortFields {
   VIEWS = 'views',
@@ -22,4 +22,5 @@ export interface ITemplatesPageSchema extends EntityState<ITemplate>, IReduxSche
   sortOrder: TemplateSortOrders;
   sort: TemplateSortFields;
   search: string;
+  tag: TemplateTags;
 }

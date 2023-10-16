@@ -13,10 +13,14 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Light: Story = {
-  args: {},
+  args: {
+    initValue: null,
+  },
 };
 
 export const Dark: Story = {
-  args: {},
+  args: {
+    initValue: null,
+  },
   decorators: [themeDecorator(Theme.DARK)],
 };

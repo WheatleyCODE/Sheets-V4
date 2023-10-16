@@ -26,7 +26,7 @@ const DragLineWithoutContext: FC<IDragLineProps> = (props) => {
 
   const trackWidthContext = contextItems.reduce((acc, item) => acc + item.width + ITEM_MARGIN_RIGHT, 0);
 
-  const leftContext = (trackWidthContext - (contextItems[0]?.width || 0)) * -1;
+  const leftContext = (trackWidthContext - (contextItems[0]?.width || 0) - ITEM_MARGIN_RIGHT) * -1;
   const leftDefault = ((trackWidth - items[0]?.width || 0) - ITEM_MARGIN_RIGHT) * -1;
 
   const left = items.length !== 0 ? leftDefault : leftContext;

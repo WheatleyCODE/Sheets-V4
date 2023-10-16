@@ -1,4 +1,4 @@
-import { FC, MouseEvent, ReactNode, memo, useCallback, useEffect, useRef, useState } from 'react';
+import { MouseEvent, ReactNode, useCallback, useEffect, useRef, useState } from 'react';
 import { classNames } from 'shared/lib/class-names';
 import styles from './TabItem.module.scss';
 import { useTabs } from '../../lib/useTabs';
@@ -11,16 +11,17 @@ export interface ITabItem {
   itemId: string | number;
 }
 
-export interface ITabItemProps extends React.HTMLAttributes<HTMLDivElement> {
-  value: string;
+export interface ITabItemProps<T> extends React.HTMLAttributes<HTMLDivElement> {
+  value: T;
   children: ReactNode;
   itemId: string | number;
+  onSelectItem?: (value: T) => void;
 }
 
 const coords: { clientX: number; clientY: number } = { clientX: 0, clientY: 0 };
 
-export const TabItem: FC<ITabItemProps> = memo((props) => {
-  const { className, children, value, itemId, ...anotherProps } = props;
+export function TabItem<T extends string>(props: ITabItemProps<T>) {
+  const { className, children, value, itemId, onSelectItem, ...anotherProps } = props;
   const ref = useRef<HTMLDivElement>(null);
   const [isBreak, setIsBreak] = useState(false);
   const { changeCurrentValue, currentValue, addItem, removeItem } = useTabs();
@@ -66,7 +67,8 @@ export const TabItem: FC<ITabItemProps> = memo((props) => {
 
   const onClick = useCallback(() => {
     changeCurrentValue(value);
-  }, [changeCurrentValue, value]);
+    onSelectItem?.(value);
+  }, [changeCurrentValue, value, onSelectItem]);
 
   return (
     <div
@@ -79,4 +81,4 @@ export const TabItem: FC<ITabItemProps> = memo((props) => {
       {children}
     </div>
   );
-});
+}

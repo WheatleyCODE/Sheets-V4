@@ -10,13 +10,22 @@ interface ITemplateListProps extends React.HTMLAttributes<HTMLDivElement> {
   isLoading?: boolean;
   error?: string | null;
   view?: TemplateView;
+  isOpenInNewWindow?: boolean;
 }
 
 export const TemplateList: FC<ITemplateListProps> = (props) => {
-  const { className, view = TemplateView.SQUARES, isLoading, templates, ...anotherProps } = props;
+  const {
+    className,
+    isOpenInNewWindow = false,
+    view = TemplateView.SQUARES,
+    isLoading,
+    templates,
+    ...anotherProps
+  } = props;
 
   const skeletons = intoIter(Array(9).fill(0))
     .enumerate()
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     .map(([_, i]) => (
       <Skeleton key={i} className={classNames(styles.skeleton, {}, [styles[view]])}>
         <Skeleton className={styles.skeleton_image} />
@@ -31,7 +40,13 @@ export const TemplateList: FC<ITemplateListProps> = (props) => {
     ));
 
   const renderTemplate = (template: ITemplate) => (
-    <TemplateListItem className={styles.card} key={template.id} view={view} template={template} />
+    <TemplateListItem
+      isOpenInNewWindow={isOpenInNewWindow}
+      className={styles.card}
+      key={template.id}
+      view={view}
+      template={template}
+    />
   );
   const itemsArr = intoIter<ITemplate>(templates).map(renderTemplate).toArray();
 
