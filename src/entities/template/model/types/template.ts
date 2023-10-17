@@ -1,3 +1,5 @@
+import { IUser } from 'entities/user';
+
 export enum TemplateBlockTypes {
   TEXT = 'TEXT',
   CODE = 'CODE',
@@ -48,6 +50,7 @@ export interface ISheetsTemplate {}
 export interface ITemplate {
   id: string;
   title: string;
+  user?: IUser;
   subtitle: string;
   image: string;
   views: number;

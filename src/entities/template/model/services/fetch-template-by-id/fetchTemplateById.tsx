@@ -9,7 +9,11 @@ export const fetchTemplateById = createAsyncThunk<ITemplate, { id: string }, ITh
     try {
       const extra = thunkAPI.extra as IThunkExtra;
 
-      const { data } = await extra.api.get<ITemplate>(`/templates/${id}`);
+      const { data } = await extra.api.get<ITemplate>(`/templates/${id}`, {
+        params: {
+          _expand: 'user',
+        },
+      });
       if (!data) throw new Error();
 
       return data;

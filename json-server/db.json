@@ -62,6 +62,7 @@
   "templates": [
     {
       "id": "1",
+      "userId": "1",
       "title": "Шаблон Трекер инвестиций",
       "subtitle": "Новый и более удобный",
       "image": "https://www.unisender.com/ru/blog/wp-content/uploads/2022/09/8-2.png",
@@ -138,6 +139,7 @@
     },
     {
       "id": "2",
+      "userId": "1",
       "title": "Шаблон Трекер инвестиций IT",
       "subtitle": "Новый и более удобный IT",
       "image": "https://www.unisender.com/ru/blog/wp-content/uploads/2022/09/7-2.png",
@@ -214,6 +216,7 @@
     },
     {
       "id": "3",
+      "userId": "1",
       "title": "Шаблон Трекер инвестиций Invest",
       "subtitle": "Новый и более удобный Invest",
       "image": "https://www.unisender.com/ru/blog/wp-content/uploads/2022/09/11-2.png",
@@ -290,6 +293,7 @@
     },
     {
       "id": "4",
+      "userId": "1",
       "title": "Шаблон Трекер инвестиций Science",
       "subtitle": "Новый и более удобный Science",
       "image": "https://www.unisender.com/ru/blog/wp-content/uploads/2022/09/17-2.png",
@@ -366,6 +370,7 @@
     },
     {
       "id": "5",
+      "userId": "1",
       "title": "Шаблон Трекер инвестиций Books",
       "subtitle": "Новый и более удобный Books",
       "image": "https://www.unisender.com/ru/blog/wp-content/uploads/2022/09/25.png",
@@ -442,6 +447,7 @@
     },
     {
       "id": "6",
+      "userId": "1",
       "title": "Шаблон Трекер инвестиций",
       "subtitle": "Новый и более удобный",
       "image": "https://www.unisender.com/ru/blog/wp-content/uploads/2022/09/8-2.png",
@@ -518,6 +524,7 @@
     },
     {
       "id": "7",
+      "userId": "1",
       "title": "Шаблон Трекер инвестиций",
       "subtitle": "Новый и более удобный",
       "image": "https://www.unisender.com/ru/blog/wp-content/uploads/2022/09/7-2.png",
@@ -594,6 +601,7 @@
     },
     {
       "id": "8",
+      "userId": "1",
       "title": "Шаблон Трекер инвестиций",
       "subtitle": "Новый и более удобный",
       "image": "https://www.unisender.com/ru/blog/wp-content/uploads/2022/09/11-2.png",
@@ -746,6 +754,7 @@
     },
     {
       "id": "10",
+      "userId": "1",
       "title": "Шаблон Трекер инвестиций",
       "subtitle": "Новый и более удобный",
       "image": "https://www.unisender.com/ru/blog/wp-content/uploads/2022/09/25.png",
@@ -822,6 +831,7 @@
     },
     {
       "id": "11",
+      "userId": "1",
       "title": "Шаблон Трекер инвестиций",
       "subtitle": "Новый и более удобный",
       "image": "https://www.unisender.com/ru/blog/wp-content/uploads/2022/09/8-2.png",
@@ -898,6 +908,7 @@
     },
     {
       "id": "12",
+      "userId": "1",
       "title": "Шаблон Трекер инвестиций",
       "subtitle": "Новый и более удобный",
       "image": "https://www.unisender.com/ru/blog/wp-content/uploads/2022/09/7-2.png",
@@ -974,6 +985,7 @@
     },
     {
       "id": "13",
+      "userId": "1",
       "title": "Шаблон Трекер инвестиций",
       "subtitle": "Новый и более удобный",
       "image": "https://www.unisender.com/ru/blog/wp-content/uploads/2022/09/11-2.png",
@@ -1050,6 +1062,7 @@
     },
     {
       "id": "14",
+      "userId": "1",
       "title": "Шаблон Трекер инвестиций",
       "subtitle": "Новый и более удобный",
       "image": "https://www.unisender.com/ru/blog/wp-content/uploads/2022/09/17-2.png",
@@ -1126,6 +1139,7 @@
     },
     {
       "id": "15",
+      "userId": "1",
       "title": "Шаблон Трекер инвестиций",
       "subtitle": "Новый и более удобный",
       "image": "https://www.unisender.com/ru/blog/wp-content/uploads/2022/09/25.png",
@@ -1202,6 +1216,7 @@
     },
     {
       "id": "16",
+      "userId": "1",
       "title": "Шаблон Трекер инвестиций",
       "subtitle": "Новый и более удобный",
       "image": "https://www.unisender.com/ru/blog/wp-content/uploads/2022/09/8-2.png",
@@ -1278,6 +1293,7 @@
     },
     {
       "id": "17",
+      "userId": "1",
       "title": "Шаблон Трекер инвестиций",
       "subtitle": "Новый и более удобный",
       "image": "https://www.unisender.com/ru/blog/wp-content/uploads/2022/09/7-2.png",
@@ -1354,6 +1370,7 @@
     },
     {
       "id": "18",
+      "userId": "1",
       "title": "Шаблон Трекер инвестиций",
       "subtitle": "Новый и более удобный",
       "image": "https://www.unisender.com/ru/blog/wp-content/uploads/2022/09/11-2.png",
@@ -1430,6 +1447,7 @@
     },
     {
       "id": "19",
+      "userId": "1",
       "title": "Шаблон Трекер инвестиций",
       "subtitle": "Новый и более удобный",
       "image": "https://www.unisender.com/ru/blog/wp-content/uploads/2022/09/17-2.png",
@@ -1506,6 +1524,7 @@
     },
     {
       "id": "20",
+      "userId": "1",
       "title": "Шаблон Трекер инвестиций",
       "subtitle": "Новый и более удобный",
       "image": "https://www.unisender.com/ru/blog/wp-content/uploads/2022/09/25.png",

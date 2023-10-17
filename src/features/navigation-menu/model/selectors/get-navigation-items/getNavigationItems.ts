@@ -3,6 +3,7 @@ import { getUser } from 'entities/user';
 import {
   MdOutlineHome,
   MdOutlinePersonPin,
+  MdOutlinePostAdd,
   MdOutlineViewCompact,
   MdOutlineViewCompactAlt,
   MdOutlineWeb,
@@ -20,6 +21,12 @@ export const getNavigationItems = createSelector(getUser, (user) => {
   if (user) {
     items.push({ text: 'Профиль', path: `${RoutesPath.profile}${user.id}`, Icon: MdOutlinePersonPin, authOnly: true });
     items.push({ text: 'Шаблоны', path: RoutesPath.templates, Icon: MdOutlineViewCompactAlt, authOnly: true });
+    items.push({
+      text: 'Создать шаблон',
+      path: RoutesPath.template_create,
+      Icon: MdOutlinePostAdd,
+      authOnly: true,
+    });
   }
 
   return items;

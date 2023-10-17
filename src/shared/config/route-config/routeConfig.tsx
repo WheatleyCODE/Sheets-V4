@@ -6,6 +6,8 @@ import { NotFoundPage } from 'pages/not-found-page';
 import { ProfilePage } from 'pages/profile-page';
 import { TemplatesPage } from 'pages/templates-page';
 import { TemplateDetailsPage } from 'pages/template-details-page';
+import { TemplateCreatePage } from 'pages/template-create-page';
+import { TemplateEditPage } from 'pages/template-edit-page';
 
 export type AppRoutesProps = RouteProps & {
   authOnly?: boolean;
@@ -18,6 +20,8 @@ export enum AppRoutes {
   PROFILE = 'profile',
   TEMPLATES = 'templates',
   TEMPLATE_DETAILS = 'template_details',
+  TEMPLATE_CREATE = 'template_create',
+  TEMPLATE_EDIT = 'template_edit',
   NOT_FOUND = 'not_found',
 }
 
@@ -28,6 +32,8 @@ export const RoutesPath: Record<AppRoutes, string> = {
   [AppRoutes.PROFILE]: '/profile/', // + id
   [AppRoutes.TEMPLATES]: '/templates',
   [AppRoutes.TEMPLATE_DETAILS]: '/templates/', // + id
+  [AppRoutes.TEMPLATE_CREATE]: '/templates/new',
+  [AppRoutes.TEMPLATE_EDIT]: '/templates/:id/edit',
   [AppRoutes.NOT_FOUND]: '*',
 };
 
@@ -44,7 +50,7 @@ export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
     path: RoutesPath.landing,
     element: <LandingPage />,
   },
-  // ! Fix path
+  // ! Fix path lib
   [AppRoutes.PROFILE]: {
     path: `${RoutesPath.profile}:id`,
     element: <ProfilePage />,
@@ -55,9 +61,20 @@ export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
     element: <TemplatesPage />,
     authOnly: true,
   },
+  // ! Fix path lib
   [AppRoutes.TEMPLATE_DETAILS]: {
     path: `${RoutesPath.template_details}:id`,
     element: <TemplateDetailsPage />,
+    authOnly: true,
+  },
+  [AppRoutes.TEMPLATE_CREATE]: {
+    path: RoutesPath.template_create,
+    element: <TemplateCreatePage />,
+    authOnly: true,
+  },
+  [AppRoutes.TEMPLATE_EDIT]: {
+    path: RoutesPath.template_edit,
+    element: <TemplateEditPage />,
     authOnly: true,
   },
   [AppRoutes.NOT_FOUND]: {

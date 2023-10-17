@@ -1,0 +1,13 @@
+.template_details_page_header {
+  display: flex;
+  justify-content: center;
+}
+
+.width {
+  padding-top: calc(var(--gap) * 4);
+  padding-bottom: calc(var(--gap) * 2);
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  max-width: var(--templates-max-width);
+}

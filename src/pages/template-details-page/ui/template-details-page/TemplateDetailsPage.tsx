@@ -1,6 +1,6 @@
 import { FC, memo, useCallback } from 'react';
 import { useSelector } from 'react-redux';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { templateDetailsCommentsReducer } from '../../model/slice/templateDetailsCommentsSlice';
 import { getTemplateDetailsComments } from '../../model/selectors/get-template-details-comments/getTemplateDetailsComments';
@@ -23,10 +23,6 @@ import { CommentList } from 'entities/comment';
 import { Text, TextSize } from 'shared/ui/text';
 import { useDynamicModule, useTypedDispatch, useInitialEffect, ReducersList } from 'shared/lib/hooks';
 import { AddCommentForm } from 'features/add-comment-form';
-import { Button } from 'shared/ui/button';
-import { MdChevronLeft } from 'react-icons/md';
-import { Title } from 'shared/ui/title';
-import { RoutesPath } from 'shared/config/route-config/routeConfig';
 import { Layout } from 'widgets/layout';
 import { classNames } from 'shared/lib/class-names';
 import styles from './TemplateDetailsPage.module.scss';
@@ -35,6 +31,7 @@ import { getTemplateDetailsRecommends } from '../../model/selectors/get-template
 import { getTemplateDetailsRecommendsError } from '../../model/selectors/get-template-details-recommends-error/getTemplateDetailsRecommendsError';
 import { getTemplateDetailsRecommendsIsLoading } from '../../model/selectors/get-template-details-recommends-is-loading/getTemplateDetailsRecommendsIsLoaing';
 import { fetchTemplateDetailsRecommends } from '../../model/services/fetch-template-details-recommends/fetchTemplateDetailsRecommends';
+import { TemplateDetailsPageHeader } from '../template-details-page-header/TemplateDetailsPageHeader';
 
 interface ITemplateDetailsPageProps extends React.HTMLAttributes<HTMLDivElement> {}
 
@@ -48,7 +45,6 @@ const TemplateDetailsPage: FC<ITemplateDetailsPageProps> = memo((props) => {
   const { className, ...anotherProps } = props;
   useDynamicModule(reducerList, true);
   const { t } = useTranslation();
-  const navigate = useNavigate();
   const dispatch = useTypedDispatch();
   const { id } = useParams<{ id: string }>();
 
@@ -84,10 +80,6 @@ const TemplateDetailsPage: FC<ITemplateDetailsPageProps> = memo((props) => {
     [dispatch, template, user],
   );
 
-  const navigateToTemplates = useCallback(() => {
-    navigate(RoutesPath.templates);
-  }, []);
-
   return (
     <Layout>
       <section
@@ -95,12 +87,7 @@ const TemplateDetailsPage: FC<ITemplateDetailsPageProps> = memo((props) => {
         data-testid="templateDetailsPage"
         className={classNames(styles.template_details_page, {}, [className, 'page'])}
       >
-        <div className={styles.back}>
-          <Title text={t('Вернуться к шаблонам')}>
-            <Button onClick={navigateToTemplates} Icon={MdChevronLeft} text={t('Вернуться к шаблонам')} />
-          </Title>
-        </div>
-
+        <TemplateDetailsPageHeader />
         <TemplateDetails template={template} isLoading={isLoading} error={error} />
 
         <div className={styles.recommends}>
