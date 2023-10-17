@@ -108,7 +108,13 @@ const TemplatesPage: FC<ITemplatesPageProps> = memo((props) => {
           changeTag={changeTag}
         />
 
-        <TemplateList isLoading={isLoading} view={view} error={error} templates={templates} />
+        <TemplateList
+          onScrollEnd={loadNextPart}
+          isLoading={isLoading}
+          view={view}
+          error={error}
+          templates={templates}
+        />
       </section>
     </Layout>
   );

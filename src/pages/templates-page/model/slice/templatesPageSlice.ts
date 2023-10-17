@@ -18,7 +18,7 @@ const initialState = templatesPageAdapter.getInitialState<ITemplatesPageSchema>(
   hasMore: true,
   page: 1,
   _inited: false,
-  limit: 9,
+  limit: 12,
 
   // * Sort
   search: '',
@@ -54,7 +54,7 @@ export const templatesPageSlice = createSlice({
         }
       });
 
-      state.limit = state.view === TemplateView.LINES ? 4 : 9;
+      state.limit = state.view === TemplateView.LINES ? 4 : 12;
       state._inited = true;
     },
 

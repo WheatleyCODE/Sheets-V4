@@ -3,8 +3,13 @@
   justify-content: center;
 }
 
-.card, .skeleton {
-  margin: calc(var(--gap) * 2);
+.square_row {
+  display: flex;
+  justify-content: center;
+
+  .card, .skeleton {
+    margin: 0 calc(var(--gap) * 2);
+  }
 }
 
 .skeleton,
