@@ -1,6 +1,6 @@
 import { ITemplateDetailsRecommendsSchema } from '../types/templateDetailsRecommends';
 import { fetchTemplateDetailsRecommends } from '../services/fetch-template-details-recommends/fetchTemplateDetailsRecommends';
-import { createEntityAdapter, createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createEntityAdapter, createSlice } from '@reduxjs/toolkit';
 import { ITemplate } from 'entities/template';
 
 export const recommendsAdapter = createEntityAdapter<ITemplate>({

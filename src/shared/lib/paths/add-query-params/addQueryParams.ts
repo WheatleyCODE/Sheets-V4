@@ -1,4 +1,4 @@
-import { OptionalRecord } from 'shared/lib/ts-utils';
+import { OptionalRecord } from '../../ts-utils';
 
 export const getQueryParams = (params: OptionalRecord<string, string>) => {
   const searchParams = new URLSearchParams(window.location.search);

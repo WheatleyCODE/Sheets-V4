@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { sleep } from 'shared/lib/promises';
+import { sleep } from '../../promises';
 import { intoAsyncIter } from './asyncIter';
 
 const POTENTIAL_ACCELERATION_MS = 10;

@@ -1,4 +1,4 @@
-import { Nullable } from 'shared/lib/ts-utils';
+import { Nullable } from '../../ts-utils';
 
 export type PromiseState = 'pending' | 'fulfilled' | 'rejected';
 export class SyncPromise<T> implements Promise<T> {

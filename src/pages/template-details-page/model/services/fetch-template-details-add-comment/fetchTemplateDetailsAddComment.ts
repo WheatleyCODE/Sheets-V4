@@ -2,7 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { IThunkConfig, IThunkExtra } from 'app/providers/store-provider';
 import { IComment } from 'entities/comment';
 import { getUser } from 'entities/user';
-import { templateDetailsCommentsActions } from 'pages/template-details-page/model/slice/templateDetailsCommentsSlice';
+import { templateDetailsCommentsActions } from '../../slice/templateDetailsCommentsSlice';
 import i18n from 'shared/config/i18n/i18n';
 
 export interface IFetchAddCommentData {

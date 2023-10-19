@@ -1,4 +1,4 @@
-import { SyncPromise } from 'shared/lib/promise';
+import { SyncPromise } from '../../promise';
 
 export type Nullable<T> = T | null | undefined;
 export type CanPromise<T> = T | Promise<T>;

@@ -1,4 +1,4 @@
-import { Nullable, SyncOrAsyncPromise } from 'shared/lib/ts-utils/utils/tsUtils';
+import { Nullable, SyncOrAsyncPromise } from '../ts-utils';
 
 export interface KVStorageEngine {
   get(key: string): SyncOrAsyncPromise<Nullable<string>>;

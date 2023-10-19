@@ -14,7 +14,7 @@ module.exports = {
     tsconfigRootDir: __dirname,
     sourceType: 'module',
   },
-  plugins: ['react-refresh', 'prettier', 'i18next', 'react-hooks'],
+  plugins: ['react-refresh', 'prettier', 'i18next', 'react-hooks', 'wheatley-code'],
   rules: {
     'react-refresh/only-export-components': 'warn',
     quotes: [2, 'single'],
@@ -31,7 +31,8 @@ module.exports = {
     'i18next/no-literal-string': 2,
     'no-prototype-builtins': 0,
     'react-hooks/rules-of-hooks': 'error',
-    'react-hooks/exhaustive-deps': 'warn'
+    'react-hooks/exhaustive-deps': 'warn',
+    'wheatley-code/path-checker': 'error'
   },
 
   overrides: [

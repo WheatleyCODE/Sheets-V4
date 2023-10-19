@@ -1,4 +1,4 @@
-import { DeepPartial } from 'shared/lib/ts-utils';
+import { DeepPartial } from '../../../ts-utils';
 
 export interface IClientXY {
   clientX: number;

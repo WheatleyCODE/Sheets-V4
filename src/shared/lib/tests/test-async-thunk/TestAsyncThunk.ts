@@ -1,7 +1,7 @@
 import { AsyncThunkAction } from '@reduxjs/toolkit';
 import { IStateSchema } from 'app/providers/store-provider';
 import axios, { AxiosStatic } from 'axios';
-import { DeepPartial } from 'shared/lib/ts-utils';
+import { DeepPartial } from '../../ts-utils';
 
 type ActionCreatorType<Return, Arg, RejectedValue> = (
   arg: Arg,

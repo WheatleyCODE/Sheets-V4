@@ -1,14 +1,20 @@
+// * Todo
 [] Пофиксить Title
 [] Допилить paths + тесты
 [] Тесты на LanguageSwitcher, ThemeSwitcher, NavigationMenu, NavigationMenuItem, LoginForm, RegisterForm
 [] Сделать снипеты для slice
-[] Использовать в Sheets entity adapter data и нормализацию
-[] Написать парсер для формул -> применить его в <Code />
-[]? Всплывающие сообщения?
 [] Лого это entities?
-
 [] Проверить все сущности связанные с template, написать тесты
-[] Использовать Scroll в SheetsPage
-[] Использовать async iter чтобы смещаться на нужное количество ячеек и записывать в scroll 
 [] Пофиксить тесты и сторибуки
 [] Перенести все reducers для useDynamicModule из компонента
+
+// * Ideas
+[] Реализовать shared/containers заменить в проекте, удалить лишний SCSS (Возможно добавить еще)
+[] Написать больше правил для ESLint 
+[] Использовать async iter чтобы смещаться на нужное количество ячеек и записывать в scroll 
+[] Использовать Scroll в SheetsPage
+[]? Всплывающие сообщения?
+[] Написать парсер для формул -> применить его в <Code />
+[] Использовать в Sheets entity adapter data и нормализацию
+[]? Headless UI, React aria
+[] Перенести переход на страницу профиля в user компонент
