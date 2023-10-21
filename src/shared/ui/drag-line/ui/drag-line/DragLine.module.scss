@@ -19,10 +19,10 @@
 
 .left {
   left: 0;
-  background: linear-gradient(90deg, var(--color-main) 50%, rgba(0, 0, 0, 0) 100%);
+  background: linear-gradient(90deg, var(--color-main) 50%, rgba(0 0 0 / 0%) 100%);
 }
 
 .right {
   right: 0;
-  background: linear-gradient(90deg, rgba(0, 0, 0, 0) 50%, var(--color-main) 100%);
+  background: linear-gradient(90deg, rgba(0 0 0 / 0%) 50%, var(--color-main) 100%);
 }
