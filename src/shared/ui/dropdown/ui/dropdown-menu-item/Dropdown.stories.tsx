@@ -5,7 +5,7 @@ import { Theme } from 'app/providers/lib/theme-context';
 import { MdHome } from 'react-icons/md';
 
 const meta = {
-  title: 'shared/DropdownMenuItem',
+  title: 'shared/dropdown/DropdownMenuItem',
   component: DropdownMenuItem,
 } satisfies Meta<typeof DropdownMenuItem>;
 

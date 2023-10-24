@@ -5,7 +5,7 @@ import { MdOutlineEmail } from 'react-icons/md';
 import { themeDecorator } from '../../../../../../config/storybook/theme-decorator/themeDecorator';
 
 const meta = {
-  title: 'shared/Input',
+  title: 'shared/input/Input',
   component: Input,
 } satisfies Meta<typeof Input>;
 

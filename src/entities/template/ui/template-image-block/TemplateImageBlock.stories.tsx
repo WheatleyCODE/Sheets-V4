@@ -2,10 +2,10 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { TemplateImageBlock } from './TemplateImageBlock';
 import { Theme } from 'app/providers/lib/theme-context';
 import { themeDecorator } from '../../../../../config/storybook/theme-decorator/themeDecorator';
-import { TemplateBlockTypes } from 'entities/template/model/types/template';
+import { TemplateBlockTypes } from '../../model/types/template';
 
 const meta = {
-  title: 'entities/TemplateImageBlock',
+  title: 'entities/template/TemplateImageBlock',
   component: TemplateImageBlock,
 } satisfies Meta<typeof TemplateImageBlock>;
 

@@ -5,7 +5,7 @@ import { themeDecorator } from '../../../../../../config/storybook/theme-decorat
 import { InputOptionsMenuItem } from '../input-options-menu-item/InputOptionsMenuItem';
 
 const meta = {
-  title: 'shared/InputOptionsMenu',
+  title: 'shared/input/InputOptionsMenu',
   component: InputOptionsMenu,
 } satisfies Meta<typeof InputOptionsMenu>;
 

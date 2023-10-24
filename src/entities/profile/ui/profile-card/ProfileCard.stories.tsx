@@ -5,7 +5,7 @@ import { themeDecorator } from '../../../../../config/storybook/theme-decorator/
 import { Country, Currency } from '../../model/types/profile';
 
 const meta = {
-  title: 'entities/ProfileCard',
+  title: 'entities/profile/ProfileCard',
   component: ProfileCard,
 } satisfies Meta<typeof ProfileCard>;
 

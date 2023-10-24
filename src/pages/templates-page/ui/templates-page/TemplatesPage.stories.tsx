@@ -4,7 +4,7 @@ import { Theme } from 'app/providers/lib/theme-context';
 import { themeDecorator } from '../../../../../config/storybook/theme-decorator/themeDecorator';
 
 const meta = {
-  title: 'pages/TemplatesPage',
+  title: 'pages/template-page/TemplatesPage',
   component: TemplatesPage,
 } satisfies Meta<typeof TemplatesPage>;
 

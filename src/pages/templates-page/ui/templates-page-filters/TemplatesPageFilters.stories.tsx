@@ -4,7 +4,7 @@ import { Theme } from 'app/providers/lib/theme-context';
 import { themeDecorator } from '../../../../../config/storybook/theme-decorator/themeDecorator';
 
 const meta = {
-  title: 'pages/TemplatesPageFilters',
+  title: 'pages/template-page/TemplatesPageFilters',
   component: TemplatesPageFilters,
 } satisfies Meta<typeof TemplatesPageFilters>;
 

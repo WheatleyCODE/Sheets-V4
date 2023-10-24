@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { TemplateDetails } from './TemplateDetails';
 import { Theme } from 'app/providers/lib/theme-context';
 import { themeDecorator } from '../../../../../config/storybook/theme-decorator/themeDecorator';
-import { ITemplate, TemplateTags } from 'entities/template/model/types/template';
+import { ITemplate, TemplateTags } from '../../model/types/template';
 
 const template: ITemplate = {
   id: '1',
@@ -17,7 +17,7 @@ const template: ITemplate = {
 };
 
 const meta = {
-  title: 'entities/TemplateDetails',
+  title: 'entities/template/TemplateDetails',
   component: TemplateDetails,
 } satisfies Meta<typeof TemplateDetails>;
 

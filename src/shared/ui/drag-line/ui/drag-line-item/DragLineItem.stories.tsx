@@ -4,7 +4,7 @@ import { Theme } from 'app/providers/lib/theme-context';
 import { themeDecorator } from '../../../../../../config/storybook/theme-decorator/themeDecorator';
 
 const meta = {
-  title: 'shared/DragLineItem',
+  title: 'shared/drag-line/DragLineItem',
   component: DragLineItem,
 } satisfies Meta<typeof DragLineItem>;
 

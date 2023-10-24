@@ -4,7 +4,7 @@ import { themeDecorator } from '../../../../../../config/storybook/theme-decorat
 import { Theme } from 'app/providers/lib/theme-context';
 
 const meta = {
-  title: 'shared/DropdownMenu',
+  title: 'shared/dropdown/DropdownMenu',
   component: DropdownMenu,
 } satisfies Meta<typeof DropdownMenu>;
 

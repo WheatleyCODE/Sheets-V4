@@ -6,7 +6,7 @@ import { DropdownMenu } from '../dropdown-menu/DropdownMenu';
 import { DropdownMenuItem } from '../dropdown-menu-item/DropdownMenuItem';
 
 const meta = {
-  title: 'shared/Dropdown',
+  title: 'shared/dropdown/Dropdown',
   component: Dropdown,
 } satisfies Meta<typeof Dropdown>;
 

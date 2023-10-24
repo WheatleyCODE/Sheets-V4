@@ -4,7 +4,7 @@ import { Theme } from 'app/providers/lib/theme-context';
 import { themeDecorator } from '../../../../../../config/storybook/theme-decorator/themeDecorator';
 
 const meta = {
-  title: 'shared/InputPlaceholder',
+  title: 'shared/input/InputPlaceholder',
   component: InputPlaceholder,
 } satisfies Meta<typeof InputPlaceholder>;
 

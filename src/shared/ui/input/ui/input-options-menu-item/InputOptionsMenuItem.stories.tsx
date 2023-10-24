@@ -5,7 +5,7 @@ import { themeDecorator } from '../../../../../../config/storybook/theme-decorat
 import { MdHome } from 'react-icons/md';
 
 const meta = {
-  title: 'shared/InputOptionsMenuItem',
+  title: 'shared/input/InputOptionsMenuItem',
   component: InputOptionsMenuItem,
 } satisfies Meta<typeof InputOptionsMenuItem>;
 
