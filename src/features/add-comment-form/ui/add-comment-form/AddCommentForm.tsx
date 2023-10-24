@@ -1,12 +1,13 @@
 import { ChangeEvent, FC, useCallback } from 'react';
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
+import { MdOutlineComment, MdSend } from 'react-icons/md';
+import { addCommentFormActions, addCommentFormReducer } from '../../model/slice/addCommentFormSlice';
 import { getAddCommentFormText } from '../../model/selectors/get-add-comment-form-error-text/getAddCommentFormText';
 import { Input, useValidInput } from 'shared/ui/input';
-import { MdOutlineComment, MdSend } from 'react-icons/md';
+import { HStack } from 'shared/ui/containers';
 import { Button } from 'shared/ui/button';
 import { useDynamicModule, useTypedDispatch } from 'shared/lib/hooks';
-import { addCommentFormActions, addCommentFormReducer } from '../../model/slice/addCommentFormSlice';
 import { classNames } from 'shared/lib/class-names';
 import styles from './AddCommentForm.module.scss';
 
@@ -39,7 +40,7 @@ export const AddCommentForm: FC<IAddCommentFormProps> = (props) => {
   }, [textInput, addComment, dispatch]);
 
   return (
-    <div
+    <HStack
       {...anotherProps}
       data-testid="addCommentForm"
       className={classNames(styles.add_comment_form, {}, [className])}
@@ -59,6 +60,6 @@ export const AddCommentForm: FC<IAddCommentFormProps> = (props) => {
       />
 
       <Button onClick={addCommentHandler} className={styles.button} text={t('Отправить')} Icon={MdSend} />
-    </div>
+    </HStack>
   );
 };

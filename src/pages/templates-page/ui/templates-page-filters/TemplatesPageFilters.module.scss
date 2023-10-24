@@ -1,19 +1,13 @@
 .templates_page_filters {
   padding: var(--gap) 0;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  align-items: center;
   z-index: 10;
   width: 100%;
   background-color: var(--color-main);
 }
 
 .width {
-  width: 100%;
   display: flex;
   align-items: center;
-  max-width: var(--template-max-width);
 }
 
 .title {

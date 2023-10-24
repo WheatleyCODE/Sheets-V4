@@ -8,6 +8,7 @@ import { LanguageSwitcher } from 'features/language-switcher';
 import { User, getUser, userActions } from 'entities/user';
 import { Logo } from 'entities/logo';
 import { useTypedDispatch } from 'shared/lib/hooks';
+import { HStack } from 'shared/ui/containers';
 import { LS_AUTH_KEY, LS_DEFAULT_NAMESPACE } from 'shared/consts';
 import { KVFactory } from 'shared/lib/kv-storage';
 import { classNames } from 'shared/lib/class-names';
@@ -34,17 +35,16 @@ export const Navbar: FC<NavbarProps> = memo((props) => {
 
   return (
     <header data-testid="navbar" className={classNames(styles.navbar, {}, [className])}>
-      <div className={styles.left_side}>
+      <HStack>
         <NavigationMenu />
-
         <Logo />
-      </div>
+      </HStack>
 
-      <div className={styles.right_side}>
-        <LanguageSwitcher className={styles.margin_right} />
-        <ThemeSwitcher className={styles.margin_right} />
+      <HStack gapMultiply="2">
+        <LanguageSwitcher />
+        <ThemeSwitcher />
         <User openAuth={openAuth} logout={logout} user={user} />
-      </div>
+      </HStack>
     </header>
   );
 });

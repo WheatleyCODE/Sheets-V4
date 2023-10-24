@@ -1,6 +1,7 @@
 import { FC, memo } from 'react';
-import { Loader } from 'shared/ui/loader';
 import { useTranslation } from 'react-i18next';
+import { Loader } from 'shared/ui/loader';
+import { VStack } from 'shared/ui/containers';
 import { classNames } from 'shared/lib/class-names';
 import styles from './PageLoader.module.scss';
 
@@ -11,9 +12,9 @@ export const PageLoader: FC<IPageLoaderProps> = memo((props) => {
   const { t } = useTranslation();
 
   return (
-    <div {...anotherProps} className={classNames(styles.page_loader, {}, [className])}>
+    <VStack {...anotherProps} className={classNames(styles.page_loader, {}, [className])}>
       <Loader className={styles.loader} />
       <h1 className={styles.h1}>{t('Загрузка')}</h1>
-    </div>
+    </VStack>
   );
 });

@@ -3,6 +3,7 @@ import { INavigationMenuItem } from '../../model/types/navigation';
 import { Text } from 'shared/ui/text';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
+import { HStack } from 'shared/ui/containers';
 import { sleep } from 'shared/lib/promises';
 import { Icon as IconComponent } from 'shared/ui/icon';
 import { ANIMATION_DURATION } from 'shared/consts/animations/animation';
@@ -28,7 +29,8 @@ export const NavigationMenuItem: FC<INavigationMenuItemProps> = memo((props) => 
   }, [onClick, navigate, path]);
 
   return (
-    <div
+    <HStack
+      justify="start"
       {...anotherProps}
       data-testid="navigationMenuItem"
       onClick={onDelayClose}
@@ -36,6 +38,6 @@ export const NavigationMenuItem: FC<INavigationMenuItemProps> = memo((props) => 
     >
       <IconComponent Icon={Icon} className={styles.icon} />
       <Text className={styles.text} text={t(text)} />
-    </div>
+    </HStack>
   );
 });

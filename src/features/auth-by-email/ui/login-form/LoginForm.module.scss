@@ -1,27 +1,20 @@
 .login_form {
   width: 100%;
-
-  .title {
-    padding-bottom: calc(var(--gap) * 6);
-  }
   
-  .margin_bottom {
-    margin-bottom: calc(var(--gap) * 6);
-  }
   
   .button {
     width: 100%;
-    margin-top: calc(var(--gap) * 6);
     margin-bottom: calc(var(--gap) * 2);
   }
 
   .login_error {
-    display: flex;
-    align-items: center;
-    justify-content: center;
     border-radius: var(--radius);
     width: 100%;
     height: 40px;
     background-color: var(--color-red1);
+  }
+
+  .input {
+    width: 100%;
   }
 }

@@ -5,9 +5,11 @@ import { Avatar } from 'shared/ui/avatar';
 import { Text } from 'shared/ui/text';
 import { Link } from 'shared/ui/link';
 import { Title } from 'shared/ui/title';
+import { HStack, VStack } from 'shared/ui/containers';
 import { RoutesPath } from 'shared/config/route-config/routeConfig';
 import { classNames } from 'shared/lib/class-names';
 import styles from './CommentListItem.module.scss';
+
 interface ICommentListItemProps extends React.HTMLAttributes<HTMLDivElement> {
   comment: IComment;
 }
@@ -19,7 +21,8 @@ export const CommentListItem: FC<ICommentListItemProps> = (props) => {
   const { avatar, username, id } = user;
 
   return (
-    <div
+    <VStack
+      align="start"
       {...anotherProps}
       data-testid="commentListItem"
       className={classNames(styles.comment_list_item, {}, [className])}
@@ -27,16 +30,16 @@ export const CommentListItem: FC<ICommentListItemProps> = (props) => {
       <Title text={`${t('Перейти на профиль пользователя')}, ${username}`}>
         {/* ! FIX path shared */}
         <Link to={RoutesPath.profile + id}>
-          <div className={styles.header}>
+          <HStack gapMultiply="2" className={styles.header}>
             <Avatar width={40} height={40} src={avatar} />
-            <Text className={styles.username} title={username} />
-          </div>
+            <Text title={username} />
+          </HStack>
         </Link>
       </Title>
 
-      <div className={styles.main}>
+      <HStack className={styles.main}>
         <Text text={text} />
-      </div>
-    </div>
+      </HStack>
+    </VStack>
   );
 };

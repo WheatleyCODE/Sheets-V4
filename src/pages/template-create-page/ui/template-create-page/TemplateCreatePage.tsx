@@ -12,13 +12,13 @@ const TemplateCreatePage: FC<ITemplateCreatePageProps> = (props) => {
 
   return (
     <Layout>
-      <div
+      <section
         {...anotherProps}
         data-testid="templateCreatePage"
         className={classNames(styles.template_create_page, {}, [className])}
       >
         TemplateCreatePage
-      </div>
+      </section>
     </Layout>
   );
 };

@@ -1,13 +1,13 @@
 import { FC, MutableRefObject, UIEvent, useCallback, useRef } from 'react';
+import { useLocation } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import { ModalController } from '../modal-controller/ModalController';
+import { scrollActions } from '../../model/slice/scroll/scrollSlice';
+import { getScrollPositionByPath } from '../../model/selectors/scroll/getScrollPositionByPath/getScrollPositionByPath';
+import { IStateSchema } from 'app/providers/store-provider';
 import { useDebounce, useInfiniteScroll, useInitialEffect, useTypedDispatch } from 'shared/lib/hooks';
 import { classNames } from 'shared/lib/class-names';
 import styles from './Layout.module.scss';
-import { scrollActions } from '../../model/slice/scroll/scrollSlice';
-import { useLocation } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-import { getScrollPositionByPath } from 'widgets/layout/model/selectors/scroll/getScrollPositionByPath/getScrollPositionByPath';
-import { IStateSchema } from 'app/providers/store-provider';
 
 interface ILayoutProps extends React.HTMLAttributes<HTMLDivElement> {
   onScrollEnd?: () => void;

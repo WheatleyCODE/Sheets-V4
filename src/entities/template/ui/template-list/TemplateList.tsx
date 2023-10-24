@@ -6,6 +6,7 @@ import { TemplateListItem } from '../template-list-item/TemplateListItem';
 import { Skeleton } from 'shared/ui/skeleton';
 import { classNames } from 'shared/lib/class-names';
 import styles from './TemplateList.module.scss';
+
 interface ITemplateListProps extends React.HTMLAttributes<HTMLDivElement> {
   templates: ITemplate[];
   isLoading?: boolean;
@@ -33,6 +34,7 @@ export const TemplateList: FC<ITemplateListProps> = (props) => {
   } = props;
 
   const isSquares = view === TemplateView.SQUARES;
+  // ! FIX NUMBERS
   const skeletonsLength = isSquares ? 12 : 4;
 
   const getScroll =
@@ -125,6 +127,7 @@ export const TemplateList: FC<ITemplateListProps> = (props) => {
       className={classNames(styles.template_list, {}, [className, styles[view]])}
     >
       <div className={styles.width}>
+        {/* ! FIX NUMBERS */}
         <AutoSizer style={{ width: 'calc(100vw - 40px)', height: 'calc(100vh - 210px)', marginTop: 10 }}>
           {({ height, width }) => {
             const lineCount = getSquaresLineCount(width);

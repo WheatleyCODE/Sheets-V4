@@ -4,9 +4,11 @@ import { IComment } from '../../model/types/comment';
 import { CommentListItem } from '../comment-list-item/CommentListItem';
 import { intoIter } from 'shared/lib/iterators';
 import { Text, TextStyle } from 'shared/ui/text';
+import { HStack, VStack } from 'shared/ui/containers';
 import { Skeleton } from 'shared/ui/skeleton';
 import { classNames } from 'shared/lib/class-names';
 import styles from './CommentList.module.scss';
+
 interface ICommentListProps extends React.HTMLAttributes<HTMLDivElement> {
   comments?: IComment[];
   isLoading?: boolean;
@@ -24,10 +26,11 @@ export const CommentList: FC<ICommentListProps> = (props) => {
   const skeletonsArr = intoIter([1, 2, 3, 4])
     .map(() => (
       <Skeleton className={styles.comment_item_skeleton}>
-        <div className={styles.comment_item_skeleton_header}>
+        <HStack gapMultiply="2">
           <Skeleton width={40} height={40} borderRadius="50%" />
           <Skeleton className={styles.comment_item_skeleton_username} />
-        </div>
+        </HStack>
+
         <Skeleton className={styles.comment_item_skeleton_main} />
       </Skeleton>
     ))
@@ -35,27 +38,27 @@ export const CommentList: FC<ICommentListProps> = (props) => {
 
   if (isLoading) {
     return (
-      <div {...anotherProps} data-testid="commentList" className={classNames(styles.comment_list, {}, [className])}>
+      <VStack {...anotherProps} data-testid="commentList" className={classNames(styles.comment_list, {}, [className])}>
         {skeletonsArr}
-      </div>
+      </VStack>
     );
   }
 
   if (error) {
     return (
-      <div
+      <VStack
         {...anotherProps}
         data-testid="commentList"
         className={classNames(styles.comment_list, {}, [className, styles.error])}
       >
         <Text text={error} textStyle={TextStyle.ERROR} />
-      </div>
+      </VStack>
     );
   }
 
   return (
-    <div {...anotherProps} data-testid="commentList" className={classNames(styles.comment_list, {}, [className])}>
+    <VStack {...anotherProps} data-testid="commentList" className={classNames(styles.comment_list, {}, [className])}>
       {commentsArr.length ? commentsArr : <div className={styles.no_comments}>{t('Комментариев нет')}</div>}
-    </div>
+    </VStack>
   );
 };

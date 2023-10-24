@@ -7,17 +7,19 @@ import { emailValidator, passwordValidator } from 'shared/lib/validators';
 import { Button } from 'shared/ui/button';
 import { loginActions, loginReducer } from '../../model/slice/loginSlice';
 import { loginByEmail } from '../../model/services/login-by-email/loginByEmail';
-import { Text } from 'shared/ui/text';
-import { TextStyle } from 'shared/ui/text';
-import { TextSize } from 'shared/ui/text/ui/interface';
-import { callOnFulfilled } from 'shared/lib/utils';
 import { getLoginEmail } from '../../model/selectors/get-login-email/getLoginEmail';
 import { getLoginPassword } from '../../model/selectors/get-login-password/getLoginPassword';
 import { getLoginIsLoading } from '../../model/selectors/get-login-is-loading/getLoginIsLoading';
 import { getLoginError } from '../../model/selectors/get-login-error/getLoginError';
+import { Text } from 'shared/ui/text';
+import { TextStyle } from 'shared/ui/text';
+import { TextSize } from 'shared/ui/text/ui/interface';
+import { callOnFulfilled } from 'shared/lib/utils';
+import { HStack, VStack } from 'shared/ui/containers';
 import { useDynamicModule, useTypedDispatch } from 'shared/lib/hooks';
 import { classNames } from 'shared/lib/class-names';
 import styles from './LoginForm.module.scss';
+
 interface ILoginFormProps extends React.HTMLAttributes<HTMLDivElement> {
   onLoginSuccess: () => void;
 }
@@ -60,10 +62,17 @@ const LoginForm: FC<ILoginFormProps> = memo((props) => {
   }, [emailInput.value, passwordInput.value, dispatch, onLoginSuccess]);
 
   return (
-    <div {...anotherProps} data-testid="loginForm" className={classNames(styles.login_form)}>
-      <Text textSize={TextSize.BIG} className={styles.title} title={t('Вход в систему')} />
+    <VStack
+      align="start"
+      gapMultiply="6"
+      {...anotherProps}
+      data-testid="loginForm"
+      className={classNames(styles.login_form)}
+    >
+      <Text textSize={TextSize.BIG} title={t('Вход в систему')} />
 
       <Input
+        className={styles.input}
         Icon={MdOutlineEmail}
         value={emailInput.value}
         type="text"
@@ -74,10 +83,10 @@ const LoginForm: FC<ILoginFormProps> = memo((props) => {
         isError={emailInput.isError}
         validError={t(emailInput.validError || '')}
         isActive={emailInput.isActive}
-        className={styles.margin_bottom}
       />
 
       <Input
+        className={styles.input}
         Icon={MdOutlinePassword}
         value={passwordInput.value}
         type="password"
@@ -93,11 +102,11 @@ const LoginForm: FC<ILoginFormProps> = memo((props) => {
       <Button onClick={onLogin} disable={isDisable || isLoading} className={styles.button} text={t('Войти')} />
 
       {!!error && (
-        <div className={styles.login_error}>
+        <HStack className={styles.login_error}>
           <Text textStyle={TextStyle.ERROR} text={error} />
-        </div>
+        </HStack>
       )}
-    </div>
+    </VStack>
   );
 });
 

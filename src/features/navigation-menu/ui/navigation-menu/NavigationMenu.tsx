@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import { AnimatePresence } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import { MdOutlineMenu } from 'react-icons/md';
+import { NavigationMenuItem } from '../navigation-menu-item/NavigationMenuItem';
 import { INavigationMenuItem } from '../../model/types/navigation';
 import { getNavigationItems } from '../../model/selectors/get-navigation-items/getNavigationItems';
 import { Logo } from 'entities/logo';
@@ -11,9 +12,9 @@ import { Button, ButtonStyles } from 'shared/ui/button';
 import { Drawer, DrawerOpenStyles } from 'shared/ui/drawer';
 import { Portal } from 'shared/ui/portal';
 import { Backdrop } from 'shared/ui/backdrop';
+import { HStack, VStack } from 'shared/ui/containers';
 import { Title } from 'shared/ui/title';
 import { intoIter } from 'shared/lib/iterators';
-import { NavigationMenuItem } from '../navigation-menu-item/NavigationMenuItem';
 import { classNames } from 'shared/lib/class-names';
 import styles from './NavigationMenu.module.scss';
 
@@ -54,10 +55,10 @@ export const NavigationMenu: FC<INavigationMenuProps> = memo((props) => {
           <Portal>
             <Backdrop onClose={closeMenu}>
               <Drawer openStyles={DrawerOpenStyles.LEFT} width={300}>
-                <div className={styles.logo}>
+                <HStack justify="start" className={styles.logo}>
                   <Logo />
-                </div>
-                <div className={styles.links}>{navigationLinks}</div>
+                </HStack>
+                <VStack className={styles.links}>{navigationLinks}</VStack>
               </Drawer>
             </Backdrop>
           </Portal>

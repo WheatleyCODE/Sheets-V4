@@ -1,10 +1,6 @@
 import { ChangeEvent, FC, useCallback, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { classNames } from 'shared/lib/class-names';
-import styles from './TemplatesPageFilters.module.scss';
-import { TemplateTags, TemplateView } from 'entities/template';
-import { TemplatesViewSwitcher } from 'features/templates-view-switcher';
-import { Input, useValidInput } from 'shared/ui/input';
+import { BsSortDown, BsSortUp } from 'react-icons/bs';
 import {
   MdOutlineCalendarMonth,
   MdOutlineFilterList,
@@ -13,14 +9,19 @@ import {
   MdOutlineSort,
   MdOutlineTitle,
 } from 'react-icons/md';
-import { BsSortDown, BsSortUp } from 'react-icons/bs';
-import { TemplateSortOrders, TemplateSortFields } from 'pages/templates-page/model/types/templatesPage';
-import { Title } from 'shared/ui/title';
+import { TemplatesViewSwitcher } from 'features/templates-view-switcher';
+import { TemplateTags, TemplateView } from 'entities/template';
+import { ITemplateTab, templateTabs } from 'entities/template/model/consts/tags';
+import { Input, useValidInput } from 'shared/ui/input';
+import { TemplateSortOrders, TemplateSortFields } from '../../model/types/templatesPage';
 import { IInputOptionsMenuItem } from 'shared/ui/input';
 import { DragLine, DragLineItem } from 'shared/ui/drag-line';
 import { TabItem, Tabs } from 'shared/ui/tabs';
-import { ITemplateTab, templateTabs } from 'entities/template/model/consts/tags';
 import { intoIter } from 'shared/lib/iterators';
+import { Title } from 'shared/ui/title';
+import { VStack, Width } from 'shared/ui/containers';
+import { classNames } from 'shared/lib/class-names';
+import styles from './TemplatesPageFilters.module.scss';
 
 interface ITemplatesPageFiltersProps extends React.HTMLAttributes<HTMLDivElement> {
   sort: TemplateSortFields;
@@ -108,12 +109,12 @@ export const TemplatesPageFilters: FC<ITemplatesPageFiltersProps> = (props) => {
     .toArray();
 
   return (
-    <div
+    <VStack
       {...anotherProps}
       data-testid="templatesPageFilters"
       className={classNames(styles.templates_page_filters, {}, [className])}
     >
-      <div className={styles.width}>
+      <Width className={styles.width}>
         <Title isStopShow={searchInput.isActive} classNameContainer={styles.title} text={t('Поиск')}>
           <div className={styles.search}>
             <Input
@@ -181,13 +182,13 @@ export const TemplatesPageFilters: FC<ITemplatesPageFiltersProps> = (props) => {
         </Title>
 
         <TemplatesViewSwitcher changeView={changeView} view={view} />
-      </div>
+      </Width>
 
-      <div className={styles.width}>
+      <Width className={styles.width}>
         <Tabs initValue={tag}>
           <DragLine className={styles.drag_line}>{tabDragItems}</DragLine>
         </Tabs>
-      </div>
-    </div>
+      </Width>
+    </VStack>
   );
 };

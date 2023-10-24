@@ -1,14 +1,15 @@
 import { FC, useCallback, useEffect, useState } from 'react';
 import { classNames } from 'shared/lib/class-names';
-import styles from './ProfileCardEdit.module.scss';
-import { IProfile } from 'entities/profile/model/types/profile';
+import { IProfile } from '../../model/types/profile';
 import { Button } from 'shared/ui/button';
 import { useTranslation } from 'react-i18next';
 import { IInputValidHooks } from '../profile-card/getInfoItemArr';
 import { Title } from 'shared/ui/title';
+import { HStack } from 'shared/ui/containers';
 import { intoIter } from 'shared/lib/iterators';
 import { IValidInputOpts } from 'shared/ui/input';
 import { ButtonColor } from 'shared/ui/button/ui/button/interface';
+import styles from './ProfileCardEdit.module.scss';
 
 interface IProfileCardEditProps extends React.HTMLAttributes<HTMLDivElement> {
   enableProfileChange: () => void;
@@ -58,7 +59,12 @@ export const ProfileCardEdit: FC<IProfileCardEditProps> = (props) => {
   }, [saveProfileChange, validHooks]);
 
   return (
-    <div {...anotherProps} data-testid="profileCardEdit" className={classNames(styles.edit, {}, [className])}>
+    <HStack
+      justify="space-between"
+      {...anotherProps}
+      data-testid="profileCardEdit"
+      className={classNames(styles.edit, {}, [className])}
+    >
       {isReadonly ? (
         <Title text={t('Редактировать профиль')}>
           <Button onClick={enableProfileChange} className={styles.button} text={t('Редактировать')} />
@@ -84,6 +90,6 @@ export const ProfileCardEdit: FC<IProfileCardEditProps> = (props) => {
           </Title>
         </>
       )}
-    </div>
+    </HStack>
   );
 };

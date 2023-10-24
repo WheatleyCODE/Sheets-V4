@@ -11,6 +11,7 @@ import {
 import { ITemplate, TemplateView } from '../../model/types/template';
 import { Image } from 'shared/ui/image';
 import { Text } from 'shared/ui/text';
+import { HStack, VStack } from 'shared/ui/containers';
 import { Icon } from 'shared/ui/icon';
 import { Title } from 'shared/ui/title';
 import { Button } from 'shared/ui/button';
@@ -45,49 +46,49 @@ export const TemplateListItem: FC<ITemplateListItemProps> = (props) => {
   }, []);
 
   return (
-    <div
+    <VStack
       {...anotherProps}
       data-testid="templateListItem"
       className={classNames(styles.template_list_item, {}, [className, styles[view]])}
     >
       <Card className={styles.card}>
-        <div className={styles.image_container}>
+        <HStack justify="start" className={styles.image_container}>
           <Image className={styles.image} src={image} />
-        </div>
+        </HStack>
 
-        <div className={styles.info}>
+        <HStack justify="start" className={styles.info}>
           <Title text={t('Просмотры')}>
-            <div className={styles.info_row}>
+            <HStack justify="start">
               <Icon className={styles.icon} Icon={MdOutlineVisibility} />
               <Text className={styles.info_text} text={String(views)} />
-            </div>
+            </HStack>
           </Title>
 
           <Title text={t('Дата создания')}>
-            <div className={styles.info_row}>
+            <HStack justify="start">
               <Icon className={styles.icon} Icon={MdOutlineCalendarMonth} />
               <Text className={styles.info_text} text={createdAt} />
-            </div>
+            </HStack>
           </Title>
 
           <Title text={`${t('Теги')}: ${tags.join(', ')}`}>
-            <div className={styles.info_row}>
+            <HStack justify="start">
               <Icon className={styles.icon} Icon={MdOutlineDataArray} />
               <Text className={classNames(styles.info_text, {}, [styles.tags])} text={tags.join(', ')} />
-            </div>
+            </HStack>
           </Title>
-        </div>
+        </HStack>
 
-        <div className={styles.text}>
+        <VStack align="start">
           <Title className={styles.hover_title} text={title}>
             <Text className={styles.text_title} title={title} />
           </Title>
           <Title className={styles.hover_title} text={subtitle}>
             <Text className={styles.text_subtitle} text={subtitle} />
           </Title>
-        </div>
+        </VStack>
 
-        <div className={styles.buttons}>
+        <HStack className={styles.buttons} justify="space-between">
           <Title text={t('Открыть шаблон в таблицах')}>
             <Button
               onClick={openInSheets}
@@ -104,8 +105,8 @@ export const TemplateListItem: FC<ITemplateListItemProps> = (props) => {
               text={t('Подробнее')}
             />
           </Title>
-        </div>
+        </HStack>
       </Card>
-    </div>
+    </VStack>
   );
 };

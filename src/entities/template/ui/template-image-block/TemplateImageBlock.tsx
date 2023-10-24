@@ -2,8 +2,10 @@ import { FC, memo } from 'react';
 import { ITemplateImageBlock } from '../../model/types/template';
 import { Image } from 'shared/ui/image';
 import { Text, TextSize } from 'shared/ui/text';
+import { HStack, VStack } from 'shared/ui/containers';
 import { classNames } from 'shared/lib/class-names';
 import styles from './TemplateImageBlock.module.scss';
+
 interface ITemplateImageBlockProps extends React.HTMLAttributes<HTMLDivElement> {
   block: ITemplateImageBlock;
 }
@@ -13,7 +15,8 @@ export const TemplateImageBlock: FC<ITemplateImageBlockProps> = memo((props) => 
   const { src, title } = block;
 
   return (
-    <div
+    <VStack
+      align="start"
       {...anotherProps}
       data-testid="templateImageBlock"
       className={classNames(styles.template_image_block, {}, [className])}
@@ -21,10 +24,10 @@ export const TemplateImageBlock: FC<ITemplateImageBlockProps> = memo((props) => 
       <Image alt={title} className={styles.image} src={src} />
 
       {!!title && (
-        <div className={styles.title_row}>
+        <HStack justify="start" className={styles.title_row}>
           <Text textSize={TextSize.SMALL} title={title} />
-        </div>
+        </HStack>
       )}
-    </div>
+    </VStack>
   );
 });

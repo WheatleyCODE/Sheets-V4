@@ -3,19 +3,11 @@
 }
 
 .comments, .add_comment_form, .recommends {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   padding-top: calc(var(--gap) * 2);
 }
 
-.add_comment_form {
+.add_comment_form, .recommends {
   margin-bottom: calc(var(--gap) * 2);
-}
-
-.comments_width, .add_comment_form_width, .recommends_width {
-  max-width: var(--template-max-width);
-  width: 100%;
 }
 
 .comments_title, .dd_comment_form_title {

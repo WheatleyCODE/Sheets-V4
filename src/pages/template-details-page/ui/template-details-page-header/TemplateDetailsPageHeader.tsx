@@ -1,16 +1,16 @@
 import { FC, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
-import { classNames } from 'shared/lib/class-names';
-import styles from './TemplateDetailsPageHeader.module.scss';
+import { useSelector } from 'react-redux';
+import { MdChevronLeft } from 'react-icons/md';
 import { useNavigate } from 'react-router-dom';
 import { RoutesPath } from 'shared/config/route-config/routeConfig';
+import { getTemplateDetails } from 'entities/template';
 import { Title } from 'shared/ui/title';
 import { Button } from 'shared/ui/button';
-import { MdChevronLeft } from 'react-icons/md';
-import { useSelector } from 'react-redux';
-import { getUser } from 'entities/user';
-import { getTemplateDetails } from 'entities/template';
 import { getTemplateDetailsIsCanEdit } from '../../model/selectors/get-template-details-is-can-edit/getTemplateDetailsIsCanEdit';
+import { HStack, Width } from 'shared/ui/containers';
+import { classNames } from 'shared/lib/class-names';
+import styles from './TemplateDetailsPageHeader.module.scss';
 
 interface ITemplateDetailsPageHeaderProps extends React.HTMLAttributes<HTMLDivElement> {}
 
@@ -32,26 +32,28 @@ export const TemplateDetailsPageHeader: FC<ITemplateDetailsPageHeaderProps> = (p
   }, [template.id]);
 
   return (
-    <div
+    <HStack
       {...anotherProps}
       data-testid="templateDetailsPageHeader"
       className={classNames(styles.template_details_page_header, {}, [className])}
     >
-      <div className={styles.width}>
-        <div className={styles.back}>
-          <Title text={t('Вернуться к шаблонам')}>
-            <Button onClick={navigateToTemplates} Icon={MdChevronLeft} text={t('Вернуться к шаблонам')} />
-          </Title>
-        </div>
-
-        {isCanEdit && (
-          <div className={styles.edit}>
-            <Title text={t('Редактировать шаблон')}>
-              <Button onClick={navigateToTemplatesEdit} Icon={MdChevronLeft} text={t('Редактировать')} />
+      <Width maxWidth="template" className={styles.width}>
+        <HStack justify="space-between">
+          <div className={styles.back}>
+            <Title text={t('Вернуться к шаблонам')}>
+              <Button onClick={navigateToTemplates} Icon={MdChevronLeft} text={t('Вернуться к шаблонам')} />
             </Title>
           </div>
-        )}
-      </div>
-    </div>
+
+          {isCanEdit && (
+            <div className={styles.edit}>
+              <Title text={t('Редактировать шаблон')}>
+                <Button onClick={navigateToTemplatesEdit} Icon={MdChevronLeft} text={t('Редактировать')} />
+              </Title>
+            </div>
+          )}
+        </HStack>
+      </Width>
+    </HStack>
   );
 };

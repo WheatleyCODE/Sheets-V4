@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { IUser } from '../../model/types/user';
 import { Title } from 'shared/ui/title';
 import { Button } from 'shared/ui/button';
+import { HStack } from 'shared/ui/containers';
 import { classNames } from 'shared/lib/class-names';
 import styles from './User.module.scss';
 
@@ -22,10 +23,10 @@ export const User: FC<IUserProps> = memo((props) => {
   const buttonCallback = isUser ? logout : openAuth;
 
   return (
-    <div {...anotherProps} data-testid="logo" className={classNames(styles.user, {}, [className])}>
+    <HStack {...anotherProps} data-testid="logo" className={classNames(styles.user, {}, [className])}>
       <Title text={t('Пользователь')}>
         <Button text={buttonText} onClick={buttonCallback} Icon={MdPerson} />
       </Title>
-    </div>
+    </HStack>
   );
 });

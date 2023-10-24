@@ -8,6 +8,7 @@ import { Modal } from 'shared/ui/modal';
 import { Link } from 'shared/ui/link';
 import { findParam, addParam } from 'shared/lib/paths';
 import { Loader } from 'shared/ui/loader';
+import { HStack } from 'shared/ui/containers';
 import { classNames } from 'shared/lib/class-names';
 import styles from './AuthModal.module.scss';
 
@@ -61,7 +62,8 @@ export const AuthModal: FC<IAuthModalProps> = memo((props) => {
           <Suspense fallback={<Loader isCenter />}>
             {isRegister ? <RegisterFormAsync /> : <LoginFormAsync onLoginSuccess={onClose} />}
           </Suspense>
-          <div className={styles.links}>{link}</div>
+
+          <HStack className={styles.links}>{link}</HStack>
         </div>
       </Modal>
     </Backdrop>

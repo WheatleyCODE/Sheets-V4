@@ -14,16 +14,6 @@
     margin-top: calc(var(--gap) * 2);
   }
 
-  .info_row {
-    display: flex;
-    align-items: center;
-  }
-
-  .buttons {
-    display: flex;
-    justify-content: space-between;
-  }
-
   .text_title {
     margin-top: var(--gap);
     margin-bottom: calc(var(--gap) * 2);

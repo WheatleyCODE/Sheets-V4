@@ -12,17 +12,8 @@
   min-height: 115px;
 }
 
-.comment_item_skeleton_header {
-  display: flex;
-  align-items: center;
-}
-
 .comment_item_skeleton_main {
   margin-top: calc(var(--gap) * 2);
-}
-
-.comment_item_skeleton_username {
-  margin-left: calc(var(--gap) * 2);
 }
 
 .comment_item_skeleton_username, .comment_item_skeleton_main {

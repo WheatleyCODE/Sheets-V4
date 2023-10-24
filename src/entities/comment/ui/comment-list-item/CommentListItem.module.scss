@@ -6,8 +6,6 @@
 
 .header {
   transition: color var(--animation-duration);
-  display: flex;
-  align-items: center;
 
   &:hover div {
     color: var(--color-primary);
@@ -16,8 +14,4 @@
 
 .main {
   margin-top: calc(var(--gap) * 2);
-}
-
-.username {
-  margin-left: calc(var(--gap) * 2);
 }

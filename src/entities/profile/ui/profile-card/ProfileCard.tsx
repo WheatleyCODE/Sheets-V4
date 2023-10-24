@@ -1,7 +1,7 @@
 import { FC, memo, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { IconType } from 'react-icons';
-import { IProfile } from 'entities/profile';
+import { IProfile } from '../../model/types/profile';
 import { Text } from 'shared/ui/text';
 import { TextSize, TextStyle } from 'shared/ui/text';
 import { Loader } from 'shared/ui/loader';
@@ -23,6 +23,7 @@ import { Title } from 'shared/ui/title';
 import { Avatar } from 'shared/ui/avatar';
 import { classNames } from 'shared/lib/class-names';
 import styles from './ProfileCard.module.scss';
+import { HStack, VStack } from 'shared/ui/containers';
 
 export enum ProfileCardTextAlign {
   CENTER = 'center',
@@ -100,7 +101,7 @@ export const ProfileCard: FC<IProfileCardProps> = memo((props) => {
 
   const infoItems = intoIter<InfoItem>(infoArr)
     .map(({ title, input, Icon, options }) => (
-      <div key={title} className={styles.row}>
+      <HStack key={title}>
         <Text className={styles.title} textSize={TextSize.SMALL} title={`${t(title)}:`} />
         <Title isStopShow={input.isFocus} text={t(title)}>
           <Input
@@ -118,46 +119,47 @@ export const ProfileCard: FC<IProfileCardProps> = memo((props) => {
             options={options && options}
           />
         </Title>
-      </div>
+      </HStack>
     ))
     .toArray();
 
   if (isLoading)
     return (
-      <div
-        {...anotherProps}
-        data-testid="profileCard"
-        className={classNames(styles.profile_card, {}, [className, styles.loading])}
-      >
+      <VStack {...anotherProps} data-testid="profileCard" className={classNames(styles.profile_card, {}, [className])}>
         <Loader isCenter />
-      </div>
+      </VStack>
     );
 
   if (error)
     return (
-      <div
-        {...anotherProps}
-        data-testid="profileCard"
-        className={classNames(styles.profile_card, {}, [className, styles.error])}
-      >
-        <Text textStyle={TextStyle.ERROR} title={t('Произошла ошибка при загрузке профиля')} />
-        <Text textStyle={TextStyle.ERROR} text={error} />
-      </div>
+      <VStack {...anotherProps} data-testid="profileCard" className={classNames(styles.profile_card, {}, [className])}>
+        <VStack gapMultiply="1">
+          <Text textStyle={TextStyle.ERROR} title={t('Произошла ошибка при загрузке профиля')} />
+          <Text textStyle={TextStyle.ERROR} text={error} />
+        </VStack>
+      </VStack>
     );
 
   return (
-    <div
+    <VStack
       {...anotherProps}
+      align="start"
       data-testid="profileCard"
       className={classNames(styles.profile_card, { [styles[textAlign]]: true }, [className])}
     >
-      <Text className={styles.card_title} textSize={TextSize.BIG} title={`${t('Профиль')}, ${username}`} />
-      <div className={styles.avatar_container}>
+      <HStack className={styles.title_container} justify="start">
+        <Text textSize={TextSize.BIG} title={`${t('Профиль')}, ${username}`} />
+      </HStack>
+
+      <HStack className={styles.avatar_container} justify="start">
         <Title text={t('Аватар')}>
           <Avatar src={avatar} />
         </Title>
-      </div>
-      <div className={styles.main}>{infoItems}</div>
+      </HStack>
+
+      <VStack gapMultiply="1" className={styles.main}>
+        {infoItems}
+      </VStack>
 
       {!!edit && (
         <ProfileCardEdit
@@ -168,6 +170,6 @@ export const ProfileCard: FC<IProfileCardProps> = memo((props) => {
           saveProfileChange={edit.saveProfileChange}
         />
       )}
-    </div>
+    </VStack>
   );
 });

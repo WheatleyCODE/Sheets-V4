@@ -2,19 +2,10 @@
   position: relative;
   padding: calc(var(--gap) * 4) 0;
   height: 100%;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
 
   div, img {
     flex-shrink: 0;
   }
-}
-
-.template_details.error {
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 .title_skeleton, .subtitle_skeleton,
@@ -49,14 +40,7 @@
 }
 
 .info, .title, .subtitle {
-  display: flex;
-  align-items: center;
   width: 100%;
-}
-
-.views, .date, .tags {
-  display: flex;
-  align-items: center;
 }
 
 .block_margin {

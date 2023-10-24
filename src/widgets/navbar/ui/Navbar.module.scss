@@ -7,13 +7,3 @@
   background-color: var(--color-main);
   padding: 0 calc(var(--gap) * 4);
 }
-
-.left_side, .right_side {
-  height: 100%;
-  display: flex;
-  align-items: center;
-}
-
-.margin_right {
-  margin-right: 10px;
-}

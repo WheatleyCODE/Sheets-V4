@@ -3,9 +3,10 @@ import { useTranslation } from 'react-i18next';
 import { TemplateView } from 'entities/template';
 import { MdOutlineViewList, MdOutlineViewModule } from 'react-icons/md';
 import { Button, ButtonStyles } from 'shared/ui/button';
+import { Title } from 'shared/ui/title';
+import { HStack } from 'shared/ui/containers';
 import { classNames } from 'shared/lib/class-names';
 import styles from './TemplatesViewSwitcher.module.scss';
-import { Title } from 'shared/ui/title';
 
 interface ITemplatesViewSwitcherProps extends React.HTMLAttributes<HTMLDivElement> {
   view: TemplateView;
@@ -27,12 +28,13 @@ export const TemplatesViewSwitcher: FC<ITemplatesViewSwitcherProps> = (props) =>
   }, [changeView]);
 
   return (
-    <div
+    <HStack
+      justify="end"
       {...anotherProps}
       data-testid="templatesViewSwitcher"
       className={classNames(styles.templates_view_switcher, {}, [className])}
     >
-      <div>
+      <HStack justify="start">
         <Title text={t('Сменить вид на квадратики')}>
           <Button
             onClick={setViewSquares}
@@ -41,9 +43,9 @@ export const TemplatesViewSwitcher: FC<ITemplatesViewSwitcherProps> = (props) =>
             Icon={MdOutlineViewModule}
           />
         </Title>
-      </div>
+      </HStack>
 
-      <div>
+      <HStack justify="start">
         <Title text={t('Сменить вид на линии')}>
           <Button
             onClick={setViewLines}
@@ -52,7 +54,7 @@ export const TemplatesViewSwitcher: FC<ITemplatesViewSwitcherProps> = (props) =>
             Icon={MdOutlineViewList}
           />
         </Title>
-      </div>
-    </div>
+      </HStack>
+    </HStack>
   );
 };
