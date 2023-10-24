@@ -1,16 +1,16 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { Width } from './Width';
+import { RWidth } from './RWidth';
 
 const meta = {
-  title: 'shared/containers/Width',
-  component: Width,
-} satisfies Meta<typeof Width>;
+  title: 'shared/containers/RWidth',
+  component: RWidth,
+} satisfies Meta<typeof RWidth>;
 
 export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-export const Templates: Story = {
+export const Template: Story = {
   args: {
     maxWidth: 'template',
     children: <div style={{ width: '100vw', height: '50px', background: 'red' }} />,

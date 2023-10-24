@@ -1,1 +1,103 @@
-.flex {}
+.flex {
+  display: flex;
+}
+
+// Justify
+.justify_start {
+  justify-content: flex-end;
+}
+
+.justify_center {
+  justify-content: center;
+}
+
+.justify_end {
+  justify-content: flex-end;
+}
+
+.justify_space-around {
+  justify-content: space-around;
+}
+
+.justify_space-between {
+  justify-content: space-between;
+}
+
+.justify_space-evenly {
+  justify-content: space-evenly;
+}
+
+// Align
+.align_start {
+  align-items: start;
+}
+
+.align_center {
+  align-items: center;
+}
+
+.align_end {
+  justify-content: end;
+}
+
+// Direction
+.direction_row {
+  flex-direction: row;
+}
+
+.direction_col {
+  flex-direction: column;
+}
+
+.direction_row-reverse {
+  flex-direction: row-reverse;
+}
+
+.direction_col-reverse {
+  flex-direction: column-reverse;
+}
+
+// Gap
+.gapMultiply_0 {
+  gap: calc(var(--gap) * 0);
+}
+
+.gapMultiply_1 {
+  gap: calc(var(--gap) * 1);
+}
+
+.gapMultiply_2 {
+  gap: calc(var(--gap) * 2);
+}
+
+.gapMultiply_3 {
+  gap: calc(var(--gap) * 3);
+}
+
+.gapMultiply_4 {
+  gap: calc(var(--gap) * 4);
+}
+
+.gapMultiply_5 {
+  gap: calc(var(--gap) * 5);
+}
+
+.gapMultiply_6 {
+  gap: calc(var(--gap) * 6);
+}
+
+.gapMultiply_7 {
+  gap: calc(var(--gap) * 7);
+}
+
+.gapMultiply_8 {
+  gap: calc(var(--gap) * 8);
+}
+
+.gapMultiply_9 {
+  gap: calc(var(--gap) * 9);
+}
+
+.gapMultiply_10 {
+  gap: calc(var(--gap) * 10);
+}

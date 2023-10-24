@@ -1,10 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { HStack } from './HStack';
-import { Theme } from 'app/providers/lib/theme-context';
-import { themeDecorator } from '../../../../../../config/storybook/theme-decorator/themeDecorator';
 
 const meta = {
-  title: 'changeTitle/HStack',
+  title: 'shared/containers/HStack',
   component: HStack,
 } satisfies Meta<typeof HStack>;
 
@@ -12,11 +10,28 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-export const Light: Story = {
-  args: {},
+export const GapX2: Story = {
+  args: {
+    gapMultiply: '2',
+    children: (
+      <>
+        <div>1,</div>
+        <div>2,</div>
+        <div>3,</div>
+      </>
+    ),
+  },
 };
 
-export const Dark: Story = {
-  args: {},
-  decorators: [themeDecorator(Theme.DARK)],
+export const GapX4: Story = {
+  args: {
+    gapMultiply: '4',
+    children: (
+      <>
+        <div>1,</div>
+        <div>2,</div>
+        <div>3,</div>
+      </>
+    ),
+  },
 };

@@ -1,1 +1,15 @@
-.width {}
+.width {
+  width: 100%;
+}
+
+.templates {
+  max-width: var(--template-max-width);
+}
+
+.sheets {
+  max-width: var(--sheets-max-width);
+}
+
+.default {
+  max-width: var(--default-max-width);
+}
