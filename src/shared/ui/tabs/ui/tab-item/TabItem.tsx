@@ -1,10 +1,9 @@
 import { MouseEvent, ReactNode, useCallback, useEffect, useRef, useState } from 'react';
-import { classNames } from 'shared/lib/class-names';
-import styles from './TabItem.module.scss';
 import { useTabs } from '../../lib/useTabs';
 import { getClientXY, onStream, saveCoords } from 'shared/lib/iterators';
 import { curry, pipe } from 'shared/lib/fp';
-
+import { classNames } from 'shared/lib/class-names';
+import styles from './TabItem.module.scss';
 export interface ITabItem {
   value: string;
   children: ReactNode;

@@ -20,6 +20,7 @@ import { Card } from 'shared/ui/card';
 import { RoutesPath } from 'shared/config/route-config/routeConfig';
 import { classNames } from 'shared/lib/class-names';
 import styles from './TemplateListItem.module.scss';
+
 interface ITemplateListItemProps extends React.HTMLAttributes<HTMLDivElement> {
   template: ITemplate;
   view: TemplateView;

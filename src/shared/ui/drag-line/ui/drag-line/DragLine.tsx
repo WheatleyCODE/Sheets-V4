@@ -2,12 +2,11 @@ import { FC } from 'react';
 import { motion } from 'framer-motion';
 import { intoIter } from 'shared/lib/iterators';
 import { DragLineItem, IDragLineItem, ITEM_MARGIN_RIGHT } from '../drag-line-item/DragLineItem';
-import { classNames } from 'shared/lib/class-names';
-import styles from './DragLine.module.scss';
 import { useDragLine } from '../../lib/useDragLine';
 import { DragLineProvider } from '../drag-line-provider/DragLineProvider';
 import { withProvider } from 'shared/lib/with-provider';
-
+import { classNames } from 'shared/lib/class-names';
+import styles from './DragLine.module.scss';
 interface IDragLineProps extends React.HTMLAttributes<HTMLDivElement> {
   items?: IDragLineItem[];
 }

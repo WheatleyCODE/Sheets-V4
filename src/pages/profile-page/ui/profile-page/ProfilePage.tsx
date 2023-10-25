@@ -1,5 +1,9 @@
 import { FC, memo, useCallback } from 'react';
+import { useParams } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import { Layout } from 'widgets/layout';
+import { getUser } from 'entities/user';
+import { getProfile } from 'entities/profile';
 import { useDynamicModule, useTypedDispatch } from 'shared/lib/hooks';
 import {
   IProfile,
@@ -12,13 +16,9 @@ import {
   profileReducer,
   updateProfile,
 } from 'entities/profile';
-import { useSelector } from 'react-redux';
-import { getProfile } from 'entities/profile';
 import { useInitialEffect } from 'shared/lib/hooks';
 import { classNames } from 'shared/lib/class-names';
 import styles from './ProfilePage.module.scss';
-import { useParams } from 'react-router-dom';
-import { getUser } from 'entities/user';
 
 const ProfilePage: FC = memo(() => {
   useDynamicModule({ profile: profileReducer });

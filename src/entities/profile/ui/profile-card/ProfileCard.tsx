@@ -19,11 +19,11 @@ import {
 } from 'shared/lib/validators';
 import { ProfileCardEdit } from '../profile-card-edit/ProfileCardEdit';
 import { Country, Currency } from '../../model/types/profile';
+import { HStack, VStack } from 'shared/ui/containers';
 import { Title } from 'shared/ui/title';
 import { Avatar } from 'shared/ui/avatar';
 import { classNames } from 'shared/lib/class-names';
 import styles from './ProfileCard.module.scss';
-import { HStack, VStack } from 'shared/ui/containers';
 
 export enum ProfileCardTextAlign {
   CENTER = 'center',
