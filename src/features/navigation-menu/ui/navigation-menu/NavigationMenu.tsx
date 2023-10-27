@@ -41,7 +41,7 @@ export const NavigationMenu: FC<INavigationMenuProps> = memo((props) => {
     .toArray();
 
   return (
-    <menu {...anotherProps} data-testid="navigationMenu" className={classNames(styles.menu, {}, [className])}>
+    <aside {...anotherProps} data-testid="navigationMenu" className={classNames(styles.menu, {}, [className])}>
       {isOpen ? (
         <Button className={styles.button} buttonStyle={ButtonStyles.CLEAR} Icon={MdOutlineMenu} onClick={openMenu} />
       ) : (
@@ -58,12 +58,14 @@ export const NavigationMenu: FC<INavigationMenuProps> = memo((props) => {
                 <HStack justify="start" className={styles.logo}>
                   <Logo />
                 </HStack>
-                <VStack className={styles.links}>{navigationLinks}</VStack>
+                <VStack role="navigation" className={styles.links}>
+                  {navigationLinks}
+                </VStack>
               </Drawer>
             </Backdrop>
           </Portal>
         )}
       </AnimatePresence>
-    </menu>
+    </aside>
   );
 });

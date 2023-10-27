@@ -1,6 +1,6 @@
 import { FC, memo } from 'react';
 import { classNames } from 'shared/lib/class-names';
-import { TextSize, TextStyle } from '../interface';
+import { TextSize, TextStyle, TextTagType } from '../interface';
 import styles from './Text.module.scss';
 
 interface ITextProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -8,10 +8,21 @@ interface ITextProps extends React.HTMLAttributes<HTMLDivElement> {
   text?: string;
   textStyle?: TextStyle;
   textSize?: TextSize;
+  textTag?: TextTagType;
+  titleTag?: TextTagType;
 }
 
 export const Text: FC<ITextProps> = memo((props) => {
-  const { className, title, text, textStyle = TextStyle.DEFAULT, textSize = TextSize.NORMAL, ...anotherProps } = props;
+  const {
+    className,
+    title,
+    text,
+    textTag: TextTag = 'p',
+    titleTag: TitleTag = 'h2',
+    textStyle = TextStyle.DEFAULT,
+    textSize = TextSize.NORMAL,
+    ...anotherProps
+  } = props;
 
   return (
     <div
@@ -21,8 +32,8 @@ export const Text: FC<ITextProps> = memo((props) => {
         className,
       ])}
     >
-      {!!title && <p className={classNames(styles.title)}>{title}</p>}
-      {!!text && <p className={classNames(styles.text)}>{text}</p>}
+      {!!title && <TitleTag className={classNames(styles.title)}>{title}</TitleTag>}
+      {!!text && <TextTag className={classNames(styles.text)}>{text}</TextTag>}
     </div>
   );
 });

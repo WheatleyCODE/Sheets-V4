@@ -3,7 +3,7 @@
 [] Допилить paths + тесты
 [] Тесты на LanguageSwitcher, ThemeSwitcher, NavigationMenu, NavigationMenuItem, LoginForm, RegisterForm
 [] Сделать снипеты для slice
-[] Лого это entities?
+[] User это entities?
 [] Проверить все сущности связанные с template, написать тесты
 [] Пофиксить тесты и сторибуки
 [] Перенести все reducers для useDynamicModule из компонента
