@@ -25,3 +25,9 @@ declare interface IReduxSchema {
 
 declare const __IS_DEV__: boolean;
 declare const __PROJECT__: 'storybook' | 'app' | 'jest';
+
+interface ObjectConstructor {
+  isTruly(value: any): boolean;
+  isAsyncIterable(value: any): value is AsyncIterable<unknown>;
+  cast<T = unknown>(value: any): T;
+}

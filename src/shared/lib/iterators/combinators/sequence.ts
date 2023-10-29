@@ -13,8 +13,8 @@ export function sequence<T extends AsyncIterable<any>, A extends AnyIterable<any
 ): AsyncIterableIterator<IterableType<T> | IterableType<A>>;
 
 export function sequence(...iterables: AnyIterable[]): IterableIterator<unknown> | AsyncIterableIterator<unknown> {
-  let cursor = 0,
-    iter;
+  let cursor = 0;
+  let iter: any;
 
   const isAsync = Object.isAsyncIterable(iterables[cursor]);
 
