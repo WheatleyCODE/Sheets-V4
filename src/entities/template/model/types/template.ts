@@ -1,4 +1,4 @@
-import { IUser } from 'entities/user';
+import { IUser } from 'features/user';
 
 export enum TemplateBlockTypes {
   TEXT = 'TEXT',

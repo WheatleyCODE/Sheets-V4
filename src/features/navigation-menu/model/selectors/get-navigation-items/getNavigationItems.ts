@@ -1,5 +1,5 @@
 import { createSelector } from '@reduxjs/toolkit';
-import { getUser } from 'entities/user';
+import { getUser } from 'features/user';
 import {
   MdOutlineHome,
   MdOutlinePersonPin,

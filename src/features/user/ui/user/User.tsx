@@ -12,6 +12,7 @@ import { Avatar } from 'shared/ui/avatar';
 import { RoutesPath } from 'shared/config/route-config/routeConfig';
 import { classNames } from 'shared/lib/class-names';
 import styles from './User.module.scss';
+
 interface IUserProps extends React.HTMLAttributes<HTMLDivElement> {
   user?: IUser;
   openAuth: () => void;

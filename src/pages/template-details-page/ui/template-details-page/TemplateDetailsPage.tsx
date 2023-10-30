@@ -18,7 +18,7 @@ import {
   templateDetailsActions,
   templateDetailsReducer,
 } from 'entities/template';
-import { getUser } from 'entities/user';
+import { getUser } from 'features/user';
 import { CommentList } from 'entities/comment';
 import { useDynamicModule, useTypedDispatch, useInitialEffect, ReducersList } from 'shared/lib/hooks';
 import { AddCommentForm } from 'features/add-comment-form';

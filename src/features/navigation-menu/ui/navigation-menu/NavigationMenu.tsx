@@ -7,7 +7,7 @@ import { NavigationMenuItem } from '../navigation-menu-item/NavigationMenuItem';
 import { INavigationMenuItem } from '../../model/types/navigation';
 import { getNavigationItems } from '../../model/selectors/get-navigation-items/getNavigationItems';
 import { Logo } from 'entities/logo';
-import { getUser } from 'entities/user';
+import { getUser } from 'features/user';
 import { Button, ButtonStyles } from 'shared/ui/button';
 import { Drawer, DrawerOpenStyles } from 'shared/ui/drawer';
 import { Portal } from 'shared/ui/portal';

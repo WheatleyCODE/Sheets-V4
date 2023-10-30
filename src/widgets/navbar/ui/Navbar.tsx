@@ -5,7 +5,7 @@ import { ModalsHash } from 'widgets/layout';
 import { ThemeSwitcher } from 'features/theme-switcher';
 import { NavigationMenu } from 'features/navigation-menu';
 import { LanguageSwitcher } from 'features/language-switcher';
-import { User, getUser, userActions } from 'entities/user';
+import { User, getUser, userActions } from 'features/user';
 import { Logo } from 'entities/logo';
 import { useTypedDispatch } from 'shared/lib/hooks';
 import { HStack } from 'shared/ui/containers';

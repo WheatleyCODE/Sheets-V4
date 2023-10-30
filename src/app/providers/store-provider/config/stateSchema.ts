@@ -1,5 +1,5 @@
 import { IModalsSchema, IScrollSchema } from 'widgets/layout';
-import { IUserSchema } from 'entities/user';
+import { IUserSchema } from 'features/user';
 import { ILoginSchema } from 'features/auth-by-email';
 import { AnyAction, EnhancedStore, ReducersMapObject, Reducer, CombinedState, ThunkMiddleware } from '@reduxjs/toolkit';
 import { AxiosInstance } from 'axios';

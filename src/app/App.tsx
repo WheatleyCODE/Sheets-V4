@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import { Navbar } from 'widgets/navbar';
 import { useTheme } from './providers/lib/theme-context';
 import { AppRouter } from './providers/app-router';
-import { getUserInited, userActions } from 'entities/user';
+import { getUserInited, userActions } from 'features/user';
 import { useInitialEffect, useTypedDispatch } from 'shared/lib/hooks';
 import { classNames } from 'shared/lib/class-names';
 import './styles/index.scss';

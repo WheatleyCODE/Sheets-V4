@@ -2,7 +2,7 @@ import { FC, memo, useCallback } from 'react';
 import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { Layout } from 'widgets/layout';
-import { getUser } from 'entities/user';
+import { getUser } from 'features/user';
 import { getProfile } from 'entities/profile';
 import { useDynamicModule, useTypedDispatch } from 'shared/lib/hooks';
 import {
