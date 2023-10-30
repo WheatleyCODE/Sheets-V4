@@ -18,15 +18,17 @@ import { getTemplatesPageSortOrder } from '../../model/selectors/get-templates-p
 import { getTemplatesPageSearch } from '../../model/selectors/get-templates-page-search/getTemplatesPageSearch';
 import { TemplateSortOrders, TemplateSortFields } from '../../model/types/templatesPage';
 import { fetchTemplatesPageTemplates } from '../../model/services/fetch-templates-page-templates/fetchTemplatesPageTemplates';
-import { useDebounce, useDynamicModule, useInitialEffect, useTypedDispatch } from 'shared/lib/hooks';
+import { ReducersList, useDebounce, useDynamicModule, useInitialEffect, useTypedDispatch } from 'shared/lib/hooks';
 import { classNames } from 'shared/lib/class-names';
 import styles from './TemplatesPage.module.scss';
 
 interface ITemplatesPageProps extends React.HTMLAttributes<HTMLDivElement> {}
 
+const reducers: ReducersList = { templatesPage: templatesPageReducer };
+
 const TemplatesPage: FC<ITemplatesPageProps> = memo((props) => {
   const { className, ...anotherProps } = props;
-  useDynamicModule({ templatesPage: templatesPageReducer }, false);
+  useDynamicModule(reducers, false);
   const templates = useSelector(getTemplatesPageTemplates.selectAll);
   const isLoading = useSelector(getTemplatesPageIsLoading);
   const error = useSelector(getTemplatesPageError);

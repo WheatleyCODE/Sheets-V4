@@ -7,7 +7,7 @@ import { getAddCommentFormText } from '../../model/selectors/get-add-comment-for
 import { Input, useValidInput } from 'shared/ui/input';
 import { HStack } from 'shared/ui/containers';
 import { Button } from 'shared/ui/button';
-import { useDynamicModule, useTypedDispatch } from 'shared/lib/hooks';
+import { ReducersList, useDynamicModule, useTypedDispatch } from 'shared/lib/hooks';
 import { classNames } from 'shared/lib/class-names';
 import styles from './AddCommentForm.module.scss';
 
@@ -15,9 +15,11 @@ interface IAddCommentFormProps extends React.HTMLAttributes<HTMLDivElement> {
   addComment: (text: string) => void;
 }
 
+const reducers: ReducersList = { addCommentForm: addCommentFormReducer };
+
 export const AddCommentForm: FC<IAddCommentFormProps> = (props) => {
   const { className, addComment, ...anotherProps } = props;
-  useDynamicModule({ addCommentForm: addCommentFormReducer }, true);
+  useDynamicModule(reducers, true);
   const dispatch = useTypedDispatch();
   const text = useSelector(getAddCommentFormText);
   const textInput = useValidInput(text);

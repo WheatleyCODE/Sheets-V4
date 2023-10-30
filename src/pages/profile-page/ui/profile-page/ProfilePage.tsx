@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import { Layout } from 'widgets/layout';
 import { getUser } from 'features/user';
 import { getProfile } from 'entities/profile';
-import { useDynamicModule, useTypedDispatch } from 'shared/lib/hooks';
+import { ReducersList, useDynamicModule, useTypedDispatch } from 'shared/lib/hooks';
 import {
   IProfile,
   ProfileCard,
@@ -20,8 +20,10 @@ import { useInitialEffect } from 'shared/lib/hooks';
 import { classNames } from 'shared/lib/class-names';
 import styles from './ProfilePage.module.scss';
 
+const reducers: ReducersList = { profile: profileReducer };
+
 const ProfilePage: FC = memo(() => {
-  useDynamicModule({ profile: profileReducer });
+  useDynamicModule(reducers);
   const { id } = useParams<{ id: string }>();
   const dispatch = useTypedDispatch();
   const profile = useSelector(getProfile);

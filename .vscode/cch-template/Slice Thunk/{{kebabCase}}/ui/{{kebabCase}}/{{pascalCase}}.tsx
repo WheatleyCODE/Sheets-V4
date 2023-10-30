@@ -4,16 +4,18 @@ import { useSelector } from 'react-redux';
 import { {{camelCase}}Actions, {{camelCase}}Reducer } from '../../model/slice/{{camelCase}}Slice';
 import { get{{pascalCase}} } from '../../model/selectors/get-{{kebabCase}}/get{{pascalCase}}';
 import { fetch{{pascalCase}} } from '../../model/services/fetch-{{kebabCase}}/fetch{{pascalCase}}';
-import { useDynamicModule, useTypedDispatch } from 'shared/lib/hooks';
+import { useDynamicModule, useTypedDispatch, ReducersList } from 'shared/lib/hooks';
 import { classNames } from 'shared/lib/class-names';
 import styles from './{{pascalCase}}.module.scss';
 
 interface I{{pascalCase}}Props extends React.HTMLAttributes<HTMLDivElement> {
 }
 
+const reducers: ReducersList = { {{camelCase}}: {{camelCase}}Reducer };
+
 export const {{pascalCase}}: FC<I{{pascalCase}}Props> = (props) => {
   const { className, ...anotherProps } = props;
-  useDynamicModule({ {{camelCase}}: {{camelCase}}Reducer }, true);
+  useDynamicModule(reducers, true);
   const dispatch = useTypedDispatch();
   const {{camelCase}} = useSelector(get{{pascalCase}});
   const { t } = useTranslation();

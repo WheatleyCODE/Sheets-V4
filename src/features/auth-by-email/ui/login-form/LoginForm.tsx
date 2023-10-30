@@ -16,7 +16,7 @@ import { TextStyle } from 'shared/ui/text';
 import { TextSize } from 'shared/ui/text/ui/interface';
 import { callOnFulfilled } from 'shared/lib/utils';
 import { HStack, VStack } from 'shared/ui/containers';
-import { useDynamicModule, useTypedDispatch } from 'shared/lib/hooks';
+import { ReducersList, useDynamicModule, useTypedDispatch } from 'shared/lib/hooks';
 import { classNames } from 'shared/lib/class-names';
 import styles from './LoginForm.module.scss';
 
@@ -24,8 +24,12 @@ interface ILoginFormProps extends React.HTMLAttributes<HTMLDivElement> {
   onLoginSuccess: () => void;
 }
 
+const reducers: ReducersList = { login: loginReducer };
+
 const LoginForm: FC<ILoginFormProps> = memo((props) => {
   const { onLoginSuccess, ...anotherProps } = props;
+  useDynamicModule(reducers);
+
   const email = useSelector(getLoginEmail);
   const password = useSelector(getLoginPassword);
   const isLoading = useSelector(getLoginIsLoading);
@@ -34,8 +38,6 @@ const LoginForm: FC<ILoginFormProps> = memo((props) => {
   const passwordInput = useValidInput(password, [passwordValidator]);
   const { t } = useTranslation();
   const dispatch = useTypedDispatch();
-
-  useDynamicModule({ login: loginReducer });
 
   const isDisable = passwordInput.isError || emailInput.isError;
 
