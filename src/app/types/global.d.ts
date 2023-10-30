@@ -29,5 +29,6 @@ declare const __PROJECT__: 'storybook' | 'app' | 'jest';
 interface ObjectConstructor {
   isTruly(value: any): boolean;
   isAsyncIterable(value: any): value is AsyncIterable<unknown>;
+  isIterable(value: any): value is Iterable<unknown>;
   cast<T = unknown>(value: any): T;
 }
