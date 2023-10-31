@@ -4,7 +4,7 @@ import { renderComponent } from 'shared/lib/tests/render-component/renderCompone
 
 describe('DragLineItem', () => {
   test('In the document', () => {
-    // renderComponent(<DragLineItem />);
+    renderComponent(<DragLineItem width={100} itemId={1} children={<h1>1</h1>} />);
 
     expect(screen.getByTestId('dragLineItem')).toBeInTheDocument();
   });

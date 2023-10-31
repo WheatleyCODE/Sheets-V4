@@ -4,6 +4,7 @@
 [] Тесты на LanguageSwitcher, ThemeSwitcher, NavigationMenu, NavigationMenuItem, LoginForm, RegisterForm
 [] Проверить все сущности связанные с template, написать тесты
 [] Пофиксить тесты и сторибуки
+[] Добавить Fallbacks для image
 
 // * Ideas
 [] Реализовать shared/containers заменить в проекте, удалить лишний SCSS (Возможно добавить еще)

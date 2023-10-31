@@ -4,7 +4,7 @@ import { renderComponent } from 'shared/lib/tests/render-component/renderCompone
 
 describe('TemplatesPageFilters', () => {
   test('In the document', () => {
-    // renderComponent(<TemplatesPageFilters />);
+    renderComponent(<TemplatesPageFilters />);
 
     expect(screen.getByTestId('templatesPageFilters')).toBeInTheDocument();
   });

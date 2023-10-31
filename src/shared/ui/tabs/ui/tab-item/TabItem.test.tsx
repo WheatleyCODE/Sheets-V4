@@ -4,7 +4,7 @@ import { renderComponent } from 'shared/lib/tests/render-component/renderCompone
 
 describe('TabItem', () => {
   test('In the document', () => {
-    // renderComponent(<TabItem />);
+    renderComponent(<TabItem itemId={1} value="1" children={<h1>1</h1>} />);
 
     expect(screen.getByTestId('tabItem')).toBeInTheDocument();
   });

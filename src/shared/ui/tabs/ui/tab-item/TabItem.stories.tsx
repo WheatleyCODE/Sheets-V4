@@ -4,7 +4,7 @@ import { Theme } from 'app/providers/lib/theme-context';
 import { themeDecorator } from '../../../../../../config/storybook/theme-decorator/themeDecorator';
 
 const meta = {
-  title: 'shared/TabItem',
+  title: 'shared/tabs/TabItem',
   component: TabItem,
 } satisfies Meta<typeof TabItem>;
 
