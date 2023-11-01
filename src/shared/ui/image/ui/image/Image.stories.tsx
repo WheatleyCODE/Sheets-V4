@@ -4,7 +4,7 @@ import { Theme } from 'app/providers/lib/theme-context';
 import { themeDecorator } from '../../../../../../config/storybook/theme-decorator/themeDecorator';
 
 const meta = {
-  title: 'shared/Image',
+  title: 'shared/image/Image',
   component: Image,
 } satisfies Meta<typeof Image>;
 
@@ -26,6 +26,12 @@ export const Dark: Story = {
 };
 
 export const Error: Story = {
+  args: {
+    src: 'https://foo.imgs',
+  },
+};
+
+export const ErrorCustom: Story = {
   args: {
     src: 'https://foo.imgs',
     fallback: <h1>Loading...</h1>,

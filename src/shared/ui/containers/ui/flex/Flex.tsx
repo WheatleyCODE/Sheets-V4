@@ -29,7 +29,7 @@ export const Flex: FC<IFlexProps> = (props) => {
   );
 
   return (
-    <div {...anotherProps} data-testid="flex" className={classNames(styles.flex, {}, [className, ...flexClassNames])}>
+    <div data-testid="flex" {...anotherProps} className={classNames(styles.flex, {}, [className, ...flexClassNames])}>
       {children}
     </div>
   );

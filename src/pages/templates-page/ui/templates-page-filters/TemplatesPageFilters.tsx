@@ -123,6 +123,7 @@ export const TemplatesPageFilters: FC<ITemplatesPageFiltersProps> = (props) => {
               value={searchInput.value}
               placeholder={t('Поиск')}
               type="text"
+              data-testid="searchInput"
               onChange={onChangeSearch}
               onBlur={searchInput.onBlur}
               onFocus={searchInput.onFocus}
@@ -141,6 +142,7 @@ export const TemplatesPageFilters: FC<ITemplatesPageFiltersProps> = (props) => {
               value={sortInput.value}
               placeholder={t('Сортировать по')}
               type="text"
+              data-testid="sortInput"
               onChange={sortInput.onChange}
               onBlur={sortInput.onBlur}
               onFocus={sortInput.onFocus}
@@ -165,6 +167,7 @@ export const TemplatesPageFilters: FC<ITemplatesPageFiltersProps> = (props) => {
               value={sortOrderInput.value}
               placeholder={t('Порядок сортировки')}
               type="text"
+              data-testid="sortOrderInput"
               onChange={sortOrderInput.onChange}
               onBlur={sortOrderInput.onBlur}
               onFocus={sortOrderInput.onFocus}

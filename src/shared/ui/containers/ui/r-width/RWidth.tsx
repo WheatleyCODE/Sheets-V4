@@ -11,7 +11,7 @@ export const RWidth: FC<IRWidthProps> = (props) => {
 
   return (
     <Flex className={styles.r_width_flex}>
-      <Width {...anotherProps} data-testid="rWidth" className={classNames(styles.r_width, {}, [className])}>
+      <Width data-testid="rWidth" {...anotherProps} className={classNames(styles.r_width, {}, [className])}>
         {children}
       </Width>
     </Flex>

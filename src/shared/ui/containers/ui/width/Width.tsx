@@ -12,7 +12,7 @@ export const Width: FC<IWidthProps> = (props) => {
   const { className, children, maxWidth = 'default', ...anotherProps } = props;
 
   return (
-    <div {...anotherProps} data-testid="width" className={classNames(styles.width, {}, [className, styles[maxWidth]])}>
+    <div data-testid="width" {...anotherProps} className={classNames(styles.width, {}, [className, styles[maxWidth]])}>
       {children}
     </div>
   );

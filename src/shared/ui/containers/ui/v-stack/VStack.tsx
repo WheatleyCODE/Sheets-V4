@@ -10,9 +10,9 @@ export const VStack: FC<IVStackProps> = (props) => {
 
   return (
     <Flex
+      data-testid="vStack"
       {...anotherProps}
       direction="col"
-      data-testid="vStack"
       className={classNames(styles.v_stack, {}, [className])}
     >
       {children}

@@ -1,18 +1,19 @@
 // * Todo
 [] Пофиксить Title
-[] Допилить paths + тесты
-[] Тесты на LanguageSwitcher, ThemeSwitcher, NavigationMenu, NavigationMenuItem, LoginForm, RegisterForm
-[] Проверить все сущности связанные с template, написать тесты
-[] Пофиксить тесты и сторибуки
-[] Добавить Fallbacks для image
+[] Доработать Fallbacks для image
+[] Завершить шаблоны
+[] RegisterForm? тесты?
 
 // * Ideas
-[] Реализовать shared/containers заменить в проекте, удалить лишний SCSS (Возможно добавить еще)
 [] Написать больше правил для ESLint 
 [] Использовать async iter чтобы смещаться на нужное количество ячеек и записывать в scroll 
 [] Использовать Scroll в SheetsPage
 []? Всплывающие сообщения?
 [] Написать парсер для формул -> применить его в <Code />
 [] Использовать в Sheets entity adapter data и нормализацию
-[]? Headless UI, React aria
-[] Перенести переход на страницу профиля в user компонент
+
+// * Features
+[] Дописать KVStorage + тесты
+[] Дописать KVStorageEngines (SS, IDBS) + тесты
+[] Написать обертку для IDBS и часть функционала добавить в KVStorageEngines IDBS + тесты
+[] Допилить paths + тесты + поправить все пути в приложении

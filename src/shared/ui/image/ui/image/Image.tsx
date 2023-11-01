@@ -1,4 +1,6 @@
 import { FC, ReactElement, useLayoutEffect, useState } from 'react';
+import { ImageError } from '../image-error/ImageError';
+import { ImageLoad } from '../image-load/ImageLoad';
 
 interface IImageProps extends React.ImgHTMLAttributes<HTMLImageElement> {
   fallback?: ReactElement;
@@ -24,12 +26,14 @@ export const Image: FC<IImageProps> = (props) => {
     };
   }, [src]);
 
-  if (isLoading && fallback) {
-    return fallback;
+  if (isLoading) {
+    if (fallback) return fallback;
+    return <ImageLoad {...otherProps} />;
   }
 
-  if (hasError && errorFallback) {
-    return errorFallback;
+  if (hasError) {
+    if (errorFallback) return errorFallback;
+    return <ImageError {...otherProps} />;
   }
 
   return <img data-testid="image" className={className} src={src} alt={alt} {...otherProps} />;

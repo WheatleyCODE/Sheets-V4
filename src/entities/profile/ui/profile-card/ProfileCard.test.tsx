@@ -1,7 +1,7 @@
 import { screen } from '@testing-library/react';
 import { ProfileCard } from './ProfileCard';
 import { renderComponent } from 'shared/lib/tests/render-component/renderComponent';
-import { Country, Currency, IProfile } from 'entities/profile/model/types/profile';
+import { Country, Currency, IProfile } from '../../model/types/profile';
 
 describe('ProfileCard', () => {
   test('In the document', () => {

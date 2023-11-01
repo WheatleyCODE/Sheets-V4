@@ -1,6 +1,5 @@
 import { intoIter } from '../iter/Iter';
 import { sequence } from './sequence';
-import '../../prelude/prelude/prelude';
 
 describe('sequence', () => {
   test('sequence default', () => {

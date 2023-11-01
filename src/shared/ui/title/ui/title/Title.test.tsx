@@ -2,7 +2,6 @@ import { fireEvent, screen } from '@testing-library/react';
 import { Title } from './Title';
 import { renderComponent } from 'shared/lib/tests/render-component/renderComponent';
 import { sleep } from 'shared/lib/promises';
-import { ANIMATION_DURATION_MS } from 'shared/consts';
 
 describe('InputOptionsMenu', () => {
   test('In the document', () => {

@@ -22,12 +22,13 @@ import styles from './LoginForm.module.scss';
 
 interface ILoginFormProps extends React.HTMLAttributes<HTMLDivElement> {
   onLoginSuccess: () => void;
+  onLoginStart?: () => void;
 }
 
 const reducers: ReducersList = { login: loginReducer };
 
 const LoginForm: FC<ILoginFormProps> = memo((props) => {
-  const { onLoginSuccess, ...anotherProps } = props;
+  const { onLoginSuccess, onLoginStart, ...anotherProps } = props;
   useDynamicModule(reducers);
 
   const email = useSelector(getLoginEmail);
@@ -58,10 +59,14 @@ const LoginForm: FC<ILoginFormProps> = memo((props) => {
   );
 
   const onLogin = useCallback(async () => {
+    if (emailInput.isError || passwordInput.isError) return;
+    if (!emailInput.value || !passwordInput.value) return;
+
+    onLoginStart?.();
     const data = { email: emailInput.value, password: passwordInput.value };
     const res = await dispatch(loginByEmail(data));
     callOnFulfilled(res, onLoginSuccess);
-  }, [emailInput.value, passwordInput.value, dispatch, onLoginSuccess]);
+  }, [emailInput, passwordInput, dispatch, onLoginSuccess, onLoginStart]);
 
   return (
     <VStack
@@ -79,6 +84,7 @@ const LoginForm: FC<ILoginFormProps> = memo((props) => {
         value={emailInput.value}
         type="text"
         placeholder={t('Почта')}
+        data-testid="emailInput"
         onChange={onChangeEmail}
         onBlur={emailInput.onBlur}
         onFocus={emailInput.onFocus}
@@ -93,6 +99,7 @@ const LoginForm: FC<ILoginFormProps> = memo((props) => {
         value={passwordInput.value}
         type="password"
         placeholder={t('Пароль')}
+        data-testid="passwordInput"
         onChange={onChangePassword}
         onBlur={passwordInput.onBlur}
         onFocus={passwordInput.onFocus}

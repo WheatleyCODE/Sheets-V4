@@ -37,6 +37,7 @@ export const TemplatesViewSwitcher: FC<ITemplatesViewSwitcherProps> = (props) =>
       <HStack justify="start">
         <Title text={t('Сменить вид на квадратики')}>
           <Button
+            data-testid="buttonSquares"
             onClick={setViewSquares}
             buttonStyle={ButtonStyles.CLEAR}
             className={classNames(styles.button, { [styles.active]: isSquares })}
@@ -48,6 +49,7 @@ export const TemplatesViewSwitcher: FC<ITemplatesViewSwitcherProps> = (props) =>
       <HStack justify="start">
         <Title text={t('Сменить вид на линии')}>
           <Button
+            data-testid="buttonLines"
             onClick={setViewLines}
             buttonStyle={ButtonStyles.CLEAR}
             className={classNames(styles.button, { [styles.active]: !isSquares })}

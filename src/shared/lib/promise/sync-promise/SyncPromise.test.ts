@@ -43,6 +43,7 @@ describe('SyncPromise', () => {
         return value - 2;
       })
       .then(() => {
+        // * Norm
         // @ts-ignore
         document.blabla();
         result = 0;

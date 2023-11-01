@@ -10,9 +10,9 @@ export const HStack: FC<IHStackProps> = (props) => {
 
   return (
     <Flex
+      data-testid="hStack"
       {...anotherProps}
       direction="row"
-      data-testid="hStack"
       className={classNames(styles.h_stack, {}, [className])}
     >
       {children}

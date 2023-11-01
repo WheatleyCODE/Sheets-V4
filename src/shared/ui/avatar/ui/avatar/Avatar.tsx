@@ -1,5 +1,5 @@
 import { FC, useMemo } from 'react';
-import { Image } from 'shared/ui/image';
+import { Image } from '../../../image';
 import { classNames } from 'shared/lib/class-names';
 import styles from './Avatar.module.scss';
 

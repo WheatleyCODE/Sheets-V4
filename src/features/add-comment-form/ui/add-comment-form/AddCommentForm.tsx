@@ -51,6 +51,7 @@ export const AddCommentForm: FC<IAddCommentFormProps> = (props) => {
         Icon={MdOutlineComment}
         value={textInput.value}
         type="text"
+        data-testid="commentInput"
         placeholder={t('Комментарий')}
         onChange={onChangeText}
         onBlur={textInput.onBlur}

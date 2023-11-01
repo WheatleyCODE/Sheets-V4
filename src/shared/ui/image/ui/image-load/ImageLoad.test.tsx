@@ -1,10 +1,10 @@
 import { screen } from '@testing-library/react';
-import { Avatar } from './Avatar';
+import { ImageLoad } from './ImageLoad';
 import { renderComponent } from 'shared/lib/tests/render-component/renderComponent';
 
-describe('Avatar', () => {
+describe('ImageLoad', () => {
   test('In the document', () => {
-    renderComponent(<Avatar />);
+    renderComponent(<ImageLoad />);
 
     expect(screen.getByTestId('imageLoad')).toBeInTheDocument();
   });
