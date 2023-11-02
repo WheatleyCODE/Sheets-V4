@@ -10,7 +10,7 @@ import { getTemplateDetailsCommentsIsLoading } from '../../model/selectors/get-t
 import { fetchTemplateDetailsAddComment } from '../../model/services/fetch-template-details-add-comment/fetchTemplateDetailsAddComment';
 import {
   TemplateDetails,
-  TemplateList,
+  // TemplateList,
   fetchTemplateById,
   getTemplateDetails,
   getTemplateDetailsError,
@@ -23,23 +23,18 @@ import { CommentList } from 'entities/comment';
 import { useDynamicModule, useTypedDispatch, useInitialEffect, ReducersList } from 'shared/lib/hooks';
 import { AddCommentForm } from 'features/add-comment-form';
 import { Layout } from 'widgets/layout';
-import { templateDetailsRecommendsReducer } from '../../model/slice/templateDetailsRecommendsSlice';
-import { getTemplateDetailsRecommends } from '../../model/selectors/get-template-details-recommends/getTemplateDetailsRecommends';
-import { getTemplateDetailsRecommendsError } from '../../model/selectors/get-template-details-recommends-error/getTemplateDetailsRecommendsError';
-import { getTemplateDetailsRecommendsIsLoading } from '../../model/selectors/get-template-details-recommends-is-loading/getTemplateDetailsRecommendsIsLoaing';
-import { fetchTemplateDetailsRecommends } from '../../model/services/fetch-template-details-recommends/fetchTemplateDetailsRecommends';
 import { TemplateDetailsPageHeader } from '../template-details-page-header/TemplateDetailsPageHeader';
 import { RWidth } from 'shared/ui/containers';
 import { Text, TextSize } from 'shared/ui/text';
 import { classNames } from 'shared/lib/class-names';
 import styles from './TemplateDetailsPage.module.scss';
+import { TemplateRecommends } from 'features/template-recommends/ui/template-recommends/TemplateRecommends';
 
 interface ITemplateDetailsPageProps extends React.HTMLAttributes<HTMLDivElement> {}
 
 const reducerList: ReducersList = {
   templateDetails: templateDetailsReducer,
   templateDetailsComments: templateDetailsCommentsReducer,
-  templateDetailsRecommends: templateDetailsRecommendsReducer,
 };
 
 const TemplateDetailsPage: FC<ITemplateDetailsPageProps> = memo((props) => {
@@ -58,10 +53,6 @@ const TemplateDetailsPage: FC<ITemplateDetailsPageProps> = memo((props) => {
   const commentsError = useSelector(getTemplateDetailsCommentsError);
   const commentsIsLoading = useSelector(getTemplateDetailsCommentsIsLoading);
 
-  const recommends = useSelector(getTemplateDetailsRecommends.selectAll);
-  const recommendsError = useSelector(getTemplateDetailsRecommendsError);
-  const recommendsIsLoading = useSelector(getTemplateDetailsRecommendsIsLoading);
-
   useInitialEffect(() => {
     if (!id) {
       dispatch(templateDetailsActions.setError('Шаблон не найден'));
@@ -70,7 +61,6 @@ const TemplateDetailsPage: FC<ITemplateDetailsPageProps> = memo((props) => {
 
     dispatch(fetchTemplateById({ id }));
     dispatch(fetchTemplateDetailsComments({ id }));
-    dispatch(fetchTemplateDetailsRecommends());
   });
 
   const addComment = useCallback(
@@ -91,15 +81,7 @@ const TemplateDetailsPage: FC<ITemplateDetailsPageProps> = memo((props) => {
         <TemplateDetailsPageHeader />
         <TemplateDetails template={template} isLoading={isLoading} error={error} />
 
-        <RWidth className={styles.recommends} maxWidth="template">
-          <Text title={`${t('Рекомендуем')}:`} />
-          <TemplateList
-            isOpenInNewWindow={true}
-            templates={recommends}
-            isLoading={recommendsIsLoading}
-            error={recommendsError}
-          />
-        </RWidth>
+        <TemplateRecommends />
 
         <RWidth className={styles.add_comment_form} maxWidth="template">
           <Text className={styles.comments_title} title={`${t('Добавить комментарий')}:`} />

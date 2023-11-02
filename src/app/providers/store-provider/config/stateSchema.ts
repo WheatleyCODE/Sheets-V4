@@ -6,10 +6,11 @@ import { AxiosInstance } from 'axios';
 import { IProfileSchema } from 'entities/profile';
 import { ToolkitStore } from '@reduxjs/toolkit/dist/configureStore';
 import { ITemplateDetailsSchema } from 'entities/template';
-import { ITemplateDetailsCommentsSchema, ITemplateDetailsRecommendsSchema } from 'pages/template-details-page';
+import { ITemplateDetailsCommentsSchema } from 'pages/template-details-page';
 import { IAddCommentFormSchema } from 'features/add-comment-form';
 import { ITemplatesPageSchema } from 'pages/templates-page';
 import { OptionalRecord } from 'shared/lib/ts-utils';
+import { ITemplateRecommendsSchema } from 'features/template-recommends';
 
 export interface IStateSchema {
   modals: IModalsSchema;
@@ -21,7 +22,7 @@ export interface IStateSchema {
   profile?: IProfileSchema;
   templateDetails?: ITemplateDetailsSchema;
   templateDetailsComments?: ITemplateDetailsCommentsSchema;
-  templateDetailsRecommends?: ITemplateDetailsRecommendsSchema;
+  templateRecommends?: ITemplateRecommendsSchema;
   addCommentForm?: IAddCommentFormSchema;
   templatesPage?: ITemplatesPageSchema;
 }

@@ -3,8 +3,8 @@ import { IThunkConfig, IThunkExtra } from 'app/providers/store-provider';
 import { ITemplate } from 'entities/template';
 import i18n from 'shared/config/i18n/i18n';
 
-export const fetchTemplateDetailsRecommends = createAsyncThunk<ITemplate[], void, IThunkConfig>(
-  'templateDetails/fetchTemplateDetailsRecommends',
+export const fetchTemplateRecommends = createAsyncThunk<ITemplate[], void, IThunkConfig>(
+  'template/fetchTemplateRecommends',
   async (_, thunkAPI) => {
     try {
       const extra = thunkAPI.extra as IThunkExtra;

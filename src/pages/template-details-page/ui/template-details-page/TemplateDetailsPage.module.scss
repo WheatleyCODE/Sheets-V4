@@ -2,11 +2,11 @@
   padding-bottom: calc((var(--gap) * 10));
 }
 
-.comments, .add_comment_form, .recommends {
+.comments, .add_comment_form {
   padding-top: calc(var(--gap) * 2);
 }
 
-.add_comment_form, .recommends {
+.add_comment_form {
   margin-bottom: calc(var(--gap) * 2);
 }
 
