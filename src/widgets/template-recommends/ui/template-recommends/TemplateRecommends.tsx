@@ -12,10 +12,26 @@ import { RWidth } from 'shared/ui/containers';
 import { Text } from 'shared/ui/text';
 import { classNames } from 'shared/lib/class-names';
 import styles from './TemplateRecommends.module.scss';
+import { rtkApi } from 'shared/api';
 
 interface ITemplateRecommendsProps extends React.HTMLAttributes<HTMLDivElement> {}
 
 const reducers: ReducersList = { templateRecommends: templateRecommendsReducer };
+
+const recommendsApi = rtkApi.injectEndpoints({
+  endpoints: (build) => ({
+    getRecommends: build.query({
+      query: (limit) => ({
+        url: '/templates',
+        params: {
+          _limit: limit,
+        },
+      }),
+    }),
+  }),
+});
+
+const useTemplateRecommends = recommendsApi.useGetRecommendsQuery;
 
 export const TemplateRecommends: FC<ITemplateRecommendsProps> = (props) => {
   const { className, ...anotherProps } = props;
@@ -25,6 +41,10 @@ export const TemplateRecommends: FC<ITemplateRecommendsProps> = (props) => {
   const recommendsError = useSelector(getTemplateRecommendsError);
   const recommendsIsLoading = useSelector(getTemplateRecommendsIsLoading);
   const { t } = useTranslation();
+
+  const { isLoading, error, data } = useTemplateRecommends(3);
+
+  console.log(isLoading, error, data);
 
   useInitialEffect(() => {
     dispatch(fetchTemplateRecommends());

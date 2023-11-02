@@ -9,6 +9,13 @@ import {
   MdOutlineSort,
   MdOutlineTitle,
 } from 'react-icons/md';
+import { getTemplatesPageSort } from '../../model/selectors/get-templates-page-sort/getTemplatesPageSort';
+import { getTemplatesPageSortOrder } from '../../model/selectors/get-templates-page-sort-order/getTemplatesPageSortOrder';
+import { getTemplatesPageSearch } from '../../model/selectors/get-templates-page-search/getTemplatesPageSearch';
+import { getTemplatesPageTag } from '../../model/selectors/get-templates-page-tag/getTemplatesPageTag';
+import { templatesPageActions } from '../../model/slice/templatesPageSlice';
+import { fetchTemplatesPageTemplates } from '../../model/services/fetch-templates-page-templates/fetchTemplatesPageTemplates';
+import { getTemplatesPageView } from '../../model/selectors/get-templates-page-templates-view/getTemplatesPageView';
 import { TemplatesViewSwitcher } from 'features/templates-view-switcher';
 import { TemplateTags, TemplateView } from 'entities/template';
 import { ITemplateTab, templateTabs } from 'entities/template/model/consts/tags';
@@ -22,19 +29,10 @@ import { Title } from 'shared/ui/title';
 import { VStack, Width } from 'shared/ui/containers';
 import { classNames } from 'shared/lib/class-names';
 import styles from './TemplatesPageFilters.module.scss';
+import { useSelector } from 'react-redux';
+import { useDebounce, useTypedDispatch } from 'shared/lib/hooks';
 
-interface ITemplatesPageFiltersProps extends React.HTMLAttributes<HTMLDivElement> {
-  sort: TemplateSortFields;
-  changeSort: (sort: TemplateSortFields) => void;
-  sortOrder: TemplateSortOrders;
-  changeSortOrder: (sortOrder: TemplateSortOrders) => void;
-  search: string;
-  changeSearch: (search: string) => void;
-  view: TemplateView;
-  changeView: (view: TemplateView) => void;
-  tag: TemplateTags | string;
-  changeTag: (tag: TemplateTags) => void;
-}
+interface ITemplatesPageFiltersProps extends React.HTMLAttributes<HTMLDivElement> {}
 
 const sortOrderItems: IInputOptionsMenuItem[] = [
   { text: TemplateSortOrders.ASC, Icon: BsSortUp },
@@ -48,24 +46,59 @@ const sortItems: IInputOptionsMenuItem[] = [
 ];
 
 export const TemplatesPageFilters: FC<ITemplatesPageFiltersProps> = (props) => {
-  const {
-    className,
-    sort,
-    sortOrder,
-    view,
-    search,
-    tag,
-    changeView,
-    changeSearch,
-    changeSort,
-    changeSortOrder,
-    changeTag,
-    ...anotherProps
-  } = props;
+  const { className, ...anotherProps } = props;
+  const sort = useSelector(getTemplatesPageSort);
+  const sortOrder = useSelector(getTemplatesPageSortOrder);
+  const search = useSelector(getTemplatesPageSearch);
+  const view = useSelector(getTemplatesPageView);
+  const tag = useSelector(getTemplatesPageTag);
+  const dispatch = useTypedDispatch();
+
   const sortInput = useValidInput(sort);
   const sortOrderInput = useValidInput(sortOrder);
   const searchInput = useValidInput(search);
   const { t } = useTranslation();
+
+  const fetchTemplatesOnChange = useCallback(() => {
+    dispatch(templatesPageActions.setPage(1));
+    dispatch(fetchTemplatesPageTemplates({ isReplace: true }));
+  }, [dispatch]);
+
+  const changeView = useCallback(
+    (view: TemplateView) => {
+      dispatch(templatesPageActions.setView(view));
+    },
+    [dispatch],
+  );
+
+  const changeSort = useCallback(
+    (sort: TemplateSortFields) => {
+      dispatch(templatesPageActions.setSort(sort));
+      fetchTemplatesOnChange();
+    },
+    [dispatch, fetchTemplatesOnChange],
+  );
+
+  const changeSortOrder = useCallback(
+    (sortOrder: TemplateSortOrders) => {
+      dispatch(templatesPageActions.setSortOrder(sortOrder));
+      fetchTemplatesOnChange();
+    },
+    [dispatch, fetchTemplatesOnChange],
+  );
+
+  const changeTag = useCallback(
+    (tag: TemplateTags) => {
+      dispatch(templatesPageActions.setTags(tag));
+      fetchTemplatesOnChange();
+    },
+    [dispatch, fetchTemplatesOnChange],
+  );
+
+  const changeSearch = useDebounce((search: string) => {
+    dispatch(templatesPageActions.setSearch(search));
+    fetchTemplatesOnChange();
+  }, 300);
 
   useEffect(() => {
     sortInput.changeValue(sort);

@@ -3,7 +3,7 @@ import { modalsReducer, scrollReducer } from 'widgets/layout';
 import { userReducer } from 'features/user';
 import { createReducerManager } from './reducerManager';
 import { IStateSchema, IStore, IThunkExtra } from './stateSchema';
-import { api } from 'shared/api';
+import { api, rtkApi } from 'shared/api';
 
 export const createReduxStore = (initialState?: IStateSchema, asyncReducers?: ReducersMapObject<IStateSchema>) => {
   const rootReducer: ReducersMapObject<IStateSchema> = {
@@ -11,6 +11,7 @@ export const createReduxStore = (initialState?: IStateSchema, asyncReducers?: Re
     modals: modalsReducer,
     user: userReducer,
     scroll: scrollReducer,
+    [rtkApi.reducerPath]: rtkApi.reducer,
   };
 
   const reducerManager = createReducerManager(rootReducer);
@@ -29,7 +30,7 @@ export const createReduxStore = (initialState?: IStateSchema, asyncReducers?: Re
         thunk: {
           extraArgument,
         },
-      }),
+      }).concat(rtkApi.middleware),
   });
 
   store.reducerManager = reducerManager;

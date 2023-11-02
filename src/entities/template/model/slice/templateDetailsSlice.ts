@@ -27,7 +27,6 @@ export const templateDetailsSlice = createSlice({
     builder.addCase(fetchTemplateById.fulfilled, (state, { payload }) => {
       state.isLoading = false;
       state.template = payload;
-      console.log(payload);
     });
     builder.addCase(fetchTemplateById.rejected, (state, { payload }) => {
       state.isLoading = false;

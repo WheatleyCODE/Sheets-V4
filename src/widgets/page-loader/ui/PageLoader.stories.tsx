@@ -4,7 +4,7 @@ import { themeDecorator } from '../../../../config/storybook/theme-decorator/the
 import { Theme } from 'app/providers/lib/theme-context';
 
 const meta = {
-  title: 'widget/PageLoader',
+  title: 'widgets/PageLoader',
   component: PageLoader,
 } satisfies Meta<typeof PageLoader>;
 

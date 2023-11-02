@@ -1,1 +1,2 @@
-export { api } from './axios/api';
+export { api } from './axios/axios';
+export { rtkApi } from './redux/rtkApi';

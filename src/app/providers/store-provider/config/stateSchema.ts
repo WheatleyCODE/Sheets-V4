@@ -11,11 +11,13 @@ import { IAddCommentFormSchema } from 'features/add-comment-form';
 import { IProfileSchema } from 'entities/profile';
 import { ITemplateDetailsSchema } from 'entities/template';
 import { OptionalRecord } from 'shared/lib/ts-utils';
+import { rtkApi } from 'shared/api';
 
 export interface IStateSchema {
   modals: IModalsSchema;
   user: IUserSchema;
   scroll: IScrollSchema;
+  [rtkApi.reducerPath]: ReturnType<typeof rtkApi.reducer>;
 
   // * Async
   login?: ILoginSchema;

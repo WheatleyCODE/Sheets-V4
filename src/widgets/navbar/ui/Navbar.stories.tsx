@@ -5,7 +5,7 @@ import { Theme } from 'app/providers/lib/theme-context';
 import { storeDecorator } from '../../../../config/storybook/store-decorator/storeDecorator';
 
 const meta = {
-  title: 'widget/Navbar',
+  title: 'widgets/Navbar',
   component: Navbar,
 } satisfies Meta<typeof Navbar>;
 

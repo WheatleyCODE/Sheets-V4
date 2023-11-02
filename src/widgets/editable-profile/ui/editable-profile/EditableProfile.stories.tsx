@@ -1,12 +1,12 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { PageError } from './PageError';
-import { themeDecorator } from '../../../../config/storybook/theme-decorator/themeDecorator';
+import { EditableProfile } from './EditableProfile';
 import { Theme } from 'app/providers/lib/theme-context';
+import { themeDecorator } from '../../../../../config/storybook/theme-decorator/themeDecorator';
 
 const meta = {
-  title: 'widgets/PageError',
-  component: PageError,
-} satisfies Meta<typeof PageError>;
+  title: 'widgets/editable-profile/EditableProfile',
+  component: EditableProfile,
+} satisfies Meta<typeof EditableProfile>;
 
 export default meta;
 
