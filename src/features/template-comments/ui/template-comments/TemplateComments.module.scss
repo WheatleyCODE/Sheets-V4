@@ -1,0 +1,15 @@
+.template_comments {}
+
+.comments,
+.add_comment_form {
+  padding-top: calc(var(--gap) * 2);
+}
+
+.add_comment_form {
+  margin-bottom: calc(var(--gap) * 2);
+}
+
+.comments_title,
+.dd_comment_form_title {
+  margin-bottom: calc(var(--gap) * 4);
+}

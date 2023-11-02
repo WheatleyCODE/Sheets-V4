@@ -3,8 +3,8 @@ import { IThunkConfig, IThunkExtra } from 'app/providers/store-provider';
 import { IComment } from 'entities/comment';
 import i18n from 'shared/config/i18n/i18n';
 
-export const fetchTemplateDetailsComments = createAsyncThunk<IComment[], { id: string }, IThunkConfig>(
-  'templateDetails/fetchTemplateDetailsComments',
+export const fetchTemplateComments = createAsyncThunk<IComment[], { id: string }, IThunkConfig>(
+  'template/fetchTemplateComments',
   async ({ id }, thunkAPI) => {
     try {
       const extra = thunkAPI.extra as IThunkExtra;

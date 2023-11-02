@@ -1,17 +1,17 @@
-import { FC, useCallback } from 'react';
+import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { templateRecommendsReducer } from '../../model/slice/templateRecommendsSlice';
 import { fetchTemplateRecommends } from '../../model/services/fetch-template-recommends/fetchTemplateRecommends';
-import { useDynamicModule, useTypedDispatch, ReducersList, useInitialEffect } from 'shared/lib/hooks';
-import { classNames } from 'shared/lib/class-names';
-import styles from './TemplateRecommends.module.scss';
-import { RWidth } from 'shared/ui/containers';
-import { Text } from 'shared/ui/text';
-import { TemplateList } from 'entities/template';
 import { getTemplateRecommendsError } from '../../model/selectors/get-template-recommends-error/getTemplateRecommendsError';
 import { getTemplateRecommendsIsLoading } from '../../model/selectors/get-template-recommends-is-loading/getTemplateRecommendsIsLoading';
 import { getTemplateRecommends } from '../../model/selectors/get-template-recommends/getTemplateRecommends';
+import { TemplateList } from 'entities/template';
+import { useDynamicModule, useTypedDispatch, ReducersList, useInitialEffect } from 'shared/lib/hooks';
+import { RWidth } from 'shared/ui/containers';
+import { Text } from 'shared/ui/text';
+import { classNames } from 'shared/lib/class-names';
+import styles from './TemplateRecommends.module.scss';
 
 interface ITemplateRecommendsProps extends React.HTMLAttributes<HTMLDivElement> {}
 
