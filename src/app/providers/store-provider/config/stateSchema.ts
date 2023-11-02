@@ -1,16 +1,16 @@
+import { AxiosInstance } from 'axios';
+import { AnyAction, EnhancedStore, ReducersMapObject, Reducer, CombinedState, ThunkMiddleware } from '@reduxjs/toolkit';
+import { ToolkitStore } from '@reduxjs/toolkit/dist/configureStore';
+import { ITemplatesPageSchema } from 'pages/templates-page';
 import { IModalsSchema, IScrollSchema } from 'widgets/layout';
+import { ITemplateRecommendsSchema } from 'widgets/template-recommends';
+import { ITemplateCommentsSchema } from 'widgets/template-comments';
 import { IUserSchema } from 'features/user';
 import { ILoginSchema } from 'features/auth-by-email';
-import { AnyAction, EnhancedStore, ReducersMapObject, Reducer, CombinedState, ThunkMiddleware } from '@reduxjs/toolkit';
-import { AxiosInstance } from 'axios';
-import { IProfileSchema } from 'entities/profile';
-import { ToolkitStore } from '@reduxjs/toolkit/dist/configureStore';
-import { ITemplateDetailsSchema } from 'entities/template';
 import { IAddCommentFormSchema } from 'features/add-comment-form';
-import { ITemplatesPageSchema } from 'pages/templates-page';
+import { IProfileSchema } from 'entities/profile';
+import { ITemplateDetailsSchema } from 'entities/template';
 import { OptionalRecord } from 'shared/lib/ts-utils';
-import { ITemplateRecommendsSchema } from 'features/template-recommends';
-import { ITemplateCommentsSchema } from 'features/template-comments';
 
 export interface IStateSchema {
   modals: IModalsSchema;

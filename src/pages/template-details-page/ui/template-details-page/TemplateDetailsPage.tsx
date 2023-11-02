@@ -2,6 +2,10 @@ import { FC, memo } from 'react';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { TemplateDetailsPageHeader } from '../template-details-page-header/TemplateDetailsPageHeader';
+import { TemplateRecommends } from 'widgets/template-recommends/ui/template-recommends/TemplateRecommends';
+import { TemplateComments } from 'widgets/template-comments/ui/template-comments/TemplateComments';
+import { Layout } from 'widgets/layout';
 import {
   TemplateDetails,
   fetchTemplateById,
@@ -12,12 +16,8 @@ import {
   templateDetailsReducer,
 } from 'entities/template';
 import { useDynamicModule, useTypedDispatch, useInitialEffect, ReducersList } from 'shared/lib/hooks';
-import { Layout } from 'widgets/layout';
-import { TemplateDetailsPageHeader } from '../template-details-page-header/TemplateDetailsPageHeader';
 import { classNames } from 'shared/lib/class-names';
 import styles from './TemplateDetailsPage.module.scss';
-import { TemplateRecommends } from 'features/template-recommends/ui/template-recommends/TemplateRecommends';
-import { TemplateComments } from 'features/template-comments/ui/template-comments/TemplateComments';
 
 interface ITemplateDetailsPageProps extends React.HTMLAttributes<HTMLDivElement> {}
 
