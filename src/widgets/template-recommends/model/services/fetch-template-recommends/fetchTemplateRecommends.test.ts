@@ -24,6 +24,6 @@ describe('fetchTemplateRecommends', () => {
     expect(thunk.api.get).toHaveBeenCalled();
     expect(thunk.dispatch).toHaveBeenCalledTimes(2);
     expect(res.meta.requestStatus).toBe('rejected');
-    expect(res.payload).toBe('Ошибка templateRecommends');
+    expect(res.payload).toBe('Ошибка при загрузке рекомендуемых');
   });
 });
