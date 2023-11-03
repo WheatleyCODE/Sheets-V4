@@ -3,6 +3,7 @@
 [] Доработать Fallbacks для image
 [] Завершить шаблоны
 [] RegisterForm? тесты?
+[] Тесты на Editable Profile
 
 // * Ideas
 [] Написать больше правил для ESLint 

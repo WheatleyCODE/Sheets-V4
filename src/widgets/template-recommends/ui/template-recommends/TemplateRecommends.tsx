@@ -6,7 +6,7 @@ import { fetchTemplateRecommends } from '../../model/services/fetch-template-rec
 import { getTemplateRecommendsError } from '../../model/selectors/get-template-recommends-error/getTemplateRecommendsError';
 import { getTemplateRecommendsIsLoading } from '../../model/selectors/get-template-recommends-is-loading/getTemplateRecommendsIsLoading';
 import { getTemplateRecommends } from '../../model/selectors/get-template-recommends/getTemplateRecommends';
-import { TemplateList } from 'entities/template';
+import { ITemplate, TemplateList } from 'entities/template';
 import { useDynamicModule, useTypedDispatch, ReducersList, useInitialEffect } from 'shared/lib/hooks';
 import { RWidth } from 'shared/ui/containers';
 import { Text } from 'shared/ui/text';
@@ -20,8 +20,8 @@ const reducers: ReducersList = { templateRecommends: templateRecommendsReducer }
 
 const recommendsApi = rtkApi.injectEndpoints({
   endpoints: (build) => ({
-    getRecommends: build.query({
-      query: (limit) => ({
+    getRecommends: build.query<ITemplate[], number>({
+      query: (limit: number) => ({
         url: '/templates',
         params: {
           _limit: limit,
@@ -42,8 +42,8 @@ export const TemplateRecommends: FC<ITemplateRecommendsProps> = (props) => {
   const recommendsIsLoading = useSelector(getTemplateRecommendsIsLoading);
   const { t } = useTranslation();
 
+  // ? Tests
   const { isLoading, error, data } = useTemplateRecommends(3);
-
   console.log(isLoading, error, data);
 
   useInitialEffect(() => {
