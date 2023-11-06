@@ -7,7 +7,7 @@ import { getTemplatesPagePage } from '../../selectors/get-templates-page-page/ge
 import { getTemplatesPageSort } from '../../selectors/get-templates-page-sort/getTemplatesPageSort';
 import { getTemplatesPageSortOrder } from '../../selectors/get-templates-page-sort-order/getTemplatesPageSortOrder';
 import { getTemplatesPageSearch } from '../../selectors/get-templates-page-search/getTemplatesPageSearch';
-import { addQueryParams } from 'shared/lib/paths';
+import { addQueryParams } from 'shared/lib/url';
 import { getTemplatesPageTag } from '../../selectors/get-templates-page-tag/getTemplatesPageTag';
 
 export interface IFetchTemplatesPageTemplatesProps {

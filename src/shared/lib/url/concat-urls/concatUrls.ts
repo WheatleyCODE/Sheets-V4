@@ -1,25 +1,31 @@
 const startSlashesRgxp = /^\/+/;
 const endSlashesRgxp = /\/+$/;
-const isAbsURL = /^(?:\w+:)?\/\//;
 const isStrictAbsURL = /^\w+:\/\//;
 
-export function concatURLs(...urls: string[]) {
+export const concatURLs = (...urls: string[]) => {
   let res = '';
+
   for (let i = 0; i < urls.length; i++) {
     let url = urls[i];
+
     if (url == null || url === '') {
       continue;
     }
+
     url = url.replace(endSlashesRgxp, '/');
+
     if (isStrictAbsURL.test(url)) {
       res = url;
       continue;
     }
+
     if (i === 0) {
       res = url.replace(startSlashesRgxp, (str) => str.slice(0, 2));
       continue;
     }
+
     url = url.replace(startSlashesRgxp, '/');
+
     if (res === '') {
       res += url;
     } else {
@@ -27,5 +33,6 @@ export function concatURLs(...urls: string[]) {
       res += res.endsWith('/') ? url : `/${url}`;
     }
   }
+
   return res;
-}
+};
