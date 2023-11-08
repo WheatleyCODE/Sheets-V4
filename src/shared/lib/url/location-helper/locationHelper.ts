@@ -1,6 +1,7 @@
 import { Location } from 'react-router-dom';
 import { OptionalRecord } from '../../ts-utils';
 import { SerializablePrimitiveValue } from '../../kv-storage';
+import { concatURLs } from '../concat-urls/concatUrls';
 
 export class LocationHelper<T = any> {
   #location: Location<T>;
@@ -36,8 +37,7 @@ export class LocationHelper<T = any> {
   }
 
   joinPaths(...paths: string[]): LocationHelper {
-    const joinedPath = paths.map((path) => path.trim()).join('/');
-    this.#location.pathname = joinedPath;
+    this.#location.pathname = concatURLs(...paths);
     return this;
   }
 
@@ -82,10 +82,13 @@ export class LocationHelper<T = any> {
     return `${this.pathname}${this.search}${this.hash}`;
   }
 
-  deleteParams(names: Iterable<string>): LocationHelper {
+  deleteParams(names: Iterable<string>, isSaveHistory = false): LocationHelper {
     for (const name of names) {
       this.#searchParams.delete(name);
     }
+
+    this.#location.search = `?${this.#searchParams.toString()}`;
+    if (isSaveHistory) this.#saveHistory();
 
     return this;
   }

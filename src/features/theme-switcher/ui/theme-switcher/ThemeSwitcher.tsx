@@ -8,7 +8,7 @@ import { DropdownMenu, DropdownMenuItem, MDropdown } from 'shared/ui/dropdown';
 import { useDropdown } from 'shared/ui/dropdown';
 import { ANIMATION_DURATION, ANIMATION_DURATION_MS } from 'shared/consts';
 import { useDropdownSubMenuAnimationFixer } from 'shared/ui/dropdown';
-import { sleep } from 'shared/lib/promises';
+import { sleep } from 'shared/lib/promise';
 import { intoIter } from 'shared/lib/iterators';
 import { Title } from 'shared/ui/title';
 import { Button } from 'shared/ui/button';

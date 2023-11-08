@@ -1,7 +1,7 @@
 import { fireEvent, screen } from '@testing-library/react';
 import { User } from './User';
 import { renderComponent } from 'shared/lib/tests/render-component/renderComponent';
-import { sleep } from 'shared/lib/promises';
+import { sleep } from 'shared/lib/promise';
 import { ANIMATION_DURATION_MS } from 'shared/consts';
 
 const imgSrc =

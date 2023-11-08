@@ -8,9 +8,7 @@ export const concatURLs = (...urls: string[]) => {
   for (let i = 0; i < urls.length; i++) {
     let url = urls[i];
 
-    if (url == null || url === '') {
-      continue;
-    }
+    if (Object.isNullable(url)) continue;
 
     url = url.replace(endSlashesRgxp, '/');
 

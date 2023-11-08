@@ -1,7 +1,7 @@
 import { fireEvent, screen } from '@testing-library/react';
 import { LanguageSwitcher } from './LanguageSwitcher';
 import { renderComponent } from 'shared/lib/tests/render-component/renderComponent';
-import { sleep } from 'shared/lib/promises';
+import { sleep } from 'shared/lib/promise';
 import { ANIMATION_DURATION_MS } from 'shared/consts';
 
 describe('LanguageSwitcher', () => {

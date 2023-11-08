@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { AnimatePresence } from 'framer-motion';
 import { MdOutlineLanguage } from 'react-icons/md';
 import { ANIMATION_DURATION, ANIMATION_DURATION_MS } from 'shared/consts';
-import { sleep } from 'shared/lib/promises';
+import { sleep } from 'shared/lib/promise';
 import { intoIter } from 'shared/lib/iterators';
 import { ILanguagesItems, ILanguagesSubItems, UILanguages, languageItems } from '../../model/consts/languageItems';
 import { Title } from 'shared/ui/title';
