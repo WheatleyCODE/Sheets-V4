@@ -10,6 +10,7 @@ import { ANIMATION_DURATION } from 'shared/consts';
 import { AnimatePresence } from 'framer-motion';
 import { Avatar } from 'shared/ui/avatar';
 import { RoutesPath } from 'shared/config/route-config/routeConfig';
+import { concatURLs } from 'shared/lib/url';
 import { classNames } from 'shared/lib/class-names';
 import styles from './User.module.scss';
 
@@ -36,8 +37,7 @@ export const User: FC<IUserProps> = memo((props) => {
   const navigateToProfile = useCallback(() => {
     if (!user) return;
     closeDropdown();
-    // ! FIX PATH
-    navigate(`${RoutesPath.profile}${user.id}`);
+    navigate(concatURLs(RoutesPath.profile, user.id));
   }, [user, closeDropdown, navigate]);
 
   return (

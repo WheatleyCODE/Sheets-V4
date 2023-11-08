@@ -9,6 +9,7 @@ import { Title } from 'shared/ui/title';
 import { Button } from 'shared/ui/button';
 import { getTemplateDetailsIsCanEdit } from '../../model/selectors/get-template-details-is-can-edit/getTemplateDetailsIsCanEdit';
 import { HStack, Width } from 'shared/ui/containers';
+import { concatURLs } from 'shared/lib/url';
 import { classNames } from 'shared/lib/class-names';
 import styles from './TemplateDetailsPageHeader.module.scss';
 
@@ -27,8 +28,7 @@ export const TemplateDetailsPageHeader: FC<ITemplateDetailsPageHeaderProps> = (p
   }, []);
 
   const navigateToTemplatesEdit = useCallback(() => {
-    // ! Fix path lib
-    navigate(RoutesPath.template_details + template.id + '/edit');
+    navigate(concatURLs(RoutesPath.template_details, template.id, 'edit'));
   }, [template.id]);
 
   return (

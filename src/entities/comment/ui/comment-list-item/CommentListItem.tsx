@@ -7,6 +7,7 @@ import { Link } from 'shared/ui/link';
 import { Title } from 'shared/ui/title';
 import { HStack, VStack } from 'shared/ui/containers';
 import { RoutesPath } from 'shared/config/route-config/routeConfig';
+import { concatURLs } from 'shared/lib/url';
 import { classNames } from 'shared/lib/class-names';
 import styles from './CommentListItem.module.scss';
 
@@ -28,8 +29,7 @@ export const CommentListItem: FC<ICommentListItemProps> = (props) => {
       className={classNames(styles.comment_list_item, {}, [className])}
     >
       <Title text={`${t('Перейти на профиль пользователя')}, ${username}`}>
-        {/* ! FIX path shared */}
-        <Link to={RoutesPath.profile + id}>
+        <Link to={concatURLs(RoutesPath.profile, id)}>
           <HStack gapMultiply="2" className={styles.header}>
             <Avatar width={40} height={40} src={avatar} />
             <Text title={username} />

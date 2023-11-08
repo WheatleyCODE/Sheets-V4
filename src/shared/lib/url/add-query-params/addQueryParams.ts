@@ -1,6 +1,6 @@
 import { OptionalRecord } from '../../ts-utils';
 
-export const getQueryParams = (params: OptionalRecord<string, string>) => {
+export const addQueryParams = (params: OptionalRecord<string, string>, isSaveHistory = false) => {
   const searchParams = new URLSearchParams(window.location.search);
 
   for (const [name, value] of Object.entries(params)) {
@@ -9,9 +9,9 @@ export const getQueryParams = (params: OptionalRecord<string, string>) => {
     }
   }
 
-  return `?${searchParams.toString()}`;
-};
+  const result = `?${searchParams.toString()}`;
 
-export const addQueryParams = (params: OptionalRecord<string, string>) => {
-  window.history.pushState(null, '', getQueryParams(params));
+  if (isSaveHistory) window.history.pushState(null, '', result);
+
+  return result;
 };

@@ -1,8 +1,8 @@
-import { getQueryParams } from './addQueryParams';
+import { addQueryParams } from './addQueryParams';
 
 describe('addQueryParams', () => {
   test('One param', () => {
-    const params = getQueryParams({
+    const params = addQueryParams({
       test: 'value',
     });
 
@@ -10,7 +10,7 @@ describe('addQueryParams', () => {
   });
 
   test('Multiple params', () => {
-    const params = getQueryParams({
+    const params = addQueryParams({
       test: 'value',
       second: '2',
     });
@@ -19,7 +19,7 @@ describe('addQueryParams', () => {
   });
 
   test('Undefined', () => {
-    const params = getQueryParams({
+    const params = addQueryParams({
       test: 'value',
       second: undefined,
     });

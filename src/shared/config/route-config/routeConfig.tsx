@@ -50,7 +50,6 @@ export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
     path: RoutesPath.landing,
     element: <LandingPage />,
   },
-  // ! Fix path lib
   [AppRoutes.PROFILE]: {
     path: `${RoutesPath.profile}:id`,
     element: <ProfilePage />,
@@ -61,7 +60,6 @@ export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
     element: <TemplatesPage />,
     authOnly: true,
   },
-  // ! Fix path lib
   [AppRoutes.TEMPLATE_DETAILS]: {
     path: `${RoutesPath.template_details}:id`,
     element: <TemplateDetailsPage />,

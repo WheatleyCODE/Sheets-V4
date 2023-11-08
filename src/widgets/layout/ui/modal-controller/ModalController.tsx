@@ -18,7 +18,7 @@ export const ModalController: FC = memo(() => {
 
   useEffect(() => {
     if (location.hash) {
-      const hash = location.hash.split('?')[0];
+      const hash = location.hash;
 
       const key = hashToStateKeys[hash];
       if (!key) return;

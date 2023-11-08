@@ -29,7 +29,7 @@ export const fetchTemplatesPageTemplates = createAsyncThunk<
     const search = getTemplatesPageSearch(thunkAPI.getState());
     const tag = getTemplatesPageTag(thunkAPI.getState());
 
-    addQueryParams({ sort, order, search, tag });
+    addQueryParams({ sort, order, search, tag }, true);
 
     const { data } = await extra.api.get<ITemplate[]>('/templates', {
       params: {
