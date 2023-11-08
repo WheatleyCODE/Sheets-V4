@@ -1,8 +1,10 @@
 import { FC, memo, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { MdOutlineLogout, MdOutlinePersonPin, MdPerson } from 'react-icons/md';
+import { useSelector } from 'react-redux';
+import { MdOutlineAdminPanelSettings, MdOutlineLogout, MdOutlinePersonPin, MdPerson } from 'react-icons/md';
 import { useTranslation } from 'react-i18next';
 import { IUser } from '../../model/types/user';
+import { isUserRoleAdmin, isUserRoleDeveloper } from '../../model/selectors/user-role-selector/userRoleSelector';
 import { Title } from 'shared/ui/title';
 import { Button } from 'shared/ui/button';
 import { DropdownMenu, DropdownMenuItem, MDropdown, useDropdown } from 'shared/ui/dropdown';
@@ -24,9 +26,13 @@ export const User: FC<IUserProps> = memo((props) => {
   const { className, user, logout, openAuth, ...anotherProps } = props;
   const { t } = useTranslation();
   const navigate = useNavigate();
+
+  const isAdmin = useSelector(isUserRoleAdmin);
+  const isDeveloper = useSelector(isUserRoleDeveloper);
   const { isShow, closeDropdown, toggleDropdown } = useDropdown();
 
-  const isUser = !!user?.email;
+  const isUser = !!user;
+  const isAccess = isAdmin || isDeveloper;
   const titleText = isUser ? t('Пользователь') : t('Войти');
 
   const logoutHandler = useCallback(() => {
@@ -38,6 +44,12 @@ export const User: FC<IUserProps> = memo((props) => {
     if (!user) return;
     closeDropdown();
     navigate(concatURLs(RoutesPath.profile, user.id));
+  }, [user, closeDropdown, navigate]);
+
+  const navigateToAdminPanel = useCallback(() => {
+    if (!user) return;
+    closeDropdown();
+    navigate(RoutesPath.admin_panel);
   }, [user, closeDropdown, navigate]);
 
   return (
@@ -61,6 +73,13 @@ export const User: FC<IUserProps> = memo((props) => {
             className={styles.dropdown}
           >
             <DropdownMenu>
+              {isAccess && (
+                <DropdownMenuItem
+                  Icon={MdOutlineAdminPanelSettings}
+                  onClick={navigateToAdminPanel}
+                  text={t('Админ панель')}
+                />
+              )}
               <DropdownMenuItem Icon={MdOutlinePersonPin} onClick={navigateToProfile} text={t('Профиль')} />
               <DropdownMenuItem Icon={MdOutlineLogout} onClick={logoutHandler} text={t('Выйти')} />
             </DropdownMenu>

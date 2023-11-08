@@ -8,9 +8,13 @@ import { TemplatesPage } from 'pages/templates-page';
 import { TemplateDetailsPage } from 'pages/template-details-page';
 import { TemplateCreatePage } from 'pages/template-create-page';
 import { TemplateEditPage } from 'pages/template-edit-page';
+import { AdminPanelPage } from 'pages/admin-panel-page';
+import { UserRoles } from 'features/user';
+import { ForbiddenPage } from 'pages/forbidden-page';
 
 export type AppRoutesProps = RouteProps & {
   authOnly?: boolean;
+  roles?: UserRoles[];
 };
 
 export enum AppRoutes {
@@ -22,6 +26,8 @@ export enum AppRoutes {
   TEMPLATE_DETAILS = 'template_details',
   TEMPLATE_CREATE = 'template_create',
   TEMPLATE_EDIT = 'template_edit',
+  ADMIN_PANEL = 'admin_panel',
+  FORBIDDEN = 'forbidden',
   NOT_FOUND = 'not_found',
 }
 
@@ -34,6 +40,8 @@ export const RoutesPath: Record<AppRoutes, string> = {
   [AppRoutes.TEMPLATE_DETAILS]: '/templates/', // + id
   [AppRoutes.TEMPLATE_CREATE]: '/templates/new',
   [AppRoutes.TEMPLATE_EDIT]: '/templates/:id/edit',
+  [AppRoutes.ADMIN_PANEL]: '/admin/panel',
+  [AppRoutes.FORBIDDEN]: '/forbidden',
   [AppRoutes.NOT_FOUND]: '*',
 };
 
@@ -49,6 +57,10 @@ export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
   [AppRoutes.LANDING]: {
     path: RoutesPath.landing,
     element: <LandingPage />,
+  },
+  [AppRoutes.FORBIDDEN]: {
+    path: RoutesPath.forbidden,
+    element: <ForbiddenPage />,
   },
   [AppRoutes.PROFILE]: {
     path: `${RoutesPath.profile}:id`,
@@ -73,6 +85,12 @@ export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
   [AppRoutes.TEMPLATE_EDIT]: {
     path: RoutesPath.template_edit,
     element: <TemplateEditPage />,
+    authOnly: true,
+  },
+  [AppRoutes.ADMIN_PANEL]: {
+    path: RoutesPath.admin_panel,
+    element: <AdminPanelPage />,
+    roles: ['ADMIN', 'DEVELOPER'] as UserRoles[],
     authOnly: true,
   },
   [AppRoutes.NOT_FOUND]: {
