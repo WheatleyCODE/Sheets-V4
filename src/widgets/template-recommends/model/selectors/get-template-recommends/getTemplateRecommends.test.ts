@@ -14,6 +14,6 @@ describe('getTemplateRecommends', () => {
   test('Return user state templateRecommends prop, empty', () => {
     const state: DeepPartial<IStateSchema> = {};
 
-    expect(getTemplateRecommends.selectAll(state as IStateSchema)).toBe([]);
+    expect(getTemplateRecommends.selectAll(state as IStateSchema)).toEqual([]);
   });
 });

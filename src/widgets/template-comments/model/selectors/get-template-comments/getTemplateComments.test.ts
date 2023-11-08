@@ -8,12 +8,12 @@ describe('getTemplateComments', () => {
       templateComments: { ids: [] },
     };
 
-    expect(getTemplateComments.selectAll(state as IStateSchema)).toEqual([]);
+    expect(getTemplateComments.selectAll(state as IStateSchema)).toStrictEqual([]);
   });
 
   test('Return user state templateComments prop, empty', () => {
     const state: DeepPartial<IStateSchema> = {};
 
-    expect(getTemplateComments.selectAll(state as IStateSchema)).toBe([]);
+    expect(getTemplateComments.selectAll(state as IStateSchema)).toStrictEqual([]);
   });
 });

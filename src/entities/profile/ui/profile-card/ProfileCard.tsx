@@ -106,6 +106,7 @@ export const ProfileCard: FC<IProfileCardProps> = memo((props) => {
         <Title isStopShow={input.isFocus} text={t(title)}>
           <Input
             Icon={Icon}
+            data-testid={title}
             isReadonly={isReadonly}
             value={input.value}
             type="text"

@@ -2,7 +2,8 @@ import { FC } from 'react';
 import { Provider } from 'react-redux';
 import { createReduxStore } from '../../config/store';
 import { IStateSchema } from '../../config/stateSchema';
-import { DeepPartial, ReducersMapObject } from '@reduxjs/toolkit';
+import { ReducersMapObject } from '@reduxjs/toolkit';
+import { DeepPartial } from 'shared/lib/ts-utils';
 
 export interface IStoreProviderProps extends FCProps {
   initialState?: IStateSchema;

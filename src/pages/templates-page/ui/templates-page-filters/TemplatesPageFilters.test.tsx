@@ -5,6 +5,8 @@
 // import { TemplateTags, TemplateView } from 'entities/template';
 // import { templateTabs } from 'entities/template/model/consts/tags';
 
+// ! FIX TEST
+
 // describe('TemplatesPageFilters', () => {
 //   test('In the document', () => {
 //     const changeSort = jest.fn();

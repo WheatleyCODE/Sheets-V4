@@ -5,7 +5,7 @@ import { IStateSchema } from 'app/providers/store-provider';
 describe('getTemplateRecommendsError', () => {
   test('Return templateRecommends state error prop', () => {
     const state: DeepPartial<IStateSchema> = {
-      templateDetails: { error: 'error' },
+      templateRecommends: { error: 'error' },
     };
 
     expect(getTemplateRecommendsError(state as IStateSchema)).toBe('error');

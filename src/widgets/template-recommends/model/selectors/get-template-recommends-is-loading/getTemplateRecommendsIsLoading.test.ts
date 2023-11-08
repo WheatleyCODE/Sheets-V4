@@ -5,7 +5,7 @@ import { IStateSchema } from 'app/providers/store-provider';
 describe('getTemplateRecommendsIsLoading', () => {
   test('Return templateRecommends state isLoading prop', () => {
     const state: DeepPartial<IStateSchema> = {
-      templateDetails: { isLoading: true },
+      templateRecommends: { isLoading: true },
     };
 
     expect(getTemplateRecommendsIsLoading(state as IStateSchema)).toBe(true);
