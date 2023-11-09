@@ -24,8 +24,6 @@ export const AuthModal: FC<IAuthModalProps> = memo((props) => {
     const isLogin = new LocationHelper(location).hasParam('login');
     const isRegister = new LocationHelper(location).hasParam('register');
 
-    console.log(isLogin, isRegister);
-
     if (!isLogin && !isRegister) {
       navigate(new LocationHelper(location).addHash(ModalsHash.AUTH).setParams({ login: true }).getPath());
       return;
