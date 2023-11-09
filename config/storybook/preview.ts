@@ -5,6 +5,7 @@ import { Theme } from 'app/providers/lib/theme-context';
 import { routerDecorator } from './router-decorator/routerDecorator';
 import { storeDecorator } from './store-decorator/storeDecorator';
 import { translationDecorator } from './translation-decorator/translationDecorator';
+import '../../src/shared/lib/prelude/prelude/prelude';
 
 const preview: Preview = {
   parameters: {

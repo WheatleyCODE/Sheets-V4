@@ -4,7 +4,7 @@ import { Theme } from 'app/providers/lib/theme-context';
 import { themeDecorator } from '../../../../../config/storybook/theme-decorator/themeDecorator';
 
 const meta = {
-  title: 'changeTitle/ForbiddenPage',
+  title: 'pages/ForbiddenPage',
   component: ForbiddenPage,
 } satisfies Meta<typeof ForbiddenPage>;
 
