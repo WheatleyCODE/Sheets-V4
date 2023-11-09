@@ -1,14 +1,10 @@
 import { FC, memo } from 'react';
-import { ITemplateImageBlock } from '../../model/types/template';
 import { Image } from 'shared/ui/image';
 import { Text, TextSize } from 'shared/ui/text';
 import { HStack, VStack } from 'shared/ui/containers';
 import { classNames } from 'shared/lib/class-names';
+import type { ITemplateImageBlockProps } from './TemplateImageBlock.interface';
 import styles from './TemplateImageBlock.module.scss';
-
-interface ITemplateImageBlockProps extends React.HTMLAttributes<HTMLDivElement> {
-  block: ITemplateImageBlock;
-}
 
 export const TemplateImageBlock: FC<ITemplateImageBlockProps> = memo((props) => {
   const { className, block, ...anotherProps } = props;

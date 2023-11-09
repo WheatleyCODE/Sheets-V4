@@ -1,17 +1,12 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { IProfile, IProfileSchema } from '../types/profile';
 import { fetchProfile } from '../services/fetch-profile/fetchProfile';
 import { updateProfile } from '../services/update-profille/updateProfile';
-
-const initialState: IProfileSchema = {
-  error: null,
-  isLoading: false,
-  isReadonly: true,
-};
+import { initialProfileState } from '../consts/profile.consts';
+import type { IProfile } from '../types/profile.interface';
 
 export const profileSlice = createSlice({
   name: 'profile',
-  initialState,
+  initialState: initialProfileState,
   reducers: {
     setProfile(state, { payload }: PayloadAction<IProfile>) {
       state.profile = payload;

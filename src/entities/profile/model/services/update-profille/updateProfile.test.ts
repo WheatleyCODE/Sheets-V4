@@ -1,6 +1,7 @@
 import { updateProfile } from './updateProfile';
 import { TestAsyncThunk } from 'shared/lib/tests';
-import { Country, Currency, IProfile } from '../../types/profile';
+import { IProfile } from '../../types/profile.interface';
+import { Country, Currency } from '../../consts/profile.consts';
 
 describe('updateProfile', () => {
   test('Fulfilled', async () => {

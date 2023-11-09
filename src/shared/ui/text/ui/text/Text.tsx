@@ -1,16 +1,8 @@
 import { FC, memo } from 'react';
+import { TextSize, TextStyle } from './Text.consts';
 import { classNames } from 'shared/lib/class-names';
-import { TextSize, TextStyle, TextTagType } from '../interface';
+import type { ITextProps } from './Text.interface';
 import styles from './Text.module.scss';
-
-interface ITextProps extends React.HTMLAttributes<HTMLDivElement> {
-  title?: string;
-  text?: string;
-  textStyle?: TextStyle;
-  textSize?: TextSize;
-  textTag?: TextTagType;
-  titleTag?: TextTagType;
-}
 
 export const Text: FC<ITextProps> = memo((props) => {
   const {

@@ -1,6 +1,5 @@
 import { RefObject, useEffect } from 'react';
-
-export type EventTypes = 'click' | 'contextmenu';
+import type { EventTypes } from './useClickOutsize.interface';
 
 export const useClickOutside = <T extends HTMLElement = HTMLElement>(
   ref: RefObject<T>,

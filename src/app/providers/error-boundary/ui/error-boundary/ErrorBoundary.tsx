@@ -1,13 +1,6 @@
 import React, { ErrorInfo } from 'react';
 import { PageError } from 'widgets/page-error';
-
-export interface ErrorBoundaryProps {
-  children: React.ReactNode;
-}
-
-interface ErrorBoundaryState {
-  hasError: boolean;
-}
+import type { ErrorBoundaryProps, ErrorBoundaryState } from './ErrorBoundary.interface';
 
 export class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoundaryState> {
   constructor(props: ErrorBoundaryProps) {

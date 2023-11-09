@@ -1,8 +1,8 @@
 export { Layout } from './ui/layout/Layout';
 export { ModalController } from './ui/modal-controller/ModalController';
-export { IModalsSchema, ModalsKeys } from './model/types/modalsSchema';
-export { ModalsHash } from './consts/hashToStateKeys';
-export { modalsActions, modalsReducer, modalsSlice } from './model/slice/modalsSlice';
+export type { IModalsSchema, ModalsKeys } from './model/types/modal/modal.interface';
+export { ModalsHash } from './model/consts/layout.consts';
+export { modalsActions, modalsReducer, modalsSlice } from './model/slice/modal/modalsSlice';
 
 export { scrollActions, scrollReducer } from './model/slice/scroll/scrollSlice';
-export { IScrollSchema } from './model/types/scroll/scrollSchema';
+export type { IScrollSchema } from './model/types/scroll/scroll.interface';

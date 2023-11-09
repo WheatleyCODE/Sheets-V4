@@ -5,9 +5,8 @@ import { classNames } from 'shared/lib/class-names';
 import { IValidInputOpts, Input, useValidInput } from 'shared/ui/input';
 import { Button } from 'shared/ui/button';
 import { emailValidator, passwordValidator } from 'shared/lib/validators';
+import type { IRegisterFormProps } from './RegisterForm.interface';
 import styles from './RegisterForm.module.scss';
-
-interface IRegisterFormProps extends React.HTMLAttributes<HTMLDivElement> {}
 
 // ! FIX
 const RegisterForm: FC<IRegisterFormProps> = memo((props) => {

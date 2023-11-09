@@ -1,4 +1,5 @@
-import { EmailValidErrors, emailValidator } from './emailValidator';
+import { emailValidator } from './emailValidator';
+import { EmailValidErrors } from './emailValidator.consts';
 
 describe('emailValidator', () => {
   test('Valid cases', () => {

@@ -1,4 +1,4 @@
-import { IEmitterData, IEmitterSubs } from '../interface';
+import type { IEmitterData, IEmitterSubs } from './Emitter.interface';
 
 export abstract class Emitter<D extends IEmitterData, N extends string> {
   #subscribers: IEmitterSubs<D> = {};

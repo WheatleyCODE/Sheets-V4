@@ -5,7 +5,7 @@ import { MdOutlineLanguage } from 'react-icons/md';
 import { ANIMATION_DURATION, ANIMATION_DURATION_MS } from 'shared/consts';
 import { sleep } from 'shared/lib/promise';
 import { intoIter } from 'shared/lib/iterators';
-import { ILanguagesItems, ILanguagesSubItems, UILanguages, languageItems } from '../../model/consts/languageItems';
+import { UILanguages, languageItems } from '../../model/consts/languageSwitcher.consts';
 import { Title } from 'shared/ui/title';
 import { Button } from 'shared/ui/button';
 import {
@@ -16,9 +16,9 @@ import {
   useDropdownSubMenuAnimationFixer,
 } from 'shared/ui/dropdown';
 import { classNames } from 'shared/lib/class-names';
+import type { ILanguageSwitcherProps } from './LanguageSwitcher.interface';
+import type { ILanguagesItems, ILanguagesSubItems } from '../../model/types/languageSwitcher.interface';
 import styles from './LanguageSwitcher.module.scss';
-
-interface ILanguageSwitcherProps extends React.HTMLAttributes<HTMLDivElement> {}
 
 export const LanguageSwitcher: FC<ILanguageSwitcherProps> = memo((props) => {
   const { className, ...anotherProps } = props;

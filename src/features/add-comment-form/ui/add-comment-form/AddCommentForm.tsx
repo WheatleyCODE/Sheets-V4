@@ -9,11 +9,8 @@ import { HStack } from 'shared/ui/containers';
 import { Button } from 'shared/ui/button';
 import { ReducersList, useDynamicModule, useTypedDispatch } from 'shared/lib/hooks';
 import { classNames } from 'shared/lib/class-names';
+import type { IAddCommentFormProps } from './AddCommentForm.interface';
 import styles from './AddCommentForm.module.scss';
-
-interface IAddCommentFormProps extends React.HTMLAttributes<HTMLDivElement> {
-  addComment: (text: string) => void;
-}
 
 const reducers: ReducersList = { addCommentForm: addCommentFormReducer };
 

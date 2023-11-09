@@ -1,27 +1,15 @@
 import { DeepPartial } from 'shared/lib/ts-utils';
-import { getProfile, initProfile } from './getProfile';
+import { getProfile } from './getProfile';
 import { IStateSchema } from 'app/providers/store-provider';
-import { Country, Currency, IProfile } from '../../types/profile';
+import { profileTests, initProfile } from '../../consts/profile.consts';
 
 describe('getProfile', () => {
   test('Return profile state', () => {
-    const profile: IProfile = {
-      userId: '1',
-      firstname: 'Вася',
-      lastname: 'Пупкин',
-      age: '65',
-      currency: Currency.USD,
-      country: Country.RUSSIA,
-      city: 'Благовещенск',
-      username: 'Vasya28RUS',
-      avatar: 'http://...',
-    };
-
     const state: DeepPartial<IStateSchema> = {
-      profile: { profile },
+      profile: { profile: profileTests },
     };
 
-    expect(getProfile(state as IStateSchema)).toEqual(profile);
+    expect(getProfile(state as IStateSchema)).toEqual(profileTests);
   });
 
   test('Return profile state, empty', () => {

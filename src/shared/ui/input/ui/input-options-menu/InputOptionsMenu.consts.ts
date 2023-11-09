@@ -1,0 +1,1 @@
+export const INPUT_OPTIONS_MENU_PADDING = 10;

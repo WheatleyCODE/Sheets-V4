@@ -1,37 +1,17 @@
-import React, { FC, memo, useCallback, useEffect, useRef } from 'react';
+import { FC, memo, useCallback, useEffect, useRef } from 'react';
 import { AnimatePresence, useAnimation } from 'framer-motion';
-import { IconType } from 'react-icons';
 import { ANIMATION_DURATION } from 'shared/consts/animations/animation';
 import { intoIter } from 'shared/lib/iterators';
-import { Icon as IconComponent } from 'shared/ui/icon';
-import { IInputOptionsMenuItem, InputOptionsMenuItem } from '../input-options-menu-item/InputOptionsMenuItem';
+import { Icon as IconComponent } from '../../../icon';
 import { MInputOptionsMenu } from '../input-options-menu/InputOptionsMenu';
 import { MInputPlaceholder } from '../input-placeholder/InputPlaceholder';
 import { MInputValidError } from '../input-valid-error/InputValidError';
-import { DefaultItems, defaultItems } from '../../model/consts/numbers';
+import { InputOptionsMenuItem } from '../input-options-menu-item/InputOptionsMenuItem';
+import { DefaultItems, defaultItems } from './Input.consts';
 import { classNames } from 'shared/lib/class-names';
+import type { IInputProps } from './Input.interface';
+import type { IInputOptionsMenuItem } from '../input-options-menu-item/InputOptionsMenuItem.interface';
 import styles from './Input.module.scss';
-
-export interface IInputOptions {
-  items: Iterable<IInputOptionsMenuItem> | DefaultItems;
-  changeValue: (a?: any) => void;
-  maxItems?: number;
-  isSearch?: boolean;
-  isForbidInput?: boolean;
-}
-
-export interface IInputProps extends React.HTMLAttributes<HTMLInputElement> {
-  value: string;
-  Icon?: IconType;
-  type: string;
-  isError: boolean;
-  isActive: boolean;
-  validError: string | null;
-  isFocus?: boolean;
-  isTouched?: boolean;
-  isReadonly?: boolean;
-  options?: IInputOptions;
-}
 
 export const Input: FC<IInputProps> = memo((props) => {
   const {

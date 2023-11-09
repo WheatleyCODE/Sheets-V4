@@ -1,10 +1,5 @@
-import { Dispatch, SetStateAction, createContext } from 'react';
-import { IDragLineItem } from '../ui/drag-line-item/DragLineItem';
-
-export interface IDragLineContextProps {
-  items: IDragLineItem[];
-  setItems: Dispatch<SetStateAction<IDragLineItem[]>>;
-}
+import { createContext } from 'react';
+import type { IDragLineContextProps } from './DragLineContext.interface';
 
 const initContext: IDragLineContextProps = { items: [], setItems: () => {} };
 

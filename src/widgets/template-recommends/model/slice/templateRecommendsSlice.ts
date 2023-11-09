@@ -1,4 +1,4 @@
-import { ITemplateRecommendsSchema } from '../types/templateRecommends';
+import { ITemplateRecommendsSchema } from '../types/templateRecommends.interface';
 import { fetchTemplateRecommends } from '../services/fetch-template-recommends/fetchTemplateRecommends';
 import { createEntityAdapter, createSlice } from '@reduxjs/toolkit';
 import { ITemplate } from 'entities/template';

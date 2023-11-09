@@ -1,4 +1,4 @@
-import { ForEachCallback, MapCallback, Predicate } from '../interface';
+import { ForEachCallback, MapCallback, Predicate } from '../types/interface';
 import { intoAsyncIterator } from '../into-async-iterator/IntoAsyncIterator';
 
 export function intoAsyncIter<T>(obj: any): AsyncIter<T> {

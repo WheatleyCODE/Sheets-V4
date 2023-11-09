@@ -1,15 +1,10 @@
-import { CSSProperties, forwardRef } from 'react';
-import { INPUT_OPTIONS_MENU_ITEM_HEIGHT } from '../input-options-menu-item/InputOptionsMenuItem';
+import { forwardRef } from 'react';
 import { motion } from 'framer-motion';
+import { INPUT_OPTIONS_MENU_PADDING } from './InputOptionsMenu.consts';
+import { INPUT_OPTIONS_MENU_ITEM_HEIGHT } from '../input-options-menu-item/InputOptionsMenuItem.consts';
 import { classNames } from 'shared/lib/class-names';
+import type { IInputOptionsMenuProps } from './InputOptionsMenu.interface';
 import styles from './InputOptionsMenu.module.scss';
-
-export const INPUT_OPTIONS_MENU_PADDING = 10;
-
-interface IInputOptionsMenuProps extends React.HTMLAttributes<HTMLDivElement> {
-  maxItems?: number;
-  style?: CSSProperties;
-}
 
 export const InputOptionsMenu = forwardRef<HTMLDivElement, IInputOptionsMenuProps>((props, ref) => {
   const { className, children, style, maxItems = 4, ...anotherProps } = props;

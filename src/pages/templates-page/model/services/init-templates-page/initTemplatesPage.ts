@@ -4,8 +4,8 @@ import i18n from 'shared/config/i18n/i18n';
 import { getTemplatesPageInited } from '../../selectors/get-templates-page-inited/getTemplatesPageInited';
 import { templatesPageActions } from '../../slice/templatesPageSlice';
 import { fetchTemplatesPageTemplates } from '../fetch-templates-page-templates/fetchTemplatesPageTemplates';
-import { TemplateSortFields, TemplateSortOrders } from '../../types/templatesPage';
 import { TemplateTags } from 'entities/template';
+import { TemplateSortFields, TemplateSortOrders } from '../../consts/templatesPage.consts';
 
 export const initTemplatesPage = createAsyncThunk<void, URLSearchParams, IThunkConfig>(
   'templatesPage/initTemplatesPage',

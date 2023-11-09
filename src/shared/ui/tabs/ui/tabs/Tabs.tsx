@@ -1,15 +1,13 @@
 import { FC, memo, useEffect } from 'react';
-import { ITabItem, TabItem } from '../tab-item/TabItem';
+import { TabItem } from '../tab-item/TabItem';
 import { intoIter } from 'shared/lib/iterators';
 import { withProvider } from 'shared/lib/with-provider';
 import { TabsProvider } from '../tabs-provider/TabsProvider';
-import { useTabs } from '../../lib/useTabs';
+import { useTabs } from '../../lib/TabsContext.hooks';
 import { classNames } from 'shared/lib/class-names';
+import type { ITabsProps } from './Tabs.interface';
+import type { ITabItem } from '../tab-item/TabItem.interface';
 import styles from './Tabs.module.scss';
-interface ITabsProps extends React.HTMLAttributes<HTMLDivElement> {
-  tabItems?: ITabItem[];
-  initValue: string | null;
-}
 
 const TabsWithoutContext: FC<ITabsProps> = memo((props) => {
   const { className, tabItems = [], initValue, children, ...anotherProps } = props;

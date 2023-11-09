@@ -12,9 +12,8 @@ import { HStack } from 'shared/ui/containers';
 import { LS_AUTH_KEY, LS_DEFAULT_NAMESPACE } from 'shared/consts';
 import { KVFactory } from 'shared/lib/kv-storage';
 import { classNames } from 'shared/lib/class-names';
+import type { NavbarProps } from './Navbar.interface';
 import styles from './Navbar.module.scss';
-
-export interface NavbarProps extends React.HTMLAttributes<HTMLDivElement> {}
 
 const ls = KVFactory(LS_DEFAULT_NAMESPACE);
 

@@ -1,10 +1,6 @@
 import { FC, useMemo, useState } from 'react';
 import { DragLineContext } from '../../lib/DragLineContext';
-import { IDragLineItem } from '../drag-line-item/DragLineItem';
-
-export interface IDragLineProviderProps extends FCProps {
-  initItems?: IDragLineItem[];
-}
+import type { IDragLineProviderProps } from './DragLineProvider.interface';
 
 export const DragLineProvider: FC<IDragLineProviderProps> = ({ children, initItems = [] }) => {
   const [items, setItems] = useState(initItems);

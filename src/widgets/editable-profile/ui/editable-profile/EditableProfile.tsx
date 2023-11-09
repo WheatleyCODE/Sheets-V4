@@ -16,9 +16,8 @@ import {
 } from 'entities/profile';
 import { ReducersList, useDynamicModule, useInitialEffect, useTypedDispatch } from 'shared/lib/hooks';
 import { classNames } from 'shared/lib/class-names';
+import type { IEditableProfileProps } from './EditableProfile.interface';
 import styles from './EditableProfile.module.scss';
-
-interface IEditableProfileProps extends React.HTMLAttributes<HTMLDivElement> {}
 
 const reducers: ReducersList = { profile: profileReducer };
 

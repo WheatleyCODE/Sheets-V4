@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { Drawer } from './Drawer';
-import { Theme } from 'app/providers/lib/theme-context';
+import { Theme } from 'app/providers/lib';
 import { themeDecorator } from '../../../../../../config/storybook/theme-decorator/themeDecorator';
-import { DrawerOpenStyles } from './interface';
+import { DrawerOpenStyles } from './Drawer.consts';
 
 const meta = {
   title: 'shared/Drawer',

@@ -4,6 +4,7 @@
 [] Завершить шаблоны
 [] RegisterForm? тесты?
 [] Тесты на Editable Profile
+[] Перенести enum в consts
 
 // * Ideas
 [] Написать больше правил для ESLint 
@@ -13,6 +14,7 @@
 [] Написать парсер для формул -> применить его в <Code />
 [] Использовать в Sheets entity adapter data и нормализацию
 [] Запросы и suspense для storybook 75
+[] Проверить memo в компонентах
 
 // * Features
 [] Дописать KVStorage + тесты

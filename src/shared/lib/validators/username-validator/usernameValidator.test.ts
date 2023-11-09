@@ -1,4 +1,5 @@
-import { UsernameValidErrors, usernameValidator } from './usernameValidator';
+import { usernameValidator } from './usernameValidator';
+import { UsernameValidErrors } from './usernameValidator.consts';
 
 describe('usernameValidator', () => {
   test('Valid cases', () => {

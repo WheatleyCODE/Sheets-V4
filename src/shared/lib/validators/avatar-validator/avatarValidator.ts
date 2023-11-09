@@ -1,8 +1,5 @@
 import { getValidator } from '../get-validator/getValidator';
-
-export enum AvatarValidErrors {
-  EMPTY = 'Поле не может быть пустым',
-}
+import { AvatarValidErrors } from './avatarValidator.consts';
 
 export const avatarValidator = getValidator({
   noEmpty: {

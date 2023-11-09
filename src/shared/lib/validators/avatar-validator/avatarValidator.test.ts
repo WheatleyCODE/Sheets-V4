@@ -1,4 +1,5 @@
-import { AvatarValidErrors, avatarValidator } from './avatarValidator';
+import { avatarValidator } from './avatarValidator';
+import { AvatarValidErrors } from './avatarValidator.consts';
 
 describe('avatarValidator', () => {
   test('Valid cases', () => {

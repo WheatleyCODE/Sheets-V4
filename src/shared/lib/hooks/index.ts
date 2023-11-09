@@ -1,6 +1,7 @@
 export { useClickOutside } from './use-click-outside/useClickOutsize';
-export { useTypedDispatch } from './redux/useTypedDispatch';
-export { useDynamicModule, ReducersList } from './redux/useDynamicModule';
+export { useTypedDispatch } from './redux/use-typed-dispatch/useTypedDispatch';
+export { useDynamicModule } from './redux/use-dynamic-module/useDynamicModule';
+export type { ReducersList } from './redux/use-dynamic-module/useDynamicModule.interface';
 export { useDebounce } from './use-debounce/useDebounce';
 export { useDelayHover } from './use-delay-hover/useDelayHover';
 export { useInitialEffect } from './use-initial-effect/useInitialEffect';

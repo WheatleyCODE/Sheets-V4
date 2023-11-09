@@ -1,15 +1,11 @@
 import { FC, useCallback, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { CgClose } from 'react-icons/cg';
-import { Icon } from 'shared/ui/icon';
+import { Icon } from '../../../icon';
 import { ANIMATION_DURATION } from 'shared/consts/animations/animation';
 import { classNames } from 'shared/lib/class-names';
+import type { IModalProps } from './Modal.interface';
 import styles from './Modal.module.scss';
-
-interface IModalProps extends React.HTMLAttributes<HTMLDivElement> {
-  onClose: () => void;
-  isHideCloseButton?: boolean;
-}
 
 export const Modal: FC<IModalProps> = (props) => {
   const { className, children, isHideCloseButton, onClose } = props;

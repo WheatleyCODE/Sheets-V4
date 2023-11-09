@@ -1,4 +1,4 @@
-import { IValidatorOptions } from '../interface';
+import { IValidatorOptions } from './getValidator.interface';
 import { getValidator } from './getValidator';
 
 describe('getValidator', () => {

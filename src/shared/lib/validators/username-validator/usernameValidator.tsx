@@ -1,10 +1,5 @@
 import { getValidator } from '../get-validator/getValidator';
-
-export enum UsernameValidErrors {
-  MIN = 'Никнейм должен быть больше 3 символов',
-  MAX = 'Никнейм должен быть меньше 14 символов',
-  EMPTY = 'Поле не может быть пустым',
-}
+import { UsernameValidErrors } from './usernameValidator.consts';
 
 export const usernameValidator = getValidator({
   minLength: {

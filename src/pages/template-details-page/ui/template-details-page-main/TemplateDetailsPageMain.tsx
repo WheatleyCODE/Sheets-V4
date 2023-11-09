@@ -12,9 +12,8 @@ import {
 } from 'entities/template';
 import { ReducersList, useDynamicModule, useInitialEffect, useTypedDispatch } from 'shared/lib/hooks';
 import { classNames } from 'shared/lib/class-names';
+import type { ITemplateDetailsPageMainProps } from './TemplateDetailsPageMain.interface';
 import styles from './TemplateDetailsPageMain.module.scss';
-
-interface ITemplateDetailsPageMainProps extends React.HTMLAttributes<HTMLDivElement> {}
 
 const reducerList: ReducersList = {
   templateDetails: templateDetailsReducer,

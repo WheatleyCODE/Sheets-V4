@@ -1,4 +1,4 @@
-import { Curried, CurryFirst, CurryRest } from './interfaces';
+import type { Curried, CurryFirst, CurryRest } from './curry.interface';
 
 export const curry = <T extends (...args: any) => any>(fn: T): Curried<T> => {
   if (!fn.length) {

@@ -1,5 +1,5 @@
 import { addCommentFormActions, addCommentFormReducer } from './addCommentFormSlice';
-import { IAddCommentFormSchema } from '../types/addCommentForm';
+import { IAddCommentFormSchema } from '../types/addCommentForm.interface';
 import { DeepPartial } from 'shared/lib/ts-utils';
 
 describe('addCommentFormSlice', () => {

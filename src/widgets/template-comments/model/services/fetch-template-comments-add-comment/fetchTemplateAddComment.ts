@@ -4,12 +4,7 @@ import { IComment } from 'entities/comment';
 import { getUser } from 'features/user';
 import { templateCommentsActions } from '../../slice/templateCommentsSlice';
 import i18n from 'shared/config/i18n/i18n';
-
-export interface IFetchAddCommentData {
-  userId: string;
-  templateId: string;
-  text: string;
-}
+import type { IFetchAddCommentData } from './fetchTemplateAddComment.interface';
 
 export const fetchTemplateAddComment = createAsyncThunk<IComment, IFetchAddCommentData, IThunkConfig>(
   'template/fetchTemplateAddComment',

@@ -1,3 +1,3 @@
 export { KVFactory, KVStorage } from './kv-storage/kvStorage';
-export { SerializableValue, SerializablePrimitiveValue } from './interface';
+export type { SerializableValue, SerializablePrimitiveValue } from './kv-storage/kvStorage.interface';
 export { LocalStorageEngine } from './local-storage-engine/localStorageEngine';

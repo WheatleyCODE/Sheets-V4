@@ -1,11 +1,6 @@
 import { FC, useMemo, useState } from 'react';
 import { TabsContext } from '../../lib/TabsContext';
-import { ITabItem } from '../tab-item/TabItem';
-
-export interface ITabsProviderProps extends FCProps {
-  initItems?: ITabItem[];
-  initCurrentValue?: string | null;
-}
+import type { ITabsProviderProps } from './TabsProvider.interface';
 
 export const TabsProvider: FC<ITabsProviderProps> = ({ children, initItems = [], initCurrentValue = null }) => {
   const [items, setItems] = useState(initItems);

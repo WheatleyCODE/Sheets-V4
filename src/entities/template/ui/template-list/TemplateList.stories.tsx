@@ -1,9 +1,9 @@
 /* eslint-disable quotes */
 import type { Meta, StoryObj } from '@storybook/react';
 import { TemplateList } from './TemplateList';
-import { Theme } from 'app/providers/lib/theme-context';
+import { Theme } from 'app/providers/lib';
 import { themeDecorator } from '../../../../../config/storybook/theme-decorator/themeDecorator';
-import { ITemplate } from '../../model/types/template';
+import { ITemplate } from '../../model/types/template.interface';
 
 const meta = {
   title: 'entities/template/TemplateList',

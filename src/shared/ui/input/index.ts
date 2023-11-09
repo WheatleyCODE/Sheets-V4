@@ -1,4 +1,5 @@
-export { Input, IInputOptions } from './ui/input/Input';
-export { IInputOptionsMenuItem } from './ui/input-options-menu-item/InputOptionsMenuItem';
-export { DefaultItems } from './model/consts/numbers';
-export { useValidInput, IValidInputOpts } from './model/hooks/useValidInput';
+export { Input } from './ui/input/Input';
+export { DefaultItems } from './ui/input/Input.consts';
+export { useValidInput } from './ui/input/Input.hooks';
+export type { IValidInputOpts, IInputOptions } from './ui/input/Input.interface';
+export type { IInputOptionsMenuItem } from './ui/input-options-menu-item/InputOptionsMenuItem.interface';

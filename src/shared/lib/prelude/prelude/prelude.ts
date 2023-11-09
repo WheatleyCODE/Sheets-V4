@@ -1,4 +1,4 @@
-import { PROXY, nonPrimitiveTypes } from '../consts/preludeConsts';
+import { PROXY, nonPrimitiveTypes } from '../consts/prelude.consts';
 import { extend } from '../extend/extend';
 
 extend(Object, 'isAsyncIterable', (value: any) => {

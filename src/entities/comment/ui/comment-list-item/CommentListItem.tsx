@@ -1,6 +1,5 @@
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
-import { IComment } from '../../model/types/comment';
 import { Avatar } from 'shared/ui/avatar';
 import { Text } from 'shared/ui/text';
 import { Link } from 'shared/ui/link';
@@ -9,11 +8,8 @@ import { HStack, VStack } from 'shared/ui/containers';
 import { RoutesPath } from 'shared/config/route-config/routeConfig';
 import { concatURLs } from 'shared/lib/url';
 import { classNames } from 'shared/lib/class-names';
+import type { ICommentListItemProps } from './CommentListItem.interface';
 import styles from './CommentListItem.module.scss';
-
-interface ICommentListItemProps extends React.HTMLAttributes<HTMLDivElement> {
-  comment: IComment;
-}
 
 export const CommentListItem: FC<ICommentListItemProps> = (props) => {
   const { className, comment, ...anotherProps } = props;

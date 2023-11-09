@@ -1,6 +1,6 @@
 import { templateRecommendsReducer } from './templateRecommendsSlice';
 import { fetchTemplateRecommends } from '../services/fetch-template-recommends/fetchTemplateRecommends';
-import { ITemplateRecommendsSchema } from '../types/templateRecommends';
+import { ITemplateRecommendsSchema } from '../types/templateRecommends.interface';
 import { DeepPartial } from 'shared/lib/ts-utils';
 
 describe('templateRecommendsReducer', () => {

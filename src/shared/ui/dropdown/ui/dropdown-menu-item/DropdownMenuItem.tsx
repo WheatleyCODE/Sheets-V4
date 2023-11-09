@@ -1,20 +1,11 @@
-import { FC, ReactNode, useCallback } from 'react';
+import { FC, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { IconType } from 'react-icons';
 import { useDelayHover } from 'shared/lib/hooks';
 import { ANIMATION_DURATION } from 'shared/consts/animations/animation';
-import { Icon as IconComponent } from 'shared/ui/icon';
+import { Icon as IconComponent } from '../../../icon';
 import { classNames } from 'shared/lib/class-names';
+import type { DropdownMenuItemProps } from './DropdownMenuItem.interface';
 import styles from './DropdownMenuItem.module.scss';
-
-interface DropdownMenuItemProps extends React.HTMLAttributes<HTMLDivElement> {
-  children?: ReactNode;
-  className?: string;
-  text: string;
-  Icon?: IconType | 'NONE';
-  onClick?: () => void;
-  side?: 'left' | 'right';
-}
 
 export const DropdownMenuItem: FC<DropdownMenuItemProps> = (props) => {
   const { children, Icon, text, onClick, className, side = 'left', ...anotherProps } = props;

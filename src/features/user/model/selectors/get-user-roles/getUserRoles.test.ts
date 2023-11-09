@@ -1,7 +1,7 @@
 import { DeepPartial } from 'shared/lib/ts-utils';
 import { getUserRoles } from './getUserRoles';
 import { IStateSchema } from 'app/providers/store-provider';
-import { UserRoles } from '../../types/user';
+import { UserRoles } from '../../consts/user.consts';
 
 describe('getUserRoles', () => {
   test('Return user state roles prop', () => {

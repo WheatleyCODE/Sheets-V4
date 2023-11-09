@@ -1,6 +1,6 @@
 import { templateCommentsReducer } from './templateCommentsSlice';
 import { fetchTemplateComments } from '../services/fetch-template-comments/fetchTemplateComments';
-import { ITemplateCommentsSchema } from '../types/templateComments';
+import { ITemplateCommentsSchema } from '../types/templateComments.interface';
 import { DeepPartial } from 'shared/lib/ts-utils';
 
 describe('templateCommentsReducer', () => {

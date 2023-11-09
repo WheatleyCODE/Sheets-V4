@@ -2,7 +2,8 @@
 import { screen } from '@testing-library/react';
 import { TemplateList } from './TemplateList';
 import { renderComponent } from 'shared/lib/tests/render-component/renderComponent';
-import { ITemplate, TemplateView } from '../../model/types/template';
+import { ITemplate } from '../../model/types/template.interface';
+import { TemplateView } from '../../model/consts/template.consts';
 
 describe('TemplateList', () => {
   const templates = [

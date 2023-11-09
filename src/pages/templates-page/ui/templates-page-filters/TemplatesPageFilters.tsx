@@ -1,14 +1,7 @@
 import { ChangeEvent, FC, useCallback, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { BsSortDown, BsSortUp } from 'react-icons/bs';
-import {
-  MdOutlineCalendarMonth,
-  MdOutlineFilterList,
-  MdOutlineRemoveRedEye,
-  MdOutlineSearch,
-  MdOutlineSort,
-  MdOutlineTitle,
-} from 'react-icons/md';
+import { useSelector } from 'react-redux';
+import { MdOutlineFilterList, MdOutlineSearch, MdOutlineSort } from 'react-icons/md';
 import { getTemplatesPageSort } from '../../model/selectors/get-templates-page-sort/getTemplatesPageSort';
 import { getTemplatesPageSortOrder } from '../../model/selectors/get-templates-page-sort-order/getTemplatesPageSortOrder';
 import { getTemplatesPageSearch } from '../../model/selectors/get-templates-page-search/getTemplatesPageSearch';
@@ -17,33 +10,23 @@ import { templatesPageActions } from '../../model/slice/templatesPageSlice';
 import { fetchTemplatesPageTemplates } from '../../model/services/fetch-templates-page-templates/fetchTemplatesPageTemplates';
 import { getTemplatesPageView } from '../../model/selectors/get-templates-page-templates-view/getTemplatesPageView';
 import { TemplatesViewSwitcher } from 'features/templates-view-switcher';
-import { TemplateTags, TemplateView } from 'entities/template';
-import { ITemplateTab, templateTabs } from 'entities/template/model/consts/tags';
+import { TemplateTags, TemplateView, ITemplateTab, templateTabs } from 'entities/template';
 import { Input, useValidInput } from 'shared/ui/input';
-import { TemplateSortOrders, TemplateSortFields } from '../../model/types/templatesPage';
-import { IInputOptionsMenuItem } from 'shared/ui/input';
 import { DragLine, DragLineItem } from 'shared/ui/drag-line';
 import { TabItem, Tabs } from 'shared/ui/tabs';
 import { intoIter } from 'shared/lib/iterators';
 import { Title } from 'shared/ui/title';
 import { VStack, Width } from 'shared/ui/containers';
-import { classNames } from 'shared/lib/class-names';
-import styles from './TemplatesPageFilters.module.scss';
-import { useSelector } from 'react-redux';
 import { useDebounce, useTypedDispatch } from 'shared/lib/hooks';
-
-interface ITemplatesPageFiltersProps extends React.HTMLAttributes<HTMLDivElement> {}
-
-const sortOrderItems: IInputOptionsMenuItem[] = [
-  { text: TemplateSortOrders.ASC, Icon: BsSortUp },
-  { text: TemplateSortOrders.DESC, Icon: BsSortDown },
-];
-
-const sortItems: IInputOptionsMenuItem[] = [
-  { text: TemplateSortFields.TITLE, Icon: MdOutlineTitle },
-  { text: TemplateSortFields.VIEWS, Icon: MdOutlineRemoveRedEye },
-  { text: TemplateSortFields.CREATED_AT, Icon: MdOutlineCalendarMonth },
-];
+import {
+  TemplateSortFields,
+  TemplateSortOrders,
+  sortItems,
+  sortOrderItems,
+} from '../../model/consts/templatesPage.consts';
+import { classNames } from 'shared/lib/class-names';
+import type { ITemplatesPageFiltersProps } from './TemplatesPageFilters.interface';
+import styles from './TemplatesPageFilters.module.scss';
 
 export const TemplatesPageFilters: FC<ITemplatesPageFiltersProps> = (props) => {
   const { className, ...anotherProps } = props;

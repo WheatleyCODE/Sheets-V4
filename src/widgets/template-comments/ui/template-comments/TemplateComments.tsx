@@ -16,9 +16,8 @@ import { RWidth } from 'shared/ui/containers';
 import { Text, TextSize } from 'shared/ui/text';
 import { getTemplateDetails } from 'entities/template';
 import { classNames } from 'shared/lib/class-names';
+import type { ITemplateCommentsProps } from './TemplateComments.interface';
 import styles from './TemplateComments.module.scss';
-
-interface ITemplateCommentsProps extends React.HTMLAttributes<HTMLDivElement> {}
 
 const reducers: ReducersList = { templateComments: templateCommentsReducer };
 

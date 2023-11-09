@@ -1,6 +1,4 @@
-const startSlashesRgxp = /^\/+/;
-const endSlashesRgxp = /\/+$/;
-const isStrictAbsURL = /^\w+:\/\//;
+import { endSlashesRgxp, isStrictAbsURL, startSlashesRgxp } from '../consts/url.consts';
 
 export const concatURLs = (...urls: string[]) => {
   let res = '';

@@ -4,7 +4,6 @@ import { AnimatePresence } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import { MdOutlineMenu } from 'react-icons/md';
 import { NavigationMenuItem } from '../navigation-menu-item/NavigationMenuItem';
-import { INavigationMenuItem } from '../../model/types/navigation';
 import { getNavigationItems } from '../../model/selectors/get-navigation-items/getNavigationItems';
 import { Logo } from 'entities/logo';
 import { getUser } from 'features/user';
@@ -16,9 +15,9 @@ import { HStack, VStack } from 'shared/ui/containers';
 import { Title } from 'shared/ui/title';
 import { intoIter } from 'shared/lib/iterators';
 import { classNames } from 'shared/lib/class-names';
+import type { INavigationMenuProps } from './NavigationMenu.interface';
+import type { INavigationMenuItem } from '../../model/types/navigationMenu.interface';
 import styles from './NavigationMenu.module.scss';
-
-interface INavigationMenuProps extends React.HTMLAttributes<HTMLDivElement> {}
 
 export const NavigationMenu: FC<INavigationMenuProps> = memo((props) => {
   const { className, ...anotherProps } = props;

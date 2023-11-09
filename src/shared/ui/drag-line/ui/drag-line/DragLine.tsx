@@ -1,15 +1,15 @@
 import { FC } from 'react';
 import { motion } from 'framer-motion';
 import { intoIter } from 'shared/lib/iterators';
-import { DragLineItem, IDragLineItem, ITEM_MARGIN_RIGHT } from '../drag-line-item/DragLineItem';
-import { useDragLine } from '../../lib/useDragLine';
+import { DragLineItem } from '../drag-line-item/DragLineItem';
+import { useDragLine } from '../../lib/DragLineContext.hooks';
 import { DragLineProvider } from '../drag-line-provider/DragLineProvider';
+import { ITEM_MARGIN_RIGHT } from '../drag-line-item/DragLineItem.consts';
 import { withProvider } from 'shared/lib/with-provider';
 import { classNames } from 'shared/lib/class-names';
+import type { IDragLineProps } from './DragLine.interface';
+import type { IDragLineItem } from '../drag-line-item/DragLineItem.interface';
 import styles from './DragLine.module.scss';
-interface IDragLineProps extends React.HTMLAttributes<HTMLDivElement> {
-  items?: IDragLineItem[];
-}
 
 const DragLineWithoutContext: FC<IDragLineProps> = (props) => {
   const { className, items = [], children, ...anotherProps } = props;

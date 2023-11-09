@@ -1,4 +1,5 @@
-import { CountryValidErrors, countryValidator } from './countryValidator';
+import { countryValidator } from './countryValidator';
+import { CountryValidErrors } from './countryValidator.consts';
 
 describe('countryValidator', () => {
   test('Valid cases', () => {

@@ -1,6 +1,5 @@
 import { Nullable } from '../../ts-utils';
-
-export type PromiseState = 'pending' | 'fulfilled' | 'rejected';
+import type { PromiseState } from './SyncPromise.interface';
 export class SyncPromise<T> implements Promise<T> {
   #value?: T;
   #reason?: any;

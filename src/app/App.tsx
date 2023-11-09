@@ -2,7 +2,7 @@ import { FC, Suspense } from 'react';
 import { PageLoader } from 'widgets/page-loader';
 import { useSelector } from 'react-redux';
 import { Navbar } from 'widgets/navbar';
-import { useTheme } from './providers/lib/theme-context';
+import { useTheme } from './providers/lib';
 import { AppRouter } from './providers/app-router';
 import { getUserInited, userActions } from 'features/user';
 import { useInitialEffect, useTypedDispatch } from 'shared/lib/hooks';

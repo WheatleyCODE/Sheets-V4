@@ -1,9 +1,5 @@
 import { getValidator } from '../get-validator/getValidator';
-
-export enum EmailValidErrors {
-  INCORRECT = 'Некорректная почта',
-  EMPTY = 'Поле не может быть пустым',
-}
+import { EmailValidErrors } from './emailValidator.consts';
 
 export const emailValidator = getValidator({
   email: {

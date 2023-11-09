@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { Dropdown } from './Dropdown';
 import { themeDecorator } from '../../../../../../config/storybook/theme-decorator/themeDecorator';
-import { Theme } from 'app/providers/lib/theme-context';
+import { Theme } from 'app/providers/lib';
 import { DropdownMenu } from '../dropdown-menu/DropdownMenu';
 import { DropdownMenuItem } from '../dropdown-menu-item/DropdownMenuItem';
 

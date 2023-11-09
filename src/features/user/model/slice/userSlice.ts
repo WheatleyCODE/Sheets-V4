@@ -1,17 +1,14 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { IUser, IUserSchema } from '../types/user';
+import type { IUser } from '../types/user.interface';
 import { KVFactory } from 'shared/lib/kv-storage';
 import { LS_AUTH_KEY, LS_DEFAULT_NAMESPACE } from 'shared/consts';
-
-const initialState: IUserSchema = {
-  _inited: false,
-};
+import { initialUserState } from '../consts/user.consts';
 
 const ls = KVFactory(LS_DEFAULT_NAMESPACE);
 
 export const userSlice = createSlice({
   name: 'user',
-  initialState,
+  initialState: initialUserState,
   reducers: {
     setUser(state, { payload }: PayloadAction<IUser>) {
       state.user = payload;

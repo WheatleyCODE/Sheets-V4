@@ -1,7 +1,7 @@
 import { screen } from '@testing-library/react';
 import { TemplateTextBlock } from './TemplateTextBlock';
 import { renderComponent } from 'shared/lib/tests/render-component/renderComponent';
-import { TemplateBlockTypes } from '../../model/types/template';
+import { TemplateBlockTypes } from '../../model/consts/template.consts';
 
 describe('TemplateTextBlock', () => {
   test('In the document', () => {

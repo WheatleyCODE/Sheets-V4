@@ -1,0 +1,1 @@
+export const INPUT_OPTIONS_MENU_ITEM_HEIGHT = 40;

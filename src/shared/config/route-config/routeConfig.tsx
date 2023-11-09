@@ -1,4 +1,3 @@
-import { RouteProps } from 'react-router-dom';
 import { HomePage } from 'pages/home-page';
 import { SheetsPage } from 'pages/sheets-page';
 import { LandingPage } from 'pages/landing-page';
@@ -11,11 +10,7 @@ import { TemplateEditPage } from 'pages/template-edit-page';
 import { AdminPanelPage } from 'pages/admin-panel-page';
 import { UserRoles } from 'features/user';
 import { ForbiddenPage } from 'pages/forbidden-page';
-
-export type AppRoutesProps = RouteProps & {
-  authOnly?: boolean;
-  roles?: UserRoles[];
-};
+import type { AppRoutesProps } from './routeConfig.interface';
 
 export enum AppRoutes {
   HOME = 'home',

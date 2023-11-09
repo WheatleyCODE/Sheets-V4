@@ -1,11 +1,5 @@
 import { getValidator } from '../get-validator/getValidator';
-
-export enum AgeValidErrors {
-  MIN = 'Возраст должен быть больше 18 лет',
-  MAX = 'Возраст должен быть меньше 85 лет',
-  TYPE = 'Значение должно быть числом',
-  EMPTY = 'Поле не может быть пустым',
-}
+import { AgeValidErrors } from './ageValidator.consts';
 
 export const ageValidator = getValidator({
   minNumber: {

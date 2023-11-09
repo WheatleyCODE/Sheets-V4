@@ -1,2 +1,2 @@
 export { templateCommentsReducer } from './model/slice/templateCommentsSlice';
-export { ITemplateCommentsSchema } from './model/types/templateComments';
+export type { ITemplateCommentsSchema } from './model/types/templateComments.interface';

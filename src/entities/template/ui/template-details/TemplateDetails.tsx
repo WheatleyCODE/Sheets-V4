@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { TemplateTextBlock } from '../template-text-block/TemplateTextBlock';
 import { TemplateCodeBlock } from '../template-code-block/TemplateCodeBlock';
 import { TemplateImageBlock } from '../template-image-block/TemplateImageBlock';
-import { ITemplate, TemplateBlock, TemplateBlockTypes } from '../../model/types/template';
+import { TemplateBlockTypes } from '../../model/consts/template.consts';
 import { Text, TextSize, TextStyle } from 'shared/ui/text';
 import { Skeleton } from 'shared/ui/skeleton';
 import { Icon } from 'shared/ui/icon';
@@ -12,16 +12,12 @@ import { intoIter } from 'shared/lib/iterators';
 import { Image } from 'shared/ui/image';
 import { HStack, VStack } from 'shared/ui/containers';
 import { Button } from 'shared/ui/button';
-import { ButtonColor } from 'shared/ui/button/ui/button/interface';
+import { ButtonColor } from 'shared/ui/button';
 import { Title } from 'shared/ui/title';
 import { classNames } from 'shared/lib/class-names';
+import type { TemplateBlock } from '../../model/types/template.interface';
+import type { ITemplateDetailsProps } from './TemplateDetails.interface';
 import styles from './TemplateDetails.module.scss';
-
-interface ITemplateDetailsProps extends React.HTMLAttributes<HTMLDivElement> {
-  template: ITemplate;
-  isLoading: boolean;
-  error: string | null;
-}
 
 export const TemplateDetails: FC<ITemplateDetailsProps> = (props) => {
   const { className, template, isLoading, error, ...anotherProps } = props;

@@ -1,5 +1,5 @@
-import { DataTypes, EventNames } from '../interface';
 import { EventEmitter } from './EventEmitter';
+import { DataTypes, EventNames } from './EventEmitter.consts';
 
 describe('EventEmitter', () => {
   test('EventEmitter works', () => {

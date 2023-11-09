@@ -1,7 +1,7 @@
 import { screen } from '@testing-library/react';
 import { Portal } from './Portal';
 import { renderComponent } from 'shared/lib/tests/render-component/renderComponent';
-import { Theme } from 'app/providers/lib/theme-context';
+import { Theme } from 'app/providers/lib';
 
 describe('Portal', () => {
   test('In the document', () => {

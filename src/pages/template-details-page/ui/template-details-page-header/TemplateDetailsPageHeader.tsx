@@ -11,9 +11,8 @@ import { getTemplateDetailsIsCanEdit } from '../../model/selectors/get-template-
 import { HStack, Width } from 'shared/ui/containers';
 import { concatURLs } from 'shared/lib/url';
 import { classNames } from 'shared/lib/class-names';
+import type { ITemplateDetailsPageHeaderProps } from './TemplateDetailsPageHeader.interface';
 import styles from './TemplateDetailsPageHeader.module.scss';
-
-interface ITemplateDetailsPageHeaderProps extends React.HTMLAttributes<HTMLDivElement> {}
 
 export const TemplateDetailsPageHeader: FC<ITemplateDetailsPageHeaderProps> = (props) => {
   const { className, ...anotherProps } = props;

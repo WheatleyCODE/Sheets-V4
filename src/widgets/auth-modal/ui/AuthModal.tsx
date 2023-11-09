@@ -10,11 +10,8 @@ import { LocationHelper } from 'shared/lib/url';
 import { Loader } from 'shared/ui/loader';
 import { HStack } from 'shared/ui/containers';
 import { classNames } from 'shared/lib/class-names';
+import type { IAuthModalProps } from './AuthModal.interface';
 import styles from './AuthModal.module.scss';
-
-interface IAuthModalProps extends React.HTMLAttributes<HTMLDivElement> {
-  onClose: () => void;
-}
 
 export const AuthModal: FC<IAuthModalProps> = memo((props) => {
   const { className, onClose, ...anotherProps } = props;

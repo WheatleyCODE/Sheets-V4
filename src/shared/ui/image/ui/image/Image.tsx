@@ -1,11 +1,7 @@
-import { FC, ReactElement, useLayoutEffect, useState } from 'react';
+import { FC, useLayoutEffect, useState } from 'react';
 import { ImageError } from '../image-error/ImageError';
 import { ImageLoad } from '../image-load/ImageLoad';
-
-interface IImageProps extends React.ImgHTMLAttributes<HTMLImageElement> {
-  fallback?: ReactElement;
-  errorFallback?: ReactElement;
-}
+import type { IImageProps } from './Image.interface';
 
 export const Image: FC<IImageProps> = (props) => {
   const { className, src, alt = 'image', errorFallback, fallback, ...otherProps } = props;

@@ -1,37 +1,16 @@
+import { Country, Currency, profileTests } from '../consts/profile.consts';
 import { updateProfile } from '../services/update-profille/updateProfile';
-import { Country, Currency, IProfile, IProfileSchema } from '../types/profile';
+import { IProfileSchema } from '../types/profile.interface';
 import { profileActions, profileReducer } from './profileSlice';
 import { DeepPartial } from 'shared/lib/ts-utils';
-
-const profile: IProfile = {
-  userId: '1',
-  firstname: 'Вася',
-  lastname: 'Пупкин',
-  age: '65',
-  currency: Currency.USD,
-  country: Country.RUSSIA,
-  city: 'Благовещенск',
-  username: 'Vasya28RUS',
-  avatar: 'http://...',
-};
 
 describe('profileSlice', () => {
   test('Test profile setProfile', () => {
     const state: DeepPartial<IProfileSchema> = {};
 
-    const profile: IProfile = {
-      userId: '1',
-      firstname: 'Вася',
-      lastname: 'Пупкин',
-      age: '65',
-      currency: Currency.USD,
-      country: Country.RUSSIA,
-      city: 'Благовещенск',
-      username: 'Vasya28RUS',
-      avatar: 'http://...',
-    };
-
-    expect(profileReducer(state as IProfileSchema, profileActions.setProfile(profile))).toEqual({ profile });
+    expect(profileReducer(state as IProfileSchema, profileActions.setProfile(profileTests))).toEqual({
+      profile: profileTests,
+    });
   });
 
   test('Test profile updateProfile', () => {
@@ -48,7 +27,9 @@ describe('profileSlice', () => {
       },
     };
 
-    expect(profileReducer(state as IProfileSchema, profileActions.updateProfile(profile))).toEqual({ profile });
+    expect(profileReducer(state as IProfileSchema, profileActions.updateProfile(profileTests))).toEqual({
+      profile: profileTests,
+    });
   });
 
   test('Test profile setIsReadonly', () => {

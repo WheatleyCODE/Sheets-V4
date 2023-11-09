@@ -10,13 +10,9 @@ import { getTemplatesPageSearch } from '../../selectors/get-templates-page-searc
 import { addQueryParams } from 'shared/lib/url';
 import { getTemplatesPageTag } from '../../selectors/get-templates-page-tag/getTemplatesPageTag';
 
-export interface IFetchTemplatesPageTemplatesProps {
-  isReplace?: boolean;
-}
-
 export const fetchTemplatesPageTemplates = createAsyncThunk<
   ITemplate[],
-  IFetchTemplatesPageTemplatesProps | undefined,
+  { isReplace?: boolean } | undefined,
   IThunkConfig
 >('templatesPage/fetchTemplatesPageTemplates', async (_, thunkAPI) => {
   try {

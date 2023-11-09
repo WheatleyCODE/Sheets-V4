@@ -1,14 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
-import { IScrollSchema } from '../../types/scroll/scrollSchema';
-
-const initialState: IScrollSchema = {
-  scroll: {},
-};
+import { initialScrollState } from '../../consts/layout.consts';
 
 export const scrollSlice = createSlice({
   name: 'scroll',
-  initialState,
+  initialState: initialScrollState,
   reducers: {
     setScrollPosition(state, { payload }: PayloadAction<{ path: string; position: number }>) {
       const { path, position } = payload;

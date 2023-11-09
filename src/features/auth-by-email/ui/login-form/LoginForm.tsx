@@ -12,18 +12,13 @@ import { getLoginPassword } from '../../model/selectors/get-login-password/getLo
 import { getLoginIsLoading } from '../../model/selectors/get-login-is-loading/getLoginIsLoading';
 import { getLoginError } from '../../model/selectors/get-login-error/getLoginError';
 import { Text } from 'shared/ui/text';
-import { TextStyle } from 'shared/ui/text';
-import { TextSize } from 'shared/ui/text/ui/interface';
+import { TextStyle, TextSize } from 'shared/ui/text';
 import { callOnFulfilled } from 'shared/lib/utils';
 import { HStack, VStack } from 'shared/ui/containers';
 import { ReducersList, useDynamicModule, useTypedDispatch } from 'shared/lib/hooks';
 import { classNames } from 'shared/lib/class-names';
+import type { ILoginFormProps } from './LoginForm.interface';
 import styles from './LoginForm.module.scss';
-
-interface ILoginFormProps extends React.HTMLAttributes<HTMLDivElement> {
-  onLoginSuccess: () => void;
-  onLoginStart?: () => void;
-}
 
 const reducers: ReducersList = { login: loginReducer };
 

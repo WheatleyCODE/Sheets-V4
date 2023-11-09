@@ -1,10 +1,5 @@
 import { getValidator } from '../get-validator/getValidator';
-
-export enum PasswordValidErrors {
-  MIN = 'Пароль должен быть больше 8 символов',
-  MAX = 'Пароль должен быть меньше 12 символов',
-  EMPTY = 'Поле не может быть пустым',
-}
+import { PasswordValidErrors } from './passwordValidator.consts';
 
 export const passwordValidator = getValidator({
   minLength: {

@@ -1,13 +1,11 @@
 import { FC, memo, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { IconType } from 'react-icons';
-import { IProfile } from '../../model/types/profile';
 import { Text } from 'shared/ui/text';
 import { TextSize, TextStyle } from 'shared/ui/text';
 import { Loader } from 'shared/ui/loader';
-import { IInputOptions, IValidInputOpts, Input, useValidInput } from 'shared/ui/input';
+import { Input, useValidInput } from 'shared/ui/input';
 import { intoIter } from 'shared/lib/iterators';
-import { IInputValidHooks, getInfoItemArr } from './getInfoItemArr';
+import { getInfoItemArr } from './ProfileCard.helpers';
 import {
   ageValidator,
   avatarValidator,
@@ -18,39 +16,13 @@ import {
   usernameValidator,
 } from 'shared/lib/validators';
 import { ProfileCardEdit } from '../profile-card-edit/ProfileCardEdit';
-import { Country, Currency } from '../../model/types/profile';
+import { Country, Currency, ProfileCardTextAlign } from '../../model/consts/profile.consts';
 import { HStack, VStack } from 'shared/ui/containers';
 import { Title } from 'shared/ui/title';
 import { Avatar } from 'shared/ui/avatar';
 import { classNames } from 'shared/lib/class-names';
+import type { IInputValidHooks, IProfileCardProps, InfoItem } from './ProfileCard.interface';
 import styles from './ProfileCard.module.scss';
-
-export enum ProfileCardTextAlign {
-  CENTER = 'center',
-  LEFT = 'left',
-  RIGHT = 'right',
-}
-
-interface IProfileCardProps extends React.HTMLAttributes<HTMLDivElement> {
-  profile: IProfile;
-  error: string | null;
-  isLoading: boolean;
-  textAlign?: ProfileCardTextAlign;
-  isReadonly: boolean;
-  edit?: {
-    enableProfileChange: () => void;
-    disableProfileChange: () => void;
-    saveProfileChange: (profile: IProfile) => void;
-  };
-}
-
-export type InfoItem = {
-  title: string;
-  text?: string;
-  input: IValidInputOpts<string>;
-  Icon?: IconType;
-  options?: IInputOptions;
-};
 
 export const ProfileCard: FC<IProfileCardProps> = memo((props) => {
   const {

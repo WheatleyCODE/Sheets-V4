@@ -1,4 +1,5 @@
-import { AgeValidErrors, ageValidator } from './ageValidator';
+import { ageValidator } from './ageValidator';
+import { AgeValidErrors } from './ageValidator.consts';
 
 describe('ageValidator', () => {
   test('Valid cases', () => {

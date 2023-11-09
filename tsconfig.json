@@ -20,8 +20,8 @@
       "entities/*": ["entities/*"],
       "shared/*": ["shared/*"],
       "ui/*": ["shared/ui/*"],
-    }
-    
+    },
+    "isolatedModules": true
   },
   "ts-node": {
     "compilerOptions": {

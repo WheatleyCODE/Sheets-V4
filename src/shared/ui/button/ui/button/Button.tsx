@@ -1,19 +1,9 @@
-import React, { FC, memo } from 'react';
-import { IconType } from 'react-icons';
-import { ButtonColor, ButtonSize, ButtonStyles } from './interface';
-import { Icon as IconComponent } from 'shared/ui/icon';
+import { FC, memo } from 'react';
+import { ButtonColor, ButtonSize, ButtonStyles } from './Button.consts';
+import { Icon as IconComponent } from '../../../icon';
 import { classNames } from 'shared/lib/class-names';
+import type { IButtonProps } from './Button.interface';
 import styles from './Button.module.scss';
-interface IButtonProps extends React.HTMLAttributes<HTMLButtonElement> {
-  text?: string;
-  Icon?: IconType;
-  disable?: boolean;
-  buttonStyle?: ButtonStyles;
-  buttonColor?: ButtonColor;
-  square?: boolean;
-  circle?: boolean;
-  buttonSize?: ButtonSize;
-}
 
 export const Button: FC<IButtonProps> = memo((props) => {
   const {

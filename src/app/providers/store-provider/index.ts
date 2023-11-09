@@ -1,3 +1,9 @@
 export { StoreProvider } from './ui/store-provider/StoreProvider';
 export { createReduxStore } from './config/store';
-export { IStateSchema, IReduxStoreWithManager, IThunkExtra, IThunkConfig } from './config/stateSchema';
+export type {
+  IStateSchema,
+  IReduxStoreWithManager,
+  IThunkExtra,
+  IThunkConfig,
+  StateSchemaKey,
+} from './config/store.interface';

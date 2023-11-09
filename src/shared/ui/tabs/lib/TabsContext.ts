@@ -1,13 +1,5 @@
-import { Dispatch, SetStateAction, createContext } from 'react';
-import { ITabItem } from '../ui/tab-item/TabItem';
-
-export interface ITabsContextProps {
-  items: ITabItem[];
-  setItems: Dispatch<SetStateAction<ITabItem[]>>;
-
-  currentValue: string | null;
-  setCurrentValue: Dispatch<SetStateAction<string | null>>;
-}
+import { createContext } from 'react';
+import type { ITabsContextProps } from './TabsContext.interface';
 
 const initContext: ITabsContextProps = {
   items: [],

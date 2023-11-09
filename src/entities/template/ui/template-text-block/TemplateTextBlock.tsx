@@ -1,14 +1,10 @@
 import { FC, memo } from 'react';
-import { ITemplateTextBlock } from '../../model/types/template';
 import { Text } from 'shared/ui/text';
 import { intoIter } from 'shared/lib/iterators';
 import { HStack, VStack } from 'shared/ui/containers';
 import { classNames } from 'shared/lib/class-names';
+import type { ITemplateTextBlockProps } from './TemplateTextBlock.interface';
 import styles from './TemplateTextBlock.module.scss';
-
-interface ITemplateTextBlockProps extends React.HTMLAttributes<HTMLDivElement> {
-  block: ITemplateTextBlock;
-}
 
 export const TemplateTextBlock: FC<ITemplateTextBlockProps> = memo((props) => {
   const { className, block, ...anotherProps } = props;

@@ -1,6 +1,7 @@
 import { fetchTemplateById } from './fetchTemplateById';
 import { TestAsyncThunk } from 'shared/lib/tests';
-import { ITemplate, TemplateTags } from '../../types/template';
+import { ITemplate } from '../../types/template.interface';
+import { TemplateTags } from '../../consts/template.consts';
 
 describe('fetchTemplateById', () => {
   test('Fulfilled', async () => {

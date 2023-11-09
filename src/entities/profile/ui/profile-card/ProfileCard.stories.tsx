@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { ProfileCard } from './ProfileCard';
-import { Theme } from 'app/providers/lib/theme-context';
+import { Theme } from 'app/providers/lib';
 import { themeDecorator } from '../../../../../config/storybook/theme-decorator/themeDecorator';
-import { Country, Currency } from '../../model/types/profile';
+import { Country, Currency } from '../../model/consts/profile.consts';
 
 const meta = {
   title: 'entities/profile/ProfileCard',

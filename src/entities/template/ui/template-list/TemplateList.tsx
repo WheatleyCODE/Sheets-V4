@@ -1,25 +1,20 @@
 import { CSSProperties, FC, useCallback } from 'react';
 import AutoSizer from 'react-virtualized-auto-sizer';
 import { FixedSizeList, ListOnItemsRenderedProps } from 'react-window';
-import { ITemplate, TemplateView } from '../../model/types/template';
 import { TemplateListItem } from '../template-list-item/TemplateListItem';
+import {
+  LINES_TEMPLATE_COUNT,
+  LIST_ITEM_LINES_HEIGHT,
+  LIST_ITEM_MARGINS,
+  LIST_ITEM_SQUARES_HEIGHT,
+  LIST_ITEM_SQUARES_WIDTH,
+  SQUARES_TEMPLATE_COUNT,
+  TemplateView,
+} from '../../model/consts/template.consts';
 import { Skeleton } from 'shared/ui/skeleton';
 import { classNames } from 'shared/lib/class-names';
+import type { ITemplateListProps } from './TemplateList.interface';
 import styles from './TemplateList.module.scss';
-
-interface ITemplateListProps extends React.HTMLAttributes<HTMLDivElement> {
-  templates: ITemplate[];
-  isLoading?: boolean;
-  error?: string | null;
-  view?: TemplateView;
-  isOpenInNewWindow?: boolean;
-  onScrollEnd?: () => void;
-}
-
-const LIST_ITEM_MARGINS = 20;
-const LIST_ITEM_SQUARES_HEIGHT = 315;
-const LIST_ITEM_SQUARES_WIDTH = 380;
-const LIST_ITEM_LINES_HEIGHT = 400;
 
 // ! FIX
 export const TemplateList: FC<ITemplateListProps> = (props) => {
@@ -34,8 +29,7 @@ export const TemplateList: FC<ITemplateListProps> = (props) => {
   } = props;
 
   const isSquares = view === TemplateView.SQUARES;
-  // ! FIX NUMBERS
-  const skeletonsLength = isSquares ? 12 : 4;
+  const skeletonsLength = isSquares ? SQUARES_TEMPLATE_COUNT : LINES_TEMPLATE_COUNT;
 
   const getScroll =
     (rows: number) =>

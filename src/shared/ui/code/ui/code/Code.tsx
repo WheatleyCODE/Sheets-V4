@@ -1,12 +1,9 @@
 import { FC, useCallback } from 'react';
 import { MdOutlineContentCopy } from 'react-icons/md';
-import { Button, ButtonStyles } from 'shared/ui/button';
+import { Button, ButtonStyles } from '../../../button';
 import { classNames } from 'shared/lib/class-names';
+import type { ICodeProps } from './Code.interface';
 import styles from './Code.module.scss';
-
-interface ICodeProps extends React.HTMLAttributes<HTMLDivElement> {
-  code: string;
-}
 
 export const Code: FC<ICodeProps> = (props) => {
   const { className, code, ...anotherProps } = props;

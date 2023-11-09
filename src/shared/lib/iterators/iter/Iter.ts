@@ -1,4 +1,4 @@
-import { ForEachCallback, MapCallback, Predicate } from '../interface';
+import { ForEachCallback, MapCallback, Predicate } from '../types/interface';
 import { intoIterator } from '../into-iterator/intoIterator';
 
 export function intoIter<T>(obj: any): Iter<T> {

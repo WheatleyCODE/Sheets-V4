@@ -7,11 +7,8 @@ import { getScrollPositionByPath } from '../../model/selectors/scroll/getScrollP
 import { IStateSchema } from 'app/providers/store-provider';
 import { useDebounce, useInfiniteScroll, useInitialEffect, useTypedDispatch } from 'shared/lib/hooks';
 import { classNames } from 'shared/lib/class-names';
+import type { ILayoutProps } from './Layout.interface';
 import styles from './Layout.module.scss';
-
-interface ILayoutProps extends React.HTMLAttributes<HTMLDivElement> {
-  onScrollEnd?: () => void;
-}
 
 export const Layout: FC<ILayoutProps> = (props) => {
   const { className, children, onScrollEnd, ...anotherProps } = props;

@@ -1,11 +1,7 @@
 import { FC, memo } from 'react';
-import { IconType } from 'react-icons';
 import { classNames } from 'shared/lib/class-names';
+import type { IIconProps } from './Icon.interface';
 import styles from './Icon.module.scss';
-
-interface IIconProps extends React.HTMLAttributes<HTMLOrSVGElement> {
-  Icon?: IconType;
-}
 
 export const Icon: FC<IIconProps> = memo((props) => {
   const { className, Icon, ...anotherProps } = props;

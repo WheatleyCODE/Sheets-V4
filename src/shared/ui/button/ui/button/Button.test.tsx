@@ -1,6 +1,6 @@
 import { fireEvent, screen } from '@testing-library/react';
 import { Button } from './Button';
-import { ButtonColor, ButtonSize, ButtonStyles } from './interface';
+import { ButtonColor, ButtonSize, ButtonStyles } from './Button.consts';
 import { MdHome } from 'react-icons/md';
 import { renderComponent } from 'shared/lib/tests';
 

@@ -1,7 +1,8 @@
 import { screen } from '@testing-library/react';
 import { TemplateDetails } from './TemplateDetails';
 import { renderComponent } from 'shared/lib/tests/render-component/renderComponent';
-import { ITemplate, TemplateTags } from '../../model/types/template';
+import { ITemplate } from '../../model/types/template.interface';
+import { TemplateTags } from '../../model/consts/template.consts';
 
 const template: ITemplate = {
   id: '1',

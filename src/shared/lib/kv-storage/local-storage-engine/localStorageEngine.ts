@@ -1,6 +1,6 @@
 import { Nullable } from '../../ts-utils';
-import { KVStorageEngine } from '../interface';
 import { SyncPromise } from '../../promise';
+import type { KVStorageEngine } from '../kv-storage/kvStorage.interface';
 
 export class LocalStorageEngine implements KVStorageEngine {
   get(key: string): SyncPromise<Nullable<string>> {

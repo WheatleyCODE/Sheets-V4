@@ -5,21 +5,14 @@ import { Layout } from 'widgets/layout';
 import { classNames } from 'shared/lib/class-names';
 import styles from './TemplateEditPage.module.scss';
 
-interface ITemplateEditPageProps extends React.HTMLAttributes<HTMLDivElement> {}
-
-const TemplateEditPage: FC<ITemplateEditPageProps> = (props) => {
-  const { className, ...anotherProps } = props;
+const TemplateEditPage: FC = () => {
   const { id } = useParams<{ id: string }>();
   const isEdit = !!id;
   const { t } = useTranslation();
 
   return (
     <Layout>
-      <section
-        {...anotherProps}
-        data-testid="templateEditPage"
-        className={classNames(styles.template_edit_page, {}, [className])}
-      >
+      <section data-testid="templateEditPage" className={classNames(styles.template_edit_page)}>
         TemplateEditPage
       </section>
     </Layout>

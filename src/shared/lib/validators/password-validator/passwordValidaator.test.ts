@@ -1,4 +1,5 @@
-import { PasswordValidErrors, passwordValidator } from './passwordValidator';
+import { passwordValidator } from './passwordValidator';
+import { PasswordValidErrors } from './passwordValidator.consts';
 
 describe('passwordValidator', () => {
   test('Valid cases', () => {

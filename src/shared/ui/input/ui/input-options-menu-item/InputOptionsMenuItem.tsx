@@ -1,21 +1,9 @@
-import { CSSProperties, FC, memo } from 'react';
-import { IconType } from 'react-icons';
-import { Icon as IconComponent } from 'shared/ui/icon';
+import { FC, memo } from 'react';
+import { Icon as IconComponent } from '../../../icon';
+import { INPUT_OPTIONS_MENU_ITEM_HEIGHT } from './InputOptionsMenuItem.consts';
 import { classNames } from 'shared/lib/class-names';
+import type { IInputOptionsMenuItemProps } from './InputOptionsMenuItem.interface';
 import styles from './InputOptionsMenuItem.module.scss';
-
-export interface IInputOptionsMenuItem {
-  Icon?: IconType;
-  text: string;
-}
-
-export const INPUT_OPTIONS_MENU_ITEM_HEIGHT = 40;
-
-interface IInputOptionsMenuItemProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'onClick'> {
-  item: IInputOptionsMenuItem;
-  onClick: (text: string) => void;
-  style?: CSSProperties;
-}
 
 export const InputOptionsMenuItem: FC<IInputOptionsMenuItemProps> = memo((props) => {
   const { className, item, onClick, style, ...anotherProps } = props;

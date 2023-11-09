@@ -10,7 +10,7 @@ import {
   MdOutlineWeb,
 } from 'react-icons/md';
 import { RoutesPath } from 'shared/config/route-config/routeConfig';
-import { INavigationMenuItem } from '../../types/navigation';
+import type { INavigationMenuItem } from '../../types/navigationMenu.interface';
 import { isRoleAdmin, isRoleDeveloper } from 'shared/lib/utils';
 import { concatURLs } from 'shared/lib/url';
 

@@ -11,13 +11,14 @@ import { useDynamicModule, useTypedDispatch, ReducersList, useInitialEffect } fr
 import { RWidth } from 'shared/ui/containers';
 import { Text } from 'shared/ui/text';
 import { classNames } from 'shared/lib/class-names';
+import type { ITemplateRecommendsProps } from './TemplateRecommends.interface';
 import styles from './TemplateRecommends.module.scss';
 import { rtkApi } from 'shared/api';
 
-interface ITemplateRecommendsProps extends React.HTMLAttributes<HTMLDivElement> {}
-
 const reducers: ReducersList = { templateRecommends: templateRecommendsReducer };
 
+// ! FIX
+// ? Tests
 const recommendsApi = rtkApi.injectEndpoints({
   endpoints: (build) => ({
     getRecommends: build.query<ITemplate[], number>({

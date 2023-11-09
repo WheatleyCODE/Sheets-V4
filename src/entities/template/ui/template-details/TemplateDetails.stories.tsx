@@ -1,8 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { TemplateDetails } from './TemplateDetails';
-import { Theme } from 'app/providers/lib/theme-context';
+import { Theme } from 'app/providers/lib';
 import { themeDecorator } from '../../../../../config/storybook/theme-decorator/themeDecorator';
-import { ITemplate, TemplateTags } from '../../model/types/template';
+import { ITemplate } from '../../model/types/template.interface';
+import { TemplateTags } from '../../model/consts/template.consts';
 
 const template: ITemplate = {
   id: '1',

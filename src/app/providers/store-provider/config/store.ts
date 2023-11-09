@@ -2,8 +2,8 @@ import { CombinedState, configureStore, Reducer, ReducersMapObject } from '@redu
 import { modalsReducer, scrollReducer } from 'widgets/layout';
 import { userReducer } from 'features/user';
 import { createReducerManager } from './reducerManager';
-import { IStateSchema, IStore, IThunkExtra } from './stateSchema';
 import { api, rtkApi } from 'shared/api';
+import type { IStateSchema, IStore, IThunkExtra } from './store.interface';
 
 export const createReduxStore = (initialState?: IStateSchema, asyncReducers?: ReducersMapObject<IStateSchema>) => {
   const rootReducer: ReducersMapObject<IStateSchema> = {

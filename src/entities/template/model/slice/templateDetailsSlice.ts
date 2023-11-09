@@ -1,15 +1,11 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { ITemplate, ITemplateDetailsSchema } from '../types/template';
 import { fetchTemplateById } from '../services/fetch-template-by-id/fetchTemplateById';
-
-const initialState: ITemplateDetailsSchema = {
-  isLoading: false,
-  error: null,
-};
+import { initialTemplateDetailsState } from '../consts/template.consts';
+import type { ITemplate } from '../types/template.interface';
 
 export const templateDetailsSlice = createSlice({
   name: 'templateDetails',
-  initialState,
+  initialState: initialTemplateDetailsState,
   reducers: {
     setTemplate(state, { payload }: PayloadAction<ITemplate>) {
       state.template = payload;

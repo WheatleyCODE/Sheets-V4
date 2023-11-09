@@ -1,2 +1,2 @@
 export { AddCommentForm } from './ui/add-comment-form/AddCommentForm';
-export { IAddCommentFormSchema } from './model/types/addCommentForm';
+export type { IAddCommentFormSchema } from './model/types/addCommentForm.interface';

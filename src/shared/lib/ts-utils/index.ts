@@ -1,1 +1,1 @@
-export { CanPromise, Nullable, DeepPartial, OptionalRecord, SyncOrAsyncPromise } from './utils/tsUtils';
+export type { CanPromise, Nullable, DeepPartial, OptionalRecord, SyncOrAsyncPromise } from './utils/tsUtils';

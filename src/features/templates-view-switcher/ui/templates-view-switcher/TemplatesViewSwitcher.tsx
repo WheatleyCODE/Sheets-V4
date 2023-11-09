@@ -6,12 +6,8 @@ import { Button, ButtonStyles } from 'shared/ui/button';
 import { Title } from 'shared/ui/title';
 import { HStack } from 'shared/ui/containers';
 import { classNames } from 'shared/lib/class-names';
+import type { ITemplatesViewSwitcherProps } from './TemplatesViewSwitcher.interface';
 import styles from './TemplatesViewSwitcher.module.scss';
-
-interface ITemplatesViewSwitcherProps extends React.HTMLAttributes<HTMLDivElement> {
-  view: TemplateView;
-  changeView: (view: TemplateView) => void;
-}
 
 export const TemplatesViewSwitcher: FC<ITemplatesViewSwitcherProps> = (props) => {
   const { className, view, changeView, ...anotherProps } = props;

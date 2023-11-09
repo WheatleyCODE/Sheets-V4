@@ -1,13 +1,6 @@
 export { TemplateDetails } from './ui/template-details/TemplateDetails';
-export {
-  ITemplate,
-  TemplateBlock,
-  TemplateTags,
-  TemplateBlockTypes,
-  ITemplateDetailsSchema,
-  TemplateView,
-} from './model/types/template';
-
+export { TemplateBlockTypes, TemplateTags, TemplateView, templateTabs } from './model/consts/template.consts';
+export type { ITemplate, TemplateBlock, ITemplateDetailsSchema, ITemplateTab } from './model/types/template.interface';
 export { templateDetailsReducer, templateDetailsActions } from './model/slice/templateDetailsSlice';
 export { fetchTemplateById } from './model/services/fetch-template-by-id/fetchTemplateById';
 export { getTemplateDetails } from './model/selectors/get-template-details/getTemplateDetails';

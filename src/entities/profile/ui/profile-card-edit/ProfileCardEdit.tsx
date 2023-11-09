@@ -1,23 +1,15 @@
 import { FC, useCallback, useEffect, useState } from 'react';
 import { classNames } from 'shared/lib/class-names';
-import { IProfile } from '../../model/types/profile';
+import { IProfile } from '../../model/types/profile.interface';
 import { Button } from 'shared/ui/button';
 import { useTranslation } from 'react-i18next';
-import { IInputValidHooks } from '../profile-card/getInfoItemArr';
 import { Title } from 'shared/ui/title';
 import { HStack } from 'shared/ui/containers';
 import { intoIter } from 'shared/lib/iterators';
 import { IValidInputOpts } from 'shared/ui/input';
-import { ButtonColor } from 'shared/ui/button/ui/button/interface';
+import { ButtonColor } from 'shared/ui/button';
+import type { IProfileCardEditProps } from './ProfileCardEdit.interface';
 import styles from './ProfileCardEdit.module.scss';
-
-interface IProfileCardEditProps extends React.HTMLAttributes<HTMLDivElement> {
-  enableProfileChange: () => void;
-  disableProfileChange: () => void;
-  saveProfileChange: (profile: IProfile) => void;
-  isReadonly: boolean;
-  validHooks: IInputValidHooks;
-}
 
 export const ProfileCardEdit: FC<IProfileCardEditProps> = (props) => {
   const {

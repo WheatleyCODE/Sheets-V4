@@ -1,4 +1,5 @@
-import { CityValidErrors, cityValidator } from './cityValidator';
+import { cityValidator } from './cityValidator';
+import { CityValidErrors } from './cityValidator.consts';
 
 describe('cityValidator', () => {
   test('Valid cases', () => {

@@ -1,4 +1,5 @@
-import { LastnameValidErrors, lastnameValidator } from './lastnameValidator';
+import { lastnameValidator } from './lastnameValidator';
+import { LastnameValidErrors } from './lastnameValidator.consts';
 
 describe('lastnameValidator', () => {
   test('Valid cases', () => {

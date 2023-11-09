@@ -1,19 +1,14 @@
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
-import { IComment } from '../../model/types/comment';
 import { CommentListItem } from '../comment-list-item/CommentListItem';
 import { intoIter } from 'shared/lib/iterators';
 import { Text, TextStyle } from 'shared/ui/text';
 import { HStack, VStack } from 'shared/ui/containers';
 import { Skeleton } from 'shared/ui/skeleton';
 import { classNames } from 'shared/lib/class-names';
+import type { ICommentListProps } from './CommentList.interface';
+import type { IComment } from '../../model/types/comment.interface';
 import styles from './CommentList.module.scss';
-
-interface ICommentListProps extends React.HTMLAttributes<HTMLDivElement> {
-  comments?: IComment[];
-  isLoading?: boolean;
-  error?: string | null;
-}
 
 export const CommentList: FC<ICommentListProps> = (props) => {
   const { className, comments = [], isLoading, error, ...anotherProps } = props;

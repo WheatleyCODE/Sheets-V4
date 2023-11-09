@@ -5,9 +5,8 @@ import { TemplateComments } from 'widgets/template-comments/ui/template-comments
 import { Layout } from 'widgets/layout';
 import { TemplateDetailsPageMain } from '../template-details-page-main/TemplateDetailsPageMain';
 import { classNames } from 'shared/lib/class-names';
+import type { ITemplateDetailsPageProps } from './TemplateDetailsPage.interface';
 import styles from './TemplateDetailsPage.module.scss';
-
-interface ITemplateDetailsPageProps extends React.HTMLAttributes<HTMLDivElement> {}
 
 const TemplateDetailsPage: FC<ITemplateDetailsPageProps> = memo((props) => {
   const { className, ...anotherProps } = props;

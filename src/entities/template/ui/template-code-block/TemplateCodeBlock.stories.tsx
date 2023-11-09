@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { TemplateCodeBlock } from './TemplateCodeBlock';
-import { Theme } from 'app/providers/lib/theme-context';
+import { Theme } from 'app/providers/lib';
 import { themeDecorator } from '../../../../../config/storybook/theme-decorator/themeDecorator';
-import { TemplateBlockTypes } from '../../model/types/template';
+import { TemplateBlockTypes } from '../../model/consts/template.consts';
 
 const meta = {
   title: 'entities/template/TemplateCodeBlock',

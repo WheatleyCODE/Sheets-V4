@@ -2,15 +2,9 @@ import { FC, memo, useEffect, useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useDelayHover } from 'shared/lib/hooks';
 import { ANIMATION_DURATION } from 'shared/consts';
-import { ObjStyles } from '../interface';
 import { classNames } from 'shared/lib/class-names';
+import type { ObjStyles, TitleProps } from './Title.interface';
 import styles from './Title.module.scss';
-
-export interface TitleProps extends React.HTMLAttributes<HTMLDivElement> {
-  text: string;
-  isStopShow?: boolean;
-  classNameContainer?: string;
-}
 
 export const Title: FC<TitleProps> = memo((props) => {
   const { children, text, isStopShow = false, className, classNameContainer, ...anotherProps } = props;

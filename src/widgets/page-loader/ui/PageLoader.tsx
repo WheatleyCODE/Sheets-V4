@@ -3,9 +3,8 @@ import { useTranslation } from 'react-i18next';
 import { Loader } from 'shared/ui/loader';
 import { VStack } from 'shared/ui/containers';
 import { classNames } from 'shared/lib/class-names';
+import { IPageLoaderProps } from './PageLoader.interface';
 import styles from './PageLoader.module.scss';
-
-interface IPageLoaderProps extends React.HTMLAttributes<HTMLDivElement> {}
 
 export const PageLoader: FC<IPageLoaderProps> = memo((props) => {
   const { className, ...anotherProps } = props;

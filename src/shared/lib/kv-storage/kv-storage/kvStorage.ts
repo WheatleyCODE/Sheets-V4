@@ -1,6 +1,6 @@
-import { SerializableValue, KVStorageEngine } from '../interface';
 import { LocalStorageEngine } from '../local-storage-engine/localStorageEngine';
 import { Nullable, SyncOrAsyncPromise } from '../../ts-utils';
+import type { SerializableValue, KVStorageEngine } from './kvStorage.interface';
 
 export function KVFactory(namespace: string, engine?: KVStorageEngine) {
   const eng = engine || new LocalStorageEngine();

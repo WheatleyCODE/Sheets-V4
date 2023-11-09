@@ -1,11 +1,8 @@
 import { FC } from 'react';
 import { Text, TextStyle } from '../../../text';
 import { classNames } from 'shared/lib/class-names';
+import type { IImageErrorProps } from './ImageError.interface';
 import styles from './ImageError.module.scss';
-
-interface IImageErrorProps extends React.HTMLAttributes<HTMLDivElement> {
-  text?: string;
-}
 
 export const ImageError: FC<IImageErrorProps> = (props) => {
   const { className, text = 'Ошибка при загрузке картинки =(', ...anotherProps } = props;

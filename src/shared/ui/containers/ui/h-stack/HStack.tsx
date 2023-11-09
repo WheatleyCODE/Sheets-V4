@@ -1,9 +1,8 @@
 import { FC } from 'react';
 import { classNames } from 'shared/lib/class-names';
-import { Flex, IFlexProps } from '../flex/Flex';
+import { Flex } from '../flex/Flex';
+import type { IHStackProps } from './HStack.interface';
 import styles from './HStack.module.scss';
-
-interface IHStackProps extends Omit<IFlexProps, 'direction'> {}
 
 export const HStack: FC<IHStackProps> = (props) => {
   const { className, children, ...anotherProps } = props;

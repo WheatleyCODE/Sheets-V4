@@ -1,18 +1,6 @@
-import { IconType } from 'react-icons';
-import { Theme } from 'app/providers/lib/theme-context/ThemeContext';
 import { MdOutlineKeyboardArrowLeft, MdOutlineLanguage, MdOutlineViewKanban } from 'react-icons/md';
-
-export interface IThemeSubItems {
-  Icon: IconType;
-  text: string;
-  theme: Theme;
-}
-
-export interface IThemeItems {
-  Icon: IconType;
-  text: string;
-  subItems?: IThemeSubItems[];
-}
+import { Theme } from 'app/providers/lib';
+import type { IThemeItems } from '../types/themeSwitcher.interface';
 
 export const themeItems: IThemeItems[] = [
   { Icon: MdOutlineViewKanban, text: 'Настройки' },

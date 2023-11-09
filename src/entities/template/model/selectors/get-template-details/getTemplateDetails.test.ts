@@ -1,7 +1,8 @@
 import { DeepPartial } from 'shared/lib/ts-utils';
-import { getTemplateDetails, initTemplate } from './getTemplateDetails';
+import { getTemplateDetails } from './getTemplateDetails';
 import { IStateSchema } from 'app/providers/store-provider';
-import { ITemplate } from '../../types/template';
+import { ITemplate } from '../../types/template.interface';
+import { initTemplate } from '../../consts/template.consts';
 
 describe('getTemplateDetails', () => {
   test('Return template field', () => {

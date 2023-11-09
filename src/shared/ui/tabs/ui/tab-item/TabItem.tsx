@@ -1,23 +1,10 @@
-import { MouseEvent, ReactNode, useCallback, useEffect, useRef, useState } from 'react';
-import { useTabs } from '../../lib/useTabs';
+import { MouseEvent, useCallback, useEffect, useRef, useState } from 'react';
+import { useTabs } from '../../lib/TabsContext.hooks';
 import { getClientXY, onStream, saveCoords } from 'shared/lib/iterators';
 import { curry, pipe } from 'shared/lib/fp';
 import { classNames } from 'shared/lib/class-names';
+import type { ITabItemProps } from './TabItem.interface';
 import styles from './TabItem.module.scss';
-export interface ITabItem {
-  value: string;
-  children: ReactNode;
-  itemId: string | number;
-}
-
-export interface ITabItemProps<T> extends React.HTMLAttributes<HTMLDivElement> {
-  value: T;
-  children: ReactNode;
-  itemId: string | number;
-  onSelectItem?: (value: T) => void;
-}
-
-const coords: { clientX: number; clientY: number } = { clientX: 0, clientY: 0 };
 
 export function TabItem<T extends string>(props: ITabItemProps<T>) {
   const { className, children, value, itemId, onSelectItem, ...anotherProps } = props;
@@ -33,6 +20,8 @@ export function TabItem<T extends string>(props: ITabItemProps<T>) {
 
     const strmMouseDown = onStream<MouseEvent>(div, 'mousedown');
     const streamMouseDown = strmMouseDown.map(getClientXY);
+
+    const coords: { clientX: number; clientY: number } = { clientX: 0, clientY: 0 };
 
     const mouseDownUnsub = streamMouseDown.subscribe(pipe(curry(saveCoords)(coords), () => setIsBreak(false)));
     streamMouseDown.run(streamMouseDown);

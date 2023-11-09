@@ -1,2 +1,2 @@
 export { Drawer } from './ui/drawer/Drawer';
-export { DrawerOpenStyles } from './ui/drawer/interface';
+export { DrawerOpenStyles } from './ui/drawer/Drawer.consts';
