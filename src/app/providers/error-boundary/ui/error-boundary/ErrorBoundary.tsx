@@ -1,5 +1,5 @@
 import React, { ErrorInfo } from 'react';
-import { PageError } from 'widgets/page-error';
+import { PageError } from '@/widgets/page-error';
 import type { ErrorBoundaryProps, ErrorBoundaryState } from './ErrorBoundary.interface';
 
 export class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoundaryState> {

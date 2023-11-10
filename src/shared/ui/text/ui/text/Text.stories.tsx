@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { Text } from './Text';
-import { Theme } from 'app/providers/lib';
+import { Theme } from '@/app/providers/lib';
 import { themeDecorator } from '../../../../../../config/storybook/theme-decorator/themeDecorator';
 import { TextSize, TextStyle } from './Text.consts';
 

@@ -9,9 +9,9 @@ import {
   getTemplateDetailsIsLoading,
   templateDetailsActions,
   templateDetailsReducer,
-} from 'entities/template';
-import { ReducersList, useDynamicModule, useInitialEffect, useTypedDispatch } from 'shared/lib/hooks';
-import { classNames } from 'shared/lib/class-names';
+} from '@/entities/template';
+import { ReducersList, useDynamicModule, useInitialEffect, useTypedDispatch } from '@/shared/lib/hooks';
+import { classNames } from '@/shared/lib/class-names';
 import type { ITemplateDetailsPageMainProps } from './TemplateDetailsPageMain.interface';
 import styles from './TemplateDetailsPageMain.module.scss';
 

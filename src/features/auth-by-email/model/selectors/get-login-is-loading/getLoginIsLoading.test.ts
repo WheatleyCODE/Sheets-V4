@@ -1,6 +1,6 @@
-import { DeepPartial } from 'shared/lib/ts-utils';
+import { DeepPartial } from '@/shared/lib/ts-utils';
 import { getLoginIsLoading } from './getLoginIsLoading';
-import { IStateSchema } from 'app/providers/store-provider';
+import { IStateSchema } from '@/app/providers/store-provider';
 
 describe('getLoginIsLoading', () => {
   test('Return login state isLoading prop', () => {

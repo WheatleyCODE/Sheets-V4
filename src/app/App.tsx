@@ -1,12 +1,12 @@
 import { FC, Suspense } from 'react';
-import { PageLoader } from 'widgets/page-loader';
 import { useSelector } from 'react-redux';
-import { Navbar } from 'widgets/navbar';
+import { PageLoader } from '@/widgets/page-loader';
+import { Navbar } from '@/widgets/navbar';
 import { useTheme } from './providers/lib';
 import { AppRouter } from './providers/app-router';
-import { getUserInited, userActions } from 'features/user';
-import { useInitialEffect, useTypedDispatch } from 'shared/lib/hooks';
-import { classNames } from 'shared/lib/class-names';
+import { getUserInited, userActions } from '@/features/user';
+import { useInitialEffect, useTypedDispatch } from '@/shared/lib/hooks';
+import { classNames } from '@/shared/lib/class-names';
 import './styles/index.scss';
 
 export const App: FC = () => {

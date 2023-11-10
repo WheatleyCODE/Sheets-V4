@@ -1,7 +1,7 @@
 import { FC, memo } from 'react';
-import { Code } from 'shared/ui/code';
-import { HStack } from 'shared/ui/containers';
-import { classNames } from 'shared/lib/class-names';
+import { Code } from '@/shared/ui/code';
+import { HStack } from '@/shared/ui/containers';
+import { classNames } from '@/shared/lib/class-names';
 import type { ITemplateCodeBlockProps } from './TemplateCodeBlock.interface';
 import styles from './TemplateCodeBlock.module.scss';
 

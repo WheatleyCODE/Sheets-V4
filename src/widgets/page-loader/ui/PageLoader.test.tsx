@@ -1,6 +1,6 @@
 import { screen } from '@testing-library/react';
 import { PageLoader } from './PageLoader';
-import { renderComponent } from 'shared/lib/tests/render-component/renderComponent';
+import { renderComponent } from '@/shared/lib/tests/render-component/renderComponent';
 
 describe('PageLoader', () => {
   test('In the document', () => {

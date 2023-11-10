@@ -1,6 +1,6 @@
-import { DeepPartial } from 'shared/lib/ts-utils';
+import { DeepPartial } from '@/shared/lib/ts-utils';
 import { getUser } from './getUser';
-import { IStateSchema } from 'app/providers/store-provider';
+import { IStateSchema } from '@/app/providers/store-provider';
 
 describe('getUser', () => {
   test('Return user state user prop', () => {

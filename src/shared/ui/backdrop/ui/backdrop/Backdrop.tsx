@@ -1,7 +1,7 @@
 import React, { FC, useCallback } from 'react';
 import { motion } from 'framer-motion';
-import { ANIMATION_DURATION } from 'shared/consts/animations/animation';
-import { classNames } from 'shared/lib/class-names';
+import { ANIMATION_DURATION } from '@/shared/consts/animations/animation';
+import { classNames } from '@/shared/lib/class-names';
 import { IBackdropProps } from './Backdrop.interface';
 import styles from './Backdrop.module.scss';
 

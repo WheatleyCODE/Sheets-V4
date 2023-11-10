@@ -1,6 +1,6 @@
 import { ReducersMapObject } from '@reduxjs/toolkit';
 import { IStateSchema } from '../../config/store.interface';
-import { DeepPartial } from 'shared/lib/ts-utils';
+import { DeepPartial } from '@/shared/lib/ts-utils';
 
 export interface IStoreProviderProps extends FCProps {
   initialState?: IStateSchema;

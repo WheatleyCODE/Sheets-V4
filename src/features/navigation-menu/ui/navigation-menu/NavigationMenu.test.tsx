@@ -1,6 +1,6 @@
 import { fireEvent, screen } from '@testing-library/react';
 import { NavigationMenu } from './NavigationMenu';
-import { renderComponent } from 'shared/lib/tests/render-component/renderComponent';
+import { renderComponent } from '@/shared/lib/tests/render-component/renderComponent';
 
 describe('NavigationMenu', () => {
   test('In the document', () => {

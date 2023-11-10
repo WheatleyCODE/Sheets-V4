@@ -1,13 +1,13 @@
 import { FC, memo, useCallback } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import { Layout } from 'widgets/layout';
+import { Layout } from '@/widgets/layout';
 import { templatesPageReducer } from '../../model/slice/templatesPageSlice';
 import { fetchTemplatesPageNextTemplates } from '../../model/services/fetch-templates-page-next-templates/fetchTemplatesPageNextTemplates';
 import { initTemplatesPage } from '../../model/services/init-templates-page/initTemplatesPage';
 import { TemplatesPageFilters } from '../templates-page-filters/TemplatesPageFilters';
 import { TemplatesPageInfinityTemplateList } from '../templates-page-infinity-template-list/TemplatesPageInfinityTemplateList';
-import { ReducersList, useDynamicModule, useInitialEffect, useTypedDispatch } from 'shared/lib/hooks';
-import { classNames } from 'shared/lib/class-names';
+import { ReducersList, useDynamicModule, useInitialEffect, useTypedDispatch } from '@/shared/lib/hooks';
+import { classNames } from '@/shared/lib/class-names';
 import type { ITemplatesPageProps } from './TemplatesPage.interface';
 import styles from './TemplatesPage.module.scss';
 

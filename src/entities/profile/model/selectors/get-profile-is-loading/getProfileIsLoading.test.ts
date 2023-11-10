@@ -1,6 +1,6 @@
-import { DeepPartial } from 'shared/lib/ts-utils';
+import { DeepPartial } from '@/shared/lib/ts-utils';
 import { getProfileIsLoading } from './getProfileIsLoading';
-import { IStateSchema } from 'app/providers/store-provider';
+import { IStateSchema } from '@/app/providers/store-provider';
 
 describe('getProfileIsLoading', () => {
   test('Return profile state isLoading prop', () => {

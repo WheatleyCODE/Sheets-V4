@@ -1,6 +1,6 @@
 import { screen } from '@testing-library/react';
 import { CommentListItem } from './CommentListItem';
-import { renderComponent } from 'shared/lib/tests/render-component/renderComponent';
+import { renderComponent } from '@/shared/lib/tests/render-component/renderComponent';
 
 const comment = {
   id: '1',

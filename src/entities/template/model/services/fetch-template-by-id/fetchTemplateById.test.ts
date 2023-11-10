@@ -1,5 +1,5 @@
 import { fetchTemplateById } from './fetchTemplateById';
-import { TestAsyncThunk } from 'shared/lib/tests';
+import { TestAsyncThunk } from '@/shared/lib/tests';
 import { ITemplate } from '../../types/template.interface';
 import { TemplateTags } from '../../consts/template.consts';
 

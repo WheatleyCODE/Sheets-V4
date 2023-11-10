@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { classNames } from 'shared/lib/class-names';
+import { classNames } from '@/shared/lib/class-names';
 import { Flex } from '../flex/Flex';
 import type { IHStackProps } from './HStack.interface';
 import styles from './HStack.module.scss';

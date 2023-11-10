@@ -4,9 +4,9 @@ import { useSelector } from 'react-redux';
 import { ModalController } from '../modal-controller/ModalController';
 import { scrollActions } from '../../model/slice/scroll/scrollSlice';
 import { getScrollPositionByPath } from '../../model/selectors/scroll/getScrollPositionByPath/getScrollPositionByPath';
-import { IStateSchema } from 'app/providers/store-provider';
-import { useDebounce, useInfiniteScroll, useInitialEffect, useTypedDispatch } from 'shared/lib/hooks';
-import { classNames } from 'shared/lib/class-names';
+import { IStateSchema } from '@/app/providers/store-provider';
+import { useDebounce, useInfiniteScroll, useInitialEffect, useTypedDispatch } from '@/shared/lib/hooks';
+import { classNames } from '@/shared/lib/class-names';
 import type { ILayoutProps } from './Layout.interface';
 import styles from './Layout.module.scss';
 

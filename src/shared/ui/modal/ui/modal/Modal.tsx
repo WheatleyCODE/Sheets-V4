@@ -2,8 +2,8 @@ import { FC, useCallback, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { CgClose } from 'react-icons/cg';
 import { Icon } from '../../../icon';
-import { ANIMATION_DURATION } from 'shared/consts/animations/animation';
-import { classNames } from 'shared/lib/class-names';
+import { ANIMATION_DURATION } from '@/shared/consts/animations/animation';
+import { classNames } from '@/shared/lib/class-names';
 import type { IModalProps } from './Modal.interface';
 import styles from './Modal.module.scss';
 

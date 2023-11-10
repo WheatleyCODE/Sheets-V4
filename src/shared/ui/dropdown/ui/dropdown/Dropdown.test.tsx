@@ -1,6 +1,6 @@
 import { fireEvent, screen } from '@testing-library/react';
 import { Dropdown } from './Dropdown';
-import { renderComponent } from 'shared/lib/tests/render-component/renderComponent';
+import { renderComponent } from '@/shared/lib/tests/render-component/renderComponent';
 
 describe('Dropdown', () => {
   test('In the document', () => {

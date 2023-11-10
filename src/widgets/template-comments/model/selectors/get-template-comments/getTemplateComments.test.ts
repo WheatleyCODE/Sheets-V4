@@ -1,6 +1,6 @@
-import { DeepPartial } from 'shared/lib/ts-utils';
+import { DeepPartial } from '@/shared/lib/ts-utils';
 import { getTemplateComments } from './getTemplateComments';
-import { IStateSchema } from 'app/providers/store-provider';
+import { IStateSchema } from '@/app/providers/store-provider';
 
 describe('getTemplateComments', () => {
   test('Return user state templateComments prop', () => {

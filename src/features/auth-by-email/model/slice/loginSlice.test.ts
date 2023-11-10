@@ -1,6 +1,6 @@
 import { loginActions, loginReducer } from './loginSlice';
 import { ILoginSchema } from '../types/login.interface';
-import { DeepPartial } from 'shared/lib/ts-utils';
+import { DeepPartial } from '@/shared/lib/ts-utils';
 
 describe('loginSlice', () => {
   test('Test login setEmail', () => {

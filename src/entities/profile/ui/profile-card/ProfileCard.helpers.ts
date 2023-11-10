@@ -7,7 +7,7 @@ import {
   MdOutlineImage,
   MdPersonOutline,
 } from 'react-icons/md';
-import { DefaultItems } from 'shared/ui/input';
+import { DefaultItems } from '@/shared/ui/input';
 import { Country, Currency } from '../../model/consts/profile.consts';
 import type { IGetInfoItemArrProps, InfoItem } from './ProfileCard.interface';
 

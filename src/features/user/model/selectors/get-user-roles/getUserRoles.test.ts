@@ -1,6 +1,6 @@
-import { DeepPartial } from 'shared/lib/ts-utils';
+import { DeepPartial } from '@/shared/lib/ts-utils';
 import { getUserRoles } from './getUserRoles';
-import { IStateSchema } from 'app/providers/store-provider';
+import { IStateSchema } from '@/app/providers/store-provider';
 import { UserRoles } from '../../consts/user.consts';
 
 describe('getUserRoles', () => {

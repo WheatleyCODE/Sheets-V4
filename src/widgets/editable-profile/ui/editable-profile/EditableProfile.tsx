@@ -1,7 +1,7 @@
 import { FC, useCallback } from 'react';
 import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { getUser } from 'features/user';
+import { getUser } from '@/features/user';
 import {
   IProfile,
   ProfileCard,
@@ -13,9 +13,9 @@ import {
   profileActions,
   profileReducer,
   updateProfile,
-} from 'entities/profile';
-import { ReducersList, useDynamicModule, useInitialEffect, useTypedDispatch } from 'shared/lib/hooks';
-import { classNames } from 'shared/lib/class-names';
+} from '@/entities/profile';
+import { ReducersList, useDynamicModule, useInitialEffect, useTypedDispatch } from '@/shared/lib/hooks';
+import { classNames } from '@/shared/lib/class-names';
 import type { IEditableProfileProps } from './EditableProfile.interface';
 import styles from './EditableProfile.module.scss';
 

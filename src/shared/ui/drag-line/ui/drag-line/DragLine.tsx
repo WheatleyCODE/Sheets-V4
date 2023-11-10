@@ -1,12 +1,12 @@
 import { FC } from 'react';
 import { motion } from 'framer-motion';
-import { intoIter } from 'shared/lib/iterators';
+import { intoIter } from '@/shared/lib/iterators';
 import { DragLineItem } from '../drag-line-item/DragLineItem';
 import { useDragLine } from '../../lib/DragLineContext.hooks';
 import { DragLineProvider } from '../drag-line-provider/DragLineProvider';
 import { ITEM_MARGIN_RIGHT } from '../drag-line-item/DragLineItem.consts';
-import { withProvider } from 'shared/lib/with-provider';
-import { classNames } from 'shared/lib/class-names';
+import { withProvider } from '@/shared/lib/with-provider';
+import { classNames } from '@/shared/lib/class-names';
 import type { IDragLineProps } from './DragLine.interface';
 import type { IDragLineItem } from '../drag-line-item/DragLineItem.interface';
 import styles from './DragLine.module.scss';

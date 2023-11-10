@@ -1,6 +1,6 @@
 import { screen } from '@testing-library/react';
 import { PageError } from './PageError';
-import { renderComponent } from 'shared/lib/tests/render-component/renderComponent';
+import { renderComponent } from '@/shared/lib/tests/render-component/renderComponent';
 
 describe('PageError', () => {
   test('In the document', () => {

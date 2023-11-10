@@ -1,7 +1,7 @@
 import { ITemplateRecommendsSchema } from '../types/templateRecommends.interface';
 import { fetchTemplateRecommends } from '../services/fetch-template-recommends/fetchTemplateRecommends';
 import { createEntityAdapter, createSlice } from '@reduxjs/toolkit';
-import { ITemplate } from 'entities/template';
+import { ITemplate } from '@/entities/template';
 
 export const recommendsAdapter = createEntityAdapter<ITemplate>({
   selectId: (templates) => templates.id,

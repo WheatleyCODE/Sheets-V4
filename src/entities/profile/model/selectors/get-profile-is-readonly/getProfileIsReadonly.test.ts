@@ -1,6 +1,6 @@
-import { DeepPartial } from 'shared/lib/ts-utils';
+import { DeepPartial } from '@/shared/lib/ts-utils';
 import { getProfileIsReadonly } from './getProfileIsReadonly';
-import { IStateSchema } from 'app/providers/store-provider';
+import { IStateSchema } from '@/app/providers/store-provider';
 
 describe('getProfileIsReadonly', () => {
   test('Return profile state isReadonly prop', () => {

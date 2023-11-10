@@ -1,11 +1,11 @@
 import { FC, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
-import { TemplateView } from 'entities/template';
+import { TemplateView } from '@/entities/template';
 import { MdOutlineViewList, MdOutlineViewModule } from 'react-icons/md';
-import { Button, ButtonStyles } from 'shared/ui/button';
-import { Title } from 'shared/ui/title';
-import { HStack } from 'shared/ui/containers';
-import { classNames } from 'shared/lib/class-names';
+import { Button, ButtonStyles } from '@/shared/ui/button';
+import { Title } from '@/shared/ui/title';
+import { HStack } from '@/shared/ui/containers';
+import { classNames } from '@/shared/lib/class-names';
 import type { ITemplatesViewSwitcherProps } from './TemplatesViewSwitcher.interface';
 import styles from './TemplatesViewSwitcher.module.scss';
 

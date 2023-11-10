@@ -1,8 +1,8 @@
 import { FC, memo } from 'react';
-import { Image } from 'shared/ui/image';
-import { Text, TextSize } from 'shared/ui/text';
-import { HStack, VStack } from 'shared/ui/containers';
-import { classNames } from 'shared/lib/class-names';
+import { Image } from '@/shared/ui/image';
+import { Text, TextSize } from '@/shared/ui/text';
+import { HStack, VStack } from '@/shared/ui/containers';
+import { classNames } from '@/shared/lib/class-names';
 import type { ITemplateImageBlockProps } from './TemplateImageBlock.interface';
 import styles from './TemplateImageBlock.module.scss';
 

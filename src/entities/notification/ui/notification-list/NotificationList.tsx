@@ -1,12 +1,12 @@
 import { FC, memo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { classNames } from 'shared/lib/class-names';
+import { classNames } from '@/shared/lib/class-names';
 import { NotificationListItem } from '../notification-list-item/NotificationListItem';
 import { useNotifications } from '../../api/notificationApi';
-import { VStack } from 'shared/ui/containers';
-import { Text, TextStyle } from 'shared/ui/text';
-import { Skeleton } from 'shared/ui/skeleton';
-import { intoIter } from 'shared/lib/iterators';
+import { VStack } from '@/shared/ui/containers';
+import { Text, TextStyle } from '@/shared/ui/text';
+import { Skeleton } from '@/shared/ui/skeleton';
+import { intoIter } from '@/shared/lib/iterators';
 import type { INotificationListProps } from './NotificationList.interface';
 import type { INotification } from '../../model/types/notification.interface';
 import styles from './NotificationList.module.scss';

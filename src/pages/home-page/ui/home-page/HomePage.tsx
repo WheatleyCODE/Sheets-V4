@@ -1,6 +1,6 @@
 import { FC, memo } from 'react';
-import { Layout } from 'widgets/layout';
-import { classNames } from 'shared/lib/class-names';
+import { Layout } from '@/widgets/layout';
+import { classNames } from '@/shared/lib/class-names';
 import styles from './HomePage.module.scss';
 
 const HomePage: FC = memo(() => {

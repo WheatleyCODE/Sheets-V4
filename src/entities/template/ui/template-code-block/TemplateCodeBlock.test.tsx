@@ -1,6 +1,6 @@
 import { screen } from '@testing-library/react';
 import { TemplateCodeBlock } from './TemplateCodeBlock';
-import { renderComponent } from 'shared/lib/tests/render-component/renderComponent';
+import { renderComponent } from '@/shared/lib/tests/render-component/renderComponent';
 import { TemplateBlockTypes } from '../../model/consts/template.consts';
 
 describe('TemplateCodeBlock', () => {

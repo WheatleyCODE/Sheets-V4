@@ -1,6 +1,6 @@
 import { screen } from '@testing-library/react';
 import { Drawer } from './Drawer';
-import { renderComponent } from 'shared/lib/tests/render-component/renderComponent';
+import { renderComponent } from '@/shared/lib/tests/render-component/renderComponent';
 import { DrawerOpenStyles } from './Drawer.consts';
 
 describe('Drawer', () => {

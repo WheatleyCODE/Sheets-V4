@@ -1,5 +1,5 @@
 import { FC, memo } from 'react';
-import { classNames } from 'shared/lib/class-names';
+import { classNames } from '@/shared/lib/class-names';
 import type { IIconProps } from './Icon.interface';
 import styles from './Icon.module.scss';
 

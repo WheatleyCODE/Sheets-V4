@@ -1,6 +1,6 @@
 import { screen } from '@testing-library/react';
 import { NotificationListItem } from './NotificationListItem';
-import { renderComponent } from 'shared/lib/tests/render-component/renderComponent';
+import { renderComponent } from '@/shared/lib/tests/render-component/renderComponent';
 
 describe('NotificationListItem', () => {
   test('In the document', () => {

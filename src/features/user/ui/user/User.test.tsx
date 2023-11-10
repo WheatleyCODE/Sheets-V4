@@ -1,8 +1,8 @@
 import { fireEvent, screen } from '@testing-library/react';
 import { User } from './User';
-import { renderComponent } from 'shared/lib/tests/render-component/renderComponent';
-import { sleep } from 'shared/lib/promise';
-import { ANIMATION_DURATION_MS } from 'shared/consts';
+import { renderComponent } from '@/shared/lib/tests/render-component/renderComponent';
+import { sleep } from '@/shared/lib/promise';
+import { ANIMATION_DURATION_MS } from '@/shared/consts';
 
 const imgSrc =
   'https://avatars.mds.yandex.net/i?id=ff63d9036709e4bb15cab817afddf0fddaca9978-10639375-images-thumbs&n=13';

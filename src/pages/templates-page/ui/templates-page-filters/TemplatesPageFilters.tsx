@@ -9,22 +9,22 @@ import { getTemplatesPageTag } from '../../model/selectors/get-templates-page-ta
 import { templatesPageActions } from '../../model/slice/templatesPageSlice';
 import { fetchTemplatesPageTemplates } from '../../model/services/fetch-templates-page-templates/fetchTemplatesPageTemplates';
 import { getTemplatesPageView } from '../../model/selectors/get-templates-page-templates-view/getTemplatesPageView';
-import { TemplatesViewSwitcher } from 'features/templates-view-switcher';
-import { TemplateTags, TemplateView, ITemplateTab, templateTabs } from 'entities/template';
-import { Input, useValidInput } from 'shared/ui/input';
-import { DragLine, DragLineItem } from 'shared/ui/drag-line';
-import { TabItem, Tabs } from 'shared/ui/tabs';
-import { intoIter } from 'shared/lib/iterators';
-import { Title } from 'shared/ui/title';
-import { VStack, Width } from 'shared/ui/containers';
-import { useDebounce, useTypedDispatch } from 'shared/lib/hooks';
+import { TemplatesViewSwitcher } from '@/features/templates-view-switcher';
+import { TemplateTags, TemplateView, ITemplateTab, templateTabs } from '@/entities/template';
+import { Input, useValidInput } from '@/shared/ui/input';
+import { DragLine, DragLineItem } from '@/shared/ui/drag-line';
+import { TabItem, Tabs } from '@/shared/ui/tabs';
+import { intoIter } from '@/shared/lib/iterators';
+import { Title } from '@/shared/ui/title';
+import { VStack, Width } from '@/shared/ui/containers';
+import { useDebounce, useTypedDispatch } from '@/shared/lib/hooks';
 import {
   TemplateSortFields,
   TemplateSortOrders,
   sortItems,
   sortOrderItems,
 } from '../../model/consts/templatesPage.consts';
-import { classNames } from 'shared/lib/class-names';
+import { classNames } from '@/shared/lib/class-names';
 import type { ITemplatesPageFiltersProps } from './TemplatesPageFilters.interface';
 import styles from './TemplatesPageFilters.module.scss';
 

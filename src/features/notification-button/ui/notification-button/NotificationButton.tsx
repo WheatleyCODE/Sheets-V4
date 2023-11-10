@@ -2,12 +2,12 @@ import { FC } from 'react';
 import { AnimatePresence } from 'framer-motion';
 import { MdNotificationsNone } from 'react-icons/md';
 import { useTranslation } from 'react-i18next';
-import { NotificationList } from 'entities/notification';
-import { Title } from 'shared/ui/title';
-import { Button } from 'shared/ui/button';
-import { MDropdown, useDropdown } from 'shared/ui/dropdown';
-import { ANIMATION_DURATION } from 'shared/consts';
-import { classNames } from 'shared/lib/class-names';
+import { NotificationList } from '@/entities/notification';
+import { Title } from '@/shared/ui/title';
+import { Button } from '@/shared/ui/button';
+import { MDropdown, useDropdown } from '@/shared/ui/dropdown';
+import { ANIMATION_DURATION } from '@/shared/consts';
+import { classNames } from '@/shared/lib/class-names';
 import type { INotificationButtonProps } from './NotificationButton.interface';
 import styles from './NotificationButton.module.scss';
 

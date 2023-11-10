@@ -1,10 +1,10 @@
 import { FC, memo, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Text } from 'shared/ui/text';
-import { TextSize, TextStyle } from 'shared/ui/text';
-import { Loader } from 'shared/ui/loader';
-import { Input, useValidInput } from 'shared/ui/input';
-import { intoIter } from 'shared/lib/iterators';
+import { Text } from '@/shared/ui/text';
+import { TextSize, TextStyle } from '@/shared/ui/text';
+import { Loader } from '@/shared/ui/loader';
+import { Input, useValidInput } from '@/shared/ui/input';
+import { intoIter } from '@/shared/lib/iterators';
 import { getInfoItemArr } from './ProfileCard.helpers';
 import {
   ageValidator,
@@ -14,13 +14,13 @@ import {
   firstnameValidator,
   lastnameValidator,
   usernameValidator,
-} from 'shared/lib/validators';
+} from '@/shared/lib/validators';
 import { ProfileCardEdit } from '../profile-card-edit/ProfileCardEdit';
 import { Country, Currency, ProfileCardTextAlign } from '../../model/consts/profile.consts';
-import { HStack, VStack } from 'shared/ui/containers';
-import { Title } from 'shared/ui/title';
-import { Avatar } from 'shared/ui/avatar';
-import { classNames } from 'shared/lib/class-names';
+import { HStack, VStack } from '@/shared/ui/containers';
+import { Title } from '@/shared/ui/title';
+import { Avatar } from '@/shared/ui/avatar';
+import { classNames } from '@/shared/lib/class-names';
 import type { IInputValidHooks, IProfileCardProps, InfoItem } from './ProfileCard.interface';
 import styles from './ProfileCard.module.scss';
 

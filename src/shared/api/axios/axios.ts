@@ -1,6 +1,6 @@
 import axios from 'axios';
-import { LS_AUTH_KEY, LS_DEFAULT_NAMESPACE } from 'shared/consts';
-import { KVFactory } from 'shared/lib/kv-storage';
+import { LS_AUTH_KEY, LS_DEFAULT_NAMESPACE } from '@/shared/consts';
+import { KVFactory } from '@/shared/lib/kv-storage';
 
 const ls = KVFactory(LS_DEFAULT_NAMESPACE);
 

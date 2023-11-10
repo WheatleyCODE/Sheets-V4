@@ -1,7 +1,7 @@
 import { FC, memo } from 'react';
-import { Layout } from 'widgets/layout';
+import { Layout } from '@/widgets/layout';
 import { useTranslation } from 'react-i18next';
-import { classNames } from 'shared/lib/class-names';
+import { classNames } from '@/shared/lib/class-names';
 import styles from './NotFoundPage.module.scss';
 
 interface INotFoundPageProps extends React.HTMLAttributes<HTMLDivElement> {}

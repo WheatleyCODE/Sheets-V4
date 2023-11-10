@@ -1,6 +1,6 @@
 import { profileTests } from '../../consts/profile.consts';
 import { fetchProfile } from './fetchProfile';
-import { TestAsyncThunk } from 'shared/lib/tests';
+import { TestAsyncThunk } from '@/shared/lib/tests';
 
 describe('fetchProfile', () => {
   test('Fulfilled', async () => {

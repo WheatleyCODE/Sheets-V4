@@ -1,6 +1,6 @@
 import { screen } from '@testing-library/react';
 import { InputOptionsMenu } from './InputOptionsMenu';
-import { renderComponent } from 'shared/lib/tests/render-component/renderComponent';
+import { renderComponent } from '@/shared/lib/tests/render-component/renderComponent';
 
 describe('InputOptionsMenu', () => {
   test('In the document', () => {

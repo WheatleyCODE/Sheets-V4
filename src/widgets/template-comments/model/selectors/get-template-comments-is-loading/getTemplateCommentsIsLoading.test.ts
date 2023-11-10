@@ -1,6 +1,6 @@
-import { DeepPartial } from 'shared/lib/ts-utils';
+import { DeepPartial } from '@/shared/lib/ts-utils';
 import { getTemplateCommentsIsLoading } from './getTemplateCommentsIsLoading';
-import { IStateSchema } from 'app/providers/store-provider';
+import { IStateSchema } from '@/app/providers/store-provider';
 
 describe('getTemplateCommentsIsLoading', () => {
   test('Return templateComments state isLoading prop', () => {

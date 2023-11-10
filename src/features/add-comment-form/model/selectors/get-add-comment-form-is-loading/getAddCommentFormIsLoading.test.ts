@@ -1,6 +1,6 @@
-import { DeepPartial } from 'shared/lib/ts-utils';
+import { DeepPartial } from '@/shared/lib/ts-utils';
 import { getAddCommentFormIsLoading } from './getAddCommentFormIsLoading';
-import { IStateSchema } from 'app/providers/store-provider';
+import { IStateSchema } from '@/app/providers/store-provider';
 
 describe('getAddCommentFormIsLoading', () => {
   test('Return form state isLoading prop', () => {

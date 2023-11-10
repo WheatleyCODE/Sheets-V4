@@ -1,6 +1,6 @@
 import { screen } from '@testing-library/react';
 import { ProfileCard } from './ProfileCard';
-import { renderComponent } from 'shared/lib/tests/render-component/renderComponent';
+import { renderComponent } from '@/shared/lib/tests/render-component/renderComponent';
 import { IProfile } from '../../model/types/profile.interface';
 import { Country, Currency } from '../../model/consts/profile.consts';
 

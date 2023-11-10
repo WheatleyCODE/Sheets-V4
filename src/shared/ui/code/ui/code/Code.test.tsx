@@ -1,6 +1,6 @@
 import { screen } from '@testing-library/react';
 import { Code } from './Code';
-import { renderComponent } from 'shared/lib/tests';
+import { renderComponent } from '@/shared/lib/tests';
 
 describe('Code', () => {
   test('In the document', () => {

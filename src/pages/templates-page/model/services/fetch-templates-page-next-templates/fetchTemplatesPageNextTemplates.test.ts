@@ -1,4 +1,4 @@
-import { TestAsyncThunk } from 'shared/lib/tests';
+import { TestAsyncThunk } from '@/shared/lib/tests';
 import { fetchTemplatesPageNextTemplates } from './fetchTemplatesPageNextTemplates';
 import { fetchTemplatesPageTemplates } from '../fetch-templates-page-templates/fetchTemplatesPageTemplates';
 

@@ -1,15 +1,15 @@
-import { HomePage } from 'pages/home-page';
-import { SheetsPage } from 'pages/sheets-page';
-import { LandingPage } from 'pages/landing-page';
-import { NotFoundPage } from 'pages/not-found-page';
-import { ProfilePage } from 'pages/profile-page';
-import { TemplatesPage } from 'pages/templates-page';
-import { TemplateDetailsPage } from 'pages/template-details-page';
-import { TemplateCreatePage } from 'pages/template-create-page';
-import { TemplateEditPage } from 'pages/template-edit-page';
-import { AdminPanelPage } from 'pages/admin-panel-page';
-import { UserRoles } from 'features/user';
-import { ForbiddenPage } from 'pages/forbidden-page';
+import { HomePage } from '@/pages/home-page';
+import { SheetsPage } from '@/pages/sheets-page';
+import { LandingPage } from '@/pages/landing-page';
+import { NotFoundPage } from '@/pages/not-found-page';
+import { ProfilePage } from '@/pages/profile-page';
+import { TemplatesPage } from '@/pages/templates-page';
+import { TemplateDetailsPage } from '@/pages/template-details-page';
+import { TemplateCreatePage } from '@/pages/template-create-page';
+import { TemplateEditPage } from '@/pages/template-edit-page';
+import { AdminPanelPage } from '@/pages/admin-panel-page';
+import { UserRoles } from '@/features/user';
+import { ForbiddenPage } from '@/pages/forbidden-page';
 import type { AppRoutesProps } from './routeConfig.interface';
 
 export enum AppRoutes {

@@ -1,6 +1,6 @@
-import { DeepPartial } from 'shared/lib/ts-utils';
+import { DeepPartial } from '@/shared/lib/ts-utils';
 import { getTemplateDetails } from './getTemplateDetails';
-import { IStateSchema } from 'app/providers/store-provider';
+import { IStateSchema } from '@/app/providers/store-provider';
 import { ITemplate } from '../../types/template.interface';
 import { initTemplate } from '../../consts/template.consts';
 

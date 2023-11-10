@@ -1,6 +1,6 @@
 import { BsSortDown, BsSortUp } from 'react-icons/bs';
 import { MdOutlineCalendarMonth, MdOutlineRemoveRedEye, MdOutlineTitle } from 'react-icons/md';
-import { IInputOptionsMenuItem } from 'shared/ui/input';
+import { IInputOptionsMenuItem } from '@/shared/ui/input';
 
 export enum TemplateSortFields {
   VIEWS = 'views',

@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { TemplateImageBlock } from './TemplateImageBlock';
-import { Theme } from 'app/providers/lib';
+import { Theme } from '@/app/providers/lib';
 import { themeDecorator } from '../../../../../config/storybook/theme-decorator/themeDecorator';
 import { TemplateBlockTypes } from '../../model/consts/template.consts';
 

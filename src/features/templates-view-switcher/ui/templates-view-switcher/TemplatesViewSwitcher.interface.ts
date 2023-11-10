@@ -1,4 +1,4 @@
-import { TemplateView } from 'entities/template';
+import { TemplateView } from '@/entities/template';
 
 export interface ITemplatesViewSwitcherProps extends React.HTMLAttributes<HTMLDivElement> {
   view: TemplateView;

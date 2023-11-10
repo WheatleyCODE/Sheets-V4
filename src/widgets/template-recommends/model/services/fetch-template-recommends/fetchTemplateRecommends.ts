@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { IThunkConfig, IThunkExtra } from 'app/providers/store-provider';
-import { ITemplate } from 'entities/template';
-import i18n from 'shared/config/i18n/i18n';
+import { IThunkConfig, IThunkExtra } from '@/app/providers/store-provider';
+import { ITemplate } from '@/entities/template';
+import i18n from '@/shared/config/i18n/i18n';
 
 export const fetchTemplateRecommends = createAsyncThunk<ITemplate[], void, IThunkConfig>(
   'template/fetchTemplateRecommends',

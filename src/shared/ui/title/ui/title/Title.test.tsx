@@ -1,7 +1,7 @@
 import { fireEvent, screen } from '@testing-library/react';
 import { Title } from './Title';
-import { renderComponent } from 'shared/lib/tests/render-component/renderComponent';
-import { sleep } from 'shared/lib/promise';
+import { renderComponent } from '@/shared/lib/tests/render-component/renderComponent';
+import { sleep } from '@/shared/lib/promise';
 
 describe('InputOptionsMenu', () => {
   test('In the document', () => {

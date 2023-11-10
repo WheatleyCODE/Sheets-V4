@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { classNames } from 'shared/lib/class-names';
+import { classNames } from '@/shared/lib/class-names';
 import type { IFlexProps } from './Flex.interface';
 import styles from './Flex.module.scss';
 

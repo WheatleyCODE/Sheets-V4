@@ -1,6 +1,6 @@
 import { ReducersMapObject } from '@reduxjs/toolkit';
-import { Theme } from 'app/providers/lib';
-import { IStateSchema } from 'app/providers/store-provider';
+import { Theme } from '@/app/providers/lib';
+import { IStateSchema } from '@/app/providers/store-provider';
 import { DeepPartial } from '../../ts-utils';
 
 export interface IRenderComponentOptions {

@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { Button } from './Button';
-import { Theme } from 'app/providers/lib';
+import { Theme } from '@/app/providers/lib';
 import { ButtonSize } from './Button.consts';
 import { MdVerifiedUser } from 'react-icons/md';
 import { themeDecorator } from '../../../../../../config/storybook/theme-decorator/themeDecorator';

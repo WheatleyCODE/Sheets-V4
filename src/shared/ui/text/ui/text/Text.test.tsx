@@ -1,6 +1,6 @@
 import { screen } from '@testing-library/react';
 import { Text } from './Text';
-import { renderComponent } from 'shared/lib/tests/render-component/renderComponent';
+import { renderComponent } from '@/shared/lib/tests/render-component/renderComponent';
 import { TextSize, TextStyle } from './Text.consts';
 
 describe('PageError', () => {

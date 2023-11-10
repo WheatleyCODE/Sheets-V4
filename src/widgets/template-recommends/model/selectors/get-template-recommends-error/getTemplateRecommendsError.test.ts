@@ -1,6 +1,6 @@
-import { DeepPartial } from 'shared/lib/ts-utils';
+import { DeepPartial } from '@/shared/lib/ts-utils';
 import { getTemplateRecommendsError } from './getTemplateRecommendsError';
-import { IStateSchema } from 'app/providers/store-provider';
+import { IStateSchema } from '@/app/providers/store-provider';
 
 describe('getTemplateRecommendsError', () => {
   test('Return templateRecommends state error prop', () => {

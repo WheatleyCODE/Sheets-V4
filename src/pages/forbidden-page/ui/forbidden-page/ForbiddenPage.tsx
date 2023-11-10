@@ -1,11 +1,11 @@
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Layout } from 'widgets/layout';
-import { Text, TextStyle } from 'shared/ui/text';
-import { Link } from 'shared/ui/link';
-import { RoutesPath } from 'shared/config/route-config/routeConfig';
-import { RWidth, VStack } from 'shared/ui/containers';
-import { classNames } from 'shared/lib/class-names';
+import { Layout } from '@/widgets/layout';
+import { Text, TextStyle } from '@/shared/ui/text';
+import { Link } from '@/shared/ui/link';
+import { RoutesPath } from '@/shared/config/route-config/routeConfig';
+import { RWidth, VStack } from '@/shared/ui/containers';
+import { classNames } from '@/shared/lib/class-names';
 import styles from './ForbiddenPage.module.scss';
 
 const ForbiddenPage: FC = () => {

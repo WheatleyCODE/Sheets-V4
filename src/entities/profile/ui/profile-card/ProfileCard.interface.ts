@@ -1,4 +1,4 @@
-import { IInputOptions, IValidInputOpts } from 'shared/ui/input';
+import { IInputOptions, IValidInputOpts } from '@/shared/ui/input';
 import { ProfileCardTextAlign } from '../../model/consts/profile.consts';
 import { IconType } from 'react-icons';
 import type { IProfile } from '../../model/types/profile.interface';

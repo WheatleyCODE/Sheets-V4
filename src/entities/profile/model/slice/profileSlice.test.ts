@@ -2,7 +2,7 @@ import { Country, Currency, profileTests } from '../consts/profile.consts';
 import { updateProfile } from '../services/update-profille/updateProfile';
 import { IProfileSchema } from '../types/profile.interface';
 import { profileActions, profileReducer } from './profileSlice';
-import { DeepPartial } from 'shared/lib/ts-utils';
+import { DeepPartial } from '@/shared/lib/ts-utils';
 
 describe('profileSlice', () => {
   test('Test profile setProfile', () => {

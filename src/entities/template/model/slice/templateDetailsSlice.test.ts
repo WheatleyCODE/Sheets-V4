@@ -1,6 +1,6 @@
 import { TemplateTags } from '../consts/template.consts';
 import { templateDetailsReducer, templateDetailsActions } from './templateDetailsSlice';
-import { DeepPartial } from 'shared/lib/ts-utils';
+import { DeepPartial } from '@/shared/lib/ts-utils';
 import { ITemplate, ITemplateDetailsSchema } from '../types/template.interface';
 
 const template: ITemplate = {

@@ -1,6 +1,6 @@
 import { screen } from '@testing-library/react';
 import { InputValidError } from './InputValidError';
-import { renderComponent } from 'shared/lib/tests/render-component/renderComponent';
+import { renderComponent } from '@/shared/lib/tests/render-component/renderComponent';
 
 describe('InputValidError', () => {
   test('In the document', () => {

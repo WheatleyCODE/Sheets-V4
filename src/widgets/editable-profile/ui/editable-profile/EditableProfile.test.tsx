@@ -1,9 +1,9 @@
 import { screen } from '@testing-library/react';
 import { EditableProfile } from './EditableProfile';
-import { renderComponent } from 'shared/lib/tests/render-component/renderComponent';
-import { Country, Currency, IProfile, profileReducer } from 'entities/profile';
+import { renderComponent } from '@/shared/lib/tests/render-component/renderComponent';
+import { Country, Currency, IProfile, profileReducer } from '@/entities/profile';
 import { userEvent } from '@testing-library/user-event';
-import { api } from 'shared/api';
+import { api } from '@/shared/api';
 
 const profile: IProfile = {
   userId: '1',

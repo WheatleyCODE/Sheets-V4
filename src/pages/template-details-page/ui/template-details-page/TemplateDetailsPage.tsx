@@ -1,10 +1,10 @@
 import { FC, memo } from 'react';
 import { TemplateDetailsPageHeader } from '../template-details-page-header/TemplateDetailsPageHeader';
-import { TemplateRecommends } from 'widgets/template-recommends/ui/template-recommends/TemplateRecommends';
-import { TemplateComments } from 'widgets/template-comments/ui/template-comments/TemplateComments';
-import { Layout } from 'widgets/layout';
+import { TemplateRecommends } from '@/widgets/template-recommends/ui/template-recommends/TemplateRecommends';
+import { TemplateComments } from '@/widgets/template-comments/ui/template-comments/TemplateComments';
+import { Layout } from '@/widgets/layout';
 import { TemplateDetailsPageMain } from '../template-details-page-main/TemplateDetailsPageMain';
-import { classNames } from 'shared/lib/class-names';
+import { classNames } from '@/shared/lib/class-names';
 import type { ITemplateDetailsPageProps } from './TemplateDetailsPage.interface';
 import styles from './TemplateDetailsPage.module.scss';
 

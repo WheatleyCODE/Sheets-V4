@@ -1,6 +1,6 @@
 import { screen } from '@testing-library/react';
 import { Layout } from './Layout';
-import { renderComponent } from 'shared/lib/tests/render-component/renderComponent';
+import { renderComponent } from '@/shared/lib/tests/render-component/renderComponent';
 
 describe('Layout', () => {
   test('In the document', () => {

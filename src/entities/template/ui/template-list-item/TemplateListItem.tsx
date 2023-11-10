@@ -8,16 +8,16 @@ import {
   MdOutlineOpenInNew,
   MdOutlineVisibility,
 } from 'react-icons/md';
-import { Image } from 'shared/ui/image';
-import { Text } from 'shared/ui/text';
-import { HStack, VStack } from 'shared/ui/containers';
-import { Icon } from 'shared/ui/icon';
-import { Title } from 'shared/ui/title';
-import { Button } from 'shared/ui/button';
-import { ButtonColor } from 'shared/ui/button';
-import { Card } from 'shared/ui/card';
-import { RoutesPath } from 'shared/config/route-config/routeConfig';
-import { classNames } from 'shared/lib/class-names';
+import { Image } from '@/shared/ui/image';
+import { Text } from '@/shared/ui/text';
+import { HStack, VStack } from '@/shared/ui/containers';
+import { Icon } from '@/shared/ui/icon';
+import { Title } from '@/shared/ui/title';
+import { Button } from '@/shared/ui/button';
+import { ButtonColor } from '@/shared/ui/button';
+import { Card } from '@/shared/ui/card';
+import { RoutesPath } from '@/shared/config/route-config/routeConfig';
+import { classNames } from '@/shared/lib/class-names';
 import type { ITemplateListItemProps } from './TemplateListItem.interface';
 import styles from './TemplateListItem.module.scss';
 

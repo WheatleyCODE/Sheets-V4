@@ -1,6 +1,6 @@
 import { fireEvent, screen } from '@testing-library/react';
 import LoginForm from './LoginForm';
-import { renderComponent } from 'shared/lib/tests/render-component/renderComponent';
+import { renderComponent } from '@/shared/lib/tests/render-component/renderComponent';
 
 describe('LoginForm', () => {
   test('In the document', () => {

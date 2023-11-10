@@ -1,4 +1,4 @@
-import { Theme } from 'app/providers/lib';
+import { Theme } from '@/app/providers/lib';
 import { IconType } from 'react-icons';
 
 export interface IThemeSubItems {

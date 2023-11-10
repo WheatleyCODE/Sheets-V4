@@ -1,7 +1,7 @@
 import { FC, memo } from 'react';
 import { ButtonColor, ButtonSize, ButtonStyles } from './Button.consts';
 import { Icon as IconComponent } from '../../../icon';
-import { classNames } from 'shared/lib/class-names';
+import { classNames } from '@/shared/lib/class-names';
 import type { IButtonProps } from './Button.interface';
 import styles from './Button.module.scss';
 

@@ -1,4 +1,4 @@
-import { IStateSchema } from 'app/providers/store-provider';
+import { IStateSchema } from '@/app/providers/store-provider';
 import axios, { AxiosStatic } from 'axios';
 import { DeepPartial } from '../../ts-utils';
 import type { ActionCreatorType } from './TestAsyncThunk.test';

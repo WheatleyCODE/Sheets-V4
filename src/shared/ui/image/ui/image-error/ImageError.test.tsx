@@ -1,6 +1,6 @@
 import { screen } from '@testing-library/react';
 import { ImageError } from './ImageError';
-import { renderComponent } from 'shared/lib/tests/render-component/renderComponent';
+import { renderComponent } from '@/shared/lib/tests/render-component/renderComponent';
 
 describe('ImageError', () => {
   test('In the document', () => {

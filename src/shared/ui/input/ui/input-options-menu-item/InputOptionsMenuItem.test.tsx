@@ -1,6 +1,6 @@
 import { screen } from '@testing-library/react';
 import { InputOptionsMenuItem } from './InputOptionsMenuItem';
-import { renderComponent } from 'shared/lib/tests/render-component/renderComponent';
+import { renderComponent } from '@/shared/lib/tests/render-component/renderComponent';
 import { MdHome } from 'react-icons/md';
 
 describe('InputOptionsMenuItem', () => {

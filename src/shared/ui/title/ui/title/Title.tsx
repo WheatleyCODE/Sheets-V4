@@ -1,8 +1,8 @@
 import { FC, memo, useEffect, useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { useDelayHover } from 'shared/lib/hooks';
-import { ANIMATION_DURATION } from 'shared/consts';
-import { classNames } from 'shared/lib/class-names';
+import { useDelayHover } from '@/shared/lib/hooks';
+import { ANIMATION_DURATION } from '@/shared/consts';
+import { classNames } from '@/shared/lib/class-names';
 import type { ObjStyles, TitleProps } from './Title.interface';
 import styles from './Title.module.scss';
 

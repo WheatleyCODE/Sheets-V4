@@ -1,5 +1,5 @@
 import { fetchTemplateRecommends } from './fetchTemplateRecommends';
-import { TestAsyncThunk } from 'shared/lib/tests';
+import { TestAsyncThunk } from '@/shared/lib/tests';
 
 describe('fetchTemplateRecommends', () => {
   // ! FIX

@@ -1,6 +1,6 @@
 import { fireEvent, screen } from '@testing-library/react';
 import { NavigationMenuItem } from './NavigationMenuItem';
-import { renderComponent } from 'shared/lib/tests/render-component/renderComponent';
+import { renderComponent } from '@/shared/lib/tests/render-component/renderComponent';
 import { MdHome } from 'react-icons/md';
 
 describe('NavigationMenuItem', () => {

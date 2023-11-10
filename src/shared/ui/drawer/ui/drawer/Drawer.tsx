@@ -1,7 +1,7 @@
 import { FC, memo, useCallback, useMemo } from 'react';
 import { motion } from 'framer-motion';
 import { getDrawerConfig } from './Drawer.config';
-import { classNames } from 'shared/lib/class-names';
+import { classNames } from '@/shared/lib/class-names';
 import type { IDrawerProps } from './Drawer.interface';
 import styles from './Drawer.module.scss';
 

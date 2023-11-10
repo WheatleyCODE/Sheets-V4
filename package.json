@@ -102,6 +102,7 @@
     "stylelint": "^15.10.3",
     "stylelint-config-standard-scss": "^11.0.0",
     "ts-loader": "^9.4.4",
+    "ts-morph": "^20.0.0",
     "ts-node": "^10.9.1",
     "typescript": "^5.2.2",
     "webpack": "^5.88.2",

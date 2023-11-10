@@ -8,14 +8,14 @@ import { fetchTemplateComments } from '../../model/services/fetch-template-comme
 import { getTemplateCommentsError } from '../../model/selectors/get-template-comments-error/getTemplateCommentsError';
 import { getTemplateCommentsIsLoading } from '../../model/selectors/get-template-comments-is-loading/getTemplateCommentsIsLoading';
 import { fetchTemplateAddComment } from '../../model/services/fetch-template-comments-add-comment/fetchTemplateAddComment';
-import { AddCommentForm } from 'features/add-comment-form';
-import { getUser } from 'features/user';
-import { CommentList } from 'entities/comment';
-import { useDynamicModule, useTypedDispatch, ReducersList, useInitialEffect } from 'shared/lib/hooks';
-import { RWidth } from 'shared/ui/containers';
-import { Text, TextSize } from 'shared/ui/text';
-import { getTemplateDetails } from 'entities/template';
-import { classNames } from 'shared/lib/class-names';
+import { AddCommentForm } from '@/features/add-comment-form';
+import { getUser } from '@/features/user';
+import { CommentList } from '@/entities/comment';
+import { useDynamicModule, useTypedDispatch, ReducersList, useInitialEffect } from '@/shared/lib/hooks';
+import { RWidth } from '@/shared/ui/containers';
+import { Text, TextSize } from '@/shared/ui/text';
+import { getTemplateDetails } from '@/entities/template';
+import { classNames } from '@/shared/lib/class-names';
 import type { ITemplateCommentsProps } from './TemplateComments.interface';
 import styles from './TemplateComments.module.scss';
 

@@ -1,7 +1,7 @@
 import { FC, memo } from 'react';
 import { Icon as IconComponent } from '../../../icon';
 import { INPUT_OPTIONS_MENU_ITEM_HEIGHT } from './InputOptionsMenuItem.consts';
-import { classNames } from 'shared/lib/class-names';
+import { classNames } from '@/shared/lib/class-names';
 import type { IInputOptionsMenuItemProps } from './InputOptionsMenuItem.interface';
 import styles from './InputOptionsMenuItem.module.scss';
 

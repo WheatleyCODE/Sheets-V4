@@ -11,8 +11,8 @@ import {
   SQUARES_TEMPLATE_COUNT,
   TemplateView,
 } from '../../model/consts/template.consts';
-import { Skeleton } from 'shared/ui/skeleton';
-import { classNames } from 'shared/lib/class-names';
+import { Skeleton } from '@/shared/ui/skeleton';
+import { classNames } from '@/shared/lib/class-names';
 import type { ITemplateListProps } from './TemplateList.interface';
 import styles from './TemplateList.module.scss';
 

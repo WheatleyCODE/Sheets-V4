@@ -1,8 +1,8 @@
 import { fireEvent, screen } from '@testing-library/react';
 import { ThemeSwitcher } from './ThemeSwitcher';
-import { renderComponent } from 'shared/lib/tests/render-component/renderComponent';
-import { sleep } from 'shared/lib/promise';
-import { ANIMATION_DURATION_MS } from 'shared/consts';
+import { renderComponent } from '@/shared/lib/tests/render-component/renderComponent';
+import { sleep } from '@/shared/lib/promise';
+import { ANIMATION_DURATION_MS } from '@/shared/consts';
 
 describe('ThemeSwitcher', () => {
   test('In the document', () => {

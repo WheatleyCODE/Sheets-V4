@@ -1,5 +1,5 @@
 import { createSelector } from '@reduxjs/toolkit';
-import { getUser } from 'features/user';
+import { getUser } from '@/features/user';
 import {
   MdOutlineAdminPanelSettings,
   MdOutlineHome,
@@ -9,10 +9,10 @@ import {
   MdOutlineViewCompactAlt,
   MdOutlineWeb,
 } from 'react-icons/md';
-import { RoutesPath } from 'shared/config/route-config/routeConfig';
+import { RoutesPath } from '@/shared/config/route-config/routeConfig';
 import type { INavigationMenuItem } from '../../types/navigationMenu.interface';
-import { isRoleAdmin, isRoleDeveloper } from 'shared/lib/utils';
-import { concatURLs } from 'shared/lib/url';
+import { isRoleAdmin, isRoleDeveloper } from '@/shared/lib/utils';
+import { concatURLs } from '@/shared/lib/url';
 
 export const getNavigationItems = createSelector(getUser, (user) => {
   const items: INavigationMenuItem[] = [

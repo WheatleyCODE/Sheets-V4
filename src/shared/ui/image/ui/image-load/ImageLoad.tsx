@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { classNames } from 'shared/lib/class-names';
+import { classNames } from '@/shared/lib/class-names';
 import { Text } from '../../../text';
 import type { IImageLoadProps } from './ImageLoad.interface';
 import styles from './ImageLoad.module.scss';

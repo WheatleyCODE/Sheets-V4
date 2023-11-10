@@ -1,6 +1,6 @@
 import { FC, useEffect } from 'react';
 import { createPortal } from 'react-dom';
-import { useTheme } from 'app/providers/lib';
+import { useTheme } from '@/app/providers/lib';
 
 export const Portal: FC<FCProps> = ({ children }) => {
   const { theme } = useTheme();

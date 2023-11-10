@@ -2,7 +2,7 @@ import { FC, useEffect } from 'react';
 import { ITEM_MARGIN_RIGHT } from './DragLineItem.consts';
 import { useDragLine } from '../../lib/DragLineContext.hooks';
 import type { IDragLineItemProps } from './DragLineItem.interface';
-import { classNames } from 'shared/lib/class-names';
+import { classNames } from '@/shared/lib/class-names';
 import styles from './DragLineItem.module.scss';
 
 export const DragLineItem: FC<IDragLineItemProps> = (props) => {

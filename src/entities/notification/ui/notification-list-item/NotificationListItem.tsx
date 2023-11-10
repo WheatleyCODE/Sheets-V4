@@ -1,10 +1,10 @@
 import { FC, memo, useCallback } from 'react';
 import { MdAdsClick } from 'react-icons/md';
 import { useNavigate } from 'react-router-dom';
-import { VStack } from 'shared/ui/containers';
-import { Text, TextSize } from 'shared/ui/text';
-import { Icon } from 'shared/ui/icon';
-import { classNames } from 'shared/lib/class-names';
+import { VStack } from '@/shared/ui/containers';
+import { Text, TextSize } from '@/shared/ui/text';
+import { Icon } from '@/shared/ui/icon';
+import { classNames } from '@/shared/lib/class-names';
 import type { INotificationListItemProps } from './NotificationListItem.interface';
 import styles from './NotificationListItem.module.scss';
 

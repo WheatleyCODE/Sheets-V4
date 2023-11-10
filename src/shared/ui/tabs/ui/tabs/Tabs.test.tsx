@@ -1,6 +1,6 @@
 import { screen } from '@testing-library/react';
 import { Tabs } from './Tabs';
-import { renderComponent } from 'shared/lib/tests/render-component/renderComponent';
+import { renderComponent } from '@/shared/lib/tests/render-component/renderComponent';
 import { TabItem } from '../tab-item/TabItem';
 
 describe('Tabs', () => {

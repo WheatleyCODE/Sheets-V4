@@ -1,6 +1,6 @@
 import { FC, memo } from 'react';
 import { TextSize, TextStyle } from './Text.consts';
-import { classNames } from 'shared/lib/class-names';
+import { classNames } from '@/shared/lib/class-names';
 import type { ITextProps } from './Text.interface';
 import styles from './Text.module.scss';
 

@@ -1,4 +1,4 @@
-import { IUser } from 'features/user';
+import { IUser } from '@/features/user';
 import { TemplateBlockTypes, TemplateTags } from '../consts/template.consts';
 
 export interface ITemplateBaseBlock {

@@ -1,6 +1,6 @@
-import { DeepPartial } from 'shared/lib/ts-utils';
+import { DeepPartial } from '@/shared/lib/ts-utils';
 import { getTemplatesPageSortOrder } from './getTemplatesPageSortOrder';
-import { IStateSchema } from 'app/providers/store-provider';
+import { IStateSchema } from '@/app/providers/store-provider';
 import { TemplateSortOrders } from '../../consts/templatesPage.consts';
 
 describe('getTemplatesPageSortOrder', () => {

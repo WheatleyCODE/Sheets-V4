@@ -1,7 +1,7 @@
 /* eslint-disable quotes */
 import type { Meta, StoryObj } from '@storybook/react';
 import { TemplateListItem } from './TemplateListItem';
-import { Theme } from 'app/providers/lib';
+import { Theme } from '@/app/providers/lib';
 import { themeDecorator } from '../../../../../config/storybook/theme-decorator/themeDecorator';
 import { ITemplate } from '../../model/types/template.interface';
 

@@ -1,7 +1,7 @@
 import { forwardRef, useRef } from 'react';
 import { motion } from 'framer-motion';
-import { useClickOutside } from 'shared/lib/hooks';
-import { classNames } from 'shared/lib/class-names';
+import { useClickOutside } from '@/shared/lib/hooks';
+import { classNames } from '@/shared/lib/class-names';
 import type { IDropdownProps } from './Dropdown.interface';
 import styles from './Dropdown.module.scss';
 

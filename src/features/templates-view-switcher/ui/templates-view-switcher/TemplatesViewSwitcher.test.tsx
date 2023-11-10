@@ -1,7 +1,7 @@
 import { fireEvent, screen } from '@testing-library/react';
 import { TemplatesViewSwitcher } from './TemplatesViewSwitcher';
-import { renderComponent } from 'shared/lib/tests/render-component/renderComponent';
-import { TemplateView } from 'entities/template';
+import { renderComponent } from '@/shared/lib/tests/render-component/renderComponent';
+import { TemplateView } from '@/entities/template';
 
 describe('TemplatesViewSwitcher', () => {
   test('In the document', () => {

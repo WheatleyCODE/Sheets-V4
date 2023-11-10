@@ -2,7 +2,7 @@ import { forwardRef } from 'react';
 import { motion } from 'framer-motion';
 import { INPUT_OPTIONS_MENU_PADDING } from './InputOptionsMenu.consts';
 import { INPUT_OPTIONS_MENU_ITEM_HEIGHT } from '../input-options-menu-item/InputOptionsMenuItem.consts';
-import { classNames } from 'shared/lib/class-names';
+import { classNames } from '@/shared/lib/class-names';
 import type { IInputOptionsMenuProps } from './InputOptionsMenu.interface';
 import styles from './InputOptionsMenu.module.scss';
 

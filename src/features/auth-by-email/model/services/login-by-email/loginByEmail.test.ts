@@ -1,6 +1,6 @@
 import { loginByEmail } from './loginByEmail';
-import { userActions } from 'features/user';
-import { TestAsyncThunk } from 'shared/lib/tests';
+import { userActions } from '@/features/user';
+import { TestAsyncThunk } from '@/shared/lib/tests';
 
 describe('loginByEmail', () => {
   test('Fulfilled', async () => {

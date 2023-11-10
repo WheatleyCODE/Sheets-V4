@@ -2,7 +2,7 @@ import { useCallback } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { modalsActions } from '../../model/slice/modal/modalsSlice';
 import { ModalsKeys } from '../../model/types/modal/modal.interface';
-import { useTypedDispatch } from 'shared/lib/hooks';
+import { useTypedDispatch } from '@/shared/lib/hooks';
 
 export const useCloseModal = (key: ModalsKeys) => {
   const dispatch = useTypedDispatch();

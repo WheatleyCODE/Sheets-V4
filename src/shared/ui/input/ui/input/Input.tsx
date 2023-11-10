@@ -1,14 +1,14 @@
 import { FC, memo, useCallback, useEffect, useRef } from 'react';
 import { AnimatePresence, useAnimation } from 'framer-motion';
-import { ANIMATION_DURATION } from 'shared/consts/animations/animation';
-import { intoIter } from 'shared/lib/iterators';
+import { ANIMATION_DURATION } from '@/shared/consts/animations/animation';
+import { intoIter } from '@/shared/lib/iterators';
 import { Icon as IconComponent } from '../../../icon';
 import { MInputOptionsMenu } from '../input-options-menu/InputOptionsMenu';
 import { MInputPlaceholder } from '../input-placeholder/InputPlaceholder';
 import { MInputValidError } from '../input-valid-error/InputValidError';
 import { InputOptionsMenuItem } from '../input-options-menu-item/InputOptionsMenuItem';
 import { DefaultItems, defaultItems } from './Input.consts';
-import { classNames } from 'shared/lib/class-names';
+import { classNames } from '@/shared/lib/class-names';
 import type { IInputProps } from './Input.interface';
 import type { IInputOptionsMenuItem } from '../input-options-menu-item/InputOptionsMenuItem.interface';
 import styles from './Input.module.scss';

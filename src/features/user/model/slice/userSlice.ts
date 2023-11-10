@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import type { IUser } from '../types/user.interface';
-import { KVFactory } from 'shared/lib/kv-storage';
-import { LS_AUTH_KEY, LS_DEFAULT_NAMESPACE } from 'shared/consts';
+import { KVFactory } from '@/shared/lib/kv-storage';
+import { LS_AUTH_KEY, LS_DEFAULT_NAMESPACE } from '@/shared/consts';
 import { initialUserState } from '../consts/user.consts';
 
 const ls = KVFactory(LS_DEFAULT_NAMESPACE);

@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { IThunkConfig } from 'app/providers/store-provider';
-import i18n from 'shared/config/i18n/i18n';
+import { IThunkConfig } from '@/app/providers/store-provider';
+import i18n from '@/shared/config/i18n/i18n';
 import { getTemplatesPagePage } from '../../selectors/get-templates-page-page/getTemplatesPagePage';
 import { getTemplatesPageHasMore } from '../../selectors/get-templates-page-has-more/getTemplatesPageHasMore';
 import { getTemplatesPageIsLoading } from '../../selectors/get-templates-page-is-loading/getTemplatesPageIsLoading';

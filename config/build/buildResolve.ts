@@ -7,6 +7,8 @@ export const buildResolve = ({ paths }: BuildOptions): ResolveOptions => {
     preferAbsolute: true,
     modules: [paths.src, 'node_modules'],
     mainFiles: ['index'],
-    alias: {},
+    alias: {
+      '@': paths.src,
+    },
   };
 };

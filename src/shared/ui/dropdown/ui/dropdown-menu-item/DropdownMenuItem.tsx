@@ -1,9 +1,9 @@
 import { FC, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { useDelayHover } from 'shared/lib/hooks';
-import { ANIMATION_DURATION } from 'shared/consts/animations/animation';
+import { useDelayHover } from '@/shared/lib/hooks';
+import { ANIMATION_DURATION } from '@/shared/consts/animations/animation';
 import { Icon as IconComponent } from '../../../icon';
-import { classNames } from 'shared/lib/class-names';
+import { classNames } from '@/shared/lib/class-names';
 import type { DropdownMenuItemProps } from './DropdownMenuItem.interface';
 import styles from './DropdownMenuItem.module.scss';
 

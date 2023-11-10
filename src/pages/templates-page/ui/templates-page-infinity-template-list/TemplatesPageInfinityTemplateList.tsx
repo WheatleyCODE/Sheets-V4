@@ -4,8 +4,8 @@ import { getTemplatesPageTemplates } from '../../model/selectors/get-templates-p
 import { getTemplatesPageIsLoading } from '../../model/selectors/get-templates-page-is-loading/getTemplatesPageIsLoading';
 import { getTemplatesPageError } from '../../model/selectors/get-templates-page-error/getTemplatesPageError';
 import { getTemplatesPageView } from '../../model/selectors/get-templates-page-templates-view/getTemplatesPageView';
-import { TemplateList } from 'entities/template';
-import { classNames } from 'shared/lib/class-names';
+import { TemplateList } from '@/entities/template';
+import { classNames } from '@/shared/lib/class-names';
 import type { ITemplatesPageInfinityTemplateListProps } from './TemplatesPageInfinityTemplateList.interface';
 import styles from './TemplatesPageInfinityTemplateList.module.scss';
 

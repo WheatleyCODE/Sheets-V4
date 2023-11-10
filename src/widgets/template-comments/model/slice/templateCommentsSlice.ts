@@ -1,5 +1,5 @@
 import { createEntityAdapter, createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { IComment } from 'entities/comment';
+import { IComment } from '@/entities/comment';
 import { ITemplateCommentsSchema } from '../types/templateComments.interface';
 import { fetchTemplateComments } from '../services/fetch-template-comments/fetchTemplateComments';
 

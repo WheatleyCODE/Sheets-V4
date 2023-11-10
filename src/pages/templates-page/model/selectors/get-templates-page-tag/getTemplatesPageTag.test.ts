@@ -1,7 +1,7 @@
-import { DeepPartial } from 'shared/lib/ts-utils';
+import { DeepPartial } from '@/shared/lib/ts-utils';
 import { getTemplatesPageTag } from './getTemplatesPageTag';
-import { IStateSchema } from 'app/providers/store-provider';
-import { TemplateTags } from 'entities/template';
+import { IStateSchema } from '@/app/providers/store-provider';
+import { TemplateTags } from '@/entities/template';
 
 describe('getTemplatesPageTag', () => {
   test('Return template page state tag prop', () => {

@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Layout } from 'widgets/layout';
-import { classNames } from 'shared/lib/class-names';
+import { Layout } from '@/widgets/layout';
+import { classNames } from '@/shared/lib/class-names';
 import styles from './TemplateCreatePage.module.scss';
 
 interface ITemplateCreatePageProps extends React.HTMLAttributes<HTMLDivElement> {}

@@ -1,6 +1,6 @@
-import { IComment } from 'entities/comment';
+// import { IComment } from '@/entities/comment';
 import { fetchTemplateAddComment } from './fetchTemplateAddComment';
-import { TestAsyncThunk } from 'shared/lib/tests';
+import { TestAsyncThunk } from '@/shared/lib/tests';
 
 describe('fetchTemplateAddComment', () => {
   // ! FIX TEST

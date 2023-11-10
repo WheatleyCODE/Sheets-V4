@@ -1,7 +1,7 @@
 import { FC, useCallback } from 'react';
 import { MdOutlineContentCopy } from 'react-icons/md';
 import { Button, ButtonStyles } from '../../../button';
-import { classNames } from 'shared/lib/class-names';
+import { classNames } from '@/shared/lib/class-names';
 import type { ICodeProps } from './Code.interface';
 import styles from './Code.module.scss';
 

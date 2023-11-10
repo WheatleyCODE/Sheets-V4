@@ -4,11 +4,11 @@ import { useTranslation } from 'react-i18next';
 import { MdOutlineComment, MdSend } from 'react-icons/md';
 import { addCommentFormActions, addCommentFormReducer } from '../../model/slice/addCommentFormSlice';
 import { getAddCommentFormText } from '../../model/selectors/get-add-comment-form-error-text/getAddCommentFormText';
-import { Input, useValidInput } from 'shared/ui/input';
-import { HStack } from 'shared/ui/containers';
-import { Button } from 'shared/ui/button';
-import { ReducersList, useDynamicModule, useTypedDispatch } from 'shared/lib/hooks';
-import { classNames } from 'shared/lib/class-names';
+import { Input, useValidInput } from '@/shared/ui/input';
+import { HStack } from '@/shared/ui/containers';
+import { Button } from '@/shared/ui/button';
+import { ReducersList, useDynamicModule, useTypedDispatch } from '@/shared/lib/hooks';
+import { classNames } from '@/shared/lib/class-names';
 import type { IAddCommentFormProps } from './AddCommentForm.interface';
 import styles from './AddCommentForm.module.scss';
 

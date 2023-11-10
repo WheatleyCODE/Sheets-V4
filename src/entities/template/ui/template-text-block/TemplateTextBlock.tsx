@@ -1,8 +1,8 @@
 import { FC, memo } from 'react';
-import { Text } from 'shared/ui/text';
-import { intoIter } from 'shared/lib/iterators';
-import { HStack, VStack } from 'shared/ui/containers';
-import { classNames } from 'shared/lib/class-names';
+import { Text } from '@/shared/ui/text';
+import { intoIter } from '@/shared/lib/iterators';
+import { HStack, VStack } from '@/shared/ui/containers';
+import { classNames } from '@/shared/lib/class-names';
 import type { ITemplateTextBlockProps } from './TemplateTextBlock.interface';
 import styles from './TemplateTextBlock.module.scss';
 

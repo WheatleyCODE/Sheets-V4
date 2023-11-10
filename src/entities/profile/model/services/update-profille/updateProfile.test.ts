@@ -1,5 +1,5 @@
 import { updateProfile } from './updateProfile';
-import { TestAsyncThunk } from 'shared/lib/tests';
+import { TestAsyncThunk } from '@/shared/lib/tests';
 import { IProfile } from '../../types/profile.interface';
 import { Country, Currency } from '../../consts/profile.consts';
 

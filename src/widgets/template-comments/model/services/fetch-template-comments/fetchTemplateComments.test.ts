@@ -1,6 +1,6 @@
-import { IComment } from 'entities/comment';
+import { IComment } from '@/entities/comment';
 import { fetchTemplateComments } from './fetchTemplateComments';
-import { TestAsyncThunk } from 'shared/lib/tests';
+import { TestAsyncThunk } from '@/shared/lib/tests';
 
 describe('fetchTemplateComments', () => {
   test('Fulfilled', async () => {

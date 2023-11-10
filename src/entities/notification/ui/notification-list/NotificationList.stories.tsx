@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { NotificationList } from './NotificationList';
 import { themeDecorator } from '../../../../../config/storybook/theme-decorator/themeDecorator';
-import { Theme } from 'app/providers/lib';
+import { Theme } from '@/app/providers/lib';
 
 const meta = {
   title: 'entities/NotificationList',

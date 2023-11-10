@@ -1,8 +1,8 @@
 import { MouseEvent, useCallback, useEffect, useRef, useState } from 'react';
 import { useTabs } from '../../lib/TabsContext.hooks';
-import { getClientXY, onStream, saveCoords } from 'shared/lib/iterators';
-import { curry, pipe } from 'shared/lib/fp';
-import { classNames } from 'shared/lib/class-names';
+import { getClientXY, onStream, saveCoords } from '@/shared/lib/iterators';
+import { curry, pipe } from '@/shared/lib/fp';
+import { classNames } from '@/shared/lib/class-names';
 import type { ITabItemProps } from './TabItem.interface';
 import styles from './TabItem.module.scss';
 

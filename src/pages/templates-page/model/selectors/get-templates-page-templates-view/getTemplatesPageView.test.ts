@@ -1,7 +1,7 @@
-import { DeepPartial } from 'shared/lib/ts-utils';
+import { DeepPartial } from '@/shared/lib/ts-utils';
 import { getTemplatesPageView } from './getTemplatesPageView';
-import { IStateSchema } from 'app/providers/store-provider';
-import { TemplateView } from 'entities/template';
+import { IStateSchema } from '@/app/providers/store-provider';
+import { TemplateView } from '@/entities/template';
 
 describe('getTemplatesPageView', () => {
   test('Return template page state view prop', () => {

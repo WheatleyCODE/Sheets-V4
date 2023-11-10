@@ -1,6 +1,6 @@
 import { addCommentFormActions, addCommentFormReducer } from './addCommentFormSlice';
 import { IAddCommentFormSchema } from '../types/addCommentForm.interface';
-import { DeepPartial } from 'shared/lib/ts-utils';
+import { DeepPartial } from '@/shared/lib/ts-utils';
 
 describe('addCommentFormSlice', () => {
   test('Test addCommentForm setText', () => {

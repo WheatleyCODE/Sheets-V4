@@ -1,5 +1,5 @@
 import { EntityState } from '@reduxjs/toolkit';
-import { ITemplate, TemplateTags, TemplateView } from 'entities/template';
+import { ITemplate, TemplateTags, TemplateView } from '@/entities/template';
 import { TemplateSortFields, TemplateSortOrders } from '../consts/templatesPage.consts';
 
 export interface ITemplatesPageSchema extends EntityState<ITemplate>, IReduxSchema {

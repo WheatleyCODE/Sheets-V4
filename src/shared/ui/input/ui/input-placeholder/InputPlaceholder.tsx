@@ -1,6 +1,6 @@
 import { forwardRef } from 'react';
 import { motion } from 'framer-motion';
-import { classNames } from 'shared/lib/class-names';
+import { classNames } from '@/shared/lib/class-names';
 import type { IInputPlaceholderProps } from './InputPlaceholder.interface';
 import styles from './InputPlaceholder.module.scss';
 

@@ -1,8 +1,8 @@
 import { createEntityAdapter, createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { ITemplate, TemplateTags, TemplateView } from 'entities/template';
+import { ITemplate, TemplateTags, TemplateView } from '@/entities/template';
 import { fetchTemplatesPageTemplates } from '../services/fetch-templates-page-templates/fetchTemplatesPageTemplates';
-import { LS_DEFAULT_NAMESPACE, LS_VIEW_KEY } from 'shared/consts';
-import { KVFactory } from 'shared/lib/kv-storage';
+import { LS_DEFAULT_NAMESPACE, LS_VIEW_KEY } from '@/shared/consts';
+import { KVFactory } from '@/shared/lib/kv-storage';
 import { TemplateSortFields, TemplateSortOrders } from '../consts/templatesPage.consts';
 import type { ITemplatesPageSchema } from '../types/templatesPage.interface';
 

@@ -6,11 +6,11 @@ import { fetchTemplateRecommends } from '../../model/services/fetch-template-rec
 import { getTemplateRecommendsError } from '../../model/selectors/get-template-recommends-error/getTemplateRecommendsError';
 import { getTemplateRecommendsIsLoading } from '../../model/selectors/get-template-recommends-is-loading/getTemplateRecommendsIsLoading';
 import { getTemplateRecommends } from '../../model/selectors/get-template-recommends/getTemplateRecommends';
-import { TemplateList } from 'entities/template';
-import { useDynamicModule, useTypedDispatch, ReducersList, useInitialEffect } from 'shared/lib/hooks';
-import { RWidth } from 'shared/ui/containers';
-import { Text } from 'shared/ui/text';
-import { classNames } from 'shared/lib/class-names';
+import { TemplateList } from '@/entities/template';
+import { useDynamicModule, useTypedDispatch, ReducersList, useInitialEffect } from '@/shared/lib/hooks';
+import { RWidth } from '@/shared/ui/containers';
+import { Text } from '@/shared/ui/text';
+import { classNames } from '@/shared/lib/class-names';
 import type { ITemplateRecommendsProps } from './TemplateRecommends.interface';
 import styles from './TemplateRecommends.module.scss';
 

@@ -1,6 +1,6 @@
 import { screen } from '@testing-library/react';
 import { Image } from './Image';
-import { renderComponent } from 'shared/lib/tests/render-component/renderComponent';
+import { renderComponent } from '@/shared/lib/tests/render-component/renderComponent';
 
 describe('Image', () => {
   const imgSrc =

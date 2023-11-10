@@ -7,7 +7,7 @@ import { AnimatePresence } from 'framer-motion';
 import { modalsActions } from '../../model/slice/modal/modalsSlice';
 import { hashToStateKeys } from '../../model/consts/layout.consts';
 import { getModalsIsAuth } from '../../model/selectors/modal/get-modals-is-auth/getModalsIsAuth';
-import { useTypedDispatch } from 'shared/lib/hooks';
+import { useTypedDispatch } from '@/shared/lib/hooks';
 import { useCloseModal } from './ModalController.hooks';
 
 export const ModalController: FC = memo(() => {

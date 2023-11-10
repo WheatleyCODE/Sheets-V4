@@ -1,13 +1,13 @@
 import { FC, useCallback, useEffect, useState } from 'react';
-import { classNames } from 'shared/lib/class-names';
-import { IProfile } from '../../model/types/profile.interface';
-import { Button } from 'shared/ui/button';
 import { useTranslation } from 'react-i18next';
-import { Title } from 'shared/ui/title';
-import { HStack } from 'shared/ui/containers';
-import { intoIter } from 'shared/lib/iterators';
-import { IValidInputOpts } from 'shared/ui/input';
-import { ButtonColor } from 'shared/ui/button';
+import { classNames } from '@/shared/lib/class-names';
+import { Button } from '@/shared/ui/button';
+import { Title } from '@/shared/ui/title';
+import { HStack } from '@/shared/ui/containers';
+import { intoIter } from '@/shared/lib/iterators';
+import { IValidInputOpts } from '@/shared/ui/input';
+import { ButtonColor } from '@/shared/ui/button';
+import type { IProfile } from '../../model/types/profile.interface';
 import type { IProfileCardEditProps } from './ProfileCardEdit.interface';
 import styles from './ProfileCardEdit.module.scss';
 
