@@ -1,0 +1,17 @@
+.notification_list {
+  width: 300px;
+  padding: calc(var(--gap) * 2);
+  max-height: 290px;
+  overflow: auto;
+}
+
+.item_skeleton {
+  width: 100%;
+  height: 60px;
+  border-radius: var(--radius);
+  margin-bottom: calc(var(--gap) * 2);
+}
+
+.item_skeleton:last-child {
+  margin-bottom: 0;
+}

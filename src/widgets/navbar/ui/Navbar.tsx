@@ -11,6 +11,7 @@ import { useTypedDispatch } from 'shared/lib/hooks';
 import { HStack } from 'shared/ui/containers';
 import { LS_AUTH_KEY, LS_DEFAULT_NAMESPACE } from 'shared/consts';
 import { KVFactory } from 'shared/lib/kv-storage';
+import { NotificationButton } from 'features/notification-button';
 import { classNames } from 'shared/lib/class-names';
 import type { NavbarProps } from './Navbar.interface';
 import styles from './Navbar.module.scss';
@@ -40,6 +41,7 @@ export const Navbar: FC<NavbarProps> = memo((props) => {
       </HStack>
 
       <HStack gapMultiply="2">
+        <NotificationButton />
         <LanguageSwitcher />
         <ThemeSwitcher />
         <User openAuth={openAuth} logout={logout} user={user} />

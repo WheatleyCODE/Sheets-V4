@@ -1,0 +1,21 @@
+.notification_list_item {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--color-card);
+
+  &.pointer {
+    cursor: pointer;
+  }
+}
+
+.title {
+  margin-bottom: var(--gap);
+}
+
+.click {
+  position: absolute;
+  top: calc(var(--gap) * 2);
+  left: calc(var(--gap) * 2);
+}
