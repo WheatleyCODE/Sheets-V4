@@ -1,4 +1,4 @@
-@import 'app/styles/mixins/global';
+@import '@/app/styles/mixins/global';
 
 .layout {
   @include scroll(12px);
