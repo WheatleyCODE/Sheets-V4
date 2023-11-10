@@ -18,9 +18,10 @@ export const CommentList: FC<ICommentListProps> = (props) => {
     .map((comment) => <CommentListItem key={comment.id} className={styles.comment_item_skeleton} comment={comment} />)
     .toArray();
 
-  const skeletonsArr = intoIter([1, 2, 3, 4])
-    .map(() => (
-      <Skeleton className={styles.comment_item_skeleton}>
+  const skeletonsArr = intoIter<number>([1, 2, 3, 4])
+    .enumerate()
+    .map(([num, i]) => (
+      <Skeleton key={num + i} className={styles.comment_item_skeleton}>
         <HStack gapMultiply="2">
           <Skeleton width={40} height={40} borderRadius="50%" />
           <Skeleton className={styles.comment_item_skeleton_username} />

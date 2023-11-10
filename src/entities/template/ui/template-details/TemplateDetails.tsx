@@ -27,11 +27,11 @@ export const TemplateDetails: FC<ITemplateDetailsProps> = (props) => {
   const renderBlock = useCallback((block: TemplateBlock) => {
     switch (block.type) {
       case TemplateBlockTypes.TEXT:
-        return <TemplateTextBlock className={styles.block_margin} block={block} />;
+        return <TemplateTextBlock key={block.id} className={styles.block_margin} block={block} />;
       case TemplateBlockTypes.CODE:
-        return <TemplateCodeBlock className={styles.block_margin} block={block} />;
+        return <TemplateCodeBlock key={block.id} className={styles.block_margin} block={block} />;
       case TemplateBlockTypes.IMAGE:
-        return <TemplateImageBlock className={styles.block_margin} block={block} />;
+        return <TemplateImageBlock key={block.id} className={styles.block_margin} block={block} />;
       default:
         return <TemplateTextBlock block={block} />;
     }
@@ -68,7 +68,7 @@ export const TemplateDetails: FC<ITemplateDetailsProps> = (props) => {
   }
 
   const tagsArr = intoIter<string>(tags)
-    .map((teg) => <Text className={styles.info_text} text={teg} />)
+    .map((tag) => <Text key={tag} className={styles.info_text} text={tag} />)
     .toArray();
 
   const blocksArr = intoIter<TemplateBlock>(blocks).map(renderBlock).toArray();
