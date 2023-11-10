@@ -14,6 +14,7 @@ import { HStack, VStack } from '@/shared/ui/containers';
 import { Button } from '@/shared/ui/button';
 import { ButtonColor } from '@/shared/ui/button';
 import { Title } from '@/shared/ui/title';
+import { StarRating } from '@/shared/ui/star-rating';
 import { classNames } from '@/shared/lib/class-names';
 import type { TemplateBlock } from '../../model/types/template.interface';
 import type { ITemplateDetailsProps } from './TemplateDetails.interface';
@@ -21,7 +22,7 @@ import styles from './TemplateDetails.module.scss';
 
 export const TemplateDetails: FC<ITemplateDetailsProps> = (props) => {
   const { className, template, isLoading, error, ...anotherProps } = props;
-  const { blocks, createdAt, id, image, subtitle, tags, title, views } = template;
+  const { blocks, createdAt, image, subtitle, tags, title, views } = template;
   const { t } = useTranslation('templateDetails');
 
   const renderBlock = useCallback((block: TemplateBlock) => {
@@ -121,6 +122,8 @@ export const TemplateDetails: FC<ITemplateDetailsProps> = (props) => {
       </HStack>
 
       {blocksArr}
+
+      <StarRating />
     </VStack>
   );
 };

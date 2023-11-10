@@ -45,3 +45,5 @@ extend(Object, 'isPromiseLike', (value: any) => {
 });
 
 extend(Object, 'isProxy', (value: any) => value?.[PROXY] != null);
+
+extend(Number, 'isFloat', (number: number) => number % 1 !== 0);

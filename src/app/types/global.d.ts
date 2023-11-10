@@ -51,3 +51,7 @@ interface ObjectConstructor {
   isPromiseLike(value: any): value is PromiseLike<unknown>;
   isProxy<T>(value: T): T extends Primitive ? false : boolean;
 }
+
+interface NumberConstructor {
+  isFloat(number: number): boolean;
+}

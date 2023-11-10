@@ -1,0 +1,30 @@
+.star_icon {
+  color: yellow;
+  font-size: 3rem;
+}
+
+.star {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  position: relative;
+}
+
+.left,
+.right {
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  height: 40px;
+  width: 20px;
+}
+
+.left {
+  left: 0;
+}
+
+.right {
+  right: 0;
+}
