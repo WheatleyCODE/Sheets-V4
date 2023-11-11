@@ -11,6 +11,7 @@ export const getStars: GetStarts = (current, getChangeCurrent, isSelect, selectS
   for (let i = 0; i < fullStarsCount; i++) {
     resStars[i] = (
       <Star
+        key={i}
         count={i + 1}
         StarIcon={MdOutlineStar}
         getChangeCurrent={getChangeCurrent}
@@ -23,6 +24,7 @@ export const getStars: GetStarts = (current, getChangeCurrent, isSelect, selectS
   if (isFloat) {
     resStars.push(
       <Star
+        key={resStars.length}
         count={resStars.length + 1}
         StarIcon={MdOutlineStarHalf}
         getChangeCurrent={getChangeCurrent}
@@ -35,6 +37,7 @@ export const getStars: GetStarts = (current, getChangeCurrent, isSelect, selectS
   for (let i = resStars.length; i < STAR_COUNT; i++) {
     resStars.push(
       <Star
+        key={i}
         count={i + 1}
         StarIcon={MdOutlineStarBorder}
         getChangeCurrent={getChangeCurrent}

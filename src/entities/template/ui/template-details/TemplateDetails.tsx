@@ -123,7 +123,7 @@ export const TemplateDetails: FC<ITemplateDetailsProps> = (props) => {
 
       {blocksArr}
 
-      <StarRating />
+      <StarRating initStar={9} onSelectStar={(num) => console.log(num)} />
     </VStack>
   );
 };
