@@ -5,7 +5,7 @@ import type { IStarRatingProps } from './StarRating.interface';
 import styles from './StarRating.module.scss';
 
 export const StarRating: FC<IStarRatingProps> = (props) => {
-  const { className, initStar = 5, ...anotherProps } = props;
+  const { className, onSelectStar, initStar = 5, ...anotherProps } = props;
   const [current, setCurrent] = useState<number>(initStar);
   const [isSelect, setIsSelect] = useState(false);
 
@@ -15,9 +15,13 @@ export const StarRating: FC<IStarRatingProps> = (props) => {
     };
   }, []);
 
-  const selectStar = useCallback(() => {
-    setIsSelect(true);
-  }, []);
+  const selectStar = useCallback(
+    (num: number) => {
+      onSelectStar?.(num);
+      setIsSelect(true);
+    },
+    [onSelectStar],
+  );
 
   const resStars = getStars(current, getChangeCurrent, isSelect, selectStar);
 

@@ -13,12 +13,12 @@ export const Star: FC<IStarProps> = memo((props) => {
 
   const selectStarLeft = useCallback(() => {
     getChangeCurrent(calcCount(count, true))();
-    selectStar();
+    selectStar(calcCount(count, true));
   }, [calcCount, count, getChangeCurrent, selectStar]);
 
   const selectStarRight = useCallback(() => {
     getChangeCurrent(calcCount(count))();
-    selectStar();
+    selectStar(calcCount(count));
   }, [calcCount, count, getChangeCurrent, selectStar]);
 
   return (
