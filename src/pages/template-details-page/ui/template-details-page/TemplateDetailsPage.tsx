@@ -3,6 +3,7 @@ import { TemplateDetailsPageHeader } from '../template-details-page-header/Templ
 import { TemplateRecommends } from '@/widgets/template-recommends/ui/template-recommends/TemplateRecommends';
 import { TemplateComments } from '@/widgets/template-comments/ui/template-comments/TemplateComments';
 import { Layout } from '@/widgets/layout';
+import { TemplateRating } from '@/widgets/template-rating';
 import { TemplateDetailsPageMain } from '../template-details-page-main/TemplateDetailsPageMain';
 import { classNames } from '@/shared/lib/class-names';
 import type { ITemplateDetailsPageProps } from './TemplateDetailsPage.interface';
@@ -20,6 +21,7 @@ const TemplateDetailsPage: FC<ITemplateDetailsPageProps> = memo((props) => {
       >
         <TemplateDetailsPageHeader />
         <TemplateDetailsPageMain />
+        <TemplateRating />
         <TemplateRecommends />
         <TemplateComments />
       </section>

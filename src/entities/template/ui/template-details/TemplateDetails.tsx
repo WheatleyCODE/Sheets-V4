@@ -14,7 +14,6 @@ import { HStack, VStack } from '@/shared/ui/containers';
 import { Button } from '@/shared/ui/button';
 import { ButtonColor } from '@/shared/ui/button';
 import { Title } from '@/shared/ui/title';
-import { StarRating } from '@/shared/ui/star-rating';
 import { classNames } from '@/shared/lib/class-names';
 import type { TemplateBlock } from '../../model/types/template.interface';
 import type { ITemplateDetailsProps } from './TemplateDetails.interface';
@@ -122,8 +121,6 @@ export const TemplateDetails: FC<ITemplateDetailsProps> = (props) => {
       </HStack>
 
       {blocksArr}
-
-      <StarRating initStar={9} onSelectStar={(num) => console.log(num)} />
     </VStack>
   );
 };
