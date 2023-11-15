@@ -1,6 +1,6 @@
 import { FC, memo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Loader } from '@/shared/ui/loader';
+import { Loader } from '@/shared/ui/loaders';
 import { VStack } from '@/shared/ui/containers';
 import { classNames } from '@/shared/lib/class-names';
 import { IPageLoaderProps } from './PageLoader.interface';

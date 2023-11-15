@@ -1,12 +1,12 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { Loader } from './Loader';
+import { CircleLoader } from './CircleLoader';
+import { themeDecorator } from 'config/storybook/theme-decorator/themeDecorator';
 import { Theme } from '@/app/providers/lib';
-import { themeDecorator } from '../../../../../../config/storybook/theme-decorator/themeDecorator';
 
 const meta = {
-  title: 'shared/Loader',
-  component: Loader,
-} satisfies Meta<typeof Loader>;
+  title: 'shared/loaders/CircleLoader',
+  component: CircleLoader,
+} satisfies Meta<typeof CircleLoader>;
 
 export default meta;
 

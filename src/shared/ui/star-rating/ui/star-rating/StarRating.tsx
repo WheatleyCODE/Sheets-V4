@@ -6,22 +6,29 @@ import styles from './StarRating.module.scss';
 import { Text, TextSize } from '@/shared/ui/text';
 
 export const StarRating: FC<IStarRatingProps> = memo((props) => {
-  const { className, onSelectStar, initStar = 5, ...anotherProps } = props;
+  const { className, onSelectStar, initStar = 5, isStarred = false, ...anotherProps } = props;
   const [current, setCurrent] = useState<number>(initStar);
   const [isSelect, setIsSelect] = useState(false);
 
-  const getChangeCurrent = useCallback((num: number) => {
-    return () => {
-      setCurrent(num);
-    };
-  }, []);
+  const getChangeCurrent = useCallback(
+    (num: number) => {
+      if (isStarred || isSelect) return () => {};
+
+      return () => {
+        setCurrent(num);
+      };
+    },
+    [isStarred, isSelect],
+  );
 
   const selectStar = useCallback(
     (num: number) => {
+      if (isStarred || isSelect) return;
+
       onSelectStar?.(num);
       setIsSelect(true);
     },
-    [onSelectStar],
+    [onSelectStar, isStarred, isSelect],
   );
 
   const resStars = getStars(current, getChangeCurrent, isSelect, selectStar);
@@ -30,11 +37,11 @@ export const StarRating: FC<IStarRatingProps> = memo((props) => {
     <div
       {...anotherProps}
       data-testid="starRating"
-      className={classNames(styles.star_rating, { [styles.select]: isSelect }, [className])}
+      className={classNames(styles.star_rating, { [styles.select]: isSelect || isStarred }, [className])}
     >
       {resStars}
 
-      {isSelect && (
+      {(isSelect || isStarred) && (
         <div className={styles.select_text_container}>
           <Text textSize={TextSize.SMALL} className={styles.select_text} text="Спасибо за оценку!" />
         </div>

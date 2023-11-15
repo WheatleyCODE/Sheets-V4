@@ -2,8 +2,7 @@ import { FC, memo, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
-// ! FIX Circular dependency
-// import { AuthModal } from 'widgets/auth-modal';
+import { AuthModal } from '@/widgets/auth-modal';
 import { modalsActions } from '../../model/slice/modal/modalsSlice';
 import { hashToStateKeys } from '../../model/consts/layout.consts';
 import { getModalsIsAuth } from '../../model/selectors/modal/get-modals-is-auth/getModalsIsAuth';
@@ -28,7 +27,5 @@ export const ModalController: FC = memo(() => {
     }
   }, [location.hash, dispatch]);
 
-  // ! FIX Circular dependency
-  // return <AnimatePresence>{isAuth && <AuthModal onClose={closeAuth} />}</AnimatePresence>;
-  return <AnimatePresence>{isAuth && <div>12345</div>}</AnimatePresence>;
+  return <AnimatePresence>{isAuth && <AuthModal onClose={closeAuth} />}</AnimatePresence>;
 });

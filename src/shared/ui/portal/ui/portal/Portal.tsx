@@ -1,4 +1,4 @@
-import { FC, useEffect } from 'react';
+import { FC, useLayoutEffect } from 'react';
 import { createPortal } from 'react-dom';
 import { useTheme } from '@/app/providers/lib';
 
@@ -10,7 +10,7 @@ export const Portal: FC<FCProps> = ({ children }) => {
   el.dataset.testid = 'portal';
   el.classList.add(theme);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     document.body.appendChild(el);
 
     return () => {

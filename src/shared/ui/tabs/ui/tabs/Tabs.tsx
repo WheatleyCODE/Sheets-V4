@@ -1,7 +1,7 @@
 import { FC, memo, useEffect } from 'react';
 import { TabItem } from '../tab-item/TabItem';
 import { intoIter } from '@/shared/lib/iterators';
-import { withProvider } from '@/shared/lib/with-provider';
+import { withProvider } from '@/shared/lib/with';
 import { TabsProvider } from '../tabs-provider/TabsProvider';
 import { useTabs } from '../../lib/TabsContext.hooks';
 import { classNames } from '@/shared/lib/class-names';

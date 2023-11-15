@@ -2,7 +2,7 @@ import { FC, memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { classNames } from '@/shared/lib/class-names';
 import { NotificationListItem } from '../notification-list-item/NotificationListItem';
-import { useNotifications } from '../../api/notificationApi';
+import { useNotifications } from '../../api/notification.api';
 import { VStack } from '@/shared/ui/containers';
 import { Text, TextStyle } from '@/shared/ui/text';
 import { Skeleton } from '@/shared/ui/skeleton';

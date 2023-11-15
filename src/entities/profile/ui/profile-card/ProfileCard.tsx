@@ -2,7 +2,7 @@ import { FC, memo, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Text } from '@/shared/ui/text';
 import { TextSize, TextStyle } from '@/shared/ui/text';
-import { Loader } from '@/shared/ui/loader';
+import { Loader } from '@/shared/ui/loaders';
 import { Input, useValidInput } from '@/shared/ui/input';
 import { intoIter } from '@/shared/lib/iterators';
 import { getInfoItemArr } from './ProfileCard.helpers';

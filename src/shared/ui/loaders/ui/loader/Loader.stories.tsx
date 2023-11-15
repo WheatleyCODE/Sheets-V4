@@ -1,12 +1,12 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import TemplateRating from './TemplateRating';
-import { themeDecorator } from 'config/storybook/theme-decorator/themeDecorator';
+import { Loader } from './Loader';
 import { Theme } from '@/app/providers/lib';
+import { themeDecorator } from '../../../../../../config/storybook/theme-decorator/themeDecorator';
 
 const meta = {
-  title: 'widgets/TemplateRating',
-  component: TemplateRating,
-} satisfies Meta<typeof TemplateRating>;
+  title: 'shared/loaders/Loader',
+  component: Loader,
+} satisfies Meta<typeof Loader>;
 
 export default meta;
 

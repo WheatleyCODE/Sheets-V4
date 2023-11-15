@@ -1,13 +1,13 @@
 import { FC, Suspense, memo, useCallback, useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { ModalsHash } from '@/widgets/layout';
+// import { ModalsHash } from '@/widgets/layout';
 import { LoginFormAsync, RegisterFormAsync } from '@/features/auth-by-email';
 import { Backdrop } from '@/shared/ui/backdrop';
 import { Modal } from '@/shared/ui/modal';
 import { Link } from '@/shared/ui/link';
 import { LocationHelper } from '@/shared/lib/url';
-import { Loader } from '@/shared/ui/loader';
+import { Loader } from '@/shared/ui/loaders';
 import { HStack } from '@/shared/ui/containers';
 import { classNames } from '@/shared/lib/class-names';
 import type { IAuthModalProps } from './AuthModal.interface';
@@ -24,8 +24,9 @@ export const AuthModal: FC<IAuthModalProps> = memo((props) => {
     const isLogin = new LocationHelper(location).hasParam('login');
     const isRegister = new LocationHelper(location).hasParam('register');
 
+    // ! FIX #auth
     if (!isLogin && !isRegister) {
-      navigate(new LocationHelper(location).addHash(ModalsHash.AUTH).setParams({ login: true }).getPath());
+      navigate(new LocationHelper(location).addHash('#auth').setParams({ login: true }).getPath());
       return;
     }
 
@@ -45,7 +46,7 @@ export const AuthModal: FC<IAuthModalProps> = memo((props) => {
   const link = isRegister ? (
     <Link
       className={styles.link}
-      to={new LocationHelper(location).addHash(ModalsHash.AUTH).setParams({ login: true }).getPath()}
+      to={new LocationHelper(location).addHash('#auth').setParams({ login: true }).getPath()}
       onClick={toLogin}
     >
       {t('Войти')}
@@ -53,7 +54,7 @@ export const AuthModal: FC<IAuthModalProps> = memo((props) => {
   ) : (
     <Link
       className={styles.link}
-      to={new LocationHelper(location).addHash(ModalsHash.AUTH).setParams({ register: true }).getPath()}
+      to={new LocationHelper(location).addHash('#auth').setParams({ register: true }).getPath()}
       onClick={toRegister}
     >
       {t('Регистрация')}

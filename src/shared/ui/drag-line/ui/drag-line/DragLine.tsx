@@ -5,7 +5,7 @@ import { DragLineItem } from '../drag-line-item/DragLineItem';
 import { useDragLine } from '../../lib/DragLineContext.hooks';
 import { DragLineProvider } from '../drag-line-provider/DragLineProvider';
 import { ITEM_MARGIN_RIGHT } from '../drag-line-item/DragLineItem.consts';
-import { withProvider } from '@/shared/lib/with-provider';
+import { withProvider } from '@/shared/lib/with';
 import { classNames } from '@/shared/lib/class-names';
 import type { IDragLineProps } from './DragLine.interface';
 import type { IDragLineItem } from '../drag-line-item/DragLineItem.interface';

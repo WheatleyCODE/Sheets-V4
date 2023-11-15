@@ -1,4 +1,103 @@
 {
+  "template-ratings": [
+    {
+      "id": "1",
+      "rate": 9,
+      "feedback": "Отзыв",
+      "userId": "1",
+      "templateId": "1"
+    },
+    {
+      "id": "2",
+      "rate": 9,
+      "feedback": "Отзыв",
+      "userId": "2",
+      "templateId": "2"
+    },
+    {
+      "userId": "1",
+      "templateId": "3",
+      "rate": 2,
+      "id": "sA2i9L0"
+    },
+    {
+      "userId": "1",
+      "templateId": "3",
+      "rate": 9,
+      "id": "W8UphJm"
+    },
+    {
+      "userId": "1",
+      "templateId": "3",
+      "rate": 9,
+      "id": "Hy-OwFP"
+    },
+    {
+      "userId": "1",
+      "templateId": "4",
+      "rate": 8,
+      "id": "MqZpeDm"
+    },
+    {
+      "userId": "1",
+      "templateId": "4",
+      "rate": 9,
+      "id": "SWKc6w2"
+    },
+    {
+      "userId": "1",
+      "templateId": "4",
+      "rate": 4,
+      "id": "KOPRMTs"
+    },
+    {
+      "userId": "1",
+      "templateId": "4",
+      "rate": 8,
+      "id": "BC1go9Z"
+    },
+    {
+      "userId": "1",
+      "templateId": "5",
+      "rate": 3,
+      "id": "snm_QT_"
+    },
+    {
+      "userId": "1",
+      "templateId": "6",
+      "rate": 8,
+      "feedback": "fsdfdsfdsf",
+      "id": "4dw1n4n"
+    },
+    {
+      "userId": "1",
+      "templateId": "2",
+      "rate": 6,
+      "id": "kTJtuW1"
+    },
+    {
+      "userId": "1",
+      "templateId": "8",
+      "rate": 4,
+      "id": "IjUWiyv"
+    }
+  ],
+  "profile-ratings": [
+    {
+      "id": "1",
+      "rate": 5,
+      "feedback": "Отзыв1",
+      "userId": "1",
+      "profileId": "1"
+    },
+    {
+      "id": "2",
+      "rate": 5,
+      "feedback": "Отзыв2",
+      "userId": "2",
+      "profileId": "2"
+    }
+  ],
   "notifications": [
     {
       "id": "1",
