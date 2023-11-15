@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useDelayHover } from '@/shared/lib/hooks';
 import { ANIMATION_DURATION } from '@/shared/consts';
 import { classNames } from '@/shared/lib/class-names';
+import { TEXT_MARGIN, TEXT_HORIZONTAL_PADDINGS } from './Title.consts';
 import type { ObjStyles, TitleProps } from './Title.interface';
 import styles from './Title.module.scss';
 
@@ -13,23 +14,21 @@ export const Title: FC<TitleProps> = memo((props) => {
   const titleRef = useRef<HTMLDivElement | null>(null);
   const titleTextRef = useRef<HTMLDivElement | null>(null);
 
-  // ! FIX useTitle ref ???
   useEffect(() => {
-    const $title = titleRef.current;
-    const $text = titleTextRef.current;
-    if (!$title || !$text) return;
+    const title = titleRef.current;
+    const text = titleTextRef.current;
+    if (!title || !text) return;
 
     const bodyRect = document.body.getBoundingClientRect();
-    const titleRect = $title.getBoundingClientRect();
-    const textRect = $text.getBoundingClientRect();
+    const titleRect = title.getBoundingClientRect();
+    const textRect = text.getBoundingClientRect();
     const objStyles: ObjStyles = {};
-    const TEXT_MARGIN = 8;
 
     objStyles.top = objStyles.top = titleRect.height + TEXT_MARGIN;
 
-    const isRight = () => $title.offsetLeft + textRect.width / 2 > bodyRect.width;
-    const isLeft = () => textRect.width / 2 > $title.offsetLeft;
-    const isTop = () => $title.offsetTop + titleRect.height + textRect.height > bodyRect.height;
+    const isRight = () => TEXT_HORIZONTAL_PADDINGS + titleRect.left + textRect.width / 2 > bodyRect.width;
+    const isLeft = () => textRect.width / 2 > titleRect.left;
+    const isTop = () => title.offsetTop + titleRect.height + textRect.height > bodyRect.height;
 
     if (isRight()) {
       objStyles.right = 0;
@@ -41,6 +40,7 @@ export const Title: FC<TitleProps> = memo((props) => {
       objStyles.right = 'initial';
     }
 
+    // ! FIX isTop
     if (isTop()) {
       objStyles.top = -textRect.height - TEXT_MARGIN;
     }
