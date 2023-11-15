@@ -13,13 +13,13 @@ type Story = StoryObj<typeof meta>;
 
 export const Light: Story = {
   args: {
-    notification: {} as any,
+    notification: { id: '1', title: 'title', description: 'description' },
   },
 };
 
 export const Dark: Story = {
   args: {
-    notification: {} as any,
+    notification: { id: '1', title: 'title', description: 'description' },
   },
   decorators: [themeDecorator('dark')],
 };

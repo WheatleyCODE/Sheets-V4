@@ -10,8 +10,9 @@ import {
   MDropdown,
   usePopups,
   useDropdownSubMenuAnimationFixer,
+  dropdownAnimations,
 } from '@/shared/ui/popups';
-import { ANIMATION_DURATION, ANIMATION_DURATION_MS } from '@/shared/consts';
+import { ANIMATION_DURATION_MS } from '@/shared/consts';
 import { sleep } from '@/shared/lib/promise';
 import { intoIter } from '@/shared/lib/iterators';
 import { Title } from '@/shared/ui/title';
@@ -68,12 +69,9 @@ export const ThemeSwitcher: FC<IThemeSwitcherProps> = (props) => {
       <AnimatePresence>
         {isShow && (
           <MDropdown
+            {...dropdownAnimations.height}
             style={overflowStyles}
             onMouseEnter={onMouseEnter}
-            exit={{ height: 0 }}
-            animate={{ height: 'auto' }}
-            initial={{ height: 0 }}
-            transition={{ duration: ANIMATION_DURATION }}
             closePopup={closeDropdownHandler}
             className={styles.dropdown}
           >

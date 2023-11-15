@@ -6,8 +6,7 @@ import { useTranslation } from 'react-i18next';
 import { isUserRoleAdmin, isUserRoleDeveloper } from '../../model/selectors/user-role-selector/userRoleSelector';
 import { Title } from '@/shared/ui/title';
 import { Button } from '@/shared/ui/button';
-import { DropdownMenu, DropdownMenuItem, MDropdown, usePopups } from '@/shared/ui/popups';
-import { ANIMATION_DURATION } from '@/shared/consts';
+import { DropdownMenu, DropdownMenuItem, MDropdown, dropdownAnimations, usePopups } from '@/shared/ui/popups';
 import { AnimatePresence } from 'framer-motion';
 import { Avatar } from '@/shared/ui/avatar';
 import { RoutesPath } from '@/shared/config/route-config/routeConfig';
@@ -58,14 +57,7 @@ export const User: FC<IUserProps> = memo((props) => {
 
       <AnimatePresence>
         {isShow && (
-          <MDropdown
-            exit={{ height: 0 }}
-            animate={{ height: 'auto' }}
-            initial={{ height: 0 }}
-            transition={{ duration: ANIMATION_DURATION }}
-            closePopup={closePopup}
-            className={styles.dropdown}
-          >
+          <MDropdown {...dropdownAnimations.height} closePopup={closePopup} className={styles.dropdown}>
             <DropdownMenu>
               {isAccess && (
                 <DropdownMenuItem

@@ -2,7 +2,7 @@ import { FC, memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { AnimatePresence } from 'framer-motion';
 import { MdOutlineLanguage } from 'react-icons/md';
-import { ANIMATION_DURATION, ANIMATION_DURATION_MS } from '@/shared/consts';
+import { ANIMATION_DURATION_MS } from '@/shared/consts';
 import { sleep } from '@/shared/lib/promise';
 import { intoIter } from '@/shared/lib/iterators';
 import { UILanguages, languageItems } from '../../model/consts/languageSwitcher.consts';
@@ -14,6 +14,7 @@ import {
   MDropdown,
   usePopups,
   useDropdownSubMenuAnimationFixer,
+  dropdownAnimations,
 } from '@/shared/ui/popups';
 import { classNames } from '@/shared/lib/class-names';
 import type { ILanguageSwitcherProps } from './LanguageSwitcher.interface';
@@ -67,12 +68,9 @@ export const LanguageSwitcher: FC<ILanguageSwitcherProps> = memo((props) => {
       <AnimatePresence>
         {isShow && (
           <MDropdown
+            {...dropdownAnimations.height}
             style={overflowStyles}
             onMouseEnter={onMouseEnter}
-            exit={{ height: 0 }}
-            animate={{ height: 'auto' }}
-            initial={{ height: 0 }}
-            transition={{ duration: ANIMATION_DURATION }}
             closePopup={closeDropdownHandler}
             className={styles.dropdown}
           >
