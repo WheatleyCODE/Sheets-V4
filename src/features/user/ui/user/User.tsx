@@ -6,7 +6,7 @@ import { useTranslation } from 'react-i18next';
 import { isUserRoleAdmin, isUserRoleDeveloper } from '../../model/selectors/user-role-selector/userRoleSelector';
 import { Title } from '@/shared/ui/title';
 import { Button } from '@/shared/ui/button';
-import { DropdownMenu, DropdownMenuItem, MDropdown, useDropdown } from '@/shared/ui/dropdown';
+import { DropdownMenu, DropdownMenuItem, MDropdown, usePopups } from '@/shared/ui/popups';
 import { ANIMATION_DURATION } from '@/shared/consts';
 import { AnimatePresence } from 'framer-motion';
 import { Avatar } from '@/shared/ui/avatar';
@@ -23,34 +23,34 @@ export const User: FC<IUserProps> = memo((props) => {
 
   const isAdmin = useSelector(isUserRoleAdmin);
   const isDeveloper = useSelector(isUserRoleDeveloper);
-  const { isShow, closeDropdown, toggleDropdown } = useDropdown();
+  const { isShow, closePopup, togglePopup } = usePopups();
 
   const isUser = !!user;
   const isAccess = isAdmin || isDeveloper;
   const titleText = isUser ? t('Пользователь') : t('Войти');
 
   const logoutHandler = useCallback(() => {
-    closeDropdown();
+    closePopup();
     logout();
-  }, [logout, closeDropdown]);
+  }, [logout, closePopup]);
 
   const navigateToProfile = useCallback(() => {
     if (!user) return;
-    closeDropdown();
+    closePopup();
     navigate(concatURLs(RoutesPath.profile, user.id));
-  }, [user, closeDropdown, navigate]);
+  }, [user, closePopup, navigate]);
 
   const navigateToAdminPanel = useCallback(() => {
     if (!user) return;
-    closeDropdown();
+    closePopup();
     navigate(RoutesPath.admin_panel);
-  }, [user, closeDropdown, navigate]);
+  }, [user, closePopup, navigate]);
 
   return (
     <div {...anotherProps} data-testid="logo" className={classNames(styles.user, {}, [className])}>
       <Title isStopShow={isShow} text={titleText}>
         {isUser ? (
-          <Avatar className={styles.avatar} onClick={toggleDropdown} width={40} height={40} src={user.avatar} />
+          <Avatar className={styles.avatar} onClick={togglePopup} width={40} height={40} src={user.avatar} />
         ) : (
           <Button text="Войти" onClick={openAuth} Icon={MdPerson} />
         )}
@@ -63,7 +63,7 @@ export const User: FC<IUserProps> = memo((props) => {
             animate={{ height: 'auto' }}
             initial={{ height: 0 }}
             transition={{ duration: ANIMATION_DURATION }}
-            closeDropdown={closeDropdown}
+            closePopup={closePopup}
             className={styles.dropdown}
           >
             <DropdownMenu>

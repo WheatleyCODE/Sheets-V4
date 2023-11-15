@@ -1,9 +1,9 @@
 import { FC, memo, useCallback, useState } from 'react';
 import { classNames } from '@/shared/lib/class-names';
+import { Text, TextSize } from '@/shared/ui/text';
 import { getStars } from './StarRating.helpers';
 import type { IStarRatingProps } from './StarRating.interface';
 import styles from './StarRating.module.scss';
-import { Text, TextSize } from '@/shared/ui/text';
 
 export const StarRating: FC<IStarRatingProps> = memo((props) => {
   const { className, onSelectStar, initStar = 5, isStarred = false, ...anotherProps } = props;

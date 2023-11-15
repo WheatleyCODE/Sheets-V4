@@ -13,7 +13,7 @@ export const Title: FC<TitleProps> = memo((props) => {
   const titleRef = useRef<HTMLDivElement | null>(null);
   const titleTextRef = useRef<HTMLDivElement | null>(null);
 
-  // ! FIX
+  // ! FIX useTitle ref ???
   useEffect(() => {
     const $title = titleRef.current;
     const $text = titleTextRef.current;

@@ -1,10 +1,8 @@
 import { FC, Suspense, memo, useCallback, useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-// import { ModalsHash } from '@/widgets/layout';
 import { LoginFormAsync, RegisterFormAsync } from '@/features/auth-by-email';
-import { Backdrop } from '@/shared/ui/backdrop';
-import { Modal } from '@/shared/ui/modal';
+import { Backdrop, Modal, Portal } from '@/shared/ui/modals';
 import { Link } from '@/shared/ui/link';
 import { LocationHelper } from '@/shared/lib/url';
 import { Loader } from '@/shared/ui/loaders';
@@ -62,16 +60,18 @@ export const AuthModal: FC<IAuthModalProps> = memo((props) => {
   );
 
   return (
-    <Backdrop onClose={onClose}>
-      <Modal onClose={onClose}>
-        <div data-testid="auth-modal" {...anotherProps} className={classNames(styles.auth_modal, {}, [className])}>
-          <Suspense fallback={<Loader isCenter />}>
-            {isRegister ? <RegisterFormAsync /> : <LoginFormAsync onLoginSuccess={onClose} />}
-          </Suspense>
+    <Portal>
+      <Backdrop onClose={onClose}>
+        <Modal onClose={onClose}>
+          <div data-testid="auth-modal" {...anotherProps} className={classNames(styles.auth_modal, {}, [className])}>
+            <Suspense fallback={<Loader isCenter />}>
+              {isRegister ? <RegisterFormAsync /> : <LoginFormAsync onLoginSuccess={onClose} />}
+            </Suspense>
 
-          <HStack className={styles.links}>{link}</HStack>
-        </div>
-      </Modal>
-    </Backdrop>
+            <HStack className={styles.links}>{link}</HStack>
+          </div>
+        </Modal>
+      </Backdrop>
+    </Portal>
   );
 });

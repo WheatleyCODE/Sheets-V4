@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { NotificationList } from '@/entities/notification';
 import { Title } from '@/shared/ui/title';
 import { Button } from '@/shared/ui/button';
-import { MDropdown, useDropdown } from '@/shared/ui/dropdown';
+import { MDropdown, usePopups } from '@/shared/ui/popups';
 import { ANIMATION_DURATION } from '@/shared/consts';
 import { classNames } from '@/shared/lib/class-names';
 import type { INotificationButtonProps } from './NotificationButton.interface';
@@ -13,7 +13,7 @@ import styles from './NotificationButton.module.scss';
 
 export const NotificationButton: FC<INotificationButtonProps> = (props) => {
   const { className, ...anotherProps } = props;
-  const { isShow, closeDropdown, toggleDropdown } = useDropdown();
+  const { isShow, closePopup, togglePopup } = usePopups();
   const { t } = useTranslation();
 
   return (
@@ -23,7 +23,7 @@ export const NotificationButton: FC<INotificationButtonProps> = (props) => {
       className={classNames(styles.notification_button, {}, [className])}
     >
       <Title isStopShow={isShow} text={t('Оповещения')}>
-        <Button Icon={MdNotificationsNone} onClick={toggleDropdown} />
+        <Button Icon={MdNotificationsNone} onClick={togglePopup} />
       </Title>
 
       <AnimatePresence>
@@ -33,7 +33,7 @@ export const NotificationButton: FC<INotificationButtonProps> = (props) => {
             animate={{ height: 'auto' }}
             initial={{ height: 0 }}
             transition={{ duration: ANIMATION_DURATION }}
-            closeDropdown={closeDropdown}
+            closePopup={closePopup}
             className={styles.dropdown}
           >
             <NotificationList />

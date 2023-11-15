@@ -1,14 +1,14 @@
 import { FC, useCallback } from 'react';
-import { useTranslation } from 'react-i18next';
-import { classNames } from '@/shared/lib/class-names';
-import { Rating } from '@/entities/rating';
-import { useParams } from 'react-router-dom';
-import type { ITemplateRatingProps } from './TemplateRating.interface';
-import styles from './TemplateRating.module.scss';
-import { useRateTemplate, useTemplateRatings } from '../../api/templateRating.api';
 import { useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { getUser } from '@/features/user';
 import { CircleLoader } from '@/shared/ui/loaders';
+import { classNames } from '@/shared/lib/class-names';
+import { Rating } from '@/entities/rating';
+import { useRateTemplate, useTemplateRatings } from '../../api/templateRating.api';
+import type { ITemplateRatingProps } from './TemplateRating.interface';
+import styles from './TemplateRating.module.scss';
 
 const TemplateRating: FC<ITemplateRatingProps> = (props) => {
   const { className, ...anotherProps } = props;

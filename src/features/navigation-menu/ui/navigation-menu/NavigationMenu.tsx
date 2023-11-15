@@ -1,4 +1,4 @@
-import { FC, memo, useCallback, useState } from 'react';
+import { FC, memo } from 'react';
 import { useSelector } from 'react-redux';
 import { AnimatePresence } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
@@ -8,9 +8,7 @@ import { getNavigationItems } from '../../model/selectors/get-navigation-items/g
 import { Logo } from '@/entities/logo';
 import { getUser } from '@/features/user';
 import { Button, ButtonStyles } from '@/shared/ui/button';
-import { Drawer, DrawerOpenStyles } from '@/shared/ui/drawer';
-import { Portal } from '@/shared/ui/portal';
-import { Backdrop } from '@/shared/ui/backdrop';
+import { Portal, Backdrop, Drawer, DrawerOpenStyles, useModals } from '@/shared/ui/modals';
 import { HStack, VStack } from '@/shared/ui/containers';
 import { Title } from '@/shared/ui/title';
 import { intoIter } from '@/shared/lib/iterators';
@@ -23,40 +21,33 @@ export const NavigationMenu: FC<INavigationMenuProps> = memo((props) => {
   const { className, ...anotherProps } = props;
   const isAuth = !!useSelector(getUser);
   const navigationMenu = useSelector(getNavigationItems);
-  const [isOpen, setIsOpen] = useState(false);
   const { t } = useTranslation();
-
-  const openMenu = useCallback(() => {
-    setIsOpen(true);
-  }, []);
-
-  const closeMenu = useCallback(() => {
-    setIsOpen(false);
-  }, []);
+  const { isShow, openModal, closeModal } = useModals();
 
   const navigationLinks = intoIter<INavigationMenuItem>(navigationMenu ? navigationMenu : [])
     .filter(({ authOnly }) => (isAuth ? true : !authOnly))
-    .map((item) => <NavigationMenuItem key={item.text} onClick={closeMenu} item={item} />)
+    .map((item) => <NavigationMenuItem key={item.text} onClick={closeModal} item={item} />)
     .toArray();
 
   return (
     <aside {...anotherProps} data-testid="navigationMenu" className={classNames(styles.menu, {}, [className])}>
-      {isOpen ? (
-        <Button className={styles.button} buttonStyle={ButtonStyles.CLEAR} Icon={MdOutlineMenu} onClick={openMenu} />
+      {isShow ? (
+        <Button className={styles.button} buttonStyle={ButtonStyles.CLEAR} Icon={MdOutlineMenu} onClick={openModal} />
       ) : (
         <Title text={t('Меню')}>
-          <Button className={styles.button} buttonStyle={ButtonStyles.CLEAR} Icon={MdOutlineMenu} onClick={openMenu} />
+          <Button className={styles.button} buttonStyle={ButtonStyles.CLEAR} Icon={MdOutlineMenu} onClick={openModal} />
         </Title>
       )}
 
       <AnimatePresence>
-        {isOpen && (
+        {isShow && (
           <Portal>
-            <Backdrop onClose={closeMenu}>
+            <Backdrop onClose={closeModal}>
               <Drawer openStyles={DrawerOpenStyles.LEFT} width={300}>
                 <HStack justify="start" className={styles.logo}>
                   <Logo />
                 </HStack>
+
                 <VStack role="navigation" className={styles.links}>
                   {navigationLinks}
                 </VStack>

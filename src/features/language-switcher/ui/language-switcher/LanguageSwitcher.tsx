@@ -12,9 +12,9 @@ import {
   DropdownMenu,
   DropdownMenuItem,
   MDropdown,
-  useDropdown,
+  usePopups,
   useDropdownSubMenuAnimationFixer,
-} from '@/shared/ui/dropdown';
+} from '@/shared/ui/popups';
 import { classNames } from '@/shared/lib/class-names';
 import type { ILanguageSwitcherProps } from './LanguageSwitcher.interface';
 import type { ILanguagesItems, ILanguagesSubItems } from '../../model/types/languageSwitcher.interface';
@@ -24,8 +24,8 @@ export const LanguageSwitcher: FC<ILanguageSwitcherProps> = memo((props) => {
   const { className, ...anotherProps } = props;
   const { t, i18n } = useTranslation('home');
 
-  const { isShow, closeDropdown, toggleDropdown } = useDropdown();
-  const { overflowStyles, close: closeDropdownHandler, onMouseEnter } = useDropdownSubMenuAnimationFixer(closeDropdown);
+  const { isShow, closePopup, togglePopup } = usePopups();
+  const { overflowStyles, close: closeDropdownHandler, onMouseEnter } = useDropdownSubMenuAnimationFixer(closePopup);
 
   const getSetLanguage = (lang: UILanguages) => async () => {
     closeDropdownHandler();
@@ -61,7 +61,7 @@ export const LanguageSwitcher: FC<ILanguageSwitcherProps> = memo((props) => {
   return (
     <div {...anotherProps} data-testid="languageSwitcher" className={classNames(styles.switcher, {}, [className])}>
       <Title isStopShow={isShow} text={t('Язык')}>
-        <Button Icon={MdOutlineLanguage} onClick={toggleDropdown} text={t('Язык')} />
+        <Button Icon={MdOutlineLanguage} onClick={togglePopup} text={t('Язык')} />
       </Title>
 
       <AnimatePresence>
@@ -73,7 +73,7 @@ export const LanguageSwitcher: FC<ILanguageSwitcherProps> = memo((props) => {
             animate={{ height: 'auto' }}
             initial={{ height: 0 }}
             transition={{ duration: ANIMATION_DURATION }}
-            closeDropdown={closeDropdownHandler}
+            closePopup={closeDropdownHandler}
             className={styles.dropdown}
           >
             <DropdownMenu>{items}</DropdownMenu>

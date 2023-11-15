@@ -4,10 +4,14 @@ import { AnimatePresence } from 'framer-motion';
 import { MdColorLens } from 'react-icons/md';
 import { Theme, useTheme } from '@/app/providers/lib';
 import { themeItems } from '../../model/consts/themeItems';
-import { DropdownMenu, DropdownMenuItem, MDropdown } from '@/shared/ui/dropdown';
-import { useDropdown } from '@/shared/ui/dropdown';
+import {
+  DropdownMenu,
+  DropdownMenuItem,
+  MDropdown,
+  usePopups,
+  useDropdownSubMenuAnimationFixer,
+} from '@/shared/ui/popups';
 import { ANIMATION_DURATION, ANIMATION_DURATION_MS } from '@/shared/consts';
-import { useDropdownSubMenuAnimationFixer } from '@/shared/ui/dropdown';
 import { sleep } from '@/shared/lib/promise';
 import { intoIter } from '@/shared/lib/iterators';
 import { Title } from '@/shared/ui/title';
@@ -19,8 +23,8 @@ import styles from './ThemeSwitcher.module.scss';
 
 export const ThemeSwitcher: FC<IThemeSwitcherProps> = (props) => {
   const { className, ...anotherProps } = props;
-  const { isShow, closeDropdown, toggleDropdown } = useDropdown();
-  const { overflowStyles, close: closeDropdownHandler, onMouseEnter } = useDropdownSubMenuAnimationFixer(closeDropdown);
+  const { isShow, closePopup, togglePopup } = usePopups();
+  const { overflowStyles, close: closeDropdownHandler, onMouseEnter } = useDropdownSubMenuAnimationFixer(closePopup);
   const { setTheme } = useTheme();
   const { t } = useTranslation('home');
 
@@ -58,7 +62,7 @@ export const ThemeSwitcher: FC<IThemeSwitcherProps> = (props) => {
   return (
     <div {...anotherProps} data-testid="themeSwitcher" className={classNames(styles.switcher, {}, [className])}>
       <Title isStopShow={isShow} text={t('Тема')}>
-        <Button Icon={MdColorLens} onClick={toggleDropdown} text={t('Тема')} />
+        <Button Icon={MdColorLens} onClick={togglePopup} text={t('Тема')} />
       </Title>
 
       <AnimatePresence>
@@ -70,7 +74,7 @@ export const ThemeSwitcher: FC<IThemeSwitcherProps> = (props) => {
             animate={{ height: 'auto' }}
             initial={{ height: 0 }}
             transition={{ duration: ANIMATION_DURATION }}
-            closeDropdown={closeDropdownHandler}
+            closePopup={closeDropdownHandler}
             className={styles.dropdown}
           >
             <DropdownMenu>{items}</DropdownMenu>
