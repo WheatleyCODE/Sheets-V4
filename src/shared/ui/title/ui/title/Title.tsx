@@ -28,7 +28,7 @@ export const Title: FC<TitleProps> = memo((props) => {
 
     const isRight = () => TEXT_HORIZONTAL_PADDINGS + titleRect.left + textRect.width / 2 > bodyRect.width;
     const isLeft = () => textRect.width / 2 > titleRect.left;
-    const isTop = () => title.offsetTop + titleRect.height + textRect.height > bodyRect.height;
+    const isTop = () => titleRect.top + titleRect.height + textRect.height > bodyRect.height;
 
     if (isRight()) {
       objStyles.right = 0;
@@ -40,7 +40,6 @@ export const Title: FC<TitleProps> = memo((props) => {
       objStyles.right = 'initial';
     }
 
-    // ! FIX isTop
     if (isTop()) {
       objStyles.top = -textRect.height - TEXT_MARGIN;
     }
