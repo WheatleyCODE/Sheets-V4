@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { Text, TextStyle } from '../../../text';
+import { Text } from '../../../text';
 import { classNames } from '@/shared/lib/class-names';
 import type { IImageErrorProps } from './ImageError.interface';
 import styles from './ImageError.module.scss';
@@ -9,7 +9,7 @@ export const ImageError: FC<IImageErrorProps> = (props) => {
 
   return (
     <div {...anotherProps} data-testid="imageError" className={classNames(styles.image_error, {}, [className])}>
-      <Text textStyle={TextStyle.ERROR} text={text} />
+      <Text textStyle="error" text={text} />
     </div>
   );
 };

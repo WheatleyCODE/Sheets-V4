@@ -1,7 +1,6 @@
 import { FC, memo, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Text } from '@/shared/ui/text';
-import { TextSize, TextStyle } from '@/shared/ui/text';
 import { Loader } from '@/shared/ui/loaders';
 import { Input, useValidInput } from '@/shared/ui/input';
 import { intoIter } from '@/shared/lib/iterators';
@@ -74,7 +73,7 @@ export const ProfileCard: FC<IProfileCardProps> = memo((props) => {
   const infoItems = intoIter<InfoItem>(infoArr)
     .map(({ title, input, Icon, options }) => (
       <HStack key={title}>
-        <Text className={styles.title} textSize={TextSize.SMALL} title={`${t(title)}:`} />
+        <Text className={styles.title} textSize="small" title={`${t(title)}:`} />
         <Title isStopShow={input.isFocus} text={t(title)}>
           <Input
             Icon={Icon}
@@ -107,8 +106,8 @@ export const ProfileCard: FC<IProfileCardProps> = memo((props) => {
     return (
       <VStack {...anotherProps} data-testid="profileCard" className={classNames(styles.profile_card, {}, [className])}>
         <VStack gapMultiply="1">
-          <Text textStyle={TextStyle.ERROR} title={t('Произошла ошибка при загрузке профиля')} />
-          <Text textStyle={TextStyle.ERROR} text={error} />
+          <Text textStyle="error" title={t('Произошла ошибка при загрузке профиля')} />
+          <Text textStyle="error" text={error} />
         </VStack>
       </VStack>
     );
@@ -121,7 +120,7 @@ export const ProfileCard: FC<IProfileCardProps> = memo((props) => {
       className={classNames(styles.profile_card, { [styles[textAlign]]: true }, [className])}
     >
       <HStack className={styles.title_container} justify="start">
-        <Text textSize={TextSize.BIG} title={`${t('Профиль')}, ${username}`} />
+        <Text textSize="big" title={`${t('Профиль')}, ${username}`} />
       </HStack>
 
       <HStack className={styles.avatar_container} justify="start">

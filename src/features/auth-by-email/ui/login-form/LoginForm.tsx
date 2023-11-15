@@ -12,7 +12,6 @@ import { getLoginPassword } from '../../model/selectors/get-login-password/getLo
 import { getLoginIsLoading } from '../../model/selectors/get-login-is-loading/getLoginIsLoading';
 import { getLoginError } from '../../model/selectors/get-login-error/getLoginError';
 import { Text } from '@/shared/ui/text';
-import { TextStyle, TextSize } from '@/shared/ui/text';
 import { callOnFulfilled } from '@/shared/lib/utils';
 import { HStack, VStack } from '@/shared/ui/containers';
 import { ReducersList, useDynamicModule, useTypedDispatch } from '@/shared/lib/hooks';
@@ -71,7 +70,7 @@ const LoginForm: FC<ILoginFormProps> = memo((props) => {
       data-testid="loginForm"
       className={classNames(styles.login_form)}
     >
-      <Text textSize={TextSize.BIG} title={t('Вход в систему')} />
+      <Text textSize="big" title={t('Вход в систему')} />
 
       <Input
         className={styles.input}
@@ -107,7 +106,7 @@ const LoginForm: FC<ILoginFormProps> = memo((props) => {
 
       {!!error && (
         <HStack className={styles.login_error}>
-          <Text textStyle={TextStyle.ERROR} text={error} />
+          <Text textStyle="error" text={error} />
         </HStack>
       )}
     </VStack>

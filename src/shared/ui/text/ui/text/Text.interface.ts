@@ -1,4 +1,5 @@
-import { TextSize, TextStyle } from './Text.consts';
+export type TextStyle = 'default' | 'error';
+export type TextSize = 'big' | 'normal' | 'small';
 
 export interface ITextProps extends React.HTMLAttributes<HTMLDivElement> {
   title?: string;

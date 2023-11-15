@@ -4,7 +4,7 @@ import { TemplateTextBlock } from '../template-text-block/TemplateTextBlock';
 import { TemplateCodeBlock } from '../template-code-block/TemplateCodeBlock';
 import { TemplateImageBlock } from '../template-image-block/TemplateImageBlock';
 import { TemplateBlockTypes } from '../../model/consts/template.consts';
-import { Text, TextSize, TextStyle } from '@/shared/ui/text';
+import { Text } from '@/shared/ui/text';
 import { Skeleton } from '@/shared/ui/skeleton';
 import { Icon } from '@/shared/ui/icon';
 import { MdOutlineCalendarMonth, MdOutlineDataArray, MdOutlineOpenInNew, MdOutlineVisibility } from 'react-icons/md';
@@ -61,7 +61,7 @@ export const TemplateDetails: FC<ITemplateDetailsProps> = (props) => {
         data-testid="templateDetails"
         className={classNames(styles.template_details, {}, [className, styles.error])}
       >
-        <Text textStyle={TextStyle.ERROR} title={t(error)} />
+        <Text textStyle="error" title={t(error)} />
       </HStack>
     );
   }
@@ -83,7 +83,7 @@ export const TemplateDetails: FC<ITemplateDetailsProps> = (props) => {
       </HStack>
 
       <HStack justify="start" className={classNames(styles.title, {}, [styles.title_skeleton])}>
-        <Text textSize={TextSize.BIG} title={title} />
+        <Text textSize="big" title={title} />
         <Button
           className={styles.open_button}
           Icon={MdOutlineOpenInNew}

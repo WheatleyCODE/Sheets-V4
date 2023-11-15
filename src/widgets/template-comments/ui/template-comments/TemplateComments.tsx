@@ -13,7 +13,7 @@ import { getUser } from '@/features/user';
 import { CommentList } from '@/entities/comment';
 import { useDynamicModule, useTypedDispatch, ReducersList, useInitialEffect } from '@/shared/lib/hooks';
 import { RWidth } from '@/shared/ui/containers';
-import { Text, TextSize } from '@/shared/ui/text';
+import { Text } from '@/shared/ui/text';
 import { getTemplateDetails } from '@/entities/template';
 import { classNames } from '@/shared/lib/class-names';
 import type { ITemplateCommentsProps } from './TemplateComments.interface';
@@ -60,7 +60,7 @@ export const TemplateComments: FC<ITemplateCommentsProps> = (props) => {
       </RWidth>
 
       <RWidth className={styles.comments} maxWidth="template">
-        <Text className={styles.comments_title} textSize={TextSize.BIG} title={`${t('Комментарии')}:`} />
+        <Text className={styles.comments_title} textSize="big" title={`${t('Комментарии')}:`} />
         <CommentList isLoading={commentsIsLoading} error={commentsError} comments={comments} />
       </RWidth>
     </div>

@@ -1,6 +1,6 @@
 import { FC, memo, useCallback, useState } from 'react';
 import { classNames } from '@/shared/lib/class-names';
-import { Text, TextSize } from '@/shared/ui/text';
+import { Text } from '@/shared/ui/text';
 import { getStars } from './StarRating.helpers';
 import type { IStarRatingProps } from './StarRating.interface';
 import styles from './StarRating.module.scss';
@@ -43,7 +43,7 @@ export const StarRating: FC<IStarRatingProps> = memo((props) => {
 
       {(isSelect || isStarred) && (
         <div className={styles.select_text_container}>
-          <Text textSize={TextSize.SMALL} className={styles.select_text} text="Спасибо за оценку!" />
+          <Text textSize="small" className={styles.select_text} text="Спасибо за оценку!" />
         </div>
       )}
     </div>

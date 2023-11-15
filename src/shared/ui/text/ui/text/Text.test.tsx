@@ -1,7 +1,6 @@
 import { screen } from '@testing-library/react';
 import { Text } from './Text';
 import { renderComponent } from '@/shared/lib/tests/render-component/renderComponent';
-import { TextSize, TextStyle } from './Text.consts';
 
 describe('PageError', () => {
   test('In the document', () => {
@@ -18,7 +17,7 @@ describe('PageError', () => {
   });
 
   test('In the document + classes', () => {
-    renderComponent(<Text textSize={TextSize.BIG} textStyle={TextStyle.ERROR} title="title" />);
+    renderComponent(<Text textSize="big" textStyle="error" title="title" />);
 
     const container = screen.getByTestId('text');
     expect(screen.getByText('title')).toBeInTheDocument();

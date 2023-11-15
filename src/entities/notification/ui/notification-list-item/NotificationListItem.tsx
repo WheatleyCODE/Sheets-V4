@@ -2,7 +2,7 @@ import { FC, memo, useCallback } from 'react';
 import { MdAdsClick } from 'react-icons/md';
 import { useNavigate } from 'react-router-dom';
 import { VStack } from '@/shared/ui/containers';
-import { Text, TextSize } from '@/shared/ui/text';
+import { Text } from '@/shared/ui/text';
 import { Icon } from '@/shared/ui/icon';
 import { classNames } from '@/shared/lib/class-names';
 import type { INotificationListItemProps } from './NotificationListItem.interface';
@@ -31,7 +31,7 @@ export const NotificationListItem: FC<INotificationListItemProps> = memo((props)
       )}
       <VStack>
         <Text className={styles.title} text={title} />
-        <Text text={description} textSize={TextSize.SMALL} />
+        <Text text={description} textSize="small" />
       </VStack>
     </div>
   );

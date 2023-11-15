@@ -5,7 +5,6 @@ import { Link } from '@/shared/ui/link';
 import { RoutesPath } from '@/shared/config/route-config/routeConfig';
 import { Title } from '@/shared/ui/title';
 import { Text } from '@/shared/ui/text';
-import { TextSize } from '@/shared/ui/text';
 import { HStack } from '@/shared/ui/containers';
 import { SheetsDark, SheetsLight } from '@/shared/assets';
 import { classNames } from '@/shared/lib/class-names';
@@ -24,7 +23,7 @@ export const Logo: FC<ILogoProps> = memo((props) => {
       <Title text={t('На главную')}>
         <Link className={styles.link} to={RoutesPath.home}>
           <Icon height={60} width={42} />
-          <Text textSize={TextSize.BIG} className={styles.logo_name} title="SHEETS V4" />
+          <Text textSize="big" className={styles.logo_name} title="SHEETS V4" />
         </Link>
       </Title>
     </HStack>

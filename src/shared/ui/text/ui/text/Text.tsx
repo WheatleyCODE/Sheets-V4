@@ -1,5 +1,4 @@
 import { FC, memo } from 'react';
-import { TextSize, TextStyle } from './Text.consts';
 import { classNames } from '@/shared/lib/class-names';
 import type { ITextProps } from './Text.interface';
 import styles from './Text.module.scss';
@@ -11,8 +10,8 @@ export const Text: FC<ITextProps> = memo((props) => {
     text,
     textTag: TextTag = 'p',
     titleTag: TitleTag = 'h2',
-    textStyle = TextStyle.DEFAULT,
-    textSize = TextSize.NORMAL,
+    textStyle = 'default',
+    textSize = 'normal',
     ...anotherProps
   } = props;
 

@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Layout } from '@/widgets/layout';
-import { Text, TextStyle } from '@/shared/ui/text';
+import { Text } from '@/shared/ui/text';
 import { Link } from '@/shared/ui/link';
 import { RoutesPath } from '@/shared/config/route-config/routeConfig';
 import { RWidth, VStack } from '@/shared/ui/containers';
@@ -16,7 +16,7 @@ const ForbiddenPage: FC = () => {
       <section data-testid="forbiddenPage" className={classNames(styles.forbidden_page)}>
         <RWidth>
           <VStack>
-            <Text textStyle={TextStyle.ERROR} title={t('У вас нет доступа к этой странице')} />
+            <Text textStyle="error" title={t('У вас нет доступа к этой странице')} />
 
             <Link to={RoutesPath.home}>
               <Text text={t('Перейти на главную страницу')} />

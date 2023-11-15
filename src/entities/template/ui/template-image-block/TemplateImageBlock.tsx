@@ -1,6 +1,6 @@
 import { FC, memo } from 'react';
 import { Image } from '@/shared/ui/image';
-import { Text, TextSize } from '@/shared/ui/text';
+import { Text } from '@/shared/ui/text';
 import { HStack, VStack } from '@/shared/ui/containers';
 import { classNames } from '@/shared/lib/class-names';
 import type { ITemplateImageBlockProps } from './TemplateImageBlock.interface';
@@ -21,7 +21,7 @@ export const TemplateImageBlock: FC<ITemplateImageBlockProps> = memo((props) => 
 
       {!!title && (
         <HStack justify="start" className={styles.title_row}>
-          <Text textSize={TextSize.SMALL} title={title} />
+          <Text textSize="small" title={title} />
         </HStack>
       )}
     </VStack>

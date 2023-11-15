@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { Backdrop, Modal } from '@/shared/ui/modals';
 import { StarRating } from '@/shared/ui/star-rating';
 import { classNames } from '@/shared/lib/class-names';
-import { Text, TextSize } from '@/shared/ui/text';
+import { Text } from '@/shared/ui/text';
 import { Input, useValidInput } from '@/shared/ui/input';
 import { Button } from '@/shared/ui/button';
 import { HStack, VStack } from '@/shared/ui/containers';
@@ -53,7 +53,7 @@ export const Rating: FC<IRatingProps> = memo((props) => {
   return (
     <Card {...anotherProps} data-testid="rating" className={classNames(styles.rating, {}, [className])}>
       <VStack>
-        {!isStarred && <Text textSize={TextSize.SMALL} className={styles.title} title={title} />}
+        {!isStarred && <Text textSize="small" className={styles.title} title={title} />}
         <StarRating isStarred={isStarred} initStar={rate} onSelectStar={onSelectStar} />
       </VStack>
 

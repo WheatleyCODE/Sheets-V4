@@ -4,7 +4,7 @@ import { classNames } from '@/shared/lib/class-names';
 import { NotificationListItem } from '../notification-list-item/NotificationListItem';
 import { useNotifications } from '../../api/notification.api';
 import { VStack } from '@/shared/ui/containers';
-import { Text, TextStyle } from '@/shared/ui/text';
+import { Text } from '@/shared/ui/text';
 import { Skeleton } from '@/shared/ui/skeleton';
 import { intoIter } from '@/shared/lib/iterators';
 import type { INotificationListProps } from './NotificationList.interface';
@@ -39,7 +39,7 @@ export const NotificationList: FC<INotificationListProps> = memo((props) => {
         className={classNames(styles.notification_list, {}, [className])}
       >
         <VStack>
-          <Text textStyle={TextStyle.ERROR} title={t('Произошла ошибка при загрузке оповещений')} />
+          <Text textStyle="error" title={t('Произошла ошибка при загрузке оповещений')} />
         </VStack>
       </div>
     );

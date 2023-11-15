@@ -2,7 +2,7 @@ import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import { CommentListItem } from '../comment-list-item/CommentListItem';
 import { intoIter } from '@/shared/lib/iterators';
-import { Text, TextStyle } from '@/shared/ui/text';
+import { Text } from '@/shared/ui/text';
 import { HStack, VStack } from '@/shared/ui/containers';
 import { Skeleton } from '@/shared/ui/skeleton';
 import { classNames } from '@/shared/lib/class-names';
@@ -47,7 +47,7 @@ export const CommentList: FC<ICommentListProps> = (props) => {
         data-testid="commentList"
         className={classNames(styles.comment_list, {}, [className, styles.error])}
       >
-        <Text text={error} textStyle={TextStyle.ERROR} />
+        <Text text={error} textStyle="error" />
       </VStack>
     );
   }
