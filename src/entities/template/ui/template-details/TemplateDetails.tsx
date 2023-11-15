@@ -12,7 +12,6 @@ import { intoIter } from '@/shared/lib/iterators';
 import { Image } from '@/shared/ui/image';
 import { HStack, VStack } from '@/shared/ui/containers';
 import { Button } from '@/shared/ui/button';
-import { ButtonColor } from '@/shared/ui/button';
 import { Title } from '@/shared/ui/title';
 import { classNames } from '@/shared/lib/class-names';
 import type { TemplateBlock } from '../../model/types/template.interface';
@@ -88,7 +87,7 @@ export const TemplateDetails: FC<ITemplateDetailsProps> = (props) => {
         <Button
           className={styles.open_button}
           Icon={MdOutlineOpenInNew}
-          buttonColor={ButtonColor.PRIMARY}
+          buttonColor="primary"
           text={t('Открыть шаблон')}
         />
       </HStack>

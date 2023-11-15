@@ -1,5 +1,4 @@
 import { FC, memo } from 'react';
-import { ButtonColor, ButtonSize, ButtonStyles } from './Button.consts';
 import { Icon as IconComponent } from '../../../icon';
 import { classNames } from '@/shared/lib/class-names';
 import type { IButtonProps } from './Button.interface';
@@ -10,12 +9,12 @@ export const Button: FC<IButtonProps> = memo((props) => {
     text,
     className,
     Icon,
-    buttonStyle = ButtonStyles.DEFAULT,
-    buttonColor = ButtonColor.DEFAULT,
+    buttonStyle = 'default',
+    buttonColor = 'default_color',
     disable = false,
     square = false,
     circle = false,
-    buttonSize = ButtonSize.NORMAL,
+    buttonSize = 'normal',
     ...anotherProps
   } = props;
 

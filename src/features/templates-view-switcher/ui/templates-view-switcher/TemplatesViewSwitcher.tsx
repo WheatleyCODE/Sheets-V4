@@ -2,7 +2,7 @@ import { FC, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { TemplateView } from '@/entities/template';
 import { MdOutlineViewList, MdOutlineViewModule } from 'react-icons/md';
-import { Button, ButtonStyles } from '@/shared/ui/button';
+import { Button } from '@/shared/ui/button';
 import { Title } from '@/shared/ui/title';
 import { HStack } from '@/shared/ui/containers';
 import { classNames } from '@/shared/lib/class-names';
@@ -35,7 +35,7 @@ export const TemplatesViewSwitcher: FC<ITemplatesViewSwitcherProps> = (props) =>
           <Button
             data-testid="buttonSquares"
             onClick={setViewSquares}
-            buttonStyle={ButtonStyles.CLEAR}
+            buttonStyle="clear"
             className={classNames(styles.button, { [styles.active]: isSquares })}
             Icon={MdOutlineViewModule}
           />
@@ -47,7 +47,7 @@ export const TemplatesViewSwitcher: FC<ITemplatesViewSwitcherProps> = (props) =>
           <Button
             data-testid="buttonLines"
             onClick={setViewLines}
-            buttonStyle={ButtonStyles.CLEAR}
+            buttonStyle="clear"
             className={classNames(styles.button, { [styles.active]: !isSquares })}
             Icon={MdOutlineViewList}
           />

@@ -1,6 +1,8 @@
 import { IconType } from 'react-icons';
-import { ButtonColor, ButtonSize, ButtonStyles } from './Button.consts';
 
+export type ButtonSize = 'big' | 'normal' | 'small';
+export type ButtonStyles = 'default' | 'clear';
+export type ButtonColor = 'default_color' | 'primary' | 'secondary' | 'danger';
 export interface IButtonProps extends React.HTMLAttributes<HTMLButtonElement> {
   text?: string;
   Icon?: IconType;

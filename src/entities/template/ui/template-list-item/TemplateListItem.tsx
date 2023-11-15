@@ -14,7 +14,6 @@ import { HStack, VStack } from '@/shared/ui/containers';
 import { Icon } from '@/shared/ui/icon';
 import { Title } from '@/shared/ui/title';
 import { Button } from '@/shared/ui/button';
-import { ButtonColor } from '@/shared/ui/button';
 import { Card } from '@/shared/ui/card';
 import { RoutesPath } from '@/shared/config/route-config/routeConfig';
 import { classNames } from '@/shared/lib/class-names';
@@ -88,17 +87,12 @@ export const TemplateListItem: FC<ITemplateListItemProps> = (props) => {
             <Button
               onClick={openInSheets}
               Icon={MdOutlineOpenInNew}
-              buttonColor={ButtonColor.PRIMARY}
+              buttonColor="primary"
               text={t('Открыть в таблицах')}
             />
           </Title>
           <Title text={t('Открыть страницу подробного просмотра')}>
-            <Button
-              onClick={navigateToTemplate}
-              Icon={MdOpenInBrowser}
-              buttonColor={ButtonColor.SECONDARY}
-              text={t('Подробнее')}
-            />
+            <Button onClick={navigateToTemplate} Icon={MdOpenInBrowser} buttonColor="primary" text={t('Подробнее')} />
           </Title>
         </HStack>
       </Card>

@@ -6,7 +6,6 @@ import { Title } from '@/shared/ui/title';
 import { HStack } from '@/shared/ui/containers';
 import { intoIter } from '@/shared/lib/iterators';
 import { IValidInputOpts } from '@/shared/ui/input';
-import { ButtonColor } from '@/shared/ui/button';
 import type { IProfile } from '../../model/types/profile.interface';
 import type { IProfileCardEditProps } from './ProfileCardEdit.interface';
 import styles from './ProfileCardEdit.module.scss';
@@ -66,14 +65,15 @@ export const ProfileCardEdit: FC<IProfileCardEditProps> = (props) => {
           <Title text={t('Отменить изменения')}>
             <Button
               onClick={disableProfileChange}
-              buttonColor={ButtonColor.DANGER}
+              buttonColor="danger"
               className={styles.button}
               text={t('Отменить')}
             />
           </Title>
+
           <Title text={t('Сохранить изменения')}>
             <Button
-              buttonColor={ButtonColor.PRIMARY}
+              buttonColor="primary"
               disable={isDisable}
               onClick={onSave}
               className={styles.button}

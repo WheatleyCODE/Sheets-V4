@@ -1,6 +1,5 @@
 import { fireEvent, screen } from '@testing-library/react';
 import { Button } from './Button';
-import { ButtonColor, ButtonSize, ButtonStyles } from './Button.consts';
 import { MdHome } from 'react-icons/md';
 import { renderComponent } from '@/shared/lib/tests';
 
@@ -11,15 +10,7 @@ describe('Button', () => {
   });
 
   test('In the document + classes', () => {
-    renderComponent(
-      <Button
-        buttonStyle={ButtonStyles.CLEAR}
-        buttonColor={ButtonColor.PRIMARY}
-        buttonSize={ButtonSize.BIG}
-        disable
-        text="Кнопка"
-      />,
-    );
+    renderComponent(<Button buttonStyle={'clear'} buttonColor={'primary'} buttonSize={'big'} disable text="Кнопка" />);
     const button = screen.getByText('Кнопка');
 
     expect(button).toBeInTheDocument();

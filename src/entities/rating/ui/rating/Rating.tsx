@@ -7,7 +7,7 @@ import { StarRating } from '@/shared/ui/star-rating';
 import { classNames } from '@/shared/lib/class-names';
 import { Text, TextSize } from '@/shared/ui/text';
 import { Input, useValidInput } from '@/shared/ui/input';
-import { Button, ButtonColor } from '@/shared/ui/button';
+import { Button } from '@/shared/ui/button';
 import { HStack, VStack } from '@/shared/ui/containers';
 import { useModals } from '@/shared/ui/modals';
 import { Card } from '@/shared/ui/card';
@@ -80,7 +80,7 @@ export const Rating: FC<IRatingProps> = memo((props) => {
 
                 <HStack className={styles.buttons_container} justify="space-between">
                   <Button onClick={onCancelHandler} text={t('Закрыть')} />
-                  <Button buttonColor={ButtonColor.PRIMARY} onClick={onAcceptHandler} text={t('Отправить')} />
+                  <Button buttonColor="primary" onClick={onAcceptHandler} text={t('Отправить')} />
                 </HStack>
               </VStack>
             </Modal>

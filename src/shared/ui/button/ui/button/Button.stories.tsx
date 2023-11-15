@@ -1,7 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { Button } from './Button';
 import { Theme } from '@/app/providers/lib';
-import { ButtonSize } from './Button.consts';
 import { MdVerifiedUser } from 'react-icons/md';
 import { themeDecorator } from '../../../../../../config/storybook/theme-decorator/themeDecorator';
 
@@ -30,21 +29,21 @@ export const Dark: Story = {
 export const Big: Story = {
   args: {
     text: 'Кнопка',
-    buttonSize: ButtonSize.BIG,
+    buttonSize: 'big',
   },
 };
 
 export const Normal: Story = {
   args: {
     text: 'Кнопка',
-    buttonSize: ButtonSize.NORMAL,
+    buttonSize: 'normal',
   },
 };
 
 export const Small: Story = {
   args: {
     text: 'Кнопка',
-    buttonSize: ButtonSize.SMALL,
+    buttonSize: 'small',
   },
 };
 
@@ -52,14 +51,14 @@ export const IconText: Story = {
   args: {
     text: 'Пользователь',
     Icon: MdVerifiedUser,
-    buttonSize: ButtonSize.NORMAL,
+    buttonSize: 'normal',
   },
 };
 
 export const Icon: Story = {
   args: {
     Icon: MdVerifiedUser,
-    buttonSize: ButtonSize.NORMAL,
+    buttonSize: 'normal',
   },
 };
 
@@ -67,7 +66,7 @@ export const BigSquare: Story = {
   args: {
     text: 'ICO',
     square: true,
-    buttonSize: ButtonSize.BIG,
+    buttonSize: 'big',
   },
 };
 
@@ -75,7 +74,7 @@ export const NormalSquare: Story = {
   args: {
     text: 'ICO',
     square: true,
-    buttonSize: ButtonSize.NORMAL,
+    buttonSize: 'normal',
   },
 };
 
@@ -83,6 +82,6 @@ export const Small_Square: Story = {
   args: {
     text: 'ICO',
     square: true,
-    buttonSize: ButtonSize.SMALL,
+    buttonSize: 'small',
   },
 };

@@ -7,7 +7,7 @@ import { NavigationMenuItem } from '../navigation-menu-item/NavigationMenuItem';
 import { getNavigationItems } from '../../model/selectors/get-navigation-items/getNavigationItems';
 import { Logo } from '@/entities/logo';
 import { getUser } from '@/features/user';
-import { Button, ButtonStyles } from '@/shared/ui/button';
+import { Button } from '@/shared/ui/button';
 import { Portal, Backdrop, Drawer, DrawerOpenStyles, useModals } from '@/shared/ui/modals';
 import { HStack, VStack } from '@/shared/ui/containers';
 import { Title } from '@/shared/ui/title';
@@ -32,10 +32,10 @@ export const NavigationMenu: FC<INavigationMenuProps> = memo((props) => {
   return (
     <aside {...anotherProps} data-testid="navigationMenu" className={classNames(styles.menu, {}, [className])}>
       {isShow ? (
-        <Button className={styles.button} buttonStyle={ButtonStyles.CLEAR} Icon={MdOutlineMenu} onClick={openModal} />
+        <Button className={styles.button} buttonStyle="clear" Icon={MdOutlineMenu} onClick={openModal} />
       ) : (
         <Title text={t('Меню')}>
-          <Button className={styles.button} buttonStyle={ButtonStyles.CLEAR} Icon={MdOutlineMenu} onClick={openModal} />
+          <Button className={styles.button} buttonStyle="clear" Icon={MdOutlineMenu} onClick={openModal} />
         </Title>
       )}
 

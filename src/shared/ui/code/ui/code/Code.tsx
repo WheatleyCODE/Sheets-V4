@@ -1,6 +1,6 @@
 import { FC, useCallback } from 'react';
 import { MdOutlineContentCopy } from 'react-icons/md';
-import { Button, ButtonStyles } from '../../../button';
+import { Button } from '../../../button';
 import { classNames } from '@/shared/lib/class-names';
 import type { ICodeProps } from './Code.interface';
 import styles from './Code.module.scss';
@@ -19,7 +19,7 @@ export const Code: FC<ICodeProps> = (props) => {
           className={styles.copy_button}
           Icon={MdOutlineContentCopy}
           circle
-          buttonStyle={ButtonStyles.CLEAR}
+          buttonStyle="clear"
           onClick={onCopy}
         />
       </div>
