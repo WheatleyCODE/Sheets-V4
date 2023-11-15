@@ -1,7 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { MdHome } from 'react-icons/md';
 import { NavigationMenuItem } from './NavigationMenuItem';
-import { Theme } from '@/app/providers/lib';
 import { themeDecorator } from '../../../../../config/storybook/theme-decorator/themeDecorator';
 
 const meta = {
@@ -23,5 +22,5 @@ export const Dark: Story = {
   args: {
     item: { Icon: MdHome, path: '', text: 'Домашняя страница' },
   },
-  decorators: [themeDecorator(Theme.DARK)],
+  decorators: [themeDecorator('dark')],
 };

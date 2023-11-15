@@ -6,7 +6,7 @@ import type { IThemeProviderProps } from './ThemeProvider.interface';
 
 const ls = KVFactory(LS_DEFAULT_NAMESPACE);
 
-export const ThemeProvider: FC<IThemeProviderProps> = ({ children, initTheme = Theme.LIGHT }) => {
+export const ThemeProvider: FC<IThemeProviderProps> = ({ children, initTheme = 'light' }) => {
   const [theme, setTheme] = useState<Theme>(initTheme);
 
   useLayoutEffect(() => {

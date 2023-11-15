@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { Tabs } from './Tabs';
-import { Theme } from '@/app/providers/lib';
 import { themeDecorator } from '../../../../../../config/storybook/theme-decorator/themeDecorator';
 import { TabItem } from '../tab-item/TabItem';
 
@@ -32,7 +31,7 @@ export const Dark: Story = {
     initValue: '2',
     tabItems,
   },
-  decorators: [themeDecorator(Theme.DARK)],
+  decorators: [themeDecorator('dark')],
 };
 
 export const Construct: Story = {

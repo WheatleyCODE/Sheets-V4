@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { TemplateDetails } from './TemplateDetails';
-import { Theme } from '@/app/providers/lib';
 import { themeDecorator } from '../../../../../config/storybook/theme-decorator/themeDecorator';
 import { ITemplate } from '../../model/types/template.interface';
 import { TemplateTags } from '../../model/consts/template.consts';
@@ -40,5 +39,5 @@ export const Dark: Story = {
     error: null,
     template,
   },
-  decorators: [themeDecorator(Theme.DARK)],
+  decorators: [themeDecorator('dark')],
 };

@@ -1,7 +1,6 @@
 /* eslint-disable quotes */
 import type { Meta, StoryObj } from '@storybook/react';
 import { TemplateList } from './TemplateList';
-import { Theme } from '@/app/providers/lib';
 import { themeDecorator } from '../../../../../config/storybook/theme-decorator/themeDecorator';
 import { ITemplate } from '../../model/types/template.interface';
 
@@ -96,5 +95,5 @@ export const Dark: Story = {
   args: {
     templates,
   },
-  decorators: [themeDecorator(Theme.DARK)],
+  decorators: [themeDecorator('dark')],
 };

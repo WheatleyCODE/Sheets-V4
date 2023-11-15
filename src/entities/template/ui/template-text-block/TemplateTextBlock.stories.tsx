@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { TemplateTextBlock } from './TemplateTextBlock';
-import { Theme } from '@/app/providers/lib';
 import { themeDecorator } from '../../../../../config/storybook/theme-decorator/themeDecorator';
 import { TemplateBlockTypes } from '../../model/consts/template.consts';
 
@@ -23,5 +22,5 @@ export const Dark: Story = {
   args: {
     block: { paragraphs: ['Hello its me'], id: '1', type: TemplateBlockTypes.TEXT },
   },
-  decorators: [themeDecorator(Theme.DARK)],
+  decorators: [themeDecorator('dark')],
 };

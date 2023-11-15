@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import SheetsPage from './SheetsPage';
-import { Theme } from '@/app/providers/lib';
 import { themeDecorator } from '../../../../../config/storybook/theme-decorator/themeDecorator';
 
 const meta = {
@@ -18,5 +17,5 @@ export const Light: Story = {
 
 export const Dark: Story = {
   args: {},
-  decorators: [themeDecorator(Theme.DARK)],
+  decorators: [themeDecorator('dark')],
 };

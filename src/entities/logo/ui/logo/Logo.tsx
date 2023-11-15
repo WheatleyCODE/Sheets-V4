@@ -1,6 +1,6 @@
 import { FC, memo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Theme, useTheme } from '@/app/providers/lib';
+import { useTheme } from '@/app/providers/lib';
 import { Link } from '@/shared/ui/link';
 import { RoutesPath } from '@/shared/config/route-config/routeConfig';
 import { Title } from '@/shared/ui/title';
@@ -16,7 +16,7 @@ export const Logo: FC<ILogoProps> = memo((props) => {
   const { theme } = useTheme();
   const { t } = useTranslation('home');
 
-  const Icon = theme === Theme.LIGHT ? SheetsLight : SheetsDark;
+  const Icon = theme === 'light' ? SheetsLight : SheetsDark;
 
   return (
     <HStack {...anotherProps} data-testid="logo" className={classNames(styles.logo, {}, [className])}>

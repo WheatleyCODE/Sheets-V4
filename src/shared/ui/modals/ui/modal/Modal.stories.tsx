@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { Modal } from './Modal';
-import { Theme } from '@/app/providers/lib';
 import { themeDecorator } from '../../../../../../config/storybook/theme-decorator/themeDecorator';
 
 const meta = {
@@ -24,5 +23,5 @@ export const Dark: Story = {
     children: <h1>Модалка</h1>,
     onClose: () => {},
   },
-  decorators: [themeDecorator(Theme.DARK)],
+  decorators: [themeDecorator('dark')],
 };

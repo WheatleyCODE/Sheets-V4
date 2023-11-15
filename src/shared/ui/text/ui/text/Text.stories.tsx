@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { Text } from './Text';
-import { Theme } from '@/app/providers/lib';
 import { themeDecorator } from '../../../../../../config/storybook/theme-decorator/themeDecorator';
 
 const meta = {
@@ -22,7 +21,7 @@ export const Dark: Story = {
   args: {
     text: 'Текст',
   },
-  decorators: [themeDecorator(Theme.DARK)],
+  decorators: [themeDecorator('dark')],
 };
 
 export const Title: Story = {

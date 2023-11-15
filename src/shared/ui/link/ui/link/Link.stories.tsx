@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { Link } from './Link';
-import { Theme } from '@/app/providers/lib';
 import { RoutesPath } from '@/shared/config/route-config/routeConfig';
 import { themeDecorator } from '../../../../../../config/storybook/theme-decorator/themeDecorator';
 
@@ -25,5 +24,5 @@ export const Dark: Story = {
     children: 'Link',
     to: RoutesPath.home,
   },
-  decorators: [themeDecorator(Theme.DARK)],
+  decorators: [themeDecorator('dark')],
 };

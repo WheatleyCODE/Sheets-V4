@@ -1,7 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { Backdrop } from './Backdrop';
 import { themeDecorator } from '../../../../../../config/storybook/theme-decorator/themeDecorator';
-import { Theme } from '@/app/providers/lib';
 
 const meta = {
   title: 'shared/modals/Backdrop',
@@ -22,5 +21,5 @@ export const Dark: Story = {
   args: {
     children: <h1>Backdrop</h1>,
   },
-  decorators: [themeDecorator(Theme.DARK)],
+  decorators: [themeDecorator('dark')],
 };

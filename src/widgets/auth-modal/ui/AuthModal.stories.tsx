@@ -1,7 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { AuthModal } from './AuthModal';
 import { themeDecorator } from '../../../../config/storybook/theme-decorator/themeDecorator';
-import { Theme } from '@/app/providers/lib';
 import { storeDecorator } from '../../../../config/storybook/store-decorator/storeDecorator';
 
 const meta = {
@@ -23,7 +22,7 @@ export const Dark: Story = {
   args: {
     onClose: () => {},
   },
-  decorators: [themeDecorator(Theme.DARK)],
+  decorators: [themeDecorator('dark')],
 };
 
 export const Data: Story = {

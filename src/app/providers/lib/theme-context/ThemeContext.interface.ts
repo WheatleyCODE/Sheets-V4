@@ -1,4 +1,4 @@
-import { Theme } from './model/consts/ThemeContext.consts';
+export type Theme = 'dark' | 'light' | 'toxic';
 
 export interface IThemeContextProps {
   theme: Theme;

@@ -1,7 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { Star } from './Star';
 import { themeDecorator } from 'config/storybook/theme-decorator/themeDecorator';
-import { Theme } from '@/app/providers/lib';
 import { MdOutlineStarHalf } from 'react-icons/md';
 
 const meta = {
@@ -31,5 +30,5 @@ export const Dark: Story = {
     selectStar: () => {},
     isSelect: false,
   },
-  decorators: [themeDecorator(Theme.DARK)],
+  decorators: [themeDecorator('dark')],
 };

@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { DragLine } from './DragLine';
-import { Theme } from '@/app/providers/lib';
 import { themeDecorator } from '../../../../../../config/storybook/theme-decorator/themeDecorator';
 import { DragLineItem } from '../drag-line-item/DragLineItem';
 
@@ -30,7 +29,7 @@ export const Dark: Story = {
   args: {
     items,
   },
-  decorators: [themeDecorator(Theme.DARK)],
+  decorators: [themeDecorator('dark')],
 };
 
 export const Construct: Story = {

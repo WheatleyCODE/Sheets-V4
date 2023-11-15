@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { ProfileCard } from './ProfileCard';
-import { Theme } from '@/app/providers/lib';
 import { themeDecorator } from '../../../../../config/storybook/theme-decorator/themeDecorator';
 import { Country, Currency } from '../../model/consts/profile.consts';
 
@@ -51,5 +50,5 @@ export const Dark: Story = {
     isReadonly: true,
     error: null,
   },
-  decorators: [themeDecorator(Theme.DARK)],
+  decorators: [themeDecorator('dark')],
 };

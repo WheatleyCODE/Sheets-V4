@@ -1,4 +1,4 @@
-import { Theme } from '../theme-context/model/consts/ThemeContext.consts';
+import type { Theme } from '../theme-context/ThemeContext.interface';
 
 export interface IUseThemeResult {
   setTheme: (newTheme: Theme) => void;

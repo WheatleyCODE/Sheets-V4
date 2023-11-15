@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { Drawer } from './Drawer';
-import { Theme } from '@/app/providers/lib';
 import { themeDecorator } from '../../../../../../config/storybook/theme-decorator/themeDecorator';
 import { DrawerOpenStyles } from './Drawer.consts';
 
@@ -25,7 +24,7 @@ export const Dark: Story = {
     openStyles: DrawerOpenStyles.LEFT,
     children: <h1>Drawer</h1>,
   },
-  decorators: [themeDecorator(Theme.DARK)],
+  decorators: [themeDecorator('dark')],
 };
 
 export const Top: Story = {

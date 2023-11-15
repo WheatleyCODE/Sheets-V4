@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { InputOptionsMenuItem } from './InputOptionsMenuItem';
-import { Theme } from '@/app/providers/lib';
 import { themeDecorator } from '../../../../../../config/storybook/theme-decorator/themeDecorator';
 import { MdHome } from 'react-icons/md';
 
@@ -25,7 +24,7 @@ export const Dark: Story = {
     item: { text: 'item' },
     onClick: () => {},
   },
-  decorators: [themeDecorator(Theme.DARK)],
+  decorators: [themeDecorator('dark')],
 };
 
 export const Icon: Story = {

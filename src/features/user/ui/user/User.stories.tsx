@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { User } from './User';
-import { Theme } from '@/app/providers/lib';
 import { themeDecorator } from '../../../../../config/storybook/theme-decorator/themeDecorator';
 
 const meta = {
@@ -26,5 +25,5 @@ export const Dark: Story = {
     logout: () => {},
     user: { email: 'ya@mail.ru', id: '1' },
   },
-  decorators: [themeDecorator(Theme.DARK)],
+  decorators: [themeDecorator('dark')],
 };

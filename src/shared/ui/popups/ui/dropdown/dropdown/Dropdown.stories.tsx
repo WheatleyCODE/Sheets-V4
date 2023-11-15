@@ -1,7 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { Dropdown } from './Dropdown';
 import { themeDecorator } from '../../../../../../../config/storybook/theme-decorator/themeDecorator';
-import { Theme } from '@/app/providers/lib';
 import { DropdownMenu } from '../dropdown-menu/DropdownMenu';
 import { DropdownMenuItem } from '../dropdown-menu-item/DropdownMenuItem';
 
@@ -24,7 +23,7 @@ export const Dark: Story = {
   args: {
     children: <h1>Dropdown</h1>,
   },
-  decorators: [themeDecorator(Theme.DARK)],
+  decorators: [themeDecorator('dark')],
 };
 
 export const Full: Story = {

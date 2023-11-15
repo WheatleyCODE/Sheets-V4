@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { InputOptionsMenu } from './InputOptionsMenu';
-import { Theme } from '@/app/providers/lib';
 import { themeDecorator } from '../../../../../../config/storybook/theme-decorator/themeDecorator';
 import { InputOptionsMenuItem } from '../input-options-menu-item/InputOptionsMenuItem';
 
@@ -23,7 +22,7 @@ export const Dark: Story = {
   args: {
     children: <h1>InputOptionsMenu</h1>,
   },
-  decorators: [themeDecorator(Theme.DARK)],
+  decorators: [themeDecorator('dark')],
 };
 
 export const Full: Story = {

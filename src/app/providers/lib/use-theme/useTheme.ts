@@ -2,8 +2,8 @@ import { useCallback, useContext } from 'react';
 import { ThemeContext } from '../theme-context/ThemeContext';
 import { KVFactory } from '@/shared/lib/kv-storage/kv-storage/kvStorage';
 import { LS_DEFAULT_NAMESPACE, LS_THEME_KEY } from '@/shared/consts/local-storage/localStorage';
-import { Theme } from '../theme-context/model/consts/ThemeContext.consts';
 import type { IUseThemeResult } from './useTheme.interface';
+import type { Theme } from '../theme-context/ThemeContext.interface';
 
 const ls = KVFactory(LS_DEFAULT_NAMESPACE);
 

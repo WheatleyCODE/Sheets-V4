@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { Image } from './Image';
-import { Theme } from '@/app/providers/lib';
 import { themeDecorator } from '../../../../../../config/storybook/theme-decorator/themeDecorator';
 
 const meta = {
@@ -22,7 +21,7 @@ export const Dark: Story = {
   args: {
     src: 'https://www.unisender.com/ru/blog/wp-content/uploads/2022/09/8-2.png',
   },
-  decorators: [themeDecorator(Theme.DARK)],
+  decorators: [themeDecorator('dark')],
 };
 
 export const Error: Story = {

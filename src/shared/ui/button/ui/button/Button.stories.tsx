@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { Button } from './Button';
-import { Theme } from '@/app/providers/lib';
 import { MdVerifiedUser } from 'react-icons/md';
 import { themeDecorator } from '../../../../../../config/storybook/theme-decorator/themeDecorator';
 
@@ -23,7 +22,7 @@ export const Dark: Story = {
   args: {
     text: 'Кнопка',
   },
-  decorators: [themeDecorator(Theme.DARK)],
+  decorators: [themeDecorator('dark')],
 };
 
 export const Big: Story = {

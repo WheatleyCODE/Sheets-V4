@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { CommentList } from './CommentList';
-import { Theme } from '@/app/providers/lib';
 import { themeDecorator } from '../../../../../config/storybook/theme-decorator/themeDecorator';
 
 const meta = {
@@ -45,7 +44,7 @@ export const Dark: Story = {
   args: {
     comments,
   },
-  decorators: [themeDecorator(Theme.DARK)],
+  decorators: [themeDecorator('dark')],
 };
 
 export const Loading: Story = {
