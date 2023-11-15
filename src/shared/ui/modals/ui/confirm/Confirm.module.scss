@@ -1,1 +1,10 @@
 .confirm {}
+
+.buttons {
+  padding-top: calc(var(--gap) * 3);
+  width: 100%;
+}
+
+.title {
+  padding-bottom: calc(var(--gap) * 4);
+}

@@ -2,17 +2,17 @@ import { FC, memo, useCallback, useState } from 'react';
 import { AnimatePresence } from 'framer-motion';
 import { MdOutlineMessage } from 'react-icons/md';
 import { useTranslation } from 'react-i18next';
-import { Backdrop, Modal } from '@/shared/ui/modals';
+import { Backdrop, Modal, Portal } from '@/shared/ui/modals';
 import { StarRating } from '@/shared/ui/star-rating';
 import { classNames } from '@/shared/lib/class-names';
 import { Text } from '@/shared/ui/text';
 import { Input, useValidInput } from '@/shared/ui/input';
-import { Button } from '@/shared/ui/button';
-import { HStack, VStack } from '@/shared/ui/containers';
+import { VStack } from '@/shared/ui/containers';
 import { useModals } from '@/shared/ui/modals';
 import { Card } from '@/shared/ui/card';
 import type { IRatingProps } from './Rating.interface';
 import styles from './Rating.module.scss';
+import { Confirm } from '@/shared/ui/modals/ui/confirm/Confirm';
 
 export const Rating: FC<IRatingProps> = memo((props) => {
   const {
@@ -59,32 +59,33 @@ export const Rating: FC<IRatingProps> = memo((props) => {
 
       <AnimatePresence>
         {isShow && isFeedback && (
-          <Backdrop onClose={onCancelHandler}>
-            <Modal onClose={onCancelHandler}>
-              <VStack align="start">
-                <Text className={styles.feedback_title} title={feedbackTitle} />
-
-                <Input
-                  className={styles.input}
-                  Icon={MdOutlineMessage}
-                  value={textInput.value}
-                  type="text"
-                  placeholder={t('Отзыв')}
-                  onChange={textInput.onChange}
-                  onBlur={textInput.onBlur}
-                  onFocus={textInput.onFocus}
-                  isError={textInput.isError}
-                  validError={t(textInput.validError || '')}
-                  isActive={textInput.isActive}
-                />
-
-                <HStack className={styles.buttons_container} justify="space-between">
-                  <Button onClick={onCancelHandler} text={t('Закрыть')} />
-                  <Button buttonColor="primary" onClick={onAcceptHandler} text={t('Отправить')} />
-                </HStack>
-              </VStack>
-            </Modal>
-          </Backdrop>
+          <Portal>
+            <Backdrop onClose={onCancelHandler}>
+              <Modal onClose={onCancelHandler}>
+                <Confirm
+                  title={feedbackTitle}
+                  acceptTitle={t('Отправить')}
+                  cancelTitle={t('Отмена')}
+                  onAccept={onAcceptHandler}
+                  onCancel={onCancelHandler}
+                >
+                  <Input
+                    className={styles.input}
+                    Icon={MdOutlineMessage}
+                    value={textInput.value}
+                    type="text"
+                    placeholder={t('Отзыв')}
+                    onChange={textInput.onChange}
+                    onBlur={textInput.onBlur}
+                    onFocus={textInput.onFocus}
+                    isError={textInput.isError}
+                    validError={t(textInput.validError || '')}
+                    isActive={textInput.isActive}
+                  />
+                </Confirm>
+              </Modal>
+            </Backdrop>
+          </Portal>
         )}
       </AnimatePresence>
     </Card>

@@ -3,7 +3,6 @@
 [] Завершить шаблоны
 [] RegisterForm? тесты?
 [] Тесты на Editable Profile
-[] Перенести enum в consts
 [] Storybook notifications
 
 // * Ideas
