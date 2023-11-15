@@ -1,8 +1,12 @@
+@import 'app/styles/mixins/global';
+
 .notification_list {
   width: 300px;
   padding: calc(var(--gap) * 2);
   max-height: 290px;
   overflow: auto;
+
+  @include scroll(8px);
 }
 
 .item_skeleton {
