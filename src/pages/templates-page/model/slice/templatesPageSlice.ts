@@ -3,7 +3,8 @@ import { ITemplate, TemplateTags, TemplateView } from '@/entities/template';
 import { fetchTemplatesPageTemplates } from '../services/fetch-templates-page-templates/fetchTemplatesPageTemplates';
 import { LS_DEFAULT_NAMESPACE, LS_VIEW_KEY } from '@/shared/consts';
 import { KVFactory } from '@/shared/lib/kv-storage';
-import { TemplateSortFields, TemplateSortOrders } from '../consts/templatesPage.consts';
+import { SQUARES_TEMPLATE_COUNT } from '@/entities/template/model/consts/template.consts';
+import { INIT_PAGE_COUNT, TemplateSortFields, TemplateSortOrders } from '../consts/templatesPage.consts';
 import type { ITemplatesPageSchema } from '../types/templatesPage.interface';
 
 export const templatesPageAdapter = createEntityAdapter<ITemplate>({
@@ -17,9 +18,9 @@ const initialState = templatesPageAdapter.getInitialState<ITemplatesPageSchema>(
   error: null,
   view: TemplateView.SQUARES,
   hasMore: true,
-  page: 1,
+  page: INIT_PAGE_COUNT,
   _inited: false,
-  limit: 12,
+  limit: SQUARES_TEMPLATE_COUNT,
 
   // * Sort
   search: '',

@@ -2,8 +2,6 @@ import { DeepPartial } from '@/shared/lib/ts-utils';
 import { getTemplatesPagePage } from './getTemplatesPagePage';
 import { IStateSchema } from '@/app/providers/store-provider';
 
-// ! FIX NUMBERS
-
 describe('getTemplatesPageIsLoading', () => {
   test('Return template page state page prop', () => {
     const state: DeepPartial<IStateSchema> = {

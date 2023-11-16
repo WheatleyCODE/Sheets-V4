@@ -8,6 +8,8 @@ export enum TemplateSortFields {
   CREATED_AT = 'createdAt',
 }
 
+export const INIT_PAGE_COUNT = 1;
+
 export enum TemplateSortOrders {
   ASC = 'asc',
   DESC = 'desc',
