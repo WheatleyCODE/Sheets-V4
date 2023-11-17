@@ -1,1 +1,3 @@
-export interface INotificationListProps extends React.HTMLAttributes<HTMLDivElement> {}
+export interface INotificationListProps extends React.HTMLAttributes<HTMLDivElement> {
+  onLinkClick?: () => void;
+}

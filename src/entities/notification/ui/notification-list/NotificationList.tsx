@@ -12,9 +12,11 @@ import type { INotification } from '../../model/types/notification.interface';
 import styles from './NotificationList.module.scss';
 
 export const NotificationList: FC<INotificationListProps> = memo((props) => {
-  const { className, ...anotherProps } = props;
+  const { className, onLinkClick, ...anotherProps } = props;
   const { t } = useTranslation();
-  const { data, isLoading, error } = useNotifications();
+  const { data, isLoading, error } = useNotifications(null, {
+    pollingInterval: 5000,
+  });
 
   if (isLoading) {
     return (
@@ -47,7 +49,12 @@ export const NotificationList: FC<INotificationListProps> = memo((props) => {
 
   const items = intoIter<INotification>(data)
     .map((notification) => (
-      <NotificationListItem key={notification.id} className={styles.item_skeleton} notification={notification} />
+      <NotificationListItem
+        onLinkClick={onLinkClick}
+        key={notification.id}
+        className={styles.item_skeleton}
+        notification={notification}
+      />
     ))
     .toArray();
 

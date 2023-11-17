@@ -9,13 +9,15 @@ import type { INotificationListItemProps } from './NotificationListItem.interfac
 import styles from './NotificationListItem.module.scss';
 
 export const NotificationListItem: FC<INotificationListItemProps> = memo((props) => {
-  const { className, notification, ...anotherProps } = props;
+  const { className, notification, onLinkClick, ...anotherProps } = props;
   const { title, description, href } = notification;
   const navigate = useNavigate();
 
   const navigateTo = useCallback(() => {
-    if (href) navigate(href);
-  }, [href, navigate]);
+    if (!href) return;
+    onLinkClick?.();
+    navigate(href);
+  }, [href, navigate, onLinkClick]);
 
   return (
     <div

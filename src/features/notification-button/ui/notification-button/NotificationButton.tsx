@@ -28,7 +28,7 @@ export const NotificationButton: FC<INotificationButtonProps> = (props) => {
       <AnimatePresence>
         {isShow && (
           <MDropdown {...dropdownAnimations.height} closePopup={closePopup} className={styles.dropdown}>
-            <NotificationList />
+            <NotificationList onLinkClick={closePopup} />
           </MDropdown>
         )}
       </AnimatePresence>
