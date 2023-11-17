@@ -7,3 +7,4 @@ export { useDelayHover } from './use-delay-hover/useDelayHover';
 export { useInitialEffect } from './use-initial-effect/useInitialEffect';
 export { useHover } from './use-hover/useHover';
 export { useInfiniteScroll } from './use-infinity-scroll/useInfinityScroll';
+export { useKeydown } from './use-keydown/useKeydown';

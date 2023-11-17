@@ -1,4 +1,4 @@
-import { FC, useCallback, useEffect } from 'react';
+import { FC, useCallback } from 'react';
 import { motion } from 'framer-motion';
 import { CgClose } from 'react-icons/cg';
 import { Icon } from '../../../icon';
@@ -13,27 +13,6 @@ export const Modal: FC<IModalProps> = (props) => {
   const stopPropagation = useCallback((e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     e.stopPropagation();
   }, []);
-
-  useEffect(() => {}, []);
-
-  useEffect(() => {
-    const keyDownHandler = (e: KeyboardEvent) => {
-      switch (e.key) {
-        case 'Escape':
-          onClose();
-          break;
-
-        default:
-          break;
-      }
-    };
-
-    document.addEventListener('keydown', keyDownHandler);
-
-    return () => {
-      document.removeEventListener('keydown', keyDownHandler);
-    };
-  }, [onClose]);
 
   return (
     <motion.div

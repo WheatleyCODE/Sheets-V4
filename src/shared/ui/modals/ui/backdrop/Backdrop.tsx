@@ -1,6 +1,7 @@
 import React, { FC, useCallback } from 'react';
 import { motion } from 'framer-motion';
 import { ANIMATION_DURATION } from '@/shared/consts/animations/animation';
+import { useKeydown } from '@/shared/lib/hooks';
 import { classNames } from '@/shared/lib/class-names';
 import { IBackdropProps } from './Backdrop.interface';
 import styles from './Backdrop.module.scss';
@@ -16,6 +17,8 @@ export const Backdrop: FC<IBackdropProps> = (props) => {
     },
     [onClose],
   );
+
+  useKeydown({ Escape: [onClose] });
 
   return (
     <motion.div
