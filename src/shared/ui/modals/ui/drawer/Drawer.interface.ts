@@ -5,5 +5,4 @@ export interface IDrawerProps extends MotionProps {
   children?: React.ReactNode;
   openStyles: DrawerOpenStyles;
   width?: number;
-  isFull?: boolean;
 }

@@ -14,18 +14,4 @@ describe('Drawer', () => {
     expect(screen.getByTestId('drawer')).toBeInTheDocument();
     expect(screen.getByText('h1')).toBeInTheDocument();
   });
-
-  test('In the document + class', () => {
-    renderComponent(
-      <Drawer isFull openStyles={DrawerOpenStyles.TOP}>
-        <h1>h1</h1>
-      </Drawer>,
-    );
-
-    const drawer = screen.getByTestId('drawer');
-
-    expect(drawer).toBeInTheDocument();
-    expect(drawer).toHaveClass('full');
-    expect(screen.getByText('h1')).toBeInTheDocument();
-  });
 });
