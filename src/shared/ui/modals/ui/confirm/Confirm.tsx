@@ -11,6 +11,8 @@ export const Confirm: FC<IConfirmProps> = (props) => {
     className,
     acceptTitle = 'Ок',
     cancelTitle = 'Отмена',
+    onAccept,
+    onCancel,
     children,
     title = 'Заголовок',
     ...anotherProps
@@ -23,8 +25,8 @@ export const Confirm: FC<IConfirmProps> = (props) => {
       {children}
 
       <HStack justify="space-between" className={styles.buttons}>
-        <Button text={acceptTitle} buttonColor="primary" />
-        <Button text={cancelTitle} />
+        <Button onClick={onAccept} text={acceptTitle} buttonColor="primary" />
+        <Button onClick={onCancel} text={cancelTitle} />
       </HStack>
     </div>
   );

@@ -1,5 +1,19 @@
 {
-  "template-ratings": [],
+  "template-ratings": [
+    {
+      "userId": "1",
+      "templateId": "2",
+      "rate": 8,
+      "id": 1
+    },
+    {
+      "userId": "1",
+      "templateId": "8",
+      "rate": 10,
+      "feedback": "12121",
+      "id": 2
+    }
+  ],
   "notifications": [
     {
       "id": "1",

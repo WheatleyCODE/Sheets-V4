@@ -11,8 +11,6 @@
 [] Использовать в Sheets entity adapter data и нормализацию
 [] Запросы и suspense для storybook 75
 [] Проверить memo в компонентах
-
-[] Подумать Dropdown, Dropdown-item, modal, Drawer :(Больше UX) (useModal) (Сделать более универсальным) (Спрятать настройки анимаций?) (Сделать компоненты более  полиморфными) (79, 80, 81, 82, 84)
  
 // * Features
 [] Дописать KVStorage + тесты

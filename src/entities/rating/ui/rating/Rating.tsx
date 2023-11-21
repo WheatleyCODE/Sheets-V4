@@ -2,17 +2,15 @@ import { FC, memo, useCallback, useState } from 'react';
 import { AnimatePresence } from 'framer-motion';
 import { MdOutlineMessage } from 'react-icons/md';
 import { useTranslation } from 'react-i18next';
-import { Backdrop, Modal, Portal } from '@/shared/ui/modals';
+import { Backdrop, Modal, Portal, useModals, Confirm } from '@/shared/ui/modals';
 import { StarRating } from '@/shared/ui/star-rating';
 import { classNames } from '@/shared/lib/class-names';
 import { Text } from '@/shared/ui/text';
 import { Input, useValidInput } from '@/shared/ui/input';
 import { VStack } from '@/shared/ui/containers';
-import { useModals } from '@/shared/ui/modals';
 import { Card } from '@/shared/ui/card';
 import type { IRatingProps } from './Rating.interface';
 import styles from './Rating.module.scss';
-import { Confirm } from '@/shared/ui/modals/ui/confirm/Confirm';
 
 export const Rating: FC<IRatingProps> = memo((props) => {
   const {
