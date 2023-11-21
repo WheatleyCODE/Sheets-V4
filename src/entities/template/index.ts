@@ -7,3 +7,4 @@ export { getTemplateDetails } from './model/selectors/get-template-details/getTe
 export { getTemplateDetailsError } from './model/selectors/get-template-details-error/getTemplateDetailsError';
 export { getTemplateDetailsIsLoading } from './model/selectors/get-template-details-is-loading/getTemplateIsDetailsLoading';
 export { TemplateList } from './ui/template-list/TemplateList';
+export { SQUARES_TEMPLATE_COUNT } from './model/consts/template.consts';

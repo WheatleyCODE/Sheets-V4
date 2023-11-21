@@ -3,7 +3,7 @@ import { ITemplate, TemplateTags, TemplateView } from '@/entities/template';
 import { fetchTemplatesPageTemplates } from '../services/fetch-templates-page-templates/fetchTemplatesPageTemplates';
 import { LS_DEFAULT_NAMESPACE, LS_VIEW_KEY } from '@/shared/consts';
 import { KVFactory } from '@/shared/lib/kv-storage';
-import { SQUARES_TEMPLATE_COUNT } from '@/entities/template/model/consts/template.consts';
+import { SQUARES_TEMPLATE_COUNT } from '@/entities/template';
 import { INIT_PAGE_COUNT, TemplateSortFields, TemplateSortOrders } from '../consts/templatesPage.consts';
 import type { ITemplatesPageSchema } from '../types/templatesPage.interface';
 

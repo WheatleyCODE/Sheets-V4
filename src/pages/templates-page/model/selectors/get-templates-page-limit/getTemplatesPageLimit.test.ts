@@ -1,7 +1,7 @@
 import { DeepPartial } from '@/shared/lib/ts-utils';
 import { getTemplatesPageLimit } from './getTemplatesPageLimit';
 import { IStateSchema } from '@/app/providers/store-provider';
-import { SQUARES_TEMPLATE_COUNT } from '@/entities/template/model/consts/template.consts';
+import { SQUARES_TEMPLATE_COUNT } from '@/entities/template';
 
 describe('getTemplatesPageIsLoading', () => {
   test('Return template page state limit prop', () => {

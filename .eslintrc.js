@@ -32,7 +32,14 @@ module.exports = {
     'no-prototype-builtins': 0,
     'react-hooks/rules-of-hooks': 'error',
     'react-hooks/exhaustive-deps': 'warn',
-    'wheatley-code/path-checker': ['error', { alias: '@' }]
+    'wheatley-code/path-checker': ['error', { alias: '@' }],
+    'wheatley-code/public-api-imports': [
+      'error',
+      {
+        alias: '@',
+        testFilesPatterns: ['**/*.test.*', '**/*.story.*', '**/StoreDecorator.tsx'],
+      },
+    ],
   },
 
   overrides: [
