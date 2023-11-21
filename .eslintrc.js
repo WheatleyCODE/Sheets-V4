@@ -32,7 +32,7 @@ module.exports = {
     'no-prototype-builtins': 0,
     'react-hooks/rules-of-hooks': 'error',
     'react-hooks/exhaustive-deps': 'warn',
-    'wheatley-code/path-checker': 'error'
+    'wheatley-code/path-checker': ['error', { alias: '@' }]
   },
 
   overrides: [
