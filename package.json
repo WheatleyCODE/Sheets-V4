@@ -25,7 +25,8 @@
     "test:ui:html": "reg-cli --from .loki/report.json --report .loki/report.html",
     "test:ui:json": "node scripts/generate-visual-json-report.js",
     "start:dev:server": "node ./json-server/index.js",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "postinstall": "node ./scripts/clear-cache.js"
   },
   "keywords": [],
   "author": "",
