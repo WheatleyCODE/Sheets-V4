@@ -1,5 +1,5 @@
 import { fireEvent, screen } from '@testing-library/react';
-import { User } from './User';
+import { UserButton } from './UserButton';
 import { renderComponent } from '@/shared/lib/tests/render-component/renderComponent';
 import { sleep } from '@/shared/lib/promise';
 import { ANIMATION_DURATION_MS } from '@/shared/consts';
@@ -7,16 +7,16 @@ import { ANIMATION_DURATION_MS } from '@/shared/consts';
 const imgSrc =
   'https://avatars.mds.yandex.net/i?id=ff63d9036709e4bb15cab817afddf0fddaca9978-10639375-images-thumbs&n=13';
 
-describe('User', () => {
+describe('UserButton', () => {
   test('In the document', () => {
-    renderComponent(<User logout={() => {}} openAuth={() => {}} />);
+    renderComponent(<UserButton logout={() => {}} openAuth={() => {}} />);
 
     expect(screen.getByTestId('logo')).toBeInTheDocument();
     expect(screen.getByText('Войти')).toBeInTheDocument();
   });
 
   test('In the document + auth', () => {
-    renderComponent(<User user={{ email: 'ya@mail.ru', id: '1' }} logout={() => {}} openAuth={() => {}} />);
+    renderComponent(<UserButton user={{ email: 'ya@mail.ru', id: '1' }} logout={() => {}} openAuth={() => {}} />);
 
     expect(screen.getByTestId('logo')).toBeInTheDocument();
     expect(screen.getByTestId('imageLoad')).toBeInTheDocument();
@@ -26,7 +26,7 @@ describe('User', () => {
     const logout = jest.fn();
     const openAuth = jest.fn();
 
-    renderComponent(<User logout={logout} openAuth={openAuth} />);
+    renderComponent(<UserButton logout={logout} openAuth={openAuth} />);
 
     const button = screen.getByText('Войти');
 
@@ -43,7 +43,7 @@ describe('User', () => {
     const openAuth = jest.fn();
 
     renderComponent(
-      <User user={{ email: 'ya@mail.ru', id: '1', avatar: imgSrc }} logout={logout} openAuth={openAuth} />,
+      <UserButton user={{ email: 'ya@mail.ru', id: '1', avatar: imgSrc }} logout={logout} openAuth={openAuth} />,
     );
 
     const avatar = screen.getByTestId('imageLoad');

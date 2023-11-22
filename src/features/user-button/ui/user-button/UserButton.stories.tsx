@@ -1,11 +1,11 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { User } from './User';
+import { UserButton } from './UserButton';
 import { themeDecorator } from '../../../../../config/storybook/theme-decorator/themeDecorator';
 
 const meta = {
-  title: 'entities/User',
-  component: User,
-} satisfies Meta<typeof User>;
+  title: 'entities/UserButton',
+  component: UserButton,
+} satisfies Meta<typeof UserButton>;
 
 export default meta;
 

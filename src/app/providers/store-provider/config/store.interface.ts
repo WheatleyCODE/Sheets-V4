@@ -5,7 +5,7 @@ import { ITemplatesPageSchema } from '@/pages/templates-page';
 import { IModalsSchema, IScrollSchema } from '@/widgets/layout';
 import { ITemplateRecommendsSchema } from '@/widgets/template-recommends';
 import { ITemplateCommentsSchema } from '@/widgets/template-comments';
-import { IUserSchema } from '@/features/user';
+import { IUserSchema } from '@/entities/user';
 import { ILoginSchema } from '@/features/auth-by-email';
 import { IAddCommentFormSchema } from '@/features/add-comment-form';
 import { IProfileSchema } from '@/entities/profile';

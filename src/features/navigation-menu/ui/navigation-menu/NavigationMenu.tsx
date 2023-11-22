@@ -6,7 +6,7 @@ import { MdOutlineMenu } from 'react-icons/md';
 import { NavigationMenuItem } from '../navigation-menu-item/NavigationMenuItem';
 import { getNavigationItems } from '../../model/selectors/get-navigation-items/getNavigationItems';
 import { Logo } from '@/entities/logo';
-import { getUser } from '@/features/user';
+import { getUser } from '@/entities/user';
 import { Button } from '@/shared/ui/button';
 import { Portal, Backdrop, Drawer, DrawerOpenStyles, useModals } from '@/shared/ui/modals';
 import { HStack, VStack } from '@/shared/ui/containers';

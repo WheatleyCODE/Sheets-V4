@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { MdOutlineAdminPanelSettings, MdOutlineLogout, MdOutlinePersonPin, MdPerson } from 'react-icons/md';
 import { useTranslation } from 'react-i18next';
-import { isUserRoleAdmin, isUserRoleDeveloper } from '../../model/selectors/user-role-selector/userRoleSelector';
+import { isUserRoleAdmin, isUserRoleDeveloper } from '@/entities/user';
 import { Title } from '@/shared/ui/title';
 import { Button } from '@/shared/ui/button';
 import { DropdownMenu, DropdownMenuItem, MDropdown, dropdownAnimations, usePopups } from '@/shared/ui/popups';
@@ -12,10 +12,10 @@ import { Avatar } from '@/shared/ui/avatar';
 import { RoutesPath } from '@/shared/config/route-config/routeConfig';
 import { concatURLs } from '@/shared/lib/url';
 import { classNames } from '@/shared/lib/class-names';
-import type { IUserProps } from './User.interface';
-import styles from './User.module.scss';
+import type { IUserButtonProps } from './UserButton.interface';
+import styles from './UserButton.module.scss';
 
-export const User: FC<IUserProps> = memo((props) => {
+export const UserButton: FC<IUserButtonProps> = memo((props) => {
   const { className, user, logout, openAuth, ...anotherProps } = props;
   const { t } = useTranslation();
   const navigate = useNavigate();

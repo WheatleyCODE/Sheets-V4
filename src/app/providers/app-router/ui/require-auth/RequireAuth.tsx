@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import { useSelector } from 'react-redux';
-import { getUser } from '@/features/user';
+import { getUser } from '@/entities/user';
 import { Navigate } from 'react-router-dom';
 import { RoutesPath } from '@/shared/config/route-config/routeConfig';
 

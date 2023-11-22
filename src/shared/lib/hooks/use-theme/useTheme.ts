@@ -1,9 +1,9 @@
 import { useCallback, useContext } from 'react';
-import { ThemeContext } from '../theme-context/ThemeContext';
-import { KVFactory } from '@/shared/lib/kv-storage/kv-storage/kvStorage';
+import { ThemeContext } from '../../../../shared/lib/contexts/theme-context/ThemeContext';
+import { KVFactory } from '../../kv-storage';
 import { LS_DEFAULT_NAMESPACE, LS_THEME_KEY } from '@/shared/consts/local-storage/localStorage';
 import type { IUseThemeResult } from './useTheme.interface';
-import type { Theme } from '../theme-context/ThemeContext.interface';
+import type { Theme } from '../../../../shared/lib/contexts/theme-context/ThemeContext.interface';
 
 const ls = KVFactory(LS_DEFAULT_NAMESPACE);
 

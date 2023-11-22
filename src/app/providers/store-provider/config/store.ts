@@ -1,6 +1,6 @@
 import { CombinedState, configureStore, Reducer, ReducersMapObject } from '@reduxjs/toolkit';
 import { modalsReducer, scrollReducer } from '@/widgets/layout';
-import { userReducer } from '@/features/user';
+import { userReducer } from '@/entities/user';
 import { createReducerManager } from './reducerManager';
 import { api, rtkApi } from '@/shared/api';
 import type { IStateSchema, IStore, IThunkExtra } from './store.interface';

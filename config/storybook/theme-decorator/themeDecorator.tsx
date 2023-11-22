@@ -1,6 +1,6 @@
 import { Story } from '@storybook/react';
 import { ThemeProvider } from '@/app/providers/theme-provider';
-import type { Theme } from '@/app/providers/lib';
+import { Theme } from '@/shared/lib/contexts';
 
 export const themeDecorator = (theme: Theme) => (Story: Story) => {
   return (

@@ -1,4 +1,4 @@
-import { IUser } from '@/features/user';
+import { IUser } from '@/entities/user';
 
 export interface IComment {
   id: string;

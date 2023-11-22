@@ -1,6 +1,6 @@
 import { Reducer } from '@reduxjs/toolkit';
 import { IReduxStoreWithManager } from '@/app/providers/store-provider';
-import { StateSchemaKey } from '@/app/providers/store-provider/config/store.interface';
+import { StateSchemaKey } from '@/app/providers/store-provider';
 import { useEffect } from 'react';
 import { useStore } from 'react-redux';
 import { useTypedDispatch } from '../use-typed-dispatch/useTypedDispatch';

@@ -1,4 +1,4 @@
-import type { Theme } from '@/app/providers/lib';
+import { Theme } from '@/shared/lib/contexts';
 
 export interface IThemeProviderProps extends FCProps {
   initTheme?: Theme;

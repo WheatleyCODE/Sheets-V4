@@ -1,5 +1,5 @@
-import { Theme } from '@/app/providers/lib';
 import { IconType } from 'react-icons';
+import { Theme } from '@/shared/lib/contexts';
 
 export interface IThemeSubItems {
   Icon: IconType;

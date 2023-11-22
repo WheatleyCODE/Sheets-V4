@@ -1,6 +1,6 @@
 import { FC, useMemo } from 'react';
 import { useSelector } from 'react-redux';
-import { UserRoles, getUserRoles } from '@/features/user';
+import { UserRoles, getUserRoles } from '@/entities/user';
 import { Navigate } from 'react-router-dom';
 import { RoutesPath } from '@/shared/config/route-config/routeConfig';
 

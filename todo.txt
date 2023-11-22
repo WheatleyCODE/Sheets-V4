@@ -3,6 +3,7 @@
 [] RegisterForm? тесты?
 
 [] Fix storybook
+[] Fix ../../../../user architecture
 
 // * Ideas
 [] Написать больше правил для ESLint 

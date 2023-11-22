@@ -1,6 +1,7 @@
 .drawer {
   position: absolute;
   background-color: var(--color-main);
+  // background-color: red;
 
   &.right, &.left {
     top: 0;

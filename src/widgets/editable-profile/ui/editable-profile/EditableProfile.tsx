@@ -1,7 +1,7 @@
 import { FC, useCallback } from 'react';
 import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { getUser } from '@/features/user';
+import { getUser } from '@/entities/user';
 import {
   IProfile,
   ProfileCard,

@@ -32,6 +32,8 @@ module.exports = {
     'no-prototype-builtins': 0,
     'react-hooks/rules-of-hooks': 'error',
     'react-hooks/exhaustive-deps': 'warn',
+
+    // ESLint Plugin
     'wheatley-code/path-checker': ['error', { alias: '@' }],
     'wheatley-code/public-api-imports': [
       'error',
@@ -39,6 +41,13 @@ module.exports = {
         alias: '@',
         testFilesPatterns: ['**/*.test.*', '**/*.story.*', '**/StoreDecorator.tsx'],
       },
+    ],
+    'wheatley-code/layer-imports': [
+        'error',
+        {
+          alias: '@',
+          ignoreImportPatterns: ['**/store-provider', '**/testing'],
+        },
     ],
   },
 

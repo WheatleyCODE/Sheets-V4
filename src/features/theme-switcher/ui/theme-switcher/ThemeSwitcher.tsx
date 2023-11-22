@@ -2,7 +2,6 @@ import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import { AnimatePresence } from 'framer-motion';
 import { MdColorLens } from 'react-icons/md';
-import { Theme, useTheme } from '@/app/providers/lib';
 import { themeItems } from '../../model/consts/themeItems';
 import {
   DropdownMenu,
@@ -17,6 +16,8 @@ import { sleep } from '@/shared/lib/promise';
 import { intoIter } from '@/shared/lib/iterators';
 import { Title } from '@/shared/ui/title';
 import { Button } from '@/shared/ui/button';
+import { useTheme } from '@/shared/lib/hooks';
+import { Theme } from '@/shared/lib/contexts';
 import { classNames } from '@/shared/lib/class-names';
 import type { IThemeSwitcherProps } from './ThemeSwitcher.interface';
 import type { IThemeItems, IThemeSubItems } from '../../model/types/themeSwitcher.interface';

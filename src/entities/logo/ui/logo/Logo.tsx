@@ -1,11 +1,11 @@
 import { FC, memo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useTheme } from '@/app/providers/lib';
 import { Link } from '@/shared/ui/link';
 import { RoutesPath } from '@/shared/config/route-config/routeConfig';
 import { Title } from '@/shared/ui/title';
 import { Text } from '@/shared/ui/text';
 import { HStack } from '@/shared/ui/containers';
+import { useTheme } from '@/shared/lib/hooks';
 import { SheetsDark, SheetsLight } from '@/shared/assets';
 import { classNames } from '@/shared/lib/class-names';
 import type { ILogoProps } from './Logo.interface';
