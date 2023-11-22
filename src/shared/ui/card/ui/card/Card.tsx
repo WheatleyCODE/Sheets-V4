@@ -6,5 +6,5 @@ import styles from './Card.module.scss';
 export const Card: FC<ICardProps> = (props) => {
   const { className, ...anotherProps } = props;
 
-  return <div {...anotherProps} data-testid="card" className={classNames(styles.card, {}, [className])} />;
+  return <div data-testid="card" {...anotherProps} className={classNames(styles.card, {}, [className])} />;
 };

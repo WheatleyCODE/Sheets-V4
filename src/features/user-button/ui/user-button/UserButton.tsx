@@ -9,8 +9,7 @@ import { Button } from '@/shared/ui/button';
 import { DropdownMenu, DropdownMenuItem, MDropdown, dropdownAnimations, usePopups } from '@/shared/ui/popups';
 import { AnimatePresence } from 'framer-motion';
 import { Avatar } from '@/shared/ui/avatar';
-import { RoutesPath } from '@/shared/config/route-config/routeConfig';
-import { concatURLs } from '@/shared/lib/url';
+import { getRouteProfile, getRouteAdminPanel } from '@/shared/config/route-config/routeConfig';
 import { classNames } from '@/shared/lib/class-names';
 import type { IUserButtonProps } from './UserButton.interface';
 import styles from './UserButton.module.scss';
@@ -36,13 +35,13 @@ export const UserButton: FC<IUserButtonProps> = memo((props) => {
   const navigateToProfile = useCallback(() => {
     if (!user) return;
     closePopup();
-    navigate(concatURLs(RoutesPath.profile, user.id));
+    navigate(getRouteProfile(user.id));
   }, [user, closePopup, navigate]);
 
   const navigateToAdminPanel = useCallback(() => {
     if (!user) return;
     closePopup();
-    navigate(RoutesPath.admin_panel);
+    navigate(getRouteAdminPanel());
   }, [user, closePopup, navigate]);
 
   return (

@@ -10,6 +10,8 @@ describe('Portal', () => {
       </Portal>,
     );
 
+    screen.debug();
+
     expect(screen.getByTestId('portal')).toBeInTheDocument();
     expect(screen.getByText('h1')).toBeInTheDocument();
   });

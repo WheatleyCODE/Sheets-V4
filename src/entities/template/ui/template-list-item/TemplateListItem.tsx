@@ -15,7 +15,7 @@ import { Icon } from '@/shared/ui/icon';
 import { Title } from '@/shared/ui/title';
 import { Button } from '@/shared/ui/button';
 import { Card } from '@/shared/ui/card';
-import { RoutesPath } from '@/shared/config/route-config/routeConfig';
+import { getRouteTemplateDetails } from '@/shared/config/route-config/routeConfig';
 import { classNames } from '@/shared/lib/class-names';
 import type { ITemplateListItemProps } from './TemplateListItem.interface';
 import styles from './TemplateListItem.module.scss';
@@ -28,11 +28,11 @@ export const TemplateListItem: FC<ITemplateListItemProps> = (props) => {
 
   const navigateToTemplate = useCallback(() => {
     if (isOpenInNewWindow) {
-      window.open(RoutesPath.template_details + id);
+      window.open(getRouteTemplateDetails(id));
       return;
     }
 
-    navigate(RoutesPath.template_details + id);
+    navigate(getRouteTemplateDetails(id));
   }, [id, navigate, isOpenInNewWindow]);
 
   const openInSheets = useCallback((e: MouseEvent<HTMLButtonElement>) => {

@@ -27,70 +27,67 @@ export enum AppRoutes {
   NOT_FOUND = 'not_found',
 }
 
-export const RoutesPath: Record<AppRoutes, string> = {
-  [AppRoutes.HOME]: '/home',
-  [AppRoutes.SHEETS]: '/sheets',
-  [AppRoutes.LANDING]: '/',
-  [AppRoutes.PROFILE]: '/profile/', // + id
-  [AppRoutes.TEMPLATES]: '/templates',
-  [AppRoutes.TEMPLATE_DETAILS]: '/templates/', // + id
-  [AppRoutes.TEMPLATE_CREATE]: '/templates/new',
-  [AppRoutes.TEMPLATE_EDIT]: '/templates/:id/edit',
-  [AppRoutes.ADMIN_PANEL]: '/admin/panel',
-  [AppRoutes.FORBIDDEN]: '/forbidden',
-  [AppRoutes.NOT_FOUND]: '*',
-};
+export const getRouteLanding = () => '/';
+export const getRouteHome = () => '/home';
+export const getRouteSheets = () => '/sheets';
+export const getRouteProfile = (id: string) => `/profile/${id}`;
+export const getRouteTemplates = () => '/templates';
+export const getRouteTemplateDetails = (id: string) => `/templates/${id}`;
+export const getRouteTemplateCreate = () => '/templates/new';
+export const getRouteTemplateEdit = (id: string) => `/templates/${id}/edit`;
+export const getRouteAdminPanel = () => '/admin/panel';
+export const getRouteForbidden = () => '/forbidden';
 
 export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
+  [AppRoutes.LANDING]: {
+    path: getRouteLanding(),
+    element: <LandingPage />,
+  },
   [AppRoutes.HOME]: {
-    path: RoutesPath.home,
+    path: getRouteHome(),
     element: <HomePage />,
   },
   [AppRoutes.SHEETS]: {
-    path: RoutesPath.sheets,
+    path: getRouteSheets(),
     element: <SheetsPage />,
   },
-  [AppRoutes.LANDING]: {
-    path: RoutesPath.landing,
-    element: <LandingPage />,
-  },
-  [AppRoutes.FORBIDDEN]: {
-    path: RoutesPath.forbidden,
-    element: <ForbiddenPage />,
-  },
   [AppRoutes.PROFILE]: {
-    path: `${RoutesPath.profile}:id`,
+    path: getRouteProfile(':id'),
     element: <ProfilePage />,
     authOnly: true,
   },
   [AppRoutes.TEMPLATES]: {
-    path: RoutesPath.templates,
+    path: getRouteTemplates(),
     element: <TemplatesPage />,
     authOnly: true,
   },
   [AppRoutes.TEMPLATE_DETAILS]: {
-    path: `${RoutesPath.template_details}:id`,
+    path: getRouteTemplateDetails('id'),
     element: <TemplateDetailsPage />,
     authOnly: true,
   },
   [AppRoutes.TEMPLATE_CREATE]: {
-    path: RoutesPath.template_create,
+    path: getRouteTemplateCreate(),
     element: <TemplateCreatePage />,
     authOnly: true,
   },
   [AppRoutes.TEMPLATE_EDIT]: {
-    path: RoutesPath.template_edit,
+    path: getRouteTemplateEdit(':id'),
     element: <TemplateEditPage />,
     authOnly: true,
   },
   [AppRoutes.ADMIN_PANEL]: {
-    path: RoutesPath.admin_panel,
+    path: getRouteAdminPanel(),
     element: <AdminPanelPage />,
     roles: ['ADMIN', 'DEVELOPER'] as UserRoles[],
     authOnly: true,
   },
+  [AppRoutes.FORBIDDEN]: {
+    path: getRouteForbidden(),
+    element: <ForbiddenPage />,
+  },
   [AppRoutes.NOT_FOUND]: {
-    path: RoutesPath.not_found,
+    path: '*',
     element: <NotFoundPage />,
   },
 };

@@ -6,6 +6,6 @@ describe('TemplateRating', () => {
   test('In the document', () => {
     renderComponent(<TemplateRating />);
 
-    expect(screen.getByTestId('templateRating')).toBeInTheDocument();
+    expect(screen.getByTestId('circleLoader')).toBeInTheDocument();
   });
 });

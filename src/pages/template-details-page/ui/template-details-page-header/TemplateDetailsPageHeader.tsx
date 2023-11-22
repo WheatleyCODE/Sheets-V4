@@ -3,13 +3,12 @@ import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { MdChevronLeft } from 'react-icons/md';
 import { useNavigate } from 'react-router-dom';
-import { RoutesPath } from '@/shared/config/route-config/routeConfig';
+import { getRouteTemplates, getRouteTemplateEdit } from '@/shared/config/route-config/routeConfig';
 import { getTemplateDetails } from '@/entities/template';
 import { Title } from '@/shared/ui/title';
 import { Button } from '@/shared/ui/button';
 import { getTemplateDetailsIsCanEdit } from '../../model/selectors/get-template-details-is-can-edit/getTemplateDetailsIsCanEdit';
 import { HStack, Width } from '@/shared/ui/containers';
-import { concatURLs } from '@/shared/lib/url';
 import { classNames } from '@/shared/lib/class-names';
 import type { ITemplateDetailsPageHeaderProps } from './TemplateDetailsPageHeader.interface';
 import styles from './TemplateDetailsPageHeader.module.scss';
@@ -23,11 +22,11 @@ export const TemplateDetailsPageHeader: FC<ITemplateDetailsPageHeaderProps> = (p
   const { t } = useTranslation();
 
   const navigateToTemplates = useCallback(() => {
-    navigate(RoutesPath.templates);
+    navigate(getRouteTemplates());
   }, []);
 
   const navigateToTemplatesEdit = useCallback(() => {
-    navigate(concatURLs(RoutesPath.template_details, template.id, 'edit'));
+    navigate(getRouteTemplateEdit(template.id));
   }, [template.id]);
 
   return (

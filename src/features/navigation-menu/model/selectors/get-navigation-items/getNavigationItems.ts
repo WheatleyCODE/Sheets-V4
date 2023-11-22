@@ -9,31 +9,38 @@ import {
   MdOutlineViewCompactAlt,
   MdOutlineWeb,
 } from 'react-icons/md';
-import { RoutesPath } from '@/shared/config/route-config/routeConfig';
 import type { INavigationMenuItem } from '../../types/navigationMenu.interface';
-import { concatURLs } from '@/shared/lib/url';
+import {
+  getRouteAdminPanel,
+  getRouteHome,
+  getRouteLanding,
+  getRouteProfile,
+  getRouteSheets,
+  getRouteTemplateCreate,
+  getRouteTemplates,
+} from '@/shared/config/route-config/routeConfig';
 
 const isRoleAdmin = (user: IUser) => Boolean(user?.roles?.includes(UserRoles.ADMIN));
 const isRoleDeveloper = (user: IUser) => Boolean(user?.roles?.includes(UserRoles.DEVELOPER));
 
 export const getNavigationItems = createSelector(getUser, (user) => {
   const items: INavigationMenuItem[] = [
-    { text: 'Домашняя страница', path: RoutesPath.home, Icon: MdOutlineHome },
-    { text: 'Таблицы', path: RoutesPath.sheets, Icon: MdOutlineViewCompact },
-    { text: 'Лендинг', path: RoutesPath.landing, Icon: MdOutlineWeb },
+    { text: 'Домашняя страница', path: getRouteHome(), Icon: MdOutlineHome },
+    { text: 'Таблицы', path: getRouteSheets(), Icon: MdOutlineViewCompact },
+    { text: 'Лендинг', path: getRouteLanding(), Icon: MdOutlineWeb },
   ];
 
   if (user) {
     items.push({
       text: 'Профиль',
-      path: concatURLs(RoutesPath.profile, user.id),
+      path: getRouteProfile(user.id),
       Icon: MdOutlinePersonPin,
       authOnly: true,
     });
-    items.push({ text: 'Шаблоны', path: RoutesPath.templates, Icon: MdOutlineViewCompactAlt, authOnly: true });
+    items.push({ text: 'Шаблоны', path: getRouteTemplates(), Icon: MdOutlineViewCompactAlt, authOnly: true });
     items.push({
       text: 'Создать шаблон',
-      path: RoutesPath.template_create,
+      path: getRouteTemplateCreate(),
       Icon: MdOutlinePostAdd,
       authOnly: true,
     });
@@ -42,7 +49,7 @@ export const getNavigationItems = createSelector(getUser, (user) => {
   if (user && (isRoleAdmin(user) || isRoleDeveloper(user))) {
     items.push({
       text: 'Админ панель',
-      path: RoutesPath.admin_panel,
+      path: getRouteAdminPanel(),
       Icon: MdOutlineAdminPanelSettings,
       authOnly: true,
     });

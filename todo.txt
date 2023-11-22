@@ -4,6 +4,8 @@
 
 [] Fix storybook
 [] Fix ../../../../user architecture
+[] Docs 97 и документация для shared
+[] Fix Portal tests
 
 // * Ideas
 [] Написать больше правил для ESLint 
