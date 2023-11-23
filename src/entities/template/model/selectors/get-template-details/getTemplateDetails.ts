@@ -1,4 +1,7 @@
 import { IStateSchema } from '@/app/providers/store-provider';
 import { initTemplate } from '../../consts/template.consts';
+import { buildSelector } from '@/shared/store';
 
-export const getTemplateDetails = (state: IStateSchema) => state?.templateDetails?.template || initTemplate;
+export const [useTemplateDetails, getTemplateDetails] = buildSelector(
+  (state: IStateSchema) => state?.templateDetails?.template || initTemplate,
+);

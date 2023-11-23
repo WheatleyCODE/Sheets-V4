@@ -14,7 +14,7 @@ import { CommentList } from '@/entities/comment';
 import { useDynamicModule, useTypedDispatch, ReducersList, useInitialEffect } from '@/shared/lib/hooks';
 import { RWidth } from '@/shared/ui/containers';
 import { Text } from '@/shared/ui/text';
-import { getTemplateDetails } from '@/entities/template';
+import { useTemplateDetails } from '@/entities/template';
 import { classNames } from '@/shared/lib/class-names';
 import type { ITemplateCommentsProps } from './TemplateComments.interface';
 import styles from './TemplateComments.module.scss';
@@ -29,7 +29,7 @@ export const TemplateComments: FC<ITemplateCommentsProps> = (props) => {
   const commentsError = useSelector(getTemplateCommentsError);
   const commentsIsLoading = useSelector(getTemplateCommentsIsLoading);
   const user = useSelector(getUser);
-  const template = useSelector(getTemplateDetails);
+  const template = useTemplateDetails();
 
   const { t } = useTranslation();
   const { id } = useParams<{ id: string }>();

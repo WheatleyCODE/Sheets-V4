@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 import {
   TemplateDetails,
   fetchTemplateById,
-  getTemplateDetails,
+  useTemplateDetails,
   getTemplateDetailsError,
   getTemplateDetailsIsLoading,
   templateDetailsActions,
@@ -22,7 +22,7 @@ const reducerList: ReducersList = {
 export const TemplateDetailsPageMain: FC<ITemplateDetailsPageMainProps> = (props) => {
   const { className, ...anotherProps } = props;
   useDynamicModule(reducerList, true);
-  const template = useSelector(getTemplateDetails);
+  const template = useTemplateDetails();
   const isLoading = useSelector(getTemplateDetailsIsLoading);
   const error = useSelector(getTemplateDetailsError);
 

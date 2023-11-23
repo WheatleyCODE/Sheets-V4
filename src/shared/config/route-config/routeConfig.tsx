@@ -32,9 +32,9 @@ export const getRouteHome = () => '/home';
 export const getRouteSheets = () => '/sheets';
 export const getRouteProfile = (id: string) => `/profile/${id}`;
 export const getRouteTemplates = () => '/templates';
-export const getRouteTemplateDetails = (id: string) => `/templates/${id}`;
+export const getRouteTemplateDetails = (id: string) => `/template/${id}`;
 export const getRouteTemplateCreate = () => '/templates/new';
-export const getRouteTemplateEdit = (id: string) => `/templates/${id}/edit`;
+export const getRouteTemplateEdit = (id: string) => `/template/${id}/edit`;
 export const getRouteAdminPanel = () => '/admin/panel';
 export const getRouteForbidden = () => '/forbidden';
 
@@ -62,7 +62,7 @@ export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
     authOnly: true,
   },
   [AppRoutes.TEMPLATE_DETAILS]: {
-    path: getRouteTemplateDetails('id'),
+    path: getRouteTemplateDetails(':id'),
     element: <TemplateDetailsPage />,
     authOnly: true,
   },

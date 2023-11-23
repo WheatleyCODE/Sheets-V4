@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import { MdChevronLeft } from 'react-icons/md';
 import { useNavigate } from 'react-router-dom';
 import { getRouteTemplates, getRouteTemplateEdit } from '@/shared/config/route-config/routeConfig';
-import { getTemplateDetails } from '@/entities/template';
+import { useTemplateDetails } from '@/entities/template';
 import { Title } from '@/shared/ui/title';
 import { Button } from '@/shared/ui/button';
 import { getTemplateDetailsIsCanEdit } from '../../model/selectors/get-template-details-is-can-edit/getTemplateDetailsIsCanEdit';
@@ -16,7 +16,7 @@ import styles from './TemplateDetailsPageHeader.module.scss';
 export const TemplateDetailsPageHeader: FC<ITemplateDetailsPageHeaderProps> = (props) => {
   const { className, ...anotherProps } = props;
   const navigate = useNavigate();
-  const template = useSelector(getTemplateDetails);
+  const template = useTemplateDetails();
   const isCanEdit = useSelector(getTemplateDetailsIsCanEdit);
 
   const { t } = useTranslation();
