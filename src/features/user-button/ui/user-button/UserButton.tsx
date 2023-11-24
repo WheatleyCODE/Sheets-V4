@@ -21,7 +21,6 @@ export const UserButton: FC<IUserButtonProps> = memo((props) => {
 
   const isAdmin = useSelector(isUserRoleAdmin);
   const isDeveloper = useSelector(isUserRoleDeveloper);
-
   const { isShow, closePopup, togglePopup } = usePopups();
 
   const isUser = !!user;
