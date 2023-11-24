@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { Star } from './Star';
-import { themeDecorator } from 'config/storybook/theme-decorator/themeDecorator';
+import { themeDecorator } from '../../../../../../config/storybook/theme-decorator/themeDecorator';
 import { MdOutlineStarHalf } from 'react-icons/md';
 
 const meta = {
