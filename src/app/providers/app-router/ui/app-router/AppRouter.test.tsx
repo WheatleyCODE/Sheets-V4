@@ -76,7 +76,7 @@ describe('AppRouter', () => {
   test('Render templates page auth', async () => {
     renderComponent(<AppRouter />, {
       route: getRouteTemplates(),
-      initialState: { user: { user: { roles: [UserRoles.USER] } }, templatesPage: { ids: [] } },
+      initialState: { user: { user: { roles: [UserRoles.USER] } }, templatesPage: { ids: [], entities: {} } },
     });
 
     const page = await screen.findByTestId('templatesPage');
