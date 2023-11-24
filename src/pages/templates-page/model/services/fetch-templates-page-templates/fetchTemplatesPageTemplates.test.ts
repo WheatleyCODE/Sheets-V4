@@ -18,7 +18,7 @@ describe('fetchTemplatesPageNextTemplates', () => {
 
     thunk.api.get.mockReturnValue(Promise.resolve({ data: [] }));
 
-    const res = await thunk.callThunk();
+    const res = await thunk.callThunk({ isReplace: false });
 
     expect(thunk.api.get).toHaveBeenCalled();
     expect(thunk.dispatch).toHaveBeenCalledTimes(2);
@@ -33,7 +33,7 @@ describe('fetchTemplatesPageNextTemplates', () => {
 
     thunk.api.get.mockReturnValue(Promise.resolve({ status: 403 }));
 
-    const res = await thunk.callThunk();
+    const res = await thunk.callThunk({ isReplace: false });
 
     expect(thunk.api.get).toHaveBeenCalled();
     expect(thunk.dispatch).toHaveBeenCalledTimes(2);

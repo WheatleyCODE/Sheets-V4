@@ -1,16 +1,17 @@
 module.exports = {
   env: { browser: true, es2020: true, jest: true },
   extends: [
-    "eslint:recommended",
-    "plugin:@typescript-eslint/recommended",
-    "plugin:react-hooks/recommended",
-    "plugin:prettier/recommended",
-    "plugin:i18next/recommended",
-    "plugin:storybook/recommended"
+    'eslint:recommended',
+    'plugin:@typescript-eslint/recommended',
+    'plugin:react-hooks/recommended',
+    'plugin:prettier/recommended',
+    'plugin:i18next/recommended',
+    'plugin:storybook/recommended',
   ],
   parser: '@typescript-eslint/parser',
   parserOptions: {
-    project: 'tsconfig.json',
+    // project: 'tsconfig.json',
+    // eslint-disable-next-line no-undef
     tsconfigRootDir: __dirname,
     sourceType: 'module',
   },
@@ -43,11 +44,11 @@ module.exports = {
       },
     ],
     'wheatley-code/layer-imports': [
-        'error',
-        {
-          alias: '@',
-          ignoreImportPatterns: ['**/store-provider', '**/testing'],
-        },
+      'error',
+      {
+        alias: '@',
+        ignoreImportPatterns: ['**/store-provider', '**/testing'],
+      },
     ],
   },
 
@@ -56,7 +57,7 @@ module.exports = {
       files: ['src/**/*.stories.tsx', 'src/**/*.stories.tsx', 'src/**/*.test.tsx', 'src/**/*.test.ts', '.vscode/*'],
       rules: {
         'i18next/no-literal-string': 'off',
-      }
-    }
+      },
+    },
   ],
 };

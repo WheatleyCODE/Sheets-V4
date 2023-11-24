@@ -15,11 +15,17 @@
     "paths": {
       "@/*": ["src/*"],
     },
-    "isolatedModules": true
+    "isolatedModules": true,
+    
   },
   "ts-node": {
     "compilerOptions": {
     "module": "CommonJS"
     }
   },
+  "include": [
+    "./config/jest/setupTests.ts",
+    "./src/**/*.ts",
+    "./src/**/*.tsx"
+  ]
 }
