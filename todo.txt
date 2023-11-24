@@ -6,6 +6,7 @@
 [] Fix ../../../../user architecture
 [] Docs 97 и документация для shared
 [] Fix Portal tests
+[] Кейсы загрузки картинок
 
 // * Ideas
 [] Написать больше правил для ESLint 
