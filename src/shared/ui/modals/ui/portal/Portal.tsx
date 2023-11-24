@@ -9,13 +9,22 @@ export const Portal: FC<FCProps> = ({ children }) => {
 
   if (!modals) {
     modals = document.querySelector('#modals');
-    if (!modals) throw new Error('The modals element does not exist in the html document');
+
+    if (!modals && __PROJECT__ === 'app') {
+      throw new Error('The #modals element does not exist in the html document');
+    } else {
+      modals = document.createElement('div');
+    }
   }
 
   modals.classList.remove(...modals.classList);
   modals.classList.add('app');
   modals.dataset.testid = 'portal';
   modals.classList.add(theme);
+
+  if (__PROJECT__ !== 'app') {
+    document.body.appendChild(modals);
+  }
 
   return createPortal(children, modals);
 };

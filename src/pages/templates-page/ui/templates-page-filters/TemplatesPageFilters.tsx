@@ -44,7 +44,7 @@ export const TemplatesPageFilters: FC<ITemplatesPageFiltersProps> = (props) => {
 
   const fetchTemplatesOnChange = useCallback(() => {
     dispatch(templatesPageActions.setPage(1));
-    dispatch(fetchTemplatesPageTemplates({ isReplace: true }));
+    dispatch(fetchTemplatesPageTemplates());
   }, [dispatch]);
 
   const changeView = useCallback(
