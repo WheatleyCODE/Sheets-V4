@@ -1,13 +1,13 @@
 import { FC, memo, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import { AnimatePresence } from 'framer-motion';
 import { MdOutlineAdminPanelSettings, MdOutlineLogout, MdOutlinePersonPin, MdPerson } from 'react-icons/md';
 import { useTranslation } from 'react-i18next';
 import { isUserRoleAdmin, isUserRoleDeveloper } from '@/entities/user';
 import { Title } from '@/shared/ui/title';
 import { Button } from '@/shared/ui/button';
 import { DropdownMenu, DropdownMenuItem, MDropdown, dropdownAnimations, usePopups } from '@/shared/ui/popups';
-import { AnimatePresence } from 'framer-motion';
 import { Avatar } from '@/shared/ui/avatar';
 import { getRouteProfile, getRouteAdminPanel } from '@/shared/config/route-config/routeConfig';
 import { classNames } from '@/shared/lib/class-names';
