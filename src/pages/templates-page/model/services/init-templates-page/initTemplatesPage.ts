@@ -27,6 +27,8 @@ export const initTemplatesPage = createAsyncThunk<void, URLSearchParams, IThunkC
       thunkAPI.dispatch(templatesPageActions.initState());
       thunkAPI.dispatch(fetchTemplatesPageTemplates());
     } catch (e) {
+      console.log(e);
+
       return thunkAPI.rejectWithValue(i18n.t('Ошибка при инициализации страницы'));
     }
   },
