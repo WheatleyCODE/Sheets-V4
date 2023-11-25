@@ -49,7 +49,12 @@ export const Rating: FC<IRatingProps> = memo((props) => {
   }, [closeModal, currentRate, onAccept, textInput.value]);
 
   return (
-    <Card {...anotherProps} data-testid="rating" className={classNames(styles.rating, {}, [className])}>
+    <Card
+      {...anotherProps}
+      data-testid="rating"
+      data-testrate={currentRate}
+      className={classNames(styles.rating, {}, [className])}
+    >
       <VStack>
         {!isStarred && <Text textSize="small" className={styles.title} title={title} />}
         <StarRating isStarred={isStarred} initStar={rate} onSelectStar={onSelectStar} />
@@ -72,6 +77,7 @@ export const Rating: FC<IRatingProps> = memo((props) => {
                     Icon={MdOutlineMessage}
                     value={textInput.value}
                     type="text"
+                    data-testid="rating.feedback"
                     placeholder={t('Отзыв')}
                     onChange={textInput.onChange}
                     onBlur={textInput.onBlur}

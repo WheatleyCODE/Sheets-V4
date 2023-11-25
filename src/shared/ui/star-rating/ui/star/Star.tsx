@@ -1,6 +1,6 @@
 import { FC, memo, useCallback } from 'react';
 import { classNames } from '@/shared/lib/class-names';
-import { Icon } from '@/shared/ui/icon';
+import { Icon } from '../../../icon';
 import type { IStarProps } from './Star.interface';
 import styles from './Star.module.scss';
 
@@ -22,7 +22,7 @@ export const Star: FC<IStarProps> = memo((props) => {
   }, [calcCount, count, getChangeCurrent, selectStar]);
 
   return (
-    <div {...anotherProps} data-testid="star" className={classNames(styles.star, {}, [className])}>
+    <div data-testid="star" {...anotherProps} className={classNames(styles.star, {}, [className])}>
       <div
         onClick={selectStarLeft}
         onMouseEnter={!isSelect ? getChangeCurrent(calcCount(count, true)) : undefined}

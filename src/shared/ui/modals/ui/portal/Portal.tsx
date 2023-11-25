@@ -10,11 +10,13 @@ export const Portal: FC<FCProps> = ({ children }) => {
   if (!modals) {
     modals = document.querySelector('#modals');
 
-    if (!modals && __PROJECT__ === 'app') {
-      throw new Error('The #modals element does not exist in the html document');
-    } else {
-      modals = document.createElement('div');
-    }
+    // if (!modals && __PROJECT__ === 'app') {
+    //   throw new Error('The #modals element does not exist in the html document');
+    // } else {
+    //   modals = document.createElement('div');
+    // }
+
+    if (!modals) throw new Error('The #modals element does not exist in the html document');
   }
 
   modals.classList.remove(...modals.classList);

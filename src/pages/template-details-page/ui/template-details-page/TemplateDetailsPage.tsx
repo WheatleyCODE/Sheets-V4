@@ -1,7 +1,7 @@
 import { FC, memo } from 'react';
 import { TemplateDetailsPageHeader } from '../template-details-page-header/TemplateDetailsPageHeader';
-import { TemplateRecommends } from '@/widgets/template-recommends/ui/template-recommends/TemplateRecommends';
-import { TemplateComments } from '@/widgets/template-comments/ui/template-comments/TemplateComments';
+import { TemplateRecommends } from '@/widgets/template-recommends';
+import { TemplateComments } from '@/widgets/template-comments';
 import { Layout } from '@/widgets/layout';
 import { TemplateRating } from '@/widgets/template-rating';
 import { TemplateDetailsPageMain } from '../template-details-page-main/TemplateDetailsPageMain';

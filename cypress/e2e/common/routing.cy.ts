@@ -1,20 +1,18 @@
-import { selectByTestId } from '../../helpers/selectByTestId';
-
 describe('Роутинг', () => {
   describe('Пользователь не авторизован', () => {
     it('Переход на главную страницу', () => {
       cy.visit('/');
-      cy.get(selectByTestId('landingPage')).should('exist');
+      cy.getByTestId('landingPage').should('exist');
     });
 
     it('Переход открывает страницу профиля', () => {
       cy.visit('/profile/1');
-      cy.get(selectByTestId('homePage')).should('exist');
+      cy.getByTestId('homePage').should('exist');
     });
 
     it('Переход открывает несуществующий маршрут ', () => {
       cy.visit('/fasfasfasf');
-      cy.get(selectByTestId('notFoundPage')).should('exist');
+      cy.getByTestId('notFoundPage').should('exist');
     });
   });
 
@@ -25,12 +23,12 @@ describe('Роутинг', () => {
 
     it('Переход открывает страницу профиля', () => {
       cy.visit('/profile/1');
-      cy.get(selectByTestId('profilePage')).should('exist');
+      cy.getByTestId('profilePage').should('exist');
     });
 
     it('Переход открывает страницу со списком шаблонов', () => {
       cy.visit('/templates');
-      cy.get(selectByTestId('templatesPage')).should('exist');
+      cy.getByTestId('templatesPage').should('exist');
     });
   });
 });

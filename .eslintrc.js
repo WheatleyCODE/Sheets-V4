@@ -29,6 +29,7 @@ module.exports = {
     ],
     '@typescript-eslint/no-explicit-any': 'warn',
     '@typescript-eslint/ban-ts-comment': 'warn',
+    '@typescript-eslint/no-namespace': 0,
     'i18next/no-literal-string': 2,
     'no-prototype-builtins': 0,
     'react-hooks/rules-of-hooks': 'error',

@@ -17,6 +17,7 @@ export const getStars: GetStarts = (current, getChangeCurrent, isSelect, selectS
         getChangeCurrent={getChangeCurrent}
         selectStar={selectStar}
         isSelect={isSelect}
+        data-testid={`star.${i + 1}`}
       />
     );
   }
@@ -30,6 +31,7 @@ export const getStars: GetStarts = (current, getChangeCurrent, isSelect, selectS
         getChangeCurrent={getChangeCurrent}
         selectStar={selectStar}
         isSelect={isSelect}
+        data-testid={`star.${resStars.length + 1}`}
       />,
     );
   }
@@ -43,6 +45,7 @@ export const getStars: GetStarts = (current, getChangeCurrent, isSelect, selectS
         getChangeCurrent={getChangeCurrent}
         selectStar={selectStar}
         isSelect={isSelect}
+        data-testid={`star.${i + 1}`}
       />,
     );
   }

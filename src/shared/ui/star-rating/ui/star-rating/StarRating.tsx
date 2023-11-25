@@ -1,6 +1,6 @@
 import { FC, memo, useCallback, useState } from 'react';
 import { classNames } from '@/shared/lib/class-names';
-import { Text } from '@/shared/ui/text';
+import { Text } from '../../../text';
 import { getStars } from './StarRating.helpers';
 import type { IStarRatingProps } from './StarRating.interface';
 import styles from './StarRating.module.scss';
