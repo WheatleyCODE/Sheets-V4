@@ -17,5 +17,10 @@ describe('Страница шаблонов', () => {
     it('Отображается минимум 3 шаблона', () => {
       cy.getByTestId('templateListItem').should('have.length.greaterThan', 3);
     });
+
+    it('Отображается 1 шаблона, на фикстурах', () => {
+      cy.intercept('GET', '**/templates?*', { fixture: 'templates.json' });
+      cy.getByTestId('templateListItem').should('have.length', 1);
+    });
   });
 });
