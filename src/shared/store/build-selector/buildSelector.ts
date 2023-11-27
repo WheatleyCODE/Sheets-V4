@@ -1,11 +1,13 @@
 import { useSelector } from 'react-redux';
-import type { Result, Selector } from './buildSelector.interface';
+import { IStateSchema } from '@/app/providers/store-provider';
+import type { Hook, Result, Selector } from './buildSelector.interface';
 
 // ! Сделать множество селекторов через create selector
+// ! Сделать hook useDispatchAction который => useCbk fn
 
-export function buildSelector<T>(selector: Selector<T>): Result<T> {
-  const useBuildSelectorHook = () => {
-    return useSelector(selector);
+export function buildSelector<T, Args extends any[]>(selector: Selector<T, Args>): Result<T, Args> {
+  const useBuildSelectorHook: Hook<T, Args> = (...args) => {
+    return useSelector<IStateSchema, T>((state) => selector(state, ...args));
   };
 
   return [useBuildSelectorHook, selector];
