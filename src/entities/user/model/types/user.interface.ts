@@ -1,3 +1,4 @@
+import { IFeatureFlags } from '@/shared/types';
 import { UserRoles } from '../consts/user.consts';
 
 export interface IUser {
@@ -5,6 +6,7 @@ export interface IUser {
   email: string;
   roles?: UserRoles[];
   username?: string;
+  features?: IFeatureFlags;
   avatar?: string;
 }
 
