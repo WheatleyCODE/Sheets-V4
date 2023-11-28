@@ -27,6 +27,7 @@
     "test:e2e": "cypress open",
     "start:dev:server": "node ./json-server/index.js",
     "prepare": "husky install",
+    "remove-features": "npx ts-node ./scripts/ts-morph/remove-features.ts",
     "postinstall": "node ./scripts/common/clear-cache.js"
   },
   "keywords": [],

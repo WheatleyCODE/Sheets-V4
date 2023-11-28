@@ -4,7 +4,7 @@ import { TemplateRecommends } from '@/widgets/template-recommends';
 import { TemplateComments } from '@/widgets/template-comments';
 import { Layout } from '@/widgets/layout';
 import { TemplateRating } from '@/widgets/template-rating';
-import { toggleFeatures } from '@/shared/lib/features';
+import { ToggleFeatures, toggleFeatures } from '@/shared/lib/features';
 import { TemplateDetailsPageMain } from '../template-details-page-main/TemplateDetailsPageMain';
 import { classNames } from '@/shared/lib/class-names';
 import type { ITemplateDetailsPageProps } from './TemplateDetailsPage.interface';
@@ -16,7 +16,7 @@ const TemplateDetailsPage: FC<ITemplateDetailsPageProps> = memo((props) => {
   // ? Можно написать Eslint rule для контроля шаблона использования
 
   // * Api template for use feature script
-  // * See ./scripts/ts-morph/remove-feature.ts
+  // * See ./scripts/ts-morph/remove-features.ts
   const rating = toggleFeatures({
     name: 'isTemplateRating',
     on: () => <TemplateRating />,
@@ -33,6 +33,11 @@ const TemplateDetailsPage: FC<ITemplateDetailsPageProps> = memo((props) => {
         <TemplateDetailsPageHeader />
         <TemplateDetailsPageMain />
         {rating}
+
+        {/* Api template for use feature script */}
+        {/* See ./scripts/ts-morph/remove-features.ts */}
+        <ToggleFeatures name="isTemplateRating" on={<div>{'on'}</div>} off={<div>{'off'}</div>} />
+
         <TemplateRecommends />
         <TemplateComments />
       </section>

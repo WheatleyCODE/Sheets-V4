@@ -8,6 +8,7 @@
 [] Docs 97 и документация для shared
 [] Fix Portal tests
 [] Кейсы загрузки картинок
+[] Написать тесты на toggleFeatures и ToggleFeatures
 
 // * Ideas
 [] Написать больше правил для ESLint 
