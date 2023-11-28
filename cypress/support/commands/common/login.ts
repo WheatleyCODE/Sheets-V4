@@ -5,7 +5,7 @@ import { IUser } from '../../../../src/entities/user';
 const ls = KVFactory(LS_DEFAULT_NAMESPACE);
 
 export const login = (email: string = 'ya@mail.ru', password: string = '12345678') => {
-  cy.request({
+  cy.request<IUser>({
     method: 'POST',
     url: 'http://localhost:8000/login',
     body: {
@@ -13,7 +13,7 @@ export const login = (email: string = 'ya@mail.ru', password: string = '12345678
       password,
     },
   }).then(({ body }) => {
-    ls.set(LS_AUTH_KEY, body);
+    ls.set(LS_AUTH_KEY, body.id);
     return body;
   });
 };

@@ -9,3 +9,10 @@ export {
   isUserRoleUser,
   isUserRoleDeveloper,
 } from './model/selectors/user-role-selector/userRoleSelector';
+export {
+  useGetClientSettings,
+  useGetClientSettingsByKey,
+} from './model/selectors/get-user-client-settings/getUserClientSettings';
+export { getUserError } from './model/selectors/get-user-error/getUserError';
+export { getUserIsLoading } from './model/selectors/get-user-is-loading/getUserIsLoading';
+export { fetchUser } from './model/services/fetchUser';

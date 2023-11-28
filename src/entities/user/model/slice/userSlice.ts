@@ -1,11 +1,8 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { KVFactory } from '@/shared/lib/kv-storage';
-import { LS_AUTH_KEY, LS_DEFAULT_NAMESPACE } from '@/shared/consts';
 import { initialUserState } from '../consts/user.consts';
 import { setFeatureFlags } from '@/shared/lib/features';
 import type { IUser } from '../types/user.interface';
-
-const ls = KVFactory(LS_DEFAULT_NAMESPACE);
+import { fetchUser } from '../services/fetchUser';
 
 export const userSlice = createSlice({
   name: 'user',
@@ -20,23 +17,32 @@ export const userSlice = createSlice({
     },
 
     initAuthData: (state) => {
-      // * Sync
-      ls.get<IUser>(LS_AUTH_KEY).then((user) => {
-        if (user) {
-          state.user = user;
-
-          if (user.features) {
-            setFeatureFlags(user.features);
-          }
-        }
-      });
-
       state._inited = true;
     },
 
     logout(state) {
       state.user = undefined;
     },
+  },
+
+  extraReducers(builder) {
+    builder.addCase(fetchUser.pending, (state) => {
+      state.error = null;
+      state.isLoading = true;
+    });
+    builder.addCase(fetchUser.fulfilled, (state, { payload }) => {
+      state.isLoading = false;
+      state.user = payload;
+      state._inited = true;
+
+      if (payload.features) {
+        setFeatureFlags(payload.features);
+      }
+    });
+    builder.addCase(fetchUser.rejected, (state, { payload }) => {
+      state.isLoading = false;
+      state.error = payload || null;
+    });
   },
 });
 

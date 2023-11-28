@@ -23,7 +23,7 @@ import { ModalsHash } from '@/widgets/layout';
 const ls = KVFactory(LS_DEFAULT_NAMESPACE);
 
 export const Navbar: FC<NavbarProps> = memo((props) => {
-  const { className, ...anotherProps } = props;
+  const { className } = props;
   const dispatch = useTypedDispatch();
   const navigate = useNavigate();
   const user = useSelector(getUser);
@@ -33,9 +33,12 @@ export const Navbar: FC<NavbarProps> = memo((props) => {
   }, [navigate]);
 
   const logout = useCallback(async () => {
-    await ls.remove(LS_AUTH_KEY);
+    // * Sync
+    ls.remove(LS_AUTH_KEY);
     dispatch(userActions.logout());
   }, [dispatch]);
+
+  const isUser = !!user;
 
   return (
     <header data-testid="navbar" className={classNames(styles.navbar, {}, [className])}>
@@ -45,9 +48,9 @@ export const Navbar: FC<NavbarProps> = memo((props) => {
       </HStack>
 
       <HStack gapMultiply="2">
-        <NotificationButton />
+        {isUser && <NotificationButton />}
         <LanguageSwitcher />
-        <ThemeSwitcher />
+        {isUser && <ThemeSwitcher user={user} />}
         <UserButton openAuth={openAuth} logout={logout} user={user} />
       </HStack>
     </header>

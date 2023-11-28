@@ -17,7 +17,7 @@ export const loginByEmail = createAsyncThunk<IUser, ILoginByEmailProps, IThunkCo
 
       if (!data) throw new Error();
 
-      ls.set(LS_AUTH_KEY, data);
+      ls.set(LS_AUTH_KEY, data.id);
 
       thunkAPI.dispatch(userActions.setUser(data));
 

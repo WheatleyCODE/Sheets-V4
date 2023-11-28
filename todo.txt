@@ -2,6 +2,7 @@
 [] Завершить шаблоны
 [] RegisterForm? тесты?
 
+[] Fix user init fetches and user data
 [] Fix storybook
 [] Fix ../../../../user architecture
 [] Docs 97 и документация для shared
@@ -20,6 +21,8 @@
  
 // * Features
 [] Дописать KVStorage + тесты
+[] DEBAG SyncPromise
+[] Хук useOnEventRefIter или как то так (Навешивание итератора on на ref)
 [] Дописать KVStorageEngines (SS, IDBS) + тесты
 [] Написать обертку для IDBS и часть функционала добавить в KVStorageEngines IDBS + тесты
 [] Допилить paths + тесты + поправить все пути в приложении

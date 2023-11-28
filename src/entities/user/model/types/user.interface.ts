@@ -1,4 +1,4 @@
-import { IFeatureFlags } from '@/shared/types';
+import { IClientSettings, IFeatureFlags } from '@/shared/types';
 import { UserRoles } from '../consts/user.consts';
 
 export interface IUser {
@@ -7,10 +7,11 @@ export interface IUser {
   roles?: UserRoles[];
   username?: string;
   features?: IFeatureFlags;
+  clientSettings?: IClientSettings;
   avatar?: string;
 }
 
-export interface IUserSchema {
+export interface IUserSchema extends IReduxSchema {
   user?: IUser;
   _inited: boolean;
 }

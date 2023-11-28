@@ -1,17 +1,24 @@
-import { FC, useLayoutEffect, useMemo, useState } from 'react';
-import { KVFactory } from '@/shared/lib/kv-storage/kv-storage/kvStorage';
-import { LS_DEFAULT_NAMESPACE, LS_THEME_KEY } from '@/shared/consts/local-storage/localStorage';
+import { FC, useEffect, useMemo, useState } from 'react';
+import { useSelector } from 'react-redux';
+import { getUser, useGetClientSettingsByKey } from '@/entities/user';
 import { Theme, ThemeContext } from '@/shared/lib/contexts';
 import type { IThemeProviderProps } from './ThemeProvider.interface';
 
-const ls = KVFactory(LS_DEFAULT_NAMESPACE);
-
 export const ThemeProvider: FC<IThemeProviderProps> = ({ children, initTheme = 'light' }) => {
   const [theme, setTheme] = useState<Theme>(initTheme);
+  const user = useSelector(getUser);
+  const themeFromClientSettings = useGetClientSettingsByKey('[[SheetsV4-theme]]');
 
-  useLayoutEffect(() => {
-    ls.get<Theme>(LS_THEME_KEY).then((value) => value && setTheme(value));
-  }, []);
+  useEffect(() => {
+    if (themeFromClientSettings) {
+      setTheme(themeFromClientSettings);
+      return;
+    }
+
+    if (!user) {
+      setTheme('light');
+    }
+  }, [user, themeFromClientSettings]);
 
   const defaultProps = useMemo(() => ({ theme, setTheme }), [theme]);
 

@@ -17,11 +17,20 @@ export class KVStorage {
   }
 
   get<T extends SerializableValue>(key: string): SyncOrAsyncPromise<Nullable<T>> {
-    return this.engine.get(this.#getKey(key)).then((string) => JSON.parse(string ?? 'null'));
+    return this.engine.get(this.#getKey(key)).then((string) => {
+      // ! FIX DEBUG SyncPromise
+      try {
+        return JSON.parse(string ?? 'null');
+      } catch (error) {
+        return string;
+      }
+    });
   }
 
   set(key: string, value: SerializableValue): SyncOrAsyncPromise<Nullable<void>> {
-    return this.engine.set(this.#getKey(key), JSON.stringify(value));
+    const newValue = typeof value === 'string' ? value : JSON.stringify(value);
+
+    return this.engine.set(this.#getKey(key), newValue);
   }
 
   remove(key: string): SyncOrAsyncPromise<Nullable<void>> {

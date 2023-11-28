@@ -2,18 +2,17 @@ import { useCallback, useContext } from 'react';
 import { ThemeContext } from '../../../../shared/lib/contexts/theme-context/ThemeContext';
 import { KVFactory } from '../../kv-storage';
 import { LS_DEFAULT_NAMESPACE, LS_THEME_KEY } from '@/shared/consts/local-storage/localStorage';
-import type { IUseThemeResult } from './useTheme.interface';
-import type { Theme } from '../../../../shared/lib/contexts/theme-context/ThemeContext.interface';
-
-const ls = KVFactory(LS_DEFAULT_NAMESPACE);
+import type { IUseThemeResult, SetTheme } from './useTheme.interface';
 
 export const useTheme = (): IUseThemeResult => {
   const { theme, setTheme: setThemeState } = useContext(ThemeContext);
 
-  const setTheme = useCallback(
-    (newTheme: Theme) => {
+  const setTheme: SetTheme = useCallback(
+    (newTheme, engine) => {
+      const kvStorage = KVFactory(LS_DEFAULT_NAMESPACE, engine);
+
       setThemeState(newTheme);
-      ls.set(LS_THEME_KEY, newTheme);
+      return kvStorage.set(LS_THEME_KEY, newTheme);
     },
     [setThemeState],
   );

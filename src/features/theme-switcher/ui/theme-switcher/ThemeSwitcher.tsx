@@ -1,5 +1,6 @@
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useSelector } from 'react-redux';
 import { AnimatePresence } from 'framer-motion';
 import { MdColorLens } from 'react-icons/md';
 import { themeItems } from '../../model/consts/themeItems';
@@ -12,8 +13,10 @@ import {
   dropdownAnimations,
 } from '@/shared/ui/popups';
 import { ANIMATION_DURATION_MS } from '@/shared/consts';
+import { getUser } from '@/entities/user';
 import { sleep } from '@/shared/lib/promise';
 import { intoIter } from '@/shared/lib/iterators';
+import { ClientSettingsEngine } from '@/shared/lib/kv-storage';
 import { Title } from '@/shared/ui/title';
 import { Button } from '@/shared/ui/button';
 import { useTheme } from '@/shared/lib/hooks';
@@ -24,7 +27,7 @@ import type { IThemeItems, IThemeSubItems } from '../../model/types/themeSwitche
 import styles from './ThemeSwitcher.module.scss';
 
 export const ThemeSwitcher: FC<IThemeSwitcherProps> = (props) => {
-  const { className, ...anotherProps } = props;
+  const { className, user, ...anotherProps } = props;
   const { isShow, closePopup, togglePopup } = usePopups();
   const { overflowStyles, close: closeDropdownHandler, onMouseEnter } = useDropdownSubMenuAnimationFixer(closePopup);
   const { setTheme } = useTheme();
@@ -32,8 +35,12 @@ export const ThemeSwitcher: FC<IThemeSwitcherProps> = (props) => {
 
   const getSetTheme = (theme: Theme) => async () => {
     closeDropdownHandler();
-    await sleep(ANIMATION_DURATION_MS);
-    setTheme(theme);
+
+    if (user?.id) {
+      // * KVStorageEngine определяет куда сохранять тему в LocalStorage | SessionStorage | Server | IDBS
+      setTheme(theme, new ClientSettingsEngine(user.id));
+      await sleep(ANIMATION_DURATION_MS);
+    }
   };
 
   const items = intoIter<IThemeItems>(themeItems)
