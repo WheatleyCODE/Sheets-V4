@@ -1,4 +1,4 @@
-import { buildSelector } from '@/shared/store';
+import { buildSelector } from '@/shared/lib/store';
 import { IClientSettings } from '@/shared/types';
 
 export const [useGetClientSettings, getClientSettings] = buildSelector((state) => state.user?.user?.clientSettings);

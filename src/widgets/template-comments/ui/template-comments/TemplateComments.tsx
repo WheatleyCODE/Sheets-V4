@@ -9,7 +9,7 @@ import { getTemplateCommentsError } from '../../model/selectors/get-template-com
 import { getTemplateCommentsIsLoading } from '../../model/selectors/get-template-comments-is-loading/getTemplateCommentsIsLoading';
 import { fetchTemplateAddComment } from '../../model/services/fetch-template-comments-add-comment/fetchTemplateAddComment';
 import { AddCommentForm } from '@/features/add-comment-form';
-import { getUser } from '@/entities/user';
+import { useUser } from '@/entities/user';
 import { CommentList } from '@/entities/comment';
 import { useDynamicModule, useTypedDispatch, ReducersList, useInitialEffect } from '@/shared/lib/hooks';
 import { RWidth } from '@/shared/ui/containers';
@@ -28,7 +28,7 @@ export const TemplateComments: FC<ITemplateCommentsProps> = (props) => {
   const comments = useSelector(getTemplateComments.selectAll);
   const commentsError = useSelector(getTemplateCommentsError);
   const commentsIsLoading = useSelector(getTemplateCommentsIsLoading);
-  const user = useSelector(getUser);
+  const user = useUser();
   const template = useTemplateDetails();
 
   const { t } = useTranslation();

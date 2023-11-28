@@ -1,7 +1,7 @@
 import { FC, useCallback } from 'react';
 import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { getUser } from '@/entities/user';
+import { useUser } from '@/entities/user';
 import {
   IProfile,
   ProfileCard,
@@ -27,7 +27,7 @@ export const EditableProfile: FC<IEditableProfileProps> = (props) => {
   const { id } = useParams<{ id: string }>();
   const dispatch = useTypedDispatch();
   const profile = useSelector(getProfile);
-  const user = useSelector(getUser);
+  const user = useUser();
   const isLoading = useSelector(getProfileIsLoading);
   const error = useSelector(getProfileError);
   const isReadonly = useSelector(getProfileIsReadonly);

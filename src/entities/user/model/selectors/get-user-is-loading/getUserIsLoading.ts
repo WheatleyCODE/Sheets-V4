@@ -1,4 +1,3 @@
-import { IStateSchema } from '@/app/providers/store-provider';
+import { buildSelector, getDefaultSelectorBy } from '@/shared/lib/store';
 
-// ! FIX сделать генератор дефолтных селекторов
-export const getUserIsLoading = (state: IStateSchema) => state?.user?.isLoading || false;
+export const [useUserIsLoading, getUserIsLoading] = buildSelector(getDefaultSelectorBy('user', 'isLoading', false));

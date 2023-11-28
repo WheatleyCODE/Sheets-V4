@@ -1,6 +1,5 @@
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useSelector } from 'react-redux';
 import { AnimatePresence } from 'framer-motion';
 import { MdColorLens } from 'react-icons/md';
 import { themeItems } from '../../model/consts/themeItems';
@@ -13,7 +12,6 @@ import {
   dropdownAnimations,
 } from '@/shared/ui/popups';
 import { ANIMATION_DURATION_MS } from '@/shared/consts';
-import { getUser } from '@/entities/user';
 import { sleep } from '@/shared/lib/promise';
 import { intoIter } from '@/shared/lib/iterators';
 import { ClientSettingsEngine } from '@/shared/lib/kv-storage';

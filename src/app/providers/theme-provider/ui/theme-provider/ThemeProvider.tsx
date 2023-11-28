@@ -1,12 +1,11 @@
 import { FC, useEffect, useMemo, useState } from 'react';
-import { useSelector } from 'react-redux';
-import { getUser, useGetClientSettingsByKey } from '@/entities/user';
+import { useUser, useGetClientSettingsByKey } from '@/entities/user';
 import { Theme, ThemeContext } from '@/shared/lib/contexts';
 import type { IThemeProviderProps } from './ThemeProvider.interface';
 
 export const ThemeProvider: FC<IThemeProviderProps> = ({ children, initTheme = 'light' }) => {
   const [theme, setTheme] = useState<Theme>(initTheme);
-  const user = useSelector(getUser);
+  const user = useUser();
   const themeFromClientSettings = useGetClientSettingsByKey('[[SheetsV4-theme]]');
 
   useEffect(() => {

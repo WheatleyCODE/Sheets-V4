@@ -1,10 +1,9 @@
 import { FC, memo, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
 import { AnimatePresence } from 'framer-motion';
 import { MdOutlineAdminPanelSettings, MdOutlineLogout, MdOutlinePersonPin, MdPerson } from 'react-icons/md';
 import { useTranslation } from 'react-i18next';
-import { isUserRoleAdmin, isUserRoleDeveloper } from '@/entities/user';
+import { useUserRoleIsAdmin, useUserRoleIsDeveloper } from '@/entities/user';
 import { Title } from '@/shared/ui/title';
 import { Button } from '@/shared/ui/button';
 import { DropdownMenu, DropdownMenuItem, MDropdown, dropdownAnimations, usePopups } from '@/shared/ui/popups';
@@ -19,8 +18,8 @@ export const UserButton: FC<IUserButtonProps> = memo((props) => {
   const { t } = useTranslation();
   const navigate = useNavigate();
 
-  const isAdmin = useSelector(isUserRoleAdmin);
-  const isDeveloper = useSelector(isUserRoleDeveloper);
+  const isAdmin = useUserRoleIsAdmin();
+  const isDeveloper = useUserRoleIsDeveloper();
   const { isShow, closePopup, togglePopup } = usePopups();
 
   const isUser = !!user;

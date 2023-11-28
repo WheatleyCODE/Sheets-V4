@@ -10,7 +10,7 @@ export const rtkApi = createApi({
     baseUrl: 'http://localhost:8000',
     prepareHeaders: (headers) => {
       // * Sync
-      ls.get(LS_AUTH_KEY).then((value) => headers.set('Authorization', JSON.stringify(value)));
+      ls.get<string>(LS_AUTH_KEY).then((value) => headers.set('Authorization', `${value}`));
       return headers;
     },
   }),

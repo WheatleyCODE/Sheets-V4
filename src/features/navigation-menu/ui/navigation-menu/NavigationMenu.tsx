@@ -6,7 +6,7 @@ import { MdOutlineMenu } from 'react-icons/md';
 import { NavigationMenuItem } from '../navigation-menu-item/NavigationMenuItem';
 import { getNavigationItems } from '../../model/selectors/get-navigation-items/getNavigationItems';
 import { Logo } from '@/entities/logo';
-import { getUser } from '@/entities/user';
+import { useUser } from '@/entities/user';
 import { Button } from '@/shared/ui/button';
 import { Portal, Backdrop, Drawer, DrawerOpenStyles, useModals } from '@/shared/ui/modals';
 import { HStack, VStack } from '@/shared/ui/containers';
@@ -19,7 +19,7 @@ import styles from './NavigationMenu.module.scss';
 
 export const NavigationMenu: FC<INavigationMenuProps> = memo((props) => {
   const { className, ...anotherProps } = props;
-  const isAuth = !!useSelector(getUser);
+  const isAuth = !!useUser();
   const navigationMenu = useSelector(getNavigationItems);
   const { t } = useTranslation();
   const { isShow, openModal, closeModal } = useModals();

@@ -9,7 +9,7 @@ describe('Client settings', () => {
         user: { user: { clientSettings: { '[[SheetsV4-theme]]': 'dark' } } },
       };
 
-      expect(getClientSettings(state as IStateSchema)).toEqual({ theme: 'dark' });
+      expect(getClientSettings(state as IStateSchema)).toEqual({ '[[SheetsV4-theme]]': 'dark' });
     });
 
     test('Return user state clientSettings prop, empty', () => {

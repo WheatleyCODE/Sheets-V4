@@ -1,3 +1,3 @@
-import { IStateSchema } from '@/app/providers/store-provider';
+import { buildSelector } from '@/shared/lib/store';
 
-export const getUser = (state: IStateSchema) => state?.user?.user;
+export const [useUser, getUser] = buildSelector((state) => state?.user?.user);
