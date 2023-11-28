@@ -22,15 +22,13 @@ export function buildSelector<T, Args extends any[]>(...selectors: any[]) {
     return [useBuildSelectorHook, selectors[0]];
   }
 
-  if (selectors.length > 1) {
-    // ! FIX
-    // @ts-ignore
-    const selector = createSelector(...selectors);
+  // ! FIX
+  // @ts-ignore
+  const selector = createSelector(...selectors);
 
-    const useBuildSelectorHook: Hook2<T> = () => {
-      return useSelector<IStateSchema, any>(selector);
-    };
+  const useBuildSelectorHook: Hook2<T> = () => {
+    return useSelector<IStateSchema, any>(selector);
+  };
 
-    return [useBuildSelectorHook, selector];
-  }
+  return [useBuildSelectorHook, selector];
 }

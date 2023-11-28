@@ -1,3 +1,5 @@
-import { IStateSchema } from '@/app/providers/store-provider';
+import { buildSelector } from '@/shared/lib/store';
 
-export const getProfileLastname = (state: IStateSchema) => state?.profile?.profile?.lastname || '';
+export const [useProfileLastname, getProfileLastname] = buildSelector(
+  (state) => state?.profile?.profile?.lastname || '',
+);

@@ -1,15 +1,14 @@
 import { FC, useCallback } from 'react';
 import { useParams } from 'react-router-dom';
-import { useSelector } from 'react-redux';
 import { useUser } from '@/entities/user';
 import {
   IProfile,
   ProfileCard,
   fetchProfile,
-  getProfile,
-  getProfileError,
-  getProfileIsLoading,
-  getProfileIsReadonly,
+  useProfile,
+  useProfileError,
+  useProfileIsLoading,
+  useProfileIsReadonly,
   profileActions,
   profileReducer,
   updateProfile,
@@ -26,11 +25,11 @@ export const EditableProfile: FC<IEditableProfileProps> = (props) => {
   useDynamicModule(reducers);
   const { id } = useParams<{ id: string }>();
   const dispatch = useTypedDispatch();
-  const profile = useSelector(getProfile);
+  const profile = useProfile();
   const user = useUser();
-  const isLoading = useSelector(getProfileIsLoading);
-  const error = useSelector(getProfileError);
-  const isReadonly = useSelector(getProfileIsReadonly);
+  const isLoading = useProfileIsLoading();
+  const error = useProfileError();
+  const isReadonly = useProfileIsReadonly();
 
   useInitialEffect(() => {
     if (!id) return;

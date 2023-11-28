@@ -1,3 +1,5 @@
-import { IStateSchema } from '@/app/providers/store-provider';
+import { buildSelector } from '@/shared/lib/store';
 
-export const getProfileIsReadonly = (state: IStateSchema) => state?.profile?.isReadonly || false;
+export const [useProfileIsReadonly, getProfileIsReadonly] = buildSelector(
+  (state) => state?.profile?.isReadonly || false,
+);

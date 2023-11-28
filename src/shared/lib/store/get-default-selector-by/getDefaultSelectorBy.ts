@@ -22,7 +22,12 @@ export function getDefaultSelectorBy<T extends DefaultValue>(
 ): Selector<T> {
   return (state: any) => {
     try {
-      return state?.[schemaKey][stateKey] || value;
+      if (!state?.[schemaKey]) {
+        // * Async reducer
+        return value;
+      }
+
+      return state?.[schemaKey][stateKey];
     } catch (e) {
       throw new Error(`${schemaKey} Используемый redux state не наследуется от IReduxSchema`);
     }
