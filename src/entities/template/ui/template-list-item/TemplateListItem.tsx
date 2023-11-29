@@ -19,6 +19,7 @@ import { getRouteTemplateDetails } from '@/shared/config/route-config/routeConfi
 import { classNames } from '@/shared/lib/class-names';
 import type { ITemplateListItemProps } from './TemplateListItem.interface';
 import styles from './TemplateListItem.module.scss';
+import { Skeleton } from '@/shared/ui/skeleton';
 
 export const TemplateListItem: FC<ITemplateListItemProps> = (props) => {
   const { className, isOpenInNewWindow = false, template, view, ...anotherProps } = props;
@@ -47,7 +48,12 @@ export const TemplateListItem: FC<ITemplateListItemProps> = (props) => {
     >
       <Card className={styles.card}>
         <HStack justify="start" className={styles.image_container}>
-          <Image className={styles.image} src={image} />
+          <Image
+            fallback={<Skeleton className={styles.image} />}
+            errorFallback={<Skeleton className={styles.image} />}
+            className={styles.image}
+            src={image}
+          />
         </HStack>
 
         <HStack justify="start" className={styles.info}>

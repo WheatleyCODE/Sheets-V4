@@ -3,6 +3,7 @@ import { Image } from '../../../image';
 import { classNames } from '@/shared/lib/class-names';
 import type { IAvatarProps } from './Avatar.interface';
 import styles from './Avatar.module.scss';
+import { Skeleton } from '../../../skeleton';
 
 export const Avatar: FC<IAvatarProps> = (props) => {
   const { className, src, style, width, alt, height, ...anotherProps } = props;
@@ -15,6 +16,8 @@ export const Avatar: FC<IAvatarProps> = (props) => {
       data-testid="avatar"
       alt={alt}
       style={memoStyle}
+      fallback={<Skeleton className={styles.avatar} />}
+      errorFallback={<Skeleton className={styles.avatar} />}
       src={src}
       className={classNames(styles.avatar, {}, [className])}
     />

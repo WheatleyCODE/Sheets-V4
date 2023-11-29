@@ -5,6 +5,8 @@
 
 .image {
   max-width: 100%;
+  min-height: 200px;
+  border-radius: var(--radius);
 }
 
 .title_row {

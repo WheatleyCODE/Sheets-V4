@@ -79,7 +79,12 @@ export const TemplateDetails: FC<ITemplateDetailsProps> = (props) => {
       className={classNames(styles.template_details, {}, [className])}
     >
       <HStack justify="start" className={classNames(styles.head_image, {}, [styles.head_image_skeleton])}>
-        <Image className={styles.image} src={image} />
+        <Image
+          fallback={<Skeleton className={styles.image} />}
+          errorFallback={<Skeleton className={styles.image} />}
+          className={styles.image}
+          src={image}
+        />
       </HStack>
 
       <HStack justify="start" className={classNames(styles.title, {}, [styles.title_skeleton])}>

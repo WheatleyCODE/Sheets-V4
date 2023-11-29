@@ -5,6 +5,7 @@ import { HStack, VStack } from '@/shared/ui/containers';
 import { classNames } from '@/shared/lib/class-names';
 import type { ITemplateImageBlockProps } from './TemplateImageBlock.interface';
 import styles from './TemplateImageBlock.module.scss';
+import { Skeleton } from '@/shared/ui/skeleton';
 
 export const TemplateImageBlock: FC<ITemplateImageBlockProps> = memo((props) => {
   const { className, block, ...anotherProps } = props;
@@ -17,7 +18,13 @@ export const TemplateImageBlock: FC<ITemplateImageBlockProps> = memo((props) => 
       data-testid="templateImageBlock"
       className={classNames(styles.template_image_block, {}, [className])}
     >
-      <Image alt={title} className={styles.image} src={src} />
+      <Image
+        errorFallback={<Skeleton className={styles.image} />}
+        fallback={<Skeleton className={styles.image} />}
+        alt={title}
+        className={styles.image}
+        src={src}
+      />
 
       {!!title && (
         <HStack justify="start" className={styles.title_row}>
