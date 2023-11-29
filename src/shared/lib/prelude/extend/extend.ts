@@ -1,4 +1,3 @@
-// eslint-disable-next-line @typescript-eslint/ban-types
 export const extend = (obj: Function | object, name: string, method: Function | PropertyDescriptor): void => {
   const descriptor: PropertyDescriptor = {
     configurable: true,

@@ -7,8 +7,6 @@
 [] Fix ../../../../user architecture
 [] Docs 97 и документация для shared
 [] Fix Portal tests
-[] Кейсы загрузки картинок
-[] Написать тесты на toggleFeatures и ToggleFeatures
 
 // * Ideas
 [] Написать больше правил для ESLint 
@@ -22,7 +20,6 @@
  
 // * Features
 [] Дописать KVStorage + тесты
-[] DEBAG SyncPromise
 [] Хук useOnEventRefIter или как то так (Навешивание итератора on на ref)
 [] Дописать KVStorageEngines (SS, IDBS) + тесты
 [] Написать обертку для IDBS и часть функционала добавить в KVStorageEngines IDBS + тесты

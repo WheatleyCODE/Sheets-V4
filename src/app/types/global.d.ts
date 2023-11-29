@@ -26,12 +26,17 @@ declare interface IReduxSchema {
 declare const __IS_DEV__: boolean;
 declare const __PROJECT__: 'storybook' | 'app' | 'jest';
 
+declare interface AnyOneArgFunction<ARG = any, R = any> extends Function {
+  (arg: ARG): R;
+}
+
 type Primitive = string | symbol | number | bigint | boolean | undefined | null;
 
-// eslint-disable-next-line @typescript-eslint/ban-types
 interface AnyFunction<ARGS extends any[] = any[], R = any> extends Function {
   (...args: ARGS): R;
 }
+
+type CanPromiseLike<T> = T | PromiseLike<T>;
 
 interface ObjectConstructor {
   isAsyncIterable(value: any): value is AsyncIterable<unknown>;

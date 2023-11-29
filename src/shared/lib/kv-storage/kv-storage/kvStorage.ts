@@ -17,14 +17,7 @@ export class KVStorage {
   }
 
   get<T extends SerializableValue>(key: string): SyncOrAsyncPromise<Nullable<T>> {
-    return this.engine.get(this.#getKey(key)).then((string) => {
-      // ! FIX DEBUG SyncPromise
-      try {
-        return JSON.parse(string ?? 'null');
-      } catch (error) {
-        return string;
-      }
-    });
+    return this.engine.get(this.#getKey(key)).then((string) => JSON.parse(string ?? 'null'));
   }
 
   set(key: string, value: SerializableValue): SyncOrAsyncPromise<Nullable<void>> {
