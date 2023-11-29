@@ -6,7 +6,7 @@ import type { KVStorageEngine } from '../kv-storage/kvStorage.interface';
 // eslint-disable-next-line wheatley-code/layer-imports
 import { IUser } from '@/entities/user';
 
-export class ClientSettingsEngine implements KVStorageEngine {
+export class ClientSettingsAsyncEngine implements KVStorageEngine {
   #userId: string;
 
   constructor(userId: string) {

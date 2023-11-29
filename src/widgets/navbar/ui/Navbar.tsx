@@ -8,7 +8,7 @@ import { useUser, userActions } from '@/entities/user';
 import { Logo } from '@/entities/logo';
 import { useTypedDispatch } from '@/shared/lib/hooks';
 import { HStack } from '@/shared/ui/containers';
-import { LS_AUTH_KEY, LS_DEFAULT_NAMESPACE } from '@/shared/consts';
+import { LS_AUTH_KEY } from '@/shared/consts';
 import { KVFactory } from '@/shared/lib/kv-storage';
 import { NotificationButton } from '@/features/notification-button';
 import { classNames } from '@/shared/lib/class-names';
@@ -19,7 +19,7 @@ import styles from './Navbar.module.scss';
 // eslint-disable-next-line wheatley-code/layer-imports
 import { ModalsHash } from '@/widgets/layout';
 
-const ls = KVFactory(LS_DEFAULT_NAMESPACE);
+const ls = KVFactory();
 
 export const Navbar: FC<NavbarProps> = memo((props) => {
   const { className } = props;

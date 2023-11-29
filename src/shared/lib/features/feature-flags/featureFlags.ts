@@ -1,9 +1,9 @@
 import { IFeatureFlags } from '@/shared/types';
-import { KVFactory, SessionStorageEngine } from '../../kv-storage';
-import { SS_DEFAULT_NAMESPACE, SS_FEATURES_KEY } from '@/shared/consts';
+import { KVFactory, SessionStorageSyncEngine } from '../../kv-storage';
+import { STORAGE_NAMESPACE, SS_FEATURES_KEY } from '@/shared/consts';
 import { Nullable } from '../../ts-utils';
 
-const ss = KVFactory(SS_DEFAULT_NAMESPACE, new SessionStorageEngine());
+const ss = KVFactory(STORAGE_NAMESPACE, new SessionStorageSyncEngine());
 
 export const setFeatureFlags = (flags: IFeatureFlags) => {
   // * Sync

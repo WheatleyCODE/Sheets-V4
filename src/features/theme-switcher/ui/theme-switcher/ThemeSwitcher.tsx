@@ -14,7 +14,7 @@ import {
 import { ANIMATION_DURATION_MS } from '@/shared/consts';
 import { sleep } from '@/shared/lib/promise';
 import { intoIter } from '@/shared/lib/iterators';
-import { ClientSettingsEngine } from '@/shared/lib/kv-storage';
+import { ClientSettingsAsyncEngine } from '@/shared/lib/kv-storage';
 import { Title } from '@/shared/ui/title';
 import { Button } from '@/shared/ui/button';
 import { useTheme } from '@/shared/lib/hooks';
@@ -36,7 +36,7 @@ export const ThemeSwitcher: FC<IThemeSwitcherProps> = (props) => {
 
     if (user?.id) {
       // * KVStorageEngine определяет куда сохранять тему в LocalStorage | SessionStorage | Server | IDBS
-      setTheme(theme, new ClientSettingsEngine(user.id));
+      setTheme(theme, new ClientSettingsAsyncEngine(user.id));
       await sleep(ANIMATION_DURATION_MS);
     }
   };

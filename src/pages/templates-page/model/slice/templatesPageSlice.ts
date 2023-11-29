@@ -1,7 +1,7 @@
 import { createEntityAdapter, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { ITemplate, TemplateTags, TemplateView } from '@/entities/template';
 import { fetchTemplatesPageTemplates } from '../services/fetch-templates-page-templates/fetchTemplatesPageTemplates';
-import { LS_DEFAULT_NAMESPACE, LS_VIEW_KEY } from '@/shared/consts';
+import { LS_VIEW_KEY } from '@/shared/consts';
 import { KVFactory } from '@/shared/lib/kv-storage';
 import { SQUARES_TEMPLATE_COUNT } from '@/entities/template';
 import { INIT_PAGE_COUNT, TemplateSortFields, TemplateSortOrders } from '../consts/templatesPage.consts';
@@ -29,7 +29,7 @@ const initialState = templatesPageAdapter.getInitialState<ITemplatesPageSchema>(
   tag: TemplateTags.ALL,
 });
 
-const ls = KVFactory(LS_DEFAULT_NAMESPACE);
+const ls = KVFactory();
 
 export const templatesPageSlice = createSlice({
   name: 'templatesPage',
