@@ -1,11 +1,10 @@
 import { FC, memo, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
 import { ThemeSwitcher } from '@/features/theme-switcher';
 import { NavigationMenu } from '@/features/navigation-menu';
 import { LanguageSwitcher } from '@/features/language-switcher';
 import { UserButton } from '@/features/user-button';
-import { getUser, userActions } from '@/entities/user';
+import { useUser, userActions } from '@/entities/user';
 import { Logo } from '@/entities/logo';
 import { useTypedDispatch } from '@/shared/lib/hooks';
 import { HStack } from '@/shared/ui/containers';
@@ -26,7 +25,7 @@ export const Navbar: FC<NavbarProps> = memo((props) => {
   const { className } = props;
   const dispatch = useTypedDispatch();
   const navigate = useNavigate();
-  const user = useSelector(getUser);
+  const user = useUser();
 
   const openAuth = useCallback(() => {
     navigate(ModalsHash.AUTH);

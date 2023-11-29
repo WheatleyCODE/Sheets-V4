@@ -1,4 +1,4 @@
-import type { SchemaKey, StateKey, DefaultValue, Selector } from './getDefaultSelectorBy.interface';
+import type { SchemaKey, StateKey, DefaultValue, Selector, DeepStateSchema } from './getDefaultSelectorBy.interface';
 
 export function getDefaultSelectorBy<T extends null>(
   schemaKey: SchemaKey,
@@ -15,19 +15,15 @@ export function getDefaultSelectorBy<T extends boolean>(
   stateKey: StateKey,
   value: boolean,
 ): Selector<T>;
-export function getDefaultSelectorBy<T extends DefaultValue>(
-  schemaKey: SchemaKey,
-  stateKey: StateKey,
-  value: T,
-): Selector<T> {
-  return (state: any) => {
+export function getDefaultSelectorBy<T extends DefaultValue>(schemaKey: SchemaKey, stateKey: StateKey, value: T) {
+  return (state: DeepStateSchema) => {
     try {
       if (!state?.[schemaKey]) {
         // * Async reducer
         return value;
       }
 
-      return state?.[schemaKey][stateKey];
+      return state[schemaKey]?.[stateKey] || value;
     } catch (e) {
       throw new Error(`${schemaKey} Используемый redux state не наследуется от IReduxSchema`);
     }

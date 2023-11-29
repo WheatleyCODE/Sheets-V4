@@ -1,3 +1,3 @@
-import { IStateSchema } from '@/app/providers/store-provider';
+import { buildSelector } from '@/shared/lib/store';
 
-export const getLoginPassword = (state: IStateSchema) => state?.login?.password || '';
+export const [useLoginPassword, getLoginPassword] = buildSelector((state) => state?.login?.password || '');

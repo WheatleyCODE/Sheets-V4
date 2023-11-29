@@ -1,4 +1,6 @@
-import { IStateSchema } from '@/app/providers/store-provider';
 import { TemplateTags } from '@/entities/template';
+import { buildSelector } from '@/shared/lib/store';
 
-export const getTemplatesPageTag = (state: IStateSchema) => state.templatesPage?.tag || TemplateTags.ALL;
+export const [useTemplatesPageTag, getTemplatesPageTag] = buildSelector(
+  (state) => state.templatesPage?.tag || TemplateTags.ALL,
+);

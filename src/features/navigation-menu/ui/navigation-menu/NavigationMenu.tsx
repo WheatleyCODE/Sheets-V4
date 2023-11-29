@@ -1,10 +1,9 @@
 import { FC, memo } from 'react';
-import { useSelector } from 'react-redux';
 import { AnimatePresence } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import { MdOutlineMenu } from 'react-icons/md';
 import { NavigationMenuItem } from '../navigation-menu-item/NavigationMenuItem';
-import { getNavigationItems } from '../../model/selectors/get-navigation-items/getNavigationItems';
+import { useNavigationItems } from '../../model/selectors/get-navigation-items/getNavigationItems';
 import { Logo } from '@/entities/logo';
 import { useUser } from '@/entities/user';
 import { Button } from '@/shared/ui/button';
@@ -20,7 +19,7 @@ import styles from './NavigationMenu.module.scss';
 export const NavigationMenu: FC<INavigationMenuProps> = memo((props) => {
   const { className, ...anotherProps } = props;
   const isAuth = !!useUser();
-  const navigationMenu = useSelector(getNavigationItems);
+  const navigationMenu = useNavigationItems();
   const { t } = useTranslation();
   const { isShow, openModal, closeModal } = useModals();
 

@@ -1,16 +1,15 @@
 import { ChangeEvent, FC, memo, useCallback } from 'react';
 import { MdOutlineEmail, MdOutlinePassword } from 'react-icons/md';
-import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { Input, useValidInput } from '@/shared/ui/input';
 import { emailValidator, passwordValidator } from '@/shared/lib/validators';
 import { Button } from '@/shared/ui/button';
 import { loginActions, loginReducer } from '../../model/slice/loginSlice';
 import { loginByEmail } from '../../model/services/login-by-email/loginByEmail';
-import { getLoginEmail } from '../../model/selectors/get-login-email/getLoginEmail';
-import { getLoginPassword } from '../../model/selectors/get-login-password/getLoginPassword';
-import { getLoginIsLoading } from '../../model/selectors/get-login-is-loading/getLoginIsLoading';
-import { getLoginError } from '../../model/selectors/get-login-error/getLoginError';
+import { useLoginEmail } from '../../model/selectors/get-login-email/getLoginEmail';
+import { useLoginPassword } from '../../model/selectors/get-login-password/getLoginPassword';
+import { useLoginIsLoading } from '../../model/selectors/get-login-is-loading/getLoginIsLoading';
+import { useLoginError } from '../../model/selectors/get-login-error/getLoginError';
 import { Text } from '@/shared/ui/text';
 import { callOnFulfilled } from '@/shared/lib/utils';
 import { HStack, VStack } from '@/shared/ui/containers';
@@ -24,11 +23,10 @@ const reducers: ReducersList = { login: loginReducer };
 const LoginForm: FC<ILoginFormProps> = memo((props) => {
   const { onLoginSuccess, onLoginStart, ...anotherProps } = props;
   useDynamicModule(reducers);
-
-  const email = useSelector(getLoginEmail);
-  const password = useSelector(getLoginPassword);
-  const isLoading = useSelector(getLoginIsLoading);
-  const error = useSelector(getLoginError);
+  const email = useLoginEmail();
+  const password = useLoginPassword();
+  const isLoading = useLoginIsLoading();
+  const error = useLoginError();
   const emailInput = useValidInput(email, [emailValidator]);
   const passwordInput = useValidInput(password, [passwordValidator]);
   const { t } = useTranslation();

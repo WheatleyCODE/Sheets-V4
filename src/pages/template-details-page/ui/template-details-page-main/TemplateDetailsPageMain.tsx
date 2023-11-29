@@ -1,12 +1,11 @@
 import { FC } from 'react';
-import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import {
   TemplateDetails,
   fetchTemplateById,
   useTemplateDetails,
-  getTemplateDetailsError,
-  getTemplateDetailsIsLoading,
+  useTemplateDetailsError,
+  useTemplateDetailsIsLoading,
   templateDetailsActions,
   templateDetailsReducer,
 } from '@/entities/template';
@@ -23,8 +22,8 @@ export const TemplateDetailsPageMain: FC<ITemplateDetailsPageMainProps> = (props
   const { className, ...anotherProps } = props;
   useDynamicModule(reducerList, true);
   const template = useTemplateDetails();
-  const isLoading = useSelector(getTemplateDetailsIsLoading);
-  const error = useSelector(getTemplateDetailsError);
+  const isLoading = useTemplateDetailsIsLoading();
+  const error = useTemplateDetailsError();
 
   const dispatch = useTypedDispatch();
   const { id } = useParams<{ id: string }>();

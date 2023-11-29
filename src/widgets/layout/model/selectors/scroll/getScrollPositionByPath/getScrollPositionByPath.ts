@@ -1,9 +1,5 @@
-import { createSelector } from '@reduxjs/toolkit';
-import { IStateSchema } from '@/app/providers/store-provider';
-import { getScroll } from '../get-scroll/getScroll';
+import { buildSelector } from '@/shared/lib/store';
 
-export const getScrollPositionByPath = createSelector(
-  getScroll,
-  (state: IStateSchema, path: string) => path,
-  (scroll, path) => scroll[path] || 0,
+export const [useScrollPositionByPath, getScrollPositionByPath] = buildSelector(
+  (state, path: string) => state.scroll.scroll[path] || 0,
 );

@@ -1,3 +1,5 @@
-import { IStateSchema } from '@/app/providers/store-provider';
+import { buildSelector, getDefaultSelectorBy } from '@/shared/lib/store';
 
-export const getTemplateRecommendsError = (state: IStateSchema) => state.templateRecommends?.error || null;
+export const [useTemplateRecommendsError, getTemplateRecommendsError] = buildSelector(
+  getDefaultSelectorBy('templateRecommends', 'error', null),
+);

@@ -1,3 +1,5 @@
-import { IStateSchema } from '@/app/providers/store-provider';
+import { buildSelector, getDefaultSelectorBy } from '@/shared/lib/store';
 
-export const getTemplatesPageError = (state: IStateSchema) => state.templatesPage?.error || null;
+export const [useTemplatesPageError, getTemplatesPageError] = buildSelector(
+  getDefaultSelectorBy('templatesPage', 'error', null),
+);

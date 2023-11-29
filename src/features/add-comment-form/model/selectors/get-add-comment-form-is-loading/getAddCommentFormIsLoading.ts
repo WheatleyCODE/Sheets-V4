@@ -1,3 +1,5 @@
-import { IStateSchema } from '@/app/providers/store-provider';
+import { buildSelector, getDefaultSelectorBy } from '@/shared/lib/store';
 
-export const getAddCommentFormIsLoading = (state: IStateSchema) => state?.addCommentForm?.isLoading || false;
+export const [useAddCommentFormIsLoading, getAddCommentFormIsLoading] = buildSelector(
+  getDefaultSelectorBy('addCommentForm', 'isLoading', false),
+);

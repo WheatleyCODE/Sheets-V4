@@ -1,3 +1,5 @@
-import { IStateSchema } from '@/app/providers/store-provider';
+import { buildSelector } from '@/shared/lib/store';
 
-export const getTemplatesPageInited = (state: IStateSchema) => state.templatesPage?._inited || false;
+export const [useTemplatesPageInited, getTemplatesPageInited] = buildSelector(
+  (state) => state.templatesPage?._inited || false,
+);

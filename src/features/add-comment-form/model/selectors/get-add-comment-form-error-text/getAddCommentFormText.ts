@@ -1,3 +1,5 @@
-import { IStateSchema } from '@/app/providers/store-provider';
+import { buildSelector } from '@/shared/lib/store';
 
-export const getAddCommentFormText = (state: IStateSchema) => state?.addCommentForm?.text || '';
+export const [useAddCommentFormText, getAddCommentFormText] = buildSelector(
+  (state) => state?.addCommentForm?.text || '',
+);

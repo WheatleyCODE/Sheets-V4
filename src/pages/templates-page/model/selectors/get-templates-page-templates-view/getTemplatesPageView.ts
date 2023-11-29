@@ -1,6 +1,10 @@
-import { IStateSchema } from '@/app/providers/store-provider';
 import { TemplateView } from '@/entities/template';
 import { buildSelector } from '@/shared/lib/store';
 
-export const getTemplatesPageView = (state: IStateSchema) => state.templatesPage?.view || TemplateView.SQUARES;
-export const [useGetTemplateById] = buildSelector((state, id: string) => state.templatesPage?.entities[id]);
+export const [useTemplatesPageView, getTemplatesPageView] = buildSelector(
+  (state) => state.templatesPage?.view || TemplateView.SQUARES,
+);
+
+export const [useTemplateById, getTemplateById] = buildSelector(
+  (state, id: string) => state.templatesPage?.entities[id],
+);

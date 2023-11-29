@@ -1,13 +1,12 @@
 import { FC, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useSelector } from 'react-redux';
 import { MdChevronLeft } from 'react-icons/md';
 import { useNavigate } from 'react-router-dom';
 import { getRouteTemplates, getRouteTemplateEdit } from '@/shared/config/route-config/routeConfig';
 import { useTemplateDetails } from '@/entities/template';
 import { Title } from '@/shared/ui/title';
 import { Button } from '@/shared/ui/button';
-import { getTemplateDetailsIsCanEdit } from '../../model/selectors/get-template-details-is-can-edit/getTemplateDetailsIsCanEdit';
+import { useTemplateDetailsIsCanEdit } from '../../model/selectors/get-template-details-is-can-edit/getTemplateDetailsIsCanEdit';
 import { HStack, Width } from '@/shared/ui/containers';
 import { classNames } from '@/shared/lib/class-names';
 import type { ITemplateDetailsPageHeaderProps } from './TemplateDetailsPageHeader.interface';
@@ -17,7 +16,7 @@ export const TemplateDetailsPageHeader: FC<ITemplateDetailsPageHeaderProps> = (p
   const { className, ...anotherProps } = props;
   const navigate = useNavigate();
   const template = useTemplateDetails();
-  const isCanEdit = useSelector(getTemplateDetailsIsCanEdit);
+  const isCanEdit = useTemplateDetailsIsCanEdit();
 
   const { t } = useTranslation();
 

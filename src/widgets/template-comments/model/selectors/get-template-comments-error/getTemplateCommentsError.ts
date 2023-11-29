@@ -1,3 +1,5 @@
-import { IStateSchema } from '@/app/providers/store-provider';
+import { buildSelector, getDefaultSelectorBy } from '@/shared/lib/store';
 
-export const getTemplateCommentsError = (state: IStateSchema) => state.templateComments?.error || null;
+export const [useTemplateCommentsError, getTemplateCommentsError] = buildSelector(
+  getDefaultSelectorBy('templateComments', 'error', null),
+);

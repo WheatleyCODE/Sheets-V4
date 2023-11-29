@@ -1,3 +1,5 @@
-import { IStateSchema } from '@/app/providers/store-provider';
+import { buildSelector } from '@/shared/lib/store';
 
-export const getTemplatesPageSearch = (state: IStateSchema) => state.templatesPage?.search || '';
+export const [useTemplatesPageSearch, getTemplatesPageSearch] = buildSelector(
+  (state) => state.templatesPage?.search || '',
+);

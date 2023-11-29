@@ -1,3 +1,3 @@
-import { IStateSchema } from '@/app/providers/store-provider';
+import { buildSelector, getDefaultSelectorBy } from '@/shared/lib/store';
 
-export const getLoginError = (state: IStateSchema) => state?.login?.error || null;
+export const [useLoginError, getLoginError] = buildSelector(getDefaultSelectorBy('login', 'error', null));

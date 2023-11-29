@@ -1,3 +1,3 @@
-import { IStateSchema } from '@/app/providers/store-provider';
+import { buildSelector } from '@/shared/lib/store';
 
-export const getLoginEmail = (state: IStateSchema) => state?.login?.email || '';
+export const [useLoginEmail, getLoginEmail] = buildSelector((state) => state?.login?.email || '');

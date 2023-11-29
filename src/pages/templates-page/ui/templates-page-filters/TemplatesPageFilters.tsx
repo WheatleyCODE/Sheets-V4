@@ -1,14 +1,13 @@
 import { ChangeEvent, FC, useCallback, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useSelector } from 'react-redux';
 import { MdOutlineFilterList, MdOutlineSearch, MdOutlineSort } from 'react-icons/md';
-import { getTemplatesPageSort } from '../../model/selectors/get-templates-page-sort/getTemplatesPageSort';
-import { getTemplatesPageSortOrder } from '../../model/selectors/get-templates-page-sort-order/getTemplatesPageSortOrder';
-import { getTemplatesPageSearch } from '../../model/selectors/get-templates-page-search/getTemplatesPageSearch';
-import { getTemplatesPageTag } from '../../model/selectors/get-templates-page-tag/getTemplatesPageTag';
+import { useTemplatesPageSort } from '../../model/selectors/get-templates-page-sort/getTemplatesPageSort';
+import { useTemplatesPageSortOrder } from '../../model/selectors/get-templates-page-sort-order/getTemplatesPageSortOrder';
+import { useTemplatesPageSearch } from '../../model/selectors/get-templates-page-search/getTemplatesPageSearch';
+import { useTemplatesPageTag } from '../../model/selectors/get-templates-page-tag/getTemplatesPageTag';
+import { useTemplatesPageView } from '../../model/selectors/get-templates-page-templates-view/getTemplatesPageView';
 import { templatesPageActions } from '../../model/slice/templatesPageSlice';
 import { fetchTemplatesPageTemplates } from '../../model/services/fetch-templates-page-templates/fetchTemplatesPageTemplates';
-import { getTemplatesPageView } from '../../model/selectors/get-templates-page-templates-view/getTemplatesPageView';
 import { TemplatesViewSwitcher } from '@/features/templates-view-switcher';
 import { TemplateTags, TemplateView, ITemplateTab, templateTabs } from '@/entities/template';
 import { Input, useValidInput } from '@/shared/ui/input';
@@ -30,11 +29,11 @@ import styles from './TemplatesPageFilters.module.scss';
 
 export const TemplatesPageFilters: FC<ITemplatesPageFiltersProps> = (props) => {
   const { className, ...anotherProps } = props;
-  const sort = useSelector(getTemplatesPageSort);
-  const sortOrder = useSelector(getTemplatesPageSortOrder);
-  const search = useSelector(getTemplatesPageSearch);
-  const view = useSelector(getTemplatesPageView);
-  const tag = useSelector(getTemplatesPageTag);
+  const sort = useTemplatesPageSort();
+  const sortOrder = useTemplatesPageSortOrder();
+  const search = useTemplatesPageSearch();
+  const view = useTemplatesPageView();
+  const tag = useTemplatesPageTag();
   const dispatch = useTypedDispatch();
 
   const sortInput = useValidInput(sort);

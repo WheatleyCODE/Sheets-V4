@@ -1,4 +1,5 @@
 import { createSelector } from '@reduxjs/toolkit';
 import { getModals } from '../get-modals/getModals';
+import { buildSelector } from '@/shared/lib/store';
 
-export const getModalsIsAuth = createSelector(getModals, (modals) => modals.isAuth);
+export const [useModalsIsAuth, getModalsIsAuth] = buildSelector(createSelector(getModals, (modals) => modals.isAuth));

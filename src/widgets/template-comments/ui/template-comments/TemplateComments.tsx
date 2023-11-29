@@ -1,12 +1,11 @@
 import { FC, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { templateCommentsReducer } from '../../model/slice/templateCommentsSlice';
-import { getTemplateComments } from '../../model/selectors/get-template-comments/getTemplateComments';
+import { useTemplateCommentsSelectAll } from '../../model/selectors/get-template-comments/getTemplateComments';
 import { fetchTemplateComments } from '../../model/services/fetch-template-comments/fetchTemplateComments';
-import { getTemplateCommentsError } from '../../model/selectors/get-template-comments-error/getTemplateCommentsError';
-import { getTemplateCommentsIsLoading } from '../../model/selectors/get-template-comments-is-loading/getTemplateCommentsIsLoading';
+import { useTemplateCommentsError } from '../../model/selectors/get-template-comments-error/getTemplateCommentsError';
+import { useTemplateCommentsIsLoading } from '../../model/selectors/get-template-comments-is-loading/getTemplateCommentsIsLoading';
 import { fetchTemplateAddComment } from '../../model/services/fetch-template-comments-add-comment/fetchTemplateAddComment';
 import { AddCommentForm } from '@/features/add-comment-form';
 import { useUser } from '@/entities/user';
@@ -25,9 +24,9 @@ export const TemplateComments: FC<ITemplateCommentsProps> = (props) => {
   const { className, ...anotherProps } = props;
   useDynamicModule(reducers, true);
   const dispatch = useTypedDispatch();
-  const comments = useSelector(getTemplateComments.selectAll);
-  const commentsError = useSelector(getTemplateCommentsError);
-  const commentsIsLoading = useSelector(getTemplateCommentsIsLoading);
+  const comments = useTemplateCommentsSelectAll();
+  const commentsError = useTemplateCommentsError();
+  const commentsIsLoading = useTemplateCommentsIsLoading();
   const user = useUser();
   const template = useTemplateDetails();
 

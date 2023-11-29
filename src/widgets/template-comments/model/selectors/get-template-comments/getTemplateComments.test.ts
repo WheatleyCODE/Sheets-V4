@@ -1,19 +1,19 @@
 import { DeepPartial } from '@/shared/lib/ts-utils';
-import { getTemplateComments } from './getTemplateComments';
+import { getTemplateCommentsSelectAll } from './getTemplateComments';
 import { IStateSchema } from '@/app/providers/store-provider';
 
-describe('getTemplateComments', () => {
+describe('getTemplateCommentsSelectAll', () => {
   test('Return user state templateComments prop', () => {
     const state: DeepPartial<IStateSchema> = {
       templateComments: { ids: [] },
     };
 
-    expect(getTemplateComments.selectAll(state as IStateSchema)).toStrictEqual([]);
+    expect(getTemplateCommentsSelectAll(state as IStateSchema)).toStrictEqual([]);
   });
 
   test('Return user state templateComments prop, empty', () => {
     const state: DeepPartial<IStateSchema> = {};
 
-    expect(getTemplateComments.selectAll(state as IStateSchema)).toStrictEqual([]);
+    expect(getTemplateCommentsSelectAll(state as IStateSchema)).toStrictEqual([]);
   });
 });

@@ -1,5 +1,6 @@
-import { IStateSchema } from '@/app/providers/store-provider';
 import { TemplateSortOrders } from '../../consts/templatesPage.consts';
+import { buildSelector } from '@/shared/lib/store';
 
-export const getTemplatesPageSortOrder = (state: IStateSchema) =>
-  state.templatesPage?.sortOrder || TemplateSortOrders.ASC;
+export const [useTemplatesPageSortOrder, getTemplatesPageSortOrder] = buildSelector(
+  (state) => state.templatesPage?.sortOrder || TemplateSortOrders.ASC,
+);

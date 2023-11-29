@@ -1,3 +1,5 @@
-import { IStateSchema } from '@/app/providers/store-provider';
+import { buildSelector, getDefaultSelectorBy } from '@/shared/lib/store';
 
-export const getTemplateCommentsIsLoading = (state: IStateSchema) => state.templateComments?.isLoading || false;
+export const [useTemplateCommentsIsLoading, getTemplateCommentsIsLoading] = buildSelector(
+  getDefaultSelectorBy('templateComments', 'isLoading', false),
+);

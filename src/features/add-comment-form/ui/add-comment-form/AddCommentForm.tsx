@@ -1,9 +1,8 @@
 import { ChangeEvent, FC, useCallback } from 'react';
-import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { MdOutlineComment, MdSend } from 'react-icons/md';
 import { addCommentFormActions, addCommentFormReducer } from '../../model/slice/addCommentFormSlice';
-import { getAddCommentFormText } from '../../model/selectors/get-add-comment-form-error-text/getAddCommentFormText';
+import { useAddCommentFormText } from '../../model/selectors/get-add-comment-form-error-text/getAddCommentFormText';
 import { Input, useValidInput } from '@/shared/ui/input';
 import { HStack } from '@/shared/ui/containers';
 import { Button } from '@/shared/ui/button';
@@ -18,7 +17,7 @@ export const AddCommentForm: FC<IAddCommentFormProps> = (props) => {
   const { className, addComment, ...anotherProps } = props;
   useDynamicModule(reducers, true);
   const dispatch = useTypedDispatch();
-  const text = useSelector(getAddCommentFormText);
+  const text = useAddCommentFormText();
   const textInput = useValidInput(text);
   const { t } = useTranslation();
 

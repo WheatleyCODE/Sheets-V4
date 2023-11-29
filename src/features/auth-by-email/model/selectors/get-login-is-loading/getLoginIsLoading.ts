@@ -1,3 +1,3 @@
-import { IStateSchema } from '@/app/providers/store-provider';
+import { buildSelector, getDefaultSelectorBy } from '@/shared/lib/store';
 
-export const getLoginIsLoading = (state: IStateSchema) => state?.login?.isLoading || false;
+export const [useLoginIsLoading, getLoginIsLoading] = buildSelector(getDefaultSelectorBy('login', 'isLoading', false));

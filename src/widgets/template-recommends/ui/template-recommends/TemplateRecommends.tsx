@@ -1,11 +1,10 @@
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useSelector } from 'react-redux';
 import { templateRecommendsReducer } from '../../model/slice/templateRecommendsSlice';
 import { fetchTemplateRecommends } from '../../model/services/fetch-template-recommends/fetchTemplateRecommends';
-import { getTemplateRecommendsError } from '../../model/selectors/get-template-recommends-error/getTemplateRecommendsError';
-import { getTemplateRecommendsIsLoading } from '../../model/selectors/get-template-recommends-is-loading/getTemplateRecommendsIsLoading';
-import { getTemplateRecommends } from '../../model/selectors/get-template-recommends/getTemplateRecommends';
+import { useTemplateRecommendsError } from '../../model/selectors/get-template-recommends-error/getTemplateRecommendsError';
+import { useTemplateRecommendsIsLoading } from '../../model/selectors/get-template-recommends-is-loading/getTemplateRecommendsIsLoading';
+import { useTemplateRecommendsSelectAll } from '../../model/selectors/get-template-recommends/getTemplateRecommends';
 import { TemplateList } from '@/entities/template';
 import { useDynamicModule, useTypedDispatch, ReducersList, useInitialEffect } from '@/shared/lib/hooks';
 import { RWidth } from '@/shared/ui/containers';
@@ -20,9 +19,9 @@ export const TemplateRecommends: FC<ITemplateRecommendsProps> = (props) => {
   const { className, ...anotherProps } = props;
   useDynamicModule(reducers, true);
   const dispatch = useTypedDispatch();
-  const recommends = useSelector(getTemplateRecommends.selectAll);
-  const recommendsError = useSelector(getTemplateRecommendsError);
-  const recommendsIsLoading = useSelector(getTemplateRecommendsIsLoading);
+  const recommends = useTemplateRecommendsSelectAll();
+  const recommendsError = useTemplateRecommendsError();
+  const recommendsIsLoading = useTemplateRecommendsIsLoading();
   const { t } = useTranslation();
 
   useInitialEffect(() => {

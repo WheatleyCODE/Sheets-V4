@@ -1,3 +1,5 @@
-import { IStateSchema } from '@/app/providers/store-provider';
+import { buildSelector, getDefaultSelectorBy } from '@/shared/lib/store';
 
-export const getAddCommentFormError = (state: IStateSchema) => state?.addCommentForm?.error || null;
+export const [useAddCommentFormError, getAddCommentFormError] = buildSelector(
+  getDefaultSelectorBy('addCommentForm', 'error', null),
+);

@@ -1,4 +1,6 @@
-import { IStateSchema } from '@/app/providers/store-provider';
 import { INIT_PAGE_COUNT } from '../../consts/templatesPage.consts';
+import { buildSelector } from '@/shared/lib/store';
 
-export const getTemplatesPagePage = (state: IStateSchema) => state.templatesPage?.page || INIT_PAGE_COUNT;
+export const [useTemplatesPagePage, getTemplatesPagePage] = buildSelector(
+  (state) => state.templatesPage?.page || INIT_PAGE_COUNT,
+);

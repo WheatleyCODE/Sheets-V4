@@ -1,3 +1,5 @@
-import { IStateSchema } from '@/app/providers/store-provider';
+import { buildSelector } from '@/shared/lib/store';
 
-export const getTemplatesPageHasMore = (state: IStateSchema) => state.templatesPage?.hasMore || false;
+export const [useTemplatesPageHasMore, getTemplatesPageHasMore] = buildSelector(
+  (state) => state.templatesPage?.hasMore || false,
+);

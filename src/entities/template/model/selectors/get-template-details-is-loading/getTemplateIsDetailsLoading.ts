@@ -1,3 +1,5 @@
-import { IStateSchema } from '@/app/providers/store-provider';
+import { buildSelector, getDefaultSelectorBy } from '@/shared/lib/store';
 
-export const getTemplateDetailsIsLoading = (state: IStateSchema) => state?.templateDetails?.isLoading || false;
+export const [useTemplateDetailsIsLoading, getTemplateDetailsIsLoading] = buildSelector(
+  getDefaultSelectorBy('templateDetails', 'isLoading', false),
+);

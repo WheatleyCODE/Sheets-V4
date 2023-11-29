@@ -1,10 +1,8 @@
 import { FC, MutableRefObject, UIEvent, useCallback, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
-import { useSelector } from 'react-redux';
 import { ModalController } from '../modal-controller/ModalController';
 import { scrollActions } from '../../model/slice/scroll/scrollSlice';
-import { getScrollPositionByPath } from '../../model/selectors/scroll/getScrollPositionByPath/getScrollPositionByPath';
-import { IStateSchema } from '@/app/providers/store-provider';
+import { useScrollPositionByPath } from '../../model/selectors/scroll/getScrollPositionByPath/getScrollPositionByPath';
 import { useDebounce, useInfiniteScroll, useInitialEffect, useTypedDispatch } from '@/shared/lib/hooks';
 import { classNames } from '@/shared/lib/class-names';
 import type { ILayoutProps } from './Layout.interface';
@@ -16,7 +14,7 @@ export const Layout: FC<ILayoutProps> = (props) => {
   const triggerRef = useRef() as MutableRefObject<HTMLDivElement>;
   const dispatch = useTypedDispatch();
   const { pathname } = useLocation();
-  const scrollPosition = useSelector((state: IStateSchema) => getScrollPositionByPath(state, pathname));
+  const scrollPosition = useScrollPositionByPath(pathname);
 
   const debouncedSetScrollPosition = useDebounce((position: number) => {
     dispatch(scrollActions.setScrollPosition({ path: pathname, position }));
