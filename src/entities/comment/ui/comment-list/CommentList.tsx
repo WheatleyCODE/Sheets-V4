@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { CommentListItem } from '../comment-list-item/CommentListItem';
 import { intoIter } from '@/shared/lib/iterators';
@@ -10,7 +10,7 @@ import type { ICommentListProps } from './CommentList.interface';
 import type { IComment } from '../../model/types/comment.interface';
 import styles from './CommentList.module.scss';
 
-export const CommentList: FC<ICommentListProps> = (props) => {
+export const CommentList: FC<ICommentListProps> = memo((props) => {
   const { className, comments = [], isLoading, error, ...anotherProps } = props;
   const { t } = useTranslation();
 
@@ -57,4 +57,4 @@ export const CommentList: FC<ICommentListProps> = (props) => {
       {commentsArr.length ? commentsArr : <div className={styles.no_comments}>{t('Комментариев нет')}</div>}
     </VStack>
   );
-};
+});

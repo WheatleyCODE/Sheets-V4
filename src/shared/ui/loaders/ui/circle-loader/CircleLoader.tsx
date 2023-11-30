@@ -1,9 +1,9 @@
-import { FC } from 'react';
+import { FC, memo } from 'react';
 import { classNames } from '@/shared/lib/class-names';
 import type { ICircleLoaderProps } from './CircleLoader.interface';
 import styles from './CircleLoader.module.scss';
 
-export const CircleLoader: FC<ICircleLoaderProps> = (props) => {
+export const CircleLoader: FC<ICircleLoaderProps> = memo((props) => {
   const { className, ...anotherProps } = props;
 
   return (
@@ -11,4 +11,4 @@ export const CircleLoader: FC<ICircleLoaderProps> = (props) => {
       <div {...anotherProps} data-testid="circleLoader" className={classNames(styles.circle_loader, {}, [className])} />
     </div>
   );
-};
+});

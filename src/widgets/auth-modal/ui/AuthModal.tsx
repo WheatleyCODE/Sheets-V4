@@ -11,6 +11,9 @@ import { classNames } from '@/shared/lib/class-names';
 import type { IAuthModalProps } from './AuthModal.interface';
 import styles from './AuthModal.module.scss';
 
+// eslint-disable-next-line wheatley-code/layer-imports
+import { ModalsHash } from '@/app/layout';
+
 const AuthModal: FC<IAuthModalProps> = memo((props) => {
   const { className, onClose, ...anotherProps } = props;
   const [isRegister, setIsRegister] = useState(false);
@@ -22,9 +25,8 @@ const AuthModal: FC<IAuthModalProps> = memo((props) => {
     const isLogin = new LocationHelper(location).hasParam('login');
     const isRegister = new LocationHelper(location).hasParam('register');
 
-    // ! FIX #auth
     if (!isLogin && !isRegister) {
-      navigate(new LocationHelper(location).addHash('#auth').setParams({ login: true }).getPath());
+      navigate(new LocationHelper(location).addHash(ModalsHash.AUTH).setParams({ login: true }).getPath());
       return;
     }
 
@@ -44,7 +46,7 @@ const AuthModal: FC<IAuthModalProps> = memo((props) => {
   const link = isRegister ? (
     <Link
       className={styles.link}
-      to={new LocationHelper(location).addHash('#auth').setParams({ login: true }).getPath()}
+      to={new LocationHelper(location).addHash(ModalsHash.AUTH).setParams({ login: true }).getPath()}
       onClick={toLogin}
     >
       {t('Войти')}
@@ -52,7 +54,7 @@ const AuthModal: FC<IAuthModalProps> = memo((props) => {
   ) : (
     <Link
       className={styles.link}
-      to={new LocationHelper(location).addHash('#auth').setParams({ register: true }).getPath()}
+      to={new LocationHelper(location).addHash(ModalsHash.AUTH).setParams({ register: true }).getPath()}
       onClick={toRegister}
     >
       {t('Регистрация')}

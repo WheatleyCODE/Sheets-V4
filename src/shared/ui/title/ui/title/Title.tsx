@@ -1,4 +1,4 @@
-import { FC, memo, useEffect, useRef, useState } from 'react';
+import { FC, useEffect, useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useDelayHover } from '@/shared/lib/hooks';
 import { ANIMATION_DURATION } from '@/shared/consts';
@@ -7,7 +7,7 @@ import { TEXT_MARGIN, TEXT_HORIZONTAL_PADDINGS } from './Title.consts';
 import type { ObjStyles, TitleProps } from './Title.interface';
 import styles from './Title.module.scss';
 
-export const Title: FC<TitleProps> = memo((props) => {
+export const Title: FC<TitleProps> = (props) => {
   const { children, text, isStopShow = false, className, classNameContainer, ...anotherProps } = props;
   const { isShow, onMouseEnter, onMouseLeave, onMouseMove } = useDelayHover(false, 200);
   const [objStyles, setObjStyles] = useState<ObjStyles>({});
@@ -80,4 +80,4 @@ export const Title: FC<TitleProps> = memo((props) => {
       </AnimatePresence>
     </div>
   );
-});
+};

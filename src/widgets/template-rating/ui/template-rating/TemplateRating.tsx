@@ -1,4 +1,4 @@
-import { FC, useCallback } from 'react';
+import { FC, memo, useCallback } from 'react';
 import { useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { CircleLoader } from '@/shared/ui/loaders';
@@ -9,7 +9,7 @@ import { useRateTemplate, useTemplateRatings } from '../../api/templateRating.ap
 import type { ITemplateRatingProps } from './TemplateRating.interface';
 import styles from './TemplateRating.module.scss';
 
-const TemplateRating: FC<ITemplateRatingProps> = (props) => {
+const TemplateRating: FC<ITemplateRatingProps> = memo((props) => {
   const { className, ...anotherProps } = props;
   const { t } = useTranslation();
   const { id } = useParams<{ id: string }>();
@@ -52,6 +52,6 @@ const TemplateRating: FC<ITemplateRatingProps> = (props) => {
       />
     </div>
   );
-};
+});
 
 export default TemplateRating;

@@ -1,4 +1,4 @@
-import { FC, useCallback } from 'react';
+import { FC, memo, useCallback } from 'react';
 import { useParams } from 'react-router-dom';
 import { useUser } from '@/entities/user';
 import {
@@ -20,7 +20,7 @@ import styles from './EditableProfile.module.scss';
 
 const reducers: ReducersList = { profile: profileReducer };
 
-export const EditableProfile: FC<IEditableProfileProps> = (props) => {
+export const EditableProfile: FC<IEditableProfileProps> = memo((props) => {
   const { className, ...anotherProps } = props;
   useDynamicModule(reducers);
 
@@ -77,4 +77,4 @@ export const EditableProfile: FC<IEditableProfileProps> = (props) => {
       />
     </div>
   );
-};
+});

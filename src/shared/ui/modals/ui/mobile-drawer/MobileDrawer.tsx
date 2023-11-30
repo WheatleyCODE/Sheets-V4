@@ -1,4 +1,4 @@
-import { FC, memo, useCallback } from 'react';
+import { FC, useCallback } from 'react';
 import { PanInfo, motion, useDragControls } from 'framer-motion';
 import { classNames } from '@/shared/lib/class-names';
 import { ANIMATION_DURATION } from '@/shared/consts';
@@ -6,7 +6,7 @@ import { VStack } from '../../../containers';
 import type { IMobileDrawerProps } from './MobileDrawer.interface';
 import styles from './MobileDrawer.module.scss';
 
-export const MobileDrawer: FC<IMobileDrawerProps> = memo((props) => {
+export const MobileDrawer: FC<IMobileDrawerProps> = (props) => {
   const { className, maxChange = 200, translateY = 300, onClose, children, ...anotherProps } = props;
   const controls = useDragControls();
 
@@ -41,4 +41,4 @@ export const MobileDrawer: FC<IMobileDrawerProps> = memo((props) => {
       <VStack {...anotherProps}>{children}</VStack>
     </motion.div>
   );
-});
+};

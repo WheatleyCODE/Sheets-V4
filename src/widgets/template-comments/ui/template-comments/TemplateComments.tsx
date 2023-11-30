@@ -1,4 +1,4 @@
-import { FC, useCallback } from 'react';
+import { FC, memo, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router-dom';
 import { templateCommentsReducer } from '../../model/slice/templateCommentsSlice';
@@ -20,7 +20,7 @@ import styles from './TemplateComments.module.scss';
 
 const reducers: ReducersList = { templateComments: templateCommentsReducer };
 
-export const TemplateComments: FC<ITemplateCommentsProps> = (props) => {
+export const TemplateComments: FC<ITemplateCommentsProps> = memo((props) => {
   const { className, ...anotherProps } = props;
   useDynamicModule(reducers, true);
 
@@ -66,4 +66,4 @@ export const TemplateComments: FC<ITemplateCommentsProps> = (props) => {
       </RWidth>
     </div>
   );
-};
+});

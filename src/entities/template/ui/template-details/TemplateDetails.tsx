@@ -1,4 +1,4 @@
-import { FC, useCallback } from 'react';
+import { FC, memo, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { TemplateTextBlock } from '../template-text-block/TemplateTextBlock';
 import { TemplateCodeBlock } from '../template-code-block/TemplateCodeBlock';
@@ -18,7 +18,7 @@ import type { TemplateBlock } from '../../model/types/template.interface';
 import type { ITemplateDetailsProps } from './TemplateDetails.interface';
 import styles from './TemplateDetails.module.scss';
 
-export const TemplateDetails: FC<ITemplateDetailsProps> = (props) => {
+export const TemplateDetails: FC<ITemplateDetailsProps> = memo((props) => {
   const { className, template, isLoading, error, ...anotherProps } = props;
   const { blocks, createdAt, image, subtitle, tags, title, views } = template;
   const { t } = useTranslation('templateDetails');
@@ -127,4 +127,4 @@ export const TemplateDetails: FC<ITemplateDetailsProps> = (props) => {
       {blocksArr}
     </VStack>
   );
-};
+});

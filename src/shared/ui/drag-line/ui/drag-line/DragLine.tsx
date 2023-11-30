@@ -12,7 +12,7 @@ import type { IDragLineItem } from '../drag-line-item/DragLineItem.interface';
 import styles from './DragLine.module.scss';
 
 const DragLineWithoutContext: FC<IDragLineProps> = (props) => {
-  const { className, items = [], children, ...anotherProps } = props;
+  const { className, items = [], children } = props;
   const { items: contextItems } = useDragLine();
 
   let trackWidth = 0;

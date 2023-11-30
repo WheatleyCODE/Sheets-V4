@@ -1,4 +1,4 @@
-import { FC, useCallback, useEffect, useState } from 'react';
+import { FC, memo, useCallback, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { classNames } from '@/shared/lib/class-names';
 import { Button } from '@/shared/ui/button';
@@ -10,7 +10,7 @@ import type { IProfile } from '../../model/types/profile.interface';
 import type { IProfileCardEditProps } from './ProfileCardEdit.interface';
 import styles from './ProfileCardEdit.module.scss';
 
-export const ProfileCardEdit: FC<IProfileCardEditProps> = (props) => {
+export const ProfileCardEdit: FC<IProfileCardEditProps> = memo((props) => {
   const {
     className,
     enableProfileChange,
@@ -84,4 +84,4 @@ export const ProfileCardEdit: FC<IProfileCardEditProps> = (props) => {
       )}
     </HStack>
   );
-};
+});

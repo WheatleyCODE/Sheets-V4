@@ -1,4 +1,4 @@
-import { ChangeEvent, FC, useCallback } from 'react';
+import { ChangeEvent, FC, memo, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { MdOutlineComment, MdSend } from 'react-icons/md';
 import { addCommentFormReducer, useCommentFormActions } from '../../model/slice/addCommentFormSlice';
@@ -13,7 +13,7 @@ import styles from './AddCommentForm.module.scss';
 
 const reducers: ReducersList = { addCommentForm: addCommentFormReducer };
 
-export const AddCommentForm: FC<IAddCommentFormProps> = (props) => {
+export const AddCommentForm: FC<IAddCommentFormProps> = memo((props) => {
   const { className, addComment, ...anotherProps } = props;
   useDynamicModule(reducers, true);
 
@@ -62,4 +62,4 @@ export const AddCommentForm: FC<IAddCommentFormProps> = (props) => {
       <Button onClick={addCommentHandler} className={styles.button} text={t('Отправить')} Icon={MdSend} />
     </HStack>
   );
-};
+});

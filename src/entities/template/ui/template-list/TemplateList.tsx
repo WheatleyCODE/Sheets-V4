@@ -1,4 +1,4 @@
-import { CSSProperties, FC, useCallback } from 'react';
+import { CSSProperties, FC, memo, useCallback } from 'react';
 import AutoSizer from 'react-virtualized-auto-sizer';
 import { FixedSizeList, ListOnItemsRenderedProps } from 'react-window';
 import { TemplateListItem } from '../template-list-item/TemplateListItem';
@@ -17,7 +17,7 @@ import type { ITemplateListProps } from './TemplateList.interface';
 import styles from './TemplateList.module.scss';
 
 // ! FIX
-export const TemplateList: FC<ITemplateListProps> = (props) => {
+export const TemplateList: FC<ITemplateListProps> = memo((props) => {
   const {
     className,
     isOpenInNewWindow = false,
@@ -153,4 +153,4 @@ export const TemplateList: FC<ITemplateListProps> = (props) => {
       </div>
     </div>
   );
-};
+});

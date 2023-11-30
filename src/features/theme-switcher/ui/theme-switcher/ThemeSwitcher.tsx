@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { AnimatePresence } from 'framer-motion';
 import { MdColorLens } from 'react-icons/md';
@@ -24,7 +24,7 @@ import type { IThemeSwitcherProps } from './ThemeSwitcher.interface';
 import type { IThemeItems, IThemeSubItems } from '../../model/types/themeSwitcher.interface';
 import styles from './ThemeSwitcher.module.scss';
 
-export const ThemeSwitcher: FC<IThemeSwitcherProps> = (props) => {
+export const ThemeSwitcher: FC<IThemeSwitcherProps> = memo((props) => {
   const { className, user, ...anotherProps } = props;
   const { isShow, closePopup, togglePopup } = usePopups();
   const { overflowStyles, close: closeDropdownHandler, onMouseEnter } = useDropdownSubMenuAnimationFixer(closePopup);
@@ -87,4 +87,4 @@ export const ThemeSwitcher: FC<IThemeSwitcherProps> = (props) => {
       </AnimatePresence>
     </div>
   );
-};
+});

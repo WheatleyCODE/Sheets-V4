@@ -1,11 +1,11 @@
-import { FC, useMemo } from 'react';
+import { FC, memo, useMemo } from 'react';
 import { Image } from '../../../image';
 import { classNames } from '@/shared/lib/class-names';
 import type { IAvatarProps } from './Avatar.interface';
 import styles from './Avatar.module.scss';
 import { Skeleton } from '../../../skeleton';
 
-export const Avatar: FC<IAvatarProps> = (props) => {
+export const Avatar: FC<IAvatarProps> = memo((props) => {
   const { className, src, style, width, alt, height, ...anotherProps } = props;
 
   const memoStyle = useMemo(() => ({ ...style, width, height }), [height, style, width]);
@@ -22,4 +22,4 @@ export const Avatar: FC<IAvatarProps> = (props) => {
       className={classNames(styles.avatar, {}, [className])}
     />
   );
-};
+});

@@ -1,4 +1,4 @@
-import { FC, useCallback } from 'react';
+import { FC, memo, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useDelayHover } from '@/shared/lib/hooks';
 import { ANIMATION_DURATION } from '@/shared/consts/animations/animation';
@@ -7,7 +7,7 @@ import { classNames } from '@/shared/lib/class-names';
 import type { DropdownMenuItemProps } from './DropdownMenuItem.interface';
 import styles from './DropdownMenuItem.module.scss';
 
-export const DropdownMenuItem: FC<DropdownMenuItemProps> = (props) => {
+export const DropdownMenuItem: FC<DropdownMenuItemProps> = memo((props) => {
   const { children, Icon, text, onClick, className, side = 'left', ...anotherProps } = props;
   const { isShow, onMouseEnter, onMouseLeave, onMouseMove } = useDelayHover(false, 400, 0);
 
@@ -57,4 +57,4 @@ export const DropdownMenuItem: FC<DropdownMenuItemProps> = (props) => {
       </AnimatePresence>
     </div>
   );
-};
+});

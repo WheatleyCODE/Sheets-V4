@@ -1,4 +1,4 @@
-import { FC, memo, useCallback, useMemo } from 'react';
+import { FC, useCallback, useMemo } from 'react';
 import { motion } from 'framer-motion';
 import { getDrawerAnimations } from './Drawer.consts';
 import { ANIMATION_DURATION } from '@/shared/consts';
@@ -6,7 +6,7 @@ import { classNames } from '@/shared/lib/class-names';
 import type { IDrawerProps } from './Drawer.interface';
 import styles from './Drawer.module.scss';
 
-export const Drawer: FC<IDrawerProps> = memo((props) => {
+export const Drawer: FC<IDrawerProps> = (props) => {
   const { children, openStyles, width = 400, ...anotherProps } = props;
 
   const stopPropagation = useCallback((e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
@@ -29,4 +29,4 @@ export const Drawer: FC<IDrawerProps> = memo((props) => {
       {children}
     </motion.div>
   );
-});
+};

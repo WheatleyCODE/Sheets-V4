@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { templateRecommendsReducer } from '../../model/slice/templateRecommendsSlice';
 import { fetchTemplateRecommends } from '../../model/services/fetch-template-recommends/fetchTemplateRecommends';
@@ -15,7 +15,7 @@ import styles from './TemplateRecommends.module.scss';
 
 const reducers: ReducersList = { templateRecommends: templateRecommendsReducer };
 
-export const TemplateRecommends: FC<ITemplateRecommendsProps> = (props) => {
+export const TemplateRecommends: FC<ITemplateRecommendsProps> = memo((props) => {
   const { className, ...anotherProps } = props;
   useDynamicModule(reducers, true);
 
@@ -45,4 +45,4 @@ export const TemplateRecommends: FC<ITemplateRecommendsProps> = (props) => {
       />
     </RWidth>
   );
-};
+});

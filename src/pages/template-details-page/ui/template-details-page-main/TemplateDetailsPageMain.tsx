@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, memo } from 'react';
 import { useParams } from 'react-router-dom';
 import {
   TemplateDetails,
@@ -18,7 +18,7 @@ const reducerList: ReducersList = {
   templateDetails: templateDetailsReducer,
 };
 
-export const TemplateDetailsPageMain: FC<ITemplateDetailsPageMainProps> = (props) => {
+export const TemplateDetailsPageMain: FC<ITemplateDetailsPageMainProps> = memo((props) => {
   const { className, ...anotherProps } = props;
   useDynamicModule(reducerList, true);
 
@@ -47,4 +47,4 @@ export const TemplateDetailsPageMain: FC<ITemplateDetailsPageMainProps> = (props
       <TemplateDetails template={template} isLoading={isLoading} error={error} />
     </div>
   );
-};
+});

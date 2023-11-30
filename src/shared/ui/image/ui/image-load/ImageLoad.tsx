@@ -1,10 +1,10 @@
-import { FC } from 'react';
+import { FC, memo } from 'react';
 import { classNames } from '@/shared/lib/class-names';
 import { Text } from '../../../text';
 import type { IImageLoadProps } from './ImageLoad.interface';
 import styles from './ImageLoad.module.scss';
 
-export const ImageLoad: FC<IImageLoadProps> = (props) => {
+export const ImageLoad: FC<IImageLoadProps> = memo((props) => {
   const { className, text = 'Загрузка...', ...anotherProps } = props;
 
   return (
@@ -12,4 +12,4 @@ export const ImageLoad: FC<IImageLoadProps> = (props) => {
       <Text text={text} />
     </div>
   );
-};
+});

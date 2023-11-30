@@ -1,4 +1,4 @@
-import { FC, useCallback } from 'react';
+import { FC, memo, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { TemplateView } from '@/entities/template';
 import { MdOutlineViewList, MdOutlineViewModule } from 'react-icons/md';
@@ -9,7 +9,7 @@ import { classNames } from '@/shared/lib/class-names';
 import type { ITemplatesViewSwitcherProps } from './TemplatesViewSwitcher.interface';
 import styles from './TemplatesViewSwitcher.module.scss';
 
-export const TemplatesViewSwitcher: FC<ITemplatesViewSwitcherProps> = (props) => {
+export const TemplatesViewSwitcher: FC<ITemplatesViewSwitcherProps> = memo((props) => {
   const { className, view, changeView, ...anotherProps } = props;
   const { t } = useTranslation();
 
@@ -55,4 +55,4 @@ export const TemplatesViewSwitcher: FC<ITemplatesViewSwitcherProps> = (props) =>
       </HStack>
     </HStack>
   );
-};
+});

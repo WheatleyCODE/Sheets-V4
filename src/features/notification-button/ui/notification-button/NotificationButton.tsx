@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, memo } from 'react';
 import { BrowserView, MobileView } from 'react-device-detect';
 import { AnimatePresence } from 'framer-motion';
 import { MdNotificationsNone } from 'react-icons/md';
@@ -13,7 +13,7 @@ import { classNames } from '@/shared/lib/class-names';
 import type { INotificationButtonProps } from './NotificationButton.interface';
 import styles from './NotificationButton.module.scss';
 
-export const NotificationButton: FC<INotificationButtonProps> = (props) => {
+export const NotificationButton: FC<INotificationButtonProps> = memo((props) => {
   const { className, ...anotherProps } = props;
   const { isShow, closePopup, togglePopup } = usePopups();
   const { isShow: isShowModal, closeModal, toggleModal } = useModals();
@@ -58,4 +58,4 @@ export const NotificationButton: FC<INotificationButtonProps> = (props) => {
       </MobileView>
     </div>
   );
-};
+});

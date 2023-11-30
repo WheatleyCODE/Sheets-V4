@@ -1,4 +1,4 @@
-import { FC, useCallback } from 'react';
+import { FC, memo, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { MdChevronLeft } from 'react-icons/md';
 import { useNavigate } from 'react-router-dom';
@@ -12,12 +12,11 @@ import { classNames } from '@/shared/lib/class-names';
 import type { ITemplateDetailsPageHeaderProps } from './TemplateDetailsPageHeader.interface';
 import styles from './TemplateDetailsPageHeader.module.scss';
 
-export const TemplateDetailsPageHeader: FC<ITemplateDetailsPageHeaderProps> = (props) => {
+export const TemplateDetailsPageHeader: FC<ITemplateDetailsPageHeaderProps> = memo((props) => {
   const { className, ...anotherProps } = props;
   const navigate = useNavigate();
   const template = useTemplateDetails();
   const isCanEdit = useTemplateDetailsIsCanEdit();
-
   const { t } = useTranslation();
 
   const navigateToTemplates = useCallback(() => {
@@ -53,4 +52,4 @@ export const TemplateDetailsPageHeader: FC<ITemplateDetailsPageHeaderProps> = (p
       </Width>
     </HStack>
   );
-};
+});

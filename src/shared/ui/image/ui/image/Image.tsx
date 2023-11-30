@@ -1,9 +1,9 @@
-import { FC, useLayoutEffect, useState } from 'react';
+import { FC, memo, useLayoutEffect, useState } from 'react';
 import { ImageError } from '../image-error/ImageError';
 import { ImageLoad } from '../image-load/ImageLoad';
 import type { IImageProps } from './Image.interface';
 
-export const Image: FC<IImageProps> = (props) => {
+export const Image: FC<IImageProps> = memo((props) => {
   const { className, src, alt = 'image', errorFallback, fallback, ...otherProps } = props;
   const [isLoading, setIsLoading] = useState(true);
   const [hasError, setHasError] = useState(false);
@@ -33,4 +33,4 @@ export const Image: FC<IImageProps> = (props) => {
   }
 
   return <img data-testid="image" className={className} src={src} alt={alt} {...otherProps} />;
-};
+});

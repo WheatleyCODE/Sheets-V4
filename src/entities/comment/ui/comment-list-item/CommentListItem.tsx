@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Avatar } from '@/shared/ui/avatar';
 import { Text } from '@/shared/ui/text';
@@ -10,7 +10,7 @@ import { classNames } from '@/shared/lib/class-names';
 import type { ICommentListItemProps } from './CommentListItem.interface';
 import styles from './CommentListItem.module.scss';
 
-export const CommentListItem: FC<ICommentListItemProps> = (props) => {
+export const CommentListItem: FC<ICommentListItemProps> = memo((props) => {
   const { className, comment, ...anotherProps } = props;
   const { t } = useTranslation();
   const { text, user } = comment;
@@ -37,4 +37,4 @@ export const CommentListItem: FC<ICommentListItemProps> = (props) => {
       </HStack>
     </VStack>
   );
-};
+});

@@ -1,11 +1,11 @@
-import { FC, useCallback } from 'react';
+import { FC, memo, useCallback } from 'react';
 import { MdOutlineContentCopy } from 'react-icons/md';
 import { Button } from '../../../button';
 import { classNames } from '@/shared/lib/class-names';
 import type { ICodeProps } from './Code.interface';
 import styles from './Code.module.scss';
 
-export const Code: FC<ICodeProps> = (props) => {
+export const Code: FC<ICodeProps> = memo((props) => {
   const { className, code, ...anotherProps } = props;
 
   const onCopy = useCallback(() => {
@@ -29,4 +29,4 @@ export const Code: FC<ICodeProps> = (props) => {
       </pre>
     </div>
   );
-};
+});
