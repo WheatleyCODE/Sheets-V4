@@ -1,8 +1,8 @@
 export type { IProfile, IProfileSchema } from './model/types/profile.interface';
-export { profileActions, profileReducer } from './model/slice/profileSlice';
-export { fetchProfile } from './model/services/fetch-profile/fetchProfile';
+export { profileActions, profileReducer, useProfileActions } from './model/slice/profileSlice';
+export { fetchProfile, useFetchProfile } from './model/services/fetch-profile/fetchProfile';
 export { ProfileCard } from './ui/profile-card/ProfileCard';
-export { updateProfile } from './model/services/update-profille/updateProfile';
+export { updateProfile, useUpdateProfile } from './model/services/update-profille/updateProfile';
 export { Country, Currency } from './model/consts/profile.consts';
 
 export { getProfileFirstname, useProfileFirstName } from './model/selectors/get-profile-firstname/getProfileFirstname';

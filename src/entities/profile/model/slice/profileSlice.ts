@@ -1,10 +1,11 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { PayloadAction } from '@reduxjs/toolkit';
 import { fetchProfile } from '../services/fetch-profile/fetchProfile';
 import { updateProfile } from '../services/update-profille/updateProfile';
 import { initialProfileState } from '../consts/profile.consts';
+import { buildSlice } from '@/shared/lib/store';
 import type { IProfile } from '../types/profile.interface';
 
-export const profileSlice = createSlice({
+export const profileSlice = buildSlice({
   name: 'profile',
   initialState: initialProfileState,
   reducers: {
@@ -47,4 +48,4 @@ export const profileSlice = createSlice({
   },
 });
 
-export const { actions: profileActions, reducer: profileReducer } = profileSlice;
+export const { actions: profileActions, reducer: profileReducer, useActions: useProfileActions } = profileSlice;

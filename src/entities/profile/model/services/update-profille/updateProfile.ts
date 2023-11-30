@@ -1,9 +1,9 @@
-import { createAsyncThunk } from '@reduxjs/toolkit';
-import { IThunkConfig, IThunkExtra } from '@/app/providers/store-provider';
+import { IThunkExtra } from '@/app/providers/store-provider';
 import i18n from '@/shared/config/i18n/i18n';
 import type { IProfile } from '../../types/profile.interface';
+import { buildAsyncThunk } from '@/shared/lib/store';
 
-export const updateProfile = createAsyncThunk<IProfile, IProfile, IThunkConfig>(
+export const [useUpdateProfile, updateProfile] = buildAsyncThunk<IProfile, IProfile>(
   'profile/updateProfile',
   async (formData, thunkAPI) => {
     try {

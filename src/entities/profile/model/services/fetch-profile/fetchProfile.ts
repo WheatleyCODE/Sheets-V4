@@ -1,9 +1,9 @@
-import { createAsyncThunk } from '@reduxjs/toolkit';
-import { IThunkConfig, IThunkExtra } from '@/app/providers/store-provider';
+import { IThunkExtra } from '@/app/providers/store-provider';
 import i18n from '@/shared/config/i18n/i18n';
 import type { IProfile } from '../../types/profile.interface';
+import { buildAsyncThunk } from '@/shared/lib/store';
 
-export const fetchProfile = createAsyncThunk<IProfile, { userId: string }, IThunkConfig>(
+export const [useFetchProfile, fetchProfile] = buildAsyncThunk<IProfile, { userId: string }>(
   'profile/fetchProfile',
   async ({ userId }, thunkAPI) => {
     try {

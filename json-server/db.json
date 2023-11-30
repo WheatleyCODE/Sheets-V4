@@ -18,6 +18,12 @@
       "templateId": "7",
       "rate": 5,
       "id": 3
+    },
+    {
+      "userId": "1",
+      "templateId": "1",
+      "rate": 7,
+      "id": 4
     }
   ],
   "notifications": [
@@ -129,7 +135,7 @@
         "isTemplateRating": true
       },
       "clientSettings": {
-        "[[SheetsV4-theme]]": "dark"
+        "[[SheetsV4-theme]]": "light"
       },
       "avatar": "https://cdn1.tenchat.ru/static/vbc-gostinder/user-picture/cdc8face-2608-4f07-90c3-68776d03c246.jpeg"
     },

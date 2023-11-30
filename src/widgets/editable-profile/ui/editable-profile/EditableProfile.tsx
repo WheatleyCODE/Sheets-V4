@@ -4,16 +4,16 @@ import { useUser } from '@/entities/user';
 import {
   IProfile,
   ProfileCard,
-  fetchProfile,
+  useFetchProfile,
   useProfile,
   useProfileError,
   useProfileIsLoading,
   useProfileIsReadonly,
-  profileActions,
   profileReducer,
-  updateProfile,
+  useUpdateProfile,
+  useProfileActions,
 } from '@/entities/profile';
-import { ReducersList, useDynamicModule, useInitialEffect, useTypedDispatch } from '@/shared/lib/hooks';
+import { ReducersList, useDynamicModule, useInitialEffect } from '@/shared/lib/hooks';
 import { classNames } from '@/shared/lib/class-names';
 import type { IEditableProfileProps } from './EditableProfile.interface';
 import styles from './EditableProfile.module.scss';
@@ -23,8 +23,11 @@ const reducers: ReducersList = { profile: profileReducer };
 export const EditableProfile: FC<IEditableProfileProps> = (props) => {
   const { className, ...anotherProps } = props;
   useDynamicModule(reducers);
+
   const { id } = useParams<{ id: string }>();
-  const dispatch = useTypedDispatch();
+  const fetchProfile = useFetchProfile();
+  const updateProfile = useUpdateProfile();
+  const { setIsReadonly, setProfile } = useProfileActions();
   const profile = useProfile();
   const user = useUser();
   const isLoading = useProfileIsLoading();
@@ -34,27 +37,24 @@ export const EditableProfile: FC<IEditableProfileProps> = (props) => {
   useInitialEffect(() => {
     if (!id) return;
 
-    dispatch(fetchProfile({ userId: id }));
+    fetchProfile({ userId: id });
   });
 
   const enableProfileChange = useCallback(() => {
-    dispatch(profileActions.setIsReadonly(false));
-  }, [dispatch]);
+    setIsReadonly(false);
+  }, [setIsReadonly]);
 
   const disableProfileChange = useCallback(() => {
-    dispatch(profileActions.setProfile(profile));
-
-    dispatch(profileActions.setIsReadonly(true));
-  }, [dispatch, profile]);
+    setProfile(profile);
+    setIsReadonly(true);
+  }, [profile, setIsReadonly, setProfile]);
 
   const saveProfileChange = useCallback(
     (newProfile: IProfile) => {
-      dispatch(profileActions.setIsReadonly(true));
-      console.log({ ...profile, ...newProfile });
-
-      dispatch(updateProfile({ ...profile, ...newProfile }));
+      setIsReadonly(true);
+      updateProfile({ ...profile, ...newProfile });
     },
-    [dispatch, profile],
+    [profile, setIsReadonly, updateProfile],
   );
 
   const getEdit = () => {
