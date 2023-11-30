@@ -1,8 +1,12 @@
 export { TemplateDetails } from './ui/template-details/TemplateDetails';
 export { TemplateBlockTypes, TemplateTags, TemplateView, templateTabs } from './model/consts/template.consts';
 export type { ITemplate, TemplateBlock, ITemplateDetailsSchema, ITemplateTab } from './model/types/template.interface';
-export { templateDetailsReducer, templateDetailsActions } from './model/slice/templateDetailsSlice';
-export { fetchTemplateById } from './model/services/fetch-template-by-id/fetchTemplateById';
+export {
+  templateDetailsReducer,
+  templateDetailsActions,
+  useTemplateDetailsActions,
+} from './model/slice/templateDetailsSlice';
+export { fetchTemplateById, useFetchTemplateById } from './model/services/fetch-template-by-id/fetchTemplateById';
 export { TemplateList } from './ui/template-list/TemplateList';
 export { SQUARES_TEMPLATE_COUNT } from './model/consts/template.consts';
 

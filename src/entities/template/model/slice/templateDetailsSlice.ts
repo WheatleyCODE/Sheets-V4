@@ -1,9 +1,10 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { PayloadAction } from '@reduxjs/toolkit';
+import { buildSlice } from '@/shared/lib/store';
 import { fetchTemplateById } from '../services/fetch-template-by-id/fetchTemplateById';
 import { initialTemplateDetailsState } from '../consts/template.consts';
 import type { ITemplate } from '../types/template.interface';
 
-export const templateDetailsSlice = createSlice({
+export const templateDetailsSlice = buildSlice({
   name: 'templateDetails',
   initialState: initialTemplateDetailsState,
   reducers: {
@@ -31,4 +32,8 @@ export const templateDetailsSlice = createSlice({
   },
 });
 
-export const { actions: templateDetailsActions, reducer: templateDetailsReducer } = templateDetailsSlice;
+export const {
+  actions: templateDetailsActions,
+  reducer: templateDetailsReducer,
+  useActions: useTemplateDetailsActions,
+} = templateDetailsSlice;

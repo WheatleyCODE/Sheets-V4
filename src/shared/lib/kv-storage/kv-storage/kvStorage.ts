@@ -17,13 +17,16 @@ export class KVStorage {
   }
 
   get<T extends SerializableValue>(key: string): SyncOrAsyncPromise<Nullable<T>> {
-    return this.engine.get(this.#getKey(key)).then((string) => JSON.parse(string ?? 'null'));
+    return this.engine
+      .get(this.#getKey(key))
+      .then((string) => JSON.parse(string ?? 'null'))
+      .catch((e) => console.error('KVStorage: При парсинге данных из хранилища произошла ошибка', e));
   }
 
   set(key: string, value: SerializableValue): SyncOrAsyncPromise<Nullable<void>> {
-    const newValue = typeof value === 'string' ? value : JSON.stringify(value);
-
-    return this.engine.set(this.#getKey(key), newValue);
+    return this.engine
+      .set(this.#getKey(key), JSON.stringify(value))
+      .catch((e) => console.error('KVStorage: При парсинге данных в хранилище произошла ошибка', e));
   }
 
   remove(key: string): SyncOrAsyncPromise<Nullable<void>> {

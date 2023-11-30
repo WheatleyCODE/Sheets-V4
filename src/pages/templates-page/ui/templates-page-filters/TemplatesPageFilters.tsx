@@ -6,8 +6,8 @@ import { useTemplatesPageSortOrder } from '../../model/selectors/get-templates-p
 import { useTemplatesPageSearch } from '../../model/selectors/get-templates-page-search/getTemplatesPageSearch';
 import { useTemplatesPageTag } from '../../model/selectors/get-templates-page-tag/getTemplatesPageTag';
 import { useTemplatesPageView } from '../../model/selectors/get-templates-page-templates-view/getTemplatesPageView';
-import { templatesPageActions } from '../../model/slice/templatesPageSlice';
-import { fetchTemplatesPageTemplates } from '../../model/services/fetch-templates-page-templates/fetchTemplatesPageTemplates';
+import { useTemplatesPageActions } from '../../model/slice/templatesPageSlice';
+import { useFetchTemplatesPageTemplates } from '../../model/services/fetch-templates-page-templates/fetchTemplatesPageTemplates';
 import { TemplatesViewSwitcher } from '@/features/templates-view-switcher';
 import { TemplateTags, TemplateView, ITemplateTab, templateTabs } from '@/entities/template';
 import { Input, useValidInput } from '@/shared/ui/input';
@@ -16,7 +16,7 @@ import { TabItem, Tabs } from '@/shared/ui/tabs';
 import { intoIter } from '@/shared/lib/iterators';
 import { Title } from '@/shared/ui/title';
 import { VStack, Width } from '@/shared/ui/containers';
-import { useDebounce, useTypedDispatch } from '@/shared/lib/hooks';
+import { useDebounce } from '@/shared/lib/hooks';
 import {
   TemplateSortFields,
   TemplateSortOrders,
@@ -34,7 +34,8 @@ export const TemplatesPageFilters: FC<ITemplatesPageFiltersProps> = (props) => {
   const search = useTemplatesPageSearch();
   const view = useTemplatesPageView();
   const tag = useTemplatesPageTag();
-  const dispatch = useTypedDispatch();
+  const fetchTemplatesPageTemplates = useFetchTemplatesPageTemplates();
+  const { setPage, setView, setSort, setSearch, setSortOrder, setTags } = useTemplatesPageActions();
 
   const sortInput = useValidInput(sort);
   const sortOrderInput = useValidInput(sortOrder);
@@ -42,43 +43,43 @@ export const TemplatesPageFilters: FC<ITemplatesPageFiltersProps> = (props) => {
   const { t } = useTranslation();
 
   const fetchTemplatesOnChange = useCallback(() => {
-    dispatch(templatesPageActions.setPage(1));
-    dispatch(fetchTemplatesPageTemplates());
-  }, [dispatch]);
+    setPage(1);
+    fetchTemplatesPageTemplates({ isReplace: true });
+  }, [fetchTemplatesPageTemplates, setPage]);
 
   const changeView = useCallback(
     (view: TemplateView) => {
-      dispatch(templatesPageActions.setView(view));
+      setView(view);
     },
-    [dispatch],
+    [setView],
   );
 
   const changeSort = useCallback(
     (sort: TemplateSortFields) => {
-      dispatch(templatesPageActions.setSort(sort));
+      setSort(sort);
       fetchTemplatesOnChange();
     },
-    [dispatch, fetchTemplatesOnChange],
+    [fetchTemplatesOnChange, setSort],
   );
 
   const changeSortOrder = useCallback(
     (sortOrder: TemplateSortOrders) => {
-      dispatch(templatesPageActions.setSortOrder(sortOrder));
+      setSortOrder(sortOrder);
       fetchTemplatesOnChange();
     },
-    [dispatch, fetchTemplatesOnChange],
+    [fetchTemplatesOnChange, setSortOrder],
   );
 
   const changeTag = useCallback(
     (tag: TemplateTags) => {
-      dispatch(templatesPageActions.setTags(tag));
+      setTags(tag);
       fetchTemplatesOnChange();
     },
-    [dispatch, fetchTemplatesOnChange],
+    [fetchTemplatesOnChange, setTags],
   );
 
   const changeSearch = useDebounce((search: string) => {
-    dispatch(templatesPageActions.setSearch(search));
+    setSearch(search);
     fetchTemplatesOnChange();
   }, 300);
 

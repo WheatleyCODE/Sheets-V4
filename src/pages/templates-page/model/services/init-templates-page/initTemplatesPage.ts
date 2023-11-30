@@ -1,17 +1,17 @@
-import { createAsyncThunk } from '@reduxjs/toolkit';
-import { IThunkConfig } from '@/app/providers/store-provider';
+import { IStateSchema } from '@/app/providers/store-provider';
 import i18n from '@/shared/config/i18n/i18n';
 import { getTemplatesPageInited } from '../../selectors/get-templates-page-inited/getTemplatesPageInited';
 import { templatesPageActions } from '../../slice/templatesPageSlice';
 import { fetchTemplatesPageTemplates } from '../fetch-templates-page-templates/fetchTemplatesPageTemplates';
 import { TemplateTags } from '@/entities/template';
 import { TemplateSortFields, TemplateSortOrders } from '../../consts/templatesPage.consts';
+import { buildAsyncThunk } from '@/shared/lib/store';
 
-export const initTemplatesPage = createAsyncThunk<void, URLSearchParams, IThunkConfig>(
+export const [useInitTemplatesPage, initTemplatesPage] = buildAsyncThunk<void, URLSearchParams>(
   'templatesPage/initTemplatesPage',
   async (searchParams, thunkAPI) => {
     try {
-      const inited = getTemplatesPageInited(thunkAPI.getState());
+      const inited = getTemplatesPageInited(thunkAPI.getState() as IStateSchema);
 
       if (inited) return;
       const order = searchParams.get('order');

@@ -1,9 +1,9 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { buildSlice } from '@/shared/lib/store';
 import type { PayloadAction } from '@reduxjs/toolkit';
 import type { ModalsKeys } from '../../types/modal/modal.interface';
 import { initialModalState } from '../../consts/layout.consts';
 
-export const modalsSlice = createSlice({
+export const modalsSlice = buildSlice({
   name: 'modals',
   initialState: initialModalState,
   reducers: {
@@ -21,4 +21,4 @@ export const modalsSlice = createSlice({
   },
 });
 
-export const { actions: modalsActions, reducer: modalsReducer } = modalsSlice;
+export const { actions: modalsActions, reducer: modalsReducer, useActions: useModalsActions } = modalsSlice;

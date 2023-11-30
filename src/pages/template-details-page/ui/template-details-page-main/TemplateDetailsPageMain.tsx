@@ -2,14 +2,14 @@ import { FC } from 'react';
 import { useParams } from 'react-router-dom';
 import {
   TemplateDetails,
-  fetchTemplateById,
   useTemplateDetails,
   useTemplateDetailsError,
   useTemplateDetailsIsLoading,
-  templateDetailsActions,
   templateDetailsReducer,
+  useFetchTemplateById,
+  useTemplateDetailsActions,
 } from '@/entities/template';
-import { ReducersList, useDynamicModule, useInitialEffect, useTypedDispatch } from '@/shared/lib/hooks';
+import { ReducersList, useDynamicModule, useInitialEffect } from '@/shared/lib/hooks';
 import { classNames } from '@/shared/lib/class-names';
 import type { ITemplateDetailsPageMainProps } from './TemplateDetailsPageMain.interface';
 import styles from './TemplateDetailsPageMain.module.scss';
@@ -21,20 +21,21 @@ const reducerList: ReducersList = {
 export const TemplateDetailsPageMain: FC<ITemplateDetailsPageMainProps> = (props) => {
   const { className, ...anotherProps } = props;
   useDynamicModule(reducerList, true);
+
   const template = useTemplateDetails();
   const isLoading = useTemplateDetailsIsLoading();
   const error = useTemplateDetailsError();
-
-  const dispatch = useTypedDispatch();
+  const fetchTemplateById = useFetchTemplateById();
+  const { setError } = useTemplateDetailsActions();
   const { id } = useParams<{ id: string }>();
 
   useInitialEffect(() => {
     if (!id) {
-      dispatch(templateDetailsActions.setError('Шаблон не найден'));
+      setError('Шаблон не найден');
       return;
     }
 
-    dispatch(fetchTemplateById({ id }));
+    fetchTemplateById({ id });
   });
 
   return (

@@ -1,9 +1,9 @@
-import { createSlice } from '@reduxjs/toolkit';
-import type { PayloadAction } from '@reduxjs/toolkit';
+import { PayloadAction } from '@reduxjs/toolkit';
+import { buildSlice } from '@/shared/lib/store';
 import { loginByEmail } from '../services/login-by-email/loginByEmail';
 import { initialLoginState } from '../consts/authByEmail.consts';
 
-export const loginSlice = createSlice({
+export const loginSlice = buildSlice({
   name: 'login',
   initialState: initialLoginState,
   reducers: {
@@ -32,4 +32,4 @@ export const loginSlice = createSlice({
   },
 });
 
-export const { actions: loginActions, reducer: loginReducer } = loginSlice;
+export const { actions: loginActions, reducer: loginReducer, useActions: useLoginActions } = loginSlice;

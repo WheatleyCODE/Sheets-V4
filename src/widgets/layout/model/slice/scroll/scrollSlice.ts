@@ -1,8 +1,8 @@
-import { createSlice } from '@reduxjs/toolkit';
-import type { PayloadAction } from '@reduxjs/toolkit';
+import { buildSlice } from '@/shared/lib/store';
 import { initialScrollState } from '../../consts/layout.consts';
+import type { PayloadAction } from '@reduxjs/toolkit';
 
-export const scrollSlice = createSlice({
+export const scrollSlice = buildSlice({
   name: 'scroll',
   initialState: initialScrollState,
   reducers: {
@@ -13,4 +13,4 @@ export const scrollSlice = createSlice({
   },
 });
 
-export const { actions: scrollActions, reducer: scrollReducer } = scrollSlice;
+export const { actions: scrollActions, reducer: scrollReducer, useActions: useScrollActions } = scrollSlice;

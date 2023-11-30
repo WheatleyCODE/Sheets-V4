@@ -1,9 +1,9 @@
-import { createAsyncThunk } from '@reduxjs/toolkit';
-import { IThunkConfig, IThunkExtra } from '@/app/providers/store-provider';
+import { IThunkExtra } from '@/app/providers/store-provider';
+import { buildAsyncThunk } from '@/shared/lib/store';
 import i18n from '@/shared/config/i18n/i18n';
 import type { ITemplate } from '../../types/template.interface';
 
-export const fetchTemplateById = createAsyncThunk<ITemplate, { id: string }, IThunkConfig>(
+export const [useFetchTemplateById, fetchTemplateById] = buildAsyncThunk<ITemplate, { id: string }>(
   'template/fetchTemplateById',
   async ({ id }, thunkAPI) => {
     try {

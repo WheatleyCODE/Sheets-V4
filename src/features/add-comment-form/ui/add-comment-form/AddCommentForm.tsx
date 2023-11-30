@@ -1,12 +1,12 @@
 import { ChangeEvent, FC, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { MdOutlineComment, MdSend } from 'react-icons/md';
-import { addCommentFormActions, addCommentFormReducer } from '../../model/slice/addCommentFormSlice';
+import { addCommentFormReducer, useCommentFormActions } from '../../model/slice/addCommentFormSlice';
 import { useAddCommentFormText } from '../../model/selectors/get-add-comment-form-error-text/getAddCommentFormText';
 import { Input, useValidInput } from '@/shared/ui/input';
 import { HStack } from '@/shared/ui/containers';
 import { Button } from '@/shared/ui/button';
-import { ReducersList, useDynamicModule, useTypedDispatch } from '@/shared/lib/hooks';
+import { ReducersList, useDynamicModule } from '@/shared/lib/hooks';
 import { classNames } from '@/shared/lib/class-names';
 import type { IAddCommentFormProps } from './AddCommentForm.interface';
 import styles from './AddCommentForm.module.scss';
@@ -16,23 +16,27 @@ const reducers: ReducersList = { addCommentForm: addCommentFormReducer };
 export const AddCommentForm: FC<IAddCommentFormProps> = (props) => {
   const { className, addComment, ...anotherProps } = props;
   useDynamicModule(reducers, true);
-  const dispatch = useTypedDispatch();
+
+  const { setText } = useCommentFormActions();
   const text = useAddCommentFormText();
   const textInput = useValidInput(text);
   const { t } = useTranslation();
 
-  const onChangeText = useCallback((e: ChangeEvent<HTMLInputElement>) => {
-    dispatch(addCommentFormActions.setText(e.target.value));
-    textInput.onChange(e);
-  }, []);
+  const onChangeText = useCallback(
+    (e: ChangeEvent<HTMLInputElement>) => {
+      setText(e.target.value);
+      textInput.onChange(e);
+    },
+    [setText, textInput],
+  );
 
   const addCommentHandler = useCallback(() => {
     if (!textInput.value || textInput.isError) return;
     addComment(textInput.value);
 
     textInput.changeValue('');
-    dispatch(addCommentFormActions.setText(''));
-  }, [textInput, addComment, dispatch]);
+    setText('');
+  }, [textInput, addComment, setText]);
 
   return (
     <HStack

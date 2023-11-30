@@ -4,8 +4,8 @@ import { useTranslation } from 'react-i18next';
 import { Input, useValidInput } from '@/shared/ui/input';
 import { emailValidator, passwordValidator } from '@/shared/lib/validators';
 import { Button } from '@/shared/ui/button';
-import { loginActions, loginReducer } from '../../model/slice/loginSlice';
-import { loginByEmail } from '../../model/services/login-by-email/loginByEmail';
+import { loginReducer, useLoginActions } from '../../model/slice/loginSlice';
+import { useLoginByEmail } from '../../model/services/login-by-email/loginByEmail';
 import { useLoginEmail } from '../../model/selectors/get-login-email/getLoginEmail';
 import { useLoginPassword } from '../../model/selectors/get-login-password/getLoginPassword';
 import { useLoginIsLoading } from '../../model/selectors/get-login-is-loading/getLoginIsLoading';
@@ -13,7 +13,7 @@ import { useLoginError } from '../../model/selectors/get-login-error/getLoginErr
 import { Text } from '@/shared/ui/text';
 import { callOnFulfilled } from '@/shared/lib/utils';
 import { HStack, VStack } from '@/shared/ui/containers';
-import { ReducersList, useDynamicModule, useTypedDispatch } from '@/shared/lib/hooks';
+import { ReducersList, useDynamicModule } from '@/shared/lib/hooks';
 import { classNames } from '@/shared/lib/class-names';
 import type { ILoginFormProps } from './LoginForm.interface';
 import styles from './LoginForm.module.scss';
@@ -23,6 +23,9 @@ const reducers: ReducersList = { login: loginReducer };
 const LoginForm: FC<ILoginFormProps> = memo((props) => {
   const { onLoginSuccess, onLoginStart, ...anotherProps } = props;
   useDynamicModule(reducers);
+
+  const loginByEmail = useLoginByEmail();
+  const { setEmail, setPassword } = useLoginActions();
   const email = useLoginEmail();
   const password = useLoginPassword();
   const isLoading = useLoginIsLoading();
@@ -30,24 +33,23 @@ const LoginForm: FC<ILoginFormProps> = memo((props) => {
   const emailInput = useValidInput(email, [emailValidator]);
   const passwordInput = useValidInput(password, [passwordValidator]);
   const { t } = useTranslation();
-  const dispatch = useTypedDispatch();
 
   const isDisable = passwordInput.isError || emailInput.isError;
 
   const onChangeEmail = useCallback(
     (e: ChangeEvent<HTMLInputElement>) => {
-      dispatch(loginActions.setEmail(e.target.value));
+      setEmail(e.target.value);
       emailInput.onChange(e);
     },
-    [dispatch],
+    [emailInput, setEmail],
   );
 
   const onChangePassword = useCallback(
     (e: ChangeEvent<HTMLInputElement>) => {
-      dispatch(loginActions.setPassword(e.target.value));
+      setPassword(e.target.value);
       passwordInput.onChange(e);
     },
-    [dispatch],
+    [passwordInput, setPassword],
   );
 
   const onLogin = useCallback(async () => {
@@ -56,9 +58,9 @@ const LoginForm: FC<ILoginFormProps> = memo((props) => {
 
     onLoginStart?.();
     const data = { email: emailInput.value, password: passwordInput.value };
-    const res = await dispatch(loginByEmail(data));
+    const res = await loginByEmail(data);
     callOnFulfilled(res, onLoginSuccess);
-  }, [emailInput, passwordInput, dispatch, onLoginSuccess, onLoginStart]);
+  }, [emailInput, passwordInput, loginByEmail, onLoginSuccess, onLoginStart]);
 
   return (
     <VStack

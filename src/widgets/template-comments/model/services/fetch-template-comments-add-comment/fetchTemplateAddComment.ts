@@ -1,12 +1,12 @@
-import { createAsyncThunk } from '@reduxjs/toolkit';
-import { IThunkConfig, IThunkExtra } from '@/app/providers/store-provider';
+import { IStateSchema, IThunkExtra } from '@/app/providers/store-provider';
+import { buildAsyncThunk } from '@/shared/lib/store';
 import { IComment } from '@/entities/comment';
 import { getUser } from '@/entities/user';
 import { templateCommentsActions } from '../../slice/templateCommentsSlice';
 import i18n from '@/shared/config/i18n/i18n';
 import type { IFetchAddCommentData } from './fetchTemplateAddComment.interface';
 
-export const fetchTemplateAddComment = createAsyncThunk<IComment, IFetchAddCommentData, IThunkConfig>(
+export const [useFetchTemplateAddComment, fetchTemplateAddComment] = buildAsyncThunk<IComment, IFetchAddCommentData>(
   'template/fetchTemplateAddComment',
   async (commentData, thunkAPI) => {
     try {
@@ -15,7 +15,7 @@ export const fetchTemplateAddComment = createAsyncThunk<IComment, IFetchAddComme
 
       if (!data) throw new Error();
 
-      const user = getUser(thunkAPI.getState());
+      const user = getUser(thunkAPI.getState() as IStateSchema);
 
       if (user) {
         data.user = user;

@@ -1,5 +1,4 @@
-import { createAsyncThunk } from '@reduxjs/toolkit';
-import { IThunkConfig, IThunkExtra } from '@/app/providers/store-provider';
+import { IStateSchema, IThunkExtra } from '@/app/providers/store-provider';
 import { ITemplate, TemplateTags } from '@/entities/template';
 import i18n from '@/shared/config/i18n/i18n';
 import { getTemplatesPageLimit } from '../../selectors/get-templates-page-limit/getTemplatesPageLimit';
@@ -9,21 +8,21 @@ import { getTemplatesPageSortOrder } from '../../selectors/get-templates-page-so
 import { getTemplatesPageSearch } from '../../selectors/get-templates-page-search/getTemplatesPageSearch';
 import { addQueryParams } from '@/shared/lib/url';
 import { getTemplatesPageTag } from '../../selectors/get-templates-page-tag/getTemplatesPageTag';
+import { buildAsyncThunk } from '@/shared/lib/store';
 
-export const fetchTemplatesPageTemplates = createAsyncThunk<
+export const [useFetchTemplatesPageTemplates, fetchTemplatesPageTemplates] = buildAsyncThunk<
   ITemplate[],
-  { isReplace: boolean } | undefined,
-  IThunkConfig
+  { isReplace: boolean } | void
 >('templatesPage/fetchTemplatesPageTemplates', async (_, thunkAPI) => {
   try {
     const extra = thunkAPI.extra as IThunkExtra;
 
-    const limit = getTemplatesPageLimit(thunkAPI.getState());
-    const page = getTemplatesPagePage(thunkAPI.getState());
-    const sort = getTemplatesPageSort(thunkAPI.getState());
-    const order = getTemplatesPageSortOrder(thunkAPI.getState());
-    const search = getTemplatesPageSearch(thunkAPI.getState());
-    const tag = getTemplatesPageTag(thunkAPI.getState());
+    const limit = getTemplatesPageLimit(thunkAPI.getState() as IStateSchema);
+    const page = getTemplatesPagePage(thunkAPI.getState() as IStateSchema);
+    const sort = getTemplatesPageSort(thunkAPI.getState() as IStateSchema);
+    const order = getTemplatesPageSortOrder(thunkAPI.getState() as IStateSchema);
+    const search = getTemplatesPageSearch(thunkAPI.getState() as IStateSchema);
+    const tag = getTemplatesPageTag(thunkAPI.getState() as IStateSchema);
 
     addQueryParams({ sort, order, search, tag }, true);
 

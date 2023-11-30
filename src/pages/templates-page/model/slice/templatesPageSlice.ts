@@ -1,4 +1,4 @@
-import { createEntityAdapter, createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createEntityAdapter, PayloadAction } from '@reduxjs/toolkit';
 import { ITemplate, TemplateTags, TemplateView } from '@/entities/template';
 import { fetchTemplatesPageTemplates } from '../services/fetch-templates-page-templates/fetchTemplatesPageTemplates';
 import { LS_VIEW_KEY } from '@/shared/consts';
@@ -6,6 +6,7 @@ import { KVFactory } from '@/shared/lib/kv-storage';
 import { SQUARES_TEMPLATE_COUNT } from '@/entities/template';
 import { INIT_PAGE_COUNT, TemplateSortFields, TemplateSortOrders } from '../consts/templatesPage.consts';
 import type { ITemplatesPageSchema } from '../types/templatesPage.interface';
+import { buildSlice } from '@/shared/lib/store';
 
 export const templatesPageAdapter = createEntityAdapter<ITemplate>({
   selectId: (template) => template.id,
@@ -31,7 +32,7 @@ const initialState = templatesPageAdapter.getInitialState<ITemplatesPageSchema>(
 
 const ls = KVFactory();
 
-export const templatesPageSlice = createSlice({
+export const templatesPageSlice = buildSlice({
   name: 'templatesPage',
   initialState,
   reducers: {
@@ -101,4 +102,8 @@ export const templatesPageSlice = createSlice({
   },
 });
 
-export const { reducer: templatesPageReducer, actions: templatesPageActions } = templatesPageSlice;
+export const {
+  reducer: templatesPageReducer,
+  actions: templatesPageActions,
+  useActions: useTemplatesPageActions,
+} = templatesPageSlice;

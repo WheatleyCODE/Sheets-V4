@@ -18,6 +18,7 @@ const reducers: ReducersList = { templateRecommends: templateRecommendsReducer }
 export const TemplateRecommends: FC<ITemplateRecommendsProps> = (props) => {
   const { className, ...anotherProps } = props;
   useDynamicModule(reducers, true);
+
   const dispatch = useTypedDispatch();
   const recommends = useTemplateRecommendsSelectAll();
   const recommendsError = useTemplateRecommendsError();
