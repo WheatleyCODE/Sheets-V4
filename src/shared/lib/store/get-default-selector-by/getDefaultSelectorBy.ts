@@ -19,7 +19,6 @@ export function getDefaultSelectorBy<T extends DefaultValue>(schemaKey: SchemaKe
   return (state: DeepStateSchema) => {
     try {
       if (!state?.[schemaKey]) {
-        // * Async reducer
         return value;
       }
 

@@ -9,5 +9,3 @@ export function buildSelector<T, Args extends any[]>(selector: Selector<T, Args>
 
   return [useBuildSelectorHook, selector];
 }
-
-buildSelector((state) => state.login);

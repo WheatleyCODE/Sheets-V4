@@ -21,13 +21,10 @@ export const AddCommentForm: FC<IAddCommentFormProps> = (props) => {
   const textInput = useValidInput(text);
   const { t } = useTranslation();
 
-  const onChangeText = useCallback(
-    (e: ChangeEvent<HTMLInputElement>) => {
-      dispatch(addCommentFormActions.setText(e.target.value));
-      textInput.onChange(e);
-    },
-    [dispatch],
-  );
+  const onChangeText = useCallback((e: ChangeEvent<HTMLInputElement>) => {
+    dispatch(addCommentFormActions.setText(e.target.value));
+    textInput.onChange(e);
+  }, []);
 
   const addCommentHandler = useCallback(() => {
     if (!textInput.value || textInput.isError) return;

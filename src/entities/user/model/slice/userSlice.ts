@@ -1,10 +1,11 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { PayloadAction } from '@reduxjs/toolkit';
 import { initialUserState } from '../consts/user.consts';
 import { setFeatureFlags } from '@/shared/lib/features';
-import type { IUser } from '../types/user.interface';
 import { fetchUser } from '../services/fetchUser';
+import { buildSlice } from '@/shared/lib/store';
+import type { IUser } from '../types/user.interface';
 
-export const userSlice = createSlice({
+export const userSlice = buildSlice({
   name: 'user',
   initialState: initialUserState,
   reducers: {
@@ -47,4 +48,4 @@ export const userSlice = createSlice({
   },
 });
 
-export const { actions: userActions, reducer: userReducer } = userSlice;
+export const { actions: userActions, reducer: userReducer, useActions: useUserActions } = userSlice;

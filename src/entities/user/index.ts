@@ -1,4 +1,4 @@
-export { userReducer, userActions } from './model/slice/userSlice';
+export { userReducer, userActions, useUserActions } from './model/slice/userSlice';
 export { UserRoles } from './model/consts/user.consts';
 export type { IUser, IUserSchema } from './model/types/user.interface';
 export {
@@ -20,4 +20,4 @@ export { getUserInited, useUserInited } from './model/selectors/get-user-inited/
 export { getUser, useUser } from './model/selectors/get-user/getUser';
 export { getUserRoles, useUserRoles } from './model/selectors/get-user-roles/getUserRoles';
 
-export { fetchUser } from './model/services/fetchUser';
+export { fetchUser, useFetchUser } from './model/services/fetchUser';
