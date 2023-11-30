@@ -1,5 +1,5 @@
 import { CombinedState, configureStore, Reducer, ReducersMapObject } from '@reduxjs/toolkit';
-import { modalsReducer, scrollReducer } from '@/widgets/layout';
+import { modalsReducer, scrollReducer } from '../../../layout';
 import { userReducer } from '@/entities/user';
 import { createReducerManager } from './reducerManager';
 import { api, rtkApi } from '@/shared/api';

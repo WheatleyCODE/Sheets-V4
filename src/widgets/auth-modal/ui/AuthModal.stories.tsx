@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { AuthModal } from './AuthModal';
+import AuthModal from './AuthModal';
 import { themeDecorator } from '../../../../config/storybook/theme-decorator/themeDecorator';
 import { storeDecorator } from '../../../../config/storybook/store-decorator/storeDecorator';
 

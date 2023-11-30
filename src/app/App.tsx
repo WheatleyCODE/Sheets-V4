@@ -1,8 +1,8 @@
 import { FC, Suspense } from 'react';
 import { PageLoader } from '@/widgets/page-loader';
-import { Navbar } from '@/widgets/navbar';
 import { useFetchUser, useUserActions } from '@/entities/user';
 import { AppRouter } from './providers/app-router';
+import { Layout } from './layout';
 import { KVFactory } from '@/shared/lib/kv-storage';
 import { LS_AUTH_KEY } from '@/shared/consts';
 import { Loader } from '@/shared/ui/loaders';
@@ -11,6 +11,7 @@ import { useInitialEffect, useTheme } from '@/shared/lib/hooks';
 import { classNames } from '@/shared/lib/class-names';
 import './styles/index.scss';
 
+// * Sync
 const ls = KVFactory();
 
 export const App: FC = () => {
@@ -21,7 +22,6 @@ export const App: FC = () => {
   const { theme } = useTheme();
 
   useInitialEffect(() => {
-    // * Sync
     ls.get<string>(LS_AUTH_KEY).then((id) => {
       if (id) {
         fetchUser(id);
@@ -33,11 +33,12 @@ export const App: FC = () => {
 
   return (
     <div className={classNames('app', {}, [theme])}>
-      <Navbar />
-      <Suspense fallback={<PageLoader />}>
-        {isLoading && <Loader isCenter />}
-        {isInited && <AppRouter />}
-      </Suspense>
+      <Layout>
+        <Suspense fallback={<PageLoader />}>
+          {isLoading && <Loader isCenter />}
+          {isInited && <AppRouter />}
+        </Suspense>
+      </Layout>
     </div>
   );
 };

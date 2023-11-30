@@ -1,4 +1,4 @@
-import { FC, memo, useEffect } from 'react';
+import { FC, Suspense, memo, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
 import { AuthModal } from '@/widgets/auth-modal';
@@ -25,5 +25,9 @@ export const ModalController: FC = memo(() => {
     }
   }, [location.hash, openModalByKey]);
 
-  return <AnimatePresence>{isAuth && <AuthModal onClose={closeAuth} />}</AnimatePresence>;
+  return (
+    <Suspense>
+      <AnimatePresence>{isAuth && <AuthModal onClose={closeAuth} />}</AnimatePresence>
+    </Suspense>
+  );
 });

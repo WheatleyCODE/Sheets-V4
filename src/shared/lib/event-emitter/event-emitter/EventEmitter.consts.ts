@@ -4,6 +4,7 @@ export enum EventNames {
   MOUSE_ENTER = 'MOUSE_ENTER',
   MOUSE_MOVE = 'MOUSE_MOVE',
   MOUSE_LEAVE = 'MOUSE_LEAVE',
+  SCROLL = 'SCROLL',
 }
 
 export enum DataTypes {
@@ -11,4 +12,5 @@ export enum DataTypes {
   SELECT_FORMULA = 'SELECT_FORMULA',
   MOUSE_ENTER_CELL = 'MOUSE_ENTER_CELL',
   SELECT_CELL = 'SELECT_CELL',
+  SCROLL_TO_BOTTOM = 'SCROLL_TO_BOTTOM',
 }

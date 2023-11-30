@@ -2,7 +2,7 @@ import { AxiosInstance } from 'axios';
 import { AnyAction, EnhancedStore, ReducersMapObject, Reducer, CombinedState, ThunkMiddleware } from '@reduxjs/toolkit';
 import { ToolkitStore } from '@reduxjs/toolkit/dist/configureStore';
 import { ITemplatesPageSchema } from '@/pages/templates-page';
-import { IModalsSchema, IScrollSchema } from '@/widgets/layout';
+import { IModalsSchema, IScrollSchema } from '../../../layout';
 import { ITemplateRecommendsSchema } from '@/widgets/template-recommends';
 import { ITemplateCommentsSchema } from '@/widgets/template-comments';
 import { IUserSchema } from '@/entities/user';

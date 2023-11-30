@@ -6,4 +6,5 @@
   height: var(--sheets-header-height);
   background-color: var(--color-main);
   padding: 0 calc(var(--gap) * 4);
+  border-bottom: 1px solid var(--color-border3);
 }

@@ -22,11 +22,11 @@ export const TemplateDetailsPageHeader: FC<ITemplateDetailsPageHeaderProps> = (p
 
   const navigateToTemplates = useCallback(() => {
     navigate(getRouteTemplates());
-  }, []);
+  }, [navigate]);
 
   const navigateToTemplatesEdit = useCallback(() => {
     navigate(getRouteTemplateEdit(template.id));
-  }, [template.id]);
+  }, [navigate, template.id]);
 
   return (
     <HStack

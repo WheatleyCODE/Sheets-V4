@@ -14,9 +14,8 @@ import { classNames } from '@/shared/lib/class-names';
 import type { NavbarProps } from './Navbar.interface';
 import styles from './Navbar.module.scss';
 
-// ! FIX
 // eslint-disable-next-line wheatley-code/layer-imports
-import { ModalsHash } from '@/widgets/layout';
+import { ModalsHash } from '@/app/layout/model/consts/layout.consts';
 
 // * Sync
 const ls = KVFactory();

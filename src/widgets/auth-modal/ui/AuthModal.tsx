@@ -11,7 +11,7 @@ import { classNames } from '@/shared/lib/class-names';
 import type { IAuthModalProps } from './AuthModal.interface';
 import styles from './AuthModal.module.scss';
 
-export const AuthModal: FC<IAuthModalProps> = memo((props) => {
+const AuthModal: FC<IAuthModalProps> = memo((props) => {
   const { className, onClose, ...anotherProps } = props;
   const [isRegister, setIsRegister] = useState(false);
   const { t } = useTranslation();
@@ -75,3 +75,5 @@ export const AuthModal: FC<IAuthModalProps> = memo((props) => {
     </Portal>
   );
 });
+
+export default AuthModal;
