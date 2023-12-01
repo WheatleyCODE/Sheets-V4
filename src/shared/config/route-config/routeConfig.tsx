@@ -1,7 +1,6 @@
 /* eslint-disable wheatley-code/layer-imports */
 import { HomePage } from '@/pages/home-page';
 import { SheetsPage } from '@/pages/sheets-page';
-import { LandingPage } from '@/pages/landing-page';
 import { NotFoundPage } from '@/pages/not-found-page';
 import { ProfilePage } from '@/pages/profile-page';
 import { TemplatesPage } from '@/pages/templates-page';
@@ -16,7 +15,6 @@ import type { AppRoutesProps } from './routeConfig.interface';
 export enum AppRoutes {
   HOME = 'home',
   SHEETS = 'sheets',
-  LANDING = 'landing',
   PROFILE = 'profile',
   TEMPLATES = 'templates',
   TEMPLATE_DETAILS = 'template_details',
@@ -27,8 +25,7 @@ export enum AppRoutes {
   NOT_FOUND = 'not_found',
 }
 
-export const getRouteLanding = () => '/';
-export const getRouteHome = () => '/home';
+export const getRouteHome = () => '/';
 export const getRouteSheets = () => '/sheets';
 export const getRouteProfile = (id: string) => `/profile/${id}`;
 export const getRouteTemplates = () => '/templates';
@@ -39,10 +36,6 @@ export const getRouteAdminPanel = () => '/admin/panel';
 export const getRouteForbidden = () => '/forbidden';
 
 export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
-  [AppRoutes.LANDING]: {
-    path: getRouteLanding(),
-    element: <LandingPage />,
-  },
   [AppRoutes.HOME]: {
     path: getRouteHome(),
     element: <HomePage />,

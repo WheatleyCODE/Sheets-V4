@@ -6,13 +6,11 @@ import {
   MdOutlinePostAdd,
   MdOutlineViewCompact,
   MdOutlineViewCompactAlt,
-  MdOutlineWeb,
 } from 'react-icons/md';
 import type { INavigationMenuItem } from '../../types/navigationMenu.interface';
 import {
   getRouteAdminPanel,
   getRouteHome,
-  getRouteLanding,
   getRouteProfile,
   getRouteSheets,
   getRouteTemplateCreate,
@@ -29,7 +27,6 @@ export const [useNavigationItems, getNavigationItems] = buildSelector(
     const items: INavigationMenuItem[] = [
       { text: 'Домашняя страница', path: getRouteHome(), Icon: MdOutlineHome },
       { text: 'Таблицы', path: getRouteSheets(), Icon: MdOutlineViewCompact },
-      { text: 'Лендинг', path: getRouteLanding(), Icon: MdOutlineWeb },
     ];
 
     if (user) {
