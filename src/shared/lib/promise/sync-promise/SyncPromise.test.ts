@@ -2,7 +2,7 @@ import { SyncPromise } from './SyncPromise';
 
 describe('SyncPromise', () => {
   describe('SyncPromise behavior is the same as regular Promise', () => {
-    test('', async () => {
+    test('Should work the same', async () => {
       let promiseRes;
       let syncPromiseRes;
 
@@ -183,7 +183,7 @@ describe('SyncPromise', () => {
       expect(i).toBe(6);
     });
 
-    test('Promise that is rejected wtesth another promise', async () => {
+    test('Promise that is rejected await another promise', async () => {
       let i;
 
       try {
