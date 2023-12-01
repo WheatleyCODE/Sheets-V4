@@ -2,7 +2,6 @@ import { screen } from '@testing-library/react';
 import { AppRouter } from './AppRouter';
 import { renderComponent } from '@/shared/lib/tests';
 import {
-  getRouteLanding,
   getRouteHome,
   getRouteSheets,
   getRouteProfile,
@@ -16,15 +15,6 @@ import {
 import { UserRoles } from '@/entities/user';
 
 describe('AppRouter', () => {
-  test('Render landing page', async () => {
-    renderComponent(<AppRouter />, {
-      route: getRouteLanding(),
-    });
-
-    const page = await screen.findByTestId('landingPage');
-    expect(page).toBeInTheDocument();
-  });
-
   test('Render home page', async () => {
     renderComponent(<AppRouter />, {
       route: getRouteHome(),

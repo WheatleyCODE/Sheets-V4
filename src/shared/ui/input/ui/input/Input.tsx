@@ -52,7 +52,6 @@ export const Input: FC<IInputProps> = memo((props) => {
   }, [isActive, isErrorActive, placeholderControls, value]);
 
   const getChangeValue = (text: any) => () => {
-    console.log('text', text);
     options?.changeValue(text);
   };
 

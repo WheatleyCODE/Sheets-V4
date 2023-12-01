@@ -1,12 +1,12 @@
-import { ForEachCallback, IOptsIntoIterator, MapCallback, Predicate } from '../types/interface';
+import { ForEachCallback, IterReturnObjectType, MapCallback, Predicate } from '../types/interface';
 import { intoIterator } from '../into-iterator/intoIterator';
 
-export function intoIter<T>(obj: any, opts?: IOptsIntoIterator): Iter<T> {
+export function intoIter<T>(obj: any, type?: IterReturnObjectType): Iter<T> {
   if (obj[Symbol.iterator] != null) {
     return new Iter(obj[Symbol.iterator]());
   }
 
-  return new Iter(intoIterator(obj, opts));
+  return new Iter(intoIterator(obj, type));
 }
 
 export class Iter<T> {

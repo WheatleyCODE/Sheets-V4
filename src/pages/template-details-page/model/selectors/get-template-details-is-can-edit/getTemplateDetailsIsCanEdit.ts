@@ -6,8 +6,6 @@ import { buildSelector } from '@/shared/lib/store';
 export const [useTemplateDetailsIsCanEdit, getTemplateDetailsIsCanEdit] = buildSelector(
   createSelector(getTemplateDetails, getUser, (template, user) => {
     if (!template || !user) {
-      console.log(template, user);
-
       return false;
     }
 

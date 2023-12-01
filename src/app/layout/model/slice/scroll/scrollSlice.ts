@@ -9,8 +9,6 @@ export const scrollSlice = buildSlice({
     setScrollPosition(state, { payload }: PayloadAction<{ path: string; position: number }>) {
       const { path, position } = payload;
       state.scroll[path] = position;
-
-      console.log(state.scroll[path]);
     },
   },
 });

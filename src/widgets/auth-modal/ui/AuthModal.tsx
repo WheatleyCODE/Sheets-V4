@@ -5,7 +5,7 @@ import { LoginFormAsync, RegisterFormAsync } from '@/features/auth-by-email';
 import { Backdrop, Modal, Portal } from '@/shared/ui/modals';
 import { Link } from '@/shared/ui/link';
 import { LocationHelper } from '@/shared/lib/url';
-import { Loader } from '@/shared/ui/loaders';
+import { CircleLoader } from '@/shared/ui/loaders';
 import { HStack } from '@/shared/ui/containers';
 import { classNames } from '@/shared/lib/class-names';
 import type { IAuthModalProps } from './AuthModal.interface';
@@ -66,7 +66,7 @@ const AuthModal: FC<IAuthModalProps> = memo((props) => {
       <Backdrop onClose={onClose}>
         <Modal onClose={onClose}>
           <div data-testid="auth-modal" {...anotherProps} className={classNames(styles.auth_modal, {}, [className])}>
-            <Suspense fallback={<Loader isCenter />}>
+            <Suspense fallback={<CircleLoader />}>
               {isRegister ? <RegisterFormAsync /> : <LoginFormAsync onLoginSuccess={onClose} />}
             </Suspense>
 

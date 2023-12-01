@@ -1,7 +1,7 @@
 import { FC, memo, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Text } from '@/shared/ui/text';
-import { Loader } from '@/shared/ui/loaders';
+import { CircleLoader } from '@/shared/ui/loaders';
 import { Input, useValidInput } from '@/shared/ui/input';
 import { intoIter } from '@/shared/lib/iterators';
 import { getInfoItemArr } from './ProfileCard.helpers';
@@ -98,7 +98,7 @@ export const ProfileCard: FC<IProfileCardProps> = memo((props) => {
   if (isLoading)
     return (
       <VStack {...anotherProps} data-testid="profileCard" className={classNames(styles.profile_card, {}, [className])}>
-        <Loader isCenter />
+        <CircleLoader />
       </VStack>
     );
 
@@ -125,7 +125,7 @@ export const ProfileCard: FC<IProfileCardProps> = memo((props) => {
 
       <HStack className={styles.avatar_container} justify="start">
         <Title text={t('Аватар')}>
-          <Avatar src={avatar} />
+          <Avatar src={avatar} className={styles.avatar} />
         </Title>
       </HStack>
 

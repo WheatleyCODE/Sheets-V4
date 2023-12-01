@@ -5,7 +5,6 @@ import { AppRouter } from './providers/app-router';
 import { Layout } from './layout';
 import { KVFactory } from '@/shared/lib/kv-storage';
 import { LS_AUTH_KEY } from '@/shared/consts';
-import { Loader } from '@/shared/ui/loaders';
 import { useUserInited, useUserIsLoading } from '@/entities/user';
 import { useInitialEffect, useTheme } from '@/shared/lib/hooks';
 import { classNames } from '@/shared/lib/class-names';
@@ -35,7 +34,7 @@ export const App: FC = () => {
     <div className={classNames('app', {}, [theme])}>
       <Layout>
         <Suspense fallback={<PageLoader />}>
-          {isLoading && <Loader isCenter />}
+          {isLoading && <PageLoader />}
           {isInited && <AppRouter />}
         </Suspense>
       </Layout>

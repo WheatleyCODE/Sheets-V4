@@ -1,6 +1,6 @@
-import { IOptsIntoIterator } from '../types/interface';
+import { IterReturnObjectType } from '../types/interface';
 
-export function* intoIterator(obj: any, opts?: IOptsIntoIterator) {
+export function* intoIterator(obj: any, type?: IterReturnObjectType) {
   if (obj == null) return;
 
   if (obj[Symbol.iterator] != null) {
@@ -9,20 +9,24 @@ export function* intoIterator(obj: any, opts?: IOptsIntoIterator) {
   }
 
   if (typeof obj === 'object') {
-    if (opts?.type === 'key') {
+    if (type === 'keys') {
       for (const key in obj) {
         if (obj.hasOwnProperty(key)) {
           yield key;
         }
       }
+
+      return;
     }
 
-    if (opts?.type === 'entries') {
+    if (type === 'entries') {
       for (const key in obj) {
         if (obj.hasOwnProperty(key)) {
           yield [key, obj[key]];
         }
       }
+
+      return;
     }
 
     for (const key in obj) {

@@ -14,15 +14,10 @@ export class ClientSettingsAsyncEngine implements KVStorageEngine {
   }
 
   get(key: keyof IClientSettings): Promise<Nullable<string>> {
-    return api.get<IUser>(`/users/${this.#userId}`).then((res) => {
-      console.log(res.data?.clientSettings?.[key]);
-
-      return res.data?.clientSettings?.[key];
-    });
+    return api.get<IUser>(`/users/${this.#userId}`).then((res) => res.data?.clientSettings?.[key]);
   }
 
   set(key: string, value: string): Promise<void> {
-    console.log('work');
     return api.patch(`/users/${this.#userId}`, { clientSettings: { [key]: value } });
   }
 

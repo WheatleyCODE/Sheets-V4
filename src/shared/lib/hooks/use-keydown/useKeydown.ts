@@ -5,7 +5,7 @@ import { EventHandler, KeyboardKeys, UseKeydownOpts } from './useKeydown.interfa
 export const useKeydown = (opts: UseKeydownOpts) => {
   useEffect(() => {
     const keydownHandler = (e: KeyboardEvent) => {
-      const iter = intoIter<[KeyboardKeys, EventHandler[]]>(opts, { type: 'entries' });
+      const iter = intoIter<[KeyboardKeys, EventHandler[]]>(opts, 'entries');
 
       for (const [key, handlers] of iter) {
         if (e.key === key) handlers.forEach((handler) => handler(e));

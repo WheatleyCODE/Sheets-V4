@@ -31,7 +31,7 @@ const TemplateRating: FC<ITemplateRatingProps> = memo((props) => {
           feedback,
         });
       } catch (e) {
-        console.log(e);
+        console.error(e);
       }
     },
     [id, rateArticle, user?.id],

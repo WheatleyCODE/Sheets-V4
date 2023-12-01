@@ -1,6 +1,7 @@
 import { PayloadAction } from '@reduxjs/toolkit';
 import { initialUserState } from '../consts/user.consts';
 import { setFeatureFlags } from '@/shared/lib/features';
+import { normalizeClientSettings } from '@/shared/lib/utils';
 import { fetchUser } from '../services/fetchUser';
 import { buildSlice } from '@/shared/lib/store';
 import type { IUser } from '../types/user.interface';
@@ -10,7 +11,14 @@ export const userSlice = buildSlice({
   initialState: initialUserState,
   reducers: {
     setUser(state, { payload }: PayloadAction<IUser>) {
-      state.user = payload;
+      if (payload?.clientSettings) {
+        state.user = {
+          ...payload,
+          clientSettings: normalizeClientSettings(payload.clientSettings),
+        };
+      } else {
+        state.user = payload;
+      }
 
       if (payload.features) {
         setFeatureFlags(payload.features);
@@ -32,8 +40,16 @@ export const userSlice = buildSlice({
       state.isLoading = true;
     });
     builder.addCase(fetchUser.fulfilled, (state, { payload }) => {
+      if (payload?.clientSettings) {
+        state.user = {
+          ...payload,
+          clientSettings: normalizeClientSettings(payload.clientSettings),
+        };
+      } else {
+        state.user = payload;
+      }
+
       state.isLoading = false;
-      state.user = payload;
       state._inited = true;
 
       if (payload.features) {
