@@ -17,7 +17,7 @@ import { ModalsHash } from '@/app/layout';
 const AuthModal: FC<IAuthModalProps> = memo((props) => {
   const { className, onClose, ...anotherProps } = props;
   const [isRegister, setIsRegister] = useState(false);
-  const { t } = useTranslation();
+  const { t } = useTranslation('auth-modal');
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -66,7 +66,13 @@ const AuthModal: FC<IAuthModalProps> = memo((props) => {
       <Backdrop onClose={onClose}>
         <Modal onClose={onClose}>
           <div data-testid="auth-modal" {...anotherProps} className={classNames(styles.auth_modal, {}, [className])}>
-            <Suspense fallback={<CircleLoader />}>
+            <Suspense
+              fallback={
+                <div className={styles.fallback}>
+                  <CircleLoader />
+                </div>
+              }
+            >
               {isRegister ? <RegisterFormAsync /> : <LoginFormAsync onLoginSuccess={onClose} />}
             </Suspense>
 

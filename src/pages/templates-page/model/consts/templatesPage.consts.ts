@@ -1,6 +1,7 @@
 import { BsSortDown, BsSortUp } from 'react-icons/bs';
 import { MdOutlineCalendarMonth, MdOutlineRemoveRedEye, MdOutlineTitle } from 'react-icons/md';
 import { IInputOptionsMenuItem } from '@/shared/ui/input';
+import { TFunction } from 'i18next';
 
 export enum TemplateSortFields {
   VIEWS = 'views',
@@ -15,13 +16,17 @@ export enum TemplateSortOrders {
   DESC = 'desc',
 }
 
-export const sortOrderItems: IInputOptionsMenuItem[] = [
-  { text: TemplateSortOrders.ASC, Icon: BsSortUp },
-  { text: TemplateSortOrders.DESC, Icon: BsSortDown },
-];
+export const getSortOrderItems = (t: TFunction) => {
+  return [
+    { text: t(TemplateSortOrders.ASC), Icon: BsSortUp },
+    { text: t(TemplateSortOrders.DESC), Icon: BsSortDown },
+  ];
+};
 
-export const sortItems: IInputOptionsMenuItem[] = [
-  { text: TemplateSortFields.TITLE, Icon: MdOutlineTitle },
-  { text: TemplateSortFields.VIEWS, Icon: MdOutlineRemoveRedEye },
-  { text: TemplateSortFields.CREATED_AT, Icon: MdOutlineCalendarMonth },
-];
+export const getSortItems = (t: TFunction) => {
+  return [
+    { text: t(TemplateSortFields.TITLE), Icon: MdOutlineTitle },
+    { text: t(TemplateSortFields.VIEWS), Icon: MdOutlineRemoveRedEye },
+    { text: t(TemplateSortFields.CREATED_AT), Icon: MdOutlineCalendarMonth },
+  ];
+};

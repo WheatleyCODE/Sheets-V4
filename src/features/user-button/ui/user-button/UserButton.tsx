@@ -49,7 +49,7 @@ export const UserButton: FC<IUserButtonProps> = memo((props) => {
         {isUser ? (
           <Avatar className={styles.avatar} onClick={togglePopup} width={40} height={40} src={user.avatar} />
         ) : (
-          <Button text="Войти" onClick={openAuth} Icon={MdPerson} />
+          <Button text={t('Войти')} onClick={openAuth} Icon={MdPerson} />
         )}
       </Title>
 

@@ -20,8 +20,8 @@ import { useDebounce } from '@/shared/lib/hooks';
 import {
   TemplateSortFields,
   TemplateSortOrders,
-  sortItems,
-  sortOrderItems,
+  getSortItems,
+  getSortOrderItems,
 } from '../../model/consts/templatesPage.consts';
 import { classNames } from '@/shared/lib/class-names';
 import type { ITemplatesPageFiltersProps } from './TemplatesPageFilters.interface';
@@ -40,7 +40,7 @@ export const TemplatesPageFilters: FC<ITemplatesPageFiltersProps> = (props) => {
   const sortInput = useValidInput(sort);
   const sortOrderInput = useValidInput(sortOrder);
   const searchInput = useValidInput(search);
-  const { t } = useTranslation();
+  const { t } = useTranslation('templates');
 
   const fetchTemplatesOnChange = useCallback(() => {
     setPage(1);
@@ -118,7 +118,7 @@ export const TemplatesPageFilters: FC<ITemplatesPageFiltersProps> = (props) => {
     .map(({ value, text }) => (
       <DragLineItem key={value} itemId={value} width={150}>
         <TabItem<TemplateTags> onSelectItem={changeTag} itemId={value} value={value}>
-          <div className={styles.teg_name}>{text}</div>
+          <div className={styles.teg_name}>{t(text)}</div>
         </TabItem>
       </DragLineItem>
     ))
@@ -168,7 +168,7 @@ export const TemplatesPageFilters: FC<ITemplatesPageFiltersProps> = (props) => {
               isFocus={sortInput.isFocus}
               options={{
                 changeValue: onChangeSort,
-                items: sortItems,
+                items: getSortItems(t),
                 isForbidInput: true,
               }}
             />
@@ -193,7 +193,7 @@ export const TemplatesPageFilters: FC<ITemplatesPageFiltersProps> = (props) => {
               isFocus={sortOrderInput.isFocus}
               options={{
                 changeValue: onChangeSortOrder,
-                items: sortOrderItems,
+                items: getSortOrderItems(t),
                 isForbidInput: true,
               }}
             />

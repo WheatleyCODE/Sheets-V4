@@ -32,7 +32,7 @@ const LoginForm: FC<ILoginFormProps> = memo((props) => {
   const error = useLoginError();
   const emailInput = useValidInput(email, [emailValidator]);
   const passwordInput = useValidInput(password, [passwordValidator]);
-  const { t } = useTranslation();
+  const { t } = useTranslation('auth-modal');
 
   const isDisable = passwordInput.isError || emailInput.isError;
 

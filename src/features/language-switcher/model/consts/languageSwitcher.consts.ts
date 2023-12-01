@@ -15,7 +15,7 @@ export const languageItems: ILanguagesItems[] = [
     subItems: [
       { Icon: MdOutlineLanguage, text: 'Русский', uiLang: UILanguages.RU },
       { Icon: MdOutlineLanguage, text: 'Английский', uiLang: UILanguages.EN },
-      { Icon: MdOutlineLanguage, text: 'Французский', uiLang: UILanguages.EN },
+      { Icon: MdOutlineLanguage, text: 'Французский', uiLang: UILanguages.EN }, // ! Change UILanguages.FR
     ],
   },
 ];

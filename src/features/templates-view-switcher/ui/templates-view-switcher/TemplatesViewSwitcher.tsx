@@ -11,7 +11,7 @@ import styles from './TemplatesViewSwitcher.module.scss';
 
 export const TemplatesViewSwitcher: FC<ITemplatesViewSwitcherProps> = memo((props) => {
   const { className, view, changeView, ...anotherProps } = props;
-  const { t } = useTranslation();
+  const { t } = useTranslation('templates');
 
   const isSquares = view === TemplateView.SQUARES;
 

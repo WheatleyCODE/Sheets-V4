@@ -38,24 +38,30 @@
       "title": "Уведомление 2",
       "description": "Произошло какое-то событие",
       "userId": "1",
-      "href": "http://localhost:3000/admin/panel"
+      "href": "/admin/panel"
     },
     {
       "id": "3",
       "title": "Уведомление 3",
-      "description": "Произошло какое-то событие",
+      "description": "Произошло какое-то событие, клик",
       "userId": "1",
-      "href": "http://localhost:3000/admin/panel"
+      "href": "/admin/panel"
     },
     {
       "id": "4",
       "title": "Уведомление 4",
-      "description": "Произошло какое-то событие",
+      "description": "Произошло какое-то событие, клик",
       "userId": "1"
     },
     {
       "id": "5",
       "title": "Уведомление 1",
+      "description": "Произошло какое-то событие",
+      "userId": "2"
+    },
+    {
+      "id": "6",
+      "title": "Уведомление 2",
       "description": "Произошло какое-то событие",
       "userId": "2"
     }
@@ -135,7 +141,7 @@
         "isTemplateRating": true
       },
       "clientSettings": {
-        "[[SheetsV4-theme]]": "light"
+        "[[SheetsV4-theme]]": "\"light\""
       },
       "avatar": "https://cdn1.tenchat.ru/static/vbc-gostinder/user-picture/cdc8face-2608-4f07-90c3-68776d03c246.jpeg"
     },
@@ -148,7 +154,7 @@
       ],
       "username": "User",
       "clientSettings": {
-        "[[SheetsV4-theme]]": "dark"
+        "[[SheetsV4-theme]]": "\"dark\""
       },
       "avatar": "https://sun1-84.userapi.com/s/v1/ig2/uAd9vLCPyNSGST2-dCPxOHRZZOHU1p-CwO4ND-CTZZjCnu743uxjap0KbUJ5aze8oFyd2EaphdZQCun8mDxF1Eau.jpg?size=400x400&quality=96&crop=98,98,784,784&ava=1"
     }

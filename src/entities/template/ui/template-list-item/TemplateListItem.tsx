@@ -24,7 +24,7 @@ import { Skeleton } from '@/shared/ui/skeleton';
 export const TemplateListItem: FC<ITemplateListItemProps> = memo((props) => {
   const { className, isOpenInNewWindow = false, template, view, ...anotherProps } = props;
   const { title, createdAt, tags, views, image, subtitle, id } = template;
-  const { t } = useTranslation();
+  const { t } = useTranslation('templates');
   const navigate = useNavigate();
 
   const navigateToTemplate = useCallback(() => {

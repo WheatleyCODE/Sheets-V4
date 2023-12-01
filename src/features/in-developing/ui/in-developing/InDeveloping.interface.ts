@@ -1,0 +1,1 @@
+export interface IInDevelopingProps extends React.HTMLAttributes<HTMLDivElement> {}

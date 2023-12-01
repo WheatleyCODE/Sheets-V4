@@ -11,7 +11,7 @@ import styles from './RegisterForm.module.scss';
 // ! FIX
 const RegisterForm: FC<IRegisterFormProps> = memo((props) => {
   const { ...anotherProps } = props;
-  const { t } = useTranslation();
+  const { t } = useTranslation('auth-modal');
   const emailInput = useValidInput('', [emailValidator]);
   const passwordInput = useValidInput('', [passwordValidator]);
   const repeatPasswordInput = useValidInput('', [passwordValidator]);

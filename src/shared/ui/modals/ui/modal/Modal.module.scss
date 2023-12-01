@@ -18,11 +18,11 @@
   position: absolute;
   top: -40px;
   right: -40px;
-  color: var(--color-white);
   transition: all var(--animation-duration);
 }
 
-.close_button svg {
+.close_icon {
+  color: var(--color-white);
   font-size: calc(var(--font-size) * 2.2);
 }
 

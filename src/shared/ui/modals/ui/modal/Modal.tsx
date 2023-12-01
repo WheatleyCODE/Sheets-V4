@@ -26,7 +26,7 @@ export const Modal: FC<IModalProps> = (props) => {
     >
       {!isHideCloseButton && (
         <div data-testid="modal-close-button" aria-hidden onClick={onClose} className={styles.close_button}>
-          <Icon Icon={CgClose} />
+          <Icon Icon={CgClose} className={styles.close_icon} />
         </div>
       )}
 
