@@ -13,7 +13,7 @@ export const PageLoader: FC<IPageLoaderProps> = memo((props) => {
   return (
     <VStack {...anotherProps} className={classNames(styles.page_loader, {}, [className])}>
       <Loader className={styles.loader} />
-      <h1 className={styles.h1}>{t('Загрузка')}</h1>
+      <h1 className={styles.h1}>{t('Загрузка...')}</h1>
     </VStack>
   );
 });

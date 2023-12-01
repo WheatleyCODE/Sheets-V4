@@ -23,16 +23,12 @@
   --color-shadow-modal: #1f2124;
   
   // Loader
-  --color-loader: rgb(49 49 49);
-  --color-loader1: rgba(35 35 35 / 30%);
+  --color-loader: #282c34;
+  --color-loader1: rgba(0 0 0 / 20%);
   
   // Disable
   --color-disable: #383a3f;
-  
-  // Items hover
-  --color-item-hover: #e0e0e08c;
-  --color-item-hover1: #cacaca8c;
-  
+
   // Borders
   --color-border: #b3b3b3;
   --color-border3: #bdbcbc;
@@ -50,9 +46,17 @@
   --color-skeleton-background: rgba(0 0 0 / 10%);
   --color-skeleton-shadow: rgba(0 0 0 / 30%);
 
+  // Dropdown
+  --color-dropdown-background: #F4F6FB;
+
+  // Items hover
+  --color-item-hover: rgba(0 0 0 / 5%);
+  --color-item-hover1: rgba(0 0 0 / 10%);
+  --color-item-hover2: rgba(0 0 0 / 15%);
+
   // Card
-  --color-card: rgba(0 0 0 / 10%);
+  --color-card: rgba(0 0 0 / 5%);
 
   // Code
-  --color-code-background: rgba(0 0 0 / 10%);
+  --color-code-background: rgba(0 0 0 / 5%);
 }

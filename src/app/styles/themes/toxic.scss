@@ -29,10 +29,6 @@
   // Disable
   --color-disable: #225f3a;
 
-  // Items hover
-  --color-item-hover: rgba(0 0 0 / 15%);
-  --color-item-hover1: rgba(0 0 0 / 20%);
-
   // Borders
   --color-border: #55df8e;
   --color-border3: #47cf80;
@@ -50,8 +46,16 @@
   --color-skeleton-background: rgba(0 0 0 / 10%);
   --color-skeleton-shadow: rgba(0 0 0 / 30%);
 
+  // Dropdown
+  --color-dropdown-background: #168a46;
+
+  // Items hover
+  --color-item-hover: rgba(0 0 0 / 8%);
+  --color-item-hover1: rgba(0 0 0 / 16%);
+  --color-item-hover2: rgba(0 0 0 / 24%);
+
   // Card
-  --color-card: rgba(0 0 0 / 10%);
+  --color-card: rgba(0 0 0 / 6%);
 
   // Code
   --color-code-background: rgba(0 0 0 / 10%);

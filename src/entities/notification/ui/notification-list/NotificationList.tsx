@@ -12,9 +12,10 @@ import type { INotification } from '../../model/types/notification.interface';
 import styles from './NotificationList.module.scss';
 
 export const NotificationList: FC<INotificationListProps> = memo((props) => {
-  const { className, onLinkClick, ...anotherProps } = props;
+  const { className, onLinkClick, userId, ...anotherProps } = props;
   const { t } = useTranslation();
-  const { data, isLoading, error } = useNotifications(null, {
+
+  const { data, isLoading, error } = useNotifications(userId, {
     pollingInterval: 5000,
   });
 

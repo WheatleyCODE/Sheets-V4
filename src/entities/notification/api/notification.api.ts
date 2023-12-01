@@ -3,9 +3,12 @@ import type { INotification } from '../model/types/notification.interface';
 
 export const notificationApi = rtkApi.injectEndpoints({
   endpoints: (build) => ({
-    getNotifications: build.query<INotification[], null>({
-      query: () => ({
+    getNotifications: build.query<INotification[], string | undefined>({
+      query: (userId) => ({
         url: '/notifications',
+        params: {
+          userId,
+        },
       }),
     }),
   }),

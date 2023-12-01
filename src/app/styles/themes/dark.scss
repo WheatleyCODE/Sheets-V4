@@ -24,14 +24,10 @@
 
   // Loader
   --color-loader: #F4F6FB;
-  --color-loader1: rgba(255 255 255 / 60%);
+  --color-loader1: rgba(255 255 255 / 30%);
 
   // Disable
   --color-disable: #383a3f;
-
-  // Items hover
-  --color-item-hover: #3234388c;
-  --color-item-hover1: #3e41468c;
 
   // Borders
   --color-border: #5f5f5f;
@@ -50,8 +46,16 @@
   --color-skeleton-background: rgba(0 0 0 / 10%);
   --color-skeleton-shadow: rgba(255 255 255 / 10%);
 
+  // Dropdown
+  --color-dropdown-background: #242830;
+
+  // Items hover
+  --color-item-hover: rgba(0 0 0 / 8%);
+  --color-item-hover1: rgba(0 0 0 / 16%);
+  --color-item-hover2: rgba(0 0 0 / 24%);
+
   // Card
-  --color-card: rgba(0 0 0 / 10%);
+  --color-card: rgba(0 0 0 / 6%);
 
   // Code
   --color-code-background: rgba(0 0 0 / 10%);
