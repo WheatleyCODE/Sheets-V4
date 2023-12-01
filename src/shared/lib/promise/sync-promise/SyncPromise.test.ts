@@ -1,6 +1,45 @@
 import { SyncPromise } from './SyncPromise';
 
 describe('SyncPromise', () => {
+  describe('SyncPromise behavior is the same as regular Promise', () => {
+    test('', async () => {
+      let promiseRes;
+      let syncPromiseRes;
+
+      await Promise.reject('a')
+        .then(
+          (p) => p + '1',
+          (p) => p + '2', // a2
+        )
+        .catch((p) => p + 'b')
+        .catch((p) => p + 'c')
+        .then((p) => p + 'd1') // a2d1
+        // @ts-ignore
+        .then('d2')
+        .then((p) => p + 'd3') // a2d1d3
+        // @ts-ignore
+        .finally((p) => p + 'e')
+        .then((p) => (promiseRes = p));
+
+      await SyncPromise.reject('a')
+        .then(
+          (p) => p + '1',
+          (p) => p + '2', // a2
+        )
+        .catch((p) => p + 'b')
+        .catch((p) => p + 'c')
+        .then((p) => p + 'd1') // a2d1
+        // @ts-ignore
+        .then('d2')
+        .then((p) => p + 'd3') // a2d1d3
+        // @ts-ignore
+        .finally((p) => p + 'e')
+        .then((p) => (syncPromiseRes = p));
+
+      expect(syncPromiseRes).toBe(promiseRes); // a2d1d3 === a2d1d3
+    });
+  });
+
   describe('SyncPromise base', () => {
     test('SyncPromise works', () => {
       const promise = new SyncPromise<number>((resolve) => resolve(42));

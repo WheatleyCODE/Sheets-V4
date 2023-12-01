@@ -171,13 +171,11 @@ export class SyncPromise<T> implements Promise<T> {
     const resolve = onValue ?? loopback;
 
     try {
-      let res;
-
-      if (fn && args) {
-        res = fn(...args);
-      } else {
-        res = fn?.();
+      if (fn && typeof fn !== 'function') {
+        resolve(this.#value);
       }
+
+      const res = fn && args ? fn(...args) : fn?.();
 
       if (Object.isPromiseLike(res)) {
         res.then(resolve as any, reject);
