@@ -1,7 +1,6 @@
 import { FC, memo, useCallback, useState } from 'react';
 import { AnimatePresence } from 'framer-motion';
 import { MdOutlineMessage } from 'react-icons/md';
-import { useTranslation } from 'react-i18next';
 import { Backdrop, Modal, Portal, useModals, Confirm } from '@/shared/ui/modals';
 import { StarRating } from '@/shared/ui/star-rating';
 import { classNames } from '@/shared/lib/class-names';
@@ -11,6 +10,7 @@ import { VStack } from '@/shared/ui/containers';
 import { Card } from '@/shared/ui/card';
 import type { IRatingProps } from './Rating.interface';
 import styles from './Rating.module.scss';
+import { useTranslation } from 'react-i18next';
 
 export const Rating: FC<IRatingProps> = memo((props) => {
   const {
@@ -22,12 +22,16 @@ export const Rating: FC<IRatingProps> = memo((props) => {
     onAccept,
     onCancel,
     isStarred,
+    staredText,
+    cancelText,
+    acceptText,
+    feedbackPlaceholder = 'Отзыв',
     ...anotherProps
   } = props;
 
   const { isShow, openModal, closeModal } = useModals();
-  const [currentRate, setCurrentRate] = useState(rate);
   const { t } = useTranslation();
+  const [currentRate, setCurrentRate] = useState(rate);
   const textInput = useValidInput('', []);
 
   const onSelectStar = useCallback(
@@ -57,7 +61,7 @@ export const Rating: FC<IRatingProps> = memo((props) => {
     >
       <VStack>
         {!isStarred && <Text textSize="small" className={styles.title} title={title} />}
-        <StarRating isStarred={isStarred} initStar={rate} onSelectStar={onSelectStar} />
+        <StarRating staredText={staredText} isStarred={isStarred} initStar={rate} onSelectStar={onSelectStar} />
       </VStack>
 
       <AnimatePresence>
@@ -67,8 +71,8 @@ export const Rating: FC<IRatingProps> = memo((props) => {
               <Modal onClose={onCancelHandler}>
                 <Confirm
                   title={feedbackTitle}
-                  acceptTitle={t('Отправить')}
-                  cancelTitle={t('Отмена')}
+                  acceptText={acceptText}
+                  cancelText={cancelText}
                   onAccept={onAcceptHandler}
                   onCancel={onCancelHandler}
                 >
@@ -78,7 +82,7 @@ export const Rating: FC<IRatingProps> = memo((props) => {
                     value={textInput.value}
                     type="text"
                     data-testid="rating.feedback"
-                    placeholder={t('Отзыв')}
+                    placeholder={feedbackPlaceholder}
                     onChange={textInput.onChange}
                     onBlur={textInput.onBlur}
                     onFocus={textInput.onFocus}

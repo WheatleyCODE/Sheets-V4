@@ -11,7 +11,7 @@ import styles from './TemplateRating.module.scss';
 
 const TemplateRating: FC<ITemplateRatingProps> = memo((props) => {
   const { className, ...anotherProps } = props;
-  const { t } = useTranslation();
+  const { t } = useTranslation('template-details');
   const { id } = useParams<{ id: string }>();
   const user = useUser();
 
@@ -45,10 +45,14 @@ const TemplateRating: FC<ITemplateRatingProps> = memo((props) => {
         onCancel={rateTemplateHandler}
         onAccept={rateTemplateHandler}
         rate={rating?.rate}
-        title={t('Оцените статью:')}
+        title={t('Оцените шаблон')}
         feedbackTitle={t('Желаете оставить отзыв?')}
         isFeedback
         isStarred={isStarred}
+        feedbackPlaceholder={t('Отзыв')}
+        staredText={t('Спасибо за оценку!')}
+        cancelText={t('Отмена')}
+        acceptText={t('Отправить')}
       />
     </div>
   );

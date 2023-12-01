@@ -19,7 +19,7 @@ export const NotificationButton: FC<INotificationButtonProps> = memo((props) => 
   const user = useUser();
   const { isShow, closePopup, togglePopup } = usePopups();
   const { isShow: isShowModal, closeModal, toggleModal } = useModals();
-  const { t } = useTranslation();
+  const { t } = useTranslation('home');
 
   return (
     <div

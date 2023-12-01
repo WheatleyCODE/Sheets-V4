@@ -4,4 +4,6 @@ export interface ICommentListProps extends React.HTMLAttributes<HTMLDivElement> 
   comments?: IComment[];
   isLoading?: boolean;
   error?: string | null;
+  noCommentsText?: string;
+  navigateToProfileText?: string;
 }

@@ -2,6 +2,7 @@ export interface IStarRatingProps extends React.HTMLAttributes<HTMLDivElement> {
   initStar?: number;
   isStarred?: boolean;
   onSelectStar?: (num: number) => void;
+  staredText?: string;
 }
 
 export type GetStarts = (

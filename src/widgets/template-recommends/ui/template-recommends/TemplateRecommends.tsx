@@ -23,7 +23,7 @@ export const TemplateRecommends: FC<ITemplateRecommendsProps> = memo((props) => 
   const recommends = useTemplateRecommendsSelectAll();
   const recommendsError = useTemplateRecommendsError();
   const recommendsIsLoading = useTemplateRecommendsIsLoading();
-  const { t } = useTranslation();
+  const { t } = useTranslation('template-details');
 
   useInitialEffect(() => {
     dispatch(fetchTemplateRecommends());

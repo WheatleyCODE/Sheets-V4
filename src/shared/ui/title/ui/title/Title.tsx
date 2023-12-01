@@ -1,14 +1,14 @@
 import { FC, useEffect, useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useDelayHover } from '@/shared/lib/hooks';
+import { getForcePosition, getPosition } from './Title.helpers';
 import { ANIMATION_DURATION } from '@/shared/consts';
 import { classNames } from '@/shared/lib/class-names';
-import { TEXT_MARGIN, TEXT_HORIZONTAL_PADDINGS } from './Title.consts';
 import type { ObjStyles, TitleProps } from './Title.interface';
 import styles from './Title.module.scss';
 
 export const Title: FC<TitleProps> = (props) => {
-  const { children, text, isStopShow = false, className, classNameContainer, ...anotherProps } = props;
+  const { children, text, isStopShow = false, forcePosition, className, classNameContainer, ...anotherProps } = props;
   const { isShow, onMouseEnter, onMouseLeave, onMouseMove } = useDelayHover(false, 200);
   const [objStyles, setObjStyles] = useState<ObjStyles>({});
   const titleRef = useRef<HTMLDivElement | null>(null);
@@ -19,36 +19,12 @@ export const Title: FC<TitleProps> = (props) => {
     const text = titleTextRef.current;
     if (!title || !text) return;
 
-    const bodyRect = document.body.getBoundingClientRect();
-    const titleRect = title.getBoundingClientRect();
-    const textRect = text.getBoundingClientRect();
-    const objStyles: ObjStyles = {};
-
-    objStyles.top = objStyles.top = titleRect.height + TEXT_MARGIN;
-
-    const isRight = () => TEXT_HORIZONTAL_PADDINGS + titleRect.left + textRect.width / 2 > bodyRect.width;
-    const isLeft = () => textRect.width / 2 > titleRect.left;
-    const isTop = () => titleRect.top + titleRect.height + textRect.height > bodyRect.height;
-
-    if (isRight()) {
-      objStyles.right = 0;
-      objStyles.left = 'initial';
+    if (forcePosition) {
+      setObjStyles(getForcePosition(forcePosition, text));
+      return;
     }
 
-    if (isLeft()) {
-      objStyles.left = 0;
-      objStyles.right = 'initial';
-    }
-
-    if (isTop()) {
-      objStyles.top = -textRect.height - TEXT_MARGIN;
-    }
-
-    if (!isRight() && !isLeft()) {
-      objStyles.left = titleRect.width / 2 - textRect.width / 2;
-    }
-
-    setObjStyles(objStyles);
+    setObjStyles(getPosition(document.body, title, text));
   }, [isShow]);
 
   return (

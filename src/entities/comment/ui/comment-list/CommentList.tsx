@@ -1,5 +1,4 @@
 import { FC, memo } from 'react';
-import { useTranslation } from 'react-i18next';
 import { CommentListItem } from '../comment-list-item/CommentListItem';
 import { intoIter } from '@/shared/lib/iterators';
 import { Text } from '@/shared/ui/text';
@@ -11,11 +10,25 @@ import type { IComment } from '../../model/types/comment.interface';
 import styles from './CommentList.module.scss';
 
 export const CommentList: FC<ICommentListProps> = memo((props) => {
-  const { className, comments = [], isLoading, error, ...anotherProps } = props;
-  const { t } = useTranslation();
+  const {
+    className,
+    comments = [],
+    isLoading,
+    noCommentsText = 'Комментариев нет',
+    navigateToProfileText,
+    error,
+    ...anotherProps
+  } = props;
 
   const commentsArr = intoIter<IComment>(comments)
-    .map((comment) => <CommentListItem key={comment.id} className={styles.comment_item_skeleton} comment={comment} />)
+    .map((comment) => (
+      <CommentListItem
+        navigateToProfileText={navigateToProfileText}
+        key={comment.id}
+        className={styles.comment_item_skeleton}
+        comment={comment}
+      />
+    ))
     .toArray();
 
   const skeletonsArr = intoIter<number>([1, 2, 3, 4])
@@ -54,7 +67,7 @@ export const CommentList: FC<ICommentListProps> = memo((props) => {
 
   return (
     <VStack {...anotherProps} data-testid="commentList" className={classNames(styles.comment_list, {}, [className])}>
-      {commentsArr.length ? commentsArr : <div className={styles.no_comments}>{t('Комментариев нет')}</div>}
+      {commentsArr.length ? commentsArr : <div className={styles.no_comments}>{noCommentsText}</div>}
     </VStack>
   );
 });

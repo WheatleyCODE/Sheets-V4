@@ -32,7 +32,7 @@ export const TemplateComments: FC<ITemplateCommentsProps> = memo((props) => {
   const user = useUser();
   const template = useTemplateDetails();
 
-  const { t } = useTranslation();
+  const { t } = useTranslation('template-details');
   const { id } = useParams<{ id: string }>();
 
   const addComment = useCallback(
@@ -57,12 +57,22 @@ export const TemplateComments: FC<ITemplateCommentsProps> = memo((props) => {
     >
       <RWidth className={styles.add_comment_form} maxWidth="template">
         <Text className={styles.comments_title} title={`${t('Добавить комментарий')}:`} />
-        <AddCommentForm addComment={addComment} />
+        <AddCommentForm
+          commentPlaceholder={t('Комментарий')}
+          sendCommentText={t('Отправить')}
+          addComment={addComment}
+        />
       </RWidth>
 
       <RWidth className={styles.comments} maxWidth="template">
         <Text className={styles.comments_title} textSize="big" title={`${t('Комментарии')}:`} />
-        <CommentList isLoading={commentsIsLoading} error={commentsError} comments={comments} />
+        <CommentList
+          isLoading={commentsIsLoading}
+          navigateToProfileText={t('Перейти на профиль пользователя')}
+          noCommentsText={t('Комментариев нет')}
+          error={commentsError}
+          comments={comments}
+        />
       </RWidth>
     </div>
   );

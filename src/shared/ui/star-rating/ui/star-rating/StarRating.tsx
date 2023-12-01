@@ -6,7 +6,14 @@ import type { IStarRatingProps } from './StarRating.interface';
 import styles from './StarRating.module.scss';
 
 export const StarRating: FC<IStarRatingProps> = memo((props) => {
-  const { className, onSelectStar, initStar = 5, isStarred = false, ...anotherProps } = props;
+  const {
+    className,
+    onSelectStar,
+    initStar = 5,
+    staredText = 'Спасибо за оценку!',
+    isStarred = false,
+    ...anotherProps
+  } = props;
   const [current, setCurrent] = useState<number>(initStar);
   const [isSelect, setIsSelect] = useState(false);
 
@@ -43,7 +50,7 @@ export const StarRating: FC<IStarRatingProps> = memo((props) => {
 
       {(isSelect || isStarred) && (
         <div className={styles.select_text_container}>
-          <Text textSize="small" className={styles.select_text} text="Спасибо за оценку!" />
+          <Text textSize="small" className={styles.select_text} text={staredText} />
         </div>
       )}
     </div>

@@ -6,8 +6,10 @@ export type ObjStyles = {
   marginLeft?: string;
 };
 
+export type ForcePosition = 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right';
 export interface TitleProps extends React.HTMLAttributes<HTMLDivElement> {
   text: string;
   isStopShow?: boolean;
   classNameContainer?: string;
+  forcePosition?: ForcePosition;
 }

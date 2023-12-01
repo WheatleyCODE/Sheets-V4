@@ -14,7 +14,13 @@ import styles from './AddCommentForm.module.scss';
 const reducers: ReducersList = { addCommentForm: addCommentFormReducer };
 
 export const AddCommentForm: FC<IAddCommentFormProps> = memo((props) => {
-  const { className, addComment, ...anotherProps } = props;
+  const {
+    className,
+    addComment,
+    commentPlaceholder = 'Комментарий',
+    sendCommentText = 'Отправить',
+    ...anotherProps
+  } = props;
   useDynamicModule(reducers, true);
 
   const { setText } = useCommentFormActions();
@@ -49,7 +55,7 @@ export const AddCommentForm: FC<IAddCommentFormProps> = memo((props) => {
         value={textInput.value}
         type="text"
         data-testid="commentInput"
-        placeholder={t('Комментарий')}
+        placeholder={commentPlaceholder}
         onChange={onChangeText}
         onBlur={textInput.onBlur}
         onFocus={textInput.onFocus}
@@ -59,7 +65,7 @@ export const AddCommentForm: FC<IAddCommentFormProps> = memo((props) => {
         className={styles.input}
       />
 
-      <Button onClick={addCommentHandler} className={styles.button} text={t('Отправить')} Icon={MdSend} />
+      <Button onClick={addCommentHandler} className={styles.button} text={sendCommentText} Icon={MdSend} />
     </HStack>
   );
 });

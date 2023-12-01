@@ -17,7 +17,7 @@ export const TemplateDetailsPageHeader: FC<ITemplateDetailsPageHeaderProps> = me
   const navigate = useNavigate();
   const template = useTemplateDetails();
   const isCanEdit = useTemplateDetailsIsCanEdit();
-  const { t } = useTranslation();
+  const { t } = useTranslation('template-details');
 
   const navigateToTemplates = useCallback(() => {
     navigate(getRouteTemplates());

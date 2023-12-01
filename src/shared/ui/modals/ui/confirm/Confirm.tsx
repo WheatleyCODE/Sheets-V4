@@ -9,8 +9,8 @@ import styles from './Confirm.module.scss';
 export const Confirm: FC<IConfirmProps> = (props) => {
   const {
     className,
-    acceptTitle = 'Ок',
-    cancelTitle = 'Отмена',
+    acceptText = 'Ок',
+    cancelText = 'Отмена',
     onAccept,
     onCancel,
     children,
@@ -25,8 +25,8 @@ export const Confirm: FC<IConfirmProps> = (props) => {
       {children}
 
       <HStack justify="space-between" className={styles.buttons}>
-        <Button data-testid="confirm.accept" onClick={onAccept} text={acceptTitle} buttonColor="primary" />
-        <Button data-testid="confirm.cancel" onClick={onCancel} text={cancelTitle} />
+        <Button data-testid="confirm.accept" onClick={onAccept} text={acceptText} buttonColor="primary" />
+        <Button data-testid="confirm.cancel" onClick={onCancel} text={cancelText} />
       </HStack>
     </div>
   );

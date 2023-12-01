@@ -1,5 +1,4 @@
 import { FC, memo } from 'react';
-import { useTranslation } from 'react-i18next';
 import { Avatar } from '@/shared/ui/avatar';
 import { Text } from '@/shared/ui/text';
 import { Link } from '@/shared/ui/link';
@@ -11,8 +10,7 @@ import type { ICommentListItemProps } from './CommentListItem.interface';
 import styles from './CommentListItem.module.scss';
 
 export const CommentListItem: FC<ICommentListItemProps> = memo((props) => {
-  const { className, comment, ...anotherProps } = props;
-  const { t } = useTranslation();
+  const { className, comment, navigateToProfileText = 'Перейти на профиль пользователя', ...anotherProps } = props;
   const { text, user } = comment;
   const { avatar, username, id } = user;
 
@@ -23,7 +21,7 @@ export const CommentListItem: FC<ICommentListItemProps> = memo((props) => {
       data-testid="commentListItem"
       className={classNames(styles.comment_list_item, {}, [className])}
     >
-      <Title text={`${t('Перейти на профиль пользователя')}, ${username}`}>
+      <Title text={`${navigateToProfileText}, ${username}`}>
         <Link to={getRouteProfile(id)}>
           <HStack gapMultiply="2" className={styles.header}>
             <Avatar width={40} height={40} src={avatar} />

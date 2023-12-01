@@ -18,7 +18,6 @@ export const extend = (obj: Function | object, name: string, method: Function | 
     });
   }
 
-  // ! FIX types
   // @ts-ignore
   Object.defineProperty(obj[dictKey], name, descriptor);
 

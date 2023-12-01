@@ -21,7 +21,7 @@ import styles from './TemplateDetails.module.scss';
 export const TemplateDetails: FC<ITemplateDetailsProps> = memo((props) => {
   const { className, template, isLoading, error, ...anotherProps } = props;
   const { blocks, createdAt, image, subtitle, tags, title, views } = template;
-  const { t } = useTranslation('templateDetails');
+  const { t } = useTranslation('template-details');
 
   const renderBlock = useCallback((block: TemplateBlock) => {
     switch (block.type) {
@@ -89,12 +89,14 @@ export const TemplateDetails: FC<ITemplateDetailsProps> = memo((props) => {
 
       <HStack justify="start" className={classNames(styles.title, {}, [styles.title_skeleton])}>
         <Text textSize="big" title={title} />
-        <Button
-          className={styles.open_button}
-          Icon={MdOutlineOpenInNew}
-          buttonColor="primary"
-          text={t('Открыть шаблон')}
-        />
+        <Title text={t('Открыть шаблон в таблицах')}>
+          <Button
+            className={styles.open_button}
+            Icon={MdOutlineOpenInNew}
+            buttonColor="primary"
+            text={t('Открыть шаблон')}
+          />
+        </Title>
       </HStack>
 
       <HStack justify="start" className={classNames(styles.subtitle, {}, [styles.subtitle_skeleton])}>

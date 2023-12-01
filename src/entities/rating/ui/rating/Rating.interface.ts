@@ -6,4 +6,8 @@ export interface IRatingProps extends React.HTMLAttributes<HTMLDivElement> {
   onAccept?: (rate: number, feedback: string) => void;
   onCancel?: (rate: number) => void;
   isStarred?: boolean;
+  staredText?: string;
+  cancelText?: string;
+  acceptText?: string;
+  feedbackPlaceholder?: string;
 }
