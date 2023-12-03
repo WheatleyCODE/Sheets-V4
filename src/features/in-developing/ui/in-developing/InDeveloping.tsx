@@ -17,6 +17,7 @@ import { MacProcess } from '../mac-process/MacProcess';
 import { CommentsWidget } from '../comments-widget/CommentsWidget';
 import { GalleryWidget } from '../gallery-widget/GalleryWidget';
 import { TabsWidget } from '../tabs-widget/TabsWidget';
+import { Animation } from '../animation/Animation';
 
 export const InDeveloping: FC<IInDevelopingProps> = (props) => {
   const { className, ...anotherProps } = props;
@@ -24,37 +25,39 @@ export const InDeveloping: FC<IInDevelopingProps> = (props) => {
   return (
     <div {...anotherProps} data-testid="inDeveloping" className={classNames(styles.in_developing, {}, [className])}>
       <Platform>
-        <MacHeader>
-          <MacProcess />
-        </MacHeader>
+        <Animation>
+          <MacHeader>
+            <MacProcess />
+          </MacHeader>
 
-        <BrowserHeader />
+          <BrowserHeader />
 
-        <Page>
-          <PageHeader />
+          <Page>
+            <PageHeader />
 
-          <PageMain>
-            <PageRow>
-              <TextWidget />
-              <ImageWidget />
-            </PageRow>
+            <PageMain>
+              <PageRow>
+                <TextWidget />
+                <ImageWidget />
+              </PageRow>
 
-            <PageRow>
-              <GithubWidget />
-              <CardsWidget />
-            </PageRow>
+              <PageRow>
+                <GithubWidget />
+                <CardsWidget />
+              </PageRow>
 
-            <PageRow>
-              <TextWidget />
-              <CommentsWidget />
-            </PageRow>
+              <PageRow>
+                <TextWidget />
+                <CommentsWidget />
+              </PageRow>
 
-            <PageRow>
-              <GalleryWidget />
-              <TabsWidget />
-            </PageRow>
-          </PageMain>
-        </Page>
+              <PageRow>
+                <GalleryWidget />
+                <TabsWidget />
+              </PageRow>
+            </PageMain>
+          </Page>
+        </Animation>
       </Platform>
     </div>
   );
