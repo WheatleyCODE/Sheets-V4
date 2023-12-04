@@ -1,1 +1,4 @@
-export interface ITextWidgetProps extends React.HTMLAttributes<HTMLDivElement> {}
+export interface ITextWidgetProps extends React.HTMLAttributes<HTMLDivElement> {
+  linesCount?: number;
+  firstLetter?: string;
+}

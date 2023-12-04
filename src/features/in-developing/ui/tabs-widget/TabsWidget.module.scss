@@ -1,1 +1,6 @@
-.tabs_widget {}
+.tabs_widget {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  padding: 20px 30px;
+}

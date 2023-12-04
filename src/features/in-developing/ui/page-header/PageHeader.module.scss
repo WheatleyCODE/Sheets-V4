@@ -1,1 +1,44 @@
-.page_header {}
+// @import '../in-developing//InDeveloping.mixins.scss';
+
+.page_header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 30px;
+  padding: 2px 20px;
+  background-color: var(--color-primary02);
+}
+
+.logo {
+  margin-left: 10px;
+  font-size: 0.8rem;
+  width: 100px;
+}
+
+.logo_container {
+  display: flex;
+}
+
+.button {
+  height: 20px;
+  background-color: var(--color-shadow01);
+  border-radius: 5px;
+  margin-left: 6px;
+}
+
+.logo_buttons {
+  display: flex;
+}
+
+._v1 {
+  width: 25px;
+}
+
+._v2 {
+  width: 60px;
+}
+
+._v3 {
+  width: 60px;
+}

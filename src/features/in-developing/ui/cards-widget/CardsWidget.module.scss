@@ -1,1 +1,32 @@
-.cards_widget {}
+.cards_widget {
+  display: flex;
+  justify-content: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 20px 30px;
+}
+
+.card {
+  padding: 8px 10px;
+  width: 60px;
+  height: 100%;
+  background: var(--color-primary);
+  border-radius: 5px;
+  box-shadow: 7px 7px 1px 0 var(--color-shadow02);
+}
+
+.card_circle {
+  width: 40px;
+  height: 33px;
+  background-color: var(--color-shadow01);
+  border-radius: 50%;
+  margin-bottom: 10px;
+}
+
+.card_line {
+  width: 100%;
+  height: 3px;
+  border-radius: 20px;
+  background-color: white;
+  margin-bottom: 7px;
+}

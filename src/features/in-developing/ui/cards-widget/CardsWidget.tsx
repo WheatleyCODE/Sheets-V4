@@ -8,7 +8,29 @@ export const CardsWidget: FC<ICardsWidgetProps> = (props) => {
 
   return (
     <div {...anotherProps} data-testid="cardsWidget" className={classNames(styles.cards_widget, {}, [className])}>
-      CardsWidget 
+      <div className={classNames(styles.card, {}, [styles._v1])}>
+        <div className={classNames(styles.card_circle, {}, [])}></div>
+        <div className={classNames(styles.card_line, {}, [styles._v1])}></div>
+        <div className={classNames(styles.card_line, {}, [styles._v2])}></div>
+        <div className={classNames(styles.card_line, {}, [styles._v3])}></div>
+        <div className={classNames(styles.card_line, {}, [styles._v4])}></div>
+      </div>
+
+      <div className={classNames(styles.card, {}, [styles._v2])}>
+        <div className={classNames(styles.card_circle, {}, [])}></div>
+        <div className={classNames(styles.card_line, {}, [styles._v1])}></div>
+        <div className={classNames(styles.card_line, {}, [styles._v2])}></div>
+        <div className={classNames(styles.card_line, {}, [styles._v3])}></div>
+        <div className={classNames(styles.card_line, {}, [styles._v4])}></div>
+      </div>
+
+      <div className={classNames(styles.card, {}, [styles._v3])}>
+        <div className={classNames(styles.card_circle, {}, [])}></div>
+        <div className={classNames(styles.card_line, {}, [styles._v1])}></div>
+        <div className={classNames(styles.card_line, {}, [styles._v2])}></div>
+        <div className={classNames(styles.card_line, {}, [styles._v3])}></div>
+        <div className={classNames(styles.card_line, {}, [styles._v4])}></div>
+      </div>
     </div>
   );
 };

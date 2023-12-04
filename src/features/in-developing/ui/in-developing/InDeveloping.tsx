@@ -2,6 +2,7 @@ import { FC } from 'react';
 import { classNames } from '@/shared/lib/class-names';
 import type { IInDevelopingProps } from './InDeveloping.interface';
 import styles from './InDeveloping.module.scss';
+import './InDeveloping.variables.scss';
 import { Platform } from '../platform/Platform';
 import { MacHeader } from '../mac-header/MacHeader';
 import { BrowserHeader } from '../browser-header/BrowserHeader';
@@ -18,14 +19,20 @@ import { CommentsWidget } from '../comments-widget/CommentsWidget';
 import { GalleryWidget } from '../gallery-widget/GalleryWidget';
 import { TabsWidget } from '../tabs-widget/TabsWidget';
 import { Animation } from '../animation/Animation';
+import { useTheme } from '@/shared/lib/hooks';
 
 export const InDeveloping: FC<IInDevelopingProps> = (props) => {
   const { className, ...anotherProps } = props;
+  const { theme } = useTheme();
 
   return (
-    <div {...anotherProps} data-testid="inDeveloping" className={classNames(styles.in_developing, {}, [className])}>
-      <Platform>
-        <Animation>
+    <div
+      {...anotherProps}
+      data-testid="inDeveloping"
+      className={classNames(styles.in_developing, {}, [className, 'in_developing', 'animation', theme])}
+    >
+      <Animation>
+        <Platform>
           <MacHeader>
             <MacProcess />
           </MacHeader>
@@ -57,8 +64,8 @@ export const InDeveloping: FC<IInDevelopingProps> = (props) => {
               </PageRow>
             </PageMain>
           </Page>
-        </Animation>
-      </Platform>
+        </Platform>
+      </Animation>
     </div>
   );
 };

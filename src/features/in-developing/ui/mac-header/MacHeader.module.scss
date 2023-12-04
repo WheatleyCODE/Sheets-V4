@@ -1,1 +1,32 @@
-.mac_header {}
+.mac_header {
+  display: flex;
+  padding: 7px 15px;
+  height: 24px;
+  background-color: var(--color-primary);
+  border-radius: 20px 20px 0 0;
+}
+
+.mac_circle {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.mac_controls {
+  height: 10px;
+  width: 45px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.red {
+  background-color: red;
+}
+
+.yellow {
+  background-color: yellow;
+}
+
+.green {
+  background-color: green;
+}

@@ -1,1 +1,52 @@
-.animation {}
+.animation {
+  position: relative;
+}
+
+.animation_children {
+  position: relative;
+  z-index: 100;
+}
+
+.cog {
+  position: absolute;
+  z-index: 1;
+  top: 20px;
+  left: -160px;
+
+  svg {
+    font-size: 600px;
+  }
+}
+
+.cog_shadow {
+  position: absolute;
+  z-index: 0;
+  top: 30px;
+  left: -140px;
+  color: var(--color-shadow02);
+
+  svg {
+    font-size: 600px;
+  }
+}
+
+.title {
+  position: absolute;
+  bottom: 0;
+  font-size: 2rem;
+}
+
+.mech {
+  position: absolute;
+}
+
+.mech_element {
+  width: 400px;
+  height: 60px;
+  margin-bottom: 10px;
+  background-color: white;
+}
+
+.mech_element._v1 {
+  transform: translateZ(10deg);
+}
