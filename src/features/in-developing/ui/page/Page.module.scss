@@ -1,7 +1,0 @@
-@import '../in-developing//InDeveloping.mixins.scss';
-
-.page {
-  @include linearGradient(180deg, var(--color-primary09), var(--color-primary07));
-
-  height: 660px;
-}

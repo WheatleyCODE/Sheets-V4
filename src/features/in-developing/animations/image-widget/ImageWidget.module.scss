@@ -1,0 +1,74 @@
+
+.image_widget {
+  position: relative;
+  padding: 20px 30px;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.image {
+  position: absolute;
+  cursor: pointer;
+  overflow: hidden;
+  z-index: 10;
+  top: -80px;
+  left: 0;
+  width: 200px;
+  height: 120px;
+  border-radius: 5px;
+  box-shadow: 25px 15px 1px 0 var(--color-shadow01);
+  background: linear-gradient(180deg, rgb(51, 255, 0) 10%, rgb(45, 45, 230) 60%);
+}
+
+.mountain {
+  position: absolute;
+  background: linear-gradient(140deg,
+    var(--color-white),
+    var(--color-primary)
+    40%);
+  width: 120px;
+  height: 100px;
+  bottom: -40px;
+  transform: rotate(45deg);
+}
+
+.mountain._v1 {
+  right: 0;
+}
+
+.arrow {
+  z-index: 9;
+  width: 200px;
+  height: 100px;
+  border: 2px dashed var(--color-shadow02);
+  position: absolute;
+  bottom: 0;
+  // left: 0;
+}
+
+.arrow_line {
+  background-color: var(--color-white);
+  position: absolute;
+  width: 3px;
+  bottom: 30px;
+}
+
+.arrow_line._v1 {
+  left: 91px;
+  height: 50px;
+}
+
+.arrow_line._v2 {
+  left: 97px;
+  width: 3px;
+  height: 20px;
+  transform: rotate(37deg);
+}
+
+.arrow_line._v3 {
+  transform: rotate(-37deg);
+  left: 84px;
+  width: 3px;
+  height: 20px;
+}

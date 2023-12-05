@@ -1,0 +1,22 @@
+.tabs_widget {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.tabs_header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.tabs_main {
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  height: 100px;
+  width: 100%;
+  justify-content: center;
+  background-color: var(--color-primary);
+  box-shadow: 7px 7px 1px 0 var(--color-shadow02);
+}

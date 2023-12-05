@@ -1,0 +1,144 @@
+.animation {
+  position: relative;
+}
+
+.animation_children {
+  position: relative;
+  z-index: 100;
+}
+
+.cog_container {
+  top: 20px;
+  left: -120px;
+  position: absolute;
+  width: 500px;
+  height: 500px;
+}
+
+.cog {
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  left: 0;
+
+  svg {
+    font-size: 600px;
+  }
+}
+
+.cog._v2 {
+  z-index: 0;
+  top: 20px;
+  left: 30px;
+  color: var(--color-shadow02);
+}
+
+.title {
+  position: absolute;
+  bottom: 0;
+  font-size: 2rem;
+}
+
+.side,
+.container {
+  width: 6em;
+  height: 2em;
+}
+
+.container {
+  position: absolute;
+  border: 2px dotted white;
+  transform-style: preserve-3d;
+  transform: rotateX(45deg) rotateY(-10deg) rotateZ(45deg);
+}
+
+.container3 {
+  position: relative;
+}
+
+.container3._v1 {
+  z-index: 2;
+}
+
+.container3._v2 {
+  z-index: 1;
+}
+
+.container3._v3 {
+  z-index: 0;
+}
+
+.container._v1 {
+  bottom: 280px;
+  right: 30px;
+}
+
+.container._v2 {
+  bottom: 290px;
+  right: -25px;
+}
+
+.container._v3 {
+  padding-left: 20px;
+  z-index: 0;
+  bottom: 310px;
+  right: -65px;
+}
+
+
+.container::before,
+.container::after {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 2em;
+  height: 2em;
+  border: 2px dotted white;
+}
+
+.container::before {
+  transform: rotateX(90deg);
+}
+
+.container::after {
+  transform: rotateY(90deg);
+}
+
+.side {
+  position: absolute;
+  width: 10em;
+  height: 2em;
+  border: 2px solid white;
+}
+
+.back {
+  transform: translateZ(-1em);
+  background: orange;
+}
+
+.left {
+  transform: translateX(9em) rotateY(90deg);
+  background: lightgreen;
+  width: 2em;
+}
+
+.right {
+  transform: translateX(5em) rotateY(90deg);
+  background: yellowgreen;
+  width: 2em;
+}
+
+.top {
+  transform: translateY(-1em) rotateX(90deg);
+  background: skyblue;
+}
+
+.bottom {
+  transform: translateY(1em) rotateX(90deg);
+  background: steelblue;
+}
+
+.front {
+  transform: translateZ(1em);
+  background: gold;
+}

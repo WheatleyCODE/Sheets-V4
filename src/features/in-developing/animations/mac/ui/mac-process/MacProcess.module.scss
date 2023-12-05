@@ -1,0 +1,76 @@
+.mac_process {
+  position: relative;
+  height: 10px;
+  width: 10px;
+}
+
+.mac_process_circle {
+  position: absolute;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background-color: var(--color-primary05);
+}
+
+.mac_process_cog {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  position: absolute;
+  top: -15px;
+  left: -20px;
+
+  svg {
+    font-size: 5rem;
+  }
+}
+
+.cog_rotate {
+  animation: rotate 6s infinite linear;
+}
+
+.mac_process_cog_shadow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: var(--color-shadow02);
+
+  svg {
+    font-size: 5rem;
+  }
+}
+
+._v1 {
+  z-index: 10;
+  border: 1px solid var(--color-shadow01);
+  background-color: var(--color-primary);
+  top: -90px;
+  left: -10px;
+}
+
+._v2 {
+  z-index: 9;
+  top: -80px;
+  left: 5px;
+}
+
+._v3 {
+  z-index: 8;
+  top: -70px;
+  left: 20px;
+  box-shadow: 25px 15px 1px 0 var(--color-shadow01);
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(365deg)
+  }
+}

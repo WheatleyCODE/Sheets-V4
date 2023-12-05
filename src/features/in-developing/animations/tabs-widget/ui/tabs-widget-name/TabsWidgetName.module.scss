@@ -1,0 +1,25 @@
+.tabs_widget_name {
+  transition: background 0.1s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin-right: 1px;
+  height: 30px;
+  background-color: var(--color-primary);
+  border-radius: 5px 5px 0 0;
+  box-shadow: 7px 7px 1px 0 var(--color-shadow02);
+  border: 1px solid var(--color-shadow01);
+
+  svg {
+    font-size: 1.2rem;
+  }
+}
+
+.tabs_widget_name.active {
+  background-color: var(--color-secondary);
+}
+
+.tabs_widget_name:last-child {
+  margin-right: 0;
+}
