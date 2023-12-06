@@ -102,7 +102,7 @@ export const TabsWidget: FC<ITabsWidgetProps> = (props) => {
       <div className={classNames(styles.tabs_header, {}, [])}>{tabNamesItems}</div>
 
       <motion.div style={{ background }} className={classNames(styles.tabs_main, {}, [])}>
-        <AnimatePresence mode="wait">
+        <AnimatePresence>
           <LayoutGroup>
             {currentTab === 'one' && resultItems['one']}
             {currentTab === 'two' && resultItems['two']}
