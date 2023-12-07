@@ -2,9 +2,43 @@
   position: relative;
   height: 10px;
   width: 10px;
+  cursor: pointer;
+
+  &:hover .mac_process_circle._v1 {
+    top: -85px;
+    left: -5px;
+  }
+
+  &:hover .mac_process_circle._v2 {
+    top: -78px;
+    left: 5px;
+  }
+
+  &:hover .mac_process_circle._v3 {
+    top: -70px;
+    left: 15px;
+    box-shadow: 7px 7px 1px 0 var(--color-shadow02);
+  }
+
+  &:active .mac_process_circle._v1 {
+    top: -80px;
+    left: 5px;
+  }
+
+  &:active .mac_process_circle._v2 {
+    top: -74px;
+    left: 10px;
+  }
+
+  &:active .mac_process_circle._v3 {
+    top: -70px;
+    left: 15px;
+    box-shadow: 7px 7px 1px 0 var(--color-shadow02);
+  }
 }
 
 .mac_process_circle {
+  transition: all 0.5s;
   position: absolute;
   width: 70px;
   height: 70px;
@@ -24,10 +58,6 @@
   svg {
     font-size: 5rem;
   }
-}
-
-.cog_rotate {
-  animation: rotate 6s infinite linear;
 }
 
 .mac_process_cog_shadow {
@@ -63,14 +93,4 @@
   top: -70px;
   left: 20px;
   box-shadow: 25px 15px 1px 0 var(--color-shadow01);
-}
-
-@keyframes rotate {
-  0% {
-    transform: rotate(0deg);
-  }
-
-  100% {
-    transform: rotate(365deg)
-  }
 }

@@ -1,12 +1,12 @@
 import { FC } from 'react';
 import { motion } from 'framer-motion';
-import { DEFAULT_DURATION_X2_DELAY, DEFAULT_DURATION_X2 } from '../../consts/animations';
+import { DEFAULT_DURATION_X2, DEFAULT_DURATION_X2_DELAY } from '../../../../consts/animations';
 import { classNames } from '@/shared/lib/class-names';
-import type { ITextWidgetProps } from './TextWidget.interface';
-import styles from './TextWidget.module.scss';
+import type { ITextLinesProps } from './TextLines.interface';
+import styles from './TextLines.module.scss';
 
-export const TextWidget: FC<ITextWidgetProps> = (props) => {
-  const { className, linesCount = 8, delayLinesAnimation = 0, firstLetter = 'A', ...anotherProps } = props;
+export const TextLines: FC<ITextLinesProps> = (props) => {
+  const { className, linesCount, isLastShort, delayLinesAnimation = 0, firstLetter, ...anotherProps } = props;
 
   const linesArr = new Array(linesCount).fill(null);
 
@@ -16,6 +16,7 @@ export const TextWidget: FC<ITextWidgetProps> = (props) => {
         <motion.div
           initial={{ width: 0 }}
           animate={{ width: '100%' }}
+          exit={{ width: 0 }}
           transition={{
             duration: DEFAULT_DURATION_X2,
             delay: DEFAULT_DURATION_X2_DELAY * (i + delayLinesAnimation),
@@ -31,16 +32,21 @@ export const TextWidget: FC<ITextWidgetProps> = (props) => {
     return (
       <motion.div
         initial={{ width: 0 }}
-        animate={{ width: i === linesArr.length - 1 ? '50%' : '100%' }}
+        animate={{ width: i === linesArr.length - 1 && isLastShort ? '50%' : '100%' }}
+        exit={{ width: 0 }}
         transition={{ duration: DEFAULT_DURATION_X2, delay: DEFAULT_DURATION_X2_DELAY * (i + delayLinesAnimation) }}
-        className={classNames(styles.text_line, { [styles.short]: i === linesArr.length - 1 }, [])}
+        className={classNames(
+          styles.text_line,
+          { [styles.short]: i === linesArr.length - 1 && isLastShort ? true : false },
+          [],
+        )}
       />
     );
   });
 
   return (
-    <motion.div {...anotherProps} data-testid="textWidget" className={classNames(styles.text_widget, {}, [className])}>
+    <div {...anotherProps} data-testid="textLines" className={classNames(styles.text_lines, {}, [className])}>
       {lines}
-    </motion.div>
+    </div>
   );
 };

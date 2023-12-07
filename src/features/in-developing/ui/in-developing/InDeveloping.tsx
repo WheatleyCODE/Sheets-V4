@@ -6,7 +6,7 @@ import { Page } from '../../animations/page/ui/page/Page';
 import { PageHeader } from '../../animations/page/ui/page-header/PageHeader';
 import { PageMain } from '../../animations/page/ui/page-main/PageMain';
 import { PageRow } from '../../animations/page/ui/page-row/PageRow';
-import { TextWidget } from '../../animations/text-widget/TextWidget';
+import { TextWidget } from '../../animations/text-widget/ui/text-widget/TextWidget';
 import { ImageWidget } from '../../animations/image-widget/ImageWidget';
 import { GithubWidget } from '../../animations/github-widget/GithubWidget';
 import { CardsWidget } from '../../animations/cards-widget/CardsWidget';
@@ -52,11 +52,11 @@ export const InDeveloping: FC<IInDevelopingProps> = (props) => {
 
               <PageRow>
                 <GithubWidget {...getInitialAnimation(10)} />
-                <CardsWidget {...getInitialAnimation(11)} />
+                <CardsWidget {...getInitialAnimation(11)} delayLinesAnimation={11} />
               </PageRow>
 
               <PageRow>
-                <CommentsWidget {...getInitialAnimation(12)} />
+                <CommentsWidget {...getInitialAnimation(12)} delayLinesAnimation={12} />
                 <TextWidget {...getInitialAnimation(13)} delayLinesAnimation={13} />
               </PageRow>
 

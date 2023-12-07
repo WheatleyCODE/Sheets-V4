@@ -1,12 +1,54 @@
 .gallery_widget {
+  cursor: pointer;
   position: relative;
   display: flex;
   justify-content: center;
   width: 100%;
   padding: 20px 30px;
+
+  &:hover .image {
+    box-shadow: 7px 7px 1px 0 var(--color-shadow02);
+  }
+
+  &:hover .image._v1 {
+    transform: rotate(-15deg);
+    top: 30px;
+    left: 20px;
+  }
+
+  &:hover .image._v2 {
+    top: 30px;
+    left: 40px;
+    transform: rotate(0deg) translateX(10px) translateY(-10px);
+  }
+
+  &:hover .image._v3 {
+    top: 40px;
+    left: 50px;
+    transform: rotate(15deg) translateX(35px) translateY(-25px);
+  }
+
+  &:active .image._v1 {
+    transform: rotate(-15deg);
+    top: 30px;
+    left: 20px;
+  }
+
+  &:active .image._v2 {
+    top: 30px;
+    left: 40px;
+    transform: rotate(0deg) translateX(5px) translateY(-5px);
+  }
+
+  &:active .image._v3 {
+    top: 40px;
+    left: 50px;
+    transform: rotate(15deg) translateX(15px) translateY(-15px);
+  }
 }
 
 .image {
+  transition: all 0.5s;
   overflow: hidden;
   top: 20px;
   left: 30px;
@@ -14,7 +56,6 @@
   z-index: 0;
   width: 120px;
   height: 100px;
-  background-color: rgb(81, 199, 81);
 }
 
 .image._v1 {
@@ -22,7 +63,7 @@
   top: 30px;
   left: 40px;
   transform: rotate(15deg);
-  background-color: rgb(98, 17, 122)
+  background-color: rgb(170, 69, 201)
 }
 
 .image._v2 {
@@ -30,7 +71,15 @@
   top: 40px;
   left: 50px;
   transform: rotate(30deg);
-  background-color: rgb(7, 163, 142);
+  background-color: rgb(66, 233, 211);
+}
+
+.image._v3 {
+  z-index: 3;
+  top: 50px;
+  left: 60px;
+  transform: rotate(45deg);
+  background-color: rgb(216, 226, 71);
 }
 
 .mountain {
@@ -40,7 +89,7 @@
   position: absolute;
   width: 100px;
   height: 100px;
-  background: linear-gradient(white, blue 50%);
+  background: linear-gradient(white, rgb(58, 58, 235) 50%);
 }
 
 .mountain._v1 {

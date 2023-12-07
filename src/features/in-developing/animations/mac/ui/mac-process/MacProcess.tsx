@@ -18,11 +18,19 @@ export const MacProcess: FC<IMacProcessProps> = (props) => {
       className={classNames(styles.mac_process, {}, [className])}
     >
       <div className={classNames(styles.mac_process_circle, {}, [styles._v1])}>
-        <motion.div>
+        <motion.div
+          animate={{ rotate: 360 }}
+          transition={{ duration: 20, repeat: Infinity }}
+          className={classNames(styles.mac_process_cog, {}, [])}
+        >
           <IoIosCog />
         </motion.div>
 
-        <motion.div className={classNames(styles.mac_process_cog_shadow, { [styles.cog_rotate]: !isHover }, [])}>
+        <motion.div
+          animate={{ rotate: 360 }}
+          transition={{ duration: 20, repeat: Infinity }}
+          className={classNames(styles.mac_process_cog_shadow, {}, [])}
+        >
           <IoIosCog />
         </motion.div>
       </div>

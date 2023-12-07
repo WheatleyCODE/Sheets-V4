@@ -32,7 +32,9 @@ export const GithubWidget: FC<IGithubWidgetProps> = (props) => {
       transition={{ duration: DEFAULT_DURATION }}
       className={classNames(styles.git_icon, {}, [])}
     >
-      <Icon />
+      <motion.div whileHover={{ scale: 1.1, rotate: 10 }} transition={{ duration: 0.1 }}>
+        <Icon />
+      </motion.div>
     </motion.div>
   ));
 
@@ -43,8 +45,8 @@ export const GithubWidget: FC<IGithubWidgetProps> = (props) => {
       className={classNames(styles.github_widget, {}, [className])}
     >
       <div className={classNames(styles.square, {}, [styles._v1])}>
-        <AnimatePresence>{isShow && items[0]}</AnimatePresence>
-        <AnimatePresence>{!isShow && items[1]}</AnimatePresence>
+        <AnimatePresence>{isShow && items[1]}</AnimatePresence>
+        <AnimatePresence>{!isShow && items[0]}</AnimatePresence>
         <div className={classNames(styles.tab, {}, [])}></div>
       </div>
       <div className={classNames(styles.square, {}, [styles._v2])}></div>

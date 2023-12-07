@@ -13,15 +13,10 @@ export const ImageWidget: FC<IImageWidgetProps> = (props) => {
       data-testid="imageWidget"
       className={classNames(styles.image_widget, {}, [className])}
     >
-      <motion.div
-        whileHover={{ top: -40 }}
-        whileTap={{ scale: 0.9 }}
-        transition={{ duration: 0.5 }}
-        className={classNames(styles.image, {}, [])}
-      >
+      <div className={classNames(styles.image, {}, [])}>
         <div className={classNames(styles.mountain, {}, [styles._v1])} />
         <div className={classNames(styles.mountain, {}, [styles._v2])} />
-      </motion.div>
+      </div>
 
       <div className={classNames(styles.arrow, {}, [])}>
         <div className={classNames(styles.arrow_line, {}, [styles._v1])} />

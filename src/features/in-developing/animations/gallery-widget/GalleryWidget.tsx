@@ -22,8 +22,8 @@ export const GalleryWidget: FC<IGalleryWidgetProps> = (props) => {
         <div className={classNames(styles.mountain, {}, [styles._v2])} />
       </div>
       <div className={classNames(styles.image, {}, [styles._v3])}>
-        <div className={classNames(styles.mountain, {}, [])} />
-        <div className={classNames(styles.mountain, {}, [])} />
+        <div className={classNames(styles.mountain, {}, [styles._v1])} />
+        <div className={classNames(styles.mountain, {}, [styles._v2])} />
       </div>
     </motion.div>
   );

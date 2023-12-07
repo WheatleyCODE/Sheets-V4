@@ -12,6 +12,17 @@
 .comment {
   width: 100%;
   display: flex;
+  cursor: pointer;
+
+  &:hover .square, &:hover .text {
+    transform: translateX(-5px) translateZ(-5px);
+    box-shadow: 10px 10px 3px 0 var(--color-shadow02);
+  }
+
+  &:active .square, &:active .text {
+    transform: translateX(0) translateY(0) scale(0.97);
+    box-shadow: 7px 7px 1px 0 var(--color-shadow02);
+  }
 }
 
 .line {
@@ -26,6 +37,7 @@
 }
 
 .square {
+  transition: all 0.5s;
   position: relative;
   display: flex;
   align-items: center;
@@ -40,13 +52,22 @@
 }
 
 .circle {
+  padding-top: 2px;
   width: 32px;
   height: 25px;
   background-color: var(--color-shadow01);
   border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  svg {
+    font-size: 1.2rem;
+  }
 }
 
 .text {
+  transition: all 0.5s;
   position: relative;
   border-radius: 5px;
   padding: 10px 15px;
