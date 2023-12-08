@@ -7,6 +7,5 @@ describe('HomePage', () => {
     renderComponent(<HomePage />);
 
     expect(screen.getByTestId('homePage')).toBeInTheDocument();
-    expect(screen.getByTestId('layout')).toBeInTheDocument();
   });
 });

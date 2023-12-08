@@ -6,6 +6,6 @@ describe('PageLoader', () => {
   test('In the document', () => {
     renderComponent(<PageLoader />);
 
-    expect(screen.getByText('Загрузка')).toBeInTheDocument();
+    expect(screen.getByText('Загрузка...')).toBeInTheDocument();
   });
 });

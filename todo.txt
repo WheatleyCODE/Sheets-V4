@@ -5,9 +5,6 @@
 [] Fix storybook
 [] Fix ../../../../user architecture
 [] Docs 97 и документация для shared
-[] Fix Portal tests
-[] Закончить переводы
-[] Пофиксить портал
 [] Создать создание шаблонов опираясь на будущие таблицы
 [] Закончить с preprod 
 [] Проверить кобезу
@@ -31,7 +28,3 @@
 [] Использовать в Sheets entity adapter data и нормализацию
 [] Запросы и suspense для storybook 75
 [] Написать обертку для IDBS и часть функционала добавить в KVStorageEngines IDBS + тесты
-
-// * LOL
-HomePage / Landing - Описание проекта с анимациями
-SheeetsPage - Страница с таблицами

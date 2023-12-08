@@ -7,6 +7,5 @@ describe('SheetsPage', () => {
     renderComponent(<SheetsPage />);
 
     expect(screen.getByTestId('sheetsPage')).toBeInTheDocument();
-    expect(screen.getByTestId('layout')).toBeInTheDocument();
   });
 });

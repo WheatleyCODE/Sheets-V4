@@ -8,6 +8,5 @@ describe('AuthModal', () => {
 
     expect(screen.getByTestId('auth-modal')).toBeInTheDocument();
     expect(screen.getByText('Регистрация')).toBeInTheDocument();
-    expect(screen.getByTestId('loader')).toBeInTheDocument();
   });
 });

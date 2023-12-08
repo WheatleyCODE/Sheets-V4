@@ -3,12 +3,12 @@ import { ModalController } from './ModalController';
 import { renderComponent } from '@/shared/lib/tests/render-component/renderComponent';
 
 describe('ModalController', () => {
-  test('In the document', () => {
+  test('In the document', async () => {
     renderComponent(<ModalController />, { initialState: { modals: { isAuth: true } } });
 
-    expect(screen.getByTestId('auth-modal')).toBeInTheDocument();
+    expect(await screen.findByTestId('auth-modal')).toBeInTheDocument();
     expect(screen.getByText('Регистрация')).toBeInTheDocument();
-    expect(screen.getByTestId('loader')).toBeInTheDocument();
+    expect(screen.getByTestId('circleLoader')).toBeInTheDocument();
   });
 
   test('Not in the document', () => {

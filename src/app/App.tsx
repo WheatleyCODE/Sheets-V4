@@ -1,4 +1,4 @@
-import { FC, Suspense } from 'react';
+import { FC, Suspense, useEffect } from 'react';
 import { PageLoader } from '@/widgets/page-loader';
 import { useFetchUser, useUserActions } from '@/entities/user';
 import { AppRouter } from './providers/app-router';
@@ -7,7 +7,6 @@ import { KVFactory } from '@/shared/lib/kv-storage';
 import { LS_AUTH_KEY } from '@/shared/consts';
 import { useUserInited, useUserIsLoading } from '@/entities/user';
 import { useInitialEffect, useTheme } from '@/shared/lib/hooks';
-import { classNames } from '@/shared/lib/class-names';
 import './styles/index.scss';
 
 // * Sync
@@ -30,8 +29,14 @@ export const App: FC = () => {
     });
   });
 
+  useEffect(() => {
+    document.body.classList.remove(...document.body.classList);
+    document.body.classList.add('app');
+    document.body.classList.add(theme);
+  }, [theme]);
+
   return (
-    <div className={classNames('app', {}, [theme])}>
+    <div>
       <Layout>
         <Suspense fallback={<PageLoader />}>
           {isLoading && <PageLoader />}

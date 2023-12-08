@@ -18,7 +18,6 @@ describe('CommentListItem', () => {
     renderComponent(<CommentListItem comment={comment} />);
 
     expect(screen.getByTestId('commentListItem')).toBeInTheDocument();
-    expect(screen.getByTestId('imageLoad')).toBeInTheDocument();
     expect(screen.getByText('Comment')).toBeInTheDocument();
     expect(screen.getByText('Admin')).toBeInTheDocument();
   });

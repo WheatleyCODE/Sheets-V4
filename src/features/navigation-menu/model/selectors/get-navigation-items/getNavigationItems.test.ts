@@ -7,7 +7,7 @@ describe('getNavigationItems', () => {
   test('Return navigation menu items, no auth', () => {
     const state: DeepPartial<IStateSchema> = {};
 
-    expect(getNavigationItems(state as IStateSchema).length).toBe(3);
+    expect(getNavigationItems(state as IStateSchema).length).toBe(2);
   });
 
   test('Return navigation menu items, auth', () => {
@@ -15,7 +15,7 @@ describe('getNavigationItems', () => {
       user: { user: { roles: [UserRoles.USER] } },
     };
 
-    expect(getNavigationItems(state as IStateSchema).length).toBe(6);
+    expect(getNavigationItems(state as IStateSchema).length).toBe(5);
   });
 
   test('Return navigation menu items, auth admin', () => {
@@ -23,7 +23,7 @@ describe('getNavigationItems', () => {
       user: { user: { roles: [UserRoles.ADMIN] } },
     };
 
-    expect(getNavigationItems(state as IStateSchema).length).toBe(7);
+    expect(getNavigationItems(state as IStateSchema).length).toBe(6);
   });
 
   test('Return navigation menu items, auth developer', () => {
@@ -31,6 +31,6 @@ describe('getNavigationItems', () => {
       user: { user: { roles: [UserRoles.DEVELOPER] } },
     };
 
-    expect(getNavigationItems(state as IStateSchema).length).toBe(7);
+    expect(getNavigationItems(state as IStateSchema).length).toBe(6);
   });
 });

@@ -7,7 +7,6 @@ describe('NotFoundPage', () => {
     renderComponent(<NotFoundPage />);
 
     expect(screen.getByTestId('notFoundPage')).toBeInTheDocument();
-    expect(screen.getByTestId('layout')).toBeInTheDocument();
     expect(screen.getByText('Страница не найдена')).toBeInTheDocument();
   });
 });

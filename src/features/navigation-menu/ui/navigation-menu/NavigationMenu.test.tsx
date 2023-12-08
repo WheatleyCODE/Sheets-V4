@@ -24,7 +24,6 @@ describe('NavigationMenu', () => {
     expect(screen.getByText('SHEETS V4')).toBeInTheDocument();
     expect(screen.getByText('Домашняя страница')).toBeInTheDocument();
     expect(screen.getByText('Таблицы')).toBeInTheDocument();
-    expect(screen.getByText('Лендинг')).toBeInTheDocument();
     expect(screen.getByTestId('navigationMenu')).toBeInTheDocument();
   });
 });

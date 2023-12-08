@@ -6,6 +6,6 @@ describe('Avatar', () => {
   test('In the document', () => {
     renderComponent(<Avatar />);
 
-    expect(screen.getByTestId('imageLoad')).toBeInTheDocument();
+    expect(screen.getByTestId('skeleton')).toBeInTheDocument();
   });
 });

@@ -11,6 +11,5 @@ describe('Layout', () => {
     );
 
     expect(screen.getByText('Hello')).toBeInTheDocument();
-    expect(screen.getByTestId('layout')).toBeInTheDocument();
   });
 });

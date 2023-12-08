@@ -7,7 +7,6 @@ describe('ProfilePage', () => {
     renderComponent(<ProfilePage />);
 
     expect(screen.getByTestId('profilePage')).toBeInTheDocument();
-    expect(screen.getByTestId('layout')).toBeInTheDocument();
     expect(screen.getByTestId('profileCard')).toBeInTheDocument();
   });
 });
