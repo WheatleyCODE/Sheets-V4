@@ -71,7 +71,7 @@ export const Animation: FC<IAnimationProps> = (props) => {
         transition={{ duration: DEFAULT_DURATION_X2, delay: DEFAULT_DURATION_X2_DELAY * 3 }}
         className={classNames(styles.title, {}, [])}
       >
-        Страница в разработке
+        Страница в разработке...
       </motion.h1>
     </div>
   );

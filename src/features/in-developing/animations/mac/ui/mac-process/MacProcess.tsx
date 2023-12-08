@@ -20,7 +20,7 @@ export const MacProcess: FC<IMacProcessProps> = (props) => {
       <div className={classNames(styles.mac_process_circle, {}, [styles._v1])}>
         <motion.div
           animate={{ rotate: 360 }}
-          transition={{ duration: 20, repeat: Infinity }}
+          transition={{ duration: 20, repeat: Infinity, ease: 'linear' }}
           className={classNames(styles.mac_process_cog, {}, [])}
         >
           <IoIosCog />
@@ -28,7 +28,7 @@ export const MacProcess: FC<IMacProcessProps> = (props) => {
 
         <motion.div
           animate={{ rotate: 360 }}
-          transition={{ duration: 20, repeat: Infinity }}
+          transition={{ duration: 20, repeat: Infinity, ease: 'linear' }}
           className={classNames(styles.mac_process_cog_shadow, {}, [])}
         >
           <IoIosCog />
