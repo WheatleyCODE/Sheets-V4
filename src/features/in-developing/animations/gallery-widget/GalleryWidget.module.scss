@@ -56,6 +56,7 @@
   z-index: 0;
   width: 120px;
   height: 100px;
+  background: linear-gradient(180deg, var(--color-green) 20%, var(--color-blue) 60%);
 }
 
 .image._v1 {
@@ -63,7 +64,6 @@
   top: 30px;
   left: 40px;
   transform: rotate(15deg);
-  background-color: rgb(170, 69, 201)
 }
 
 .image._v2 {
@@ -71,7 +71,6 @@
   top: 40px;
   left: 50px;
   transform: rotate(30deg);
-  background-color: rgb(66, 233, 211);
 }
 
 .image._v3 {
@@ -79,7 +78,6 @@
   top: 50px;
   left: 60px;
   transform: rotate(45deg);
-  background-color: rgb(216, 226, 71);
 }
 
 .mountain {
@@ -89,7 +87,9 @@
   position: absolute;
   width: 100px;
   height: 100px;
-  background: linear-gradient(white, rgb(58, 58, 235) 50%);
+  background: linear-gradient(140deg,
+        var(--color-white),
+        var(--color-primary) 40%);
 }
 
 .mountain._v1 {

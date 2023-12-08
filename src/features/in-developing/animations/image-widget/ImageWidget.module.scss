@@ -19,7 +19,7 @@
   height: 120px;
   border-radius: 5px;
   box-shadow: 25px 15px 1px 0 var(--color-shadow01);
-  background: linear-gradient(180deg, rgb(51, 255, 0) 10%, rgb(45, 45, 230) 60%);
+  background: linear-gradient(180deg, var(--color-green) 20%, var(--color-blue) 60%);
 
   &:active {
     box-shadow: 7px 7px 1px 0 var(--color-shadow02);

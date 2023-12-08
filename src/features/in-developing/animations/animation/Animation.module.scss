@@ -19,6 +19,7 @@
   position: absolute;
   z-index: 1;
   top: 0;
+  color: var(--color-text2);
   left: 0;
 
   svg {
@@ -113,32 +114,29 @@
 
 .back {
   transform: translateZ(-1em);
-  background: orange;
 }
 
 .left {
   transform: translateX(9em) rotateY(90deg);
-  background: lightgreen;
+  background: var(--color-green);
   width: 2em;
 }
 
 .right {
   transform: translateX(5em) rotateY(90deg);
-  background: yellowgreen;
   width: 2em;
 }
 
 .top {
   transform: translateY(-1em) rotateX(90deg);
-  background: skyblue;
 }
 
 .bottom {
   transform: translateY(1em) rotateX(90deg);
-  background: steelblue;
+  background: var(--color-blue);
 }
 
 .front {
   transform: translateZ(1em);
-  background: gold;
+  background: var(--color-yellow);
 }
