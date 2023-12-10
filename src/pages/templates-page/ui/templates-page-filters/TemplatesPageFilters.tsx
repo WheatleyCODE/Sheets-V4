@@ -54,21 +54,21 @@ export const TemplatesPageFilters: FC<ITemplatesPageFiltersProps> = (props) => {
     [setView],
   );
 
-  const changeSort = useCallback(
-    (sort: TemplateSortFields) => {
-      setSort(sort);
-      fetchTemplatesOnChange();
-    },
-    [fetchTemplatesOnChange, setSort],
-  );
+  // const changeSort = useCallback(
+  //   (sort: TemplateSortFields) => {
+  //     setSort(sort);
+  //     fetchTemplatesOnChange();
+  //   },
+  //   [fetchTemplatesOnChange, setSort],
+  // );
 
-  const changeSortOrder = useCallback(
-    (sortOrder: TemplateSortOrders) => {
-      setSortOrder(sortOrder);
-      fetchTemplatesOnChange();
-    },
-    [fetchTemplatesOnChange, setSortOrder],
-  );
+  // const changeSortOrder = useCallback(
+  //   (sortOrder: TemplateSortOrders) => {
+  //     setSortOrder(sortOrder);
+  //     fetchTemplatesOnChange();
+  //   },
+  //   [fetchTemplatesOnChange, setSortOrder],
+  // );
 
   const changeTag = useCallback(
     (tag: TemplateTags) => {
@@ -84,31 +84,47 @@ export const TemplatesPageFilters: FC<ITemplatesPageFiltersProps> = (props) => {
   }, 300);
 
   useEffect(() => {
-    sortInput.changeValue(sort);
-    sortOrderInput.changeValue(sortOrder);
-    searchInput.changeValue(search);
+    sortInput.data.changeValue(sort);
+    sortOrderInput.data.changeValue(sortOrder);
+    searchInput.data.changeValue(search);
   }, [sort, sortOrder, search]);
 
-  const onChangeSort = useCallback(
-    (sort: TemplateSortFields) => {
-      sortInput.changeValue(sort);
-      changeSort(sort);
-    },
-    [changeSort, sortInput],
-  );
+  // const onChangeSort = useCallback(
+  //   (sort: TemplateSortFields) => {
+  //     sortInput.changeValue(sort);
+  //     changeSort(sort);
+  //   },
+  //   [changeSort, sortInput],
+  // );
 
-  const onChangeSortOrder = useCallback(
-    (sortOrder: TemplateSortOrders) => {
-      sortOrderInput.changeValue(sortOrder);
-      changeSortOrder(sortOrder);
-    },
-    [changeSortOrder, sortOrderInput],
-  );
+  // const onChangeSort2 = useCallback(
+  //   (item: IInputOptionsMenuItem) => {
+  //     sortInput.changeValue(item.text as TemplateSortFields);
+  //     changeSort(item.value as TemplateSortFields);
+  //   },
+  //   [changeSort, sortInput],
+  // );
+
+  // const onChangeSortOrder = useCallback(
+  //   (sortOrder: TemplateSortOrders) => {
+  //     sortOrderInput.changeValue(sortOrder);
+  //     changeSortOrder(sortOrder);
+  //   },
+  //   [changeSortOrder, sortOrderInput],
+  // );
+
+  // const onChangeSortOrder2 = useCallback(
+  //   (item: IInputOptionsMenuItem) => {
+  //     sortOrderInput.changeValue(item.text as TemplateSortOrders);
+  //     changeSortOrder(item.value as TemplateSortOrders);
+  //   },
+  //   [changeSortOrder, sortOrderInput],
+  // );
 
   const onChangeSearch = useCallback(
     (e: ChangeEvent<HTMLInputElement>) => {
       const search = e.target.value;
-      searchInput.onChange(e);
+      searchInput.handlers.onChange(e);
       changeSearch(search);
     },
     [changeSearch, searchInput],
@@ -131,71 +147,48 @@ export const TemplatesPageFilters: FC<ITemplatesPageFiltersProps> = (props) => {
       className={classNames(styles.templates_page_filters, {}, [className])}
     >
       <Width className={styles.width}>
-        <Title isStopShow={searchInput.isActive} classNameContainer={styles.title} text={t('Поиск')}>
+        <Title isStopShow={searchInput.data.isFocus} classNameContainer={styles.title} text={t('Поиск')}>
           <div className={styles.search}>
             <Input
               className={styles.search_input}
               Icon={MdOutlineSearch}
-              value={searchInput.value}
               placeholder={t('Поиск')}
               type="text"
               data-testid="searchInput"
+              {...searchInput.data}
+              {...searchInput.handlers}
               onChange={onChangeSearch}
-              onBlur={searchInput.onBlur}
-              onFocus={searchInput.onFocus}
-              isError={searchInput.isError}
-              validError={t(searchInput.validError || '')}
-              isActive={searchInput.isActive}
+              validError={t(searchInput.data.validError || '')}
             />
           </div>
         </Title>
 
-        <Title isStopShow={sortInput.isFocus} text={t('Изменить сортировку')}>
+        <Title isStopShow={sortInput.data.isFocus} text={t('Изменить сортировку')}>
           <div className={styles.sort}>
             <Input
               className={styles.sort_input}
               Icon={MdOutlineFilterList}
-              value={sortInput.value}
               placeholder={t('Сортировать по')}
               type="text"
               data-testid="sortInput"
-              onChange={sortInput.onChange}
-              onBlur={sortInput.onBlur}
-              onFocus={sortInput.onFocus}
-              isError={sortInput.isError}
-              validError={t(sortInput.validError || '')}
-              isActive={sortInput.isActive}
-              isFocus={sortInput.isFocus}
-              options={{
-                changeValue: onChangeSort,
-                items: getSortItems(t),
-                isForbidInput: true,
-              }}
+              {...sortInput.data}
+              {...sortInput.handlers}
+              validError={t(sortInput.data.validError || '')}
             />
           </div>
         </Title>
 
-        <Title isStopShow={sortOrderInput.isFocus} text={t('Изменить порядок сортировки')}>
+        <Title isStopShow={sortOrderInput.data.isFocus} text={t('Изменить порядок сортировки')}>
           <div className={styles.sortOrder}>
             <Input
               className={styles.sortOrder_input}
               Icon={MdOutlineSort}
-              value={sortOrderInput.value}
               placeholder={t('Порядок сортировки')}
               type="text"
               data-testid="sortOrderInput"
-              onChange={sortOrderInput.onChange}
-              onBlur={sortOrderInput.onBlur}
-              onFocus={sortOrderInput.onFocus}
-              isError={sortOrderInput.isError}
-              validError={t(sortOrderInput.validError || '')}
-              isActive={sortOrderInput.isActive}
-              isFocus={sortOrderInput.isFocus}
-              options={{
-                changeValue: onChangeSortOrder,
-                items: getSortOrderItems(t),
-                isForbidInput: true,
-              }}
+              {...sortOrderInput.data}
+              {...sortOrderInput.handlers}
+              validError={t(sortOrderInput.data.validError || '')}
             />
           </div>
         </Title>

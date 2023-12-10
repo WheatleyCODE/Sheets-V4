@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { InDeveloping } from './InDeveloping';
-import { themeDecorator } from 'config/storybook/theme-decorator/themeDecorator';
+import { themeDecorator } from '../../../../../config/storybook/theme-decorator/themeDecorator';
 
 const meta = {
   title: 'features/InDeveloping',

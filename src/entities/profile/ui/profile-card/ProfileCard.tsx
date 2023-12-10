@@ -22,6 +22,7 @@ import { Avatar } from '@/shared/ui/avatar';
 import { classNames } from '@/shared/lib/class-names';
 import type { IInputValidHooks, IProfileCardProps, InfoItem } from './ProfileCard.interface';
 import styles from './ProfileCard.module.scss';
+import { Select } from '@/shared/ui/select';
 
 export const ProfileCard: FC<IProfileCardProps> = memo((props) => {
   const {
@@ -47,14 +48,14 @@ export const ProfileCard: FC<IProfileCardProps> = memo((props) => {
   const countryInput = useValidInput(Country.NONE, [countryValidator]);
 
   useEffect(() => {
-    avatarInput.changeValue(avatar || '');
-    usernameInput.changeValue(username || '');
-    firstnameInput.changeValue(firstname || '');
-    lastnameInput.changeValue(lastname || '');
-    ageInput.changeValue(age || '');
-    cityInput.changeValue(city || '');
-    currencyInput.changeValue(currency || Currency.NONE);
-    countryInput.changeValue(country || Country.NONE);
+    avatarInput.data.changeValue(avatar || '');
+    usernameInput.data.changeValue(username || '');
+    firstnameInput.data.changeValue(firstname || '');
+    lastnameInput.data.changeValue(lastname || '');
+    ageInput.data.changeValue(age || '');
+    cityInput.data.changeValue(city || '');
+    currencyInput.data.changeValue(currency || Currency.NONE);
+    countryInput.data.changeValue(country || Country.NONE);
   }, [firstname, lastname, city, currency, country, username, age, isReadonly, avatar]);
 
   const validHooks: IInputValidHooks = {
@@ -71,24 +72,18 @@ export const ProfileCard: FC<IProfileCardProps> = memo((props) => {
   const infoArr = getInfoItemArr({ profile, validHooks });
 
   const infoItems = intoIter<InfoItem>(infoArr)
-    .map(({ title, input, Icon, options }) => (
+    .map(({ title, input, Icon }) => (
       <HStack key={title}>
         <Text className={styles.title} textSize="small" title={`${t(title)}:`} />
-        <Title isStopShow={input.isFocus} text={t(title)}>
+        <Title isStopShow={input.data.isFocus} text={t(title)}>
           <Input
             Icon={Icon}
-            data-testid={title}
-            isReadonly={isReadonly}
-            value={input.value}
             type="text"
-            onChange={input.onChange}
-            onBlur={input.onBlur}
-            onFocus={input.onFocus}
-            isError={input.isError}
-            validError={t(input.validError || '')}
-            isActive={input.isActive}
-            isFocus={input.isFocus}
-            options={options && options}
+            data-testid={title}
+            {...input.data}
+            {...input.handlers}
+            isReadonly={isReadonly}
+            validError={t(input.data.validError || '')}
           />
         </Title>
       </HStack>
@@ -131,6 +126,7 @@ export const ProfileCard: FC<IProfileCardProps> = memo((props) => {
 
       <VStack gapMultiply="1" className={styles.main}>
         {infoItems}
+        <Select isSearch items={[]} />
       </VStack>
 
       {!!edit && (

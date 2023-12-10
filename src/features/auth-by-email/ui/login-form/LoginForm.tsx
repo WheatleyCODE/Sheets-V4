@@ -34,12 +34,12 @@ const LoginForm: FC<ILoginFormProps> = memo((props) => {
   const passwordInput = useValidInput(password, [passwordValidator]);
   const { t } = useTranslation('auth-modal');
 
-  const isDisable = passwordInput.isError || emailInput.isError;
+  const isDisable = passwordInput.data.isError || emailInput.data.isError;
 
   const onChangeEmail = useCallback(
     (e: ChangeEvent<HTMLInputElement>) => {
       setEmail(e.target.value);
-      emailInput.onChange(e);
+      emailInput.handlers.onChange(e);
     },
     [emailInput, setEmail],
   );
@@ -47,17 +47,17 @@ const LoginForm: FC<ILoginFormProps> = memo((props) => {
   const onChangePassword = useCallback(
     (e: ChangeEvent<HTMLInputElement>) => {
       setPassword(e.target.value);
-      passwordInput.onChange(e);
+      passwordInput.handlers.onChange(e);
     },
     [passwordInput, setPassword],
   );
 
   const onLogin = useCallback(async () => {
-    if (emailInput.isError || passwordInput.isError) return;
-    if (!emailInput.value || !passwordInput.value) return;
+    if (emailInput.data.isError || passwordInput.data.isError) return;
+    if (!emailInput.data.value || !passwordInput.data.value) return;
 
     onLoginStart?.();
-    const data = { email: emailInput.value, password: passwordInput.value };
+    const data = { email: emailInput.data.value, password: passwordInput.data.value };
     const res = await loginByEmail(data);
     callOnFulfilled(res, onLoginSuccess);
   }, [emailInput, passwordInput, loginByEmail, onLoginSuccess, onLoginStart]);
@@ -75,31 +75,25 @@ const LoginForm: FC<ILoginFormProps> = memo((props) => {
       <Input
         className={styles.input}
         Icon={MdOutlineEmail}
-        value={emailInput.value}
         type="text"
         placeholder={t('Почта')}
         data-testid="emailInput"
+        {...emailInput.data}
+        {...emailInput.handlers}
+        validError={t(emailInput.data.validError || '')}
         onChange={onChangeEmail}
-        onBlur={emailInput.onBlur}
-        onFocus={emailInput.onFocus}
-        isError={emailInput.isError}
-        validError={t(emailInput.validError || '')}
-        isActive={emailInput.isActive}
       />
 
       <Input
         className={styles.input}
         Icon={MdOutlinePassword}
-        value={passwordInput.value}
         type="password"
         placeholder={t('Пароль')}
         data-testid="passwordInput"
+        {...passwordInput.data}
+        {...passwordInput.handlers}
         onChange={onChangePassword}
-        onBlur={passwordInput.onBlur}
-        onFocus={passwordInput.onFocus}
-        isError={passwordInput.isError}
-        validError={t(passwordInput.validError || '')}
-        isActive={passwordInput.isActive}
+        validError={t(passwordInput.data.validError || '')}
       />
 
       <Button onClick={onLogin} disable={isDisable || isLoading} className={styles.button} text={t('Войти')} />

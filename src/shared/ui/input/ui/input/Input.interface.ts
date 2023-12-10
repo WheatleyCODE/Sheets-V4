@@ -1,41 +1,40 @@
+import {
+  IUseDefaultEventsResult,
+  IUseDefaultEventsResultData,
+  IUseDefaultEventsResultHandlers,
+} from '@/shared/lib/hooks';
+import { ChangeEvent, HTMLAttributes } from 'react';
 import { IconType } from 'react-icons';
-import { DefaultItems } from './Input.consts';
-import type { IInputOptionsMenuItem } from '../input-options-menu-item/InputOptionsMenuItem.interface';
 
-export interface IInputOptions {
-  items: Iterable<IInputOptionsMenuItem> | DefaultItems;
-  changeValue: (a?: any) => void;
-  maxItems?: number;
-  isSearch?: boolean;
-  isForbidInput?: boolean;
-}
-
-export interface IInputProps extends React.HTMLAttributes<HTMLInputElement> {
-  value: string;
+export type InputTypes = 'email' | 'password' | 'text';
+export interface IInputProps<T extends string>
+  extends Omit<
+      HTMLAttributes<HTMLInputElement>,
+      keyof IValidInputResultHandlers<HTMLInputElement> | keyof IValidInputResultData<string>
+    >,
+    IValidInputResultHandlers<HTMLInputElement>,
+    IValidInputResultData<T> {
   Icon?: IconType;
-  type: string;
-  isError: boolean;
-  isActive: boolean;
-  validError: string | null;
-  isFocus?: boolean;
-  isTouched?: boolean;
   isReadonly?: boolean;
-  options?: IInputOptions;
+  type?: InputTypes;
 }
 
-export interface IValidInputOpts<T> {
+export interface IValidInputResultData<T> extends IUseDefaultEventsResultData {
   value: T;
-  isFocus: boolean;
-  isActive: boolean;
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  onBlur: (e: React.FocusEvent<HTMLInputElement>) => void;
-  onFocus: (e: React.FocusEvent<HTMLInputElement>) => void;
+  changeValue: (value: T) => void;
   isError: boolean;
-  isTouched: boolean;
+  changeIsError: (boolean: boolean) => void;
   validError: string | null;
-  changeValue: (string: T) => void;
-  changeFocus: (boolean: boolean) => void;
-  changeActive: (boolean: boolean) => void;
+  changeValidError: (value: string | null) => void;
+}
+
+export interface IValidInputResultHandlers<EL> extends IUseDefaultEventsResultHandlers<EL> {
+  onChange: (e: ChangeEvent<EL>) => void;
+}
+
+export interface IValidInputResult<T = string, EL = HTMLInputElement> extends IUseDefaultEventsResult<EL> {
+  data: IValidInputResultData<T>;
+  handlers: IValidInputResultHandlers<EL>;
 }
 
 export type IValidator = (str: string) => string | null;

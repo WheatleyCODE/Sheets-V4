@@ -1,6 +1,6 @@
 import { BsSortDown, BsSortUp } from 'react-icons/bs';
 import { MdOutlineCalendarMonth, MdOutlineRemoveRedEye, MdOutlineTitle } from 'react-icons/md';
-import { IInputOptionsMenuItem } from '@/shared/ui/input';
+// import { IInputOptionsMenuItem } from '@/shared/ui/input';
 import { TFunction } from 'i18next';
 
 export enum TemplateSortFields {
@@ -18,15 +18,15 @@ export enum TemplateSortOrders {
 
 export const getSortOrderItems = (t: TFunction) => {
   return [
-    { text: t(TemplateSortOrders.ASC), Icon: BsSortUp },
-    { text: t(TemplateSortOrders.DESC), Icon: BsSortDown },
+    { text: t('По возрастанию'), Icon: BsSortUp, value: TemplateSortOrders.ASC },
+    { text: t('ПО убыванию'), Icon: BsSortDown, value: TemplateSortOrders.DESC },
   ];
 };
 
 export const getSortItems = (t: TFunction) => {
   return [
-    { text: t(TemplateSortFields.TITLE), Icon: MdOutlineTitle },
-    { text: t(TemplateSortFields.VIEWS), Icon: MdOutlineRemoveRedEye },
-    { text: t(TemplateSortFields.CREATED_AT), Icon: MdOutlineCalendarMonth },
+    { text: t('Заготовок'), Icon: MdOutlineTitle, value: TemplateSortFields.TITLE },
+    { text: t('Просмотры'), Icon: MdOutlineRemoveRedEye, value: TemplateSortFields.VIEWS },
+    { text: t('Дата создания'), Icon: MdOutlineCalendarMonth, value: TemplateSortFields.CREATED_AT },
   ];
 };

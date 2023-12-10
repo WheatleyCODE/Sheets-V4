@@ -48,9 +48,9 @@ export const Rating: FC<IRatingProps> = memo((props) => {
   }, [closeModal, currentRate, onCancel]);
 
   const onAcceptHandler = useCallback(() => {
-    onAccept?.(currentRate, textInput.value);
+    onAccept?.(currentRate, textInput.data.value);
     closeModal();
-  }, [closeModal, currentRate, onAccept, textInput.value]);
+  }, [closeModal, currentRate, onAccept, textInput.data.value]);
 
   return (
     <Card
@@ -79,16 +79,12 @@ export const Rating: FC<IRatingProps> = memo((props) => {
                   <Input
                     className={styles.input}
                     Icon={MdOutlineMessage}
-                    value={textInput.value}
                     type="text"
                     data-testid="rating.feedback"
                     placeholder={feedbackPlaceholder}
-                    onChange={textInput.onChange}
-                    onBlur={textInput.onBlur}
-                    onFocus={textInput.onFocus}
-                    isError={textInput.isError}
-                    validError={t(textInput.validError || '')}
-                    isActive={textInput.isActive}
+                    {...textInput.data}
+                    {...textInput.handlers}
+                    validError={t(textInput.data.validError || '')}
                   />
                 </Confirm>
               </Modal>

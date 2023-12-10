@@ -1,32 +1,25 @@
-import { FC, memo, useCallback, useEffect, useRef } from 'react';
+import { MouseEvent, useCallback, useEffect, useRef } from 'react';
 import { AnimatePresence, useAnimation } from 'framer-motion';
 import { ANIMATION_DURATION } from '@/shared/consts/animations/animation';
-import { intoIter } from '@/shared/lib/iterators';
 import { Icon as IconComponent } from '../../../icon';
-import { MInputOptionsMenu } from '../input-options-menu/InputOptionsMenu';
 import { MInputPlaceholder } from '../input-placeholder/InputPlaceholder';
 import { MInputValidError } from '../input-valid-error/InputValidError';
-import { InputOptionsMenuItem } from '../input-options-menu-item/InputOptionsMenuItem';
-import { DefaultItems, defaultItems } from './Input.consts';
+import { typedMemo } from '@/shared/lib/react';
 import { classNames } from '@/shared/lib/class-names';
 import type { IInputProps } from './Input.interface';
-import type { IInputOptionsMenuItem } from '../input-options-menu-item/InputOptionsMenuItem.interface';
 import styles from './Input.module.scss';
 
-export const Input: FC<IInputProps> = memo((props) => {
+export const Input = typedMemo(<T extends string>(props: IInputProps<T>) => {
   const {
     Icon,
     isError,
-    isActive,
+    isFocus,
     validError,
     placeholder,
     value,
-    type,
+    type = 'text',
     className,
-    onChange,
-    isFocus,
     isReadonly = false,
-    options,
     ...anotherProps
   } = props;
 
@@ -35,32 +28,30 @@ export const Input: FC<IInputProps> = memo((props) => {
   const isErrorActive = !!(isError && validError);
   const isIcon = !!Icon;
 
-  const isOptions = options != null;
-  const isDefaultOptions = isOptions && typeof options.items === 'string';
-
-  const focusOnInput = useCallback(() => {
+  const focusOnInput = useCallback((e: MouseEvent<HTMLInputElement>) => {
     if (ref.current) ref.current.focus();
+    e.preventDefault();
   }, []);
 
   useEffect(() => {
-    if (isActive || value) {
+    if (isFocus || value) {
       placeholderControls.start('active');
       return;
     }
 
     placeholderControls.start('default');
-  }, [isActive, isErrorActive, placeholderControls, value]);
+  }, [isFocus, isErrorActive, placeholderControls, value]);
 
-  const getChangeValue = (text: any) => () => {
-    options?.changeValue(text);
-  };
+  // const getChangeValue = (item: IInputOptionsMenuItem) => () => {
+  //   options?.changeValue(item);
+  // };
 
-  const items =
-    isOptions &&
-    intoIter<IInputOptionsMenuItem>(isDefaultOptions ? defaultItems[options.items as DefaultItems] : options.items)
-      .filter((item) => !options.isSearch || item.text.includes(value))
-      .map((item) => <InputOptionsMenuItem key={item.text} onClick={getChangeValue(item.text)} item={item} />)
-      .toArray();
+  // const items =
+  //   isOptions &&
+  //   intoIter<IInputOptionsMenuItem>(isDefaultOptions ? defaultItems[options.items as DefaultItems] : options.items)
+  //     .filter((item) => !options.isSearch || item.text.includes(value))
+  //     .map((item) => <InputOptionsMenuItem key={item.text} onClick={getChangeValue(item)} item={item} />)
+  //     .toArray();
 
   const placeholderAnimation = { translateY: -20, translateX: isIcon ? -20 : -10, scale: 0.85 };
 
@@ -71,7 +62,7 @@ export const Input: FC<IInputProps> = memo((props) => {
       ])}
     >
       {isIcon && (
-        <div aria-hidden data-testid="input-icon" onClick={focusOnInput} className={styles.input_icon}>
+        <div aria-hidden data-testid="input-icon" onMouseDown={focusOnInput} className={styles.input_icon}>
           <IconComponent Icon={Icon} />
         </div>
       )}
@@ -82,16 +73,15 @@ export const Input: FC<IInputProps> = memo((props) => {
         ref={ref}
         value={value}
         type={type}
-        disabled={isReadonly}
-        onChange={isReadonly || !!options?.isForbidInput ? () => {} : onChange}
         {...anotherProps}
+        disabled={isReadonly}
       />
 
       {placeholder && (
         <MInputPlaceholder
           placeholder={placeholder}
           isIcon={isIcon}
-          onClick={focusOnInput}
+          onMouseDown={focusOnInput}
           animate={placeholderControls}
           initial="default"
           transition={{ duration: ANIMATION_DURATION }}
@@ -111,18 +101,6 @@ export const Input: FC<IInputProps> = memo((props) => {
             initial={{ opacity: 0 }}
             transition={{ duration: ANIMATION_DURATION }}
           />
-        )}
-
-        {isOptions && isFocus && !isReadonly && !!items && items.length > 0 && (
-          <MInputOptionsMenu
-            exit={{ height: 0 }}
-            animate={{ height: 'auto' }}
-            initial={{ height: 0 }}
-            transition={{ duration: ANIMATION_DURATION }}
-            maxItems={options.maxItems}
-          >
-            {items}
-          </MInputOptionsMenu>
         )}
       </AnimatePresence>
     </div>

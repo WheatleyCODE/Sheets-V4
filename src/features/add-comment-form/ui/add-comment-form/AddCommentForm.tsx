@@ -31,16 +31,16 @@ export const AddCommentForm: FC<IAddCommentFormProps> = memo((props) => {
   const onChangeText = useCallback(
     (e: ChangeEvent<HTMLInputElement>) => {
       setText(e.target.value);
-      textInput.onChange(e);
+      textInput.handlers.onChange(e);
     },
     [setText, textInput],
   );
 
   const addCommentHandler = useCallback(() => {
-    if (!textInput.value || textInput.isError) return;
-    addComment(textInput.value);
+    if (!textInput.data.value || textInput.data.isError) return;
+    addComment(textInput.data.value);
 
-    textInput.changeValue('');
+    textInput.data.changeValue('');
     setText('');
   }, [textInput, addComment, setText]);
 
@@ -52,16 +52,13 @@ export const AddCommentForm: FC<IAddCommentFormProps> = memo((props) => {
     >
       <Input
         Icon={MdOutlineComment}
-        value={textInput.value}
         type="text"
         data-testid="commentInput"
         placeholder={commentPlaceholder}
+        {...textInput.data}
+        {...textInput.handlers}
+        validError={t(textInput.data.validError || '')}
         onChange={onChangeText}
-        onBlur={textInput.onBlur}
-        onFocus={textInput.onFocus}
-        isError={textInput.isError}
-        validError={t(textInput.validError || '')}
-        isActive={textInput.isActive}
         className={styles.input}
       />
 

@@ -1,14 +1,14 @@
-import { BiDollar } from 'react-icons/bi';
+// import { BiDollar } from 'react-icons/bi';
 import {
   MdCurrencyExchange,
-  MdCurrencyRuble,
-  MdEuroSymbol,
+  // MdCurrencyRuble,
+  // MdEuroSymbol,
   MdLocationOn,
   MdOutlineImage,
   MdPersonOutline,
 } from 'react-icons/md';
-import { DefaultItems } from '@/shared/ui/input';
-import { Country, Currency } from '../../model/consts/profile.consts';
+// import { DefaultItems } from '@/shared/ui/input';
+// import { Country, Currency } from '../../model/consts/profile.consts';
 import type { IGetInfoItemArrProps, InfoItem } from './ProfileCard.interface';
 
 export const getInfoItemArr = ({ profile, validHooks }: IGetInfoItemArrProps) => {
@@ -24,62 +24,62 @@ export const getInfoItemArr = ({ profile, validHooks }: IGetInfoItemArrProps) =>
       text: age,
       input: validHooks.age,
       Icon: MdPersonOutline,
-      options: { items: DefaultItems.NUMBERS, changeValue: validHooks.age.changeValue, maxItems: 4, isSearch: true },
+      // options: { items: DefaultItems.NUMBERS, changeValue: validHooks.age.changeValue, maxItems: 4, isSearch: true },
     },
     {
       title: 'Валюта',
       text: currency,
       input: validHooks.currency,
       Icon: MdCurrencyExchange,
-      options: {
-        items: [
-          { text: Currency.RUB, Icon: MdCurrencyRuble },
-          { text: Currency.USD, Icon: BiDollar },
-          { text: Currency.EUR, Icon: MdEuroSymbol },
-        ],
-        changeValue: validHooks.currency.changeValue,
-        isForbidInput: true,
-      },
+      // options: {
+      //   items: [
+      //     { text: Currency.RUB, Icon: MdCurrencyRuble, value: Currency.RUB },
+      //     { text: Currency.USD, Icon: BiDollar, value: Currency.USD },
+      //     { text: Currency.EUR, Icon: MdEuroSymbol, value: Currency.EUR },
+      //   ],
+      //   changeValue: validHooks.currency.changeValue,
+      //   isForbidInput: true,
+      // },
     },
     {
       title: 'Страна',
       text: country,
       input: validHooks.country,
       Icon: MdLocationOn,
-      options: {
-        items: [
-          { text: Country.RUSSIA },
-          { text: Country.BELARUS },
-          { text: Country.UKRAINE },
-          { text: Country.GERMANY },
-          { text: Country.FRANCE },
-        ],
-        changeValue: validHooks.country.changeValue,
-        maxItems: 4,
-      },
+      // options: {
+      //   items: [
+      //     { text: Country.RUSSIA, value: Country.RUSSIA },
+      //     { text: Country.BELARUS, value: Country.BELARUS },
+      //     { text: Country.UKRAINE, value: Country.UKRAINE },
+      //     { text: Country.GERMANY, value: Country.GERMANY },
+      //     { text: Country.FRANCE, value: Country.FRANCE },
+      //   ],
+      //   changeValue: validHooks.country.changeValue,
+      //   maxItems: 4,
+      // },
     },
     {
       title: 'Город',
       text: city,
       input: validHooks.city,
       Icon: MdLocationOn,
-      options: {
-        items: [
-          { text: 'Москва' },
-          { text: 'Нижний Новгород' },
-          { text: 'Минск' },
-          { text: 'Киев' },
-          { text: 'Берлин' },
-          { text: 'Париж' },
-          { text: 'Тель Авив' },
-          { text: 'Анкара' },
-          { text: 'Лондон' },
-          { text: 'Вашингтон' },
-        ],
-        changeValue: validHooks.city.changeValue,
-        maxItems: 4,
-        isSearch: true,
-      },
+      // options: {
+      //   items: [
+      //     { text: 'Москва', value: 'Москва' },
+      //     { text: 'Нижний Новгород', value: 'Нижний Новгород' },
+      //     { text: 'Минск', value: 'Минск' },
+      //     { text: 'Киев', value: 'Киев' },
+      //     { text: 'Берлин', value: 'Берлин' },
+      //     { text: 'Париж', value: 'Париж' },
+      //     { text: 'Тель Авив', value: 'Тель Авив' },
+      //     { text: 'Анкара', value: 'Анкара' },
+      //     { text: 'Лондон', value: 'Лондон' },
+      //     { text: 'Вашингтон', value: 'Вашингтон' },
+      //   ],
+      //   changeValue: validHooks.city.changeValue,
+      //   maxItems: 4,
+      //   isSearch: true,
+      // },
     },
   ];
 

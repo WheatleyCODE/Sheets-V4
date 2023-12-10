@@ -2,7 +2,7 @@ import { FC, memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { MdOutlineEmail, MdOutlinePassword } from 'react-icons/md';
 import { classNames } from '@/shared/lib/class-names';
-import { IValidInputOpts, Input, useValidInput } from '@/shared/ui/input';
+import { IValidInputResult, Input, useValidInput } from '@/shared/ui/input';
 import { Button } from '@/shared/ui/button';
 import { emailValidator, passwordValidator } from '@/shared/lib/validators';
 import type { IRegisterFormProps } from './RegisterForm.interface';
@@ -16,12 +16,14 @@ const RegisterForm: FC<IRegisterFormProps> = memo((props) => {
   const passwordInput = useValidInput('', [passwordValidator]);
   const repeatPasswordInput = useValidInput('', [passwordValidator]);
 
-  const isDisable = passwordInput.isError || emailInput.isError || repeatPasswordInput.isError;
+  const isDisable = passwordInput.data.isError || emailInput.data.isError || repeatPasswordInput.data.isError;
   const isMismatch =
-    passwordInput.value !== repeatPasswordInput.value && passwordInput.isTouched && repeatPasswordInput.isTouched;
+    passwordInput.data.value !== repeatPasswordInput.data.value &&
+    passwordInput.data.isTouched &&
+    repeatPasswordInput.data.isTouched;
 
-  const getPasswordError = (input: IValidInputOpts<string>) => {
-    if (input.isError) return t(input.validError || '');
+  const getPasswordError = (input: IValidInputResult<string>) => {
+    if (input.data.isError) return t(input.data.validError || '');
     if (isMismatch) return t('Пароли не совпадают');
     return null;
   };
@@ -32,43 +34,33 @@ const RegisterForm: FC<IRegisterFormProps> = memo((props) => {
 
       <Input
         Icon={MdOutlineEmail}
-        value={emailInput.value}
         type="text"
         placeholder={t('Почта')}
-        onChange={emailInput.onChange}
-        onBlur={emailInput.onBlur}
-        onFocus={emailInput.onFocus}
-        isError={emailInput.isError}
-        validError={t(emailInput.validError || '')}
-        isActive={emailInput.isActive}
+        {...emailInput.data}
+        {...emailInput.handlers}
+        validError={t(emailInput.data.validError || '')}
         className={styles.margin_bottom}
       />
 
       <Input
         Icon={MdOutlinePassword}
-        value={passwordInput.value}
         type="password"
         placeholder={t('Пароль')}
-        onChange={passwordInput.onChange}
-        onBlur={passwordInput.onBlur}
-        onFocus={passwordInput.onFocus}
-        isError={passwordInput.isError || isMismatch}
+        {...passwordInput.data}
+        {...passwordInput.handlers}
         validError={getPasswordError(passwordInput)}
-        isActive={passwordInput.isActive}
+        isError={passwordInput.data.isError || isMismatch}
         className={styles.margin_bottom}
       />
 
       <Input
         Icon={MdOutlinePassword}
-        value={repeatPasswordInput.value}
         type="password"
         placeholder={t('Повторите пароль')}
-        onChange={repeatPasswordInput.onChange}
-        onBlur={repeatPasswordInput.onBlur}
-        onFocus={repeatPasswordInput.onFocus}
-        isError={repeatPasswordInput.isError || isMismatch}
+        {...repeatPasswordInput.data}
+        {...repeatPasswordInput.handlers}
+        isError={repeatPasswordInput.data.isError || isMismatch}
         validError={getPasswordError(repeatPasswordInput)}
-        isActive={repeatPasswordInput.isActive}
       />
 
       <Button disable={isDisable || isMismatch} className={styles.button} text={t('Регистрация')} />

@@ -1,39 +1,26 @@
-import React, { useCallback, useState } from 'react';
-import type { IValidInputOpts, IValidator } from './Input.interface';
+import { ChangeEvent, useCallback, useEffect, useState } from 'react';
+import type { IValidInputResult, IValidator } from './Input.interface';
+import { useDefaultEvents } from '@/shared/lib/hooks';
 
-export const useValidInput = <T = string>(init: T, validators?: IValidator[]): IValidInputOpts<T> => {
+export const useValidInput = <T = string>(
+  init: T,
+  validators?: IValidator[],
+): IValidInputResult<T, HTMLInputElement> => {
+  const { data, handlers } = useDefaultEvents<HTMLInputElement>();
   const [value, setValue] = useState(init);
-  const [isFocus, setIsFocus] = useState(false);
-  const [isActive, setIsActive] = useState(false);
   const [validError, setValidError] = useState<null | string>(null);
-  const [isTouched, setIsTouched] = useState(false);
+  const [isError, setIsError] = useState(false);
 
-  const onBlur = useCallback(() => {
-    setIsTouched(true);
-    setIsFocus(false);
+  useEffect(() => {
+    setIsError(!!(data.isTouched && validError));
+  }, [data.isTouched, validError]);
 
-    if (!value) setIsActive(false);
-  }, [value]);
-
-  const onFocus = useCallback(() => {
-    setIsFocus(true);
-    setIsActive(true);
+  const changeValidError = useCallback((value: string | null) => {
+    setValidError(value);
   }, []);
 
-  const onChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
-    setValue(e.target.value as T);
-
-    validators?.forEach((fn) => {
-      setValidError(fn(e.target.value));
-    });
-  }, []);
-
-  const changeFocus = useCallback((boolean: boolean) => {
-    setIsFocus(boolean);
-  }, []);
-
-  const changeActive = useCallback((boolean: boolean) => {
-    setIsActive(boolean);
+  const changeIsError = useCallback((boolean: boolean) => {
+    setIsError(boolean);
   }, []);
 
   const changeValue = useCallback(
@@ -49,18 +36,31 @@ export const useValidInput = <T = string>(init: T, validators?: IValidator[]): I
     [validators],
   );
 
+  const onChange = useCallback(
+    (e: ChangeEvent<HTMLInputElement>) => {
+      setValue(e.target.value as T);
+
+      validators?.forEach((fn) => {
+        setValidError(fn(e.target.value));
+      });
+    },
+    [validators],
+  );
+
   return {
-    value,
-    isFocus,
-    isActive,
-    onChange,
-    onBlur,
-    onFocus,
-    isError: !!(isTouched && validError),
-    isTouched,
-    validError,
-    changeValue,
-    changeFocus,
-    changeActive,
+    data: {
+      ...data,
+      value,
+      changeValue,
+      isError,
+      changeIsError,
+      validError,
+      changeValidError,
+    },
+
+    handlers: {
+      ...handlers,
+      onChange,
+    },
   };
 };

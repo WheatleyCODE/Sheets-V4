@@ -9,3 +9,10 @@ export { useHover } from './use-hover/useHover';
 export { useInfiniteScroll } from './use-infinity-scroll/useInfinityScroll';
 export { useKeydown } from './use-keydown/useKeydown';
 export { useTheme } from './use-theme/useTheme';
+export { useDefaultEvents } from './use-default-events/useDefaultEvents';
+export type {
+  IUseDefaultEventsOpts,
+  IUseDefaultEventsResult,
+  IUseDefaultEventsResultData,
+  IUseDefaultEventsResultHandlers,
+} from './use-default-events/useDefaultEvents.interface';
