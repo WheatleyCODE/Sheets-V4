@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { {{pascalCase}} } from './{{pascalCase}}';
-import { Theme } from 'app/providers/lib/theme-context';
 
 themeDecora
 
