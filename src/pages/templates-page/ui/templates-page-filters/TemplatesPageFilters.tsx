@@ -37,9 +37,9 @@ export const TemplatesPageFilters: FC<ITemplatesPageFiltersProps> = (props) => {
   const fetchTemplatesPageTemplates = useFetchTemplatesPageTemplates();
   const { setPage, setView, setSort, setSearch, setSortOrder, setTags } = useTemplatesPageActions();
 
-  const sortInput = useValidInput(sort);
-  const sortOrderInput = useValidInput(sortOrder);
-  const searchInput = useValidInput(search);
+  const sortInput = useValidInput({ input: { initialValue: sort } });
+  const sortOrderInput = useValidInput({ input: { initialValue: sortOrder } });
+  const searchInput = useValidInput({ input: { initialValue: search } });
   const { t } = useTranslation('templates');
 
   const fetchTemplatesOnChange = useCallback(() => {

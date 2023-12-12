@@ -1,4 +1,4 @@
-import { IValidInputResult } from '@/shared/ui/input';
+import { IUseValidInputResult } from '@/shared/ui/input';
 import { ProfileCardTextAlign } from '../../model/consts/profile.consts';
 import { IconType } from 'react-icons';
 import type { IProfile } from '../../model/types/profile.interface';
@@ -19,12 +19,12 @@ export interface IProfileCardProps extends React.HTMLAttributes<HTMLDivElement> 
 export type InfoItem = {
   title: string;
   text?: string;
-  input: IValidInputResult<string>;
+  input: IUseValidInputResult<string>;
   Icon?: IconType;
   // options?: IInputOptions;
 };
 
-export interface IInputValidHooks extends Record<keyof Omit<IProfile, 'userId' | 'id'>, IValidInputResult<any>> {}
+export interface IInputValidHooks extends Record<keyof Omit<IProfile, 'userId' | 'id'>, IUseValidInputResult<any>> {}
 
 export interface IGetInfoItemArrProps {
   profile: IProfile;

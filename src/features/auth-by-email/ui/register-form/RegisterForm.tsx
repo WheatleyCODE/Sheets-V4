@@ -2,7 +2,7 @@ import { FC, memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { MdOutlineEmail, MdOutlinePassword } from 'react-icons/md';
 import { classNames } from '@/shared/lib/class-names';
-import { IValidInputResult, Input, useValidInput } from '@/shared/ui/input';
+import { IUseValidInputResult, Input, useValidInput } from '@/shared/ui/input';
 import { Button } from '@/shared/ui/button';
 import { emailValidator, passwordValidator } from '@/shared/lib/validators';
 import type { IRegisterFormProps } from './RegisterForm.interface';
@@ -12,9 +12,9 @@ import styles from './RegisterForm.module.scss';
 const RegisterForm: FC<IRegisterFormProps> = memo((props) => {
   const { ...anotherProps } = props;
   const { t } = useTranslation('auth-modal');
-  const emailInput = useValidInput('', [emailValidator]);
-  const passwordInput = useValidInput('', [passwordValidator]);
-  const repeatPasswordInput = useValidInput('', [passwordValidator]);
+  const emailInput = useValidInput({ input: { initialValue: '', validators: [emailValidator] } });
+  const passwordInput = useValidInput({ input: { initialValue: '', validators: [passwordValidator] } });
+  const repeatPasswordInput = useValidInput({ input: { initialValue: '', validators: [passwordValidator] } });
 
   const isDisable = passwordInput.data.isError || emailInput.data.isError || repeatPasswordInput.data.isError;
   const isMismatch =
@@ -22,7 +22,7 @@ const RegisterForm: FC<IRegisterFormProps> = memo((props) => {
     passwordInput.data.isTouched &&
     repeatPasswordInput.data.isTouched;
 
-  const getPasswordError = (input: IValidInputResult<string>) => {
+  const getPasswordError = (input: IUseValidInputResult<string>) => {
     if (input.data.isError) return t(input.data.validError || '');
     if (isMismatch) return t('Пароли не совпадают');
     return null;

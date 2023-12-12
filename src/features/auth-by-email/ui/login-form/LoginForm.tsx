@@ -30,8 +30,8 @@ const LoginForm: FC<ILoginFormProps> = memo((props) => {
   const password = useLoginPassword();
   const isLoading = useLoginIsLoading();
   const error = useLoginError();
-  const emailInput = useValidInput(email, [emailValidator]);
-  const passwordInput = useValidInput(password, [passwordValidator]);
+  const emailInput = useValidInput({ input: { initialValue: email, validators: [emailValidator] } });
+  const passwordInput = useValidInput({ input: { initialValue: password, validators: [passwordValidator] } });
   const { t } = useTranslation('auth-modal');
 
   const isDisable = passwordInput.data.isError || emailInput.data.isError;

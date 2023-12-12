@@ -25,7 +25,7 @@ export const AddCommentForm: FC<IAddCommentFormProps> = memo((props) => {
 
   const { setText } = useCommentFormActions();
   const text = useAddCommentFormText();
-  const textInput = useValidInput(text);
+  const textInput = useValidInput({ input: { initialValue: text } });
   const { t } = useTranslation();
 
   const onChangeText = useCallback(

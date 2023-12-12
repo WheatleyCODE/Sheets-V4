@@ -37,6 +37,7 @@ interface AnyFunction<ARGS extends any[] = any[], R = any> extends Function {
 }
 
 type CanPromiseLike<T> = T | PromiseLike<T>;
+declare type ExtractedProps<P extends object, T1, T2> = [Omit<P, keyof T1 | keyof T2>, T1, T2];
 
 interface ObjectConstructor {
   isAsyncIterable(value: any): value is AsyncIterable<unknown>;

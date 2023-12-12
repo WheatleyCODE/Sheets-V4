@@ -14,11 +14,4 @@
     border-radius: var(--radius);
     border: 1px solid var(--color-border);
   }
-
-  .select_items {
-    @include scroll;
-
-    overflow: auto;
-    cursor: pointer;
-  }
 }

@@ -8,20 +8,12 @@ import { typedMemo } from '@/shared/lib/react';
 import { classNames } from '@/shared/lib/class-names';
 import type { IInputProps } from './Input.interface';
 import styles from './Input.module.scss';
+import { extractUseValidInputProps } from './Input.hooks';
 
 export const Input = typedMemo(<T extends string>(props: IInputProps<T>) => {
-  const {
-    Icon,
-    isError,
-    isFocus,
-    validError,
-    placeholder,
-    value,
-    type = 'text',
-    className,
-    isReadonly = false,
-    ...anotherProps
-  } = props;
+  const [JSXInputProps, inputData, inputHandlers] = extractUseValidInputProps(props);
+  const { Icon, placeholder, className, isReadonly, type = 'text', ...anotherProps } = JSXInputProps;
+  const { isError, isFocus, isHover, isMouseDown, isTouched, validError, value } = inputData;
 
   const ref = useRef<null | HTMLInputElement>(null);
   const placeholderControls = useAnimation();
@@ -41,17 +33,6 @@ export const Input = typedMemo(<T extends string>(props: IInputProps<T>) => {
 
     placeholderControls.start('default');
   }, [isFocus, isErrorActive, placeholderControls, value]);
-
-  // const getChangeValue = (item: IInputOptionsMenuItem) => () => {
-  //   options?.changeValue(item);
-  // };
-
-  // const items =
-  //   isOptions &&
-  //   intoIter<IInputOptionsMenuItem>(isDefaultOptions ? defaultItems[options.items as DefaultItems] : options.items)
-  //     .filter((item) => !options.isSearch || item.text.includes(value))
-  //     .map((item) => <InputOptionsMenuItem key={item.text} onClick={getChangeValue(item)} item={item} />)
-  //     .toArray();
 
   const placeholderAnimation = { translateY: -20, translateX: isIcon ? -20 : -10, scale: 0.85 };
 
@@ -74,6 +55,7 @@ export const Input = typedMemo(<T extends string>(props: IInputProps<T>) => {
         value={value}
         type={type}
         {...anotherProps}
+        {...inputHandlers}
         disabled={isReadonly}
       />
 

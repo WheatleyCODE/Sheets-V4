@@ -1,5 +1,70 @@
 import { FocusEvent, MouseEvent, useCallback, useState } from 'react';
-import type { IUseDefaultEventsOpts, IUseDefaultEventsResult } from './useDefaultEvents.interface';
+import type {
+  IUseDefaultEventsOpts,
+  IUseDefaultEventsResult,
+  IUseDefaultEventsResultData,
+  IUseDefaultEventsResultHandlers,
+} from './useDefaultEvents.interface';
+
+export type PropsWithoutUseDefaultEvents<P extends object, EL> = Omit<
+  P,
+  keyof IUseDefaultEventsResultData | keyof IUseDefaultEventsResultHandlers<EL>
+>;
+
+export type PropsWithUseDefaultEvents<P extends object, EL> = P &
+  IUseDefaultEventsResultData &
+  IUseDefaultEventsResultHandlers<EL>;
+
+export type ResultWithoutUseDefaultEvents<P extends object, EL> = ExtractedProps<
+  PropsWithoutUseDefaultEvents<P, EL>,
+  IUseDefaultEventsResultData,
+  IUseDefaultEventsResultHandlers<EL>
+>;
+
+export const extractUseDefaultEventsProps = <P extends object, EL = HTMLElement>(
+  props: PropsWithUseDefaultEvents<P, EL>,
+): ResultWithoutUseDefaultEvents<P, EL> => {
+  const {
+    isFocus,
+    changeIsFocus,
+    isTouched,
+    changeIsTouched,
+    isMouseDown,
+    changeIsMouseDown,
+    isHover,
+    changeIsHover,
+
+    onFocus,
+    onBlur,
+    onMouseDown,
+    onMouseUp,
+    onMouseEnter,
+    onMouseLeave,
+    ...anotherProps
+  } = props;
+
+  return [
+    anotherProps,
+    {
+      isFocus,
+      changeIsFocus,
+      isTouched,
+      changeIsTouched,
+      isMouseDown,
+      changeIsMouseDown,
+      isHover,
+      changeIsHover,
+    },
+    {
+      onFocus,
+      onBlur,
+      onMouseDown,
+      onMouseUp,
+      onMouseEnter,
+      onMouseLeave,
+    },
+  ];
+};
 
 export const useDefaultEvents = <T = HTMLElement>(opts: IUseDefaultEventsOpts<T> = {}): IUseDefaultEventsResult<T> => {
   const {
@@ -84,13 +149,10 @@ export const useDefaultEvents = <T = HTMLElement>(opts: IUseDefaultEventsOpts<T>
     data: {
       isFocus,
       changeIsFocus,
-
       isTouched,
       changeIsTouched,
-
       isMouseDown,
       changeIsMouseDown,
-
       isHover,
       changeIsHover,
     },

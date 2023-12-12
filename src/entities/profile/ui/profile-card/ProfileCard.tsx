@@ -22,7 +22,6 @@ import { Avatar } from '@/shared/ui/avatar';
 import { classNames } from '@/shared/lib/class-names';
 import type { IInputValidHooks, IProfileCardProps, InfoItem } from './ProfileCard.interface';
 import styles from './ProfileCard.module.scss';
-import { Select } from '@/shared/ui/select';
 
 export const ProfileCard: FC<IProfileCardProps> = memo((props) => {
   const {
@@ -38,14 +37,14 @@ export const ProfileCard: FC<IProfileCardProps> = memo((props) => {
   const { age, avatar, city, country, currency, firstname, lastname, username } = profile;
   const { t } = useTranslation('profile');
 
-  const avatarInput = useValidInput('', [avatarValidator]);
-  const usernameInput = useValidInput('', [usernameValidator]);
-  const firstnameInput = useValidInput('', [firstnameValidator]);
-  const lastnameInput = useValidInput('', [lastnameValidator]);
-  const ageInput = useValidInput('', [ageValidator]);
-  const cityInput = useValidInput('', [cityValidator]);
-  const currencyInput = useValidInput(Currency.NONE);
-  const countryInput = useValidInput(Country.NONE, [countryValidator]);
+  const avatarInput = useValidInput({ input: { initialValue: '', validators: [avatarValidator] } });
+  const usernameInput = useValidInput({ input: { initialValue: '', validators: [usernameValidator] } });
+  const firstnameInput = useValidInput({ input: { initialValue: '', validators: [firstnameValidator] } });
+  const lastnameInput = useValidInput({ input: { initialValue: '', validators: [lastnameValidator] } });
+  const ageInput = useValidInput({ input: { initialValue: '', validators: [ageValidator] } });
+  const cityInput = useValidInput({ input: { initialValue: '', validators: [cityValidator] } });
+  const currencyInput = useValidInput({ input: { initialValue: Currency.NONE } });
+  const countryInput = useValidInput({ input: { initialValue: Country.NONE, validators: [countryValidator] } });
 
   useEffect(() => {
     avatarInput.data.changeValue(avatar || '');
@@ -126,7 +125,6 @@ export const ProfileCard: FC<IProfileCardProps> = memo((props) => {
 
       <VStack gapMultiply="1" className={styles.main}>
         {infoItems}
-        <Select isSearch items={[]} />
       </VStack>
 
       {!!edit && (

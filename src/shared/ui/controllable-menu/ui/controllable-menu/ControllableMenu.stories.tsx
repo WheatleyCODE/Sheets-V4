@@ -1,27 +1,21 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { SelectItem } from './SelectItem';
+import { ControllableMenu } from './ControllableMenu';
 import { themeDecorator } from '../../../../../../config/storybook/theme-decorator/themeDecorator';
 
 const meta = {
-  title: 'shared/select//SelectItem',
-  component: SelectItem,
-} satisfies Meta<typeof SelectItem>;
+  title: 'shared/controllableMenu/ControllableMenu',
+  component: ControllableMenu,
+} satisfies Meta<typeof ControllableMenu>;
 
 export default meta;
 
 type Story = StoryObj<typeof meta>;
 
 export const Light: Story = {
-  args: {
-    item: { text: 'text', value: 'value' },
-    onChange: () => {},
-  },
+  args: {},
 };
 
 export const Dark: Story = {
-  args: {
-    item: { text: 'text', value: 'value' },
-    onChange: () => {},
-  },
+  args: {},
   decorators: [themeDecorator('dark')],
 };

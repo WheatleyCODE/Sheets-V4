@@ -32,7 +32,7 @@ export const Rating: FC<IRatingProps> = memo((props) => {
   const { isShow, openModal, closeModal } = useModals();
   const { t } = useTranslation();
   const [currentRate, setCurrentRate] = useState(rate);
-  const textInput = useValidInput('', []);
+  const textInput = useValidInput({ input: { initialValue: '' } });
 
   const onSelectStar = useCallback(
     (rate: number) => {

@@ -1,42 +1,56 @@
-import { FC, useCallback } from 'react';
+import { FC, memo } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { classNames } from '@/shared/lib/class-names';
 import { Input, useValidInput } from '../../../input';
-import type { ISelectItem, ISelectProps } from './Select.interface';
+import type { ISelectProps } from './Select.interface';
 import styles from './Select.module.scss';
 import { intoIter } from '@/shared/lib/iterators';
-import { SelectItem } from '../select-item/SelectItem';
 import { ANIMATION_DURATION } from '@/shared/consts';
 import { SELECT_MENU_ITEM_HEIGHT, SELECT_MENU_PADDING } from './Select.consts';
+import { ControllableMenu, IControllableMenuItem } from '../../../controllable-menu';
+import { useControllableMenu } from '../../../controllable-menu/ui/controllable-menu/ControllableMenu.hooks';
 
-export const Select: FC<ISelectProps> = (props) => {
-  const { className, itemsViewCount = 4, isSearch, Icon, items, isForbidInput, isReadonly, ...anotherProps } = props;
+export const Select: FC<ISelectProps> = memo((props) => {
+  const {
+    className,
+    itemsViewCount = 4,
+    isSearch,
+    Icon,
+    placeholder,
+    items,
+    isForbidInput,
+    isReadonly,
+    ...anotherProps
+  } = props;
 
-  const { data, handlers } = useValidInput('');
+  const { data, handlers } = useValidInput({ input: { initialValue: '' } });
 
-  const changeText = useCallback(
-    (text: string) => {
-      data.changeValue(text);
-    },
-    [data],
-  );
-
-  let itemsArr = intoIter<ISelectItem>(items);
+  let itemsArr = intoIter<IControllableMenuItem>(items);
 
   if (isSearch) {
     itemsArr = itemsArr.filter((item) => item.text.toLowerCase().includes(data.value.toLowerCase()));
   }
 
-  const itemsArrJsx = itemsArr.map((item) => <SelectItem changeText={changeText} item={item} />).toArray();
-
   const maxHeight = itemsViewCount * SELECT_MENU_ITEM_HEIGHT + SELECT_MENU_PADDING * 2;
+
+  const arr = itemsArr.toArray();
+
+  const { data: menuData, handlers: menuHandlers } = useControllableMenu({
+    controllableMenu: {
+      items: arr,
+      onChangeIndex(item) {
+        console.log(item);
+      },
+      isRefreshIndex: true,
+    },
+  });
 
   return (
     <div {...anotherProps} data-testid="select" className={classNames(styles.select, {}, [className])}>
       <Input
         Icon={Icon}
         type="text"
-        placeholder={'placeholder'}
+        placeholder={placeholder}
         data-testid="selectInput"
         isReadonly={isReadonly}
         {...data}
@@ -57,11 +71,11 @@ export const Select: FC<ISelectProps> = (props) => {
               style={{ maxHeight, paddingTop: SELECT_MENU_PADDING, paddingBottom: SELECT_MENU_PADDING }}
               className={styles.select_items}
             >
-              {itemsArrJsx.length > 1 ? itemsArrJsx : <div></div>}
+              <ControllableMenu {...menuData} {...menuHandlers} items={arr} />
             </div>
           </motion.div>
         )}
       </AnimatePresence>
     </div>
   );
-};
+});

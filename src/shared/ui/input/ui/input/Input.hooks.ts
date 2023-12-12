@@ -1,13 +1,35 @@
 import { ChangeEvent, useCallback, useEffect, useState } from 'react';
-import type { IValidInputResult, IValidator } from './Input.interface';
-import { useDefaultEvents } from '@/shared/lib/hooks';
+import type {
+  IUseValidInputParams,
+  IUseValidInputResult,
+  PropsWithUseValidInput,
+  PropsWithoutUseValidInput,
+  ResultWithoutUseValidInput,
+} from './Input.interface';
+import { extractUseDefaultEventsProps, useDefaultEvents } from '@/shared/lib/hooks';
+
+export const extractUseValidInputProps = <P extends object, EL, T extends string>(
+  props: PropsWithUseValidInput<P, EL, T>,
+): ResultWithoutUseValidInput<P, EL, T> => {
+  const [props1, defData, defHandlers] = extractUseDefaultEventsProps(props);
+
+  const { value, changeValue, isError, changeIsError, validError, changeValidError, onChange, ...anotherProps } =
+    props1;
+
+  return [
+    anotherProps as PropsWithoutUseValidInput<P, EL, T>,
+    { ...defData, value, changeValue, isError, changeIsError, validError, changeValidError },
+    { ...defHandlers, onChange },
+  ];
+};
 
 export const useValidInput = <T = string>(
-  init: T,
-  validators?: IValidator[],
-): IValidInputResult<T, HTMLInputElement> => {
-  const { data, handlers } = useDefaultEvents<HTMLInputElement>();
-  const [value, setValue] = useState(init);
+  params: IUseValidInputParams<T> = {},
+): IUseValidInputResult<T, HTMLInputElement> => {
+  const { input = { initialValue: '' as T, validators: [] }, default: def } = params;
+
+  const { data, handlers } = useDefaultEvents<HTMLInputElement>(def);
+  const [value, setValue] = useState(input.initialValue);
   const [validError, setValidError] = useState<null | string>(null);
   const [isError, setIsError] = useState(false);
 
@@ -28,23 +50,23 @@ export const useValidInput = <T = string>(
       setValue(string);
 
       if (typeof string === 'string') {
-        validators?.forEach((fn) => {
+        input.validators?.forEach((fn) => {
           setValidError(fn(string));
         });
       }
     },
-    [validators],
+    [input.validators],
   );
 
   const onChange = useCallback(
     (e: ChangeEvent<HTMLInputElement>) => {
       setValue(e.target.value as T);
 
-      validators?.forEach((fn) => {
+      input.validators?.forEach((fn) => {
         setValidError(fn(e.target.value));
       });
     },
-    [validators],
+    [input.validators],
   );
 
   return {

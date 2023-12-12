@@ -9,7 +9,8 @@ export { useHover } from './use-hover/useHover';
 export { useInfiniteScroll } from './use-infinity-scroll/useInfinityScroll';
 export { useKeydown } from './use-keydown/useKeydown';
 export { useTheme } from './use-theme/useTheme';
-export { useDefaultEvents } from './use-default-events/useDefaultEvents';
+export { useDefaultEvents, extractUseDefaultEventsProps } from './use-default-events/useDefaultEvents';
+export type { PropsWithUseDefaultEvents, PropsWithoutUseDefaultEvents } from './use-default-events/useDefaultEvents';
 export type {
   IUseDefaultEventsOpts,
   IUseDefaultEventsResult,
