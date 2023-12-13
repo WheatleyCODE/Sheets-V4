@@ -10,5 +10,6 @@ export interface IControllableMenuItem {
 export interface IControllableMenuItemProps extends React.HTMLAttributes<HTMLDivElement> {
   item: IControllableMenuItem;
   isActive: boolean;
+  onSelectItem?: (item: IControllableMenuItem) => void;
   changeCurrentIndex: (index: number) => void;
 }

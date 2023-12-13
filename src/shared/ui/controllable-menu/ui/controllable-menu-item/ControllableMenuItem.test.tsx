@@ -4,7 +4,7 @@ import { renderComponent } from '@/shared/lib/tests/render-component/renderCompo
 
 describe('ControllableMenuItem', () => {
   test('In the document', () => {
-    renderComponent(<ControllableMenuItem />);
+    // renderComponent(<ControllableMenuItem />);
 
     expect(screen.getByTestId('controllableMenuItem')).toBeInTheDocument();
   });

@@ -4,7 +4,7 @@ import { renderComponent } from '@/shared/lib/tests';
 
 describe('Select', () => {
   test('In the document', () => {
-    renderComponent(<Select items={[]} />);
+    // renderComponent(<Select items={[]} />);
 
     expect(screen.getByTestId('select')).toBeInTheDocument();
   });

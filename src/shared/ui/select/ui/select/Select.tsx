@@ -1,49 +1,36 @@
 import { FC, memo } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { classNames } from '@/shared/lib/class-names';
-import { Input, useValidInput } from '../../../input';
+import { Input } from '../../../input';
 import type { ISelectProps } from './Select.interface';
 import styles from './Select.module.scss';
 import { intoIter } from '@/shared/lib/iterators';
 import { ANIMATION_DURATION } from '@/shared/consts';
-import { SELECT_MENU_ITEM_HEIGHT, SELECT_MENU_PADDING } from './Select.consts';
 import { ControllableMenu, IControllableMenuItem } from '../../../controllable-menu';
-import { useControllableMenu } from '../../../controllable-menu/ui/controllable-menu/ControllableMenu.hooks';
 
 export const Select: FC<ISelectProps> = memo((props) => {
   const {
     className,
-    itemsViewCount = 4,
+    itemsViewCount,
     isSearch,
     Icon,
     placeholder,
     items,
     isForbidInput,
     isReadonly,
+    input,
+    select,
+    controllableMenu,
     ...anotherProps
   } = props;
-
-  const { data, handlers } = useValidInput({ input: { initialValue: '' } });
 
   let itemsArr = intoIter<IControllableMenuItem>(items);
 
   if (isSearch) {
-    itemsArr = itemsArr.filter((item) => item.text.toLowerCase().includes(data.value.toLowerCase()));
+    itemsArr = itemsArr.filter((item) => item.text.toLowerCase().includes(input.data.value.toLowerCase()));
   }
 
-  const maxHeight = itemsViewCount * SELECT_MENU_ITEM_HEIGHT + SELECT_MENU_PADDING * 2;
-
   const arr = itemsArr.toArray();
-
-  const { data: menuData, handlers: menuHandlers } = useControllableMenu({
-    controllableMenu: {
-      items: arr,
-      onChangeIndex(item) {
-        console.log(item);
-      },
-      isRefreshIndex: true,
-    },
-  });
 
   return (
     <div {...anotherProps} data-testid="select" className={classNames(styles.select, {}, [className])}>
@@ -53,13 +40,13 @@ export const Select: FC<ISelectProps> = memo((props) => {
         placeholder={placeholder}
         data-testid="selectInput"
         isReadonly={isReadonly}
-        {...data}
-        {...handlers}
-        onChange={isForbidInput ? () => {} : handlers.onChange}
+        {...input.data}
+        {...input.handlers}
+        onChange={isForbidInput ? () => {} : input.handlers.onChange}
       />
 
       <AnimatePresence>
-        {data.isFocus && (
+        {select.data.isShow && (
           <motion.div
             className={styles.select_menu}
             initial={{ height: 0 }}
@@ -67,12 +54,13 @@ export const Select: FC<ISelectProps> = memo((props) => {
             exit={{ height: 0 }}
             transition={{ duration: ANIMATION_DURATION }}
           >
-            <div
-              style={{ maxHeight, paddingTop: SELECT_MENU_PADDING, paddingBottom: SELECT_MENU_PADDING }}
-              className={styles.select_items}
-            >
-              <ControllableMenu {...menuData} {...menuHandlers} items={arr} />
-            </div>
+            <ControllableMenu
+              itemsViewCount={itemsViewCount}
+              onSelectItem={select.data.selectItemAndClose}
+              {...controllableMenu.data}
+              {...controllableMenu.handlers}
+              items={arr}
+            />
           </motion.div>
         )}
       </AnimatePresence>

@@ -5,22 +5,22 @@ import type { IControllableMenuItemProps } from './ControllableMenuItem.interfac
 import styles from './ControllableMenuItem.module.scss';
 
 export const ControllableMenuItem: FC<IControllableMenuItemProps> = (props) => {
-  const { className, item, isActive, changeCurrentIndex, ...anotherProps } = props;
+  const { className, item, isActive, changeCurrentIndex, onSelectItem, ...anotherProps } = props;
   const { Icon, text, index } = item;
 
   const onMouseEnter = useCallback(() => {
     changeCurrentIndex(index);
   }, [changeCurrentIndex, index]);
 
-  // const onSelect = useCallback(() => {
-  //   onItemSelect?.(item);
-  // }, [item, onItemSelect]);
+  const onMouseDown = useCallback(() => {
+    onSelectItem?.(item);
+  }, [item, onSelectItem]);
 
   return (
     <div
       {...anotherProps}
       onMouseEnter={onMouseEnter}
-      // onMouseDown={onSelect}
+      onMouseDown={onMouseDown}
       data-testid="controllableMenuItem"
       className={classNames(styles.controllable_menu_item, { [styles.active]: isActive }, [className])}
     >

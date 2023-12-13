@@ -14,12 +14,12 @@ type Story = StoryObj<typeof meta>;
 export const Light: Story = {
   args: {
     items: [],
-  },
+  } as any,
 };
 
 export const Dark: Story = {
   args: {
     items: [],
-  },
+  } as any,
   decorators: [themeDecorator('dark')],
 };

@@ -1,8 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { ControllableMenuItem } from './ControllableMenuItem';
-import { Theme } from 'app/providers/lib/theme-context';
-
-themeDecora
+import { themeDecorator } from '../../../../../../config/storybook/theme-decorator/themeDecorator';
 
 const meta = {
   title: 'changeTitle/ControllableMenuItem',
@@ -14,10 +12,10 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Light: Story = {
-  args: {},
+  args: {} as any,
 };
 
 export const Dark: Story = {
-  args: {},
+  args: {} as any,
   decorators: [themeDecorator('dark')],
 };

@@ -26,6 +26,13 @@ export const Input = typedMemo(<T extends string>(props: IInputProps<T>) => {
   }, []);
 
   useEffect(() => {
+    if (!ref.current) return;
+
+    if (isFocus) ref.current.focus();
+    if (!isFocus) ref.current.blur();
+  }, [isFocus]);
+
+  useEffect(() => {
     if (isFocus || value) {
       placeholderControls.start('active');
       return;

@@ -1,37 +1,12 @@
 import { useCallback, useEffect, useState } from 'react';
-import type { IControllableMenuItem } from '../controllable-menu-item/ControllableMenuItem.interface';
-import { IUseDefaultEventsOpts, extractUseDefaultEventsProps, useDefaultEvents } from '@/shared/lib/hooks';
+import { extractUseDefaultEventsProps, useDefaultEvents } from '@/shared/lib/hooks';
 import {
+  IUseControllableMenuParams,
   IUseControllableMenuResult,
-  IUseControllableMenuResultData,
-  IUseControllableMenuResultHandlers,
+  PropsWithUseControllableMenu,
+  PropsWithoutUseControllableMenu,
+  ResultWithoutUseControllableMenu,
 } from './ControllableMenu.interface';
-
-export type PropsWithoutUseControllableMenu<P extends object, EL> = Omit<
-  P,
-  keyof IUseControllableMenuResultData | keyof IUseControllableMenuResultHandlers<EL>
->;
-
-export type PropsWithUseControllableMenu<P extends object, EL> = P &
-  IUseControllableMenuResultData &
-  IUseControllableMenuResultHandlers<EL>;
-
-export type ResultWithoutUseControllableMenu<P extends object, EL> = ExtractedProps<
-  PropsWithoutUseControllableMenu<P, EL>,
-  IUseControllableMenuResultData,
-  IUseControllableMenuResultHandlers<EL>
->;
-
-export interface IUseControllableMenuOpts {
-  items: IControllableMenuItem[];
-  onChangeIndex?: (item: IControllableMenuItem) => void;
-  isRefreshIndex?: boolean;
-}
-
-export interface IUseControllableMenuParams {
-  default?: IUseDefaultEventsOpts<HTMLDivElement>;
-  controllableMenu?: IUseControllableMenuOpts;
-}
 
 export const extractUseControllableMenuProps = <P extends object, EL>(
   props: PropsWithUseControllableMenu<P, EL>,
@@ -49,7 +24,7 @@ export const extractUseControllableMenuProps = <P extends object, EL>(
 
 export const useControllableMenu = (params: IUseControllableMenuParams = {}): IUseControllableMenuResult => {
   const { controllableMenu = { items: [] }, default: defEvents } = params;
-  const { items, onChangeIndex, isRefreshIndex } = controllableMenu;
+  const { items, onChangeIndex } = controllableMenu;
   const [currentIndex, setCurrentIndex] = useState(0);
   const { data, handlers } = useDefaultEvents(defEvents);
 
@@ -92,7 +67,7 @@ export const useControllableMenu = (params: IUseControllableMenuParams = {}): IU
     return () => {
       document.removeEventListener('keydown', cb);
     };
-  }, [addCurrentIndex, isRefreshIndex]);
+  }, [addCurrentIndex]);
 
   return {
     data: {

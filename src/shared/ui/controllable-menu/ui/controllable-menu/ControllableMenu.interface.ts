@@ -1,4 +1,5 @@
 import {
+  IUseDefaultEventsOpts,
   IUseDefaultEventsResult,
   IUseDefaultEventsResultData,
   IUseDefaultEventsResultHandlers,
@@ -18,7 +19,9 @@ export interface IControllableMenuProps
     >,
     IUseControllableMenuResultHandlers<HTMLDivElement>,
     IUseControllableMenuResultData,
-    IControllableMenuSpecificProps {}
+    IControllableMenuSpecificProps {
+  onSelectItem?: (item: IControllableMenuItem) => void;
+}
 
 export interface IUseControllableMenuResultData extends IUseDefaultEventsResultData {
   currentIndex: number;
@@ -31,3 +34,28 @@ export interface IUseControllableMenuResult<EL = HTMLDivElement> extends IUseDef
   data: IUseControllableMenuResultData;
   handlers: IUseControllableMenuResultHandlers<EL>;
 }
+
+export interface IUseControllableMenuOpts {
+  items: IControllableMenuItem[];
+  onChangeIndex?: (item: IControllableMenuItem) => void;
+}
+
+export interface IUseControllableMenuParams {
+  default?: IUseDefaultEventsOpts<HTMLDivElement>;
+  controllableMenu?: IUseControllableMenuOpts;
+}
+
+export type PropsWithoutUseControllableMenu<P extends object, EL> = Omit<
+  P,
+  keyof IUseControllableMenuResultData | keyof IUseControllableMenuResultHandlers<EL>
+>;
+
+export type PropsWithUseControllableMenu<P extends object, EL> = P &
+  IUseControllableMenuResultData &
+  IUseControllableMenuResultHandlers<EL>;
+
+export type ResultWithoutUseControllableMenu<P extends object, EL> = ExtractedProps<
+  PropsWithoutUseControllableMenu<P, EL>,
+  IUseControllableMenuResultData,
+  IUseControllableMenuResultHandlers<EL>
+>;
