@@ -7,6 +7,8 @@ import {
   IUseChangeResult,
   IUseClickOutsideParams,
   IUseClickOutsideResult,
+  IUseClickParams,
+  IUseDelayHoverParams,
   IUseFocusParams,
   IUseFocusResult,
   IUseHoverParams,
@@ -14,7 +16,9 @@ import {
   IUseKeydownParams,
   IUseKeydownResult,
   useChange,
+  useClick,
   useClickOutside,
+  useDelayHover,
   useFocus,
 } from '@/shared/lib/hooks/hooks-for-builder';
 import { useHover } from '@/shared/lib/hooks/hooks-for-builder';
@@ -29,31 +33,42 @@ type UseMyHookResult<T> = [
 ];
 
 const useHoverParams: IUseHoverParams<HTMLInputElement> = {
-  onMouseEnter: () => console.log('enter'),
+  onMouseEnter: () => console.log('onMouseEnter'),
 };
 
 const useFocusParams: IUseFocusParams<HTMLInputElement> = {
-  onBlur: () => console.log('blur'),
+  onBlur: () => console.log('onBlur'),
 };
 
 const useKeydownParams: IUseKeydownParams = {
-  onKeyDown: (e) => console.log(e),
+  onKeyDown: () => console.log('onKeyDown'),
 };
 
 const useChangeParams: IUseChangeParams<HTMLInputElement, string> = {
   initValue: 'string',
+  onChange: () => console.log('onChange'),
 };
 
-const useClickOutsideParams: IUseClickOutsideParams = {
-  handler: () => console.log('outside'),
+const useClickParams: IUseClickParams<HTMLInputElement> = {
+  onMouseDown: () => console.log('onMouseDown'),
 };
 
-const useMyHook = new HookBuilder<UseMyHookResult<HTMLInputElement>, HTMLInputElement>(1)
+// const useClickOutsideParams: IUseClickOutsideParams = {
+//   handler: () => console.log('outside'),
+// };
+
+// const useDelayHoverParams: IUseDelayHoverParams<HTMLInputElement> = {
+//   onMouseEnter: () => console.log('onMouseEnter'),
+// };
+
+const useMyHook = new HookBuilder<UseMyHookResult<HTMLInputElement>, HTMLInputElement>()
   .addHook(useFocus, useFocusParams)
   .addHook(useHover, useHoverParams)
+  // .addHook(useDelayHover, useDelayHoverParams)
   .addHook(useKeydown, useKeydownParams)
   .addHook(useChange, useChangeParams)
-  .addHook(useClickOutside, useClickOutsideParams)
+  .addHook(useClick, useClickParams)
+  // .addHook(useClickOutside, useClickOutsideParams)
   .build();
 
 const SheetsPage: FC = memo(() => {

@@ -1,4 +1,4 @@
-import { MutableRefObject, useCallback, useMemo, useState, useRef, MouseEvent } from 'react';
+import { MutableRefObject, useCallback, useState, useRef, MouseEvent } from 'react';
 import type { IUseDelayHoverParams, IUseDelayHoverResult } from './useDelayHover.interface';
 import { useDebounce } from '../../use-debounce/useDebounce';
 
@@ -83,35 +83,22 @@ export const useDelayHover = <T extends HTMLElement>(
     [close, refreshFirstHover, onMouseLeaveHandler],
   );
 
-  const data = useMemo(
-    () => ({
+  return {
+    data: {
       isHover,
       isMove,
       isShow: isHover || isMove,
-    }),
-    [isHover, isMove],
-  );
+    },
 
-  const dataChangers = useMemo(
-    () => ({
+    dataChangers: {
       changeIsHover,
       changeIsMove,
-    }),
-    [changeIsHover, changeIsMove],
-  );
+    },
 
-  const eventHandlers = useMemo(
-    () => ({
+    eventHandlers: {
       onMouseEnter,
       onMouseLeave,
       onMouseMove,
-    }),
-    [onMouseEnter, onMouseLeave, onMouseMove],
-  );
-
-  return {
-    data,
-    dataChangers,
-    eventHandlers,
+    },
   };
 };

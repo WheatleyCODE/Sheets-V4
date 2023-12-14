@@ -1,4 +1,4 @@
-import { FocusEvent, MutableRefObject, useCallback, useMemo, useState } from 'react';
+import { FocusEvent, MutableRefObject, useCallback, useState } from 'react';
 import type { IUseFocusParams, IUseFocusResult } from './useFocus.interface';
 
 export const useFocus = <T extends HTMLElement>(
@@ -52,33 +52,20 @@ export const useFocus = <T extends HTMLElement>(
     [onBlurHandler],
   );
 
-  const dataChangers = useMemo(
-    () => ({
-      changeIsFocus,
-      changeIsTouched,
-    }),
-    [changeIsFocus, changeIsTouched],
-  );
-
-  const eventHandlers = useMemo(
-    () => ({
-      onFocus,
-      onBlur,
-    }),
-    [onFocus, onBlur],
-  );
-
-  const data = useMemo(
-    () => ({
+  return {
+    data: {
       isFocus,
       isTouched,
-    }),
-    [isFocus, isTouched],
-  );
+    },
 
-  return {
-    data,
-    dataChangers,
-    eventHandlers,
+    dataChangers: {
+      changeIsFocus,
+      changeIsTouched,
+    },
+
+    eventHandlers: {
+      onFocus,
+      onBlur,
+    },
   };
 };

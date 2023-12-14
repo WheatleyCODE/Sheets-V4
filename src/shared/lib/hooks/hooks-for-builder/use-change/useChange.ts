@@ -1,4 +1,4 @@
-import { MutableRefObject, useCallback, useMemo, useState, ChangeEvent } from 'react';
+import { MutableRefObject, useCallback, useState, ChangeEvent } from 'react';
 import type { IUseChangeParams, IUseChangeResult } from './useChange.interface';
 
 export const useChange = <T extends HTMLElement, V extends string>(
@@ -32,30 +32,17 @@ export const useChange = <T extends HTMLElement, V extends string>(
     [onChangeHandler],
   );
 
-  const data = useMemo(
-    () => ({
-      value,
-    }),
-    [value],
-  );
-
-  const dataChangers = useMemo(
-    () => ({
-      changeValue,
-    }),
-    [changeValue],
-  );
-
-  const eventHandlers = useMemo(
-    () => ({
-      onChange,
-    }),
-    [onChange],
-  );
-
   return {
-    data,
-    dataChangers,
-    eventHandlers,
+    data: {
+      value,
+    },
+
+    dataChangers: {
+      changeValue,
+    },
+
+    eventHandlers: {
+      onChange,
+    },
   };
 };

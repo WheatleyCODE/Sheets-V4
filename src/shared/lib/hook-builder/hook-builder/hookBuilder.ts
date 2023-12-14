@@ -2,16 +2,10 @@ import { MutableRefObject, useRef } from 'react';
 import type { ArrMergeValues, HookForBuilder, HookForBuilderData, HookForBuilderParams } from './hookBuilder.interface';
 
 export class HookBuilder<RES extends HookForBuilderData[], ROOT extends HTMLElement> {
-  #hooks: [HookForBuilder<ROOT>, HookForBuilderParams][];
-  #cursor = 0;
-
-  constructor(hooksCount: number) {
-    this.#hooks = new Array(hooksCount);
-  }
+  #hooks: [HookForBuilder<ROOT>, HookForBuilderParams][] = [];
 
   addHook(hook: HookForBuilder<ROOT>, ...params: HookForBuilderParams) {
-    this.#hooks[this.#cursor] = [hook, params];
-    this.#cursor++;
+    this.#hooks.push([hook, params]);
     return this;
   }
 

@@ -1,4 +1,4 @@
-import { MutableRefObject, useCallback, useMemo, useState, MouseEvent } from 'react';
+import { MutableRefObject, useCallback, useState, MouseEvent } from 'react';
 import type { IUseClickParams, IUseClickResult } from './useClick.interface';
 
 export const useClick = <T extends HTMLElement>(
@@ -53,33 +53,20 @@ export const useClick = <T extends HTMLElement>(
     [onContextMenuHandler],
   );
 
-  const data = useMemo(
-    () => ({
+  return {
+    data: {
       isMouseDown,
-    }),
-    [isMouseDown],
-  );
+    },
 
-  const dataChangers = useMemo(
-    () => ({
+    dataChangers: {
       changeIsMouseDown,
-    }),
-    [changeIsMouseDown],
-  );
+    },
 
-  const eventHandlers = useMemo(
-    () => ({
+    eventHandlers: {
       onMouseDown,
       onMouseUp,
       onClick,
       onContextMenu,
-    }),
-    [onClick, onContextMenu, onMouseDown, onMouseUp],
-  );
-
-  return {
-    data,
-    dataChangers,
-    eventHandlers,
+    },
   };
 };

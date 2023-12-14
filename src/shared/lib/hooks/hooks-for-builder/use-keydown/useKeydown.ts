@@ -35,25 +35,15 @@ export const useKeydown = <T extends HTMLElement>(
     };
   }, [onKeyDownHandler, ref, target]);
 
-  const data = useMemo(
-    () => ({
-      key,
-    }),
-    [key],
-  );
-
-  const dataChangers = useMemo(
-    () => ({
-      changeKey,
-    }),
-    [changeKey],
-  );
-
-  const eventHandlers = useMemo(() => ({}), []);
-
   return {
-    data,
-    dataChangers,
-    eventHandlers,
+    data: {
+      key,
+    },
+
+    dataChangers: {
+      changeKey,
+    },
+
+    eventHandlers: {},
   };
 };

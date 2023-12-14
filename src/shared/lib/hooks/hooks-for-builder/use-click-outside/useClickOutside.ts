@@ -1,4 +1,4 @@
-import { MutableRefObject, useEffect, useMemo } from 'react';
+import { MutableRefObject, useEffect } from 'react';
 import type { IUseClickOutsideParams, IUseClickOutsideResult } from './useClickOutside.interface';
 
 export const useClickOutside = <T extends HTMLElement, O extends HTMLElement>(
@@ -41,15 +41,11 @@ export const useClickOutside = <T extends HTMLElement, O extends HTMLElement>(
     };
   }, [handler, isClick, isContextmenu, ref, refOut]);
 
-  const data = useMemo(() => ({}), []);
-
-  const dataChangers = useMemo(() => ({}), []);
-
-  const eventHandlers = useMemo(() => ({}), []);
-
   return {
-    data,
-    dataChangers,
-    eventHandlers,
+    data: {},
+
+    dataChangers: {},
+
+    eventHandlers: {},
   };
 };

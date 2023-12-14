@@ -1,4 +1,4 @@
-import { MouseEvent, MutableRefObject, useCallback, useMemo, useState } from 'react';
+import { MouseEvent, MutableRefObject, useCallback, useState } from 'react';
 import type { IUseHoverParams, IUseHoverResult } from './useHover.interface';
 
 export const useHover = <T extends HTMLElement>(
@@ -46,32 +46,19 @@ export const useHover = <T extends HTMLElement>(
     [onMouseMoveHandler],
   );
 
-  const data = useMemo(
-    () => ({
+  return {
+    data: {
       isHover,
-    }),
-    [isHover],
-  );
+    },
 
-  const dataChangers = useMemo(
-    () => ({
+    dataChangers: {
       changeIsHover,
-    }),
-    [changeIsHover],
-  );
+    },
 
-  const eventHandlers = useMemo(
-    () => ({
+    eventHandlers: {
       onMouseEnter,
       onMouseLeave,
       onMouseMove: isMouseMove ? onMouseMove : undefined,
-    }),
-    [isMouseMove, onMouseEnter, onMouseLeave, onMouseMove],
-  );
-
-  return {
-    data,
-    dataChangers,
-    eventHandlers,
+    },
   };
 };
