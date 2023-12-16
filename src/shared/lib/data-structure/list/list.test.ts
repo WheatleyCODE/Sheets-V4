@@ -26,4 +26,20 @@ describe('List', () => {
 
     expect(newList.toArray()).toEqual(['10', '20', '30', '40', '50']);
   });
+
+  test('ForEach + map + toArray', () => {
+    const list = new List<number>([1, 2, 3, 4, 5]);
+
+    let sum = 0;
+
+    const result = list
+      .forEach((num) => {
+        sum += num;
+      })
+      .map((num) => num * 10)
+      .toArray();
+
+    expect(result).toEqual([10, 20, 30, 40, 50]);
+    expect(sum).toBe(15);
+  });
 });
