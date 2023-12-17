@@ -1,6 +1,5 @@
 import { Location } from 'react-router-dom';
 import { OptionalRecord } from '../../ts-utils';
-import { SerializablePrimitiveValue } from '../../kv-storage';
 import { concatURLs } from '../concat-urls/concatUrls';
 
 export class LocationHelper<T = any> {

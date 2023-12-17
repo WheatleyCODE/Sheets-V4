@@ -30,13 +30,21 @@ declare interface AnyOneArgFunction<ARG = any, R = any> extends Function {
   (arg: ARG): R;
 }
 
-type Primitive = string | symbol | number | bigint | boolean | undefined | null;
+declare type SerializablePrimitiveValue = string | number | boolean | null | undefined;
 
-interface AnyFunction<ARGS extends any[] = any[], R = any> extends Function {
+declare type SerializableValue =
+  | SerializablePrimitiveValue
+  | SerializablePrimitiveValue[]
+  | Record<string, any>
+  | { toJSON(): SerializableValue };
+
+declare type Primitive = string | symbol | number | bigint | boolean | undefined | null;
+
+declare interface AnyFunction<ARGS extends any[] = any[], R = any> extends Function {
   (...args: ARGS): R;
 }
 
-type CanPromiseLike<T> = T | PromiseLike<T>;
+declare type CanPromiseLike<T> = T | PromiseLike<T>;
 declare type ExtractedProps<P extends object, T1, T2> = [Omit<P, keyof T1 | keyof T2>, T1, T2];
 
 interface ObjectConstructor {
