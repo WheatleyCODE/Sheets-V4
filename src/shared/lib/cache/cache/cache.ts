@@ -1,0 +1,59 @@
+import { BaseList } from '../../data-structure/base-list/baseList';
+import { hashFunction } from '../../hash';
+
+type CacheValue<T> = [T, number];
+
+export class Cache<T extends SerializableValue> {
+  #cache: { [key: string]: CacheValue<T> } = {};
+  #maxItems: number;
+  #keys = new BaseList<string>();
+
+  constructor(maxItems: number = 20) {
+    this.#maxItems = maxItems;
+  }
+
+  hashMemo(value: T, expiresInMs: number = Infinity): T {
+    const keyHash = hashFunction(value);
+
+    const existValue = this.get(keyHash);
+
+    if (existValue !== undefined) return existValue;
+
+    return this.set(keyHash, value, expiresInMs);
+  }
+
+  set(key: string, value: T, expiresInMs: number = Infinity): T {
+    const expiresAt = Date.now() + expiresInMs;
+
+    if (this.#keys.length >= this.#maxItems) {
+      const node = this.#keys.unshift();
+
+      if (node) {
+        delete this.#cache[node[0]];
+      }
+    }
+
+    const cacheValue = new Array(2) as CacheValue<T>;
+    cacheValue[0] = value;
+    cacheValue[1] = expiresAt;
+
+    this.#keys.push(key);
+    this.#cache[key] = cacheValue;
+
+    return value;
+  }
+
+  get(key: string): T | undefined {
+    if (this.#cache[key] !== undefined) {
+      const [value, expiresAt] = this.#cache[key];
+
+      if (expiresAt > Date.now()) return value;
+    }
+
+    return;
+  }
+
+  has(key: string): boolean {
+    return Boolean(this.get(key));
+  }
+}
