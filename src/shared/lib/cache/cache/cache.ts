@@ -1,8 +1,7 @@
 import { Node } from '../../data-structure';
 import { BaseList } from '../../data-structure/base-list/baseList';
 import { hashFunction } from '../../hash';
-
-type CacheValue<T> = [T, number];
+import type { CacheValue } from './cache.interface';
 
 export class Cache<T extends SerializableValue> {
   #cache: { [key: string]: CacheValue<T> } = {};

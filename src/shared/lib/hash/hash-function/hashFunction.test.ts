@@ -7,7 +7,7 @@ describe('HashFunction', () => {
     const hash2 = hashFunction({ a: 10, b: 20, c: 30, y: 'str' });
     const hash3 = hashFunction({ a: 10, b: 20, c: 30, y: 'str' });
 
-    expect(hash).toBe('2984325697');
+    expect(hash).toBe('6467618499');
     expect(hash).toBe(hash1);
     expect(hash1).toBe(hash2);
     expect(hash2).toBe(hash3);
@@ -26,7 +26,7 @@ describe('HashFunction', () => {
     const hashNew4 = hashFunction({ a: 10, b: 20, c: 30, y: 'str1' });
     const hashNew5 = hashFunction({ a: 10, b: 20, c: 30, y: 'str', obj: {} });
 
-    expect(hash).toBe('2984325697');
+    expect(hash).toBe('6467618499');
     expect(hash).toBe(hash1);
     expect(hash1).toBe(hash2);
     expect(hash2).toBe(hash3);
@@ -41,8 +41,16 @@ describe('HashFunction', () => {
 
   test('Length', () => {
     const hash = hashFunction({ a: 10, b: 20, c: 30, y: 'str' });
+    const hash_2 = hashFunction({ a: 10, b: 20, c: 30, y: 'str' });
 
     const hash2 = hashFunction({
+      a: 10000000000000,
+      b: 2000000000000,
+      c: 300000000001,
+      y: 'Super str. Super str. Super str. Super str. Super str. Super str. Super str.',
+    });
+
+    const hash2_2 = hashFunction({
       a: 10000000000000,
       b: 2000000000000,
       c: 300000000001,
@@ -81,8 +89,44 @@ describe('HashFunction', () => {
       },
     });
 
-    expect(hash2).toBe('1906398785');
-    expect(hash3).toBe('-48110283555');
-    expect(hash).toBe('2984325697');
+    const hash3_2 = hashFunction({
+      a: 10,
+      b: 20,
+      c: 30,
+      y: 'str',
+      obj: {
+        a: 10,
+        b: 20,
+        c: 30,
+        y: 'str',
+        obj: {
+          a: 10,
+          b: 20,
+          c: 30,
+          y: 'str',
+          obj: {
+            a: 10,
+            b: 20,
+            c: 30,
+            y: 'str',
+            obj: {
+              a: 10,
+              b: 20,
+              c: 30,
+              y: 'str',
+              obj: { a: 10, b: 20, c: 30, y: 'str', obj: { a: 10, b: 20, c: 30, y: 'str' } },
+            },
+          },
+        },
+      },
+    });
+
+    expect(hash).toBe(hash_2);
+    expect(hash2).toBe(hash2_2);
+    expect(hash3).toBe(hash3_2);
+
+    expect(hash2).toBe('-16786699837');
+    expect(hash3).toBe('1312001475');
+    expect(hash).toBe('6467618499');
   });
 });
