@@ -1,3 +1,4 @@
+import { Node } from '../../data-structure';
 import { BaseList } from '../../data-structure/base-list/baseList';
 import { hashFunction } from '../../hash';
 
@@ -14,7 +15,6 @@ export class Cache<T extends SerializableValue> {
 
   hashMemo(value: T, expiresInMs: number = Infinity): T {
     const keyHash = hashFunction(value);
-
     const existValue = this.get(keyHash);
 
     if (existValue !== undefined) return existValue;
@@ -26,11 +26,7 @@ export class Cache<T extends SerializableValue> {
     const expiresAt = Date.now() + expiresInMs;
 
     if (this.#keys.length >= this.#maxItems) {
-      const node = this.#keys.unshift();
-
-      if (node) {
-        delete this.#cache[node[0]];
-      }
+      this.unshift();
     }
 
     const cacheValue = new Array(2) as CacheValue<T>;
@@ -47,13 +43,42 @@ export class Cache<T extends SerializableValue> {
     if (this.#cache[key] !== undefined) {
       const [value, expiresAt] = this.#cache[key];
 
-      if (expiresAt > Date.now()) return value;
-    }
+      if (expiresAt > Date.now()) {
+        return value;
+      }
 
-    return;
+      this.remove(key);
+    }
   }
 
   has(key: string): boolean {
     return Boolean(this.get(key));
+  }
+
+  remove(key: string): void {
+    return this.#deleteCacheProp(this.#keys.remove(key));
+  }
+
+  unshift() {
+    return this.#deleteCacheProp(this.#keys.unshift());
+  }
+
+  pop(): void {
+    return this.#deleteCacheProp(this.#keys.pop());
+  }
+
+  #deleteCacheProp(node: Node<string> | undefined): void {
+    if (node) {
+      delete this.#cache[node[0]];
+    }
+  }
+
+  clear(): void {
+    this.#cache = {};
+    this.#keys = new BaseList<string>();
+  }
+
+  get length() {
+    return this.#keys.length;
   }
 }
