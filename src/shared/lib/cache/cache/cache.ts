@@ -22,6 +22,32 @@ export class Cache<T extends SerializableValue> {
     return this.set(keyHash, value, expiresInMs);
   }
 
+  memo(value: T, expiresInMs: number = Infinity) {
+    const keyHash = hashFunction(value);
+    const existValue = this.get(keyHash);
+
+    if (existValue !== undefined) {
+      if (!Object.isPrimitive(value) && !Object.isPrimitive(existValue)) {
+        const values1 = Object.values(value);
+        const values2 = Object.values(existValue);
+
+        if (values1.length !== values2.length) {
+          return this.set(keyHash, value, expiresInMs);
+        }
+
+        for (let i = 0; i < values1.length; i++) {
+          if (values1[i] !== values2[i]) {
+            return this.set(keyHash, value, expiresInMs);
+          }
+        }
+      }
+
+      return existValue;
+    }
+
+    return this.set(keyHash, value, expiresInMs);
+  }
+
   set(key: string, value: T, expiresInMs: number = Infinity): T {
     const expiresAt = Date.now() + expiresInMs;
 

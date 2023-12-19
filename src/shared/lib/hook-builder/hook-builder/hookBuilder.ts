@@ -1,7 +1,10 @@
 import { MutableRefObject, useRef } from 'react';
+import { Cache } from '../../cache';
 import type { ArrMergeValues, HookForBuilder, HookForBuilderData, HookForBuilderParams } from './hookBuilder.interface';
 
 export class HookBuilder<RES extends HookForBuilderData[], ROOT extends HTMLElement> {
+  #timeCaching: number | undefined;
+  #cache: Cache<any> | undefined;
   #hooks: [HookForBuilder<ROOT>, HookForBuilderParams][] = [];
 
   addHook(hook: HookForBuilder<ROOT>, ...params: HookForBuilderParams) {
@@ -9,7 +12,20 @@ export class HookBuilder<RES extends HookForBuilderData[], ROOT extends HTMLElem
     return this;
   }
 
+  enableMemo(cache: Cache<any>, timeMs?: number) {
+    this.#timeCaching = timeMs;
+    this.#cache = cache;
+    return this;
+  }
+
   build() {
+    type Result = {
+      ref: MutableRefObject<ROOT | null>;
+      data: ArrMergeValues<RES, 'data'>;
+      dataChangers: ArrMergeValues<RES, 'dataChangers'>;
+      eventHandlers: ArrMergeValues<RES, 'eventHandlers'>;
+    };
+
     return () => {
       const ref = useRef<ROOT | null>(null);
 
@@ -25,17 +41,21 @@ export class HookBuilder<RES extends HookForBuilderData[], ROOT extends HTMLElem
         resEventHandlers = { ...resEventHandlers, ...eventHandlers };
       });
 
+      if (this.#cache) {
+        return {
+          ref,
+          data: this.#cache.memo(resData, this.#timeCaching),
+          dataChangers: this.#cache.memo(resDataChangers, this.#timeCaching),
+          eventHandlers: this.#cache.memo(resEventHandlers, this.#timeCaching),
+        } as Result;
+      }
+
       return {
         ref,
         data: resData,
         dataChangers: resDataChangers,
         eventHandlers: resEventHandlers,
-      } as {
-        ref: MutableRefObject<ROOT | null>;
-        data: ArrMergeValues<RES, 'data'>;
-        dataChangers: ArrMergeValues<RES, 'dataChangers'>;
-        eventHandlers: ArrMergeValues<RES, 'eventHandlers'>;
-      };
+      } as Result;
     };
   }
 }
