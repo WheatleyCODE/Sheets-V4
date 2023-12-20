@@ -1,4 +1,4 @@
-import { MutableRefObject, useCallback, useMemo, useState, useEffect } from 'react';
+import { MutableRefObject, useCallback, useState, useEffect } from 'react';
 import type { IUseKeydownParams, IUseKeydownResult } from './useKeydown.interface';
 
 export const useKeydown = <T extends HTMLElement>(

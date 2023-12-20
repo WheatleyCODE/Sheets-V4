@@ -10,6 +10,9 @@ import type {
   Value,
 } from './SyncPromise.interface';
 
+const loopback = () => {
+  return undefined;
+};
 export class SyncPromise<T> implements Promise<T> {
   #state: PromiseState = 'pending';
   #fulfillHandlers: ConstrResolveHandler<T>[] = [];
@@ -185,10 +188,6 @@ export class SyncPromise<T> implements Promise<T> {
     } catch (err) {
       reject(err);
     }
-
-    function loopback() {
-      return undefined;
-    }
   }
 
   unwrap(): T {
@@ -346,16 +345,16 @@ export class SyncPromise<T> implements Promise<T> {
 
       const errors: any[] = [];
 
-      for (let i = 0; i < promises.length; i++) {
-        promises[i].then(resolve, onReject);
-      }
-
-      function onReject(err: any) {
+      const onReject = (err: any) => {
         errors.push(err);
 
         if (errors.length === promises.length) {
           reject(new Error(`Не один SyncPromise не был выполнен успешно: ${JSON.stringify(errors)}`));
         }
+      };
+
+      for (let i = 0; i < promises.length; i++) {
+        promises[i].then(resolve, onReject);
       }
     });
   }

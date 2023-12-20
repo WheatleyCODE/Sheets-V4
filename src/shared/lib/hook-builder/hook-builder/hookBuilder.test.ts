@@ -55,8 +55,8 @@ describe('hookBuilder', () => {
       .addHook(useHover, useHoverParams)
       .addHook(useKeydown, useKeydownParams)
       .addHook(useChange, useChangeParams)
-      .addHook(useClick, useClickParams)
-      .build();
+      .addHook(useClick, useClickParams);
+    // .build((a) => a);
 
     // ! Tests
     expect(typeof useMyHook === 'function').toBe(true);

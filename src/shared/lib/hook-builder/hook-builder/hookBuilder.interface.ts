@@ -6,11 +6,11 @@ export type HookForBuilderData = {
   eventHandlers: object;
 };
 
-export type HookForBuilderParams = any[];
+export type HookForBuilderParams = any;
 
 export type HookForBuilder<EL extends HTMLElement> = (
   ref: MutableRefObject<EL | null>,
-  ...args: HookForBuilderParams
+  args: HookForBuilderParams,
 ) => HookForBuilderData;
 
 export type ArrMergeValues<
