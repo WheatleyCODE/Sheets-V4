@@ -25,13 +25,15 @@ export const AddCommentForm: FC<IAddCommentFormProps> = memo((props) => {
 
   const { setText } = useCommentFormActions();
   const text = useAddCommentFormText();
-  const textInput = useValidInput({ input: { initialValue: text } });
+  // const textInput = useValidInput({ input: { initialValue: text } });
+  const textInput = useValidInput();
+
   const { t } = useTranslation();
 
   const onChangeText = useCallback(
     (e: ChangeEvent<HTMLInputElement>) => {
       setText(e.target.value);
-      textInput.handlers.onChange(e);
+      textInput.eventHandlers.onChange(e);
     },
     [setText, textInput],
   );
@@ -40,7 +42,7 @@ export const AddCommentForm: FC<IAddCommentFormProps> = memo((props) => {
     if (!textInput.data.value || textInput.data.isError) return;
     addComment(textInput.data.value);
 
-    textInput.data.changeValue('');
+    textInput.dataChangers.changeValue('');
     setText('');
   }, [textInput, addComment, setText]);
 
@@ -55,10 +57,14 @@ export const AddCommentForm: FC<IAddCommentFormProps> = memo((props) => {
         type="text"
         data-testid="commentInput"
         placeholder={commentPlaceholder}
-        {...textInput.data}
-        {...textInput.handlers}
-        validError={t(textInput.data.validError || '')}
-        onChange={onChangeText}
+        // {...textInput.data}
+        // {...textInput.handlers}
+        // validError={t(textInput.data.validError || '')}
+        // onChange={onChangeText}
+        data={textInput.data}
+        dataChangers={textInput.dataChangers}
+        eventHandlers={textInput.eventHandlers}
+        ref={textInput.ref}
         className={styles.input}
       />
 

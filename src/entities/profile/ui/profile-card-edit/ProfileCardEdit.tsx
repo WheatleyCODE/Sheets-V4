@@ -5,7 +5,7 @@ import { Button } from '@/shared/ui/button';
 import { Title } from '@/shared/ui/title';
 import { HStack } from '@/shared/ui/containers';
 import { intoIter } from '@/shared/lib/iterators';
-import { IUseValidInputResult } from '@/shared/ui/input';
+import { UseValidInputResult } from '@/shared/ui/input';
 import type { IProfile } from '../../model/types/profile.interface';
 import type { IProfileCardEditProps } from './ProfileCardEdit.interface';
 import styles from './ProfileCardEdit.module.scss';
@@ -24,7 +24,7 @@ export const ProfileCardEdit: FC<IProfileCardEditProps> = memo((props) => {
   const [isDisable, setIsDisable] = useState(false);
 
   useEffect(() => {
-    const inputs = intoIter<IUseValidInputResult<any>>(validHooks);
+    const inputs = intoIter<UseValidInputResult>(validHooks);
 
     for (const input of inputs) {
       if (input.data.isError) {
@@ -39,11 +39,11 @@ export const ProfileCardEdit: FC<IProfileCardEditProps> = memo((props) => {
   const onSave = useCallback(() => {
     const profile: IProfile = {};
 
-    const entries = intoIter<[keyof IProfile, IUseValidInputResult<any>]>(Object.entries(validHooks));
+    const entries = intoIter<[keyof IProfile, UseValidInputResult]>(Object.entries(validHooks));
 
     for (const [key, input] of entries) {
       if (input.data.isError) return;
-      profile[key] = input.data.value;
+      profile[key] = input.data.value as any; // ! FIX;
     }
 
     saveProfileChange(profile);

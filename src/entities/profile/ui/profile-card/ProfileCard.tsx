@@ -5,15 +5,15 @@ import { CircleLoader } from '@/shared/ui/loaders';
 import { Input, useValidInput } from '@/shared/ui/input';
 import { intoIter } from '@/shared/lib/iterators';
 import { getInfoItemArr } from './ProfileCard.helpers';
-import {
-  ageValidator,
-  avatarValidator,
-  cityValidator,
-  countryValidator,
-  firstnameValidator,
-  lastnameValidator,
-  usernameValidator,
-} from '@/shared/lib/validators';
+// import {
+//   ageValidator,
+//   avatarValidator,
+//   cityValidator,
+//   countryValidator,
+//   firstnameValidator,
+//   lastnameValidator,
+//   usernameValidator,
+// } from '@/shared/lib/validators';
 import { ProfileCardEdit } from '../profile-card-edit/ProfileCardEdit';
 import { Country, Currency, ProfileCardTextAlign } from '../../model/consts/profile.consts';
 import { HStack, VStack } from '@/shared/ui/containers';
@@ -37,24 +37,32 @@ export const ProfileCard: FC<IProfileCardProps> = memo((props) => {
   const { age, avatar, city, country, currency, firstname, lastname, username } = profile;
   const { t } = useTranslation('profile');
 
-  const avatarInput = useValidInput({ input: { initialValue: '', validators: [avatarValidator] } });
-  const usernameInput = useValidInput({ input: { initialValue: '', validators: [usernameValidator] } });
-  const firstnameInput = useValidInput({ input: { initialValue: '', validators: [firstnameValidator] } });
-  const lastnameInput = useValidInput({ input: { initialValue: '', validators: [lastnameValidator] } });
-  const ageInput = useValidInput({ input: { initialValue: '', validators: [ageValidator] } });
-  const cityInput = useValidInput({ input: { initialValue: '', validators: [cityValidator] } });
-  const currencyInput = useValidInput({ input: { initialValue: Currency.NONE } });
-  const countryInput = useValidInput({ input: { initialValue: Country.NONE, validators: [countryValidator] } });
+  // const avatarInput = useValidInput({ input: { initialValue: '', validators: [avatarValidator] } });
+  // const usernameInput = useValidInput({ input: { initialValue: '', validators: [usernameValidator] } });
+  // const firstnameInput = useValidInput({ input: { initialValue: '', validators: [firstnameValidator] } });
+  // const lastnameInput = useValidInput({ input: { initialValue: '', validators: [lastnameValidator] } });
+  // const ageInput = useValidInput({ input: { initialValue: '', validators: [ageValidator] } });
+  // const cityInput = useValidInput({ input: { initialValue: '', validators: [cityValidator] } });
+  // const currencyInput = useValidInput({ input: { initialValue: Currency.NONE } });
+  // const countryInput = useValidInput({ input: { initialValue: Country.NONE, validators: [countryValidator] } });
+  const avatarInput = useValidInput();
+  const usernameInput = useValidInput();
+  const firstnameInput = useValidInput();
+  const lastnameInput = useValidInput();
+  const ageInput = useValidInput();
+  const cityInput = useValidInput();
+  const currencyInput = useValidInput();
+  const countryInput = useValidInput();
 
   useEffect(() => {
-    avatarInput.data.changeValue(avatar || '');
-    usernameInput.data.changeValue(username || '');
-    firstnameInput.data.changeValue(firstname || '');
-    lastnameInput.data.changeValue(lastname || '');
-    ageInput.data.changeValue(age || '');
-    cityInput.data.changeValue(city || '');
-    currencyInput.data.changeValue(currency || Currency.NONE);
-    countryInput.data.changeValue(country || Country.NONE);
+    avatarInput.dataChangers.changeValue(avatar || '');
+    usernameInput.dataChangers.changeValue(username || '');
+    firstnameInput.dataChangers.changeValue(firstname || '');
+    lastnameInput.dataChangers.changeValue(lastname || '');
+    ageInput.dataChangers.changeValue(age || '');
+    cityInput.dataChangers.changeValue(city || '');
+    currencyInput.dataChangers.changeValue(currency || Currency.NONE);
+    countryInput.dataChangers.changeValue(country || Country.NONE);
   }, [firstname, lastname, city, currency, country, username, age, isReadonly, avatar]);
 
   const validHooks: IInputValidHooks = {
@@ -79,10 +87,14 @@ export const ProfileCard: FC<IProfileCardProps> = memo((props) => {
             Icon={Icon}
             type="text"
             data-testid={title}
-            {...input.data}
-            {...input.handlers}
+            // {...input.data}
+            // {...input.handlers}
             isReadonly={isReadonly}
-            validError={t(input.data.validError || '')}
+            // validError={t(input.data.validError || '')}
+            data={input.data}
+            dataChangers={input.dataChangers}
+            eventHandlers={input.eventHandlers}
+            ref={input.ref}
           />
         </Title>
       </HStack>

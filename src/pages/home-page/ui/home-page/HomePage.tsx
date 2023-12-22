@@ -2,9 +2,9 @@ import { FC, memo } from 'react';
 import { classNames } from '@/shared/lib/class-names';
 import styles from './HomePage.module.scss';
 
-import { Select } from '@/shared/ui/select';
+// import { Select } from '@/shared/ui/select';
 import { Md10K, MdHome } from 'react-icons/md';
-import { useSelect } from '@/shared/ui/select';
+// import { useSelect } from '@/shared/ui/select';
 
 const itemsArr = [
   { Icon: MdHome, text: 'Text', value: 'value', index: 0 },
@@ -17,14 +17,14 @@ const itemsArr = [
 ];
 
 const HomePage: FC = memo(() => {
-  const { input, select, controllableMenu } = useSelect({
-    input: { input: { initialValue: 'valid' } },
-    controllableMenu: { controllableMenu: { items: itemsArr, onChangeIndex: (item) => console.log(item) } },
-  });
+  // const { input, select, controllableMenu } = useSelect({
+  //   input: { input: { initialValue: 'valid' } },
+  //   controllableMenu: { controllableMenu: { items: itemsArr, onChangeIndex: (item) => console.log(item) } },
+  // });
 
   return (
     <section data-testid="homePage" className={classNames(styles.home_page, {}, ['page'])}>
-      <Select input={input} select={select} controllableMenu={controllableMenu} items={itemsArr} />
+      {/* <Select input={input} select={select} controllableMenu={controllableMenu} items={itemsArr} /> */}
     </section>
   );
 });

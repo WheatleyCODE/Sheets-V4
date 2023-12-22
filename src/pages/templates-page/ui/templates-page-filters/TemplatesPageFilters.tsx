@@ -17,12 +17,12 @@ import { intoIter } from '@/shared/lib/iterators';
 import { Title } from '@/shared/ui/title';
 import { VStack, Width } from '@/shared/ui/containers';
 import { useDebounce } from '@/shared/lib/hooks';
-import {
-  TemplateSortFields,
-  TemplateSortOrders,
-  getSortItems,
-  getSortOrderItems,
-} from '../../model/consts/templatesPage.consts';
+// import {
+//   TemplateSortFields,
+//   TemplateSortOrders,
+//   getSortItems,
+//   getSortOrderItems,
+// } from '../../model/consts/templatesPage.consts';
 import { classNames } from '@/shared/lib/class-names';
 import type { ITemplatesPageFiltersProps } from './TemplatesPageFilters.interface';
 import styles from './TemplatesPageFilters.module.scss';
@@ -37,9 +37,12 @@ export const TemplatesPageFilters: FC<ITemplatesPageFiltersProps> = (props) => {
   const fetchTemplatesPageTemplates = useFetchTemplatesPageTemplates();
   const { setPage, setView, setSort, setSearch, setSortOrder, setTags } = useTemplatesPageActions();
 
-  const sortInput = useValidInput({ input: { initialValue: sort } });
-  const sortOrderInput = useValidInput({ input: { initialValue: sortOrder } });
-  const searchInput = useValidInput({ input: { initialValue: search } });
+  // const sortInput = useValidInput({ input: { initialValue: sort } });
+  // const sortOrderInput = useValidInput({ input: { initialValue: sortOrder } });
+  // const searchInput = useValidInput({ input: { initialValue: search } });
+  const sortInput = useValidInput();
+  const sortOrderInput = useValidInput();
+  const searchInput = useValidInput();
   const { t } = useTranslation('templates');
 
   const fetchTemplatesOnChange = useCallback(() => {
@@ -84,9 +87,9 @@ export const TemplatesPageFilters: FC<ITemplatesPageFiltersProps> = (props) => {
   }, 300);
 
   useEffect(() => {
-    sortInput.data.changeValue(sort);
-    sortOrderInput.data.changeValue(sortOrder);
-    searchInput.data.changeValue(search);
+    sortInput.dataChangers.changeValue(sort);
+    sortOrderInput.dataChangers.changeValue(sortOrder);
+    searchInput.dataChangers.changeValue(search);
   }, [sort, sortOrder, search]);
 
   // const onChangeSort = useCallback(
@@ -124,7 +127,7 @@ export const TemplatesPageFilters: FC<ITemplatesPageFiltersProps> = (props) => {
   const onChangeSearch = useCallback(
     (e: ChangeEvent<HTMLInputElement>) => {
       const search = e.target.value;
-      searchInput.handlers.onChange(e);
+      searchInput.eventHandlers.onChange(e);
       changeSearch(search);
     },
     [changeSearch, searchInput],
@@ -155,10 +158,14 @@ export const TemplatesPageFilters: FC<ITemplatesPageFiltersProps> = (props) => {
               placeholder={t('Поиск')}
               type="text"
               data-testid="searchInput"
-              {...searchInput.data}
-              {...searchInput.handlers}
-              onChange={onChangeSearch}
-              validError={t(searchInput.data.validError || '')}
+              data={searchInput.data}
+              dataChangers={searchInput.dataChangers}
+              eventHandlers={searchInput.eventHandlers}
+              ref={searchInput.ref}
+              // {...searchInput.data}
+              // {...searchInput.eventHandlers}
+              // onChange={onChangeSearch}
+              // validError={t(searchInput.data.validError || '')}
             />
           </div>
         </Title>
@@ -171,9 +178,13 @@ export const TemplatesPageFilters: FC<ITemplatesPageFiltersProps> = (props) => {
               placeholder={t('Сортировать по')}
               type="text"
               data-testid="sortInput"
-              {...sortInput.data}
-              {...sortInput.handlers}
-              validError={t(sortInput.data.validError || '')}
+              data={sortInput.data}
+              dataChangers={sortInput.dataChangers}
+              eventHandlers={sortInput.eventHandlers}
+              ref={sortInput.ref}
+              // {...sortInput.data}
+              // {...sortInput.handlers}
+              // validError={t(sortInput.data.validError || '')}
             />
           </div>
         </Title>
@@ -186,9 +197,13 @@ export const TemplatesPageFilters: FC<ITemplatesPageFiltersProps> = (props) => {
               placeholder={t('Порядок сортировки')}
               type="text"
               data-testid="sortOrderInput"
-              {...sortOrderInput.data}
-              {...sortOrderInput.handlers}
-              validError={t(sortOrderInput.data.validError || '')}
+              // {...sortOrderInput.data}
+              // {...sortOrderInput.handlers}
+              // validError={t(sortOrderInput.data.validError || '')}
+              data={sortInput.data}
+              dataChangers={sortInput.dataChangers}
+              eventHandlers={sortInput.eventHandlers}
+              ref={sortInput.ref}
             />
           </div>
         </Title>

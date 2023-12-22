@@ -1,84 +1,36 @@
-import { FC, memo } from 'react';
+import { FC, memo, useEffect, useMemo, useState } from 'react';
 import { classNames } from '@/shared/lib/class-names';
 import styles from './SheetsPage.module.scss';
-import { HookBuilder } from '@/shared/lib/hook-builder';
-import {
-  IUseChangeParams,
-  IUseChangeResult,
-  IUseClickOutsideParams,
-  IUseClickOutsideResult,
-  IUseClickParams,
-  IUseDelayHoverParams,
-  IUseFocusParams,
-  IUseFocusResult,
-  IUseHoverParams,
-  IUseHoverResult,
-  IUseKeydownParams,
-  IUseKeydownResult,
-  useChange,
-  useClick,
-  useClickOutside,
-  useDelayHover,
-  useFocus,
-} from '@/shared/lib/hooks/hooks-for-builder';
-import { useHover } from '@/shared/lib/hooks/hooks-for-builder';
-import { useKeydown } from '@/shared/lib/hooks/hooks-for-builder';
-
-type UseMyHookResult<T> = [
-  IUseHoverResult<T>,
-  IUseFocusResult<T>,
-  IUseKeydownResult,
-  IUseChangeResult<T, string>,
-  IUseClickOutsideResult,
-];
-
-const useHoverParams: IUseHoverParams<HTMLInputElement> = {
-  onMouseEnter: () => console.log('onMouseEnter'),
-};
-
-const useFocusParams: IUseFocusParams<HTMLInputElement> = {
-  onBlur: () => console.log('onBlur'),
-};
-
-const useKeydownParams: IUseKeydownParams = {
-  onKeyDown: () => console.log('onKeyDown'),
-};
-
-const useChangeParams: IUseChangeParams<HTMLInputElement, string> = {
-  initValue: 'string',
-  onChange: () => console.log('onChange'),
-};
-
-const useClickParams: IUseClickParams<HTMLInputElement> = {
-  onMouseDown: () => console.log('onMouseDown'),
-};
-
-// const useClickOutsideParams: IUseClickOutsideParams = {
-//   handler: () => console.log('outside'),
-// };
-
-// const useDelayHoverParams: IUseDelayHoverParams<HTMLInputElement> = {
-//   onMouseEnter: () => console.log('onMouseEnter'),
-// };
-
-const useMyHook = new HookBuilder<UseMyHookResult<HTMLInputElement>, HTMLInputElement>()
-  .addHook(useFocus, useFocusParams)
-  .addHook(useHover, useHoverParams)
-  // .addHook(useDelayHover, useDelayHoverParams)
-  .addHook(useKeydown, useKeydownParams)
-  .addHook(useChange, useChangeParams)
-  .addHook(useClick, useClickParams)
-  // .addHook(useClickOutside, useClickOutsideParams)
-  .build();
+import { Snackbar, useSnackbar } from '@/shared/ui/snackbar';
+import { IUseClickParams } from '@/shared/lib/hooks/hooks-for-builder';
 
 const SheetsPage: FC = memo(() => {
-  const { data, ref, dataChangers, eventHandlers } = useMyHook();
+  const [a, s] = useState(false);
 
-  console.log({ data, ref, dataChangers, eventHandlers });
+  const useClick: IUseClickParams<HTMLDivElement> = useMemo(() => ({ onContextMenu: () => console.log('work') }), []);
+
+  const { data, dataChangers, eventHandlers, ref } = useSnackbar({ useSnackbar: { useClick } });
+
+  useEffect(() => {
+    console.log('data', data);
+  }, [data]);
+
+  useEffect(() => {
+    console.log('dataChangers', dataChangers);
+  }, [dataChangers]);
+
+  useEffect(() => {
+    console.log('eventHandlers', eventHandlers);
+  }, [eventHandlers]);
 
   return (
     <section data-testid="sheetsPage" className={classNames(styles.sheets_page, {}, [])}>
-      <input value={data.value} className={styles.test} ref={ref} {...eventHandlers} />
+      {JSON.stringify(a)}
+      <br />
+      <button onClick={() => s((p) => !p)}>CLICK</button>
+      <br />
+
+      {data.isShow && <Snackbar data={data} dataChangers={dataChangers} eventHandlers={eventHandlers} ref={ref} />}
     </section>
   );
 });

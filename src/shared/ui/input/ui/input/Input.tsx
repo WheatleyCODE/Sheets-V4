@@ -1,4 +1,4 @@
-import { MouseEvent, useCallback, useEffect, useRef } from 'react';
+import { MouseEvent, useCallback, useEffect } from 'react';
 import { AnimatePresence, useAnimation } from 'framer-motion';
 import { ANIMATION_DURATION } from '@/shared/consts/animations/animation';
 import { Icon as IconComponent } from '../../../icon';
@@ -8,25 +8,22 @@ import { typedMemo } from '@/shared/lib/react';
 import { classNames } from '@/shared/lib/class-names';
 import type { IInputProps } from './Input.interface';
 import styles from './Input.module.scss';
-import { extractUseValidInputProps } from './Input.hooks';
 
-export const Input = typedMemo(<T extends string>(props: IInputProps<T>) => {
-  const [JSXInputProps, inputData, inputHandlers] = extractUseValidInputProps(props);
-  const { Icon, placeholder, className, isReadonly, type = 'text', ...anotherProps } = JSXInputProps;
-  const { isError, isFocus, isHover, isMouseDown, isTouched, validError, value } = inputData;
+export const Input = typedMemo(<T extends string>(props: IInputProps) => {
+  const { data, eventHandlers, ref, Icon, className, type, isReadonly, placeholder, ...anotherProps } = props;
+  const { value, isError, isFocus, validError } = data;
 
-  const ref = useRef<null | HTMLInputElement>(null);
   const placeholderControls = useAnimation();
   const isErrorActive = !!(isError && validError);
   const isIcon = !!Icon;
 
   const focusOnInput = useCallback((e: MouseEvent<HTMLInputElement>) => {
-    if (ref.current) ref.current.focus();
+    if (ref?.current) ref.current.focus();
     e.preventDefault();
   }, []);
 
   useEffect(() => {
-    if (!ref.current) return;
+    if (!ref?.current) return;
 
     if (isFocus) ref.current.focus();
     if (!isFocus) ref.current.blur();
@@ -62,7 +59,7 @@ export const Input = typedMemo(<T extends string>(props: IInputProps<T>) => {
         value={value}
         type={type}
         {...anotherProps}
-        {...inputHandlers}
+        {...eventHandlers}
         disabled={isReadonly}
       />
 
