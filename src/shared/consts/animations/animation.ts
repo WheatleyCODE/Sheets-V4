@@ -9,3 +9,6 @@ export const ANIMATION_INPUT_DELAY = 0.4;
 
 export const ANIMATION_SELECT = 0.2;
 export const ANIMATION_SELECT_DELAY = 0.3;
+
+export const ANIMATION_SELECT2 = 0.2;
+export const ANIMATION_SELECT_DELAY2 = 0.3;
