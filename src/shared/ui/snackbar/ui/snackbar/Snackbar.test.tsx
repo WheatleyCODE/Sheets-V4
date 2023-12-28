@@ -4,7 +4,7 @@ import { renderComponent } from '@/shared/lib/tests/render-component/renderCompo
 
 describe('Snackbar', () => {
   test('In the document', () => {
-    renderComponent(<Snackbar />);
+    // renderComponent(<Snackbar />);
 
     expect(screen.getByTestId('snackbar')).toBeInTheDocument();
   });

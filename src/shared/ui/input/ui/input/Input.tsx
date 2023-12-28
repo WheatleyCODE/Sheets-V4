@@ -10,8 +10,8 @@ import type { IInputProps } from './Input.interface';
 import styles from './Input.module.scss';
 
 export const Input = typedMemo(<T extends string>(props: IInputProps) => {
-  const { data, eventHandlers, ref, Icon, className, type, isReadonly, placeholder, ...anotherProps } = props;
-  const { value, isError, isFocus, validError } = data;
+  const { isFocus, value, isError, validError, ref, Icon, className, type, isReadonly, placeholder, ...anotherProps } =
+    props;
 
   const placeholderControls = useAnimation();
   const isErrorActive = !!(isError && validError);
@@ -59,7 +59,6 @@ export const Input = typedMemo(<T extends string>(props: IInputProps) => {
         value={value}
         type={type}
         {...anotherProps}
-        {...eventHandlers}
         disabled={isReadonly}
       />
 

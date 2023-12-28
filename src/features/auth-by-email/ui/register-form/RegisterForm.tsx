@@ -4,21 +4,16 @@ import { MdOutlineEmail, MdOutlinePassword } from 'react-icons/md';
 import { classNames } from '@/shared/lib/class-names';
 import { UseValidInputResult, Input, useValidInput } from '@/shared/ui/input';
 import { Button } from '@/shared/ui/button';
-// import { emailValidator, passwordValidator } from '@/shared/lib/validators';
+import { emailValidator, passwordValidator } from '@/shared/lib/validators';
 import type { IRegisterFormProps } from './RegisterForm.interface';
 import styles from './RegisterForm.module.scss';
 
-// ! FIX
 const RegisterForm: FC<IRegisterFormProps> = memo((props) => {
   const { ...anotherProps } = props;
   const { t } = useTranslation('auth-modal');
-  // const emailInput = useValidInput({ input: { initialValue: '', validators: [emailValidator] } });
-  // const passwordInput = useValidInput({ input: { initialValue: '', validators: [passwordValidator] } });
-  // const repeatPasswordInput = useValidInput({ input: { initialValue: '', validators: [passwordValidator] } });
-
-  const emailInput = useValidInput();
-  const passwordInput = useValidInput();
-  const repeatPasswordInput = useValidInput();
+  const emailInput = useValidInput({ initValue: '', validators: [emailValidator] });
+  const passwordInput = useValidInput({ initValue: '', validators: [passwordValidator] });
+  const repeatPasswordInput = useValidInput({ initValue: '', validators: [passwordValidator] });
 
   const isDisable = passwordInput.data.isError || emailInput.data.isError || repeatPasswordInput.data.isError;
   const isMismatch =
@@ -40,13 +35,11 @@ const RegisterForm: FC<IRegisterFormProps> = memo((props) => {
         Icon={MdOutlineEmail}
         type="text"
         placeholder={t('Почта')}
-        // {...emailInput.data}
-        // {...emailInput.handlers}
-        // validError={t(emailInput.data.validError || '')}
-        data={emailInput.data}
-        dataChangers={emailInput.dataChangers}
-        eventHandlers={emailInput.eventHandlers}
+        {...emailInput.data}
+        {...emailInput.dataChangers}
+        {...emailInput.eventHandlers}
         ref={emailInput.ref}
+        validError={t(emailInput.data.validError || '')}
         className={styles.margin_bottom}
       />
 
@@ -54,28 +47,24 @@ const RegisterForm: FC<IRegisterFormProps> = memo((props) => {
         Icon={MdOutlinePassword}
         type="password"
         placeholder={t('Пароль')}
-        // {...passwordInput.data}
-        // {...passwordInput.handlers}
-        // validError={getPasswordError(passwordInput)}
-        // isError={passwordInput.data.isError || isMismatch}
-        data={passwordInput.data}
-        dataChangers={passwordInput.dataChangers}
-        eventHandlers={passwordInput.eventHandlers}
+        {...passwordInput.data}
+        {...passwordInput.dataChangers}
+        {...passwordInput.eventHandlers}
         ref={passwordInput.ref}
         className={styles.margin_bottom}
+        validError={getPasswordError(passwordInput)}
+        isError={passwordInput.data.isError || isMismatch}
       />
 
       <Input
         Icon={MdOutlinePassword}
         type="password"
         placeholder={t('Повторите пароль')}
-        // {...repeatPasswordInput.data}
-        // {...repeatPasswordInput.handlers}
-        // isError={repeatPasswordInput.data.isError || isMismatch}
-        // validError={getPasswordError(repeatPasswordInput)}
-        data={repeatPasswordInput.data}
-        dataChangers={repeatPasswordInput.dataChangers}
-        eventHandlers={repeatPasswordInput.eventHandlers}
+        {...repeatPasswordInput.data}
+        {...repeatPasswordInput.dataChangers}
+        {...repeatPasswordInput.eventHandlers}
+        isError={repeatPasswordInput.data.isError || isMismatch}
+        validError={getPasswordError(repeatPasswordInput)}
         ref={repeatPasswordInput.ref}
       />
 

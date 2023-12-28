@@ -47,6 +47,7 @@ export const useFocus = <T extends HTMLElement>(
   const onBlur = useCallback(
     (e: FocusEvent<T>) => {
       setIsFocus(false);
+      setIsTouched(true);
       onBlurHandler?.(e);
     },
     [onBlurHandler],

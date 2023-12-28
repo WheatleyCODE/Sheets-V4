@@ -5,15 +5,15 @@ import { CircleLoader } from '@/shared/ui/loaders';
 import { Input, useValidInput } from '@/shared/ui/input';
 import { intoIter } from '@/shared/lib/iterators';
 import { getInfoItemArr } from './ProfileCard.helpers';
-// import {
-//   ageValidator,
-//   avatarValidator,
-//   cityValidator,
-//   countryValidator,
-//   firstnameValidator,
-//   lastnameValidator,
-//   usernameValidator,
-// } from '@/shared/lib/validators';
+import {
+  ageValidator,
+  avatarValidator,
+  cityValidator,
+  countryValidator,
+  firstnameValidator,
+  lastnameValidator,
+  usernameValidator,
+} from '@/shared/lib/validators';
 import { ProfileCardEdit } from '../profile-card-edit/ProfileCardEdit';
 import { Country, Currency, ProfileCardTextAlign } from '../../model/consts/profile.consts';
 import { HStack, VStack } from '@/shared/ui/containers';
@@ -37,22 +37,14 @@ export const ProfileCard: FC<IProfileCardProps> = memo((props) => {
   const { age, avatar, city, country, currency, firstname, lastname, username } = profile;
   const { t } = useTranslation('profile');
 
-  // const avatarInput = useValidInput({ input: { initialValue: '', validators: [avatarValidator] } });
-  // const usernameInput = useValidInput({ input: { initialValue: '', validators: [usernameValidator] } });
-  // const firstnameInput = useValidInput({ input: { initialValue: '', validators: [firstnameValidator] } });
-  // const lastnameInput = useValidInput({ input: { initialValue: '', validators: [lastnameValidator] } });
-  // const ageInput = useValidInput({ input: { initialValue: '', validators: [ageValidator] } });
-  // const cityInput = useValidInput({ input: { initialValue: '', validators: [cityValidator] } });
-  // const currencyInput = useValidInput({ input: { initialValue: Currency.NONE } });
-  // const countryInput = useValidInput({ input: { initialValue: Country.NONE, validators: [countryValidator] } });
-  const avatarInput = useValidInput();
-  const usernameInput = useValidInput();
-  const firstnameInput = useValidInput();
-  const lastnameInput = useValidInput();
-  const ageInput = useValidInput();
-  const cityInput = useValidInput();
-  const currencyInput = useValidInput();
-  const countryInput = useValidInput();
+  const avatarInput = useValidInput({ initValue: '', validators: [avatarValidator] });
+  const usernameInput = useValidInput({ initValue: '', validators: [usernameValidator] });
+  const firstnameInput = useValidInput({ initValue: '', validators: [firstnameValidator] });
+  const lastnameInput = useValidInput({ initValue: '', validators: [lastnameValidator] });
+  const ageInput = useValidInput({ initValue: '', validators: [ageValidator] });
+  const cityInput = useValidInput({ initValue: '', validators: [cityValidator] });
+  const currencyInput = useValidInput({ initValue: Currency.NONE });
+  const countryInput = useValidInput({ initValue: Country.NONE, validators: [countryValidator] });
 
   useEffect(() => {
     avatarInput.dataChangers.changeValue(avatar || '');
@@ -87,13 +79,11 @@ export const ProfileCard: FC<IProfileCardProps> = memo((props) => {
             Icon={Icon}
             type="text"
             data-testid={title}
-            // {...input.data}
-            // {...input.handlers}
+            {...input.data}
+            {...input.dataChangers}
+            {...input.eventHandlers}
             isReadonly={isReadonly}
-            // validError={t(input.data.validError || '')}
-            data={input.data}
-            dataChangers={input.dataChangers}
-            eventHandlers={input.eventHandlers}
+            validError={t(input.data.validError || '')}
             ref={input.ref}
           />
         </Title>

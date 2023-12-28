@@ -25,8 +25,7 @@ export const AddCommentForm: FC<IAddCommentFormProps> = memo((props) => {
 
   const { setText } = useCommentFormActions();
   const text = useAddCommentFormText();
-  // const textInput = useValidInput({ input: { initialValue: text } });
-  const textInput = useValidInput();
+  const textInput = useValidInput({ initValue: text });
 
   const { t } = useTranslation();
 
@@ -57,13 +56,11 @@ export const AddCommentForm: FC<IAddCommentFormProps> = memo((props) => {
         type="text"
         data-testid="commentInput"
         placeholder={commentPlaceholder}
-        // {...textInput.data}
-        // {...textInput.handlers}
-        // validError={t(textInput.data.validError || '')}
-        // onChange={onChangeText}
-        data={textInput.data}
-        dataChangers={textInput.dataChangers}
-        eventHandlers={textInput.eventHandlers}
+        {...textInput.data}
+        {...textInput.dataChangers}
+        {...textInput.eventHandlers}
+        validError={t(textInput.data.validError || '')}
+        onChange={onChangeText}
         ref={textInput.ref}
         className={styles.input}
       />

@@ -30,10 +30,8 @@ const LoginForm: FC<ILoginFormProps> = memo((props) => {
   const password = useLoginPassword();
   const isLoading = useLoginIsLoading();
   const error = useLoginError();
-  // const emailInput = useValidInput({ input: { initialValue: email, validators: [emailValidator] } });
-  // const passwordInput = useValidInput({ input: { initialValue: password, validators: [passwordValidator] } });
-  const emailInput = useValidInput();
-  const passwordInput = useValidInput();
+  const emailInput = useValidInput({ initValue: email, validators: [emailValidator] });
+  const passwordInput = useValidInput({ initValue: password, validators: [passwordValidator] });
   const { t } = useTranslation('auth-modal');
 
   const isDisable = passwordInput.data.isError || emailInput.data.isError;
@@ -80,13 +78,11 @@ const LoginForm: FC<ILoginFormProps> = memo((props) => {
         type="text"
         placeholder={t('Почта')}
         data-testid="emailInput"
-        // {...emailInput.data}
-        // {...emailInput.handlers}
-        // validError={t(emailInput.data.validError || '')}
-        // onChange={onChangeEmail}
-        data={emailInput.data}
-        dataChangers={emailInput.dataChangers}
-        eventHandlers={emailInput.eventHandlers}
+        {...emailInput.data}
+        {...emailInput.dataChangers}
+        {...emailInput.eventHandlers}
+        validError={t(emailInput.data.validError || '')}
+        onChange={onChangeEmail}
         ref={emailInput.ref}
       />
 
@@ -96,13 +92,11 @@ const LoginForm: FC<ILoginFormProps> = memo((props) => {
         type="password"
         placeholder={t('Пароль')}
         data-testid="passwordInput"
-        // {...passwordInput.data}
-        // {...passwordInput.handlers}
-        // onChange={onChangePassword}
-        // validError={t(passwordInput.data.validError || '')}
-        data={passwordInput.data}
-        dataChangers={passwordInput.dataChangers}
-        eventHandlers={passwordInput.eventHandlers}
+        {...passwordInput.data}
+        {...passwordInput.dataChangers}
+        {...passwordInput.eventHandlers}
+        onChange={onChangePassword}
+        validError={t(passwordInput.data.validError || '')}
         ref={passwordInput.ref}
       />
 

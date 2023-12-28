@@ -32,8 +32,7 @@ export const Rating: FC<IRatingProps> = memo((props) => {
   const { isShow, openModal, closeModal } = useModals();
   const { t } = useTranslation();
   const [currentRate, setCurrentRate] = useState(rate);
-  // const textInput = useValidInput({ input: { initialValue: '' } });
-  const textInput = useValidInput();
+  const textInput = useValidInput({ initValue: '' });
 
   const onSelectStar = useCallback(
     (rate: number) => {
@@ -83,12 +82,10 @@ export const Rating: FC<IRatingProps> = memo((props) => {
                     type="text"
                     data-testid="rating.feedback"
                     placeholder={feedbackPlaceholder}
-                    // {...textInput.data}
-                    // {...textInput.handlers}
-                    // validError={t(textInput.data.validError || '')}
-                    data={textInput.data}
-                    dataChangers={textInput.dataChangers}
-                    eventHandlers={textInput.eventHandlers}
+                    {...textInput.data}
+                    {...textInput.dataChangers}
+                    {...textInput.eventHandlers}
+                    validError={t(textInput.data.validError || '')}
                     ref={textInput.ref}
                   />
                 </Confirm>

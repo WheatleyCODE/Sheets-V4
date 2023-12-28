@@ -18,12 +18,21 @@ export interface IInputSpecificProps {
 //     IUseValidInputResultData<T>,
 //     IInputSpecificProps {}
 
-type EventHandlers = UseValidInputResult['eventHandlers'];
-
+type ValidInputData = UseValidInputResult['data'];
+type ValidInputDataChangers = UseValidInputResult['dataChangers'];
+type ValidInputEventHandlers = UseValidInputResult['eventHandlers'];
+type ValidInputRef = UseValidInputResult['ref'];
 export interface IInputProps
-  extends Omit<React.HTMLAttributes<HTMLDivElement>, keyof EventHandlers>,
-    UseValidInputResult,
-    IInputSpecificProps {}
+  extends Omit<
+      React.HTMLAttributes<HTMLInputElement>,
+      keyof ValidInputData | keyof ValidInputDataChangers | keyof ValidInputEventHandlers
+    >,
+    ValidInputData,
+    ValidInputDataChangers,
+    ValidInputEventHandlers,
+    IInputSpecificProps {
+  ref: ValidInputRef;
+}
 
 // export interface IUseValidInputResultData<T> extends IUseDefaultEventsResultData {
 //   value: T;

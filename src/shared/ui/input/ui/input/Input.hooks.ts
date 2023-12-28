@@ -21,7 +21,8 @@ import {
   useClick,
   useFocus,
 } from '@/shared/lib/hooks/hooks-for-builder';
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { Validator } from '@/shared/lib/validators/get-validator/getValidator.interface';
+import { ChangeEvent, useCallback, useEffect, useMemo, useState } from 'react';
 
 // export const extractUseValidInputProps = <P extends object, EL, T extends string>(
 //   props: PropsWithUseValidInput<P, EL, T>,
@@ -123,16 +124,42 @@ export type UseValidInputParams<T extends HTMLElement> = {
     useFocus?: IUseFocusParams<T>;
     useClick?: IUseClickParams<T>;
   };
+
+  validators?: Validator[];
+  initValue?: string;
 };
 
 export const useValidInput = (params: UseValidInputParams<HTMLInputElement> = {}) => {
-  const { useValidInput } = params;
+  const { useValidInput, initValue = '', validators = [] } = params;
 
   const [validError, setValidError] = useState<null | string>(null);
   const [isError, setIsError] = useState(false);
 
+  const checkValue = useCallback(
+    (string: string) => {
+      validators?.forEach((fn) => {
+        setValidError(fn(string));
+      });
+    },
+    [validators],
+  );
+
+  const checkValueInEvent = useCallback(
+    (e: ChangeEvent<HTMLInputElement>) => {
+      validators?.forEach((fn) => {
+        setValidError(fn(e.target.value));
+      });
+    },
+    [validators],
+  );
+
+  const useChangeParams: IUseChangeParams<HTMLInputElement, string> = useMemo(
+    () => ({ initValue, onChange: checkValueInEvent, onChangeValue: checkValue, ...useValidInput?.useChange }),
+    [checkValue, checkValueInEvent, initValue, useValidInput?.useChange],
+  );
+
   const { data, dataChangers, eventHandlers, ref } = useValidInputEvents({
-    useChange: useValidInput?.useChange,
+    useChange: useChangeParams,
     useFocus: useValidInput?.useFocus,
     useClick: useValidInput?.useClick,
   });
