@@ -10,23 +10,34 @@ import type { IInputProps } from './Input.interface';
 import styles from './Input.module.scss';
 
 export const Input = typedMemo(<T extends string>(props: IInputProps) => {
-  const { isFocus, value, isError, validError, ref, Icon, className, type, isReadonly, placeholder, ...anotherProps } =
-    props;
+  const {
+    isFocus,
+    value,
+    isError,
+    validError,
+    inputRef,
+    Icon,
+    className,
+    type,
+    isReadonly,
+    placeholder,
+    ...anotherProps
+  } = props;
 
   const placeholderControls = useAnimation();
   const isErrorActive = !!(isError && validError);
   const isIcon = !!Icon;
 
   const focusOnInput = useCallback((e: MouseEvent<HTMLInputElement>) => {
-    if (ref?.current) ref.current.focus();
+    if (inputRef?.current) inputRef.current.focus();
     e.preventDefault();
   }, []);
 
   useEffect(() => {
-    if (!ref?.current) return;
+    if (!inputRef?.current) return;
 
-    if (isFocus) ref.current.focus();
-    if (!isFocus) ref.current.blur();
+    if (isFocus) inputRef.current.focus();
+    if (!isFocus) inputRef.current.blur();
   }, [isFocus]);
 
   useEffect(() => {
@@ -55,7 +66,7 @@ export const Input = typedMemo(<T extends string>(props: IInputProps) => {
       <input
         className={classNames(styles.input_textfild, { [styles.icon]: isIcon })}
         data-testid="input"
-        ref={ref}
+        ref={inputRef}
         value={value}
         type={type}
         {...anotherProps}

@@ -7,9 +7,6 @@ export type { IUseHoverResult, IUseHoverParams } from './use-hover/useHover.inte
 export { useDelayHover } from './use-delay-hover/useDelayHover';
 export type { IUseDelayHoverResult, IUseDelayHoverParams } from './use-delay-hover/useDelayHover.interface';
 
-export { useKeydown } from './use-keydown/useKeydown';
-export type { IUseKeydownResult, IUseKeydownParams } from './use-keydown/useKeydown.interface';
-
 export { useChange } from './use-change/useChange';
 export type { IUseChangeResult, IUseChangeParams } from './use-change/useChange.interface';
 

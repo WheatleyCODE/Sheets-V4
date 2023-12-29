@@ -119,18 +119,16 @@ const useValidInputEvents = new HookBuilder<UseValidInputMergedTypes<HTMLInputEl
 export type UseValidInputResult = ReturnType<typeof useValidInput>;
 
 export type UseValidInputParams<T extends HTMLElement> = {
-  useValidInput?: {
-    useChange?: IUseChangeParams<T, string>;
-    useFocus?: IUseFocusParams<T>;
-    useClick?: IUseClickParams<T>;
-  };
+  useChange?: IUseChangeParams<T, string>;
+  useFocus?: IUseFocusParams<T>;
+  useClick?: IUseClickParams<T>;
 
   validators?: Validator[];
   initValue?: string;
 };
 
 export const useValidInput = (params: UseValidInputParams<HTMLInputElement> = {}) => {
-  const { useValidInput, initValue = '', validators = [] } = params;
+  const { useChange, useFocus, useClick, initValue = '', validators = [] } = params;
 
   const [validError, setValidError] = useState<null | string>(null);
   const [isError, setIsError] = useState(false);
@@ -154,14 +152,14 @@ export const useValidInput = (params: UseValidInputParams<HTMLInputElement> = {}
   );
 
   const useChangeParams: IUseChangeParams<HTMLInputElement, string> = useMemo(
-    () => ({ initValue, onChange: checkValueInEvent, onChangeValue: checkValue, ...useValidInput?.useChange }),
-    [checkValue, checkValueInEvent, initValue, useValidInput?.useChange],
+    () => ({ initValue, onChange: checkValueInEvent, onChangeValue: checkValue, ...useChange }),
+    [checkValue, checkValueInEvent, initValue, useChange],
   );
 
   const { data, dataChangers, eventHandlers, ref } = useValidInputEvents({
     useChange: useChangeParams,
-    useFocus: useValidInput?.useFocus,
-    useClick: useValidInput?.useClick,
+    useFocus,
+    useClick,
   });
 
   useEffect(() => {
