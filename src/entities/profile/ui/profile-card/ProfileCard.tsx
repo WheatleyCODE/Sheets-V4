@@ -84,7 +84,7 @@ export const ProfileCard: FC<IProfileCardProps> = memo((props) => {
             {...input.eventHandlers}
             isReadonly={isReadonly}
             validError={t(input.data.validError || '')}
-            ref={input.ref}
+            inputRef={input.ref}
           />
         </Title>
       </HStack>

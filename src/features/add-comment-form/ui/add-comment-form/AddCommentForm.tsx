@@ -61,7 +61,7 @@ export const AddCommentForm: FC<IAddCommentFormProps> = memo((props) => {
         {...textInput.eventHandlers}
         validError={t(textInput.data.validError || '')}
         onChange={onChangeText}
-        ref={textInput.ref}
+        inputRef={textInput.ref}
         className={styles.input}
       />
 

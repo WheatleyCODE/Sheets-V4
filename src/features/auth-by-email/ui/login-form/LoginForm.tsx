@@ -83,7 +83,7 @@ const LoginForm: FC<ILoginFormProps> = memo((props) => {
         {...emailInput.eventHandlers}
         validError={t(emailInput.data.validError || '')}
         onChange={onChangeEmail}
-        ref={emailInput.ref}
+        inputRef={emailInput.ref}
       />
 
       <Input
@@ -97,7 +97,7 @@ const LoginForm: FC<ILoginFormProps> = memo((props) => {
         {...passwordInput.eventHandlers}
         onChange={onChangePassword}
         validError={t(passwordInput.data.validError || '')}
-        ref={passwordInput.ref}
+        inputRef={passwordInput.ref}
       />
 
       <Button onClick={onLogin} disable={isDisable || isLoading} className={styles.button} text={t('Войти')} />

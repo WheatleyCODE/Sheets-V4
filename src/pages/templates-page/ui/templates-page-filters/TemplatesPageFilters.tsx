@@ -159,7 +159,7 @@ export const TemplatesPageFilters: FC<ITemplatesPageFiltersProps> = (props) => {
               {...searchInput.data}
               {...searchInput.dataChangers}
               {...searchInput.eventHandlers}
-              ref={searchInput.ref}
+              inputRef={searchInput.ref}
               onChange={onChangeSearch}
               validError={t(searchInput.data.validError || '')}
             />
@@ -177,7 +177,7 @@ export const TemplatesPageFilters: FC<ITemplatesPageFiltersProps> = (props) => {
               {...sortInput.data}
               {...sortInput.dataChangers}
               {...sortInput.eventHandlers}
-              ref={sortInput.ref}
+              inputRef={sortInput.ref}
               validError={t(sortInput.data.validError || '')}
             />
           </div>
@@ -195,7 +195,7 @@ export const TemplatesPageFilters: FC<ITemplatesPageFiltersProps> = (props) => {
               {...sortOrderInput.dataChangers}
               {...sortOrderInput.eventHandlers}
               validError={t(sortOrderInput.data.validError || '')}
-              ref={sortOrderInput.ref}
+              inputRef={sortOrderInput.ref}
             />
           </div>
         </Title>

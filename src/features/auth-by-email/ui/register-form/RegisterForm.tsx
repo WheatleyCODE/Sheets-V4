@@ -38,7 +38,7 @@ const RegisterForm: FC<IRegisterFormProps> = memo((props) => {
         {...emailInput.data}
         {...emailInput.dataChangers}
         {...emailInput.eventHandlers}
-        ref={emailInput.ref}
+        inputRef={emailInput.ref}
         validError={t(emailInput.data.validError || '')}
         className={styles.margin_bottom}
       />
@@ -50,7 +50,7 @@ const RegisterForm: FC<IRegisterFormProps> = memo((props) => {
         {...passwordInput.data}
         {...passwordInput.dataChangers}
         {...passwordInput.eventHandlers}
-        ref={passwordInput.ref}
+        inputRef={passwordInput.ref}
         className={styles.margin_bottom}
         validError={getPasswordError(passwordInput)}
         isError={passwordInput.data.isError || isMismatch}
@@ -65,7 +65,7 @@ const RegisterForm: FC<IRegisterFormProps> = memo((props) => {
         {...repeatPasswordInput.eventHandlers}
         isError={repeatPasswordInput.data.isError || isMismatch}
         validError={getPasswordError(repeatPasswordInput)}
-        ref={repeatPasswordInput.ref}
+        inputRef={repeatPasswordInput.ref}
       />
 
       <Button disable={isDisable || isMismatch} className={styles.button} text={t('Регистрация')} />

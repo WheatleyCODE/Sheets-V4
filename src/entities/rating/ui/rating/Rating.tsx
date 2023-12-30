@@ -86,7 +86,7 @@ export const Rating: FC<IRatingProps> = memo((props) => {
                     {...textInput.dataChangers}
                     {...textInput.eventHandlers}
                     validError={t(textInput.data.validError || '')}
-                    ref={textInput.ref}
+                    inputRef={textInput.ref}
                   />
                 </Confirm>
               </Modal>
