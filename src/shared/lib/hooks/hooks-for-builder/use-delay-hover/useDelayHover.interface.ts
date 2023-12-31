@@ -23,7 +23,9 @@ export interface IUseDelayHoverParams<T extends HTMLElement> {
   time?: number;
   delay?: number;
   refresh?: number;
-  onMouseEnter?: (e: MouseEvent<T>) => void;
+  onMouseEnterStart?: (e: MouseEvent<T>) => void;
+  onMouseEnterEnd?: (e: MouseEvent<T>) => void;
+  onClose?: () => void;
   onMouseLeave?: (e: MouseEvent<T>) => void;
   onMouseMove?: (e: MouseEvent<T>) => void;
   onChangeIsHover?: (boolean: boolean) => void;

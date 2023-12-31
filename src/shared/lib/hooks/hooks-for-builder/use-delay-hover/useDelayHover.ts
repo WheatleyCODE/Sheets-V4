@@ -2,6 +2,8 @@ import { MutableRefObject, useCallback, useState, useRef, MouseEvent } from 'rea
 import type { IUseDelayHoverParams, IUseDelayHoverResult } from './useDelayHover.interface';
 import { useDebounce } from '../../use-debounce/useDebounce';
 
+// ! Хук один и тот-же только один принимает реф, другой нет. Можно вложить один в другой
+
 export const useDelayHover = <T extends HTMLElement>(
   ref: MutableRefObject<T | null>,
   params: IUseDelayHoverParams<T> = {},
@@ -10,7 +12,9 @@ export const useDelayHover = <T extends HTMLElement>(
     onChangeIsHover,
     onChangeIsMove,
     onMouseLeave: onMouseLeaveHandler,
-    onMouseEnter: onMouseEnterHandler,
+    onMouseEnterStart,
+    onMouseEnterEnd,
+    onClose: onCloseHandler,
     onMouseMove: onMouseMoveHandler,
     time = 700,
     delay = 500,
@@ -23,8 +27,15 @@ export const useDelayHover = <T extends HTMLElement>(
   const first = useRef(false);
   const target = useRef(false);
 
-  const close = useDebounce(() => setIsMove(false), time);
-  const refreshFirstHover = useDebounce(() => (first.current = false), refresh);
+  const onClose = useCallback(() => {
+    setIsMove(false);
+    onCloseHandler?.();
+  }, [onCloseHandler]);
+
+  const refreshFirst = useCallback(() => (first.current = false), []);
+
+  const close = useDebounce(onClose, time);
+  const refreshFirstHover = useDebounce(refreshFirst, refresh);
 
   const changeIsHover = useCallback(
     (boolean: boolean) => {
@@ -45,13 +56,14 @@ export const useDelayHover = <T extends HTMLElement>(
   const onMouseEnter = useCallback(
     (e: MouseEvent<T>) => {
       target.current = true;
+      onMouseEnterStart?.(e);
 
       if (!first.current) {
         setTimeout(() => {
           if (target.current) {
             setIsHover(true);
             first.current = true;
-            onMouseEnterHandler?.(e);
+            onMouseEnterEnd?.(e);
           }
         }, delay);
         return;
@@ -59,7 +71,7 @@ export const useDelayHover = <T extends HTMLElement>(
 
       setIsHover(true);
     },
-    [first, delay, target, onMouseEnterHandler],
+    [first, delay, target, onMouseEnterStart, onMouseEnterEnd],
   );
 
   const onMouseMove = useCallback(

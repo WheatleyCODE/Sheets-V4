@@ -1,5 +1,4 @@
 .controllable_menu_item {
-  position: relative;
   cursor: pointer;
   height: 35px;
   display: flex;
@@ -9,12 +8,15 @@
   width: 100%;
 }
 
-.menu {
-  z-index: 100;
-  position: absolute;
-  background-color: red;
-  right: 0;
-}
+// .controllable_menu_item:hover {
+//   background-color: var(--color-item-hover);
+//   color: var(--color-primary);
+// }
+
+// .controllable_menu_item:active {
+//   background-color: var(--color-item-hover1);
+//   color: var(--color-primary);
+// }
 
 .controllable_menu_item.active {
   background-color: var(--color-item-hover);

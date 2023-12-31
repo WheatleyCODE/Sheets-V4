@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
 import { intoIter } from '../../iterators';
-import { EventHandler, KeyboardKeys, UseKeydownOpts } from './useKeydown.interface';
+import { EventHandler, KeyboardKeys, UseKeydownOpts } from './useGlobalKeydown.interface';
 
-export const useKeydown = (opts: UseKeydownOpts) => {
+export const useGlobalKeydown = (opts: UseKeydownOpts) => {
   useEffect(() => {
     const keydownHandler = (e: KeyboardEvent) => {
       const iter = intoIter<[KeyboardKeys, EventHandler[]]>(opts, 'entries');

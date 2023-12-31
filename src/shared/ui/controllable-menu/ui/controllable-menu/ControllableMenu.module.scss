@@ -1,7 +1,8 @@
-// @import '@/app/styles/mixins/global.scss';
+@import '@/app/styles/mixins/global';
 
-// .controllable_menu {
-//   @include scroll;
+.controllable_menu {
+  @include scroll;
 
-//   overflow: auto;
-// }
+  width: 500px;
+  overflow: auto;
+}

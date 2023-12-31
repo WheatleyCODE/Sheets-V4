@@ -1,83 +1,146 @@
-// import { useCallback, useEffect, useState } from 'react';
-// import { extractUseDefaultEventsProps, useDefaultEvents } from '@/shared/lib/hooks';
-// import {
-//   IUseControllableMenuParams,
-//   IUseControllableMenuResult,
-//   PropsWithUseControllableMenu,
-//   PropsWithoutUseControllableMenu,
-//   ResultWithoutUseControllableMenu,
-// } from './ControllableMenu.interface';
+import { useCallback, useMemo, useState } from 'react';
+import {
+  IUseHoverParams,
+  IUseKeydownParams,
+  IUseKeydownResult,
+  useKeydown,
+} from '@/shared/lib/hooks/hooks-for-builder';
+import { Cache } from '@/shared/lib/cache';
+import { HookBuilder } from '@/shared/lib/hook-builder';
+import type { IControllableMenuItem } from './ControllableMenu.interface';
+import { useGlobalKeydown } from '@/shared/lib/hooks';
 
-// export const extractUseControllableMenuProps = <P extends object, EL>(
-//   props: PropsWithUseControllableMenu<P, EL>,
-// ): ResultWithoutUseControllableMenu<P, EL> => {
-//   const [props1, defData, defHandlers] = extractUseDefaultEventsProps(props);
+export type UseControllableMenuMergedTypes = [IUseKeydownResult];
 
-//   const { changeCurrentIndex, currentIndex, ...anotherProps } = props1;
+const useKeydownParams: IUseKeydownParams = { onKeyDown: (e) => e.preventDefault() };
 
-//   return [
-//     anotherProps as PropsWithoutUseControllableMenu<P, EL>,
-//     { ...defData, changeCurrentIndex, currentIndex },
-//     { ...defHandlers },
-//   ];
-// };
+const useControllableMenuEvents = new HookBuilder<UseControllableMenuMergedTypes, HTMLDivElement>()
+  .enableMemo(new Cache())
+  .addHook(useKeydown, useKeydownParams)
+  .build();
 
-// export const useControllableMenu = (params: IUseControllableMenuParams = {}): IUseControllableMenuResult => {
-//   const { controllableMenu = { items: [] }, default: defEvents } = params;
-//   const { items, onChangeIndex } = controllableMenu;
-//   const [currentIndex, setCurrentIndex] = useState(0);
-//   const { data, handlers } = useDefaultEvents(defEvents);
+export type UseValidInputParams<T extends HTMLElement> = {
+  useHover?: IUseHoverParams<T>;
 
-//   const changeCurrentIndex = useCallback(
-//     (index: number) => {
-//       setCurrentIndex(index);
-//       onChangeIndex?.(items[index]);
-//     },
-//     [items, onChangeIndex],
-//   );
+  items?: IControllableMenuItem[];
+  initActiveIndex?: number;
+  onChangeIndex?: (item: IControllableMenuItem) => void;
+};
 
-//   const addCurrentIndex = useCallback(
-//     (num: number) => {
-//       setCurrentIndex((p) => {
-//         if (p + num >= items.length - 1) {
-//           onChangeIndex?.(items[items.length - 1]);
-//           return items.length - 1;
-//         }
+export type useControllableMenuResult = ReturnType<typeof useControllableMenu>;
 
-//         if (p + num <= 0) {
-//           onChangeIndex?.(items[0]);
-//           return 0;
-//         }
+export type DepthState = { index: number; next?: DepthState };
 
-//         onChangeIndex?.(items[p + num]);
-//         return p + num;
-//       });
-//     },
-//     [items, onChangeIndex],
-//   );
+export const useControllableMenu = (params: UseValidInputParams<HTMLDivElement> = {}) => {
+  const { useHover, items = [], initActiveIndex = 0, onChangeIndex } = params;
 
-//   useEffect(() => {
-//     const cb = (e: KeyboardEvent) => {
-//       if (e.key === 'ArrowUp') addCurrentIndex(-1);
-//       if (e.key === 'ArrowDown') addCurrentIndex(1);
-//     };
+  // const [activeIndex, setActiveIndex] = useState(initActiveIndex);
+  // const [activeDepth, setActiveDepth] = useState(0);
 
-//     document.addEventListener('keydown', cb);
+  const [menuState, setMenuState] = useState<DepthState>({ index: initActiveIndex });
 
-//     return () => {
-//       document.removeEventListener('keydown', cb);
-//     };
-//   }, [addCurrentIndex]);
+  // const state = { index: 4, next: { index: 1, next: { index: 0 } } };
 
-//   return {
-//     data: {
-//       currentIndex,
-//       changeCurrentIndex,
-//       ...data,
-//     },
+  console.log(menuState);
 
-//     handlers: {
-//       ...handlers,
-//     },
-//   };
-// };
+  const changeMenuState = useCallback((index: number, depth: number) => {
+    if (depth === 0) {
+      setMenuState({ index });
+    }
+
+    if (depth === 1) {
+      setMenuState((p) => {
+        return { ...p, next: { index } };
+      });
+    }
+
+    if (depth === 2) {
+      setMenuState((p) => {
+        if (!p.next) return { index };
+
+        return { ...p, next: { ...p.next, next: { index } } };
+      });
+    }
+  }, []);
+
+  const addCurrentDepthIndex = useCallback(
+    (num: number) => {
+      if (menuState?.next?.next) {
+        setMenuState((p) => {
+          if (!p.next?.next) return { index: 0 };
+
+          return { ...p, next: { ...p.next, next: { ...p.next.next, index: p.next.next.index + num } } };
+        });
+
+        return;
+      }
+
+      if (menuState?.next) {
+        setMenuState((p) => {
+          if (!p.next) return { index: 0 };
+
+          return { ...p, next: { ...p.next, index: p.next.index + num } };
+        });
+
+        return;
+      }
+
+      setMenuState((p) => ({ ...p, index: p.index + num }));
+    },
+    [menuState],
+  );
+
+  // const addActiveIndex = useCallback(
+  //   (num: number) => {
+  //     setActiveIndex((p) => {
+  //       if (p + num >= items.length - 1) {
+  //         onChangeIndex?.(items[items.length - 1]);
+  //         return items.length - 1;
+  //       }
+
+  //       if (p + num <= 0) {
+  //         onChangeIndex?.(items[0]);
+  //         return 0;
+  //       }
+
+  //       onChangeIndex?.(items[p + num]);
+  //       return p + num;
+  //     });
+  //   },
+  //   [items, onChangeIndex],
+  // );
+
+  // const changeActiveIndex = useCallback(
+  //   (index: number) => {
+  //     setActiveIndex(index);
+  //     onChangeIndex?.(items[index]);
+  //   },
+  //   [items, onChangeIndex],
+  // );
+
+  const { data, dataChangers, eventHandlers, ref } = useControllableMenuEvents({
+    useHover,
+  });
+
+  const arrowUpHandler = useCallback(
+    (e: KeyboardEvent) => {
+      e.preventDefault();
+      addCurrentDepthIndex(-1);
+      console.log(ref.current?.scrollTop);
+    },
+    [addCurrentDepthIndex, ref],
+  );
+  const arrowDownHandler = useCallback(() => addCurrentDepthIndex(1), [addCurrentDepthIndex]);
+
+  useGlobalKeydown({ ArrowUp: [arrowUpHandler], ArrowDown: [arrowDownHandler] });
+
+  return {
+    data: useMemo(() => ({ ...data, items, menuState }), [menuState, data, items]),
+    dataChangers: useMemo(
+      () => ({ ...dataChangers, changeMenuState, addCurrentDepthIndex }),
+      [addCurrentDepthIndex, changeMenuState, dataChangers],
+    ),
+    eventHandlers,
+    ref,
+  };
+};

@@ -1,4 +1,4 @@
-export type EventHandler = (e?: KeyboardEvent) => void;
+export type EventHandler = (e: KeyboardEvent) => void;
 export type KeyboardKeys = 'Escape' | 'ArrowDown' | 'ArrowUp' | 'ArrowLeft' | 'ArrowRight';
 
 export type UseKeydownOpts = {
