@@ -146,7 +146,8 @@
       "email": "ya@mail.ru",
       "password": "12345678",
       "roles": [
-        "ADMIN"
+        "ADMIN",
+        "DEVELOPER"
       ],
       "username": "Admin",
       "features": {
