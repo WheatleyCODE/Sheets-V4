@@ -163,7 +163,9 @@
       "email": "user@mail.ru",
       "password": "12345678",
       "roles": [
-        "USER"
+        "USER",
+        "ADMIN",
+        "DEVELOPER"
       ],
       "username": "User",
       "clientSettings": {
