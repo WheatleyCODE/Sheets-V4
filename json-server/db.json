@@ -147,7 +147,8 @@
       "password": "12345678",
       "roles": [
         "ADMIN",
-        "DEVELOPER"
+        "DEVELOPER",
+        "USER"
       ],
       "username": "Admin",
       "features": {
