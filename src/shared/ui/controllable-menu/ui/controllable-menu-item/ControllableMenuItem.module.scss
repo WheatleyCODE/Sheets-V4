@@ -12,8 +12,10 @@
 .menu {
   z-index: 100;
   position: absolute;
-  background-color: red;
-  right: 0;
+  // width: 100%;
+  background-color: rgb(170, 135, 135);
+  color: var(--color-white);
+  right: -100px;
 }
 
 .controllable_menu_item.active {

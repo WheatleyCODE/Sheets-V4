@@ -5,33 +5,40 @@ import type { IControllableMenuItemProps } from './ControllableMenuItem.interfac
 import styles from './ControllableMenuItem.module.scss';
 import { useDelayHover } from '@/shared/lib/hooks/hooks-for-builder';
 import { IControllableMenuItem } from '../controllable-menu/ControllableMenu.interface';
+import { CONTROLLABLE_MENU_ITEM_HEIGHT, CONTROLLABLE_MENU_PADDING } from '../controllable-menu/ControllableMenu.consts';
 
 export const ControllableMenuItem: FC<IControllableMenuItemProps> = (props) => {
   const { className, item, isActive, depth, index, changeMenuState, menuState, ...anotherProps } = props;
   const { Icon, text } = item;
 
   const onMouseEnterStart = useCallback(() => {
+    console.log(index, depth);
+
     changeMenuState(index, depth);
   }, [changeMenuState, depth, index]);
 
-  const lol = useCallback(() => {
+  const onMouseEnterEnd = useCallback(() => {
     changeMenuState(0, depth + 1);
   }, [changeMenuState, depth]);
 
-  // const onMouseDown = useCallback(() => {
-  //   onSelectItem?.(item);
-  // }, [item, onSelectItem]);
-
   // ! FIX {} as any
   const { data, dataChangers, eventHandlers } = useDelayHover({} as any, {
-    onMouseEnterEnd: () => console.log('end'),
+    onMouseEnterEnd,
     onMouseEnterStart,
   });
 
   const menuJsx = () => {
+    const height = 3 * CONTROLLABLE_MENU_ITEM_HEIGHT + CONTROLLABLE_MENU_PADDING * 2 - CONTROLLABLE_MENU_PADDING;
+
     const to = (items: IControllableMenuItem[]) => {
+      let activeIndex = menuState.next?.index;
+
+      if (depth === 1) {
+        activeIndex = menuState.next?.next?.index;
+      }
+
       return (
-        <div className={styles.menu}>
+        <div style={{ height }} className={styles.menu}>
           {items.map((item, i) => (
             <ControllableMenuItem
               item={item}
@@ -39,19 +46,24 @@ export const ControllableMenuItem: FC<IControllableMenuItemProps> = (props) => {
               changeMenuState={changeMenuState}
               depth={depth + 1}
               menuState={menuState}
-              isActive={i === menuState.next?.index}
+              isActive={i === activeIndex}
             />
           ))}
         </div>
       );
     };
 
-    if (menuState?.next && item.childrenItems) {
-      return to(item.childrenItems);
+    if (depth === 0) {
+      if (menuState?.next && item.childrenItems) {
+        return to(item.childrenItems);
+      }
     }
 
-    if (data.isShow && item.childrenItems) {
-      return to(item.childrenItems);
+    if (depth === 1) {
+      if (menuState?.next?.next && item.childrenItems) {
+        console.log('work', depth);
+        return to(item.childrenItems);
+      }
     }
   };
 

@@ -3,6 +3,7 @@ import {
   IUseHoverParams,
   IUseKeydownParams,
   IUseKeydownResult,
+  useClickOutside,
   useKeydown,
 } from '@/shared/lib/hooks/hooks-for-builder';
 import { Cache } from '@/shared/lib/cache';
@@ -17,6 +18,7 @@ const useKeydownParams: IUseKeydownParams = { onKeyDown: (e) => e.preventDefault
 const useControllableMenuEvents = new HookBuilder<UseControllableMenuMergedTypes, HTMLDivElement>()
   .enableMemo(new Cache())
   .addHook(useKeydown, useKeydownParams)
+  .addHook(useClickOutside)
   .build();
 
 export type UseValidInputParams<T extends HTMLElement> = {
@@ -41,33 +43,86 @@ export const useControllableMenu = (params: UseValidInputParams<HTMLDivElement> 
 
   // const state = { index: 4, next: { index: 1, next: { index: 0 } } };
 
-  console.log(menuState);
+  console.log(menuState, 'menustate');
 
-  const changeMenuState = useCallback((index: number, depth: number) => {
-    if (depth === 0) {
-      setMenuState({ index });
-    }
+  const changeMenuState = useCallback(
+    (index: number, depth: number) => {
+      if (depth === 0) {
+        setMenuState({ index });
+      }
 
-    if (depth === 1) {
-      setMenuState((p) => {
-        return { ...p, next: { index } };
-      });
-    }
+      if (depth === 1) {
+        setMenuState((p) => {
+          if (items?.[p.index]?.childrenItems) {
+            return { ...p, next: { index } };
+          }
 
-    if (depth === 2) {
-      setMenuState((p) => {
-        if (!p.next) return { index };
+          return p;
+        });
+      }
 
-        return { ...p, next: { ...p.next, next: { index } } };
-      });
-    }
-  }, []);
+      if (depth === 2) {
+        console.log(depth, 'открыть некст');
+
+        setMenuState((p) => {
+          if (!p.next) return { index };
+
+          if (items?.[p.index]?.childrenItems?.[p.next.index]?.childrenItems) {
+            return { ...p, next: { ...p.next, next: { ...p.next.next, index } } };
+          }
+
+          return p;
+        });
+      }
+    },
+    [items],
+  );
+
+  const addCurrentDepth = useCallback(
+    (num: 1 | -1) => {
+      if (num === -1) {
+        setMenuState((p) => {
+          console.log(p);
+
+          let state: DepthState = p;
+          let newState: DepthState = { index: p.index };
+
+          while (state?.next) {
+            if (state.next?.next) {
+              newState = { ...newState, next: { index: state.next.index } };
+            }
+
+            state = state.next;
+          }
+
+          return newState;
+        });
+      }
+
+      if (num === 1) {
+        let state: DepthState = menuState;
+        let depth = 0;
+
+        while (state?.next) {
+          state = state.next;
+          depth++;
+        }
+
+        changeMenuState(0, depth + 1);
+      }
+    },
+    [changeMenuState, menuState],
+  );
 
   const addCurrentDepthIndex = useCallback(
     (num: number) => {
       if (menuState?.next?.next) {
+        console.log('wwwww');
+
         setMenuState((p) => {
           if (!p.next?.next) return { index: 0 };
+
+          console.log('wwwww2');
 
           return { ...p, next: { ...p.next, next: { ...p.next.next, index: p.next.next.index + num } } };
         });
@@ -120,6 +175,7 @@ export const useControllableMenu = (params: UseValidInputParams<HTMLDivElement> 
 
   const { data, dataChangers, eventHandlers, ref } = useControllableMenuEvents({
     useHover,
+    useClickOutside: { handler: () => console.log('work2') },
   });
 
   const arrowUpHandler = useCallback(
@@ -132,7 +188,22 @@ export const useControllableMenu = (params: UseValidInputParams<HTMLDivElement> 
   );
   const arrowDownHandler = useCallback(() => addCurrentDepthIndex(1), [addCurrentDepthIndex]);
 
-  useGlobalKeydown({ ArrowUp: [arrowUpHandler], ArrowDown: [arrowDownHandler] });
+  const arrowRightHandler = useCallback(() => {
+    console.log('right');
+    addCurrentDepth(1);
+  }, [addCurrentDepth]);
+
+  const arrowLeftHandler = useCallback(() => {
+    console.log('left');
+    addCurrentDepth(-1);
+  }, [addCurrentDepth]);
+
+  useGlobalKeydown({
+    ArrowUp: [arrowUpHandler],
+    ArrowDown: [arrowDownHandler],
+    ArrowRight: [arrowRightHandler],
+    ArrowLeft: [arrowLeftHandler],
+  });
 
   return {
     data: useMemo(() => ({ ...data, items, menuState }), [menuState, data, items]),

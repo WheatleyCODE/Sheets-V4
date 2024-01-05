@@ -6,6 +6,7 @@ import styles from './ControllableMenu.module.scss';
 import { intoIter } from '@/shared/lib/iterators';
 import { CONTROLLABLE_MENU_ITEM_HEIGHT, CONTROLLABLE_MENU_PADDING } from './ControllableMenu.consts';
 import { ControllableMenuItem } from '../controllable-menu-item/ControllableMenuItem';
+import { useClickOutside } from '@/shared/lib/hooks';
 
 export const ControllableMenu: FC<IControllableMenuProps> = (props) => {
   const {

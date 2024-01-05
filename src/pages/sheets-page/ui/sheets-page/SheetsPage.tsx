@@ -34,7 +34,15 @@ const SheetsPage: FC = memo(() => {
         childrenItems: [
           { text: '33', value: '33' },
           { text: '333', value: '333' },
-          { text: '3333', value: '3333' },
+          {
+            text: '3333',
+            value: '3333',
+            childrenItems: [
+              { text: '2-33', value: '2-33' },
+              { text: '2-333', value: '2-333' },
+              { text: '2-3333', value: '2-3333' },
+            ],
+          },
         ],
       },
       { text: '4', value: '4' },

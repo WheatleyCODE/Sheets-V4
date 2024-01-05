@@ -43,9 +43,7 @@ export const useClickOutside = <T extends HTMLElement, O extends HTMLElement>(
 
   return {
     data: {},
-
     dataChangers: {},
-
     eventHandlers: {},
   };
 };
