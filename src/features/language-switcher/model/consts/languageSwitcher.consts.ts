@@ -1,5 +1,5 @@
+import { TFunction } from 'i18next';
 import { MdOutlineKeyboardArrowLeft, MdOutlineLanguage, MdOutlineViewKanban } from 'react-icons/md';
-import { ILanguagesItems } from '../types/languageSwitcher.interface';
 
 export enum UILanguages {
   RU = 'ru',
@@ -7,15 +7,18 @@ export enum UILanguages {
   FR = 'fr',
 }
 
-export const languageItems: ILanguagesItems[] = [
-  { Icon: MdOutlineViewKanban, text: 'Настройки' },
-  {
-    Icon: MdOutlineKeyboardArrowLeft,
-    text: 'Сменить язык',
-    subItems: [
-      { Icon: MdOutlineLanguage, text: 'Русский', uiLang: UILanguages.RU },
-      { Icon: MdOutlineLanguage, text: 'Английский', uiLang: UILanguages.EN },
-      { Icon: MdOutlineLanguage, text: 'Французский', uiLang: UILanguages.EN }, // ! Change UILanguages.FR
-    ],
-  },
-];
+export const getLanguageItems = (t: TFunction) => {
+  return [
+    { text: t('Настройки'), value: 'Настройки', Icon: MdOutlineViewKanban },
+    {
+      text: t('Сменить язык'),
+      value: 'Сменить язык',
+      Icon: MdOutlineKeyboardArrowLeft,
+      childrenItems: [
+        { text: t('Русский'), value: UILanguages.RU, Icon: MdOutlineLanguage },
+        { text: t('Английский'), value: UILanguages.EN, Icon: MdOutlineLanguage },
+        { text: t('Французский'), value: UILanguages.FR, Icon: MdOutlineLanguage },
+      ],
+    },
+  ];
+};

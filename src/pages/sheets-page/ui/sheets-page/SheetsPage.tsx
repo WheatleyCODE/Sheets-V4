@@ -4,6 +4,38 @@ import styles from './SheetsPage.module.scss';
 import { Snackbar, useSnackbar } from '@/shared/ui/snackbar';
 import { IUseClickParams } from '@/shared/lib/hooks/hooks-for-builder';
 import { ControllableMenu, useControllableMenu } from '@/shared/ui/controllable-menu';
+import { MdHome } from 'react-icons/md';
+
+const AAA = [
+  { text: 'Первый пункт', value: '1', Icon: MdHome },
+  { text: 'Второй пункт', value: '2', Icon: MdHome },
+  {
+    text: 'Третий пункт',
+    value: '3',
+    Icon: MdHome,
+    childrenItems: [
+      { text: 'Первый под-пункт', value: '33', Icon: MdHome },
+      { text: 'Второй под-пункт', value: '333', Icon: MdHome },
+      { text: 'Третий под-пункт', value: '333`', Icon: MdHome },
+      { text: 'Четвертый под-пункт', value: '333`1', Icon: MdHome },
+      {
+        text: 'Пятый под-пункт',
+        value: '3333',
+        Icon: MdHome,
+        childrenItems: [
+          { text: 'Первый под-под-пункт', value: '2-33', Icon: MdHome },
+          { text: 'Второй под-под-пункт', value: '2-333', Icon: MdHome },
+          { text: 'Третий под-под-пункт', value: '2-3333', Icon: MdHome },
+        ],
+      },
+    ],
+  },
+  { text: 'Четвертый пункт', value: '4', Icon: MdHome },
+  { text: 'Пятый пункт', value: '5', Icon: MdHome },
+  { text: 'Шестой пункт', value: '6', Icon: MdHome },
+  { text: 'Седьмой пункт', value: '7', Icon: MdHome },
+  { text: 'Восьмой пункт', value: '8', Icon: MdHome },
+];
 
 const SheetsPage: FC = memo(() => {
   const [a, s] = useState(false);
@@ -25,32 +57,8 @@ const SheetsPage: FC = memo(() => {
   // }, [eventHandlers]);
 
   const { data, dataChangers, eventHandlers, ref } = useControllableMenu({
-    items: [
-      { text: '1', value: '1' },
-      { text: '2', value: '2' },
-      {
-        text: '3',
-        value: '3',
-        childrenItems: [
-          { text: '33', value: '33' },
-          { text: '333', value: '333' },
-          {
-            text: '3333',
-            value: '3333',
-            childrenItems: [
-              { text: '2-33', value: '2-33' },
-              { text: '2-333', value: '2-333' },
-              { text: '2-3333', value: '2-3333' },
-            ],
-          },
-        ],
-      },
-      { text: '4', value: '4' },
-      { text: '5', value: '5' },
-      { text: '6', value: '6' },
-      { text: '7', value: '7' },
-      { text: '8', value: '8' },
-    ],
+    items: AAA,
+    onSelectItem: (item) => console.log(item, 'select'),
   });
 
   return (
@@ -62,7 +70,7 @@ const SheetsPage: FC = memo(() => {
 
       {/* {data.isShow && <Snackbar data={data} dataChangers={dataChangers} eventHandlers={eventHandlers} ref={ref} />} */}
 
-      <ControllableMenu {...data} {...dataChangers} {...eventHandlers} menuRef={ref} />
+      {/* <ControllableMenu side="right" {...data} {...dataChangers} {...eventHandlers} menuRef={ref} /> */}
     </section>
   );
 });

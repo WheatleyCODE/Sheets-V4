@@ -1,63 +1,50 @@
-import { FC, memo } from 'react';
+import { FC, memo, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { AnimatePresence } from 'framer-motion';
 import { MdOutlineLanguage } from 'react-icons/md';
 import { ANIMATION_DURATION_MS } from '@/shared/consts';
 import { sleep } from '@/shared/lib/promise';
-import { intoIter } from '@/shared/lib/iterators';
-import { UILanguages, languageItems } from '../../model/consts/languageSwitcher.consts';
+import { UILanguages, getLanguageItems } from '../../model/consts/languageSwitcher.consts';
 import { Title } from '@/shared/ui/title';
+import { ControllableMenu, useControllableMenu } from '@/shared/ui/controllable-menu';
 import { Button } from '@/shared/ui/button';
-import {
-  DropdownMenu,
-  DropdownMenuItem,
-  MDropdown,
-  usePopups,
-  useDropdownSubMenuAnimationFixer,
-  dropdownAnimations,
-} from '@/shared/ui/popups';
+import { MDropdown, usePopups, useDropdownSubMenuAnimationFixer, dropdownAnimations } from '@/shared/ui/popups';
 import { classNames } from '@/shared/lib/class-names';
 import type { ILanguageSwitcherProps } from './LanguageSwitcher.interface';
-import type { ILanguagesItems, ILanguagesSubItems } from '../../model/types/languageSwitcher.interface';
 import styles from './LanguageSwitcher.module.scss';
 
 export const LanguageSwitcher: FC<ILanguageSwitcherProps> = memo((props) => {
   const { className, ...anotherProps } = props;
   const { t, i18n } = useTranslation('home');
 
+  // ! FIX usePopups
   const { isShow, closePopup, togglePopup } = usePopups();
   const { overflowStyles, close: closeDropdownHandler, onMouseEnter } = useDropdownSubMenuAnimationFixer(closePopup);
 
-  const getSetLanguage = (lang: UILanguages) => async () => {
-    closeDropdownHandler();
-    await sleep(ANIMATION_DURATION_MS);
-    i18n.changeLanguage((i18n.language = lang));
-  };
+  const { data, dataChangers, eventHandlers, ref } = useControllableMenu({
+    items: getLanguageItems(t),
+    isHorizontalReverse: true,
+    onSelectItem: async (item) => {
+      closeDropdownHandler();
 
-  const items = intoIter<ILanguagesItems>(languageItems)
-    .map((item) => {
-      return (
-        <DropdownMenuItem key={item.text} text={t(item.text)} Icon={item.Icon}>
-          {!!item.subItems && (
-            <DropdownMenu>
-              {intoIter<ILanguagesSubItems>(item.subItems)
-                .map((subItem) => {
-                  return (
-                    <DropdownMenuItem
-                      key={subItem.text}
-                      onClick={getSetLanguage(subItem.uiLang)}
-                      text={t(subItem.text)}
-                      Icon={subItem.Icon}
-                    />
-                  );
-                })
-                .toArray()}
-            </DropdownMenu>
-          )}
-        </DropdownMenuItem>
-      );
-    })
-    .toArray();
+      await sleep(ANIMATION_DURATION_MS);
+
+      // * Norm, async function =)
+      dataChangers.changeMenuState(0, 0);
+
+      if (item.value === UILanguages.RU || item.value === UILanguages.EN || item.value === UILanguages.FR) {
+        i18n.changeLanguage((i18n.language = item.value));
+      }
+    },
+    onChangeCurrentIndex: () => {
+      onMouseEnter();
+    },
+  });
+
+  const closeHandler = useCallback(() => {
+    dataChangers.changeMenuState(0, 0);
+    closeDropdownHandler();
+  }, [closeDropdownHandler, dataChangers]);
 
   return (
     <div {...anotherProps} data-testid="languageSwitcher" className={classNames(styles.switcher, {}, [className])}>
@@ -71,10 +58,10 @@ export const LanguageSwitcher: FC<ILanguageSwitcherProps> = memo((props) => {
             {...dropdownAnimations.height}
             style={overflowStyles}
             onMouseEnter={onMouseEnter}
-            closePopup={closeDropdownHandler}
+            closePopup={closeHandler}
             className={styles.dropdown}
           >
-            <DropdownMenu>{items}</DropdownMenu>
+            <ControllableMenu {...data} {...dataChangers} {...eventHandlers} menuRef={ref} />
           </MDropdown>
         )}
       </AnimatePresence>

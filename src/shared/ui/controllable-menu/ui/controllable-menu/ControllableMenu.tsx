@@ -1,12 +1,10 @@
 import { FC } from 'react';
 import { classNames } from '@/shared/lib/class-names';
-import type { IControllableMenuItem, IControllableMenuProps } from './ControllableMenu.interface';
+import type { IControllableMenuProps } from './ControllableMenu.interface';
 import styles from './ControllableMenu.module.scss';
 
-import { intoIter } from '@/shared/lib/iterators';
 import { CONTROLLABLE_MENU_ITEM_HEIGHT, CONTROLLABLE_MENU_PADDING } from './ControllableMenu.consts';
 import { ControllableMenuItem } from '../controllable-menu-item/ControllableMenuItem';
-import { useClickOutside } from '@/shared/lib/hooks';
 
 export const ControllableMenu: FC<IControllableMenuProps> = (props) => {
   const {
@@ -16,22 +14,15 @@ export const ControllableMenu: FC<IControllableMenuProps> = (props) => {
     menuState,
     itemsViewCount = 4,
     changeMenuState,
+    closeAllSubMenus,
+    selectItem,
+    selectCurrentItem,
     addCurrentDepthIndex,
+    changeKey,
+    key,
+    side = 'left',
     ...anotherProps
   } = props;
-
-  // const itemsJsx = intoIter<IControllableMenuItem>(items)
-  //   .enumerate()
-  //   .map(([item, i]) => (
-  //     <ControllableMenuItem
-  //       index={i}
-  //       isActive={i === activeIndex}
-  //       changeActiveIndex={changeActiveIndex}
-  //       key={item.text}
-  //       item={item}
-  //     />
-  //   ))
-  //   .toArray();
 
   const maxHeight =
     itemsViewCount * CONTROLLABLE_MENU_ITEM_HEIGHT + CONTROLLABLE_MENU_PADDING * 2 - CONTROLLABLE_MENU_PADDING;
@@ -48,12 +39,14 @@ export const ControllableMenu: FC<IControllableMenuProps> = (props) => {
       {items.map((item, i) => {
         return (
           <ControllableMenuItem
+            side={side}
             index={i}
             depth={0}
+            selectItem={selectItem}
             menuState={menuState}
             isActive={i === menuState.index}
             changeMenuState={changeMenuState}
-            key={item.text}
+            key={item.value}
             item={item}
           />
         );

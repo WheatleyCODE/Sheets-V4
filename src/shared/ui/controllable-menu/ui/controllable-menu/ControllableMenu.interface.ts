@@ -1,5 +1,5 @@
 import { IconType } from 'react-icons';
-import { useControllableMenuResult } from './ControllableMenu.hooks';
+import type { UseControllableMenuResult } from './ControllableMenu.hooks';
 
 export interface IControllableMenuItem {
   Icon?: IconType;
@@ -10,12 +10,13 @@ export interface IControllableMenuItem {
 
 export interface IControllableMenuSpecificProps {
   itemsViewCount?: number;
+  side?: 'left' | 'right';
 }
 
-type ControllableMenuData = useControllableMenuResult['data'];
-type ControllableMenuDataChangers = useControllableMenuResult['dataChangers'];
-type ControllableMenuEventHandlers = useControllableMenuResult['eventHandlers'];
-type ControllableMenuRef = useControllableMenuResult['ref'];
+type ControllableMenuData = UseControllableMenuResult['data'];
+type ControllableMenuDataChangers = UseControllableMenuResult['dataChangers'];
+type ControllableMenuEventHandlers = UseControllableMenuResult['eventHandlers'];
+type ControllableMenuRef = UseControllableMenuResult['ref'];
 
 export interface IControllableMenuProps
   extends Omit<

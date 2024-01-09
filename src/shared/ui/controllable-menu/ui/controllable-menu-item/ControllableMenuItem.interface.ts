@@ -6,6 +6,8 @@ export interface IControllableMenuItemProps extends React.HTMLAttributes<HTMLDiv
   menuState: DepthState;
   index: number;
   depth: number;
+  side: 'left' | 'right';
   changeMenuState: (index: number, depth: number) => void;
+  selectItem: (item: IControllableMenuItem) => void;
   isActive: boolean;
 }
