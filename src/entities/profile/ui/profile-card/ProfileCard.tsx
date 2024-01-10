@@ -1,26 +1,25 @@
 import { FC, memo, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
+import { MdCurrencyExchange, MdLocationOn } from 'react-icons/md';
 import { Text } from '@/shared/ui/text';
 import { CircleLoader } from '@/shared/ui/loaders';
 import { Input, useValidInput } from '@/shared/ui/input';
-import { intoIter } from '@/shared/lib/iterators';
-import { getInfoItemArr } from './ProfileCard.helpers';
+import { Select, useSelect } from '@/shared/ui/select';
+import { cityItems, countryItems, currencyItems } from './ProfileCard.consts';
 import {
   ageValidator,
   avatarValidator,
-  cityValidator,
-  countryValidator,
   firstnameValidator,
   lastnameValidator,
   usernameValidator,
 } from '@/shared/lib/validators';
 import { ProfileCardEdit } from '../profile-card-edit/ProfileCardEdit';
-import { Country, Currency, ProfileCardTextAlign } from '../../model/consts/profile.consts';
+import { ProfileCardTextAlign } from '../../model/consts/profile.consts';
 import { HStack, VStack } from '@/shared/ui/containers';
 import { Title } from '@/shared/ui/title';
 import { Avatar } from '@/shared/ui/avatar';
 import { classNames } from '@/shared/lib/class-names';
-import type { IInputValidHooks, IProfileCardProps, InfoItem } from './ProfileCard.interface';
+import type { IProfileCardProps } from './ProfileCard.interface';
 import styles from './ProfileCard.module.scss';
 
 export const ProfileCard: FC<IProfileCardProps> = memo((props) => {
@@ -37,59 +36,55 @@ export const ProfileCard: FC<IProfileCardProps> = memo((props) => {
   const { age, avatar, city, country, currency, firstname, lastname, username } = profile;
   const { t } = useTranslation('profile');
 
-  const avatarInput = useValidInput({ initValue: '', validators: [avatarValidator] });
+  const avatarInput = useValidInput({ initValue: username, validators: [avatarValidator] });
   const usernameInput = useValidInput({ initValue: '', validators: [usernameValidator] });
   const firstnameInput = useValidInput({ initValue: '', validators: [firstnameValidator] });
   const lastnameInput = useValidInput({ initValue: '', validators: [lastnameValidator] });
   const ageInput = useValidInput({ initValue: '', validators: [ageValidator] });
-  const cityInput = useValidInput({ initValue: '', validators: [cityValidator] });
-  const currencyInput = useValidInput({ initValue: Currency.NONE });
-  const countryInput = useValidInput({ initValue: Country.NONE, validators: [countryValidator] });
+
+  const selectCurrency = useSelect({
+    useControllableMenu: { items: currencyItems },
+    useValidInput: { initValue: currency },
+  });
+
+  const selectCountry = useSelect({
+    useControllableMenu: { items: countryItems },
+    useValidInput: { initValue: country },
+  });
+
+  const selectCity = useSelect({ useControllableMenu: { items: cityItems }, useValidInput: { initValue: city } });
 
   useEffect(() => {
     avatarInput.dataChangers.changeValue(avatar || '');
+  }, [avatar]);
+
+  useEffect(() => {
     usernameInput.dataChangers.changeValue(username || '');
+  }, [username]);
+
+  useEffect(() => {
     firstnameInput.dataChangers.changeValue(firstname || '');
+  }, [firstname]);
+
+  useEffect(() => {
     lastnameInput.dataChangers.changeValue(lastname || '');
+  }, [lastname]);
+
+  useEffect(() => {
     ageInput.dataChangers.changeValue(age || '');
-    cityInput.dataChangers.changeValue(city || '');
-    currencyInput.dataChangers.changeValue(currency || Currency.NONE);
-    countryInput.dataChangers.changeValue(country || Country.NONE);
-  }, [firstname, lastname, city, currency, country, username, age, isReadonly, avatar]);
+  }, [lastname]);
 
-  const validHooks: IInputValidHooks = {
-    age: ageInput,
-    city: cityInput,
-    country: countryInput,
-    currency: currencyInput,
-    firstname: firstnameInput,
-    lastname: lastnameInput,
-    username: usernameInput,
-    avatar: avatarInput,
-  };
+  useEffect(() => {
+    selectCurrency.input.dataChangers.changeValue(currency || '');
+  }, [currency]);
 
-  const infoArr = getInfoItemArr({ profile, validHooks });
+  useEffect(() => {
+    selectCountry.input.dataChangers.changeValue(country || '');
+  }, [country]);
 
-  const infoItems = intoIter<InfoItem>(infoArr)
-    .map(({ title, input, Icon }) => (
-      <HStack key={title}>
-        <Text className={styles.title} textSize="small" title={`${t(title)}:`} />
-        <Title isStopShow={input.data.isFocus} text={t(title)}>
-          <Input
-            Icon={Icon}
-            type="text"
-            data-testid={title}
-            {...input.data}
-            {...input.dataChangers}
-            {...input.eventHandlers}
-            isReadonly={isReadonly}
-            validError={t(input.data.validError || '')}
-            inputRef={input.ref}
-          />
-        </Title>
-      </HStack>
-    ))
-    .toArray();
+  useEffect(() => {
+    selectCity.input.dataChangers.changeValue(city || '');
+  }, [city]);
 
   if (isLoading)
     return (
@@ -126,12 +121,115 @@ export const ProfileCard: FC<IProfileCardProps> = memo((props) => {
       </HStack>
 
       <VStack gapMultiply="1" className={styles.main}>
-        {infoItems}
+        <HStack>
+          <Text className={styles.title} textSize="small" title={`${t('Аватар')}:`} />
+          <Title text={t('Аватар')}>
+            <Input
+              isReadonly={isReadonly}
+              {...avatarInput.data}
+              {...avatarInput.dataChangers}
+              {...avatarInput.eventHandlers}
+              inputRef={avatarInput.ref}
+            />
+          </Title>
+        </HStack>
+
+        <HStack>
+          <Text className={styles.title} textSize="small" title={`${t('Никнейм')}:`} />
+          <Title text={t('Никнейм')}>
+            <Input
+              isReadonly={isReadonly}
+              {...usernameInput.data}
+              {...usernameInput.dataChangers}
+              {...usernameInput.eventHandlers}
+              inputRef={usernameInput.ref}
+            />
+          </Title>
+        </HStack>
+
+        <HStack>
+          <Text className={styles.title} textSize="small" title={`${t('Имя')}:`} />
+          <Title text={t('Имя')}>
+            <Input
+              isReadonly={isReadonly}
+              {...firstnameInput.data}
+              {...firstnameInput.dataChangers}
+              {...firstnameInput.eventHandlers}
+              inputRef={firstnameInput.ref}
+            />
+          </Title>
+        </HStack>
+
+        <HStack>
+          <Text className={styles.title} textSize="small" title={`${t('Фамилия')}:`} />
+          <Title text={t('Фамилия')}>
+            <Input
+              isReadonly={isReadonly}
+              {...lastnameInput.data}
+              {...lastnameInput.dataChangers}
+              {...lastnameInput.eventHandlers}
+              inputRef={lastnameInput.ref}
+            />
+          </Title>
+        </HStack>
+
+        <HStack>
+          <Text className={styles.title} textSize="small" title={`${t('Возраст')}:`} />
+          <Title text={t('Возраст')}>
+            <Input
+              isReadonly={isReadonly}
+              {...ageInput.data}
+              {...ageInput.dataChangers}
+              {...ageInput.eventHandlers}
+              inputRef={ageInput.ref}
+            />
+          </Title>
+        </HStack>
+
+        <HStack>
+          <Text className={styles.title} textSize="small" title={`${t('Валюта')}:`} />
+          <Title isStopShow={selectCurrency.select.data.isShow} text={t('Валюта')}>
+            <Select
+              isReadonly={isReadonly}
+              Icon={MdCurrencyExchange}
+              {...selectCurrency}
+              selectRef={selectCurrency.select.ref}
+            />
+          </Title>
+        </HStack>
+
+        <HStack>
+          <Text className={styles.title} textSize="small" title={`${t('Страна')}:`} />
+          <Title isStopShow={selectCountry.select.data.isShow} text={t('Страна')}>
+            <Select
+              isReadonly={isReadonly}
+              Icon={MdLocationOn}
+              {...selectCountry}
+              selectRef={selectCountry.select.ref}
+            />
+          </Title>
+        </HStack>
+
+        <HStack>
+          <Text className={styles.title} textSize="small" title={`${t('Город')}:`} />
+          <Title isStopShow={selectCity.select.data.isShow} text={t('Город')}>
+            <Select isReadonly={isReadonly} Icon={MdLocationOn} {...selectCity} selectRef={selectCity.select.ref} />
+          </Title>
+        </HStack>
       </VStack>
 
       {!!edit && (
         <ProfileCardEdit
-          validHooks={validHooks}
+          validHooks={{
+            avatar: avatarInput,
+            username: usernameInput,
+            firstname: firstnameInput,
+            lastname: lastnameInput,
+            age: ageInput,
+            currency: selectCurrency.input,
+            country: selectCountry.input,
+            city: selectCity.input,
+          }}
           isReadonly={isReadonly}
           disableProfileChange={edit.disableProfileChange}
           enableProfileChange={edit.enableProfileChange}

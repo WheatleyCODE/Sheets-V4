@@ -1,5 +1,6 @@
 .select {
   height: 100%;
+  position: relative;
 }
 
 .menu {
@@ -7,6 +8,8 @@
 }
 
 .select_menu {
+  position: absolute;
+  width: 100%;
   overflow: hidden;
   background-color: var(--color-dropdown-background);
   z-index: 22;

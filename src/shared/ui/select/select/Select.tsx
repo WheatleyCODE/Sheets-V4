@@ -1,7 +1,8 @@
 import { FC, memo } from 'react';
-import { AnimatePresence, motion } from 'framer-motion';
+import { AnimatePresence } from 'framer-motion';
 import { ControllableMenu } from '../../controllable-menu';
 import { Input } from '../../input';
+import { MDropdown } from '../../popups';
 import { ANIMATION_DURATION } from '@/shared/consts';
 import { classNames } from '@/shared/lib/class-names';
 import type { ISelectProps } from './Select.interface';
@@ -42,13 +43,14 @@ export const Select: FC<ISelectProps> = memo((props) => {
       />
 
       <AnimatePresence>
-        {input.data.isFocus && (
-          <motion.div
-            className={styles.select_menu}
+        {select.data.isShow && (
+          <MDropdown
             initial={{ height: 0 }}
             animate={{ height: 'auto' }}
             exit={{ height: 0 }}
             transition={{ duration: ANIMATION_DURATION }}
+            className={styles.select_menu}
+            closePopup={select.dataChangers.closeMenu}
           >
             <ControllableMenu
               {...controllableMenu.data}
@@ -59,7 +61,7 @@ export const Select: FC<ISelectProps> = memo((props) => {
               isScroll
               menuRef={controllableMenu.ref}
             />
-          </motion.div>
+          </MDropdown>
         )}
       </AnimatePresence>
     </div>

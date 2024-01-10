@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { Cache } from '@/shared/lib/cache';
 import { HookBuilder } from '@/shared/lib/hook-builder';
 import { useClick } from '@/shared/lib/hooks/hooks-for-builder';
@@ -16,6 +16,12 @@ export type UseSelectResult = ReturnType<typeof useSelect>;
 export const useSelect = (params: UseSelectParams<HTMLInputElement> = {}) => {
   const { useValidInput: useValidInputParams, useClick, useControllableMenu: useControllableMenuParams } = params;
 
+  const [isShow, setIsShow] = useState(false);
+
+  const closeMenu = useCallback(() => {
+    setIsShow(false);
+  }, []);
+
   const input = useValidInput(useValidInputParams);
 
   const controllableMenu = useControllableMenu({
@@ -23,6 +29,7 @@ export const useSelect = (params: UseSelectParams<HTMLInputElement> = {}) => {
     onSelectItem: (item) => {
       input.dataChangers.changeValue(item.text);
       input.dataChangers.changeIsFocus(false);
+      setIsShow(false);
     },
     isDisableKeydown: !input.data.isFocus,
     isScrollControl: true,
@@ -33,12 +40,19 @@ export const useSelect = (params: UseSelectParams<HTMLInputElement> = {}) => {
   }, [input.data.isFocus]);
 
   const select = useSelectEvents({
-    useClick,
+    useClick: {
+      ...useClick,
+      onMouseDown: (e: any) => {
+        e.stopPropagation();
+        setIsShow(true);
+      },
+      onClick: (e: any) => e.stopPropagation(),
+    },
   });
 
   return {
     input,
     controllableMenu,
-    select,
+    select: { ...select, data: { ...select.data, isShow }, dataChangers: { ...select.dataChangers, closeMenu } },
   };
 };
