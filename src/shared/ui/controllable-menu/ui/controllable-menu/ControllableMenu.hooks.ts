@@ -1,11 +1,15 @@
 import { useCallback, useMemo, useState } from 'react';
-import { IUseKeydownParams, IUseKeydownResult, useKeydown } from '@/shared/lib/hooks/hooks-for-builder';
+import { IUseKeydownParams, useKeydown } from '@/shared/lib/hooks/hooks-for-builder';
 import { Cache } from '@/shared/lib/cache';
 import { HookBuilder } from '@/shared/lib/hook-builder';
 import { useGlobalKeydown } from '@/shared/lib/hooks';
-import type { IControllableMenuItem } from './ControllableMenu.interface';
-
-export type UseControllableMenuMergedTypes = [IUseKeydownResult];
+import { CONTROLLABLE_MENU_ITEM_HEIGHT, CONTROLLABLE_MENU_PADDING } from './ControllableMenu.consts';
+import type {
+  DepthState,
+  IControllableMenuItem,
+  UseControllableMenuMergedTypes,
+  UseControllableMenuParams,
+} from './ControllableMenu.interface';
 
 const useKeydownParams: IUseKeydownParams = { onKeyDown: (e) => e.preventDefault() };
 
@@ -14,20 +18,18 @@ const useControllableMenuEvents = new HookBuilder<UseControllableMenuMergedTypes
   .addHook(useKeydown, useKeydownParams)
   .build();
 
-export type UseValidInputParams = {
-  items?: IControllableMenuItem[];
-  initActiveIndex?: number;
-  onSelectItem?: (item: IControllableMenuItem) => void;
-  onChangeCurrentIndex?: () => void;
-  isHorizontalReverse?: boolean;
-};
-
 export type UseControllableMenuResult = ReturnType<typeof useControllableMenu>;
 
-export type DepthState = { index: number; next?: DepthState };
-
-export const useControllableMenu = (params: UseValidInputParams = {}) => {
-  const { items = [], initActiveIndex = 0, onSelectItem, isHorizontalReverse = false, onChangeCurrentIndex } = params;
+export const useControllableMenu = (params: UseControllableMenuParams = {}) => {
+  const {
+    items = [],
+    initActiveIndex = 0,
+    onSelectItem,
+    isHorizontalReverse = false,
+    isDisableKeydown = false,
+    isScrollControl = false,
+    onChangeCurrentIndex,
+  } = params;
 
   const [menuState, setMenuState] = useState<DepthState>({ index: initActiveIndex });
 
@@ -151,7 +153,7 @@ export const useControllableMenu = (params: UseValidInputParams = {}) => {
         return { ...p, index: p.index + num };
       });
     },
-    [items, menuState],
+    [items, menuState, onChangeCurrentIndex],
   );
 
   const { data, dataChangers, eventHandlers, ref } = useControllableMenuEvents();
@@ -159,11 +161,45 @@ export const useControllableMenu = (params: UseValidInputParams = {}) => {
   const arrowUpHandler = useCallback(
     (e: KeyboardEvent) => {
       e.preventDefault();
+
+      const menu = ref.current;
+      if (!menu) return;
+
       addCurrentDepthIndex(-1);
+
+      if (!isScrollControl) return;
+
+      const menuHeight = menu.clientHeight;
+      const scrollTop = menu.scrollTop;
+      const currentItemHeight = (menuState.index + 2) * CONTROLLABLE_MENU_ITEM_HEIGHT + CONTROLLABLE_MENU_PADDING;
+
+      if (currentItemHeight + CONTROLLABLE_MENU_ITEM_HEIGHT * 2 - scrollTop < menuHeight) {
+        menu.scrollTop = scrollTop - CONTROLLABLE_MENU_ITEM_HEIGHT;
+      }
     },
-    [addCurrentDepthIndex],
+    [addCurrentDepthIndex, isScrollControl, menuState.index, ref],
   );
-  const arrowDownHandler = useCallback(() => addCurrentDepthIndex(1), [addCurrentDepthIndex]);
+  const arrowDownHandler = useCallback(
+    (e: KeyboardEvent) => {
+      e.preventDefault();
+
+      const menu = ref.current;
+      if (!menu) return;
+
+      addCurrentDepthIndex(1);
+
+      if (!isScrollControl) return;
+
+      const menuHeight = menu.clientHeight;
+      const scrollTop = menu.scrollTop;
+      const currentItemHeight = (menuState.index + 2) * CONTROLLABLE_MENU_ITEM_HEIGHT + CONTROLLABLE_MENU_PADDING;
+
+      if (currentItemHeight - scrollTop > menuHeight) {
+        menu.scrollTop = currentItemHeight - menuHeight + CONTROLLABLE_MENU_PADDING;
+      }
+    },
+    [addCurrentDepthIndex, isScrollControl, menuState.index, ref],
+  );
 
   const arrowRightHandler = useCallback(() => {
     addCurrentDepth(1);
@@ -205,12 +241,12 @@ export const useControllableMenu = (params: UseValidInputParams = {}) => {
   }, [changeMenuState, menuState.index]);
 
   useGlobalKeydown({
-    ArrowUp: [arrowUpHandler],
-    ArrowDown: [arrowDownHandler],
-    ArrowRight: isHorizontalReverse ? [arrowLeftHandler] : [arrowRightHandler],
-    ArrowLeft: isHorizontalReverse ? [arrowRightHandler] : [arrowLeftHandler],
-    Enter: [selectCurrentItem],
-    Escape: [closeAllSubMenus],
+    ArrowUp: isDisableKeydown ? [] : [arrowUpHandler],
+    ArrowDown: isDisableKeydown ? [] : [arrowDownHandler],
+    ArrowRight: isDisableKeydown ? [] : isHorizontalReverse ? [arrowLeftHandler] : [arrowRightHandler],
+    ArrowLeft: isDisableKeydown ? [] : isHorizontalReverse ? [arrowRightHandler] : [arrowLeftHandler],
+    Enter: isDisableKeydown ? [] : [selectCurrentItem],
+    Escape: isDisableKeydown ? [] : [closeAllSubMenus],
   });
 
   return {

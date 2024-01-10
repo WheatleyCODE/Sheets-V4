@@ -1,5 +1,4 @@
-import { DepthState } from '../controllable-menu/ControllableMenu.hooks';
-import { IControllableMenuItem } from '../controllable-menu/ControllableMenu.interface';
+import type { DepthState, IControllableMenuItem } from '../controllable-menu/ControllableMenu.interface';
 
 export interface IControllableMenuItemProps extends React.HTMLAttributes<HTMLDivElement> {
   item: IControllableMenuItem;

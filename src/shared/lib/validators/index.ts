@@ -8,3 +8,4 @@ export { usernameValidator } from './username-validator/usernameValidator';
 export { cityValidator } from './city-validator/cityValidator';
 export { countryValidator } from './country-validator/countryValidator';
 export { avatarValidator } from './avatar-validator/avatarValidator';
+export type { Validator } from './get-validator/getValidator.interface';

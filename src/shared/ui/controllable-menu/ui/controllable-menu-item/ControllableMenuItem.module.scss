@@ -3,6 +3,7 @@
   cursor: pointer;
   height: 35px;
   display: flex;
+  color: var(--color-text);
   align-items: center;
   transition: all var(--animation-duration);
   padding-left: calc(var(--gap) * 3);

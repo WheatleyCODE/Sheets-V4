@@ -1,10 +1,9 @@
 import { FC } from 'react';
+import { CONTROLLABLE_MENU_ITEM_HEIGHT, CONTROLLABLE_MENU_PADDING } from './ControllableMenu.consts';
+import { ControllableMenuItem } from '../controllable-menu-item/ControllableMenuItem';
 import { classNames } from '@/shared/lib/class-names';
 import type { IControllableMenuProps } from './ControllableMenu.interface';
 import styles from './ControllableMenu.module.scss';
-
-import { CONTROLLABLE_MENU_ITEM_HEIGHT, CONTROLLABLE_MENU_PADDING } from './ControllableMenu.consts';
-import { ControllableMenuItem } from '../controllable-menu-item/ControllableMenuItem';
 
 export const ControllableMenu: FC<IControllableMenuProps> = (props) => {
   const {
@@ -15,6 +14,7 @@ export const ControllableMenu: FC<IControllableMenuProps> = (props) => {
     itemsViewCount = 4,
     changeMenuState,
     closeAllSubMenus,
+    isScroll = false,
     selectItem,
     selectCurrentItem,
     addCurrentDepthIndex,
@@ -24,8 +24,7 @@ export const ControllableMenu: FC<IControllableMenuProps> = (props) => {
     ...anotherProps
   } = props;
 
-  const maxHeight =
-    itemsViewCount * CONTROLLABLE_MENU_ITEM_HEIGHT + CONTROLLABLE_MENU_PADDING * 2 - CONTROLLABLE_MENU_PADDING;
+  const maxHeight = itemsViewCount * CONTROLLABLE_MENU_ITEM_HEIGHT + CONTROLLABLE_MENU_PADDING * 2;
 
   return (
     <div
@@ -34,7 +33,7 @@ export const ControllableMenu: FC<IControllableMenuProps> = (props) => {
       tabIndex={0}
       data-testid="controllableMenu"
       style={{ maxHeight, paddingTop: CONTROLLABLE_MENU_PADDING, paddingBottom: CONTROLLABLE_MENU_PADDING }}
-      className={classNames(styles.controllable_menu, {}, [className])}
+      className={classNames(styles.controllable_menu, { [styles.scroll]: isScroll }, [className])}
     >
       {items.map((item, i) => {
         return (

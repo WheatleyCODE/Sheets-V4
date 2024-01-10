@@ -20,13 +20,13 @@ export const ControllableMenuItem: FC<IControllableMenuItemProps> = (props) => {
     changeMenuState(0, depth + 1);
   }, [changeMenuState, depth]);
 
-  // ! FIX
+  // ! FIX {} as any
   const { eventHandlers } = useDelayHover({} as any, {
     onMouseEnterEnd,
     onMouseEnterStart,
-    // time: 700,
-    // delay: 500,
-    // refresh: 100,
+    time: 500,
+    delay: 500,
+    refresh: 200,
   });
 
   const onClickHandler = useCallback(

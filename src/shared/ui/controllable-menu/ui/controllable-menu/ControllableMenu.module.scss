@@ -1,8 +1,12 @@
 @import '@/app/styles/mixins/global';
 
 .controllable_menu {
-  // @include scroll;
-
   width: 220px;
-  // overflow: clip;
+}
+
+.controllable_menu.scroll {
+  @include scroll;
+
+  width: 100%;
+  overflow: auto;
 }

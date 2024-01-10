@@ -39,6 +39,7 @@ export const LanguageSwitcher: FC<ILanguageSwitcherProps> = memo((props) => {
     onChangeCurrentIndex: () => {
       onMouseEnter();
     },
+    isDisableKeydown: !isShow,
   });
 
   const closeHandler = useCallback(() => {

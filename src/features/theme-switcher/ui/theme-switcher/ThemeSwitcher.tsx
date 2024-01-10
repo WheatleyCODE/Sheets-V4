@@ -1,27 +1,18 @@
-import { FC, memo } from 'react';
+import { FC, memo, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { AnimatePresence } from 'framer-motion';
 import { MdColorLens } from 'react-icons/md';
-import { themeItems } from '../../model/consts/themeItems';
-import {
-  DropdownMenu,
-  DropdownMenuItem,
-  MDropdown,
-  usePopups,
-  useDropdownSubMenuAnimationFixer,
-  dropdownAnimations,
-} from '@/shared/ui/popups';
+import { getThemeItems } from '../../model/consts/themeItems.consts';
+import { MDropdown, usePopups, useDropdownSubMenuAnimationFixer, dropdownAnimations } from '@/shared/ui/popups';
 import { ANIMATION_DURATION_MS } from '@/shared/consts';
 import { sleep } from '@/shared/lib/promise';
-import { intoIter } from '@/shared/lib/iterators';
 import { ClientSettingsAsyncEngine } from '@/shared/lib/kv-storage';
+import { ControllableMenu, useControllableMenu } from '@/shared/ui/controllable-menu';
 import { Title } from '@/shared/ui/title';
 import { Button } from '@/shared/ui/button';
 import { useTheme } from '@/shared/lib/hooks';
-import { Theme } from '@/shared/lib/contexts';
 import { classNames } from '@/shared/lib/class-names';
 import type { IThemeSwitcherProps } from './ThemeSwitcher.interface';
-import type { IThemeItems, IThemeSubItems } from '../../model/types/themeSwitcher.interface';
 import styles from './ThemeSwitcher.module.scss';
 
 export const ThemeSwitcher: FC<IThemeSwitcherProps> = memo((props) => {
@@ -31,40 +22,33 @@ export const ThemeSwitcher: FC<IThemeSwitcherProps> = memo((props) => {
   const { setTheme } = useTheme();
   const { t } = useTranslation('home');
 
-  const getSetTheme = (theme: Theme) => async () => {
-    closeDropdownHandler();
+  const { data, dataChangers, eventHandlers, ref } = useControllableMenu({
+    items: getThemeItems(t),
+    isHorizontalReverse: true,
+    onSelectItem: async (item) => {
+      closeDropdownHandler();
 
-    if (user?.id) {
-      // * KVStorageEngine определяет куда сохранять тему в LocalStorage | SessionStorage | Server | IDBS
-      setTheme(theme, new ClientSettingsAsyncEngine(user.id));
       await sleep(ANIMATION_DURATION_MS);
-    }
-  };
 
-  const items = intoIter<IThemeItems>(themeItems)
-    .map((item) => {
-      return (
-        <DropdownMenuItem key={item.text} text={t(item.text)} Icon={item.Icon}>
-          {!!item.subItems && (
-            <DropdownMenu>
-              {intoIter<IThemeSubItems>(item.subItems)
-                .map((subItem) => {
-                  return (
-                    <DropdownMenuItem
-                      key={subItem.text}
-                      onClick={getSetTheme(subItem.theme)}
-                      text={t(subItem.text)}
-                      Icon={subItem.Icon}
-                    />
-                  );
-                })
-                .toArray()}
-            </DropdownMenu>
-          )}
-        </DropdownMenuItem>
-      );
-    })
-    .toArray();
+      // * Norm, async function =)
+      dataChangers.changeMenuState(0, 0);
+
+      if (item.value === 'dark' || item.value === 'light' || item.value === 'toxic') {
+        if (user?.id) {
+          setTheme(item.value, new ClientSettingsAsyncEngine(user.id));
+        }
+      }
+    },
+    onChangeCurrentIndex: () => {
+      onMouseEnter();
+    },
+    isDisableKeydown: !isShow,
+  });
+
+  const closeHandler = useCallback(() => {
+    dataChangers.changeMenuState(0, 0);
+    closeDropdownHandler();
+  }, [closeDropdownHandler, dataChangers]);
 
   return (
     <div {...anotherProps} data-testid="themeSwitcher" className={classNames(styles.switcher, {}, [className])}>
@@ -78,10 +62,10 @@ export const ThemeSwitcher: FC<IThemeSwitcherProps> = memo((props) => {
             {...dropdownAnimations.height}
             style={overflowStyles}
             onMouseEnter={onMouseEnter}
-            closePopup={closeDropdownHandler}
+            closePopup={closeHandler}
             className={styles.dropdown}
           >
-            <DropdownMenu>{items}</DropdownMenu>
+            <ControllableMenu {...data} {...dataChangers} {...eventHandlers} menuRef={ref} />
           </MDropdown>
         )}
       </AnimatePresence>
