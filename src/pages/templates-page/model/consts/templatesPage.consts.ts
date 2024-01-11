@@ -1,6 +1,5 @@
 import { BsSortDown, BsSortUp } from 'react-icons/bs';
 import { MdOutlineCalendarMonth, MdOutlineRemoveRedEye, MdOutlineTitle } from 'react-icons/md';
-// import { IInputOptionsMenuItem } from '@/shared/ui/input';
 import { TFunction } from 'i18next';
 
 export enum TemplateSortFields {
@@ -19,7 +18,7 @@ export enum TemplateSortOrders {
 export const getSortOrderItems = (t: TFunction) => {
   return [
     { text: t('По возрастанию'), Icon: BsSortUp, value: TemplateSortOrders.ASC },
-    { text: t('ПО убыванию'), Icon: BsSortDown, value: TemplateSortOrders.DESC },
+    { text: t('По убыванию'), Icon: BsSortDown, value: TemplateSortOrders.DESC },
   ];
 };
 

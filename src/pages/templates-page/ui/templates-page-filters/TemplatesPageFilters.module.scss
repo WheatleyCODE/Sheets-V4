@@ -23,7 +23,13 @@
   flex-shrink: 0;
 }
 
-.sort_input, .sortOrder_input {
+.sort_input input, .sortOrder_input input {
+  min-width: 200px;
+  width: 200px;
+}
+
+.sort_input,
+.sortOrder_input {
   min-width: 200px;
   width: 200px;
 }

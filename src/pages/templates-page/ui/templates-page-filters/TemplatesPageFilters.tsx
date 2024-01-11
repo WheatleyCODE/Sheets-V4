@@ -17,15 +17,11 @@ import { intoIter } from '@/shared/lib/iterators';
 import { Title } from '@/shared/ui/title';
 import { VStack, Width } from '@/shared/ui/containers';
 import { useDebounce } from '@/shared/lib/hooks';
-// import {
-//   TemplateSortFields,
-//   TemplateSortOrders,
-//   getSortItems,
-//   getSortOrderItems,
-// } from '../../model/consts/templatesPage.consts';
+import { getSortItems, getSortOrderItems } from '../../model/consts/templatesPage.consts';
 import { classNames } from '@/shared/lib/class-names';
 import type { ITemplatesPageFiltersProps } from './TemplatesPageFilters.interface';
 import styles from './TemplatesPageFilters.module.scss';
+import { Select, useSelect } from '@/shared/ui/select';
 
 export const TemplatesPageFilters: FC<ITemplatesPageFiltersProps> = (props) => {
   const { className, ...anotherProps } = props;
@@ -37,10 +33,30 @@ export const TemplatesPageFilters: FC<ITemplatesPageFiltersProps> = (props) => {
   const fetchTemplatesPageTemplates = useFetchTemplatesPageTemplates();
   const { setPage, setView, setSort, setSearch, setSortOrder, setTags } = useTemplatesPageActions();
 
-  const sortInput = useValidInput({ initValue: sort });
-  const sortOrderInput = useValidInput({ initValue: sortOrder });
   const searchInput = useValidInput({ initValue: search });
   const { t } = useTranslation('templates');
+
+  const selectSort = useSelect({
+    useControllableMenu: {
+      items: getSortItems(t),
+      onSelectItem: (item) => {
+        setSort(item.value as any);
+        fetchTemplatesOnChange();
+      },
+    },
+    useValidInput: { initValue: getSortItems(t).find((item) => item.value === sort)?.text },
+  });
+
+  const selectSortOrder = useSelect({
+    useControllableMenu: {
+      items: getSortOrderItems(t),
+      onSelectItem: (item) => {
+        setSortOrder(item.value as any);
+        fetchTemplatesOnChange();
+      },
+    },
+    useValidInput: { initValue: getSortOrderItems(t).find((item) => item.value === sortOrder)?.text },
+  });
 
   const fetchTemplatesOnChange = useCallback(() => {
     setPage(1);
@@ -54,22 +70,6 @@ export const TemplatesPageFilters: FC<ITemplatesPageFiltersProps> = (props) => {
     [setView],
   );
 
-  // const changeSort = useCallback(
-  //   (sort: TemplateSortFields) => {
-  //     setSort(sort);
-  //     fetchTemplatesOnChange();
-  //   },
-  //   [fetchTemplatesOnChange, setSort],
-  // );
-
-  // const changeSortOrder = useCallback(
-  //   (sortOrder: TemplateSortOrders) => {
-  //     setSortOrder(sortOrder);
-  //     fetchTemplatesOnChange();
-  //   },
-  //   [fetchTemplatesOnChange, setSortOrder],
-  // );
-
   const changeTag = useCallback(
     (tag: TemplateTags) => {
       setTags(tag);
@@ -82,45 +82,6 @@ export const TemplatesPageFilters: FC<ITemplatesPageFiltersProps> = (props) => {
     setSearch(search);
     fetchTemplatesOnChange();
   }, 300);
-
-  useEffect(() => {
-    sortInput.dataChangers.changeValue(sort);
-    sortOrderInput.dataChangers.changeValue(sortOrder);
-    searchInput.dataChangers.changeValue(search);
-  }, [sort, sortOrder, search]);
-
-  // ! FIX
-  // const onChangeSort = useCallback(
-  //   (sort: TemplateSortFields) => {
-  //     sortInput.changeValue(sort);
-  //     changeSort(sort);
-  //   },
-  //   [changeSort, sortInput],
-  // );
-
-  // const onChangeSort2 = useCallback(
-  //   (item: IInputOptionsMenuItem) => {
-  //     sortInput.changeValue(item.text as TemplateSortFields);
-  //     changeSort(item.value as TemplateSortFields);
-  //   },
-  //   [changeSort, sortInput],
-  // );
-
-  // const onChangeSortOrder = useCallback(
-  //   (sortOrder: TemplateSortOrders) => {
-  //     sortOrderInput.changeValue(sortOrder);
-  //     changeSortOrder(sortOrder);
-  //   },
-  //   [changeSortOrder, sortOrderInput],
-  // );
-
-  // const onChangeSortOrder2 = useCallback(
-  //   (item: IInputOptionsMenuItem) => {
-  //     sortOrderInput.changeValue(item.text as TemplateSortOrders);
-  //     changeSortOrder(item.value as TemplateSortOrders);
-  //   },
-  //   [changeSortOrder, sortOrderInput],
-  // );
 
   const onChangeSearch = useCallback(
     (e: ChangeEvent<HTMLInputElement>) => {
@@ -166,36 +127,32 @@ export const TemplatesPageFilters: FC<ITemplatesPageFiltersProps> = (props) => {
           </div>
         </Title>
 
-        <Title isStopShow={sortInput.data.isFocus} text={t('Изменить сортировку')}>
+        <Title isStopShow={selectSort.select.data.isShow} text={t('Изменить сортировку')}>
           <div className={styles.sort}>
-            <Input
-              className={styles.sort_input}
+            <Select
               Icon={MdOutlineFilterList}
-              placeholder={t('Сортировать по')}
+              className={styles.sort_input}
               type="text"
+              isWritable={false}
               data-testid="sortInput"
-              {...sortInput.data}
-              {...sortInput.dataChangers}
-              {...sortInput.eventHandlers}
-              inputRef={sortInput.ref}
-              validError={t(sortInput.data.validError || '')}
+              placeholder={t('Сортировать по')}
+              {...selectSort}
+              selectRef={selectSort.select.ref}
             />
           </div>
         </Title>
 
-        <Title isStopShow={sortOrderInput.data.isFocus} text={t('Изменить порядок сортировки')}>
+        <Title isStopShow={selectSortOrder.select.data.isShow} text={t('Изменить порядок сортировки')}>
           <div className={styles.sortOrder}>
-            <Input
-              className={styles.sortOrder_input}
+            <Select
               Icon={MdOutlineSort}
-              placeholder={t('Порядок сортировки')}
+              className={styles.sortOrder_input}
               type="text"
+              isWritable={false}
               data-testid="sortOrderInput"
-              {...sortOrderInput.data}
-              {...sortOrderInput.dataChangers}
-              {...sortOrderInput.eventHandlers}
-              validError={t(sortOrderInput.data.validError || '')}
-              inputRef={sortOrderInput.ref}
+              placeholder={t('Порядок сортировки')}
+              {...selectSortOrder}
+              selectRef={selectSortOrder.select.ref}
             />
           </div>
         </Title>

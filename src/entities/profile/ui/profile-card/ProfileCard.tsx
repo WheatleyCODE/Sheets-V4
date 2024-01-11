@@ -208,6 +208,7 @@ export const ProfileCard: FC<IProfileCardProps> = memo((props) => {
           <Text className={styles.title} textSize="small" title={`${t('Валюта')}:`} />
           <Title isStopShow={selectCurrency.select.data.isShow} text={t('Валюта')}>
             <Select
+              isWritable={false}
               data-testid="Валюта"
               isReadonly={isReadonly}
               Icon={MdCurrencyExchange}

@@ -3,7 +3,9 @@ import { IInputSpecificProps, UseValidInputParams } from '../../input';
 import type { UseSelectResult } from './Select.hooks';
 import { IUseClickParams, IUseClickResult } from '@/shared/lib/hooks/hooks-for-builder';
 
-export interface ISelectSpecificProps {}
+export interface ISelectSpecificProps {
+  isWritable?: boolean;
+}
 
 type Select = UseSelectResult['select'];
 

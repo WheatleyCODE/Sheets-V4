@@ -133,6 +133,7 @@ export const TemplateList: FC<ITemplateListProps> = memo((props) => {
 
             return (
               <FixedSizeList
+                className={styles.scroll}
                 onItemsRendered={getScroll(rowCount)}
                 height={height}
                 itemCount={rowCount}

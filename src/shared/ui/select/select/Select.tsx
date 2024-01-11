@@ -14,6 +14,7 @@ export const Select: FC<ISelectProps> = memo((props) => {
     select,
     controllableMenu,
     Icon,
+    isWritable = true,
     placeholder,
     isReadonly,
     selectRef,
@@ -39,6 +40,7 @@ export const Select: FC<ISelectProps> = memo((props) => {
         {...input.data}
         {...input.eventHandlers}
         {...input.dataChangers}
+        onChange={isWritable ? input.eventHandlers.onChange : () => {}}
         inputRef={input.ref}
       />
 

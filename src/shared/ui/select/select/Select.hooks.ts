@@ -14,7 +14,8 @@ const useSelectEvents = new HookBuilder<UseSelectMergedTypes<HTMLInputElement>, 
 export type UseSelectResult = ReturnType<typeof useSelect>;
 
 export const useSelect = (params: UseSelectParams<HTMLInputElement> = {}) => {
-  const { useValidInput: useValidInputParams, useClick, useControllableMenu: useControllableMenuParams } = params;
+  const { useValidInput: useValidInputParams, useClick, useControllableMenu: useControllableMenuParams = {} } = params;
+  const { onSelectItem } = useControllableMenuParams;
 
   const [isShow, setIsShow] = useState(false);
 
@@ -30,6 +31,8 @@ export const useSelect = (params: UseSelectParams<HTMLInputElement> = {}) => {
       input.dataChangers.changeValue(item.text);
       input.dataChangers.changeIsFocus(false);
       setIsShow(false);
+
+      onSelectItem?.(item);
     },
     isDisableKeydown: !input.data.isFocus,
     isScrollControl: true,
@@ -42,11 +45,11 @@ export const useSelect = (params: UseSelectParams<HTMLInputElement> = {}) => {
   const select = useSelectEvents({
     useClick: {
       ...useClick,
-      onMouseDown: (e: any) => {
-        e.stopPropagation();
-        setIsShow(true);
+      onClick: () => {
+        setTimeout(() => {
+          setIsShow(true);
+        }, 0);
       },
-      onClick: (e: any) => e.stopPropagation(),
     },
   });
 
