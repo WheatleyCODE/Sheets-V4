@@ -16,46 +16,58 @@ export const Light: Story = {
   args: {} as any,
 };
 
-// export const Dark: Story = {
-//   args: {
-//     value: '',
-//     type: 'text',
-//     isError: false,
-//     isActive: false,
-//     validError: null,
-//   },
-//   decorators: [themeDecorator('dark')],
-// };
+export const Dark: Story = {
+  args: {
+    value: '',
+    type: 'text',
+    isError: false,
+    validError: null,
+    inputRef: {} as any,
+    isFocus: false,
+    isMouseDown: false,
+    isTouched: false,
+  },
+  decorators: [themeDecorator('dark')],
+};
 
-// export const Icon: Story = {
-//   args: {
-//     value: '',
-//     Icon: MdOutlineEmail,
-//     type: 'text',
-//     isError: false,
-//     isActive: false,
-//     validError: null,
-//   },
-// };
+export const Icon: Story = {
+  args: {
+    value: '',
+    Icon: MdOutlineEmail,
+    type: 'text',
+    isError: false,
+    validError: null,
+    inputRef: {} as any,
+    isFocus: false,
+    isMouseDown: false,
+    isTouched: false,
+  },
+};
 
-// export const Active: Story = {
-//   args: {
-//     value: 'Инпут',
-//     Icon: MdOutlineEmail,
-//     type: 'text',
-//     isError: false,
-//     isActive: true,
-//     validError: null,
-//   },
-// };
+export const Active: Story = {
+  args: {
+    value: 'Active',
+    Icon: MdOutlineEmail,
+    type: 'text',
+    isError: false,
+    validError: null,
+    inputRef: {} as any,
+    isFocus: true,
+    isMouseDown: false,
+    isTouched: false,
+  },
+};
 
-// export const Error: Story = {
-//   args: {
-//     value: 'Инпут',
-//     Icon: MdOutlineEmail,
-//     type: 'text',
-//     isError: true,
-//     isActive: true,
-//     validError: 'Ошибка',
-//   },
-// };
+export const Error: Story = {
+  args: {
+    value: 'Error',
+    Icon: MdOutlineEmail,
+    type: 'text',
+    isError: false,
+    validError: 'Ошибка',
+    inputRef: {} as any,
+    isFocus: false,
+    isMouseDown: false,
+    isTouched: false,
+  },
+};

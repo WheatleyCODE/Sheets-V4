@@ -24,10 +24,10 @@ export const Select: FC<ISelectProps> = memo((props) => {
 
   return (
     <div
+      data-testid="select"
       {...anotherProps}
       {...select.eventHandlers}
       ref={selectRef}
-      data-testid="select"
       className={classNames(styles.select, {}, [className])}
     >
       <Input

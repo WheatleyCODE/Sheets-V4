@@ -1,16 +1,17 @@
-import { FC, MouseEvent, useCallback } from 'react';
+import { FC, MouseEvent, useCallback, useRef } from 'react';
 import { Icon as IconComponent } from '../../../icon';
+import { CONTROLLABLE_MENU_ITEM_HEIGHT, CONTROLLABLE_MENU_PADDING } from '../controllable-menu/ControllableMenu.consts';
+import { useDelayHover } from '@/shared/lib/hooks/hooks-for-builder';
 import { classNames } from '@/shared/lib/class-names';
 import type { IControllableMenuItemProps } from './ControllableMenuItem.interface';
+import type { IControllableMenuItem } from '../controllable-menu/ControllableMenu.interface';
 import styles from './ControllableMenuItem.module.scss';
-import { useDelayHover } from '@/shared/lib/hooks/hooks-for-builder';
-import { IControllableMenuItem } from '../controllable-menu/ControllableMenu.interface';
-import { CONTROLLABLE_MENU_ITEM_HEIGHT, CONTROLLABLE_MENU_PADDING } from '../controllable-menu/ControllableMenu.consts';
 
 export const ControllableMenuItem: FC<IControllableMenuItemProps> = (props) => {
   const { className, item, isActive, depth, index, side, changeMenuState, menuState, selectItem, ...anotherProps } =
     props;
   const { Icon, text } = item;
+  const ref = useRef<null | HTMLDivElement>(null);
 
   const onMouseEnterStart = useCallback(() => {
     changeMenuState(index, depth);
@@ -20,8 +21,7 @@ export const ControllableMenuItem: FC<IControllableMenuItemProps> = (props) => {
     changeMenuState(0, depth + 1);
   }, [changeMenuState, depth]);
 
-  // ! FIX {} as any
-  const { eventHandlers } = useDelayHover({} as any, {
+  const { eventHandlers } = useDelayHover(ref, {
     onMouseEnterEnd,
     onMouseEnterStart,
     time: 500,
@@ -82,6 +82,7 @@ export const ControllableMenuItem: FC<IControllableMenuItemProps> = (props) => {
     <div
       {...anotherProps}
       {...eventHandlers}
+      ref={ref}
       onClick={onClickHandler}
       data-testid="controllableMenuItem"
       className={classNames(styles.controllable_menu_item, { [styles.active]: isActive, [styles[side]]: true }, [

@@ -43,7 +43,7 @@ export const ProfileCardEdit: FC<IProfileCardEditProps> = memo((props) => {
 
     for (const [key, input] of entries) {
       if (input.data.isError) return;
-      profile[key] = input.data.value as any; // ! FIX;
+      profile[key] = input.data.value as any;
     }
 
     saveProfileChange(profile);

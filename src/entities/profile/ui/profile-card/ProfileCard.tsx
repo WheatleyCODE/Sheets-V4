@@ -1,4 +1,4 @@
-import { FC, memo, useEffect } from 'react';
+import { FC, memo, useCallback, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { MdCurrencyExchange, MdLocationOn } from 'react-icons/md';
 import { Text } from '@/shared/ui/text';
@@ -86,6 +86,19 @@ export const ProfileCard: FC<IProfileCardProps> = memo((props) => {
     selectCity.input.dataChangers.changeValue(city || '');
   }, [city]);
 
+  const disableProfileChange = useCallback(() => {
+    avatarInput.dataChangers.changeValue(avatar || '');
+    usernameInput.dataChangers.changeValue(username || '');
+    firstnameInput.dataChangers.changeValue(firstname || '');
+    lastnameInput.dataChangers.changeValue(lastname || '');
+    ageInput.dataChangers.changeValue(age || '');
+    selectCurrency.input.dataChangers.changeValue(currency || '');
+    selectCountry.input.dataChangers.changeValue(country || '');
+    selectCity.input.dataChangers.changeValue(city || '');
+
+    if (edit) edit.disableProfileChange();
+  }, [age, avatar, city, country, currency, edit, firstname, lastname, username]);
+
   if (isLoading)
     return (
       <VStack {...anotherProps} data-testid="profileCard" className={classNames(styles.profile_card, {}, [className])}>
@@ -125,6 +138,7 @@ export const ProfileCard: FC<IProfileCardProps> = memo((props) => {
           <Text className={styles.title} textSize="small" title={`${t('Аватар')}:`} />
           <Title text={t('Аватар')}>
             <Input
+              data-testid="Аватар"
               isReadonly={isReadonly}
               {...avatarInput.data}
               {...avatarInput.dataChangers}
@@ -138,6 +152,7 @@ export const ProfileCard: FC<IProfileCardProps> = memo((props) => {
           <Text className={styles.title} textSize="small" title={`${t('Никнейм')}:`} />
           <Title text={t('Никнейм')}>
             <Input
+              data-testid="Никнейм"
               isReadonly={isReadonly}
               {...usernameInput.data}
               {...usernameInput.dataChangers}
@@ -151,6 +166,7 @@ export const ProfileCard: FC<IProfileCardProps> = memo((props) => {
           <Text className={styles.title} textSize="small" title={`${t('Имя')}:`} />
           <Title text={t('Имя')}>
             <Input
+              data-testid="Имя"
               isReadonly={isReadonly}
               {...firstnameInput.data}
               {...firstnameInput.dataChangers}
@@ -164,6 +180,7 @@ export const ProfileCard: FC<IProfileCardProps> = memo((props) => {
           <Text className={styles.title} textSize="small" title={`${t('Фамилия')}:`} />
           <Title text={t('Фамилия')}>
             <Input
+              data-testid="Фамилия"
               isReadonly={isReadonly}
               {...lastnameInput.data}
               {...lastnameInput.dataChangers}
@@ -177,6 +194,7 @@ export const ProfileCard: FC<IProfileCardProps> = memo((props) => {
           <Text className={styles.title} textSize="small" title={`${t('Возраст')}:`} />
           <Title text={t('Возраст')}>
             <Input
+              data-testid="Возраст"
               isReadonly={isReadonly}
               {...ageInput.data}
               {...ageInput.dataChangers}
@@ -190,6 +208,7 @@ export const ProfileCard: FC<IProfileCardProps> = memo((props) => {
           <Text className={styles.title} textSize="small" title={`${t('Валюта')}:`} />
           <Title isStopShow={selectCurrency.select.data.isShow} text={t('Валюта')}>
             <Select
+              data-testid="Валюта"
               isReadonly={isReadonly}
               Icon={MdCurrencyExchange}
               {...selectCurrency}
@@ -202,6 +221,7 @@ export const ProfileCard: FC<IProfileCardProps> = memo((props) => {
           <Text className={styles.title} textSize="small" title={`${t('Страна')}:`} />
           <Title isStopShow={selectCountry.select.data.isShow} text={t('Страна')}>
             <Select
+              data-testid="Страна"
               isReadonly={isReadonly}
               Icon={MdLocationOn}
               {...selectCountry}
@@ -213,7 +233,13 @@ export const ProfileCard: FC<IProfileCardProps> = memo((props) => {
         <HStack>
           <Text className={styles.title} textSize="small" title={`${t('Город')}:`} />
           <Title isStopShow={selectCity.select.data.isShow} text={t('Город')}>
-            <Select isReadonly={isReadonly} Icon={MdLocationOn} {...selectCity} selectRef={selectCity.select.ref} />
+            <Select
+              data-testid="Город"
+              isReadonly={isReadonly}
+              Icon={MdLocationOn}
+              {...selectCity}
+              selectRef={selectCity.select.ref}
+            />
           </Title>
         </HStack>
       </VStack>
@@ -231,7 +257,7 @@ export const ProfileCard: FC<IProfileCardProps> = memo((props) => {
             city: selectCity.input,
           }}
           isReadonly={isReadonly}
-          disableProfileChange={edit.disableProfileChange}
+          disableProfileChange={disableProfileChange}
           enableProfileChange={edit.enableProfileChange}
           saveProfileChange={edit.saveProfileChange}
         />
