@@ -62,14 +62,17 @@
   --color-red1:rgba(255 130 130 / 10%);
 
   // Sizes
+  --app-header-height: 60px;
   --sheets-header-height: 60px;
-  --sheets-toolbar-height: 65px;
-  --sheets-formula-height: 35px;
-  --sheets-footer-height: 45px;
+  --sheets-toolbar-height: 50px;
+  --sheets-formula-height: 30px;
+  --sheets-footer-height: 40px;
+  // *
   --cell-height: 25px;
   --cell-width: 140px;
   --cell-row-width: 40px;
   --cell-col-height: 30px;
+  // *
   --gap: 5px;
   --radius: 5px;
   --font-size: 1rem;

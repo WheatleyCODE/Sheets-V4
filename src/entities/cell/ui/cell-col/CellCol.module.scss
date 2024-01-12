@@ -1,0 +1,9 @@
+.cell_col {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--cell-width);
+  height: var(--cell-col-height);
+  border: 1px solid var(--color-border);
+  border-left: none;
+}

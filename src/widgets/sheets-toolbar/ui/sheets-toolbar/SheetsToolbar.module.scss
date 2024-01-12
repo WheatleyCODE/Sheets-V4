@@ -1,0 +1,9 @@
+.sheets_toolbar {
+  padding-bottom: calc(var(--gap) * 2);
+  height: var(--sheets-toolbar-height);
+}
+
+.gap {
+  display: inline-block;
+  width: calc(var(--gap) * 2);
+}

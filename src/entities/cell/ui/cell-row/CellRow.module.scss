@@ -1,0 +1,11 @@
+.cell_row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: var(--cell-height);
+  width: var(--cell-row-width);
+  border: 1px solid var(--color-border);
+  font-size: calc(var(--font-size) * 0.8);
+  border-top: none;
+  border-left: none;
+}

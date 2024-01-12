@@ -1,0 +1,6 @@
+.cell {
+  width: var(--cell-width);
+  height: var(--cell-height);
+  border-bottom: 1px solid var(--color-border);
+  border-right: 1px solid var(--color-border);
+}
