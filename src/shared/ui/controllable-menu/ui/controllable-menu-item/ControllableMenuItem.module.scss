@@ -30,6 +30,12 @@
   }
 }
 
+.controllable_menu_item.center {
+  padding: 0;
+  justify-content: center;
+  align-items: center;
+}
+
 .menu {
   z-index: 100;
   position: absolute;

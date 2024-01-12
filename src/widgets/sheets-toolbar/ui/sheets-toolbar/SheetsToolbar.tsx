@@ -13,6 +13,7 @@ import {
   TextStyle,
   TextVerAlign,
   UndoRedo,
+  Functions,
 } from '@/features/sheets-toolbar';
 
 export const SheetsToolbar: FC<ISheetsToolbarProps> = memo((props) => {
@@ -36,6 +37,8 @@ export const SheetsToolbar: FC<ISheetsToolbarProps> = memo((props) => {
       <div className={styles.gap} />
       <TextHorAlign />
       <TextVerAlign />
+      <div className={styles.gap} />
+      <Functions />
     </div>
   );
 });

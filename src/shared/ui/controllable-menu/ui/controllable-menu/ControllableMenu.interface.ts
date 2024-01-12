@@ -13,6 +13,7 @@ export interface IControllableMenuSpecificProps {
   itemsViewCount?: number;
   side?: 'left' | 'right';
   isScroll?: boolean;
+  isItemsCenter?: boolean;
 }
 
 type ControllableMenuData = UseControllableMenuResult['data'];

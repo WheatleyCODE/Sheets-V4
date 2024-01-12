@@ -1,4 +1,5 @@
 .font_size {
+  position: relative;
   height: 100%;
   display: inline-flex;
 }
@@ -10,4 +11,10 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
+}
+
+.dropdown {
+  left: 35px;
+  top: 40px;
+  width: 50px;
 }

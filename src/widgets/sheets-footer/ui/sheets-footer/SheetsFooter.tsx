@@ -7,6 +7,7 @@ import { classNames } from '@/shared/lib/class-names';
 import type { ISheetsFooterProps } from './SheetsFooter.interface';
 import styles from './SheetsFooter.module.scss';
 import { Button } from '@/shared/ui/button';
+import { Title } from '@/shared/ui/title';
 
 export const SheetsFooter: FC<ISheetsFooterProps> = memo((props) => {
   const { className, ...anotherProps } = props;
@@ -14,10 +15,21 @@ export const SheetsFooter: FC<ISheetsFooterProps> = memo((props) => {
 
   return (
     <div {...anotherProps} data-testid="sheetsFooter" className={classNames(styles.sheets_footer, {}, [className])}>
-      <Button Icon={MdAdd} />
-      <Button Icon={MdList} />
-      <Button text="Лист 1" Icon={MdList} />
-      <Button Icon={MdOutlineSettings} />
+      <Title text={t('Добавить лист')}>
+        <Button className="r-1px" Icon={MdAdd} />
+      </Title>
+
+      <Title text={t('Все листы')}>
+        <Button Icon={MdList} />
+      </Title>
+
+      <Title text="Лист 1">
+        <Button text="Лист 1" />
+      </Title>
+
+      <Title text={t('Добавить лист')}>
+        <Button Icon={MdOutlineSettings} />
+      </Title>
     </div>
   );
 });

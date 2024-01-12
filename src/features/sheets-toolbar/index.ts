@@ -7,3 +7,4 @@ export { CellBgColor } from './ui/cell-bg-color/CellBgColor';
 export { CellBorder } from './ui/cell-border/CellBorder';
 export { TextHorAlign } from './ui/text-hor-align/TextHorAlign';
 export { TextVerAlign } from './ui/text-ver-align/TextVerAlign';
+export { Functions } from './ui/functions/Functions';

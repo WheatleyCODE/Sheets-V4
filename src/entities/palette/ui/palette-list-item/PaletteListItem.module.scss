@@ -1,0 +1,16 @@
+.palette_list_item {
+  transition: all var(--animation-duration);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  width: 22px;
+  height: 22px;
+  margin: 2px;
+}
+
+.palette_list_item:hover {
+  scale: 1.15;
+  box-shadow: 0 0 3px 0 var(--color-black2);
+}

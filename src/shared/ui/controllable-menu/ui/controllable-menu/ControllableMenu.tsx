@@ -15,6 +15,7 @@ export const ControllableMenu: FC<IControllableMenuProps> = (props) => {
     changeMenuState,
     closeAllSubMenus,
     isScroll = false,
+    isItemsCenter = false,
     selectItem,
     selectCurrentItem,
     addCurrentDepthIndex,
@@ -38,6 +39,7 @@ export const ControllableMenu: FC<IControllableMenuProps> = (props) => {
       {items.map((item, i) => {
         return (
           <ControllableMenuItem
+            isItemsCenter={isItemsCenter}
             side={side}
             index={i}
             depth={0}

@@ -8,8 +8,19 @@ import type { IControllableMenuItem } from '../controllable-menu/ControllableMen
 import styles from './ControllableMenuItem.module.scss';
 
 export const ControllableMenuItem: FC<IControllableMenuItemProps> = (props) => {
-  const { className, item, isActive, depth, index, side, changeMenuState, menuState, selectItem, ...anotherProps } =
-    props;
+  const {
+    className,
+    item,
+    isActive,
+    depth,
+    index,
+    isItemsCenter,
+    side,
+    changeMenuState,
+    menuState,
+    selectItem,
+    ...anotherProps
+  } = props;
   const { Icon, text } = item;
   const ref = useRef<null | HTMLDivElement>(null);
 
@@ -85,9 +96,11 @@ export const ControllableMenuItem: FC<IControllableMenuItemProps> = (props) => {
       ref={ref}
       onClick={onClickHandler}
       data-testid="controllableMenuItem"
-      className={classNames(styles.controllable_menu_item, { [styles.active]: isActive, [styles[side]]: true }, [
-        className,
-      ])}
+      className={classNames(
+        styles.controllable_menu_item,
+        { [styles.active]: isActive, [styles[side]]: true, [styles.center]: isItemsCenter },
+        [className],
+      )}
     >
       {!!Icon && (
         <div data-testid="controllableMenuItem-icon" className={styles.icon_container}>

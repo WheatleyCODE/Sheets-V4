@@ -3,5 +3,6 @@ export { useControllableMenu } from './ui/controllable-menu/ControllableMenu.hoo
 
 export type {
   IControllableMenuSpecificProps,
+  IControllableMenuItem,
   UseControllableMenuParams,
 } from './ui/controllable-menu/ControllableMenu.interface';

@@ -9,4 +9,5 @@ export interface IControllableMenuItemProps extends React.HTMLAttributes<HTMLDiv
   changeMenuState: (index: number, depth: number) => void;
   selectItem: (item: IControllableMenuItem) => void;
   isActive: boolean;
+  isItemsCenter?: boolean;
 }
