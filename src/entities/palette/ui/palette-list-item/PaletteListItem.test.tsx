@@ -4,7 +4,7 @@ import { renderComponent } from '@/shared/lib/tests/render-component/renderCompo
 
 describe('PaletteListItem', () => {
   test('In the document', () => {
-    renderComponent(<PaletteListItem />);
+    renderComponent(<PaletteListItem color="red" title="Red" />);
 
     expect(screen.getByTestId('paletteListItem')).toBeInTheDocument();
   });

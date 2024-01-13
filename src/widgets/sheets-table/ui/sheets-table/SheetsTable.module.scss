@@ -5,3 +5,74 @@
 .row {
   display: flex;
 }
+
+.table {
+  position: relative;
+  display: flex;
+  height: 200px;
+}
+
+.table_header {
+  display: flex;
+}
+
+.cell_rows {
+  display: inline-block;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+.cell_cols {
+  display: flex;
+  overflow: hidden;
+}
+
+.cells {
+  display: inline-block;
+  overflow: hidden;
+}
+
+.right_scroll {
+  width: 14px;
+  height: 100%;
+  right: 0;
+  top: 0;
+}
+
+.bottom_scroll {
+  height: 14px;
+  width: 100%;
+  bottom: -14px;
+  left: 0;
+}
+
+.right_scroll, .bottom_scroll {
+  position: absolute;
+  background-color: var(--color-scroll-track);
+}
+
+.right_bar {
+  left: 0;
+  top: 0;
+  width: 14px;
+  height: 100px;
+}
+
+.bottom_bar {
+  left: 0;
+  top: 0;
+  height: 14px;
+  width: 100px;
+}
+
+.right_bar, .bottom_bar {
+  position: absolute;
+  border-radius: 10px;
+  border: 1px solid var(--color-scroll-thumb-border);
+  background-color: var(--color-scroll-thumb);
+
+  &:hover {
+    background-color: var(--color-scroll-thumb);
+    border: 1px solid var(--color-scroll-thumb-hover);
+  }
+}

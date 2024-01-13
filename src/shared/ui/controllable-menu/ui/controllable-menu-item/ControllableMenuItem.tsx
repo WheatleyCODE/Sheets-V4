@@ -77,13 +77,13 @@ export const ControllableMenuItem: FC<IControllableMenuItemProps> = (props) => {
     };
 
     if (depth === 0) {
-      if (menuState?.next && item.childrenItems) {
+      if (menuState?.next && item.childrenItems && isActive) {
         return to(item.childrenItems);
       }
     }
 
     if (depth === 1) {
-      if (menuState?.next?.next && item.childrenItems) {
+      if (menuState?.next?.next && item.childrenItems && isActive) {
         return to(item.childrenItems);
       }
     }
