@@ -1,10 +1,6 @@
 import { FC, memo } from 'react';
+import { SheetsFooter, SheetsFormula, SheetsHeader, SheetsTable, SheetsToolbar } from '@/widgets/sheets';
 import { classNames } from '@/shared/lib/class-names';
-import { SheetsHeader } from '@/widgets/sheets-header';
-import { SheetsToolbar } from '@/widgets/sheets-toolbar';
-import { SheetsFormula } from '@/widgets/sheets-formula';
-import { SheetsTable } from '@/widgets/sheets-table';
-import { SheetsFooter } from '@/widgets/sheets-footer';
 import styles from './SheetsPage.module.scss';
 
 const SheetsPage: FC = memo(() => {
