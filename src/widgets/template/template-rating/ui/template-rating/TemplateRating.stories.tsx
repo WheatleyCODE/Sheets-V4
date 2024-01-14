@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import TemplateRating from './TemplateRating';
-import { themeDecorator } from '../../../../../config/storybook/theme-decorator/themeDecorator';
+import { themeDecorator } from '../../../../../../config/storybook/theme-decorator/themeDecorator';
 
 const meta = {
   title: 'widgets/TemplateRating',

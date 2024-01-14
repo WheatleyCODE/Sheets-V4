@@ -1,4 +1,4 @@
-import { ChangeEvent, FC, useCallback, useEffect } from 'react';
+import { ChangeEvent, FC, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { MdOutlineFilterList, MdOutlineSearch, MdOutlineSort } from 'react-icons/md';
 import { useTemplatesPageSort } from '../../model/selectors/get-templates-page-sort/getTemplatesPageSort';
@@ -12,6 +12,7 @@ import { TemplatesViewSwitcher } from '@/features/templates-view-switcher';
 import { TemplateTags, TemplateView, ITemplateTab, templateTabs } from '@/entities/template';
 import { Input, useValidInput } from '@/shared/ui/input';
 import { DragLine, DragLineItem } from '@/shared/ui/drag-line';
+import { Select, useSelect } from '@/shared/ui/select';
 import { TabItem, Tabs } from '@/shared/ui/tabs';
 import { intoIter } from '@/shared/lib/iterators';
 import { Title } from '@/shared/ui/title';
@@ -21,7 +22,6 @@ import { getSortItems, getSortOrderItems } from '../../model/consts/templatesPag
 import { classNames } from '@/shared/lib/class-names';
 import type { ITemplatesPageFiltersProps } from './TemplatesPageFilters.interface';
 import styles from './TemplatesPageFilters.module.scss';
-import { Select, useSelect } from '@/shared/ui/select';
 
 export const TemplatesPageFilters: FC<ITemplatesPageFiltersProps> = (props) => {
   const { className, ...anotherProps } = props;

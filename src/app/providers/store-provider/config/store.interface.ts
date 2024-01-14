@@ -3,8 +3,7 @@ import { AnyAction, EnhancedStore, ReducersMapObject, Reducer, CombinedState, Th
 import { ToolkitStore } from '@reduxjs/toolkit/dist/configureStore';
 import { ITemplatesPageSchema } from '@/pages/templates-page';
 import { IModalsSchema, IScrollSchema } from '../../../layout';
-import { ITemplateRecommendsSchema } from '@/widgets/template-recommends';
-import { ITemplateCommentsSchema } from '@/widgets/template-comments';
+import { ITemplateRecommendsSchema, ITemplateCommentsSchema } from '@/widgets/template';
 import { IUserSchema } from '@/entities/user';
 import { ILoginSchema } from '@/features/auth-by-email';
 import { IAddCommentFormSchema } from '@/features/add-comment-form';

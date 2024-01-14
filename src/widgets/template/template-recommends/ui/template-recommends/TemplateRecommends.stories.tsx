@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { TemplateRecommends } from './TemplateRecommends';
-import { themeDecorator } from '../../../../../config/storybook/theme-decorator/themeDecorator';
+import { themeDecorator } from '../../../../../../config/storybook/theme-decorator/themeDecorator';
 
 const meta = {
   title: 'widgets/template-recommends/TemplateRecommends',

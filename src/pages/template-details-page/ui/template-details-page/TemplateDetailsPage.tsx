@@ -1,8 +1,6 @@
 import { FC, memo } from 'react';
 import { TemplateDetailsPageHeader } from '../template-details-page-header/TemplateDetailsPageHeader';
-import { TemplateRecommends } from '@/widgets/template-recommends';
-import { TemplateComments } from '@/widgets/template-comments';
-import { TemplateRating } from '@/widgets/template-rating';
+import { TemplateRating, TemplateComments, TemplateRecommends } from '@/widgets/template';
 import { ToggleFeatures, toggleFeatures } from '@/shared/lib/features';
 import { TemplateDetailsPageMain } from '../template-details-page-main/TemplateDetailsPageMain';
 import { classNames } from '@/shared/lib/class-names';
