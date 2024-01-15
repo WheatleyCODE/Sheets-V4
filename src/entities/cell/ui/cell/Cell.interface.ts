@@ -1,1 +1,4 @@
-export interface ICellProps extends React.HTMLAttributes<HTMLDivElement> {}
+export interface ICellProps extends React.HTMLAttributes<HTMLDivElement> {
+  id: string;
+  value: string;
+}

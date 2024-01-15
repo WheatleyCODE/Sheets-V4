@@ -4,7 +4,7 @@ import { renderComponent } from '@/shared/lib/tests/render-component/renderCompo
 
 describe('CellCol', () => {
   test('In the document', () => {
-    renderComponent(<CellCol />);
+    renderComponent(<CellCol id={10} value="A" width={100} />);
 
     expect(screen.getByTestId('cellCol')).toBeInTheDocument();
   });

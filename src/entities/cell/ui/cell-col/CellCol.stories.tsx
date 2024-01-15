@@ -12,10 +12,18 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Light: Story = {
-  args: {},
+  args: {
+    id: 10,
+    value: 'A',
+    width: 100,
+  },
 };
 
 export const Dark: Story = {
-  args: {},
+  args: {
+    id: 10,
+    value: 'A',
+    width: 100,
+  },
   decorators: [themeDecorator('dark')],
 };
