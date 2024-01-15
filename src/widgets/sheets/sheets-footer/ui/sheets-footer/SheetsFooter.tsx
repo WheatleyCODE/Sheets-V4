@@ -3,15 +3,25 @@ import { useTranslation } from 'react-i18next';
 import { MdAdd } from 'react-icons/md';
 import { MdList } from 'react-icons/md';
 import { MdOutlineSettings } from 'react-icons/md';
+import { sheetsFooterReducer } from '../../model/slice/sheetsFooterSlice';
+import { useSheetsFooter } from '../../model/selectors/get-sheets-footer/getSheetsFooter';
+import { Button } from '@/shared/ui/button';
+import { Title } from '@/shared/ui/title';
+import { ReducersList, useDynamicModule } from '@/shared/lib/hooks';
 import { classNames } from '@/shared/lib/class-names';
 import type { ISheetsFooterProps } from './SheetsFooter.interface';
 import styles from './SheetsFooter.module.scss';
-import { Button } from '@/shared/ui/button';
-import { Title } from '@/shared/ui/title';
+
+const reducers: ReducersList = { sheetsFooter: sheetsFooterReducer };
 
 export const SheetsFooter: FC<ISheetsFooterProps> = memo((props) => {
   const { className, ...anotherProps } = props;
+  useDynamicModule(reducers);
+
   const { t } = useTranslation();
+  const footer = useSheetsFooter();
+
+  console.log(footer, 'footer');
 
   return (
     <div {...anotherProps} data-testid="sheetsFooter" className={classNames(styles.sheets_footer, {}, [className])}>

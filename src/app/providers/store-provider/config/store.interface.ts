@@ -4,6 +4,13 @@ import { ToolkitStore } from '@reduxjs/toolkit/dist/configureStore';
 import { ITemplatesPageSchema } from '@/pages/templates-page';
 import { IModalsSchema, IScrollSchema } from '../../../layout';
 import { ITemplateRecommendsSchema, ITemplateCommentsSchema } from '@/widgets/template';
+import {
+  ISheetsFooterSchema,
+  ISheetsFormulaSchema,
+  ISheetsHeaderSchema,
+  ISheetsTableSchema,
+  ISheetsToolbarSchema,
+} from '@/widgets/sheets';
 import { IUserSchema } from '@/entities/user';
 import { ILoginSchema } from '@/features/auth-by-email';
 import { IAddCommentFormSchema } from '@/features/add-comment-form';
@@ -26,6 +33,11 @@ export interface IStateSchema {
   templateRecommends?: ITemplateRecommendsSchema;
   addCommentForm?: IAddCommentFormSchema;
   templatesPage?: ITemplatesPageSchema;
+  sheetsTable?: ISheetsTableSchema;
+  sheetsToolbar?: ISheetsToolbarSchema;
+  sheetsHeader?: ISheetsHeaderSchema;
+  sheetsFooter?: ISheetsFooterSchema;
+  sheetsFormula?: ISheetsFormulaSchema;
 }
 
 export type StateSchemaKey = keyof IStateSchema;
