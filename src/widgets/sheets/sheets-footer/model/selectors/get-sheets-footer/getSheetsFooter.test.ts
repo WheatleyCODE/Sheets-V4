@@ -5,10 +5,10 @@ import { IStateSchema } from '@/app/providers/store-provider';
 describe('getSheetsFooter', () => {
   test('Return state sheetsFooter prop', () => {
     const state: DeepPartial<IStateSchema> = {
-      sheetsFooter: { sheetsFooter: { a: null } },
+      sheetsFooter: { sheetsFooter: { lists: [] } },
     };
 
-    expect(getSheetsFooter(state as IStateSchema)).toEqual({ a: null });
+    expect(getSheetsFooter(state as IStateSchema)).toEqual({ lists: [] });
   });
 
   test('Return state sheetsFooter prop, empty', () => {

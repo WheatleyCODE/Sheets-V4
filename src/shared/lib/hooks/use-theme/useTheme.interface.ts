@@ -1,5 +1,5 @@
 import type { Theme } from '../../../../shared/lib/contexts/theme-context/ThemeContext.interface';
-import { KVStorageEngine } from '../../kv-storage/kv-storage/kvStorage.interface';
+import { IKVStorageEngine } from '../../kv-storage/kv-storage/kvStorage.interface';
 import { Nullable, SyncOrAsyncPromise } from '../../ts-utils';
 
 export interface IUseThemeResult {
@@ -7,4 +7,4 @@ export interface IUseThemeResult {
   theme: Theme;
 }
 
-export type SetTheme = (newTheme: Theme, engine?: KVStorageEngine) => SyncOrAsyncPromise<Nullable<void>>;
+export type SetTheme = (newTheme: Theme, engine?: IKVStorageEngine) => SyncOrAsyncPromise<Nullable<void>>;

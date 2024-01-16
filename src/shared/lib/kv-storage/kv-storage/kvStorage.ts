@@ -1,17 +1,17 @@
 import { LocalStorageSyncEngine } from '../local-storage-sync-engine/localStorageEngine';
 import { Nullable, SyncOrAsyncPromise } from '../../ts-utils';
 import { STORAGE_NAMESPACE } from '@/shared/consts';
-import type { KVStorageEngine } from './kvStorage.interface';
+import type { IKVStorageEngine } from './kvStorage.interface';
 
-export function KVFactory(namespace = STORAGE_NAMESPACE, engine: KVStorageEngine = new LocalStorageSyncEngine()) {
+export function KVFactory(namespace = STORAGE_NAMESPACE, engine: IKVStorageEngine = new LocalStorageSyncEngine()) {
   return new KVStorage(namespace, engine);
 }
 
 export class KVStorage {
   readonly namespace: string;
-  readonly engine: KVStorageEngine;
+  readonly engine: IKVStorageEngine;
 
-  constructor(namespace: string, engine: KVStorageEngine) {
+  constructor(namespace: string, engine: IKVStorageEngine) {
     this.namespace = namespace;
     this.engine = engine;
   }

@@ -1,12 +1,12 @@
 import { api } from '@/shared/api/axios/axios';
 import { Nullable } from '../../ts-utils';
 import { IClientSettings } from '@/shared/types';
-import type { KVStorageEngine } from '../kv-storage/kvStorage.interface';
+import type { IKVStorageEngine } from '../kv-storage/kvStorage.interface';
 
 // eslint-disable-next-line wheatley-code/layer-imports
 import { IUser } from '@/entities/user';
 
-export class ClientSettingsAsyncEngine implements KVStorageEngine {
+export class ClientSettingsAsyncEngine implements IKVStorageEngine {
   #userId: string;
 
   constructor(userId: string) {

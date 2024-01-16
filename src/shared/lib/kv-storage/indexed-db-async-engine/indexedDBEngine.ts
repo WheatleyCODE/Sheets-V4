@@ -1,9 +1,9 @@
 import { IDB_NAME, IDB_STORE_NAME } from '@/shared/consts';
 import { Nullable } from '../../ts-utils';
-import type { KVStorageEngine } from '../kv-storage/kvStorage.interface';
+import type { IKVStorageEngine } from '../kv-storage/kvStorage.interface';
 import type { DBMode } from './indexedDBEngine.interface';
 
-export class IndexedDBAsyncEngine implements KVStorageEngine {
+export class IndexedDBAsyncEngine implements IKVStorageEngine {
   #storeName: string;
   #db: Promise<IDBDatabase>;
 
