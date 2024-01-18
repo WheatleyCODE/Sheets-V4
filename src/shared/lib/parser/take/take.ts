@@ -3,9 +3,9 @@ import { ParserStates, TokenTypes } from '../consts';
 import { intoIter } from '../helpers/into-iter/intoIter';
 import { seqIterable } from '../helpers/seq-iterable/seq-iterable';
 import { testChar } from '../helpers/test-char/testChar';
-import type { IToken, Parser, ParserResult, Test } from '../interface';
 import { ParserError } from '../parser-error/parserError';
-import { ITakeOptions } from './take.interface';
+import type { IToken, Parser, ParserResult, Test } from '../interface';
+import type { ITakeOptions } from './take.interface';
 
 export const take = (test: Test, opts: ITakeOptions<string> = {}): Parser<string, string> => {
   const { max = Infinity, min = 1 } = opts;

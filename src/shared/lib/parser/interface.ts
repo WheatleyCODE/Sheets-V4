@@ -8,7 +8,7 @@ export interface IToken<T = unknown> {
   value?: T;
 }
 
-interface IParserValue<T = unknown> extends IToken<T> {}
+export interface IParserValue<T = unknown> extends IToken<T> {}
 
 export type ParserResult<T = unknown> = [IParserValue<T>, Iterable<string>];
 

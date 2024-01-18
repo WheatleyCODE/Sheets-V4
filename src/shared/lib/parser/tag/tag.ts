@@ -6,9 +6,6 @@ import { ParserError } from '../parser-error/parserError';
 import type { IToken, Parser, ParserResult, Test, IParserValue } from '../interface';
 import type { ITagOptions } from './tag.interface';
 
-// type AA = ReturnType<typeof tag>;
-// Generator<SyncPromise<ParserStates> | SyncPromise<IToken<unknown>>, SyncPromise<never> | SyncPromise<ParserResult<string>>, unknown>
-
 export const tag = (pattern: Iterable<Test>, opts: ITagOptions<string> = {}): Parser<string, string> => {
   return function* (source: Iterable<string>, prev?: IParserValue<string>) {
     let sourceIter = intoIter(source);
