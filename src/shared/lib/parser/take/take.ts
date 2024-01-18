@@ -1,20 +1,27 @@
 import { SyncPromise } from '../../promise';
 import { ParserStates, TokenTypes } from '../consts';
 import { intoIter } from '../helpers/into-iter/intoIter';
+import { seqIterable } from '../helpers/seq-iterable/seq-iterable';
 import { testChar } from '../helpers/test-char/testChar';
+import type { IToken, Parser, ParserResult, Test } from '../interface';
 import { ParserError } from '../parser-error/parserError';
-import type { IToken, Parser, ParserResult, Test, IParserValue } from '../interface';
-import type { ITagOptions } from './tag.interface';
+import { ITakeOptions } from './take.interface';
 
-// type AA = ReturnType<typeof tag>;
-// Generator<SyncPromise<ParserStates> | SyncPromise<IToken<unknown>>, SyncPromise<never> | SyncPromise<ParserResult<string>>, unknown>
+export const take = (test: Test, opts: ITakeOptions<string> = {}): Parser<string, string> => {
+  const { max = Infinity, min = 1 } = opts;
 
-export const tag = (pattern: Iterable<Test>, opts: ITagOptions<string> = {}): Parser<string, string> => {
-  return function* (source: Iterable<string>, prev?: IParserValue<string>) {
+  return function* (source, prev) {
     let sourceIter = intoIter(source);
+    let count = 0;
     let value = '';
 
-    for (const test of pattern) {
+    const buffer: string[] = [];
+
+    while (true) {
+      if (count >= max) {
+        break;
+      }
+
       let chunk = sourceIter.next();
       let char = chunk.value;
 
@@ -33,9 +40,19 @@ export const tag = (pattern: Iterable<Test>, opts: ITagOptions<string> = {}): Pa
       const error = testChar(test, char, prev);
 
       if (error != null) {
-        return SyncPromise.reject(new ParserError(error, prev));
+        // * Ошибка только в случае count < min ???
+        if (count < min) {
+          return SyncPromise.reject(
+            new ParserError(`Не выполнено условие count < min: ${count} < ${min}. ` + error, prev),
+          );
+        }
+
+        buffer.push(char);
+
+        break;
       }
 
+      count++;
       value += char;
     }
 
@@ -49,11 +66,11 @@ export const tag = (pattern: Iterable<Test>, opts: ITagOptions<string> = {}): Pa
     }
 
     const token: IToken<string> = {
-      type: TokenTypes.TAG,
+      type: TokenTypes.TAKE,
       value,
     };
 
-    const res: ParserResult<string> = [token, sourceIter];
+    const res: ParserResult<string> = [token, buffer.length > 0 ? seqIterable(buffer, sourceIter) : sourceIter];
 
     return SyncPromise.resolve(res);
   };
