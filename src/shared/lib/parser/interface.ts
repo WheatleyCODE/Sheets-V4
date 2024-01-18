@@ -14,9 +14,9 @@ export type ParserResult<T = unknown> = [IParserValue<T>, Iterable<string>];
 
 export type Parser<T = unknown, R = unknown> = (
   iterable: Iterable<string>,
-  prev?: IParserValue<T>,
+  prev?: IParserValue,
 ) => Generator<
-  SyncPromise<ParserStates> | SyncPromise<IToken>,
+  SyncPromise<ParserStates> | SyncPromise<IToken<T>>,
   SyncPromise<ParserResult<R>>,
   Iterable<string> | undefined
 >;

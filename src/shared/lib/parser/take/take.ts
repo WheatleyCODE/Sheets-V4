@@ -57,7 +57,7 @@ export const take = (test: Test, opts: ITakeOptions<string> = {}): Parser<string
     }
 
     if (opts.token) {
-      const token: IToken = {
+      const token: IToken<string> = {
         type: opts.token,
         value: opts?.setValue ? opts?.setValue(value) : value,
       };

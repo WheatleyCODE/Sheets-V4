@@ -3,11 +3,11 @@ import { ParserStates, TokenTypes } from '../consts';
 import { intoIter } from '../helpers/into-iter/intoIter';
 import { testChar } from '../helpers/test-char/testChar';
 import { ParserError } from '../parser-error/parserError';
-import type { IToken, Parser, ParserResult, Test, IParserValue } from '../interface';
+import type { IToken, Parser, ParserResult, Test } from '../interface';
 import type { ITagOptions } from './tag.interface';
 
 export const tag = (pattern: Iterable<Test>, opts: ITagOptions<string> = {}): Parser<string, string> => {
-  return function* (source: Iterable<string>, prev?: IParserValue<string>) {
+  return function* (source, prev) {
     let sourceIter = intoIter(source);
     let value = '';
 
@@ -37,7 +37,7 @@ export const tag = (pattern: Iterable<Test>, opts: ITagOptions<string> = {}): Pa
     }
 
     if (opts.token) {
-      const token: IToken = {
+      const token: IToken<string> = {
         type: opts.token,
         value: opts?.setValue ? opts?.setValue(value) : value,
       };
