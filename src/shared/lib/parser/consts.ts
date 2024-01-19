@@ -4,6 +4,7 @@ export enum TokenTypes {
 
   SEQ = 'SEQ',
   OR = 'OR',
+  REPEAT = 'REPEAT',
 
   XML = 'XML',
   NUMBER = 'NUMBER',
