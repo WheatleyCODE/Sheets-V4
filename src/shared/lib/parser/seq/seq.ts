@@ -39,6 +39,7 @@ export function seq<T = unknown, R = unknown>(
         if (chunk.done) {
           const chunkValue = chunk.value.unwrap();
           prev = chunkValue[0];
+
           value.push(prev);
           sourceIter = intoIter(chunkValue[1]);
 

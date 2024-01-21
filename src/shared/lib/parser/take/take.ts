@@ -29,7 +29,8 @@ export const take = (test: Test, opts: ITakeOptions<string> = {}): Parser<string
         const newSource = yield SyncPromise.resolve(ParserStates.EXPECT_NEW_INPUT);
 
         if (newSource == null) {
-          return SyncPromise.reject(new ParserError('Ожидается продолжение', prev));
+          break;
+          // return SyncPromise.reject(new ParserError('Ожидается продолжение', prev));
         }
 
         sourceIter = intoIter(newSource);
@@ -56,7 +57,7 @@ export const take = (test: Test, opts: ITakeOptions<string> = {}): Parser<string
       value += char;
     }
 
-    if (opts.token) {
+    if (opts.token && count > 0) {
       const token: IToken<string> = {
         type: opts.token,
         value: opts?.setValue ? opts?.setValue(value) : value,
