@@ -32,34 +32,69 @@ describe('repeat', () => {
       });
 
     expect(res).toEqual([
+      { type: 'TAG', value: '<' },
       { type: 'XML_TAG_NAME', value: 'span' },
+      { type: 'TAG', value: '>' },
       {
-        type: 'SEQ',
+        type: 'XML_TAG',
         value: [
           { type: 'TAG', value: '<' },
-          { type: 'TAKE', value: 'span' },
+          { type: 'XML_TAG_NAME', value: 'span' },
           { type: 'TAG', value: '>' },
         ],
       },
+      { type: 'TAG', value: '<' },
       { type: 'XML_TAG_NAME', value: 'div' },
+      { type: 'TAG', value: '>' },
       {
-        type: 'SEQ',
+        type: 'XML_TAG',
         value: [
           { type: 'TAG', value: '<' },
-          { type: 'TAKE', value: 'div' },
+          { type: 'XML_TAG_NAME', value: 'div' },
           { type: 'TAG', value: '>' },
         ],
       },
+      { type: 'TAG', value: '<' },
       { type: 'XML_TAG_NAME', value: 'dir' },
+      { type: 'TAG', value: '>' },
       {
-        type: 'SEQ',
+        type: 'XML_TAG',
         value: [
           { type: 'TAG', value: '<' },
-          { type: 'TAKE', value: 'dir' },
+          { type: 'XML_TAG_NAME', value: 'dir' },
           { type: 'TAG', value: '>' },
         ],
       },
       'EXPECT_NEW_INPUT',
+      {
+        type: 'REPEAT',
+        value: [
+          {
+            type: 'XML_TAG',
+            value: [
+              { type: 'TAG', value: '<' },
+              { type: 'XML_TAG_NAME', value: 'span' },
+              { type: 'TAG', value: '>' },
+            ],
+          },
+          {
+            type: 'XML_TAG',
+            value: [
+              { type: 'TAG', value: '<' },
+              { type: 'XML_TAG_NAME', value: 'div' },
+              { type: 'TAG', value: '>' },
+            ],
+          },
+          {
+            type: 'XML_TAG',
+            value: [
+              { type: 'TAG', value: '<' },
+              { type: 'XML_TAG_NAME', value: 'dir' },
+              { type: 'TAG', value: '>' },
+            ],
+          },
+        ],
+      },
     ]);
     expect(error).toBe(undefined);
     expect(thenCalls).toBe(1);
@@ -92,34 +127,69 @@ describe('repeat', () => {
       });
 
     expect(res).toEqual([
+      { type: 'TAG', value: '[' },
       { type: 'BB_TAG_NAME', value: 'span' },
+      { type: 'TAG', value: ']' },
       {
-        type: 'SEQ',
+        type: 'BB_TAG',
         value: [
           { type: 'TAG', value: '[' },
-          { type: 'TAKE', value: 'span' },
+          { type: 'BB_TAG_NAME', value: 'span' },
           { type: 'TAG', value: ']' },
         ],
       },
+      { type: 'TAG', value: '[' },
       { type: 'BB_TAG_NAME', value: 'div' },
+      { type: 'TAG', value: ']' },
       {
-        type: 'SEQ',
+        type: 'BB_TAG',
         value: [
           { type: 'TAG', value: '[' },
-          { type: 'TAKE', value: 'div' },
+          { type: 'BB_TAG_NAME', value: 'div' },
           { type: 'TAG', value: ']' },
         ],
       },
+      { type: 'TAG', value: '[' },
       { type: 'BB_TAG_NAME', value: 'dir' },
+      { type: 'TAG', value: ']' },
       {
-        type: 'SEQ',
+        type: 'BB_TAG',
         value: [
           { type: 'TAG', value: '[' },
-          { type: 'TAKE', value: 'dir' },
+          { type: 'BB_TAG_NAME', value: 'dir' },
           { type: 'TAG', value: ']' },
         ],
       },
       'EXPECT_NEW_INPUT',
+      {
+        type: 'REPEAT',
+        value: [
+          {
+            type: 'BB_TAG',
+            value: [
+              { type: 'TAG', value: '[' },
+              { type: 'BB_TAG_NAME', value: 'span' },
+              { type: 'TAG', value: ']' },
+            ],
+          },
+          {
+            type: 'BB_TAG',
+            value: [
+              { type: 'TAG', value: '[' },
+              { type: 'BB_TAG_NAME', value: 'div' },
+              { type: 'TAG', value: ']' },
+            ],
+          },
+          {
+            type: 'BB_TAG',
+            value: [
+              { type: 'TAG', value: '[' },
+              { type: 'BB_TAG_NAME', value: 'dir' },
+              { type: 'TAG', value: ']' },
+            ],
+          },
+        ],
+      },
     ]);
     expect(error).toBe(undefined);
     expect(thenCalls).toBe(1);
@@ -134,7 +204,7 @@ describe('repeat', () => {
       tag('>'),
     );
 
-    const parser = repeat(xmlTag)('<span><div><dir>%');
+    const parser = repeat(xmlTag)('<span><div>%');
 
     let res;
     let error;
@@ -152,31 +222,47 @@ describe('repeat', () => {
       });
 
     expect(res).toEqual([
+      { type: 'TAG', value: '<' },
       { type: 'XML_TAG_NAME', value: 'span' },
+      { type: 'TAG', value: '>' },
       {
-        type: 'SEQ',
+        type: 'XML_TAG',
         value: [
           { type: 'TAG', value: '<' },
-          { type: 'TAKE', value: 'span' },
+          { type: 'XML_TAG_NAME', value: 'span' },
           { type: 'TAG', value: '>' },
         ],
       },
+      { type: 'TAG', value: '<' },
       { type: 'XML_TAG_NAME', value: 'div' },
+      { type: 'TAG', value: '>' },
       {
-        type: 'SEQ',
+        type: 'XML_TAG',
         value: [
           { type: 'TAG', value: '<' },
-          { type: 'TAKE', value: 'div' },
+          { type: 'XML_TAG_NAME', value: 'div' },
           { type: 'TAG', value: '>' },
         ],
       },
-      { type: 'XML_TAG_NAME', value: 'dir' },
       {
-        type: 'SEQ',
+        type: 'REPEAT',
         value: [
-          { type: 'TAG', value: '<' },
-          { type: 'TAKE', value: 'dir' },
-          { type: 'TAG', value: '>' },
+          {
+            type: 'XML_TAG',
+            value: [
+              { type: 'TAG', value: '<' },
+              { type: 'XML_TAG_NAME', value: 'span' },
+              { type: 'TAG', value: '>' },
+            ],
+          },
+          {
+            type: 'XML_TAG',
+            value: [
+              { type: 'TAG', value: '<' },
+              { type: 'XML_TAG_NAME', value: 'div' },
+              { type: 'TAG', value: '>' },
+            ],
+          },
         ],
       },
     ]);
@@ -195,8 +281,8 @@ describe('repeat', () => {
 
     const parser = repeat(xmlTag)('<span><div><dir>');
 
-    let res;
-    let error;
+    let res: any;
+    let error: any;
     let thenCalls = 0;
     let catchCalls = 0;
 
@@ -207,9 +293,274 @@ describe('repeat', () => {
       catchCalls = 0;
     };
 
-    parser
-      .next()
-      .value.then((v) => {
+    const testFn = (resData: any, isError: boolean, thenCls: number, catchCls: number, next?: any) => {
+      parser
+        .next(next)
+        .value.then((v) => {
+          res = v;
+          thenCalls++;
+        })
+        .catch((e) => {
+          error = e;
+          catchCalls++;
+        });
+
+      expect(res).toEqual(resData);
+      expect(thenCalls).toBe(thenCls);
+
+      if (isError) {
+        expect(thenCalls).not.toBe(undefined);
+      } else {
+        expect(error).toBe(undefined);
+      }
+      expect(catchCalls).toBe(catchCls);
+
+      clearVars();
+    };
+
+    testFn({ type: 'TAG', value: '<' }, false, 1, 0);
+    testFn({ type: 'XML_TAG_NAME', value: 'span' }, false, 1, 0);
+    testFn({ type: 'TAG', value: '>' }, false, 1, 0);
+    testFn(
+      {
+        type: 'XML_TAG',
+        value: [
+          { type: 'TAG', value: '<' },
+          { type: 'XML_TAG_NAME', value: 'span' },
+          { type: 'TAG', value: '>' },
+        ],
+      },
+      false,
+      1,
+      0,
+    );
+
+    testFn({ type: 'TAG', value: '<' }, false, 1, 0);
+    testFn({ type: 'XML_TAG_NAME', value: 'div' }, false, 1, 0);
+    testFn({ type: 'TAG', value: '>' }, false, 1, 0);
+    testFn(
+      {
+        type: 'XML_TAG',
+        value: [
+          { type: 'TAG', value: '<' },
+          { type: 'XML_TAG_NAME', value: 'div' },
+          { type: 'TAG', value: '>' },
+        ],
+      },
+      false,
+      1,
+      0,
+    );
+
+    testFn({ type: 'TAG', value: '<' }, false, 1, 0);
+    testFn({ type: 'XML_TAG_NAME', value: 'dir' }, false, 1, 0);
+    testFn({ type: 'TAG', value: '>' }, false, 1, 0);
+    testFn(
+      {
+        type: 'XML_TAG',
+        value: [
+          { type: 'TAG', value: '<' },
+          { type: 'XML_TAG_NAME', value: 'dir' },
+          { type: 'TAG', value: '>' },
+        ],
+      },
+      false,
+      1,
+      0,
+    );
+
+    testFn(ParserStates.EXPECT_NEW_INPUT, false, 1, 0);
+
+    testFn(
+      {
+        type: 'REPEAT',
+        value: [
+          {
+            type: 'XML_TAG',
+            value: [
+              { type: 'TAG', value: '<' },
+              { type: 'XML_TAG_NAME', value: 'span' },
+              { type: 'TAG', value: '>' },
+            ],
+          },
+          {
+            type: 'XML_TAG',
+            value: [
+              { type: 'TAG', value: '<' },
+              { type: 'XML_TAG_NAME', value: 'div' },
+              { type: 'TAG', value: '>' },
+            ],
+          },
+          {
+            type: 'XML_TAG',
+            value: [
+              { type: 'TAG', value: '<' },
+              { type: 'XML_TAG_NAME', value: 'dir' },
+              { type: 'TAG', value: '>' },
+            ],
+          },
+        ],
+      },
+      false,
+      1,
+      0,
+    );
+  });
+
+  test('Works stream (1)', () => {
+    const xmlTag = seq(
+      { token: 'XML_TAG' as TokenTypes },
+      tag('<'),
+      take(/\w/, { token: 'XML_TAG_NAME' as TokenTypes }),
+      tag('>'),
+    );
+
+    const parser = repeat(xmlTag)('<span>');
+
+    let res: any;
+    let error: any;
+    let thenCalls = 0;
+    let catchCalls = 0;
+
+    const clearVars = () => {
+      res = undefined;
+      error = undefined;
+      thenCalls = 0;
+      catchCalls = 0;
+    };
+
+    const testFn = (resData: any, isError: boolean, thenCls: number, catchCls: number, next?: any) => {
+      parser
+        .next(next)
+        .value.then((v) => {
+          res = v;
+          thenCalls++;
+        })
+        .catch((e) => {
+          error = e;
+          catchCalls++;
+        });
+
+      expect(res).toEqual(resData);
+      expect(thenCalls).toBe(thenCls);
+
+      if (isError) {
+        expect(thenCalls).not.toBe(undefined);
+      } else {
+        expect(error).toBe(undefined);
+      }
+      expect(catchCalls).toBe(catchCls);
+
+      clearVars();
+    };
+
+    testFn({ type: 'TAG', value: '<' }, false, 1, 0);
+    testFn({ type: 'XML_TAG_NAME', value: 'span' }, false, 1, 0);
+    testFn({ type: 'TAG', value: '>' }, false, 1, 0);
+    testFn(
+      {
+        type: 'XML_TAG',
+        value: [
+          { type: 'TAG', value: '<' },
+          { type: 'XML_TAG_NAME', value: 'span' },
+          { type: 'TAG', value: '>' },
+        ],
+      },
+      false,
+      1,
+      0,
+    );
+
+    testFn(ParserStates.EXPECT_NEW_INPUT, false, 1, 0);
+    testFn({ type: 'TAG', value: '<' }, false, 1, 0, '<div>');
+    testFn({ type: 'XML_TAG_NAME', value: 'div' }, false, 1, 0);
+    testFn({ type: 'TAG', value: '>' }, false, 1, 0);
+    testFn(
+      {
+        type: 'XML_TAG',
+        value: [
+          { type: 'TAG', value: '<' },
+          { type: 'XML_TAG_NAME', value: 'div' },
+          { type: 'TAG', value: '>' },
+        ],
+      },
+      false,
+      1,
+      0,
+    );
+
+    testFn(ParserStates.EXPECT_NEW_INPUT, false, 1, 0);
+    testFn({ type: 'TAG', value: '<' }, false, 1, 0, '<foobar>');
+    testFn({ type: 'XML_TAG_NAME', value: 'foobar' }, false, 1, 0);
+    testFn({ type: 'TAG', value: '>' }, false, 1, 0);
+    testFn(
+      {
+        type: 'XML_TAG',
+        value: [
+          { type: 'TAG', value: '<' },
+          { type: 'XML_TAG_NAME', value: 'foobar' },
+          { type: 'TAG', value: '>' },
+        ],
+      },
+      false,
+      1,
+      0,
+    );
+
+    testFn(ParserStates.EXPECT_NEW_INPUT, false, 1, 0);
+    testFn(
+      {
+        type: 'REPEAT',
+        value: [
+          {
+            type: 'XML_TAG',
+            value: [
+              { type: 'TAG', value: '<' },
+              { type: 'XML_TAG_NAME', value: 'span' },
+              { type: 'TAG', value: '>' },
+            ],
+          },
+          {
+            type: 'XML_TAG',
+            value: [
+              { type: 'TAG', value: '<' },
+              { type: 'XML_TAG_NAME', value: 'div' },
+              { type: 'TAG', value: '>' },
+            ],
+          },
+          {
+            type: 'XML_TAG',
+            value: [
+              { type: 'TAG', value: '<' },
+              { type: 'XML_TAG_NAME', value: 'foobar' },
+              { type: 'TAG', value: '>' },
+            ],
+          },
+        ],
+      },
+      false,
+      1,
+      0,
+    );
+  });
+
+  test('Works max', () => {
+    const xmlTag = seq(
+      { token: 'XML_TAG' as TokenTypes },
+      tag('<'),
+      take(/\w/, { token: 'XML_TAG_NAME' as TokenTypes }),
+      tag('>'),
+    );
+
+    const parser = repeat(xmlTag, { max: 3 })('<span><div><dir>');
+
+    let res;
+    let error;
+    let thenCalls = 0;
+    let catchCalls = 0;
+
+    SyncPromise.all([...parser])
+      .then((v) => {
         res = v;
         thenCalls++;
       })
@@ -218,16 +569,93 @@ describe('repeat', () => {
         catchCalls++;
       });
 
-    expect(res).toEqual({ type: 'XML_TAG_NAME', value: 'span' });
+    expect(res).toEqual([
+      { type: 'TAG', value: '<' },
+      { type: 'XML_TAG_NAME', value: 'span' },
+      { type: 'TAG', value: '>' },
+      {
+        type: 'XML_TAG',
+        value: [
+          { type: 'TAG', value: '<' },
+          { type: 'XML_TAG_NAME', value: 'span' },
+          { type: 'TAG', value: '>' },
+        ],
+      },
+      { type: 'TAG', value: '<' },
+      { type: 'XML_TAG_NAME', value: 'div' },
+      { type: 'TAG', value: '>' },
+      {
+        type: 'XML_TAG',
+        value: [
+          { type: 'TAG', value: '<' },
+          { type: 'XML_TAG_NAME', value: 'div' },
+          { type: 'TAG', value: '>' },
+        ],
+      },
+      { type: 'TAG', value: '<' },
+      { type: 'XML_TAG_NAME', value: 'dir' },
+      { type: 'TAG', value: '>' },
+      {
+        type: 'XML_TAG',
+        value: [
+          { type: 'TAG', value: '<' },
+          { type: 'XML_TAG_NAME', value: 'dir' },
+          { type: 'TAG', value: '>' },
+        ],
+      },
+      // * Нет EXPECT_NEW_INPUT
+      {
+        type: 'REPEAT',
+        value: [
+          {
+            type: 'XML_TAG',
+            value: [
+              { type: 'TAG', value: '<' },
+              { type: 'XML_TAG_NAME', value: 'span' },
+              { type: 'TAG', value: '>' },
+            ],
+          },
+          {
+            type: 'XML_TAG',
+            value: [
+              { type: 'TAG', value: '<' },
+              { type: 'XML_TAG_NAME', value: 'div' },
+              { type: 'TAG', value: '>' },
+            ],
+          },
+          {
+            type: 'XML_TAG',
+            value: [
+              { type: 'TAG', value: '<' },
+              { type: 'XML_TAG_NAME', value: 'dir' },
+              { type: 'TAG', value: '>' },
+            ],
+          },
+        ],
+      },
+    ]);
     expect(error).toBe(undefined);
     expect(thenCalls).toBe(1);
     expect(catchCalls).toBe(0);
+  });
 
-    clearVars();
+  test('Works max (1)', () => {
+    const xmlTag = seq(
+      { token: 'XML_TAG' as TokenTypes },
+      tag('<'),
+      take(/\w/, { token: 'XML_TAG_NAME' as TokenTypes }),
+      tag('>'),
+    );
 
-    parser
-      .next()
-      .value.then((v) => {
+    const parser = repeat(xmlTag, { max: 3 })('<span>');
+
+    let res;
+    let error;
+    let thenCalls = 0;
+    let catchCalls = 0;
+
+    SyncPromise.all([...parser])
+      .then((v) => {
         res = v;
         thenCalls++;
       })
@@ -236,118 +664,33 @@ describe('repeat', () => {
         catchCalls++;
       });
 
-    expect(res).toEqual({
-      type: 'SEQ',
-      value: [
-        { type: 'TAG', value: '<' },
-        { type: 'TAKE', value: 'span' },
-        { type: 'TAG', value: '>' },
-      ],
-    });
-    expect(error).toBe(undefined);
-    expect(thenCalls).toBe(1);
-    expect(catchCalls).toBe(0);
-
-    clearVars();
-
-    parser
-      .next()
-      .value.then((v) => {
-        res = v;
-        thenCalls++;
-      })
-      .catch((e) => {
-        error = e;
-        catchCalls++;
-      });
-
-    expect(res).toEqual({ type: 'XML_TAG_NAME', value: 'div' });
-    expect(error).toBe(undefined);
-    expect(thenCalls).toBe(1);
-    expect(catchCalls).toBe(0);
-
-    clearVars();
-
-    parser
-      .next()
-      .value.then((v) => {
-        res = v;
-        thenCalls++;
-      })
-      .catch((e) => {
-        error = e;
-        catchCalls++;
-      });
-
-    expect(res).toEqual({
-      type: 'SEQ',
-      value: [
-        { type: 'TAG', value: '<' },
-        { type: 'TAKE', value: 'div' },
-        { type: 'TAG', value: '>' },
-      ],
-    });
-    expect(error).toBe(undefined);
-    expect(thenCalls).toBe(1);
-    expect(catchCalls).toBe(0);
-
-    clearVars();
-
-    parser
-      .next()
-      .value.then((v) => {
-        res = v;
-        thenCalls++;
-      })
-      .catch((e) => {
-        error = e;
-        catchCalls++;
-      });
-
-    expect(res).toEqual({ type: 'XML_TAG_NAME', value: 'dir' });
-    expect(error).toBe(undefined);
-    expect(thenCalls).toBe(1);
-    expect(catchCalls).toBe(0);
-
-    clearVars();
-
-    parser
-      .next()
-      .value.then((v) => {
-        res = v;
-        thenCalls++;
-      })
-      .catch((e) => {
-        error = e;
-        catchCalls++;
-      });
-
-    expect(res).toEqual({
-      type: 'SEQ',
-      value: [
-        { type: 'TAG', value: '<' },
-        { type: 'TAKE', value: 'dir' },
-        { type: 'TAG', value: '>' },
-      ],
-    });
-    expect(error).toBe(undefined);
-    expect(thenCalls).toBe(1);
-    expect(catchCalls).toBe(0);
-
-    clearVars();
-
-    parser
-      .next()
-      .value.then((v) => {
-        res = v;
-        thenCalls++;
-      })
-      .catch((e) => {
-        error = e;
-        catchCalls++;
-      });
-
-    expect(res).toEqual(ParserStates.EXPECT_NEW_INPUT);
+    expect(res).toEqual([
+      { type: 'TAG', value: '<' },
+      { type: 'XML_TAG_NAME', value: 'span' },
+      { type: 'TAG', value: '>' },
+      {
+        type: 'XML_TAG',
+        value: [
+          { type: 'TAG', value: '<' },
+          { type: 'XML_TAG_NAME', value: 'span' },
+          { type: 'TAG', value: '>' },
+        ],
+      },
+      'EXPECT_NEW_INPUT',
+      {
+        type: 'REPEAT',
+        value: [
+          {
+            type: 'XML_TAG',
+            value: [
+              { type: 'TAG', value: '<' },
+              { type: 'XML_TAG_NAME', value: 'span' },
+              { type: 'TAG', value: '>' },
+            ],
+          },
+        ],
+      },
+    ]);
     expect(error).toBe(undefined);
     expect(thenCalls).toBe(1);
     expect(catchCalls).toBe(0);
@@ -379,41 +722,76 @@ describe('repeat', () => {
       });
 
     expect(res).toEqual([
+      { type: 'TAG', value: '<' },
       { type: 'XML_TAG_NAME', value: 'span' },
+      { type: 'TAG', value: '>' },
       {
-        type: 'SEQ',
+        type: 'XML_TAG',
         value: [
           { type: 'TAG', value: '<' },
-          { type: 'TAKE', value: 'span' },
+          { type: 'XML_TAG_NAME', value: 'span' },
           { type: 'TAG', value: '>' },
         ],
       },
+      { type: 'TAG', value: '<' },
       { type: 'XML_TAG_NAME', value: 'div' },
+      { type: 'TAG', value: '>' },
       {
-        type: 'SEQ',
+        type: 'XML_TAG',
         value: [
           { type: 'TAG', value: '<' },
-          { type: 'TAKE', value: 'div' },
+          { type: 'XML_TAG_NAME', value: 'div' },
           { type: 'TAG', value: '>' },
         ],
       },
+      { type: 'TAG', value: '<' },
       { type: 'XML_TAG_NAME', value: 'dir' },
+      { type: 'TAG', value: '>' },
       {
-        type: 'SEQ',
+        type: 'XML_TAG',
         value: [
           { type: 'TAG', value: '<' },
-          { type: 'TAKE', value: 'dir' },
+          { type: 'XML_TAG_NAME', value: 'dir' },
           { type: 'TAG', value: '>' },
         ],
       },
       'EXPECT_NEW_INPUT',
+      {
+        type: 'REPEAT',
+        value: [
+          {
+            type: 'XML_TAG',
+            value: [
+              { type: 'TAG', value: '<' },
+              { type: 'XML_TAG_NAME', value: 'span' },
+              { type: 'TAG', value: '>' },
+            ],
+          },
+          {
+            type: 'XML_TAG',
+            value: [
+              { type: 'TAG', value: '<' },
+              { type: 'XML_TAG_NAME', value: 'div' },
+              { type: 'TAG', value: '>' },
+            ],
+          },
+          {
+            type: 'XML_TAG',
+            value: [
+              { type: 'TAG', value: '<' },
+              { type: 'XML_TAG_NAME', value: 'dir' },
+              { type: 'TAG', value: '>' },
+            ],
+          },
+        ],
+      },
     ]);
     expect(error).toBe(undefined);
     expect(thenCalls).toBe(1);
     expect(catchCalls).toBe(0);
   });
 
-  test('Works min, max', () => {
+  test('Error', () => {
     const xmlTag = seq(
       { token: 'XML_TAG' as TokenTypes },
       tag('<'),
@@ -421,7 +799,7 @@ describe('repeat', () => {
       tag('>'),
     );
 
-    const parser = repeat(xmlTag, { min: 2, max: 3 })('<span><div><dir>');
+    const parser = repeat(xmlTag)('[span]<div><dir>');
 
     let res;
     let error;
@@ -438,37 +816,71 @@ describe('repeat', () => {
         catchCalls++;
       });
 
-    expect(res).toEqual([
-      { type: 'XML_TAG_NAME', value: 'span' },
-      {
-        type: 'SEQ',
-        value: [
-          { type: 'TAG', value: '<' },
-          { type: 'TAKE', value: 'span' },
-          { type: 'TAG', value: '>' },
-        ],
-      },
-      { type: 'XML_TAG_NAME', value: 'div' },
-      {
-        type: 'SEQ',
-        value: [
-          { type: 'TAG', value: '<' },
-          { type: 'TAKE', value: 'div' },
-          { type: 'TAG', value: '>' },
-        ],
-      },
-      { type: 'XML_TAG_NAME', value: 'dir' },
-      {
-        type: 'SEQ',
-        value: [
-          { type: 'TAG', value: '<' },
-          { type: 'TAKE', value: 'dir' },
-          { type: 'TAG', value: '>' },
-        ],
-      },
-    ]);
-    expect(error).toBe(undefined);
-    expect(thenCalls).toBe(1);
-    expect(catchCalls).toBe(0);
+    expect(res).toEqual(undefined);
+    expect(error).not.toBe(undefined);
+    expect(thenCalls).toBe(0);
+    expect(catchCalls).toBe(1);
+  });
+
+  test('Error (1)', () => {
+    const xmlTag = seq(
+      { token: 'XML_TAG' as TokenTypes },
+      tag('<'),
+      take(/\w/, { token: 'XML_TAG_NAME' as TokenTypes }),
+      tag('>'),
+    );
+
+    const parser = repeat(xmlTag, { min: 2 })('<span>[div]<dir>');
+
+    let res;
+    let error;
+    let thenCalls = 0;
+    let catchCalls = 0;
+
+    SyncPromise.all([...parser])
+      .then((v) => {
+        res = v;
+        thenCalls++;
+      })
+      .catch((e) => {
+        error = e;
+        catchCalls++;
+      });
+
+    expect(res).toEqual(undefined);
+    expect(error).not.toBe(undefined);
+    expect(thenCalls).toBe(0);
+    expect(catchCalls).toBe(1);
+  });
+
+  test('Error (2)', () => {
+    const xmlTag = seq(
+      { token: 'XML_TAG' as TokenTypes },
+      tag('<'),
+      take(/\w/, { token: 'XML_TAG_NAME' as TokenTypes }),
+      tag('>'),
+    );
+
+    const parser = repeat(xmlTag, { min: 3 })('<span><div>[dir]');
+
+    let res;
+    let error;
+    let thenCalls = 0;
+    let catchCalls = 0;
+
+    SyncPromise.all([...parser])
+      .then((v) => {
+        res = v;
+        thenCalls++;
+      })
+      .catch((e) => {
+        error = e;
+        catchCalls++;
+      });
+
+    expect(res).toEqual(undefined);
+    expect(error).not.toBe(undefined);
+    expect(thenCalls).toBe(0);
+    expect(catchCalls).toBe(1);
   });
 });

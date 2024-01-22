@@ -1,6 +1,6 @@
-import type { IParserOptions } from '../interface';
+import type { ICombinatorOptions } from '../interface';
 
-export interface IRepeatOptions<T = unknown> extends IParserOptions<T> {
+export interface IRepeatOptions<T = unknown> extends ICombinatorOptions<T> {
   min?: number;
   max?: number;
 }

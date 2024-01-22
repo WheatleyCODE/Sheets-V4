@@ -32,13 +32,28 @@ describe('opt', () => {
       });
 
     expect(res).toEqual([
+      { type: 'TAG', value: '<' },
       { type: 'XML_TAG_NAME', value: 'span' },
+      { type: 'TAG', value: '>' },
       {
-        type: 'SEQ',
+        type: 'XML_TAG',
         value: [
           { type: 'TAG', value: '<' },
-          { type: 'TAKE', value: 'span' },
+          { type: 'XML_TAG_NAME', value: 'span' },
           { type: 'TAG', value: '>' },
+        ],
+      },
+      {
+        type: 'OPT',
+        value: [
+          {
+            type: 'XML_TAG',
+            value: [
+              { type: 'TAG', value: '<' },
+              { type: 'XML_TAG_NAME', value: 'span' },
+              { type: 'TAG', value: '>' },
+            ],
+          },
         ],
       },
     ]);
@@ -72,7 +87,7 @@ describe('opt', () => {
         catchCalls++;
       });
 
-    expect(res).toEqual(['EXPECT_NEW_INPUT']);
+    expect(res).toEqual(['EXPECT_NEW_INPUT', { type: 'OPT', value: [] }]);
     expect(error).toBe(undefined);
     expect(thenCalls).toBe(1);
     expect(catchCalls).toBe(0);
@@ -103,7 +118,7 @@ describe('opt', () => {
         catchCalls++;
       });
 
-    expect(res).toEqual([]);
+    expect(res).toEqual([{ type: 'OPT', value: [] }]);
     expect(error).toBe(undefined);
     expect(thenCalls).toBe(1);
     expect(catchCalls).toBe(0);

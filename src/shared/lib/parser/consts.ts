@@ -1,13 +1,10 @@
 export enum TokenTypes {
   TAG = 'TAG',
   TAKE = 'TAKE',
-
   SEQ = 'SEQ',
   OR = 'OR',
   REPEAT = 'REPEAT',
-
-  XML = 'XML',
-  NUMBER = 'NUMBER',
+  OPT = 'OPT',
 }
 
 export enum ParserStates {

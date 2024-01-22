@@ -31,12 +31,14 @@ describe('seq', () => {
       });
 
     expect(res).toEqual([
+      { type: 'TAG', value: '<' },
       { type: 'XML_TAG_NAME', value: 'span' },
+      { type: 'TAG', value: '>' },
       {
-        type: 'SEQ',
+        type: 'XML_TAG',
         value: [
           { type: 'TAG', value: '<' },
-          { type: 'TAKE', value: 'span' },
+          { type: 'XML_TAG_NAME', value: 'span' },
           { type: 'TAG', value: '>' },
         ],
       },
@@ -46,7 +48,7 @@ describe('seq', () => {
     expect(catchCalls).toBe(0);
   });
 
-  test('Works (2)', () => {
+  test('Works (1)', () => {
     const xmlTag = seq(
       { token: 'BB_TAG' as TokenTypes },
       tag('['),
@@ -72,13 +74,58 @@ describe('seq', () => {
       });
 
     expect(res).toEqual([
+      { type: 'TAG', value: '[' },
       { type: 'BB_TAG_NAME', value: 'span' },
+      { type: 'TAG', value: ']' },
       {
-        type: 'SEQ',
+        type: 'BB_TAG',
         value: [
           { type: 'TAG', value: '[' },
-          { type: 'TAKE', value: 'span' },
+          { type: 'BB_TAG_NAME', value: 'span' },
           { type: 'TAG', value: ']' },
+        ],
+      },
+    ]);
+    expect(error).toBe(undefined);
+    expect(thenCalls).toBe(1);
+    expect(catchCalls).toBe(0);
+  });
+
+  test('Works (2)', () => {
+    const xmlTag = seq(
+      { token: 'XML_TAG' as TokenTypes },
+      tag('<'),
+      take(/\w/, { token: 'XML_TAG_NAME' as TokenTypes, isExpectNew: false }),
+      tag('>'),
+    );
+
+    const parser = xmlTag('<span>');
+
+    let res;
+    let error;
+    let thenCalls = 0;
+    let catchCalls = 0;
+
+    SyncPromise.all([...parser])
+      .then((v) => {
+        res = v;
+        thenCalls++;
+      })
+      .catch((e) => {
+        error = e;
+        catchCalls++;
+      });
+
+    expect(res).toEqual([
+      { type: 'TAG', value: '<' },
+      { type: 'XML_TAG_NAME', value: 'span' },
+      { type: 'TAG', value: '>' },
+      {
+        type: 'XML_TAG',
+        value: [
+          { type: 'TAG', value: '<' },
+          { type: 'XML_TAG_NAME', value: 'span' },
+          { type: 'TAG', value: '>' },
         ],
       },
     ]);
@@ -108,6 +155,24 @@ describe('seq', () => {
       thenCalls = 0;
       catchCalls = 0;
     };
+
+    parser
+      .next()
+      .value.then((v) => {
+        res = v;
+        thenCalls++;
+      })
+      .catch((e) => {
+        error = e;
+        catchCalls++;
+      });
+
+    expect(res).toEqual({ type: 'TAG', value: '<' });
+    expect(error).toBe(undefined);
+    expect(thenCalls).toBe(1);
+    expect(catchCalls).toBe(0);
+
+    clearVars();
 
     parser
       .next()
@@ -192,11 +257,165 @@ describe('seq', () => {
         catchCalls++;
       });
 
+    expect(res).toEqual({ type: 'TAG', value: '>' });
+    expect(error).toBe(undefined);
+    expect(thenCalls).toBe(1);
+    expect(catchCalls).toBe(0);
+
+    clearVars();
+
+    parser
+      .next()
+      .value.then((v) => {
+        res = v;
+        thenCalls++;
+      })
+      .catch((e) => {
+        error = e;
+        catchCalls++;
+      });
+
     expect(res).toEqual({
-      type: 'SEQ',
+      type: 'XML_TAG',
       value: [
         { type: 'TAG', value: '<' },
-        { type: 'TAKE', value: 'foobar' },
+        { type: 'XML_TAG_NAME', value: 'foobar' },
+        { type: 'TAG', value: '>' },
+      ],
+    });
+    expect(error).toBe(undefined);
+    expect(thenCalls).toBe(1);
+    expect(catchCalls).toBe(0);
+  });
+
+  test('Works stream (1)', () => {
+    const xmlTag = seq(
+      { token: 'XML_TAG' as TokenTypes },
+      tag('<'),
+      take(/\w/, { token: 'XML_TAG_NAME' as TokenTypes, isExpectNew: false }),
+      tag('>'),
+    );
+
+    const parser = xmlTag('<');
+
+    let res;
+    let error;
+    let thenCalls = 0;
+    let catchCalls = 0;
+
+    const clearVars = () => {
+      res = undefined;
+      error = undefined;
+      thenCalls = 0;
+      catchCalls = 0;
+    };
+
+    parser
+      .next()
+      .value.then((v) => {
+        res = v;
+        thenCalls++;
+      })
+      .catch((e) => {
+        error = e;
+        catchCalls++;
+      });
+
+    expect(res).toEqual({ type: 'TAG', value: '<' });
+    expect(error).toBe(undefined);
+    expect(thenCalls).toBe(1);
+    expect(catchCalls).toBe(0);
+
+    clearVars();
+
+    parser
+      .next()
+      .value.then((v) => {
+        res = v;
+        thenCalls++;
+      })
+      .catch((e) => {
+        error = e;
+        catchCalls++;
+      });
+
+    expect(res).toEqual(ParserStates.EXPECT_NEW_INPUT);
+    expect(error).toBe(undefined);
+    expect(thenCalls).toBe(1);
+    expect(catchCalls).toBe(0);
+
+    clearVars();
+
+    parser
+      .next('tag')
+      .value.then((v) => {
+        res = v;
+        thenCalls++;
+      })
+      .catch((e) => {
+        error = e;
+        catchCalls++;
+      });
+
+    expect(res).toEqual({ type: 'XML_TAG_NAME', value: 'tag' });
+    expect(error).toBe(undefined);
+    expect(thenCalls).toBe(1);
+    expect(catchCalls).toBe(0);
+
+    clearVars();
+
+    parser
+      .next()
+      .value.then((v) => {
+        res = v;
+        thenCalls++;
+      })
+      .catch((e) => {
+        error = e;
+        catchCalls++;
+      });
+
+    expect(res).toEqual(ParserStates.EXPECT_NEW_INPUT);
+    expect(error).toBe(undefined);
+    expect(thenCalls).toBe(1);
+    expect(catchCalls).toBe(0);
+
+    clearVars();
+
+    parser
+      .next('>')
+      .value.then((v) => {
+        res = v;
+        thenCalls++;
+      })
+      .catch((e) => {
+        error = e;
+        catchCalls++;
+      });
+
+    expect(res).toEqual({ type: 'TAG', value: '>' });
+    expect(error).toBe(undefined);
+    expect(thenCalls).toBe(1);
+    expect(catchCalls).toBe(0);
+
+    clearVars();
+
+    parser
+      .next()
+      .value.then((v) => {
+        res = v;
+        thenCalls++;
+      })
+      .catch((e) => {
+        error = e;
+        catchCalls++;
+      });
+
+    expect(res).toEqual({
+      type: 'XML_TAG',
+      value: [
+        { type: 'TAG', value: '<' },
+        { type: 'XML_TAG_NAME', value: 'tag' },
         { type: 'TAG', value: '>' },
       ],
     });
@@ -267,6 +486,37 @@ describe('seq', () => {
     expect(catchCalls).toBe(1);
   });
 
+  test('Error (3)', () => {
+    const xmlTag = seq(
+      { token: 'XML_TAG' as TokenTypes },
+      tag('$'),
+      take(/\w/, { token: 'XML_TAG_NAME' as TokenTypes }),
+      tag('$'),
+    );
+
+    const parser = xmlTag('<span>');
+
+    let res;
+    let error;
+    let thenCalls = 0;
+    let catchCalls = 0;
+
+    SyncPromise.all([...parser])
+      .then((v) => {
+        res = v;
+        thenCalls++;
+      })
+      .catch((e) => {
+        error = e;
+        catchCalls++;
+      });
+
+    expect(res).toEqual(undefined);
+    expect(error).not.toBe(undefined);
+    expect(thenCalls).toBe(0);
+    expect(catchCalls).toBe(1);
+  });
+
   test('Error stream', () => {
     const xmlTag = seq(
       { token: 'XML_TAG' as TokenTypes },
@@ -288,6 +538,24 @@ describe('seq', () => {
       thenCalls = 0;
       catchCalls = 0;
     };
+
+    parser
+      .next()
+      .value.then((v) => {
+        res = v;
+        thenCalls++;
+      })
+      .catch((e) => {
+        error = e;
+        catchCalls++;
+      });
+
+    expect(res).toEqual({ type: 'TAG', value: '<' });
+    expect(error).toBe(undefined);
+    expect(thenCalls).toBe(1);
+    expect(catchCalls).toBe(0);
+
+    clearVars();
 
     parser
       .next()
@@ -344,7 +612,7 @@ describe('seq', () => {
     clearVars();
 
     parser
-      .next('%')
+      .next('$$$$$$$boom')
       .value.then((v) => {
         res = v;
         thenCalls++;
@@ -372,7 +640,120 @@ describe('seq', () => {
         catchCalls++;
       });
 
-    expect(res).toEqual(undefined);
+    expect(res).toBe(undefined);
+    expect(error).not.toBe(undefined);
+    expect(thenCalls).toBe(0);
+    expect(catchCalls).toBe(1);
+
+    clearVars();
+  });
+
+  test('Error stream (1)', () => {
+    const xmlTag = seq(
+      { token: 'XML_TAG' as TokenTypes },
+      tag('<'),
+      take(/\w/, { token: 'XML_TAG_NAME' as TokenTypes, isExpectNew: false }),
+      tag('>'),
+    );
+
+    const parser = xmlTag('<');
+
+    let res;
+    let error;
+    let thenCalls = 0;
+    let catchCalls = 0;
+
+    const clearVars = () => {
+      res = undefined;
+      error = undefined;
+      thenCalls = 0;
+      catchCalls = 0;
+    };
+
+    parser
+      .next()
+      .value.then((v) => {
+        res = v;
+        thenCalls++;
+      })
+      .catch((e) => {
+        error = e;
+        catchCalls++;
+      });
+
+    expect(res).toEqual({ type: 'TAG', value: '<' });
+    expect(error).toBe(undefined);
+    expect(thenCalls).toBe(1);
+    expect(catchCalls).toBe(0);
+
+    clearVars();
+
+    parser
+      .next()
+      .value.then((v) => {
+        res = v;
+        thenCalls++;
+      })
+      .catch((e) => {
+        error = e;
+        catchCalls++;
+      });
+
+    expect(res).toEqual(ParserStates.EXPECT_NEW_INPUT);
+    expect(error).toBe(undefined);
+    expect(thenCalls).toBe(1);
+    expect(catchCalls).toBe(0);
+
+    clearVars();
+
+    parser
+      .next('tag')
+      .value.then((v) => {
+        res = v;
+        thenCalls++;
+      })
+      .catch((e) => {
+        error = e;
+        catchCalls++;
+      });
+
+    expect(res).toEqual({ type: 'XML_TAG_NAME', value: 'tag' });
+    expect(error).toBe(undefined);
+    expect(thenCalls).toBe(1);
+    expect(catchCalls).toBe(0);
+
+    clearVars();
+
+    parser
+      .next()
+      .value.then((v) => {
+        res = v;
+        thenCalls++;
+      })
+      .catch((e) => {
+        error = e;
+        catchCalls++;
+      });
+
+    expect(res).toEqual(ParserStates.EXPECT_NEW_INPUT);
+    expect(error).toBe(undefined);
+    expect(thenCalls).toBe(1);
+    expect(catchCalls).toBe(0);
+
+    clearVars();
+
+    parser
+      .next('%%%')
+      .value.then((v) => {
+        res = v;
+        thenCalls++;
+      })
+      .catch((e) => {
+        error = e;
+        catchCalls++;
+      });
+
+    expect(res).toBe(undefined);
     expect(error).not.toBe(undefined);
     expect(thenCalls).toBe(0);
     expect(catchCalls).toBe(1);

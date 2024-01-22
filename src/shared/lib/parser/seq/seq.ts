@@ -7,15 +7,15 @@ import type { ISeqOptions } from './seq.interface';
 export function seq<T = unknown, R = unknown>(...parsers: Parser<any, any>[]): Parser<T | T[], R[]>;
 export function seq<T = unknown, R = unknown>(opts: ISeqOptions, ...parsers: Parser<any, any>[]): Parser<T | T[], R[]>;
 export function seq<T = unknown, R = unknown>(
-  optsOrParser: ISeqOptions | Parser<any, any>,
+  seqOpts: ISeqOptions | Parser<any, any>,
   ...parsers: Parser<any, any>[]
 ): Parser<T, R> {
   let opts: ISeqOptions = {};
 
-  if (typeof optsOrParser === 'function') {
-    parsers.unshift(optsOrParser);
+  if (typeof seqOpts === 'function') {
+    parsers.unshift(seqOpts);
   } else {
-    opts = optsOrParser;
+    opts = seqOpts;
   }
 
   return function* (source, prev) {
@@ -24,7 +24,7 @@ export function seq<T = unknown, R = unknown>(
     let data;
     let error;
 
-    outer: for (const parser of parsers) {
+    for (const parser of parsers) {
       const parserIter = parser(sourceIter, prev);
 
       while (true) {
@@ -33,11 +33,12 @@ export function seq<T = unknown, R = unknown>(
         chunk.value.catch((e) => (error = e));
 
         if (error) {
-          break outer;
+          yield SyncPromise.reject(error);
+          return SyncPromise.reject(error);
         }
 
         if (chunk.done) {
-          const chunkValue = chunk.value.unwrap();
+          const chunkValue = chunk.value.unwrap() as ParserResult<any>;
           prev = chunkValue[0];
 
           value.push(prev);
@@ -56,26 +57,21 @@ export function seq<T = unknown, R = unknown>(
       }
     }
 
-    if (error) {
-      yield SyncPromise.reject(error);
-    }
-
-    if (opts.token) {
-      const token: IToken = {
-        type: TokenTypes.SEQ,
-        value,
-      };
-
-      yield SyncPromise.resolve(token);
-    }
-
-    const token: IToken = {
+    let token: IToken = {
       type: TokenTypes.SEQ,
       value,
     };
 
+    if (opts.token) {
+      token = {
+        type: opts.token,
+        value: opts?.setValue ? opts?.setValue(value) : value,
+      };
+    }
+
     const res: ParserResult = [token, sourceIter];
 
+    yield SyncPromise.resolve(token);
     return SyncPromise.resolve(res);
   } as Parser<T, R>;
 }

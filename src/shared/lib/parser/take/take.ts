@@ -8,7 +8,7 @@ import type { IToken, Parser, ParserResult, Test } from '../interface';
 import type { ITakeOptions } from './take.interface';
 
 export const take = (test: Test, opts: ITakeOptions<string> = {}): Parser<string, string> => {
-  const { max = Infinity, min = 1 } = opts;
+  const { max = Infinity, min = 1, isExpectNew = true } = opts;
 
   return function* (source, prev) {
     let sourceIter = intoIter(source);
@@ -25,12 +25,28 @@ export const take = (test: Test, opts: ITakeOptions<string> = {}): Parser<string
       let chunk = sourceIter.next();
       let char = chunk.value;
 
-      if (chunk.done) {
+      if (chunk.done && isExpectNew) {
+        const newSource = yield SyncPromise.resolve(ParserStates.EXPECT_NEW_INPUT);
+
+        if (newSource == null && count < min) {
+          yield SyncPromise.reject(new ParserError('Ожидается продолжение (yield)', prev));
+          return SyncPromise.reject(new ParserError('Ожидается продолжение (return)', prev));
+        }
+
+        if (newSource) {
+          sourceIter = intoIter(newSource);
+          chunk = sourceIter.next();
+          char = chunk.value;
+        }
+      }
+
+      // * Первый запуск take isExpectNew = false
+      if (!char && !isExpectNew && count === 0) {
         const newSource = yield SyncPromise.resolve(ParserStates.EXPECT_NEW_INPUT);
 
         if (newSource == null) {
-          break;
-          // return SyncPromise.reject(new ParserError('Ожидается продолжение', prev));
+          yield SyncPromise.reject(new ParserError('Ожидается продолжение (yield)', prev));
+          return SyncPromise.reject(new ParserError('Ожидается продолжение (return)', prev));
         }
 
         sourceIter = intoIter(newSource);
@@ -38,18 +54,20 @@ export const take = (test: Test, opts: ITakeOptions<string> = {}): Parser<string
         char = chunk.value;
       }
 
+      if (!char) {
+        // * Если chunk = { value: undefined, done: true } и isExpectNew = false и это не первый запуск
+        break;
+      }
+
       const error = testChar(test, char, prev);
 
       if (error != null) {
-        // * Ошибка только в случае count < min ???
         if (count < min) {
-          return SyncPromise.reject(
-            new ParserError(`Не выполнено условие count < min: ${count} < ${min}. ` + error, prev),
-          );
+          yield SyncPromise.reject(new ParserError('Не выполнено условие count < min (yield) ' + error, prev));
+          return SyncPromise.reject(new ParserError('Не выполнено условие count < min (return) ' + error, prev));
         }
 
         buffer.push(char);
-
         break;
       }
 
@@ -57,22 +75,21 @@ export const take = (test: Test, opts: ITakeOptions<string> = {}): Parser<string
       value += char;
     }
 
-    if (opts.token && count > 0) {
-      const token: IToken<string> = {
-        type: opts.token,
-        value: opts?.setValue ? opts?.setValue(value) : value,
-      };
-
-      yield SyncPromise.resolve(token);
-    }
-
-    const token: IToken<string> = {
+    let token: IToken<string> = {
       type: TokenTypes.TAKE,
       value,
     };
 
+    if (opts.token && count > 0) {
+      token = {
+        type: opts.token,
+        value: opts?.setValue ? opts?.setValue(value) : value,
+      };
+    }
+
     const res: ParserResult<string> = [token, buffer.length > 0 ? seqIterable(buffer, sourceIter) : sourceIter];
 
+    yield SyncPromise.resolve(token);
     return SyncPromise.resolve(res);
-  };
+  } as Parser<string, string>;
 };

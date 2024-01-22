@@ -5,7 +5,7 @@ import { tag } from '../tag/tag';
 import { take } from '../take/take';
 import { or } from './or';
 
-describe('seq', () => {
+describe('or', () => {
   test('Works', () => {
     const xmlTag = seq(
       { token: 'XML_TAG' as TokenTypes },
@@ -46,14 +46,27 @@ describe('seq', () => {
       });
 
     expect(res).toEqual([
+      { type: 'TAG', value: '<' },
       { type: 'XML_TAG_NAME', value: 'span' },
+      { type: 'TAG', value: '>' },
       {
-        type: 'SEQ',
+        type: 'XML_TAG',
         value: [
           { type: 'TAG', value: '<' },
-          { type: 'TAKE', value: 'span' },
+          { type: 'XML_TAG_NAME', value: 'span' },
           { type: 'TAG', value: '>' },
         ],
+      },
+      {
+        type: 'OR',
+        value: {
+          type: 'XML_TAG',
+          value: [
+            { type: 'TAG', value: '<' },
+            { type: 'XML_TAG_NAME', value: 'span' },
+            { type: 'TAG', value: '>' },
+          ],
+        },
       },
     ]);
     expect(error).toBe(undefined);
@@ -101,14 +114,27 @@ describe('seq', () => {
       });
 
     expect(res).toEqual([
+      { type: 'TAG', value: '[' },
       { type: 'BB_TAG_NAME', value: 'span' },
+      { type: 'TAG', value: ']' },
       {
-        type: 'SEQ',
+        type: 'BB_TAG',
         value: [
           { type: 'TAG', value: '[' },
-          { type: 'TAKE', value: 'span' },
+          { type: 'BB_TAG_NAME', value: 'span' },
           { type: 'TAG', value: ']' },
         ],
+      },
+      {
+        type: 'OR',
+        value: {
+          type: 'BB_TAG',
+          value: [
+            { type: 'TAG', value: '[' },
+            { type: 'BB_TAG_NAME', value: 'span' },
+            { type: 'TAG', value: ']' },
+          ],
+        },
       },
     ]);
     expect(error).toBe(undefined);
@@ -156,14 +182,27 @@ describe('seq', () => {
       });
 
     expect(res).toEqual([
+      { type: 'TAG', value: '{' },
       { type: 'PP_TAG_NAME', value: 'span' },
+      { type: 'TAG', value: '}' },
       {
-        type: 'SEQ',
+        type: 'PP_TAG',
         value: [
           { type: 'TAG', value: '{' },
-          { type: 'TAKE', value: 'span' },
+          { type: 'PP_TAG_NAME', value: 'span' },
           { type: 'TAG', value: '}' },
         ],
+      },
+      {
+        type: 'OR',
+        value: {
+          type: 'PP_TAG',
+          value: [
+            { type: 'TAG', value: '{' },
+            { type: 'PP_TAG_NAME', value: 'span' },
+            { type: 'TAG', value: '}' },
+          ],
+        },
       },
     ]);
     expect(error).toBe(undefined);

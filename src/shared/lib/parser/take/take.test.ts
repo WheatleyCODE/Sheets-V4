@@ -1,9 +1,10 @@
+import { SyncPromise } from '../../promise';
 import { ParserStates, TokenTypes } from '../consts';
 import { take } from './take';
 
 describe('take', () => {
   test('Works', () => {
-    const numParser = take(/\d/, { token: TokenTypes.NUMBER });
+    const numParser = take(/\d/, { token: 'NUMBER' as TokenTypes });
     const parser = numParser('123456789d');
 
     let res;
@@ -22,14 +23,115 @@ describe('take', () => {
         catchCalls++;
       });
 
-    expect(res).toEqual({ type: TokenTypes.NUMBER, value: '123456789' });
+    expect(res).toEqual({ type: 'NUMBER' as TokenTypes, value: '123456789' });
+    expect(error).toBe(undefined);
+    expect(thenCalls).toBe(1);
+    expect(catchCalls).toBe(0);
+  });
+
+  test('Works (1)', () => {
+    const numParser = take(/\d/, { token: 'NUMBER' as TokenTypes, isExpectNew: false });
+    const parser = numParser('123456789');
+
+    let res;
+    let error;
+    let thenCalls = 0;
+    let catchCalls = 0;
+
+    parser
+      .next()
+      .value.then((v) => {
+        res = v;
+        thenCalls++;
+      })
+      .catch((e) => {
+        error = e;
+        catchCalls++;
+      });
+
+    expect(res).toEqual({ type: 'NUMBER' as TokenTypes, value: '123456789' });
+    expect(error).toBe(undefined);
+    expect(thenCalls).toBe(1);
+    expect(catchCalls).toBe(0);
+  });
+
+  test('Works (3)', () => {
+    const numParser = take(/\d/, { token: 'NUMBER' as TokenTypes });
+    const parser = numParser('123456789');
+
+    let res;
+    let error;
+    let thenCalls = 0;
+    let catchCalls = 0;
+
+    SyncPromise.all([...parser])
+      .then((v) => {
+        res = v;
+        thenCalls++;
+      })
+      .catch((e) => {
+        error = e;
+        catchCalls++;
+      });
+
+    expect(res).toEqual(['EXPECT_NEW_INPUT', { type: 'NUMBER', value: '123456789' }]);
+    expect(error).toBe(undefined);
+    expect(thenCalls).toBe(1);
+    expect(catchCalls).toBe(0);
+  });
+
+  test('Works (4)', () => {
+    const numParser = take(/\d/, { min: 4, max: 5, token: 'NUMBER' as TokenTypes });
+    const parser = numParser('123456789');
+
+    let res;
+    let error;
+    let thenCalls = 0;
+    let catchCalls = 0;
+
+    SyncPromise.all([...parser])
+      .then((v) => {
+        res = v;
+        thenCalls++;
+      })
+      .catch((e) => {
+        error = e;
+        catchCalls++;
+      });
+
+    expect(res).toEqual([{ type: 'NUMBER', value: '12345' }]);
+    expect(error).toBe(undefined);
+    expect(thenCalls).toBe(1);
+    expect(catchCalls).toBe(0);
+  });
+
+  test('Works (5)', () => {
+    const numParser = take(/\d/, { token: 'NUMBER' as TokenTypes, isExpectNew: false });
+    const parser = numParser('123456789');
+
+    let res;
+    let error;
+    let thenCalls = 0;
+    let catchCalls = 0;
+
+    SyncPromise.all([...parser])
+      .then((v) => {
+        res = v;
+        thenCalls++;
+      })
+      .catch((e) => {
+        error = e;
+        catchCalls++;
+      });
+
+    expect(res).toEqual([{ type: 'NUMBER', value: '123456789' }]);
     expect(error).toBe(undefined);
     expect(thenCalls).toBe(1);
     expect(catchCalls).toBe(0);
   });
 
   test('Works stream', () => {
-    const numParser = take(/\d/, { token: TokenTypes.NUMBER });
+    const numParser = take(/\d/, { token: 'NUMBER' as TokenTypes });
     const parser = numParser('1');
 
     let res;
@@ -91,14 +193,14 @@ describe('take', () => {
         catchCalls++;
       });
 
-    expect(res).toEqual({ type: TokenTypes.NUMBER, value: '123456' });
+    expect(res).toEqual({ type: 'NUMBER' as TokenTypes, value: '123456' });
     expect(error).toBe(undefined);
     expect(thenCalls).toBe(1);
     expect(catchCalls).toBe(0);
   });
 
   test('Works min', () => {
-    const numParser = take(/\d/, { min: 2, token: TokenTypes.NUMBER });
+    const numParser = take(/\d/, { min: 2, token: 'NUMBER' as TokenTypes });
     const parser = numParser('123456789d');
 
     let res;
@@ -117,14 +219,14 @@ describe('take', () => {
         catchCalls++;
       });
 
-    expect(res).toEqual({ type: TokenTypes.NUMBER, value: '123456789' });
+    expect(res).toEqual({ type: 'NUMBER' as TokenTypes, value: '123456789' });
     expect(error).toBe(undefined);
     expect(thenCalls).toBe(1);
     expect(catchCalls).toBe(0);
   });
 
   test('Works min, max', () => {
-    const numParser = take(/\d/, { min: 2, max: 4, token: TokenTypes.NUMBER });
+    const numParser = take(/\d/, { min: 2, max: 4, token: 'NUMBER' as TokenTypes });
     const parser = numParser('123456789d');
 
     let res;
@@ -143,14 +245,14 @@ describe('take', () => {
         catchCalls++;
       });
 
-    expect(res).toEqual({ type: TokenTypes.NUMBER, value: '1234' });
+    expect(res).toEqual({ type: 'NUMBER' as TokenTypes, value: '1234' });
     expect(error).toBe(undefined);
     expect(thenCalls).toBe(1);
     expect(catchCalls).toBe(0);
   });
 
   test('Works min, max (2)', () => {
-    const numParser = take(/\d/, { min: 2, max: 4, token: TokenTypes.NUMBER });
+    const numParser = take(/\d/, { min: 2, max: 4, token: 'NUMBER' as TokenTypes });
     const parser = numParser('123d');
 
     let res;
@@ -169,14 +271,14 @@ describe('take', () => {
         catchCalls++;
       });
 
-    expect(res).toEqual({ type: TokenTypes.NUMBER, value: '123' });
+    expect(res).toEqual({ type: 'NUMBER' as TokenTypes, value: '123' });
     expect(error).toBe(undefined);
     expect(thenCalls).toBe(1);
     expect(catchCalls).toBe(0);
   });
 
   test('Error data', () => {
-    const numParser = take(/\d/, { token: TokenTypes.NUMBER });
+    const numParser = take(/\d/, { token: 'NUMBER' as TokenTypes });
     const parser = numParser('dbdfd');
 
     let res;
@@ -202,7 +304,7 @@ describe('take', () => {
   });
 
   test('Error min', () => {
-    const numParser = take(/\d/, { min: 2, token: TokenTypes.NUMBER });
+    const numParser = take(/\d/, { min: 2, token: 'NUMBER' as TokenTypes });
     const parser = numParser('1b');
 
     let res;
@@ -228,7 +330,7 @@ describe('take', () => {
   });
 
   test('Error min, max', () => {
-    const numParser = take(/\d/, { min: 3, max: 4, token: TokenTypes.NUMBER });
+    const numParser = take(/\d/, { min: 3, max: 4, token: 'NUMBER' as TokenTypes });
     const parser = numParser('12d');
 
     let res;
@@ -253,8 +355,33 @@ describe('take', () => {
     expect(catchCalls).toBe(1);
   });
 
+  test('Error min, max (1)', () => {
+    const numParser = take(/\d/, { min: 4, max: 5, token: 'NUMBER' as TokenTypes });
+    const parser = numParser('123');
+
+    let res;
+    let error;
+    let thenCalls = 0;
+    let catchCalls = 0;
+
+    SyncPromise.all([...parser])
+      .then((v) => {
+        res = v;
+        thenCalls++;
+      })
+      .catch((e) => {
+        error = e;
+        catchCalls++;
+      });
+
+    expect(res).toEqual(undefined);
+    expect(error).not.toBe(undefined);
+    expect(thenCalls).toBe(0);
+    expect(catchCalls).toBe(1);
+  });
+
   test('Error min, max, stream', () => {
-    const numParser = take(/\d/, { min: 3, max: 4, token: TokenTypes.NUMBER });
+    const numParser = take(/\d/, { min: 3, max: 4, token: 'NUMBER' as TokenTypes });
     const parser = numParser('1');
 
     let res;

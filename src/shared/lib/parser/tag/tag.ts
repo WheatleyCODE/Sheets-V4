@@ -7,6 +7,8 @@ import type { IToken, Parser, ParserResult, Test } from '../interface';
 import type { ITagOptions } from './tag.interface';
 
 export const tag = (pattern: Iterable<Test>, opts: ITagOptions<string> = {}): Parser<string, string> => {
+  const { isExpectNew = true } = opts;
+
   return function* (source, prev) {
     let sourceIter = intoIter(source);
     let value = '';
@@ -15,11 +17,12 @@ export const tag = (pattern: Iterable<Test>, opts: ITagOptions<string> = {}): Pa
       let chunk = sourceIter.next();
       let char = chunk.value;
 
-      if (chunk.done) {
+      if (chunk.done && isExpectNew) {
         const newSource = yield SyncPromise.resolve(ParserStates.EXPECT_NEW_INPUT);
 
         if (newSource == null) {
-          return SyncPromise.reject(new ParserError('Ожидается продолжение', prev));
+          yield SyncPromise.reject(new ParserError('Ожидается продолжение (yield)', prev));
+          return SyncPromise.reject(new ParserError('Ожидается продолжение (return)', prev));
         }
 
         sourceIter = intoIter(newSource);
@@ -30,28 +33,28 @@ export const tag = (pattern: Iterable<Test>, opts: ITagOptions<string> = {}): Pa
       const error = testChar(test, char, prev);
 
       if (error != null) {
+        yield SyncPromise.reject(new ParserError(error, prev));
         return SyncPromise.reject(new ParserError(error, prev));
       }
 
       value += char;
     }
 
-    if (opts.token) {
-      const token: IToken<string> = {
-        type: opts.token,
-        value: opts?.setValue ? opts?.setValue(value) : value,
-      };
-
-      yield SyncPromise.resolve(token);
-    }
-
-    const token: IToken<string> = {
+    let token: IToken<string> = {
       type: TokenTypes.TAG,
       value,
     };
 
+    if (opts.token) {
+      token = {
+        type: opts.token,
+        value: opts?.setValue ? opts?.setValue(value) : value,
+      };
+    }
+
     const res: ParserResult<string> = [token, sourceIter];
 
+    yield SyncPromise.resolve(token);
     return SyncPromise.resolve(res);
-  };
+  } as Parser<string, string>;
 };

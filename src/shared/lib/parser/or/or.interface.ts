@@ -1,3 +1,3 @@
-import type { IParserOptions } from '../interface';
+import type { ICombinatorOptions } from '../interface';
 
-export interface IOrOptions<T = unknown> extends IParserOptions<T> {}
+export interface IOrOptions<T = unknown> extends ICombinatorOptions<T> {}

@@ -3,8 +3,8 @@ import { ParserStates, TokenTypes } from '../consts';
 import { intoBufferIter } from '../helpers/into-buffer-iter/intoBufferIter';
 import { intoIter } from '../helpers/into-iter/intoIter';
 import { seqIterable } from '../helpers/seq-iterable/seq-iterable';
-import type { IToken, Parser, ParserResult } from '../interface';
 import { ParserError } from '../parser-error/parserError';
+import type { IToken, Parser, ParserResult } from '../interface';
 import type { IRepeatOptions } from './repeat.interface';
 
 export function repeat<T = unknown, R = unknown>(
@@ -40,7 +40,7 @@ export function repeat<T = unknown, R = unknown>(
 
         if (!error) {
           if (chunk.done) {
-            const chunkValue = chunk.value.unwrap();
+            const chunkValue = chunk.value.unwrap() as ParserResult<any>;
             prev = chunkValue[0];
             sourceIter = intoIter(chunkValue[1]);
             value.push(<any>prev);
@@ -58,13 +58,12 @@ export function repeat<T = unknown, R = unknown>(
             if (chunkValue === ParserStates.EXPECT_NEW_INPUT) {
               data = yield chunk.value;
 
-              // if (data == null) {
-              //   yield SyncPromise.reject(new ParserError('Ожидается продолжение', prev));
-              //   return;
-              //   // console.log(chunk.value.unwrap());
-              // }
+              if (data == null && count < min) {
+                yield SyncPromise.reject(new ParserError('Ожидается продолжение (yield)', prev));
+                return SyncPromise.reject(new ParserError('Ожидается продолжение (return)', prev));
+              }
 
-              if (data) {
+              if (data != null) {
                 sourceIter = intoIter(data);
               }
             } else {
@@ -73,8 +72,8 @@ export function repeat<T = unknown, R = unknown>(
           }
         } else {
           if (count < min) {
-            yield SyncPromise.reject(error);
-            return;
+            yield SyncPromise.reject(new ParserError('Не выполнено условие count < min (yield) ' + error, prev));
+            return SyncPromise.reject(new ParserError('Не выполнено условие count < min (return) ' + error, prev));
           }
 
           sourceIter = buffer.length > 0 ? seqIterable(buffer, sourceIter) : sourceIter;
@@ -83,22 +82,21 @@ export function repeat<T = unknown, R = unknown>(
       }
     }
 
-    if (opts.token && count > 0) {
-      const token: IToken = {
-        type: TokenTypes.SEQ,
-        value,
-      };
-
-      yield SyncPromise.resolve(token);
-    }
-
-    const token: IToken = {
+    let token: IToken = {
       type: TokenTypes.REPEAT,
       value,
     };
 
+    if (opts.token) {
+      token = {
+        type: opts.token,
+        value: opts?.setValue ? opts?.setValue(value) : value,
+      };
+    }
+
     const res: ParserResult = [token, sourceIter];
 
+    yield SyncPromise.resolve(token);
     return SyncPromise.resolve(res);
   } as Parser<T | T[], R[]>;
 }

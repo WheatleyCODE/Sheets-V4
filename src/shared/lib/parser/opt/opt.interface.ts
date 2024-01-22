@@ -1,3 +1,3 @@
-import type { IRepeatOptions } from '../repeat/repeat.interface';
+import type { ICombinatorOptions } from '../interface';
 
-export interface IOptOptions<T = unknown> extends IRepeatOptions<T> {}
+export interface IOptOptions<T = unknown> extends ICombinatorOptions<T> {}

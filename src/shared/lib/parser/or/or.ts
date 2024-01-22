@@ -42,7 +42,7 @@ export function or<T = unknown, R = unknown>(
         if (!error) {
           if (chunk.done) {
             done = true;
-            const chunkValue = chunk.value.unwrap();
+            const chunkValue = chunk.value.unwrap() as ParserResult<any>;
             value = chunkValue[0];
             sourceIter = intoIter(chunkValue[1]);
 
@@ -53,7 +53,7 @@ export function or<T = unknown, R = unknown>(
             if (chunkValue === ParserStates.EXPECT_NEW_INPUT) {
               data = yield chunk.value;
             } else {
-              yields.push(SyncPromise.resolve(chunkValue));
+              yields.push(<any>SyncPromise.resolve(chunkValue));
             }
           }
         } else {
@@ -66,26 +66,26 @@ export function or<T = unknown, R = unknown>(
 
     if (!done) {
       yield SyncPromise.reject(new ParserError('Не один кейс не был выполнен', prev));
+      return SyncPromise.reject(new ParserError('Не один кейс не был выполнен', prev));
     }
 
     yield* yields;
 
-    if (opts.token) {
-      const token: IToken = {
-        type: TokenTypes.SEQ,
-        value,
-      };
-
-      yield SyncPromise.resolve(token);
-    }
-
-    const token: IToken = {
+    let token: IToken = {
       type: TokenTypes.OR,
       value,
     };
 
+    if (opts.token) {
+      token = {
+        type: TokenTypes.SEQ,
+        value: opts?.setValue ? opts?.setValue(value) : value,
+      };
+    }
+
     const res: ParserResult = [token, sourceIter];
 
+    yield SyncPromise.resolve(token);
     return SyncPromise.resolve(res);
   } as Parser<T, R>;
 }
