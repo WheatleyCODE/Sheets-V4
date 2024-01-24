@@ -4,7 +4,7 @@ import { seq } from '../../seq/seq';
 import { numberNotStartingWithZero, onlyZero, sign } from './math';
 import { exponentSymbol } from './symbols';
 import { TokenTypes } from '../../consts';
-import { getValueFromToken, reduceValuesByTokensWithTokens } from './transformators';
+import { getValueFromToken, reduceValuesByTokensWithTokens } from '../transformators/transformators';
 import type { ITokenWithTokens } from '../../interface';
 
 const filterExponentOptional = (value: ITokenWithTokens[]) => {

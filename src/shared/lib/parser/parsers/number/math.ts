@@ -3,7 +3,7 @@ import { ParserSymbols, TokenTypes } from '../../consts';
 import { take } from '../../take/take';
 import { checkAfter } from '../../check-after/checkAfter';
 import { seq } from '../../seq/seq';
-import { getValueFromToken, reduceValuesByTokensWithTokens } from './transformators';
+import { getValueFromToken, reduceValuesByTokensWithTokens } from '../transformators/transformators';
 
 export const sign = tag([/[-+]/], { token: TokenTypes.SIGN });
 
