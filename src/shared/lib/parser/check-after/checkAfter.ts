@@ -2,17 +2,16 @@ import { SyncPromise } from '../../promise';
 import { intoIter } from '../helpers/into-iter/intoIter';
 import { ParserError } from '../parser-error/parserError';
 import { ParserStates, ParserSymbols, TokenTypes } from '../consts';
-import { testChar } from '../helpers/test-char/testChar';
 import { intoBufferIter } from '../helpers/into-buffer-iter/intoBufferIter';
 import { seqIterable } from '../helpers/seq-iterable/seq-iterable';
-import type { ICombinatorOptions, IToken, Parser, ParserResult, Test } from '../interface';
-
-export interface ICheckNextOptions extends ICombinatorOptions {}
+import { tag } from '../tag/tag';
+import type { ICheckAfterOptions } from './checkAfter.interface';
+import type { IToken, Parser, ParserResult } from '../interface';
 
 export function checkAfter<T = unknown, R = unknown>(
   parser: Parser<any, any>,
-  test: Test | ParserSymbols.STRING_END,
-  opts: ICheckNextOptions = {},
+  check: Parser<any, any> | ParserSymbols.STRING_END,
+  opts: ICheckAfterOptions = {},
 ): Parser<T, R> {
   return function* (source, prev) {
     let error;
@@ -21,7 +20,7 @@ export function checkAfter<T = unknown, R = unknown>(
 
     const parserIter = parser(sourceIter, prev);
 
-    while (true) {
+    outer: while (true) {
       const chunk = parserIter.next();
       chunk.value.catch((e) => (error = e));
 
@@ -37,39 +36,47 @@ export function checkAfter<T = unknown, R = unknown>(
         const buffer: string[] = [];
         sourceIter = intoBufferIter(chunkValue[1], buffer);
 
-        const afterChunk = sourceIter.next();
-        const afterChar = afterChunk.value;
+        const afterIter = check === ParserSymbols.STRING_END ? tag([/[\w|\W]/])(sourceIter) : check(sourceIter);
+        let afterError;
+        let count = 0;
+        let data;
 
-        if (afterChunk.done && test === ParserSymbols.STRING_END) {
-          sourceIter = buffer.length > 0 ? seqIterable(buffer, sourceIter) : sourceIter;
-          break;
-        }
+        while (true) {
+          const chunk = afterIter.next(data);
 
-        if (afterChunk.done) {
-          const newSource = yield SyncPromise.resolve(ParserStates.EXPECT_NEW_INPUT);
+          chunk.value.catch((e) => (afterError = e));
 
-          if (newSource == null) {
-            yield SyncPromise.reject(new ParserError('Ожидается продолжение (yield)', prev));
-            return SyncPromise.reject(new ParserError('Ожидается продолжение (return)', prev));
-          }
-
-          const newChunk = intoIter(newSource).next();
-          const newChar = newChunk.value;
-
-          if (newChunk.done) {
-            yield SyncPromise.reject(new ParserError('Ожидается символ впереди (yield)', prev));
-            return SyncPromise.reject(new ParserError('Ожидается символ впереди (return)', prev));
-          }
-
-          if (testChar(test, newChar, prev) != null) {
+          if (afterError) {
             yield SyncPromise.reject(new ParserError('Не выполнено условие взгляда вперед (yield)', prev));
             return SyncPromise.reject(new ParserError('Не выполнено условие взгляда вперед (return)', prev));
           }
-        }
 
-        if (testChar(test, afterChar, prev) != null) {
-          yield SyncPromise.reject(new ParserError('Не выполнено условие взгляда вперед (yield)', prev));
-          return SyncPromise.reject(new ParserError('Не выполнено условие взгляда вперед (return)', prev));
+          if (check === ParserSymbols.STRING_END && count > 0) {
+            yield SyncPromise.reject(new ParserError('Не выполнено условие взгляда вперед (yield)', prev));
+            return SyncPromise.reject(new ParserError('Не выполнено условие взгляда вперед (return)', prev));
+          }
+
+          if (chunk.value.unwrap() === ParserStates.EXPECT_NEW_INPUT) {
+            if (check === ParserSymbols.STRING_END && count === 0) {
+              sourceIter = buffer.length > 0 ? seqIterable(buffer, sourceIter) : sourceIter;
+              break outer;
+            }
+
+            const newSource = yield SyncPromise.resolve(ParserStates.EXPECT_NEW_INPUT);
+
+            if (newSource == null) {
+              yield SyncPromise.reject(new ParserError('Ожидается продолжение (yield)', prev));
+              return SyncPromise.reject(new ParserError('Ожидается продолжение (return)', prev));
+            }
+
+            data = newSource;
+          }
+
+          if (chunk.done) {
+            break;
+          }
+
+          count++;
         }
 
         sourceIter = buffer.length > 0 ? seqIterable(buffer, sourceIter) : sourceIter;

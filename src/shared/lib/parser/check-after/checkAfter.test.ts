@@ -1,14 +1,13 @@
-import { ParserStates, ParserSymbols, TokenTypes } from '../consts';
-import { seq } from '../seq/seq';
+import { ParserStates, ParserSymbols } from '../consts';
 import { tag } from '../tag/tag';
 import { take } from '../take/take';
 import { checkAfter } from './checkAfter';
 
-describe('repeat', () => {
+describe('checkAfter', () => {
   test('Works', () => {
-    const parserTest = checkAfter(tag('A'), (char) => char === '%');
+    const parserTest = checkAfter(tag('A'), tag('FFF'));
 
-    const parser = parserTest('A%FFFF');
+    const parser = parserTest('AFFF');
 
     let res;
     let error;
@@ -33,9 +32,9 @@ describe('repeat', () => {
   });
 
   test('Works (1)', () => {
-    const parserTest = checkAfter(tag('<div>'), /\d/);
+    const parserTest = checkAfter(tag('B'), tag('%'));
 
-    const parser = parserTest('<div>1');
+    const parser = parserTest('B%');
 
     let res;
     let error;
@@ -53,23 +52,16 @@ describe('repeat', () => {
         catchCalls++;
       });
 
-    expect(res).toEqual({ type: 'CHECK_NEXT', value: { type: 'TAG', value: '<div>' } });
+    expect(res).toEqual({ type: 'CHECK_NEXT', value: { type: 'TAG', value: 'B' } });
     expect(error).toBe(undefined);
     expect(thenCalls).toBe(1);
     expect(catchCalls).toBe(0);
   });
 
   test('Works (2)', () => {
-    const xmlTag = seq(
-      { token: 'XML_TAG' as TokenTypes },
-      tag('<'),
-      take(/\w/, { token: 'XML_TAG_NAME' as TokenTypes }),
-      tag('>'),
-    );
+    const parserTest = checkAfter(tag('B'), ParserSymbols.STRING_END);
 
-    const parserTest = checkAfter(xmlTag, /\d/);
-
-    const parser = parserTest('<div>1');
+    const parser = parserTest('B');
 
     let res;
     let error;
@@ -87,33 +79,16 @@ describe('repeat', () => {
         catchCalls++;
       });
 
-    expect(res).toEqual({
-      type: 'CHECK_NEXT',
-      value: {
-        type: 'XML_TAG',
-        value: [
-          { type: 'TAG', value: '<' },
-          { type: 'XML_TAG_NAME', value: 'div' },
-          { type: 'TAG', value: '>' },
-        ],
-      },
-    });
+    expect(res).toEqual({ type: 'CHECK_NEXT', value: { type: 'TAG', value: 'B' } });
     expect(error).toBe(undefined);
     expect(thenCalls).toBe(1);
     expect(catchCalls).toBe(0);
   });
 
   test('Works (3)', () => {
-    const xmlTag = seq(
-      { token: 'BB_TAG' as TokenTypes },
-      tag('['),
-      take(/\w/, { token: 'BB_TAG_NAME' as TokenTypes }),
-      tag(']'),
-    );
+    const parserTest = checkAfter(take(/\d/), tag('.'));
 
-    const parserTest = checkAfter(xmlTag, ParserSymbols.STRING_END);
-
-    const parser = parserTest('[div]');
+    const parser = parserTest('123456789.');
 
     let res;
     let error;
@@ -131,26 +106,221 @@ describe('repeat', () => {
         catchCalls++;
       });
 
-    expect(res).toEqual({
-      type: 'CHECK_NEXT',
-      value: {
-        type: 'BB_TAG',
-        value: [
-          { type: 'TAG', value: '[' },
-          { type: 'BB_TAG_NAME', value: 'div' },
-          { type: 'TAG', value: ']' },
-        ],
-      },
-    });
+    expect(res).toEqual({ type: 'CHECK_NEXT', value: { type: 'TAKE', value: '123456789' } });
+    expect(error).toBe(undefined);
+    expect(thenCalls).toBe(1);
+    expect(catchCalls).toBe(0);
+  });
+
+  test('Works (4)', () => {
+    const parserTest = checkAfter(take(/\d/), tag([/[^.]/]));
+
+    const parser = parserTest('123456789<');
+
+    let res;
+    let error;
+    let thenCalls = 0;
+    let catchCalls = 0;
+
+    parser
+      .next()
+      .value.then((v) => {
+        res = v;
+        thenCalls++;
+      })
+      .catch((e) => {
+        error = e;
+        catchCalls++;
+      });
+
+    expect(res).toEqual({ type: 'CHECK_NEXT', value: { type: 'TAKE', value: '123456789' } });
+    expect(error).toBe(undefined);
+    expect(thenCalls).toBe(1);
+    expect(catchCalls).toBe(0);
+  });
+
+  test('Works stream', () => {
+    const parserTest = checkAfter(tag('B'), tag(['%', /\d/]));
+
+    const parser = parserTest('B');
+
+    let res;
+    let error;
+    let thenCalls = 0;
+    let catchCalls = 0;
+
+    const clearVars = () => {
+      res = undefined;
+      error = undefined;
+      thenCalls = 0;
+      catchCalls = 0;
+    };
+
+    parser
+      .next()
+      .value.then((v) => {
+        res = v;
+        thenCalls++;
+      })
+      .catch((e) => {
+        error = e;
+        catchCalls++;
+      });
+
+    expect(res).toBe(ParserStates.EXPECT_NEW_INPUT);
+    expect(error).toBe(undefined);
+    expect(thenCalls).toBe(1);
+    expect(catchCalls).toBe(0);
+
+    clearVars();
+
+    parser
+      .next('%')
+      .value.then((v) => {
+        res = v;
+        thenCalls++;
+      })
+      .catch((e) => {
+        error = e;
+        catchCalls++;
+      });
+
+    expect(res).toBe(ParserStates.EXPECT_NEW_INPUT);
+    expect(error).toBe(undefined);
+    expect(thenCalls).toBe(1);
+    expect(catchCalls).toBe(0);
+
+    clearVars();
+
+    parser
+      .next('1')
+      .value.then((v) => {
+        res = v;
+        thenCalls++;
+      })
+      .catch((e) => {
+        error = e;
+        catchCalls++;
+      });
+
+    expect(res).toEqual({ type: 'CHECK_NEXT', value: { type: 'TAG', value: 'B' } });
     expect(error).toBe(undefined);
     expect(thenCalls).toBe(1);
     expect(catchCalls).toBe(0);
   });
 
   test('Error', () => {
-    const parserTest = checkAfter(tag('A'), (char) => char === '%');
+    const parserTest = checkAfter(tag('A'), tag('FFF'));
 
-    const parser = parserTest('ABCD');
+    const parser = parserTest('AF-FF');
+
+    let res;
+    let error;
+    let thenCalls = 0;
+    let catchCalls = 0;
+
+    parser
+      .next()
+      .value.then((v) => {
+        res = v;
+        thenCalls++;
+      })
+      .catch((e) => {
+        error = e;
+        catchCalls++;
+      });
+
+    expect(res).toBe(undefined);
+    expect(error).not.toBe(undefined);
+    expect(thenCalls).toBe(0);
+    expect(catchCalls).toBe(1);
+  });
+
+  test('Error (1)', () => {
+    const parserTest = checkAfter(tag('B'), tag('%'));
+
+    const parser = parserTest('B,');
+
+    let res;
+    let error;
+    let thenCalls = 0;
+    let catchCalls = 0;
+
+    parser
+      .next()
+      .value.then((v) => {
+        res = v;
+        thenCalls++;
+      })
+      .catch((e) => {
+        error = e;
+        catchCalls++;
+      });
+
+    expect(res).toBe(undefined);
+    expect(error).not.toBe(undefined);
+    expect(thenCalls).toBe(0);
+    expect(catchCalls).toBe(1);
+  });
+
+  test('Error (2)', () => {
+    const parserTest = checkAfter(tag('B'), ParserSymbols.STRING_END);
+
+    const parser = parserTest('B=');
+
+    let res;
+    let error;
+    let thenCalls = 0;
+    let catchCalls = 0;
+
+    parser
+      .next()
+      .value.then((v) => {
+        res = v;
+        thenCalls++;
+      })
+      .catch((e) => {
+        error = e;
+        catchCalls++;
+      });
+
+    expect(res).toBe(undefined);
+    expect(error).not.toBe(undefined);
+    expect(thenCalls).toBe(0);
+    expect(catchCalls).toBe(1);
+  });
+
+  test('Error (3)', () => {
+    const parserTest = checkAfter(take(/\d/), tag('.'));
+
+    const parser = parserTest('123456789G');
+
+    let res;
+    let error;
+    let thenCalls = 0;
+    let catchCalls = 0;
+
+    parser
+      .next()
+      .value.then((v) => {
+        res = v;
+        thenCalls++;
+      })
+      .catch((e) => {
+        error = e;
+        catchCalls++;
+      });
+
+    expect(res).toBe(undefined);
+    expect(error).not.toBe(undefined);
+    expect(thenCalls).toBe(0);
+    expect(catchCalls).toBe(1);
+  });
+
+  test('Works (4)', () => {
+    const parserTest = checkAfter(take(/\d/), tag([/[^.]/]));
+
+    const parser = parserTest('123456789.');
 
     let res;
     let error;
@@ -175,102 +345,9 @@ describe('repeat', () => {
   });
 
   test('Error stream', () => {
-    const parserTest = checkAfter(tag('[hello]'), '%');
+    const parserTest = checkAfter(tag('B'), tag(['%', /\d/, /\d/]));
 
-    const parser = parserTest('[hello]');
-
-    let res;
-    let error;
-    let thenCalls = 0;
-    let catchCalls = 0;
-
-    const clearVars = () => {
-      res = undefined;
-      error = undefined;
-      thenCalls = 0;
-      catchCalls = 0;
-    };
-
-    parser
-      .next()
-      .value.then((v) => {
-        res = v;
-        thenCalls++;
-      })
-      .catch((e) => {
-        error = e;
-        catchCalls++;
-      });
-
-    expect(res).toBe(ParserStates.EXPECT_NEW_INPUT);
-    expect(error).toBe(undefined);
-    expect(thenCalls).toBe(1);
-    expect(catchCalls).toBe(0);
-
-    clearVars();
-
-    parser
-      .next('>>>>')
-      .value.then((v) => {
-        res = v;
-        thenCalls++;
-      })
-      .catch((e) => {
-        error = e;
-        catchCalls++;
-      });
-
-    expect(res).toBe(undefined);
-    expect(error).not.toBe(undefined);
-    expect(thenCalls).toBe(0);
-    expect(catchCalls).toBe(1);
-  });
-
-  test('Error (2)', () => {
-    const xmlTag = seq(
-      { token: 'XML_TAG' as TokenTypes },
-      tag('<'),
-      take(/\w/, { token: 'XML_TAG_NAME' as TokenTypes }),
-      tag('>'),
-    );
-
-    const parserTest = checkAfter(xmlTag, /\d/);
-
-    const parser = parserTest('<div>%');
-
-    let res;
-    let error;
-    let thenCalls = 0;
-    let catchCalls = 0;
-
-    parser
-      .next()
-      .value.then((v) => {
-        res = v;
-        thenCalls++;
-      })
-      .catch((e) => {
-        error = e;
-        catchCalls++;
-      });
-
-    expect(res).toBe(undefined);
-    expect(error).not.toBe(undefined);
-    expect(thenCalls).toBe(0);
-    expect(catchCalls).toBe(1);
-  });
-
-  test('Error stream (1)', () => {
-    const xmlTag = seq(
-      { token: 'BB_TAG' as TokenTypes },
-      tag('['),
-      take(/\w/, { token: 'BB_TAG_NAME' as TokenTypes }),
-      tag(']'),
-    );
-
-    const parserTest = checkAfter(xmlTag, ' ');
-
-    const parser = parserTest('[div]');
+    const parser = parserTest('B');
 
     let res;
     let error;
@@ -303,7 +380,43 @@ describe('repeat', () => {
     clearVars();
 
     parser
-      .next('bla')
+      .next('%')
+      .value.then((v) => {
+        res = v;
+        thenCalls++;
+      })
+      .catch((e) => {
+        error = e;
+        catchCalls++;
+      });
+
+    expect(res).toBe(ParserStates.EXPECT_NEW_INPUT);
+    expect(error).toBe(undefined);
+    expect(thenCalls).toBe(1);
+    expect(catchCalls).toBe(0);
+
+    clearVars();
+
+    parser
+      .next('1')
+      .value.then((v) => {
+        res = v;
+        thenCalls++;
+      })
+      .catch((e) => {
+        error = e;
+        catchCalls++;
+      });
+
+    expect(res).toBe(ParserStates.EXPECT_NEW_INPUT);
+    expect(error).toBe(undefined);
+    expect(thenCalls).toBe(1);
+    expect(catchCalls).toBe(0);
+
+    clearVars();
+
+    parser
+      .next('B')
       .value.then((v) => {
         res = v;
         thenCalls++;
