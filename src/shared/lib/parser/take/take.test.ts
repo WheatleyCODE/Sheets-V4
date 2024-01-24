@@ -3,14 +3,37 @@ import { ParserStates, TokenTypes } from '../consts';
 import { take } from './take';
 
 describe('take', () => {
+  let res: any;
+  let error: any;
+  let thenCalls = 0;
+  let catchCalls = 0;
+
+  const clearVars = () => {
+    res = undefined;
+    error = undefined;
+    thenCalls = 0;
+    catchCalls = 0;
+  };
+
+  beforeEach(clearVars);
+
+  const positiveCheck = (obj: any) => {
+    expect(res).toEqual(obj);
+    expect(error).toBe(undefined);
+    expect(thenCalls).toBe(1);
+    expect(catchCalls).toBe(0);
+  };
+
+  const negativeCheck = () => {
+    expect(res).toBe(undefined);
+    expect(error).not.toBe(undefined);
+    expect(thenCalls).toBe(0);
+    expect(catchCalls).toBe(1);
+  };
+
   test('Works', () => {
     const numParser = take(/\d/, { token: 'NUMBER' as TokenTypes });
     const parser = numParser('123456789d');
-
-    let res;
-    let error;
-    let thenCalls = 0;
-    let catchCalls = 0;
 
     parser
       .next()
@@ -23,21 +46,13 @@ describe('take', () => {
         catchCalls++;
       });
 
-    expect(res).toEqual({ type: 'NUMBER' as TokenTypes, value: '123456789' });
-    expect(error).toBe(undefined);
-    expect(thenCalls).toBe(1);
-    expect(catchCalls).toBe(0);
+    positiveCheck({ type: 'NUMBER' as TokenTypes, value: '123456789' });
   });
 
   test('Works (1)', () => {
     const numParser = take(/\d/, { token: 'NUMBER' as TokenTypes, isExpectNew: false });
     const parser = numParser('123456789');
 
-    let res;
-    let error;
-    let thenCalls = 0;
-    let catchCalls = 0;
-
     parser
       .next()
       .value.then((v) => {
@@ -49,21 +64,13 @@ describe('take', () => {
         catchCalls++;
       });
 
-    expect(res).toEqual({ type: 'NUMBER' as TokenTypes, value: '123456789' });
-    expect(error).toBe(undefined);
-    expect(thenCalls).toBe(1);
-    expect(catchCalls).toBe(0);
+    positiveCheck({ type: 'NUMBER' as TokenTypes, value: '123456789' });
   });
 
   test('Works (3)', () => {
     const numParser = take(/\d/, { token: 'NUMBER' as TokenTypes });
     const parser = numParser('123456789');
 
-    let res;
-    let error;
-    let thenCalls = 0;
-    let catchCalls = 0;
-
     SyncPromise.all([...parser])
       .then((v) => {
         res = v;
@@ -74,21 +81,13 @@ describe('take', () => {
         catchCalls++;
       });
 
-    expect(res).toEqual(['EXPECT_NEW_INPUT', { type: 'NUMBER', value: '123456789' }]);
-    expect(error).toBe(undefined);
-    expect(thenCalls).toBe(1);
-    expect(catchCalls).toBe(0);
+    positiveCheck(['EXPECT_NEW_INPUT', { type: 'NUMBER', value: '123456789' }]);
   });
 
   test('Works (4)', () => {
     const numParser = take(/\d/, { min: 4, max: 5, token: 'NUMBER' as TokenTypes });
     const parser = numParser('123456789');
 
-    let res;
-    let error;
-    let thenCalls = 0;
-    let catchCalls = 0;
-
     SyncPromise.all([...parser])
       .then((v) => {
         res = v;
@@ -99,21 +98,13 @@ describe('take', () => {
         catchCalls++;
       });
 
-    expect(res).toEqual([{ type: 'NUMBER', value: '12345' }]);
-    expect(error).toBe(undefined);
-    expect(thenCalls).toBe(1);
-    expect(catchCalls).toBe(0);
+    positiveCheck([{ type: 'NUMBER', value: '12345' }]);
   });
 
   test('Works (5)', () => {
     const numParser = take(/\d/, { token: 'NUMBER' as TokenTypes, isExpectNew: false });
     const parser = numParser('123456789');
 
-    let res;
-    let error;
-    let thenCalls = 0;
-    let catchCalls = 0;
-
     SyncPromise.all([...parser])
       .then((v) => {
         res = v;
@@ -124,27 +115,12 @@ describe('take', () => {
         catchCalls++;
       });
 
-    expect(res).toEqual([{ type: 'NUMBER', value: '123456789' }]);
-    expect(error).toBe(undefined);
-    expect(thenCalls).toBe(1);
-    expect(catchCalls).toBe(0);
+    positiveCheck([{ type: 'NUMBER', value: '123456789' }]);
   });
 
   test('Works stream', () => {
     const numParser = take(/\d/, { token: 'NUMBER' as TokenTypes });
     const parser = numParser('1');
-
-    let res;
-    let error;
-    let thenCalls = 0;
-    let catchCalls = 0;
-
-    const clearVars = () => {
-      res = undefined;
-      error = undefined;
-      thenCalls = 0;
-      catchCalls = 0;
-    };
 
     parser
       .next()
@@ -157,11 +133,7 @@ describe('take', () => {
         catchCalls++;
       });
 
-    expect(res).toBe(ParserStates.EXPECT_NEW_INPUT);
-    expect(error).toBe(undefined);
-    expect(thenCalls).toBe(1);
-    expect(catchCalls).toBe(0);
-
+    positiveCheck(ParserStates.EXPECT_NEW_INPUT);
     clearVars();
 
     parser
@@ -175,11 +147,7 @@ describe('take', () => {
         catchCalls++;
       });
 
-    expect(res).toBe(ParserStates.EXPECT_NEW_INPUT);
-    expect(error).toBe(undefined);
-    expect(thenCalls).toBe(1);
-    expect(catchCalls).toBe(0);
-
+    positiveCheck(ParserStates.EXPECT_NEW_INPUT);
     clearVars();
 
     parser
@@ -193,21 +161,13 @@ describe('take', () => {
         catchCalls++;
       });
 
-    expect(res).toEqual({ type: 'NUMBER' as TokenTypes, value: '123456' });
-    expect(error).toBe(undefined);
-    expect(thenCalls).toBe(1);
-    expect(catchCalls).toBe(0);
+    positiveCheck({ type: 'NUMBER' as TokenTypes, value: '123456' });
   });
 
   test('Works min', () => {
     const numParser = take(/\d/, { min: 2, token: 'NUMBER' as TokenTypes });
     const parser = numParser('123456789d');
 
-    let res;
-    let error;
-    let thenCalls = 0;
-    let catchCalls = 0;
-
     parser
       .next()
       .value.then((v) => {
@@ -219,21 +179,13 @@ describe('take', () => {
         catchCalls++;
       });
 
-    expect(res).toEqual({ type: 'NUMBER' as TokenTypes, value: '123456789' });
-    expect(error).toBe(undefined);
-    expect(thenCalls).toBe(1);
-    expect(catchCalls).toBe(0);
+    positiveCheck({ type: 'NUMBER' as TokenTypes, value: '123456789' });
   });
 
   test('Works min, max', () => {
     const numParser = take(/\d/, { min: 2, max: 4, token: 'NUMBER' as TokenTypes });
     const parser = numParser('123456789d');
 
-    let res;
-    let error;
-    let thenCalls = 0;
-    let catchCalls = 0;
-
     parser
       .next()
       .value.then((v) => {
@@ -245,21 +197,13 @@ describe('take', () => {
         catchCalls++;
       });
 
-    expect(res).toEqual({ type: 'NUMBER' as TokenTypes, value: '1234' });
-    expect(error).toBe(undefined);
-    expect(thenCalls).toBe(1);
-    expect(catchCalls).toBe(0);
+    positiveCheck({ type: 'NUMBER' as TokenTypes, value: '1234' });
   });
 
   test('Works min, max (2)', () => {
     const numParser = take(/\d/, { min: 2, max: 4, token: 'NUMBER' as TokenTypes });
     const parser = numParser('123d');
 
-    let res;
-    let error;
-    let thenCalls = 0;
-    let catchCalls = 0;
-
     parser
       .next()
       .value.then((v) => {
@@ -271,21 +215,13 @@ describe('take', () => {
         catchCalls++;
       });
 
-    expect(res).toEqual({ type: 'NUMBER' as TokenTypes, value: '123' });
-    expect(error).toBe(undefined);
-    expect(thenCalls).toBe(1);
-    expect(catchCalls).toBe(0);
+    positiveCheck({ type: 'NUMBER' as TokenTypes, value: '123' });
   });
 
   test('Error data', () => {
     const numParser = take(/\d/, { token: 'NUMBER' as TokenTypes });
     const parser = numParser('dbdfd');
 
-    let res;
-    let error;
-    let thenCalls = 0;
-    let catchCalls = 0;
-
     parser
       .next()
       .value.then((v) => {
@@ -297,21 +233,13 @@ describe('take', () => {
         catchCalls++;
       });
 
-    expect(res).toEqual(undefined);
-    expect(error).not.toBe(undefined);
-    expect(thenCalls).toBe(0);
-    expect(catchCalls).toBe(1);
+    negativeCheck();
   });
 
   test('Error min', () => {
     const numParser = take(/\d/, { min: 2, token: 'NUMBER' as TokenTypes });
     const parser = numParser('1b');
 
-    let res;
-    let error;
-    let thenCalls = 0;
-    let catchCalls = 0;
-
     parser
       .next()
       .value.then((v) => {
@@ -323,21 +251,13 @@ describe('take', () => {
         catchCalls++;
       });
 
-    expect(res).toEqual(undefined);
-    expect(error).not.toBe(undefined);
-    expect(thenCalls).toBe(0);
-    expect(catchCalls).toBe(1);
+    negativeCheck();
   });
 
   test('Error min, max', () => {
     const numParser = take(/\d/, { min: 3, max: 4, token: 'NUMBER' as TokenTypes });
     const parser = numParser('12d');
 
-    let res;
-    let error;
-    let thenCalls = 0;
-    let catchCalls = 0;
-
     parser
       .next()
       .value.then((v) => {
@@ -349,20 +269,12 @@ describe('take', () => {
         catchCalls++;
       });
 
-    expect(res).toEqual(undefined);
-    expect(error).not.toBe(undefined);
-    expect(thenCalls).toBe(0);
-    expect(catchCalls).toBe(1);
+    negativeCheck();
   });
 
   test('Error min, max (1)', () => {
     const numParser = take(/\d/, { min: 4, max: 5, token: 'NUMBER' as TokenTypes });
     const parser = numParser('123');
-
-    let res;
-    let error;
-    let thenCalls = 0;
-    let catchCalls = 0;
 
     SyncPromise.all([...parser])
       .then((v) => {
@@ -374,27 +286,12 @@ describe('take', () => {
         catchCalls++;
       });
 
-    expect(res).toEqual(undefined);
-    expect(error).not.toBe(undefined);
-    expect(thenCalls).toBe(0);
-    expect(catchCalls).toBe(1);
+    negativeCheck();
   });
 
   test('Error min, max, stream', () => {
     const numParser = take(/\d/, { min: 3, max: 4, token: 'NUMBER' as TokenTypes });
     const parser = numParser('1');
-
-    let res;
-    let error;
-    let thenCalls = 0;
-    let catchCalls = 0;
-
-    const clearVars = () => {
-      res = undefined;
-      error = undefined;
-      thenCalls = 0;
-      catchCalls = 0;
-    };
 
     parser
       .next()
@@ -407,11 +304,7 @@ describe('take', () => {
         catchCalls++;
       });
 
-    expect(res).toBe(ParserStates.EXPECT_NEW_INPUT);
-    expect(error).toBe(undefined);
-    expect(thenCalls).toBe(1);
-    expect(catchCalls).toBe(0);
-
+    positiveCheck(ParserStates.EXPECT_NEW_INPUT);
     clearVars();
 
     parser
@@ -425,11 +318,7 @@ describe('take', () => {
         catchCalls++;
       });
 
-    expect(res).toBe(ParserStates.EXPECT_NEW_INPUT);
-    expect(error).toBe(undefined);
-    expect(thenCalls).toBe(1);
-    expect(catchCalls).toBe(0);
-
+    positiveCheck(ParserStates.EXPECT_NEW_INPUT);
     clearVars();
 
     parser
@@ -443,9 +332,6 @@ describe('take', () => {
         catchCalls++;
       });
 
-    expect(res).toEqual(undefined);
-    expect(error).not.toBe(undefined);
-    expect(thenCalls).toBe(0);
-    expect(catchCalls).toBe(1);
+    negativeCheck();
   });
 });

@@ -6,6 +6,27 @@ import { take } from '../take/take';
 import { opt } from './opt';
 
 describe('opt', () => {
+  let res: any;
+  let error: any;
+  let thenCalls = 0;
+  let catchCalls = 0;
+
+  const clearVars = () => {
+    res = undefined;
+    error = undefined;
+    thenCalls = 0;
+    catchCalls = 0;
+  };
+
+  beforeEach(clearVars);
+
+  const positiveCheck = (obj: any) => {
+    expect(res).toEqual(obj);
+    expect(error).toBe(undefined);
+    expect(thenCalls).toBe(1);
+    expect(catchCalls).toBe(0);
+  };
+
   test('Works', () => {
     const xmlTag = seq(
       { token: 'XML_TAG' as TokenTypes },
@@ -15,11 +36,6 @@ describe('opt', () => {
     );
 
     const parser = opt(xmlTag)('<span><div>');
-
-    let res;
-    let error;
-    let thenCalls = 0;
-    let catchCalls = 0;
 
     SyncPromise.all([...parser])
       .then((v) => {
@@ -31,7 +47,7 @@ describe('opt', () => {
         catchCalls++;
       });
 
-    expect(res).toEqual([
+    positiveCheck([
       { type: 'TAG', value: '<' },
       { type: 'XML_TAG_NAME', value: 'span' },
       { type: 'TAG', value: '>' },
@@ -57,9 +73,6 @@ describe('opt', () => {
         ],
       },
     ]);
-    expect(error).toBe(undefined);
-    expect(thenCalls).toBe(1);
-    expect(catchCalls).toBe(0);
   });
 
   test('Works (1)', () => {
@@ -72,11 +85,6 @@ describe('opt', () => {
 
     const parser = opt(xmlTag)('');
 
-    let res;
-    let error;
-    let thenCalls = 0;
-    let catchCalls = 0;
-
     SyncPromise.all([...parser])
       .then((v) => {
         res = v;
@@ -87,10 +95,7 @@ describe('opt', () => {
         catchCalls++;
       });
 
-    expect(res).toEqual(['EXPECT_NEW_INPUT', { type: 'OPT', value: [] }]);
-    expect(error).toBe(undefined);
-    expect(thenCalls).toBe(1);
-    expect(catchCalls).toBe(0);
+    positiveCheck(['EXPECT_NEW_INPUT', { type: 'OPT', value: [] }]);
   });
 
   test('Works (2)', () => {
@@ -103,11 +108,6 @@ describe('opt', () => {
 
     const parser = opt(xmlTag)('[div]');
 
-    let res;
-    let error;
-    let thenCalls = 0;
-    let catchCalls = 0;
-
     SyncPromise.all([...parser])
       .then((v) => {
         res = v;
@@ -118,9 +118,6 @@ describe('opt', () => {
         catchCalls++;
       });
 
-    expect(res).toEqual([{ type: 'OPT', value: [] }]);
-    expect(error).toBe(undefined);
-    expect(thenCalls).toBe(1);
-    expect(catchCalls).toBe(0);
+    positiveCheck([{ type: 'OPT', value: [] }]);
   });
 });

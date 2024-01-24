@@ -16,6 +16,22 @@ describe('number', () => {
 
   beforeEach(clearVars);
 
+  const positiveCheck = (obj: any) => {
+    res = res.at(-1);
+
+    expect(res).toEqual(obj);
+    expect(error).toBe(undefined);
+    expect(thenCalls).toBe(1);
+    expect(catchCalls).toBe(0);
+  };
+
+  const negativeCheck = () => {
+    expect(res).toBe(undefined);
+    expect(error).not.toBe(undefined);
+    expect(thenCalls).toBe(0);
+    expect(catchCalls).toBe(1);
+  };
+
   describe('Zeros', () => {
     test('Work zero', () => {
       const parser = number('0');
@@ -30,12 +46,7 @@ describe('number', () => {
           catchCalls++;
         });
 
-      res = res.at(-1);
-
-      expect(res).toEqual({ type: 'NUMBER', value: [{ type: 'NUMBER_INT', value: '0' }] });
-      expect(error).toBe(undefined);
-      expect(thenCalls).toBe(1);
-      expect(catchCalls).toBe(0);
+      positiveCheck({ type: 'NUMBER', value: [{ type: 'NUMBER_INT', value: '0' }] });
     });
 
     test('Work zero (1)', () => {
@@ -51,18 +62,13 @@ describe('number', () => {
           catchCalls++;
         });
 
-      res = res.at(-1);
-
-      expect(res).toEqual({
+      positiveCheck({
         type: 'NUMBER',
         value: [
           { type: 'NUMBER_SIGN', value: '-' },
           { type: 'NUMBER_INT', value: '0' },
         ],
       });
-      expect(error).toBe(undefined);
-      expect(thenCalls).toBe(1);
-      expect(catchCalls).toBe(0);
     });
 
     test('Work zero (2)', () => {
@@ -78,18 +84,13 @@ describe('number', () => {
           catchCalls++;
         });
 
-      res = res.at(-1);
-
-      expect(res).toEqual({
+      positiveCheck({
         type: 'NUMBER',
         value: [
           { type: 'NUMBER_SIGN', value: '+' },
           { type: 'NUMBER_INT', value: '0' },
         ],
       });
-      expect(error).toBe(undefined);
-      expect(thenCalls).toBe(1);
-      expect(catchCalls).toBe(0);
     });
 
     test('Work zero (3)', () => {
@@ -105,18 +106,13 @@ describe('number', () => {
           catchCalls++;
         });
 
-      res = res.at(-1);
-
-      expect(res).toEqual({
+      positiveCheck({
         type: 'NUMBER',
         value: [
           { type: 'NUMBER_INT', value: '0' },
           { type: 'NUMBER_FRACTION', value: '0' },
         ],
       });
-      expect(error).toBe(undefined);
-      expect(thenCalls).toBe(1);
-      expect(catchCalls).toBe(0);
     });
   });
 
@@ -134,12 +130,7 @@ describe('number', () => {
           catchCalls++;
         });
 
-      res = res.at(-1);
-
-      expect(res).toEqual({ type: 'NUMBER', value: [{ type: 'NUMBER_INT', value: '1020304050' }] });
-      expect(error).toBe(undefined);
-      expect(thenCalls).toBe(1);
-      expect(catchCalls).toBe(0);
+      positiveCheck({ type: 'NUMBER', value: [{ type: 'NUMBER_INT', value: '1020304050' }] });
     });
 
     test('Work number negative', () => {
@@ -155,18 +146,13 @@ describe('number', () => {
           catchCalls++;
         });
 
-      res = res.at(-1);
-
-      expect(res).toEqual({
+      positiveCheck({
         type: 'NUMBER',
         value: [
           { type: 'NUMBER_SIGN', value: '-' },
           { type: 'NUMBER_INT', value: '1020304050' },
         ],
       });
-      expect(error).toBe(undefined);
-      expect(thenCalls).toBe(1);
-      expect(catchCalls).toBe(0);
     });
 
     test('Work number exponent', () => {
@@ -182,9 +168,7 @@ describe('number', () => {
           catchCalls++;
         });
 
-      res = res.at(-1);
-
-      expect(res).toEqual({
+      positiveCheck({
         type: 'NUMBER',
         value: [
           { type: 'NUMBER_INT', value: '1020' },
@@ -203,9 +187,6 @@ describe('number', () => {
           },
         ],
       });
-      expect(error).toBe(undefined);
-      expect(thenCalls).toBe(1);
-      expect(catchCalls).toBe(0);
     });
 
     test('Work number exponent negative', () => {
@@ -221,9 +202,7 @@ describe('number', () => {
           catchCalls++;
         });
 
-      res = res.at(-1);
-
-      expect(res).toEqual({
+      positiveCheck({
         type: 'NUMBER',
         value: [
           { type: 'NUMBER_INT', value: '1020' },
@@ -243,9 +222,6 @@ describe('number', () => {
           },
         ],
       });
-      expect(error).toBe(undefined);
-      expect(thenCalls).toBe(1);
-      expect(catchCalls).toBe(0);
     });
   });
 });

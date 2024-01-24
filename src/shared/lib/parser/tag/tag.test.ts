@@ -2,15 +2,37 @@ import { ParserStates, TokenTypes } from '../consts';
 import { tag } from './tag';
 
 describe('tag', () => {
+  let res: any;
+  let error: any;
+  let thenCalls = 0;
+  let catchCalls = 0;
+
+  const clearVars = () => {
+    res = undefined;
+    error = undefined;
+    thenCalls = 0;
+    catchCalls = 0;
+  };
+
+  beforeEach(clearVars);
+
+  const positiveCheck = (obj: any) => {
+    expect(res).toEqual(obj);
+    expect(error).toBe(undefined);
+    expect(thenCalls).toBe(1);
+    expect(catchCalls).toBe(0);
+  };
+
+  const negativeCheck = () => {
+    expect(res).toBe(undefined);
+    expect(error).not.toBe(undefined);
+    expect(thenCalls).toBe(0);
+    expect(catchCalls).toBe(1);
+  };
+
   test('Works', () => {
     const xmlTag = tag(['<', /[a-z]/, /[a-z]/, /[a-z]/, '>'], { token: 'XML' as TokenTypes });
-
     const parser = xmlTag('<div>');
-
-    let res;
-    let error;
-    let thenCalls = 0;
-    let catchCalls = 0;
 
     parser
       .next()
@@ -23,21 +45,12 @@ describe('tag', () => {
         catchCalls++;
       });
 
-    expect(res).toEqual({ type: 'XML' as TokenTypes, value: '<div>' });
-    expect(error).toBe(undefined);
-    expect(thenCalls).toBe(1);
-    expect(catchCalls).toBe(0);
+    positiveCheck({ type: 'XML' as TokenTypes, value: '<div>' });
   });
 
   test('Works (1)', () => {
     const xmlTag = tag(['[', /[a-z]/, /[a-z]/, /[a-z]/, /[a-z]/, ']'], { token: 'XML' as TokenTypes });
-
     const parser = xmlTag('[span]');
-
-    let res;
-    let error;
-    let thenCalls = 0;
-    let catchCalls = 0;
 
     parser
       .next()
@@ -50,21 +63,12 @@ describe('tag', () => {
         catchCalls++;
       });
 
-    expect(res).toEqual({ type: 'XML' as TokenTypes, value: '[span]' });
-    expect(error).toBe(undefined);
-    expect(thenCalls).toBe(1);
-    expect(catchCalls).toBe(0);
+    positiveCheck({ type: 'XML' as TokenTypes, value: '[span]' });
   });
 
   test('Works stream', () => {
     const xmlTag = tag(['<', /[a-z]/, /[a-z]/, /[a-z]/, '>'], { token: 'XML' as TokenTypes });
-
     const parser = xmlTag('<div');
-
-    let res;
-    let error;
-    let thenCalls = 0;
-    let catchCalls = 0;
 
     parser
       .next()
@@ -77,28 +81,12 @@ describe('tag', () => {
         catchCalls++;
       });
 
-    expect(res).toEqual(ParserStates.EXPECT_NEW_INPUT);
-    expect(error).toBe(undefined);
-    expect(thenCalls).toBe(1);
-    expect(catchCalls).toBe(0);
+    positiveCheck(ParserStates.EXPECT_NEW_INPUT);
   });
 
   test('Works stream (1)', () => {
     const xmlTag = tag(['<', /[a-z]/, /[a-z]/, /[a-z]/, '>'], { token: 'XML' as TokenTypes });
-
     const parser = xmlTag('<');
-
-    let res;
-    let error;
-    let thenCalls = 0;
-    let catchCalls = 0;
-
-    const clearVars = () => {
-      res = undefined;
-      error = undefined;
-      thenCalls = 0;
-      catchCalls = 0;
-    };
 
     parser
       .next()
@@ -111,11 +99,7 @@ describe('tag', () => {
         catchCalls++;
       });
 
-    expect(res).toBe(ParserStates.EXPECT_NEW_INPUT);
-    expect(error).toBe(undefined);
-    expect(thenCalls).toBe(1);
-    expect(catchCalls).toBe(0);
-
+    positiveCheck(ParserStates.EXPECT_NEW_INPUT);
     clearVars();
 
     parser
@@ -129,11 +113,7 @@ describe('tag', () => {
         catchCalls++;
       });
 
-    expect(res).toBe(ParserStates.EXPECT_NEW_INPUT);
-    expect(error).toBe(undefined);
-    expect(thenCalls).toBe(1);
-    expect(catchCalls).toBe(0);
-
+    positiveCheck(ParserStates.EXPECT_NEW_INPUT);
     clearVars();
 
     parser
@@ -147,23 +127,12 @@ describe('tag', () => {
         catchCalls++;
       });
 
-    expect(res).toEqual({ type: 'XML' as TokenTypes, value: '<div>' });
-    expect(error).toBe(undefined);
-    expect(thenCalls).toBe(1);
-    expect(catchCalls).toBe(0);
-
-    clearVars();
+    positiveCheck({ type: 'XML' as TokenTypes, value: '<div>' });
   });
 
   test('Error', () => {
     const xmlTag = tag(['<', /[a-z]/, /[a-z]/, /[a-z]/, /[a-z]/, '>'], { token: 'XML' as TokenTypes });
-
     const parser = xmlTag('<ХТМЛ>');
-
-    let res;
-    let error;
-    let thenCalls = 0;
-    let catchCalls = 0;
 
     parser
       .next()
@@ -176,21 +145,12 @@ describe('tag', () => {
         catchCalls++;
       });
 
-    expect(res).toBe(undefined);
-    expect(error).not.toBe(undefined);
-    expect(thenCalls).toBe(0);
-    expect(catchCalls).toBe(1);
+    negativeCheck();
   });
 
   test('Error (1)', () => {
     const xmlTag = tag(['<', /[a-z]/, /[a-z]/, /[a-z]/, '>'], { token: 'XML' as TokenTypes, isExpectNew: false });
-
     const parser = xmlTag('<div');
-
-    let res;
-    let error;
-    let thenCalls = 0;
-    let catchCalls = 0;
 
     parser
       .next()
@@ -203,28 +163,12 @@ describe('tag', () => {
         catchCalls++;
       });
 
-    expect(res).toBe(undefined);
-    expect(error).not.toBe(undefined);
-    expect(thenCalls).toBe(0);
-    expect(catchCalls).toBe(1);
+    negativeCheck();
   });
 
   test('Stream error', () => {
     const xmlTag = tag(['<', /[a-z]/, /[a-z]/, /[a-z]/, '>'], { token: 'XML' as TokenTypes });
-
     const parser = xmlTag('<d');
-
-    let res;
-    let error;
-    let thenCalls = 0;
-    let catchCalls = 0;
-
-    const clearVars = () => {
-      res = undefined;
-      error = undefined;
-      thenCalls = 0;
-      catchCalls = 0;
-    };
 
     parser
       .next()
@@ -237,11 +181,7 @@ describe('tag', () => {
         catchCalls++;
       });
 
-    expect(res).toEqual(ParserStates.EXPECT_NEW_INPUT);
-    expect(error).toBe(undefined);
-    expect(thenCalls).toBe(1);
-    expect(catchCalls).toBe(0);
-
+    positiveCheck(ParserStates.EXPECT_NEW_INPUT);
     clearVars();
 
     parser
@@ -255,11 +195,7 @@ describe('tag', () => {
         catchCalls++;
       });
 
-    expect(res).toEqual(ParserStates.EXPECT_NEW_INPUT);
-    expect(error).toBe(undefined);
-    expect(thenCalls).toBe(1);
-    expect(catchCalls).toBe(0);
-
+    positiveCheck(ParserStates.EXPECT_NEW_INPUT);
     clearVars();
 
     parser
@@ -273,28 +209,12 @@ describe('tag', () => {
         catchCalls++;
       });
 
-    expect(res).toBe(undefined);
-    expect(error).not.toBe(undefined);
-    expect(thenCalls).toBe(0);
-    expect(catchCalls).toBe(1);
+    negativeCheck();
   });
 
   test('Stream error (1)', () => {
     const xmlTag = tag(['<', /[a-z]/, /[a-z]/, /[a-z]/, '>'], { token: 'XML' as TokenTypes });
-
     const parser = xmlTag('<');
-
-    let res;
-    let error;
-    let thenCalls = 0;
-    let catchCalls = 0;
-
-    const clearVars = () => {
-      res = undefined;
-      error = undefined;
-      thenCalls = 0;
-      catchCalls = 0;
-    };
 
     parser
       .next()
@@ -307,11 +227,7 @@ describe('tag', () => {
         catchCalls++;
       });
 
-    expect(res).toEqual(ParserStates.EXPECT_NEW_INPUT);
-    expect(error).toBe(undefined);
-    expect(thenCalls).toBe(1);
-    expect(catchCalls).toBe(0);
-
+    positiveCheck(ParserStates.EXPECT_NEW_INPUT);
     clearVars();
 
     parser
@@ -325,11 +241,7 @@ describe('tag', () => {
         catchCalls++;
       });
 
-    expect(res).toEqual(ParserStates.EXPECT_NEW_INPUT);
-    expect(error).toBe(undefined);
-    expect(thenCalls).toBe(1);
-    expect(catchCalls).toBe(0);
-
+    positiveCheck(ParserStates.EXPECT_NEW_INPUT);
     clearVars();
 
     parser
@@ -343,9 +255,6 @@ describe('tag', () => {
         catchCalls++;
       });
 
-    expect(res).toBe(undefined);
-    expect(error).not.toBe(undefined);
-    expect(thenCalls).toBe(0);
-    expect(catchCalls).toBe(1);
+    negativeCheck();
   });
 });

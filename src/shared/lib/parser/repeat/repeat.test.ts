@@ -6,6 +6,34 @@ import { take } from '../take/take';
 import { repeat } from './repeat';
 
 describe('repeat', () => {
+  let res: any;
+  let error: any;
+  let thenCalls = 0;
+  let catchCalls = 0;
+
+  const clearVars = () => {
+    res = undefined;
+    error = undefined;
+    thenCalls = 0;
+    catchCalls = 0;
+  };
+
+  beforeEach(clearVars);
+
+  const positiveCheck = (obj: any) => {
+    expect(res).toEqual(obj);
+    expect(error).toBe(undefined);
+    expect(thenCalls).toBe(1);
+    expect(catchCalls).toBe(0);
+  };
+
+  const negativeCheck = () => {
+    expect(res).toBe(undefined);
+    expect(error).not.toBe(undefined);
+    expect(thenCalls).toBe(0);
+    expect(catchCalls).toBe(1);
+  };
+
   test('Works', () => {
     const xmlTag = seq(
       { token: 'XML_TAG' as TokenTypes },
@@ -15,11 +43,6 @@ describe('repeat', () => {
     );
 
     const parser = repeat(xmlTag)('<span><div><dir>');
-
-    let res;
-    let error;
-    let thenCalls = 0;
-    let catchCalls = 0;
 
     SyncPromise.all([...parser])
       .then((v) => {
@@ -31,7 +54,7 @@ describe('repeat', () => {
         catchCalls++;
       });
 
-    expect(res).toEqual([
+    positiveCheck([
       { type: 'TAG', value: '<' },
       { type: 'XML_TAG_NAME', value: 'span' },
       { type: 'TAG', value: '>' },
@@ -96,9 +119,6 @@ describe('repeat', () => {
         ],
       },
     ]);
-    expect(error).toBe(undefined);
-    expect(thenCalls).toBe(1);
-    expect(catchCalls).toBe(0);
   });
 
   test('Works (1)', () => {
@@ -111,11 +131,6 @@ describe('repeat', () => {
 
     const parser = repeat(bbTag)('[span][div][dir]');
 
-    let res;
-    let error;
-    let thenCalls = 0;
-    let catchCalls = 0;
-
     SyncPromise.all([...parser])
       .then((v) => {
         res = v;
@@ -126,7 +141,7 @@ describe('repeat', () => {
         catchCalls++;
       });
 
-    expect(res).toEqual([
+    positiveCheck([
       { type: 'TAG', value: '[' },
       { type: 'BB_TAG_NAME', value: 'span' },
       { type: 'TAG', value: ']' },
@@ -191,9 +206,6 @@ describe('repeat', () => {
         ],
       },
     ]);
-    expect(error).toBe(undefined);
-    expect(thenCalls).toBe(1);
-    expect(catchCalls).toBe(0);
   });
 
   test('Works (2)', () => {
@@ -206,11 +218,6 @@ describe('repeat', () => {
 
     const parser = repeat(xmlTag)('<span><div>%');
 
-    let res;
-    let error;
-    let thenCalls = 0;
-    let catchCalls = 0;
-
     SyncPromise.all([...parser])
       .then((v) => {
         res = v;
@@ -221,7 +228,7 @@ describe('repeat', () => {
         catchCalls++;
       });
 
-    expect(res).toEqual([
+    positiveCheck([
       { type: 'TAG', value: '<' },
       { type: 'XML_TAG_NAME', value: 'span' },
       { type: 'TAG', value: '>' },
@@ -266,9 +273,6 @@ describe('repeat', () => {
         ],
       },
     ]);
-    expect(error).toBe(undefined);
-    expect(thenCalls).toBe(1);
-    expect(catchCalls).toBe(0);
   });
 
   test('Works stream', () => {
@@ -280,18 +284,6 @@ describe('repeat', () => {
     );
 
     const parser = repeat(xmlTag)('<span><div><dir>');
-
-    let res: any;
-    let error: any;
-    let thenCalls = 0;
-    let catchCalls = 0;
-
-    const clearVars = () => {
-      res = undefined;
-      error = undefined;
-      thenCalls = 0;
-      catchCalls = 0;
-    };
 
     const testFn = (resData: any, isError: boolean, thenCls: number, catchCls: number, next?: any) => {
       parser
@@ -416,18 +408,6 @@ describe('repeat', () => {
     );
 
     const parser = repeat(xmlTag)('<span>');
-
-    let res: any;
-    let error: any;
-    let thenCalls = 0;
-    let catchCalls = 0;
-
-    const clearVars = () => {
-      res = undefined;
-      error = undefined;
-      thenCalls = 0;
-      catchCalls = 0;
-    };
 
     const testFn = (resData: any, isError: boolean, thenCls: number, catchCls: number, next?: any) => {
       parser
@@ -554,11 +534,6 @@ describe('repeat', () => {
 
     const parser = repeat(xmlTag, { max: 3 })('<span><div><dir>');
 
-    let res;
-    let error;
-    let thenCalls = 0;
-    let catchCalls = 0;
-
     SyncPromise.all([...parser])
       .then((v) => {
         res = v;
@@ -569,7 +544,7 @@ describe('repeat', () => {
         catchCalls++;
       });
 
-    expect(res).toEqual([
+    positiveCheck([
       { type: 'TAG', value: '<' },
       { type: 'XML_TAG_NAME', value: 'span' },
       { type: 'TAG', value: '>' },
@@ -634,9 +609,6 @@ describe('repeat', () => {
         ],
       },
     ]);
-    expect(error).toBe(undefined);
-    expect(thenCalls).toBe(1);
-    expect(catchCalls).toBe(0);
   });
 
   test('Works max (1)', () => {
@@ -649,11 +621,6 @@ describe('repeat', () => {
 
     const parser = repeat(xmlTag, { max: 3 })('<span>');
 
-    let res;
-    let error;
-    let thenCalls = 0;
-    let catchCalls = 0;
-
     SyncPromise.all([...parser])
       .then((v) => {
         res = v;
@@ -664,7 +631,7 @@ describe('repeat', () => {
         catchCalls++;
       });
 
-    expect(res).toEqual([
+    positiveCheck([
       { type: 'TAG', value: '<' },
       { type: 'XML_TAG_NAME', value: 'span' },
       { type: 'TAG', value: '>' },
@@ -691,9 +658,6 @@ describe('repeat', () => {
         ],
       },
     ]);
-    expect(error).toBe(undefined);
-    expect(thenCalls).toBe(1);
-    expect(catchCalls).toBe(0);
   });
 
   test('Works min', () => {
@@ -706,11 +670,6 @@ describe('repeat', () => {
 
     const parser = repeat(xmlTag, { min: 3 })('<span><div><dir>');
 
-    let res;
-    let error;
-    let thenCalls = 0;
-    let catchCalls = 0;
-
     SyncPromise.all([...parser])
       .then((v) => {
         res = v;
@@ -721,7 +680,7 @@ describe('repeat', () => {
         catchCalls++;
       });
 
-    expect(res).toEqual([
+    positiveCheck([
       { type: 'TAG', value: '<' },
       { type: 'XML_TAG_NAME', value: 'span' },
       { type: 'TAG', value: '>' },
@@ -786,9 +745,6 @@ describe('repeat', () => {
         ],
       },
     ]);
-    expect(error).toBe(undefined);
-    expect(thenCalls).toBe(1);
-    expect(catchCalls).toBe(0);
   });
 
   test('Error', () => {
@@ -801,11 +757,6 @@ describe('repeat', () => {
 
     const parser = repeat(xmlTag)('[span]<div><dir>');
 
-    let res;
-    let error;
-    let thenCalls = 0;
-    let catchCalls = 0;
-
     SyncPromise.all([...parser])
       .then((v) => {
         res = v;
@@ -816,10 +767,7 @@ describe('repeat', () => {
         catchCalls++;
       });
 
-    expect(res).toEqual(undefined);
-    expect(error).not.toBe(undefined);
-    expect(thenCalls).toBe(0);
-    expect(catchCalls).toBe(1);
+    negativeCheck();
   });
 
   test('Error (1)', () => {
@@ -832,11 +780,6 @@ describe('repeat', () => {
 
     const parser = repeat(xmlTag, { min: 2 })('<span>[div]<dir>');
 
-    let res;
-    let error;
-    let thenCalls = 0;
-    let catchCalls = 0;
-
     SyncPromise.all([...parser])
       .then((v) => {
         res = v;
@@ -847,10 +790,7 @@ describe('repeat', () => {
         catchCalls++;
       });
 
-    expect(res).toEqual(undefined);
-    expect(error).not.toBe(undefined);
-    expect(thenCalls).toBe(0);
-    expect(catchCalls).toBe(1);
+    negativeCheck();
   });
 
   test('Error (2)', () => {
@@ -863,11 +803,6 @@ describe('repeat', () => {
 
     const parser = repeat(xmlTag, { min: 3 })('<span><div>[dir]');
 
-    let res;
-    let error;
-    let thenCalls = 0;
-    let catchCalls = 0;
-
     SyncPromise.all([...parser])
       .then((v) => {
         res = v;
@@ -878,9 +813,6 @@ describe('repeat', () => {
         catchCalls++;
       });
 
-    expect(res).toEqual(undefined);
-    expect(error).not.toBe(undefined);
-    expect(thenCalls).toBe(0);
-    expect(catchCalls).toBe(1);
+    negativeCheck();
   });
 });
