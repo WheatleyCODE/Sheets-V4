@@ -2,66 +2,134 @@ import { SyncPromise } from '../../../promise';
 import { number } from './number';
 
 describe('number', () => {
-  // test('Work zero', () => {
-  //   const parser = number('0');
+  let res: any;
+  let error: any;
+  let thenCalls = 0;
+  let catchCalls = 0;
 
-  //   let res: any;
-  //   let error: any;
-  //   let thenCalls = 0;
-  //   let catchCalls = 0;
+  const clearVars = () => {
+    res = undefined;
+    error = undefined;
+    thenCalls = 0;
+    catchCalls = 0;
+  };
 
-  //   SyncPromise.all([...parser])
-  //     .then((v) => {
-  //       res = v;
-  //       thenCalls++;
-  //     })
-  //     .catch((e) => {
-  //       error = e;
-  //       catchCalls++;
-  //     });
+  const pr = () => {
+    console.dir(res, { depth: null });
+  };
 
-  //   // res = res.at(-1);
+  beforeEach(clearVars);
 
-  //   console.dir(res, { depth: null });
+  describe('Zeros', () => {
+    test('Work zero', () => {
+      const parser = number('0');
 
-  //   expect(res).toEqual(undefined);
-  //   expect(error).toBe(undefined);
-  //   expect(thenCalls).toBe(1);
-  //   expect(catchCalls).toBe(0);
-  // });
+      SyncPromise.all([...parser])
+        .then((v) => {
+          res = v;
+          thenCalls++;
+        })
+        .catch((e) => {
+          error = e;
+          catchCalls++;
+        });
 
-  test('Work zero ()', () => {
-    const parser = number('0.0');
+      res = res.at(-1);
 
-    let res: any;
-    let error: any;
-    let thenCalls = 0;
-    let catchCalls = 0;
-
-    SyncPromise.all([...parser])
-      .then((v) => {
-        res = v;
-        thenCalls++;
-      })
-      .catch((e) => {
-        error = e;
-        catchCalls++;
+      expect(res).toEqual({
+        type: 'NUMBER',
+        value: [
+          { type: 'OPT', value: [] },
+          { type: 'OR', value: { type: 'CHECK_NEXT', value: { type: 'INT_NUMBER', value: '0' } } },
+          { type: 'OPT', value: [] },
+        ],
       });
+      expect(error).toBe(undefined);
+      expect(thenCalls).toBe(1);
+      expect(catchCalls).toBe(0);
+    });
 
-    res = res.at(-1);
+    test('Work zero (1)', () => {
+      const parser = number('-0');
 
-    expect(res).toEqual({
-      type: 'NUMBER',
-      value: [
-        { type: 'OPT', value: [] },
-        {
-          type: 'OR',
-          value: {
-            type: 'ZERO_TO_FRACTION',
+      SyncPromise.all([...parser])
+        .then((v) => {
+          res = v;
+          thenCalls++;
+        })
+        .catch((e) => {
+          error = e;
+          catchCalls++;
+        });
+
+      res = res.at(-1);
+
+      expect(res).toEqual({
+        type: 'NUMBER',
+        value: [
+          { type: 'OPT', value: [{ type: 'SING', value: '-' }] },
+          { type: 'OR', value: { type: 'CHECK_NEXT', value: { type: 'INT_NUMBER', value: '0' } } },
+          { type: 'OPT', value: [] },
+        ],
+      });
+      expect(error).toBe(undefined);
+      expect(thenCalls).toBe(1);
+      expect(catchCalls).toBe(0);
+    });
+
+    test('Work zero (2)', () => {
+      const parser = number('+0');
+
+      SyncPromise.all([...parser])
+        .then((v) => {
+          res = v;
+          thenCalls++;
+        })
+        .catch((e) => {
+          error = e;
+          catchCalls++;
+        });
+
+      res = res.at(-1);
+
+      expect(res).toEqual({
+        type: 'NUMBER',
+        value: [
+          { type: 'OPT', value: [{ type: 'SING', value: '+' }] },
+          { type: 'OR', value: { type: 'CHECK_NEXT', value: { type: 'INT_NUMBER', value: '0' } } },
+          { type: 'OPT', value: [] },
+        ],
+      });
+      expect(error).toBe(undefined);
+      expect(thenCalls).toBe(1);
+      expect(catchCalls).toBe(0);
+    });
+
+    test('Work zero (3)', () => {
+      const parser = number('0.0');
+
+      SyncPromise.all([...parser])
+        .then((v) => {
+          res = v;
+          thenCalls++;
+        })
+        .catch((e) => {
+          error = e;
+          catchCalls++;
+        });
+
+      res = res.at(-1);
+
+      expect(res).toEqual({
+        type: 'NUMBER',
+        value: [
+          { type: 'OPT', value: [] },
+          { type: 'OR', value: { type: 'CHECK_NEXT', value: { type: 'INT_NUMBER', value: '0' } } },
+          {
+            type: 'OPT',
             value: [
-              { type: 'INT_NUMBER', value: '0' },
               {
-                type: 'FRACTION ',
+                type: 'FRACTION',
                 value: [
                   { type: 'DOT', value: '.' },
                   { type: 'INT_NUMBER', value: '0' },
@@ -70,94 +138,41 @@ describe('number', () => {
               },
             ],
           },
-        },
-      ],
+        ],
+      });
+      expect(error).toBe(undefined);
+      expect(thenCalls).toBe(1);
+      expect(catchCalls).toBe(0);
     });
-    expect(error).toBe(undefined);
-    expect(thenCalls).toBe(1);
-    expect(catchCalls).toBe(0);
-  });
 
-  test('Error zero', () => {
-    const parser = number('00');
+    test('Work zero (4)', () => {
+      const parser = number('0.0115');
 
-    let res: any;
-    let error: any;
-    let thenCalls = 0;
-    let catchCalls = 0;
+      SyncPromise.all([...parser])
+        .then((v) => {
+          res = v;
+          thenCalls++;
+        })
+        .catch((e) => {
+          error = e;
+          catchCalls++;
+        });
 
-    SyncPromise.all([...parser])
-      .then((v) => {
-        res = v;
-        thenCalls++;
-      })
-      .catch((e) => {
-        error = e;
-        catchCalls++;
-      });
+      res = res.at(-1);
 
-    expect(res).toBe(undefined);
-    expect(error).not.toBe(undefined);
-    expect(thenCalls).toBe(0);
-    expect(catchCalls).toBe(1);
-  });
-
-  test('Error zero (1)', () => {
-    const parser = number('0.');
-
-    let res: any;
-    let error: any;
-    let thenCalls = 0;
-    let catchCalls = 0;
-
-    SyncPromise.all([...parser])
-      .then((v) => {
-        res = v;
-        thenCalls++;
-      })
-      .catch((e) => {
-        error = e;
-        catchCalls++;
-      });
-
-    expect(res).toBe(undefined);
-    expect(error).not.toBe(undefined);
-    expect(thenCalls).toBe(0);
-    expect(catchCalls).toBe(1);
-  });
-
-  test('Work zero + fraction', () => {
-    const parser = number('0.0115');
-
-    let res: any;
-    let error: any;
-    let thenCalls = 0;
-    let catchCalls = 0;
-
-    SyncPromise.all([...parser])
-      .then((v) => {
-        res = v;
-        thenCalls++;
-      })
-      .catch((e) => {
-        error = e;
-        catchCalls++;
-      });
-
-    res = res.at(-1);
-
-    expect(res).toEqual({
-      type: 'NUMBER',
-      value: [
-        { type: 'OPT', value: [] },
-        {
-          type: 'OR',
-          value: {
-            type: 'ZERO_TO_FRACTION',
+      expect(res).toEqual({
+        type: 'NUMBER',
+        value: [
+          { type: 'OPT', value: [] },
+          {
+            type: 'OR',
+            value: { type: 'CHECK_NEXT', value: { type: 'INT_NUMBER', value: '0' } },
+          },
+          {
+            type: 'OPT',
             value: [
-              { type: 'INT_NUMBER', value: '0' },
               {
-                type: 'FRACTION ',
+                type: 'FRACTION',
                 value: [
                   { type: 'DOT', value: '.' },
                   { type: 'INT_NUMBER', value: '0115' },
@@ -166,679 +181,988 @@ describe('number', () => {
               },
             ],
           },
-        },
-      ],
+        ],
+      });
+      expect(error).toBe(undefined);
+      expect(thenCalls).toBe(1);
+      expect(catchCalls).toBe(0);
     });
-    expect(error).toBe(undefined);
-    expect(thenCalls).toBe(1);
-    expect(catchCalls).toBe(0);
+
+    test('Error zero', () => {
+      const parser = number('00');
+
+      SyncPromise.all([...parser])
+        .then((v) => {
+          res = v;
+          thenCalls++;
+        })
+        .catch((e) => {
+          error = e;
+          catchCalls++;
+        });
+
+      expect(res).toBe(undefined);
+      expect(error).not.toBe(undefined);
+      expect(thenCalls).toBe(0);
+      expect(catchCalls).toBe(1);
+    });
+
+    test('Error zero (1)', () => {
+      const parser = number('0.');
+
+      SyncPromise.all([...parser])
+        .then((v) => {
+          res = v;
+          thenCalls++;
+        })
+        .catch((e) => {
+          error = e;
+          catchCalls++;
+        });
+
+      expect(res).toBe(undefined);
+      expect(error).not.toBe(undefined);
+      expect(thenCalls).toBe(0);
+      expect(catchCalls).toBe(1);
+    });
   });
 
-  test('Work simple', () => {
-    const parser = number('1025');
+  describe('Numbers', () => {
+    test('Work number', () => {
+      const parser = number('1025');
+      const parser2 = number('88005553535');
 
-    let res: any;
-    let error: any;
-    let thenCalls = 0;
-    let catchCalls = 0;
+      SyncPromise.all([...parser])
+        .then((v) => {
+          res = v;
+          thenCalls++;
+        })
+        .catch((e) => {
+          error = e;
+          catchCalls++;
+        });
 
-    const clearVars = () => {
-      res = [];
-      error = undefined;
-      thenCalls = 0;
-      catchCalls = 0;
-    };
+      res = res.at(-1);
 
-    SyncPromise.all([...parser])
-      .then((v) => {
-        res = v;
-        thenCalls++;
-      })
-      .catch((e) => {
-        error = e;
-        catchCalls++;
+      expect(res).toEqual({
+        type: 'NUMBER',
+        value: [
+          { type: 'OPT', value: [] },
+          {
+            type: 'OR',
+            value: {
+              type: 'SEQ',
+              value: [
+                { type: 'INT_NUMBER', value: '1' },
+                { type: 'INT_NUMBER', value: '025' },
+              ],
+            },
+          },
+          { type: 'OPT', value: [] },
+        ],
       });
+      expect(error).toBe(undefined);
+      expect(thenCalls).toBe(1);
+      expect(catchCalls).toBe(0);
 
-    res = res.at(-1);
+      clearVars();
 
-    expect(res).toEqual({
-      type: 'NUMBER',
-      value: [
-        { type: 'OPT', value: [] },
-        { type: 'OR', value: { type: 'INT_NUMBER', value: '1' } },
-      ],
+      SyncPromise.all([...parser2])
+        .then((v) => {
+          res = v;
+          thenCalls++;
+        })
+        .catch((e) => {
+          error = e;
+          catchCalls++;
+        });
+
+      res = res.at(-1);
+
+      expect(res).toEqual({
+        type: 'NUMBER',
+        value: [
+          { type: 'OPT', value: [] },
+          {
+            type: 'OR',
+            value: {
+              type: 'SEQ',
+              value: [
+                { type: 'INT_NUMBER', value: '8' },
+                { type: 'INT_NUMBER', value: '8005553535' },
+              ],
+            },
+          },
+          { type: 'OPT', value: [] },
+        ],
+      });
+      expect(error).toBe(undefined);
+      expect(thenCalls).toBe(1);
+      expect(catchCalls).toBe(0);
     });
-    expect(error).toBe(undefined);
-    expect(thenCalls).toBe(1);
-    expect(catchCalls).toBe(0);
 
-    clearVars();
+    test('Work number negative', () => {
+      const parser = number('-1025');
+      const parser2 = number('-88005553535');
 
-    const parser2 = number('88005553535');
+      SyncPromise.all([...parser])
+        .then((v) => {
+          res = v;
+          thenCalls++;
+        })
+        .catch((e) => {
+          error = e;
+          catchCalls++;
+        });
 
-    SyncPromise.all([...parser2])
-      .then((v) => {
-        res = v;
-        thenCalls++;
-      })
-      .catch((e) => {
-        error = e;
-        catchCalls++;
+      res = res.at(-1);
+
+      expect(res).toEqual({
+        type: 'NUMBER',
+        value: [
+          { type: 'OPT', value: [{ type: 'SING', value: '-' }] },
+          {
+            type: 'OR',
+            value: {
+              type: 'SEQ',
+              value: [
+                { type: 'INT_NUMBER', value: '1' },
+                { type: 'INT_NUMBER', value: '025' },
+              ],
+            },
+          },
+          { type: 'OPT', value: [] },
+        ],
       });
+      expect(error).toBe(undefined);
+      expect(thenCalls).toBe(1);
+      expect(catchCalls).toBe(0);
 
-    res = res.at(-1);
+      clearVars();
 
-    console.dir(res, { depth: null });
+      SyncPromise.all([...parser2])
+        .then((v) => {
+          res = v;
+          thenCalls++;
+        })
+        .catch((e) => {
+          error = e;
+          catchCalls++;
+        });
 
-    expect(res).toEqual(null);
-    expect(error).toBe(undefined);
-    expect(thenCalls).toBe(1);
-    expect(catchCalls).toBe(0);
+      res = res.at(-1);
+
+      expect(res).toEqual({
+        type: 'NUMBER',
+        value: [
+          { type: 'OPT', value: [{ type: 'SING', value: '-' }] },
+          {
+            type: 'OR',
+            value: {
+              type: 'SEQ',
+              value: [
+                { type: 'INT_NUMBER', value: '8' },
+                { type: 'INT_NUMBER', value: '8005553535' },
+              ],
+            },
+          },
+          { type: 'OPT', value: [] },
+        ],
+      });
+      expect(error).toBe(undefined);
+      expect(thenCalls).toBe(1);
+      expect(catchCalls).toBe(0);
+    });
+
+    test('Work number positive', () => {
+      const parser = number('+1025');
+      const parser2 = number('+88005553535');
+
+      SyncPromise.all([...parser])
+        .then((v) => {
+          res = v;
+          thenCalls++;
+        })
+        .catch((e) => {
+          error = e;
+          catchCalls++;
+        });
+
+      res = res.at(-1);
+
+      expect(res).toEqual({
+        type: 'NUMBER',
+        value: [
+          { type: 'OPT', value: [{ type: 'SING', value: '+' }] },
+          {
+            type: 'OR',
+            value: {
+              type: 'SEQ',
+              value: [
+                { type: 'INT_NUMBER', value: '1' },
+                { type: 'INT_NUMBER', value: '025' },
+              ],
+            },
+          },
+          { type: 'OPT', value: [] },
+        ],
+      });
+      expect(error).toBe(undefined);
+      expect(thenCalls).toBe(1);
+      expect(catchCalls).toBe(0);
+
+      clearVars();
+
+      SyncPromise.all([...parser2])
+        .then((v) => {
+          res = v;
+          thenCalls++;
+        })
+        .catch((e) => {
+          error = e;
+          catchCalls++;
+        });
+
+      res = res.at(-1);
+
+      expect(res).toEqual({
+        type: 'NUMBER',
+        value: [
+          { type: 'OPT', value: [{ type: 'SING', value: '+' }] },
+          {
+            type: 'OR',
+            value: {
+              type: 'SEQ',
+              value: [
+                { type: 'INT_NUMBER', value: '8' },
+                { type: 'INT_NUMBER', value: '8005553535' },
+              ],
+            },
+          },
+          { type: 'OPT', value: [] },
+        ],
+      });
+      expect(error).toBe(undefined);
+      expect(thenCalls).toBe(1);
+      expect(catchCalls).toBe(0);
+    });
   });
 
-  // test('Work simple negative (1)', () => {
-  //   const parser = number('-1045');
-
-  //   let res: any;
-  //   let error: any;
-  //   let thenCalls = 0;
-  //   let catchCalls = 0;
-
-  //   const clearVars = () => {
-  //     res = [];
-  //     error = undefined;
-  //     thenCalls = 0;
-  //     catchCalls = 0;
-  //   };
-
-  //   SyncPromise.all([...parser])
-  //     .then((v) => {
-  //       res = v;
-  //       thenCalls++;
-  //     })
-  //     .catch((e) => {
-  //       error = e;
-  //       catchCalls++;
-  //     });
-
-  //   res = res.at(-1);
-
-  //   expect(res).toEqual({
-  //     type: 'NUMBER',
-  //     value: [
-  //       { type: 'OPT', value: [{ type: 'SING', value: '-' }] },
-  //       { type: 'INT_NUMBERS', value: '1045' },
-  //       { type: 'OPT', value: [] },
-  //     ],
-  //   });
-  //   expect(error).toBe(undefined);
-  //   expect(thenCalls).toBe(1);
-  //   expect(catchCalls).toBe(0);
-
-  //   clearVars();
-
-  //   const parser2 = number('-88005553535');
-
-  //   SyncPromise.all([...parser2])
-  //     .then((v) => {
-  //       res = v;
-  //       thenCalls++;
-  //     })
-  //     .catch((e) => {
-  //       error = e;
-  //       catchCalls++;
-  //     });
-
-  //   res = res.at(-1);
-
-  //   expect(res).toEqual({
-  //     type: 'NUMBER',
-  //     value: [
-  //       { type: 'OPT', value: [{ type: 'SING', value: '-' }] },
-  //       { type: 'INT_NUMBERS', value: '88005553535' },
-  //       { type: 'OPT', value: [] },
-  //     ],
-  //   });
-  //   expect(error).toBe(undefined);
-  //   expect(thenCalls).toBe(1);
-  //   expect(catchCalls).toBe(0);
-  // });
-
-  // test('Work simple fraction', () => {
-  //   const parser = number('10.22');
-
-  //   let res: any;
-  //   let error: any;
-  //   let thenCalls = 0;
-  //   let catchCalls = 0;
-
-  //   const clearVars = () => {
-  //     res = [];
-  //     error = undefined;
-  //     thenCalls = 0;
-  //     catchCalls = 0;
-  //   };
-
-  //   SyncPromise.all([...parser])
-  //     .then((v) => {
-  //       res = v;
-  //       thenCalls++;
-  //     })
-  //     .catch((e) => {
-  //       error = e;
-  //       catchCalls++;
-  //     });
-
-  //   res = res.at(-1);
-
-  //   expect(res).toEqual({
-  //     type: 'NUMBER',
-  //     value: [
-  //       { type: 'OPT', value: [] },
-  //       { type: 'INT_NUMBERS', value: '10' },
-  //       {
-  //         type: 'OPT',
-  //         value: [
-  //           {
-  //             type: 'FRACTION ',
-  //             value: [
-  //               { type: 'DOT', value: '.' },
-  //               { type: 'INT_NUMBERS', value: '22' },
-  //               { type: 'OPT', value: [] },
-  //             ],
-  //           },
-  //         ],
-  //       },
-  //     ],
-  //   });
-  //   expect(error).toBe(undefined);
-  //   expect(thenCalls).toBe(1);
-  //   expect(catchCalls).toBe(0);
-
-  //   clearVars();
-
-  //   const parser2 = number('56.123456789001010101');
-
-  //   SyncPromise.all([...parser2])
-  //     .then((v) => {
-  //       res = v;
-  //       thenCalls++;
-  //     })
-  //     .catch((e) => {
-  //       error = e;
-  //       catchCalls++;
-  //     });
-
-  //   res = res.at(-1);
-
-  //   expect(res).toEqual({
-  //     type: 'NUMBER',
-  //     value: [
-  //       { type: 'OPT', value: [] },
-  //       { type: 'INT_NUMBERS', value: '56' },
-  //       {
-  //         type: 'OPT',
-  //         value: [
-  //           {
-  //             type: 'FRACTION ',
-  //             value: [
-  //               { type: 'DOT', value: '.' },
-  //               { type: 'INT_NUMBERS', value: '123456789001010101' },
-  //               { type: 'OPT', value: [] },
-  //             ],
-  //           },
-  //         ],
-  //       },
-  //     ],
-  //   });
-  //   expect(error).toBe(undefined);
-  //   expect(thenCalls).toBe(1);
-  //   expect(catchCalls).toBe(0);
-  // });
-
-  // test('Work simple negative fraction', () => {
-  //   const parser = number('-10.22');
-
-  //   let res: any;
-  //   let error: any;
-  //   let thenCalls = 0;
-  //   let catchCalls = 0;
-
-  //   const clearVars = () => {
-  //     res = [];
-  //     error = undefined;
-  //     thenCalls = 0;
-  //     catchCalls = 0;
-  //   };
-
-  //   SyncPromise.all([...parser])
-  //     .then((v) => {
-  //       res = v;
-  //       thenCalls++;
-  //     })
-  //     .catch((e) => {
-  //       error = e;
-  //       catchCalls++;
-  //     });
-
-  //   res = res.at(-1);
-
-  //   expect(res).toEqual({
-  //     type: 'NUMBER',
-  //     value: [
-  //       { type: 'OPT', value: [{ type: 'SING', value: '-' }] },
-  //       { type: 'INT_NUMBERS', value: '10' },
-  //       {
-  //         type: 'OPT',
-  //         value: [
-  //           {
-  //             type: 'FRACTION ',
-  //             value: [
-  //               { type: 'DOT', value: '.' },
-  //               { type: 'INT_NUMBERS', value: '22' },
-  //               { type: 'OPT', value: [] },
-  //             ],
-  //           },
-  //         ],
-  //       },
-  //     ],
-  //   });
-  //   expect(error).toBe(undefined);
-  //   expect(thenCalls).toBe(1);
-  //   expect(catchCalls).toBe(0);
-
-  //   clearVars();
-
-  //   const parser2 = number('-56.123456789001010101');
-
-  //   SyncPromise.all([...parser2])
-  //     .then((v) => {
-  //       res = v;
-  //       thenCalls++;
-  //     })
-  //     .catch((e) => {
-  //       error = e;
-  //       catchCalls++;
-  //     });
-
-  //   res = res.at(-1);
-
-  //   expect(res).toEqual({
-  //     type: 'NUMBER',
-  //     value: [
-  //       { type: 'OPT', value: [{ type: 'SING', value: '-' }] },
-  //       { type: 'INT_NUMBERS', value: '56' },
-  //       {
-  //         type: 'OPT',
-  //         value: [
-  //           {
-  //             type: 'FRACTION ',
-  //             value: [
-  //               { type: 'DOT', value: '.' },
-  //               { type: 'INT_NUMBERS', value: '123456789001010101' },
-  //               { type: 'OPT', value: [] },
-  //             ],
-  //           },
-  //         ],
-  //       },
-  //     ],
-  //   });
-  //   expect(error).toBe(undefined);
-  //   expect(thenCalls).toBe(1);
-  //   expect(catchCalls).toBe(0);
-  // });
-
-  // test('Work simple fraction exponent', () => {
-  //   const parser = number('102020.10e120');
-
-  //   let res: any[] = [];
-  //   let error;
-  //   let thenCalls = 0;
-  //   let catchCalls = 0;
-
-  //   const clearVars = () => {
-  //     res = [];
-  //     error = undefined;
-  //     thenCalls = 0;
-  //     catchCalls = 0;
-  //   };
-
-  //   SyncPromise.all([...parser])
-  //     .then((v) => {
-  //       res = v;
-  //       thenCalls++;
-  //     })
-  //     .catch((e) => {
-  //       error = e;
-  //       catchCalls++;
-  //     });
-
-  //   res = res.at(-1);
-
-  //   expect(res).toEqual({
-  //     type: 'NUMBER',
-  //     value: [
-  //       { type: 'OPT', value: [] },
-  //       { type: 'INT_NUMBERS', value: '102020' },
-  //       {
-  //         type: 'OPT',
-  //         value: [
-  //           {
-  //             type: 'FRACTION ',
-  //             value: [
-  //               { type: 'DOT', value: '.' },
-  //               { type: 'INT_NUMBERS', value: '10' },
-  //               {
-  //                 type: 'OPT',
-  //                 value: [
-  //                   {
-  //                     type: 'EXPONENT',
-  //                     value: [
-  //                       { type: 'E', value: 'e' },
-  //                       { type: 'OPT', value: [] },
-  //                       { type: 'INT_NUMBERS', value: '120' },
-  //                     ],
-  //                   },
-  //                 ],
-  //               },
-  //             ],
-  //           },
-  //         ],
-  //       },
-  //     ],
-  //   });
-  //   expect(error).toBe(undefined);
-  //   expect(thenCalls).toBe(1);
-  //   expect(catchCalls).toBe(0);
-
-  //   clearVars();
-
-  //   const parser2 = number('5049.94e10');
-
-  //   SyncPromise.all([...parser2])
-  //     .then((v) => {
-  //       res = v;
-  //       thenCalls++;
-  //     })
-  //     .catch((e) => {
-  //       error = e;
-  //       catchCalls++;
-  //     });
-
-  //   res = res.at(-1);
-
-  //   console.dir(res, { depth: null });
-
-  //   expect(res).toEqual({
-  //     type: 'NUMBER',
-  //     value: [
-  //       { type: 'OPT', value: [] },
-  //       { type: 'INT_NUMBERS', value: '5049' },
-  //       {
-  //         type: 'OPT',
-  //         value: [
-  //           {
-  //             type: 'FRACTION ',
-  //             value: [
-  //               { type: 'DOT', value: '.' },
-  //               { type: 'INT_NUMBERS', value: '94' },
-  //               {
-  //                 type: 'OPT',
-  //                 value: [
-  //                   {
-  //                     type: 'EXPONENT',
-  //                     value: [
-  //                       { type: 'E', value: 'e' },
-  //                       { type: 'OPT', value: [] },
-  //                       { type: 'INT_NUMBERS', value: '10' },
-  //                     ],
-  //                   },
-  //                 ],
-  //               },
-  //             ],
-  //           },
-  //         ],
-  //       },
-  //     ],
-  //   });
-  //   expect(error).toBe(undefined);
-  //   expect(thenCalls).toBe(1);
-  //   expect(catchCalls).toBe(0);
-  // });
-
-  // test('Work simple negative fraction exponent', () => {
-  //   const parser = number('-102020.10e120');
-
-  //   let res: any[] = [];
-  //   let error;
-  //   let thenCalls = 0;
-  //   let catchCalls = 0;
-
-  //   const clearVars = () => {
-  //     res = [];
-  //     error = undefined;
-  //     thenCalls = 0;
-  //     catchCalls = 0;
-  //   };
-
-  //   SyncPromise.all([...parser])
-  //     .then((v) => {
-  //       res = v;
-  //       thenCalls++;
-  //     })
-  //     .catch((e) => {
-  //       error = e;
-  //       catchCalls++;
-  //     });
-
-  //   res = res.at(-1);
-
-  //   expect(res).toEqual({
-  //     type: 'NUMBER',
-  //     value: [
-  //       { type: 'OPT', value: [{ type: 'SING', value: '-' }] },
-  //       { type: 'INT_NUMBERS', value: '102020' },
-  //       {
-  //         type: 'OPT',
-  //         value: [
-  //           {
-  //             type: 'FRACTION ',
-  //             value: [
-  //               { type: 'DOT', value: '.' },
-  //               { type: 'INT_NUMBERS', value: '10' },
-  //               {
-  //                 type: 'OPT',
-  //                 value: [
-  //                   {
-  //                     type: 'EXPONENT',
-  //                     value: [
-  //                       { type: 'E', value: 'e' },
-  //                       { type: 'OPT', value: [] },
-  //                       { type: 'INT_NUMBERS', value: '120' },
-  //                     ],
-  //                   },
-  //                 ],
-  //               },
-  //             ],
-  //           },
-  //         ],
-  //       },
-  //     ],
-  //   });
-  //   expect(error).toBe(undefined);
-  //   expect(thenCalls).toBe(1);
-  //   expect(catchCalls).toBe(0);
-
-  //   clearVars();
-
-  //   const parser2 = number('-5049.94e10');
-
-  //   SyncPromise.all([...parser2])
-  //     .then((v) => {
-  //       res = v;
-  //       thenCalls++;
-  //     })
-  //     .catch((e) => {
-  //       error = e;
-  //       catchCalls++;
-  //     });
-
-  //   res = res.at(-1);
-
-  //   console.dir(res, { depth: null });
-
-  //   expect(res).toEqual({
-  //     type: 'NUMBER',
-  //     value: [
-  //       { type: 'OPT', value: [{ type: 'SING', value: '-' }] },
-  //       { type: 'INT_NUMBERS', value: '5049' },
-  //       {
-  //         type: 'OPT',
-  //         value: [
-  //           {
-  //             type: 'FRACTION ',
-  //             value: [
-  //               { type: 'DOT', value: '.' },
-  //               { type: 'INT_NUMBERS', value: '94' },
-  //               {
-  //                 type: 'OPT',
-  //                 value: [
-  //                   {
-  //                     type: 'EXPONENT',
-  //                     value: [
-  //                       { type: 'E', value: 'e' },
-  //                       { type: 'OPT', value: [] },
-  //                       { type: 'INT_NUMBERS', value: '10' },
-  //                     ],
-  //                   },
-  //                 ],
-  //               },
-  //             ],
-  //           },
-  //         ],
-  //       },
-  //     ],
-  //   });
-  //   expect(error).toBe(undefined);
-  //   expect(thenCalls).toBe(1);
-  //   expect(catchCalls).toBe(0);
-  // });
-
-  // test('Work simple negative fraction exponent negative', () => {
-  //   const parser = number('-102020.10e-120');
-
-  //   let res: any[] = [];
-  //   let error;
-  //   let thenCalls = 0;
-  //   let catchCalls = 0;
-
-  //   const clearVars = () => {
-  //     res = [];
-  //     error = undefined;
-  //     thenCalls = 0;
-  //     catchCalls = 0;
-  //   };
-
-  //   SyncPromise.all([...parser])
-  //     .then((v) => {
-  //       res = v;
-  //       thenCalls++;
-  //     })
-  //     .catch((e) => {
-  //       error = e;
-  //       catchCalls++;
-  //     });
-
-  //   res = res.at(-1);
-
-  //   expect(res).toEqual({
-  //     type: 'NUMBER',
-  //     value: [
-  //       { type: 'OPT', value: [{ type: 'SING', value: '-' }] },
-  //       { type: 'INT_NUMBERS', value: '102020' },
-  //       {
-  //         type: 'OPT',
-  //         value: [
-  //           {
-  //             type: 'FRACTION ',
-  //             value: [
-  //               { type: 'DOT', value: '.' },
-  //               { type: 'INT_NUMBERS', value: '10' },
-  //               {
-  //                 type: 'OPT',
-  //                 value: [
-  //                   {
-  //                     type: 'EXPONENT',
-  //                     value: [
-  //                       { type: 'E', value: 'e' },
-  //                       { type: 'OPT', value: [{ type: 'SING', value: '-' }] },
-  //                       { type: 'INT_NUMBERS', value: '120' },
-  //                     ],
-  //                   },
-  //                 ],
-  //               },
-  //             ],
-  //           },
-  //         ],
-  //       },
-  //     ],
-  //   });
-  //   expect(error).toBe(undefined);
-  //   expect(thenCalls).toBe(1);
-  //   expect(catchCalls).toBe(0);
-
-  //   clearVars();
-
-  //   const parser2 = number('-5049.94e-10');
-
-  //   SyncPromise.all([...parser2])
-  //     .then((v) => {
-  //       res = v;
-  //       thenCalls++;
-  //     })
-  //     .catch((e) => {
-  //       error = e;
-  //       catchCalls++;
-  //     });
-
-  //   res = res.at(-1);
-
-  //   console.dir(res, { depth: null });
-
-  //   expect(res).toEqual({
-  //     type: 'NUMBER',
-  //     value: [
-  //       { type: 'OPT', value: [{ type: 'SING', value: '-' }] },
-  //       { type: 'INT_NUMBERS', value: '5049' },
-  //       {
-  //         type: 'OPT',
-  //         value: [
-  //           {
-  //             type: 'FRACTION ',
-  //             value: [
-  //               { type: 'DOT', value: '.' },
-  //               { type: 'INT_NUMBERS', value: '94' },
-  //               {
-  //                 type: 'OPT',
-  //                 value: [
-  //                   {
-  //                     type: 'EXPONENT',
-  //                     value: [
-  //                       { type: 'E', value: 'e' },
-  //                       { type: 'OPT', value: [{ type: 'SING', value: '-' }] },
-  //                       { type: 'INT_NUMBERS', value: '10' },
-  //                     ],
-  //                   },
-  //                 ],
-  //               },
-  //             ],
-  //           },
-  //         ],
-  //       },
-  //     ],
-  //   });
-  //   expect(error).toBe(undefined);
-  //   expect(thenCalls).toBe(1);
-  //   expect(catchCalls).toBe(0);
-  // });
+  describe('Numbers fractions', () => {
+    test('Work number fraction', () => {
+      const parser = number('45.451');
+      const parser2 = number('77777.777777');
+
+      SyncPromise.all([...parser])
+        .then((v) => {
+          res = v;
+          thenCalls++;
+        })
+        .catch((e) => {
+          error = e;
+          catchCalls++;
+        });
+
+      res = res.at(-1);
+
+      expect(res).toEqual({
+        type: 'NUMBER',
+        value: [
+          { type: 'OPT', value: [] },
+          {
+            type: 'OR',
+            value: {
+              type: 'SEQ',
+              value: [
+                { type: 'INT_NUMBER', value: '4' },
+                { type: 'INT_NUMBER', value: '5' },
+              ],
+            },
+          },
+          {
+            type: 'OPT',
+            value: [
+              {
+                type: 'FRACTION',
+                value: [
+                  { type: 'DOT', value: '.' },
+                  { type: 'INT_NUMBER', value: '451' },
+                  { type: 'OPT', value: [] },
+                ],
+              },
+            ],
+          },
+        ],
+      });
+      expect(error).toBe(undefined);
+      expect(thenCalls).toBe(1);
+      expect(catchCalls).toBe(0);
+
+      clearVars();
+
+      SyncPromise.all([...parser2])
+        .then((v) => {
+          res = v;
+          thenCalls++;
+        })
+        .catch((e) => {
+          error = e;
+          catchCalls++;
+        });
+
+      res = res.at(-1);
+
+      expect(res).toEqual({
+        type: 'NUMBER',
+        value: [
+          { type: 'OPT', value: [] },
+          {
+            type: 'OR',
+            value: {
+              type: 'SEQ',
+              value: [
+                { type: 'INT_NUMBER', value: '7' },
+                { type: 'INT_NUMBER', value: '7777' },
+              ],
+            },
+          },
+          {
+            type: 'OPT',
+            value: [
+              {
+                type: 'FRACTION',
+                value: [
+                  { type: 'DOT', value: '.' },
+                  { type: 'INT_NUMBER', value: '777777' },
+                  { type: 'OPT', value: [] },
+                ],
+              },
+            ],
+          },
+        ],
+      });
+      expect(error).toBe(undefined);
+      expect(thenCalls).toBe(1);
+      expect(catchCalls).toBe(0);
+    });
+
+    test('Work number negative, fraction', () => {
+      const parser = number('-45.451');
+      const parser2 = number('-77777.777777');
+
+      SyncPromise.all([...parser])
+        .then((v) => {
+          res = v;
+          thenCalls++;
+        })
+        .catch((e) => {
+          error = e;
+          catchCalls++;
+        });
+
+      res = res.at(-1);
+
+      expect(res).toEqual({
+        type: 'NUMBER',
+        value: [
+          { type: 'OPT', value: [{ type: 'SING', value: '-' }] },
+          {
+            type: 'OR',
+            value: {
+              type: 'SEQ',
+              value: [
+                { type: 'INT_NUMBER', value: '4' },
+                { type: 'INT_NUMBER', value: '5' },
+              ],
+            },
+          },
+          {
+            type: 'OPT',
+            value: [
+              {
+                type: 'FRACTION',
+                value: [
+                  { type: 'DOT', value: '.' },
+                  { type: 'INT_NUMBER', value: '451' },
+                  { type: 'OPT', value: [] },
+                ],
+              },
+            ],
+          },
+        ],
+      });
+      expect(error).toBe(undefined);
+      expect(thenCalls).toBe(1);
+      expect(catchCalls).toBe(0);
+
+      clearVars();
+
+      SyncPromise.all([...parser2])
+        .then((v) => {
+          res = v;
+          thenCalls++;
+        })
+        .catch((e) => {
+          error = e;
+          catchCalls++;
+        });
+
+      res = res.at(-1);
+
+      expect(res).toEqual({
+        type: 'NUMBER',
+        value: [
+          { type: 'OPT', value: [{ type: 'SING', value: '-' }] },
+          {
+            type: 'OR',
+            value: {
+              type: 'SEQ',
+              value: [
+                { type: 'INT_NUMBER', value: '7' },
+                { type: 'INT_NUMBER', value: '7777' },
+              ],
+            },
+          },
+          {
+            type: 'OPT',
+            value: [
+              {
+                type: 'FRACTION',
+                value: [
+                  { type: 'DOT', value: '.' },
+                  { type: 'INT_NUMBER', value: '777777' },
+                  { type: 'OPT', value: [] },
+                ],
+              },
+            ],
+          },
+        ],
+      });
+      expect(error).toBe(undefined);
+      expect(thenCalls).toBe(1);
+      expect(catchCalls).toBe(0);
+    });
+
+    test('Work number positive, fraction', () => {
+      const parser = number('+45.451');
+      const parser2 = number('+77777.777777');
+
+      SyncPromise.all([...parser])
+        .then((v) => {
+          res = v;
+          thenCalls++;
+        })
+        .catch((e) => {
+          error = e;
+          catchCalls++;
+        });
+
+      res = res.at(-1);
+
+      expect(res).toEqual({
+        type: 'NUMBER',
+        value: [
+          { type: 'OPT', value: [{ type: 'SING', value: '+' }] },
+          {
+            type: 'OR',
+            value: {
+              type: 'SEQ',
+              value: [
+                { type: 'INT_NUMBER', value: '4' },
+                { type: 'INT_NUMBER', value: '5' },
+              ],
+            },
+          },
+          {
+            type: 'OPT',
+            value: [
+              {
+                type: 'FRACTION',
+                value: [
+                  { type: 'DOT', value: '.' },
+                  { type: 'INT_NUMBER', value: '451' },
+                  { type: 'OPT', value: [] },
+                ],
+              },
+            ],
+          },
+        ],
+      });
+      expect(error).toBe(undefined);
+      expect(thenCalls).toBe(1);
+      expect(catchCalls).toBe(0);
+
+      clearVars();
+
+      SyncPromise.all([...parser2])
+        .then((v) => {
+          res = v;
+          thenCalls++;
+        })
+        .catch((e) => {
+          error = e;
+          catchCalls++;
+        });
+
+      res = res.at(-1);
+
+      expect(res).toEqual({
+        type: 'NUMBER',
+        value: [
+          { type: 'OPT', value: [{ type: 'SING', value: '+' }] },
+          {
+            type: 'OR',
+            value: {
+              type: 'SEQ',
+              value: [
+                { type: 'INT_NUMBER', value: '7' },
+                { type: 'INT_NUMBER', value: '7777' },
+              ],
+            },
+          },
+          {
+            type: 'OPT',
+            value: [
+              {
+                type: 'FRACTION',
+                value: [
+                  { type: 'DOT', value: '.' },
+                  { type: 'INT_NUMBER', value: '777777' },
+                  { type: 'OPT', value: [] },
+                ],
+              },
+            ],
+          },
+        ],
+      });
+      expect(error).toBe(undefined);
+      expect(thenCalls).toBe(1);
+      expect(catchCalls).toBe(0);
+    });
+  });
+
+  describe('Numbers fractions exponents', () => {
+    test('Work number fraction exponent', () => {
+      const parser = number('45.451e10');
+      const parser2 = number('77777.777777e202020');
+
+      SyncPromise.all([...parser])
+        .then((v) => {
+          res = v;
+          thenCalls++;
+        })
+        .catch((e) => {
+          error = e;
+          catchCalls++;
+        });
+
+      res = res.at(-1);
+
+      expect(res).toEqual({
+        type: 'NUMBER',
+        value: [
+          { type: 'OPT', value: [] },
+          {
+            type: 'OR',
+            value: {
+              type: 'SEQ',
+              value: [
+                { type: 'INT_NUMBER', value: '4' },
+                { type: 'INT_NUMBER', value: '5' },
+              ],
+            },
+          },
+          {
+            type: 'OPT',
+            value: [
+              {
+                type: 'FRACTION',
+                value: [
+                  { type: 'DOT', value: '.' },
+                  { type: 'INT_NUMBER', value: '451' },
+                  {
+                    type: 'OPT',
+                    value: [
+                      {
+                        type: 'EXPONENT',
+                        value: [
+                          { type: 'E', value: 'e' },
+                          { type: 'OPT', value: [] },
+                          {
+                            type: 'OR',
+                            value: {
+                              type: 'SEQ',
+                              value: [
+                                { type: 'INT_NUMBER', value: '1' },
+                                { type: 'INT_NUMBER', value: '0' },
+                              ],
+                            },
+                          },
+                        ],
+                      },
+                    ],
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+      });
+      expect(error).toBe(undefined);
+      expect(thenCalls).toBe(1);
+      expect(catchCalls).toBe(0);
+
+      clearVars();
+
+      SyncPromise.all([...parser2])
+        .then((v) => {
+          res = v;
+          thenCalls++;
+        })
+        .catch((e) => {
+          error = e;
+          catchCalls++;
+        });
+
+      res = res.at(-1);
+
+      pr();
+
+      expect(res).toEqual({
+        type: 'NUMBER',
+        value: [
+          { type: 'OPT', value: [] },
+          {
+            type: 'OR',
+            value: {
+              type: 'SEQ',
+              value: [
+                { type: 'INT_NUMBER', value: '7' },
+                { type: 'INT_NUMBER', value: '7777' },
+              ],
+            },
+          },
+          {
+            type: 'OPT',
+            value: [
+              {
+                type: 'FRACTION',
+                value: [
+                  { type: 'DOT', value: '.' },
+                  { type: 'INT_NUMBER', value: '777777' },
+                  {
+                    type: 'OPT',
+                    value: [
+                      {
+                        type: 'EXPONENT',
+                        value: [
+                          { type: 'E', value: 'e' },
+                          { type: 'OPT', value: [] },
+                          {
+                            type: 'OR',
+                            value: {
+                              type: 'SEQ',
+                              value: [
+                                { type: 'INT_NUMBER', value: '2' },
+                                { type: 'INT_NUMBER', value: '02020' },
+                              ],
+                            },
+                          },
+                        ],
+                      },
+                    ],
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+      });
+      expect(error).toBe(undefined);
+      expect(thenCalls).toBe(1);
+      expect(catchCalls).toBe(0);
+    });
+
+    test('Work number negative, fraction exponent', () => {
+      const parser = number('-45.451e10');
+      const parser2 = number('-77777.777777e202020');
+
+      SyncPromise.all([...parser])
+        .then((v) => {
+          res = v;
+          thenCalls++;
+        })
+        .catch((e) => {
+          error = e;
+          catchCalls++;
+        });
+
+      res = res.at(-1);
+
+      expect(res).toEqual({
+        type: 'NUMBER',
+        value: [
+          { type: 'OPT', value: [{ type: 'SING', value: '-' }] },
+          {
+            type: 'OR',
+            value: {
+              type: 'SEQ',
+              value: [
+                { type: 'INT_NUMBER', value: '4' },
+                { type: 'INT_NUMBER', value: '5' },
+              ],
+            },
+          },
+          {
+            type: 'OPT',
+            value: [
+              {
+                type: 'FRACTION',
+                value: [
+                  { type: 'DOT', value: '.' },
+                  { type: 'INT_NUMBER', value: '451' },
+                  {
+                    type: 'OPT',
+                    value: [
+                      {
+                        type: 'EXPONENT',
+                        value: [
+                          { type: 'E', value: 'e' },
+                          { type: 'OPT', value: [] },
+                          {
+                            type: 'OR',
+                            value: {
+                              type: 'SEQ',
+                              value: [
+                                { type: 'INT_NUMBER', value: '1' },
+                                { type: 'INT_NUMBER', value: '0' },
+                              ],
+                            },
+                          },
+                        ],
+                      },
+                    ],
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+      });
+      expect(error).toBe(undefined);
+      expect(thenCalls).toBe(1);
+      expect(catchCalls).toBe(0);
+
+      clearVars();
+
+      SyncPromise.all([...parser2])
+        .then((v) => {
+          res = v;
+          thenCalls++;
+        })
+        .catch((e) => {
+          error = e;
+          catchCalls++;
+        });
+
+      res = res.at(-1);
+
+      pr();
+
+      expect(res).toEqual({
+        type: 'NUMBER',
+        value: [
+          { type: 'OPT', value: [{ type: 'SING', value: '-' }] },
+          {
+            type: 'OR',
+            value: {
+              type: 'SEQ',
+              value: [
+                { type: 'INT_NUMBER', value: '7' },
+                { type: 'INT_NUMBER', value: '7777' },
+              ],
+            },
+          },
+          {
+            type: 'OPT',
+            value: [
+              {
+                type: 'FRACTION',
+                value: [
+                  { type: 'DOT', value: '.' },
+                  { type: 'INT_NUMBER', value: '777777' },
+                  {
+                    type: 'OPT',
+                    value: [
+                      {
+                        type: 'EXPONENT',
+                        value: [
+                          { type: 'E', value: 'e' },
+                          { type: 'OPT', value: [] },
+                          {
+                            type: 'OR',
+                            value: {
+                              type: 'SEQ',
+                              value: [
+                                { type: 'INT_NUMBER', value: '2' },
+                                { type: 'INT_NUMBER', value: '02020' },
+                              ],
+                            },
+                          },
+                        ],
+                      },
+                    ],
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+      });
+      expect(error).toBe(undefined);
+      expect(thenCalls).toBe(1);
+      expect(catchCalls).toBe(0);
+    });
+
+    test('Work number negative, fraction exponent negative', () => {
+      const parser = number('-45.451e-10');
+      const parser2 = number('-77777.777777e-202020');
+
+      SyncPromise.all([...parser])
+        .then((v) => {
+          res = v;
+          thenCalls++;
+        })
+        .catch((e) => {
+          error = e;
+          catchCalls++;
+        });
+
+      res = res.at(-1);
+
+      expect(res).toEqual({
+        type: 'NUMBER',
+        value: [
+          { type: 'OPT', value: [{ type: 'SING', value: '-' }] },
+          {
+            type: 'OR',
+            value: {
+              type: 'SEQ',
+              value: [
+                { type: 'INT_NUMBER', value: '4' },
+                { type: 'INT_NUMBER', value: '5' },
+              ],
+            },
+          },
+          {
+            type: 'OPT',
+            value: [
+              {
+                type: 'FRACTION',
+                value: [
+                  { type: 'DOT', value: '.' },
+                  { type: 'INT_NUMBER', value: '451' },
+                  {
+                    type: 'OPT',
+                    value: [
+                      {
+                        type: 'EXPONENT',
+                        value: [
+                          { type: 'E', value: 'e' },
+                          { type: 'OPT', value: [{ type: 'SING', value: '-' }] },
+                          {
+                            type: 'OR',
+                            value: {
+                              type: 'SEQ',
+                              value: [
+                                { type: 'INT_NUMBER', value: '1' },
+                                { type: 'INT_NUMBER', value: '0' },
+                              ],
+                            },
+                          },
+                        ],
+                      },
+                    ],
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+      });
+      expect(error).toBe(undefined);
+      expect(thenCalls).toBe(1);
+      expect(catchCalls).toBe(0);
+
+      clearVars();
+
+      SyncPromise.all([...parser2])
+        .then((v) => {
+          res = v;
+          thenCalls++;
+        })
+        .catch((e) => {
+          error = e;
+          catchCalls++;
+        });
+
+      res = res.at(-1);
+
+      pr();
+
+      expect(res).toEqual({
+        type: 'NUMBER',
+        value: [
+          { type: 'OPT', value: [{ type: 'SING', value: '-' }] },
+          {
+            type: 'OR',
+            value: {
+              type: 'SEQ',
+              value: [
+                { type: 'INT_NUMBER', value: '7' },
+                { type: 'INT_NUMBER', value: '7777' },
+              ],
+            },
+          },
+          {
+            type: 'OPT',
+            value: [
+              {
+                type: 'FRACTION',
+                value: [
+                  { type: 'DOT', value: '.' },
+                  { type: 'INT_NUMBER', value: '777777' },
+                  {
+                    type: 'OPT',
+                    value: [
+                      {
+                        type: 'EXPONENT',
+                        value: [
+                          { type: 'E', value: 'e' },
+                          { type: 'OPT', value: [{ type: 'SING', value: '-' }] },
+                          {
+                            type: 'OR',
+                            value: {
+                              type: 'SEQ',
+                              value: [
+                                { type: 'INT_NUMBER', value: '2' },
+                                { type: 'INT_NUMBER', value: '02020' },
+                              ],
+                            },
+                          },
+                        ],
+                      },
+                    ],
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+      });
+      expect(error).toBe(undefined);
+      expect(thenCalls).toBe(1);
+      expect(catchCalls).toBe(0);
+    });
+  });
 });

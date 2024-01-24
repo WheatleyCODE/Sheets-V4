@@ -96,6 +96,11 @@ export function repeat<T = unknown, R = unknown>(
 
     const res: ParserResult = [token, sourceIter];
 
+    // todo В каких случаях?
+    // if (count > 0) {
+    //   yield SyncPromise.resolve(token);
+    // }
+
     yield SyncPromise.resolve(token);
     return SyncPromise.resolve(res);
   } as Parser<T | T[], R[]>;

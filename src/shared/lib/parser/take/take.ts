@@ -80,7 +80,7 @@ export const take = (test: Test, opts: ITakeOptions<string> = {}): Parser<string
       value,
     };
 
-    if (opts.token && count > 0) {
+    if (opts.token) {
       token = {
         type: opts.token,
         value: opts?.setValue ? opts?.setValue(value) : value,
@@ -88,6 +88,11 @@ export const take = (test: Test, opts: ITakeOptions<string> = {}): Parser<string
     }
 
     const res: ParserResult<string> = [token, buffer.length > 0 ? seqIterable(buffer, sourceIter) : sourceIter];
+
+    // todo В каких случаях?
+    // if (count > 0) {
+    //   yield SyncPromise.resolve(token);
+    // }
 
     yield SyncPromise.resolve(token);
     return SyncPromise.resolve(res);

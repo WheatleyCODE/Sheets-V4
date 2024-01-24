@@ -1,5 +1,6 @@
 /* eslint-disable prettier/prettier */
-import { TokenTypes } from '../../consts';
+import { checkAfter } from '../../check-after/checkAfter';
+import { ParserSymbols, TokenTypes } from '../../consts';
 import { opt } from '../../opt/opt';
 import { or } from '../../or/or';
 import { seq } from '../../seq/seq';
@@ -8,38 +9,42 @@ import { take } from '../../take/take';
 
 const sign = tag([/[-+]/], { token: 'SING' as TokenTypes })
 const intNumber = take(/[\d]/, { token: 'INT_NUMBER' as TokenTypes, isExpectNew: false })
-const intNumberWithoutZero = take(/[1-9]/, { token: 'INT_NUMBER' as TokenTypes, isExpectNew: false })
-const zero = tag('0', { token: 'INT_NUMBER' as TokenTypes, isExpectNew: false })
-const onlyZero = tag([/^0$/], { token: 'ONLY_ZERO' as TokenTypes, isExpectNew: false })
+const intOneNumberWithoutZero = tag([/[1-9]/], { token: 'INT_NUMBER' as TokenTypes, isExpectNew: false })
+const exponentSymbol = tag([/e/i], { token: 'E' as TokenTypes });
+const dotSymbol = tag('.', { token: 'DOT' as TokenTypes, isExpectNew: false });
+
+const onlyZero = checkAfter(tag('0', { token: 'INT_NUMBER' as TokenTypes, isExpectNew: false }), ParserSymbols.STRING_END)
+const zeroToFraction = checkAfter(tag('0', { token: 'INT_NUMBER' as TokenTypes, isExpectNew: false }), tag(['.', /\d/]))
+
+const numberNotStartingWithZero = seq(
+  intOneNumberWithoutZero,
+  intNumber
+)
 
 const exponent = seq(
   { token: 'EXPONENT' as TokenTypes },
-  tag([/e/i], { token: 'E' as TokenTypes }),
-  sign,
-  intNumber // Врятли exp может быть 0544545
+  exponentSymbol,
+  opt(sign),
+  or(
+    onlyZero,
+    numberNotStartingWithZero
+  )
 )
 
 const fraction = seq(
-  { token: 'FRACTION ' as TokenTypes },
-  tag('.', { token: 'DOT' as TokenTypes, isExpectNew: false }),
+  { token: 'FRACTION' as TokenTypes },
+  dotSymbol,
   intNumber,
   opt(exponent)
 );
 
-const zeroToFraction = seq(
-  { token: 'ZERO_TO_FRACTION' as TokenTypes },
-  zero,
-  fraction,
-)
-
-const numberToFraction = seq(
-  { token: 'NUMBER_TO_FRACTION' as TokenTypes },
-  intNumberWithoutZero,
-  fraction,
-)
-
 export const number = seq(
   { token: 'NUMBER' as TokenTypes },
   opt(sign),
-  or(numberToFraction, zeroToFraction, intNumberWithoutZero),
+  or(
+    onlyZero,
+    zeroToFraction,
+    numberNotStartingWithZero,
+  ),
+  opt(fraction)
 );
