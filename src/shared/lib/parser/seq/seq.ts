@@ -62,9 +62,9 @@ export function seq<T = unknown, R = unknown>(
       value,
     };
 
-    if (opts.token) {
+    if (opts.token || opts.setValue) {
       token = {
-        type: opts.token,
+        type: opts.token ? opts.token : TokenTypes.SEQ,
         value: opts?.setValue ? opts?.setValue(value) : value,
       };
     }

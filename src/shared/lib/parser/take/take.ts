@@ -80,9 +80,9 @@ export const take = (test: Test, opts: ITakeOptions<string> = {}): Parser<string
       value,
     };
 
-    if (opts.token) {
+    if (opts.token || opts.setValue) {
       token = {
-        type: opts.token,
+        type: opts.token ? opts.token : TokenTypes.TAKE,
         value: opts?.setValue ? opts?.setValue(value) : value,
       };
     }

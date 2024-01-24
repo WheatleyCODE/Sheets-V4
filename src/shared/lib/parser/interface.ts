@@ -9,6 +9,11 @@ export interface IToken<T = unknown> {
   value?: T;
 }
 
+export interface ITokenWithTokens<T = unknown> {
+  type: TokenTypes;
+  value: IToken<T>[];
+}
+
 export interface IParserValue<T = unknown> extends IToken<T> {}
 
 export type ParserResult<T = unknown> = [IParserValue<T>, Iterable<string>];
@@ -22,9 +27,9 @@ export type Parser<T = unknown, R = unknown> = (
   Iterable<string> | undefined
 >;
 
-export interface ICombinatorOptions<T = unknown> {
+export interface ICombinatorOptions<T = any> {
   token?: TokenTypes;
-  setValue?: (v: unknown) => T;
+  setValue?: (v: any) => any;
 }
 
 export interface IParserOptions<T = unknown> extends ICombinatorOptions<T> {

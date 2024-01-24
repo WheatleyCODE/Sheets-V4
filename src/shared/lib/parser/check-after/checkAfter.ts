@@ -89,9 +89,9 @@ export function checkAfter<T = unknown, R = unknown>(
       value,
     };
 
-    if (opts.token) {
+    if (opts.token || opts) {
       token = {
-        type: opts.token,
+        type: opts.token ? opts.token : TokenTypes.CHECK_NEXT,
         value: opts?.setValue ? opts?.setValue(value) : value,
       };
     }

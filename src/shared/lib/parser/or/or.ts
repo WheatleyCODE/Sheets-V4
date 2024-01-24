@@ -76,9 +76,9 @@ export function or<T = unknown, R = unknown>(
       value,
     };
 
-    if (opts.token) {
+    if (opts.token || opts.setValue) {
       token = {
-        type: TokenTypes.SEQ,
+        type: opts.token ? opts.token : TokenTypes.OR,
         value: opts?.setValue ? opts?.setValue(value) : value,
       };
     }

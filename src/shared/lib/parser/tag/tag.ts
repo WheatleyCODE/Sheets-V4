@@ -45,9 +45,9 @@ export const tag = (pattern: Iterable<Test>, opts: ITagOptions<string> = {}): Pa
       value,
     };
 
-    if (opts.token) {
+    if (opts.token || opts.setValue) {
       token = {
-        type: opts.token,
+        type: opts.token ? opts.token : TokenTypes.TAG,
         value: opts?.setValue ? opts?.setValue(value) : value,
       };
     }
